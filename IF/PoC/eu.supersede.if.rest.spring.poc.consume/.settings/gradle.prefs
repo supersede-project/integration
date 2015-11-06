@@ -1,8 +1,8 @@
 {
   "1.0": {
     "project_path": ":",
-    "project_dir": "/home/yosu/Projects/Supersede/workspaces/workspaceIF/eu.supersede.if.rest.spring.poc.consume",
-    "connection_project_dir": "/home/yosu/Projects/Supersede/workspaces/workspaceIF/eu.supersede.if.rest.spring.poc.consume",
+    "project_dir": "/home/yosu/Projects/Supersede/Git/Git_IF/IF/PoC/eu.supersede.if.rest.spring.poc.consume",
+    "connection_project_dir": "/home/yosu/Projects/Supersede/Git/Git_IF/IF/PoC/eu.supersede.if.rest.spring.poc.consume",
     "connection_gradle_user_home": null,
     "connection_gradle_distribution": "GRADLE_DISTRIBUTION(WRAPPER)",
     "connection_java_home": null,

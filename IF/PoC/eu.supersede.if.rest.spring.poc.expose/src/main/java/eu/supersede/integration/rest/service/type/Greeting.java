@@ -1,4 +1,4 @@
-package hello;
+package eu.supersede.integration.rest.service.type;
 
 public class Greeting {
 	private final long id;

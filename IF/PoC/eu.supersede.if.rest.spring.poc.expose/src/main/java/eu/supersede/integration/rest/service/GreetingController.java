@@ -1,9 +1,11 @@
-package hello;
+package eu.supersede.integration.rest.service;
 
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import eu.supersede.integration.rest.service.type.Greeting;
 
 @RestController
 public class GreetingController {
