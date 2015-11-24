@@ -1,4 +1,4 @@
-package hello;
+package eu.supersede.integration.rest.client.type;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

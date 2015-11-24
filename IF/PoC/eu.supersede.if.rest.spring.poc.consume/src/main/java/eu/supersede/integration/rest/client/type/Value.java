@@ -1,33 +1,36 @@
-package hello;
+package eu.supersede.integration.rest.client.type;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class HelloMessage {
+public class Value {
 	private Long id;
-    private String content;
-    
+    private String quote;
+
+    public Value() {
+    }
+
     public Long getId() {
         return this.id;
     }
 
-    public String getContent() {
-        return this.content;
+    public String getQuote() {
+        return this.quote;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setQuote(String quote) {
+        this.quote = quote;
     }
 
     @Override
     public String toString() {
-        return "Message{" +
+        return "Value{" +
                 "id=" + id +
-                ", content='" + content + '\'' +
+                ", quote='" + quote + '\'' +
                 '}';
     }
 }
