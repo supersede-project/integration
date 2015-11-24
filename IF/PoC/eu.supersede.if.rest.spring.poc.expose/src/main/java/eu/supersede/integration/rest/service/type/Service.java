@@ -3,15 +3,32 @@ package eu.supersede.integration.rest.service.type;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Service {
 	
+	UUID uuid;
+
 	URI uri;
 	String name;
 	String description;
 	Boolean available;
 	List<Operation> operations = new ArrayList<>();
 	
+	public Service(){
+		uuid = UUID.randomUUID();
+	}
+	
+	@XmlElement
+	public UUID getUuid() {
+		return uuid;
+	}
+	
+	@XmlElement
 	public String getName() {
 		return name;
 	}
@@ -19,24 +36,31 @@ public class Service {
 		this.name = name;
 	}
 	
+	@XmlElement
 	public List<Operation> getOperations() {
 		return operations;
 	}
 	public void setOperations(List<Operation> operations) {
 		this.operations = operations;
 	}
+	
+	@XmlElement
 	public URI getUri() {
 		return uri;
 	}
 	public void setUri(URI uri) {
 		this.uri = uri;
 	}
+	
+	@XmlElement
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	@XmlElement
 	public Boolean getAvailable() {
 		return available;
 	}

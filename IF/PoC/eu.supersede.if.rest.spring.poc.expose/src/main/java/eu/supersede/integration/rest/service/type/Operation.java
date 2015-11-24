@@ -1,16 +1,35 @@
 package eu.supersede.integration.rest.service.type;
 
+import java.util.UUID;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Operation {
 
+	UUID uuid;
 	String name;
 	String returnType;
 	
+	public Operation(){
+		uuid = UUID.randomUUID();
+	}
+	
+	@XmlElement
+	public UUID getUuid() {
+		return uuid;
+	}
+	
+	@XmlElement
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@XmlElement
 	public String getReturnType() {
 		return returnType;
 	}
