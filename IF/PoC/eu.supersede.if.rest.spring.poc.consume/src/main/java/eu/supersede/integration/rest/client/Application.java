@@ -2,6 +2,7 @@ package eu.supersede.integration.rest.client;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Collection;
 
 import org.slf4j.Logger;
@@ -51,26 +52,69 @@ public class Application implements CommandLineRunner{
     }
 
     
-    private String addService (Service service) throws URISyntaxException{
-    	RequestEntity request = RequestEntity.post(new URI("http://localhost:8080/services/")).accept(MediaType.APPLICATION_JSON).body(service);
-		String uuid = restTemplate.exchange(request, String.class).getBody().replace("\"", "");
-		
+//    private String addService (Service service) throws URISyntaxException{
+//    	RequestEntity request = RequestEntity.post(new URI("http://localhost:8080/services/")).accept(MediaType.APPLICATION_JSON).body(service);
+//		String uuid = restTemplate.exchange(request, String.class).getBody().replace("\"", "");
+//		
+//		log.info("Service "+ uuid + " created for URI: " + service.getUri());
+//		return uuid;
+//    }
+    
+    private String addService (Service service) throws URISyntaxException{		
+		ResponseEntity<String> response = postJsonMessage (service, new URI("http://localhost:8080/services/"));
+		String uuid = response.getBody().replace("\"", "");
 		log.info("Service "+ uuid + " created for URI: " + service.getUri());
 		return uuid;
     }
     
-    private String addOperationForService (String uuid, Operation op) throws URISyntaxException{
-    	RequestEntity request = RequestEntity.post(new URI("http://localhost:8080/services/" + uuid + "/operations/")).accept(MediaType.APPLICATION_JSON).body(op);
-		String opUuid = restTemplate.exchange(request, String.class).getBody().replace("\"", "");
+    private <T,S> ResponseEntity<T> postJsonMessage (S object, URI uri){
+    	RequestEntity<S> request = RequestEntity.post(uri).accept(MediaType.APPLICATION_JSON).body(object);
+    	return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+    }
+    
+    private <T> ResponseEntity<T> getMessage (URI uri, Class<T> clazz){
+    	return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
+    }
+    
+    private ResponseEntity<String> deleteJsonMessage (URI uri){
+    	HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Accept", "*/*");
+    	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
+        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
+    }       
+    
+//    private String addOperationForService (String uuid, Operation op) throws URISyntaxException{
+//    	RequestEntity request = RequestEntity.post(new URI("http://localhost:8080/services/" + uuid + "/operations/")).accept(MediaType.APPLICATION_JSON).body(op);
+//		String opUuid = restTemplate.exchange(request, String.class).getBody().replace("\"", "");
+//		
+//		log.info("Operation " + opUuid + " created for service: " + uuid);
+//		return uuid;
+//    }
+    
+    private String addOperationForService (String uuid, Operation op) throws URISyntaxException{		
+		ResponseEntity<String> response = postJsonMessage (op, new URI("http://localhost:8080/services/" + uuid + "/operations/"));
+		String opUuid = response.getBody().replace("\"", "");
 		
 		log.info("Operation " + opUuid + " created for service: " + uuid);
 		return uuid;
     }
     
-    private Service readService (String uuid){
-    	ResponseEntity<Service> response = restTemplate.getForEntity(
-    			"http://localhost:8080/services/" + uuid, 
-    			Service.class);
+//    private Service readService (String uuid){
+//    	ResponseEntity<Service> response = restTemplate.getForEntity(
+//    			"http://localhost:8080/services/" + uuid, 
+//    			Service.class);
+//		if (response.getStatusCode().equals(HttpStatus.FOUND)){
+//			log.info("Located service for URI: " + response.getBody().getUri());
+//		}else{
+//			log.info("Service for uuid: " + uuid + " not located");
+//		}
+//		
+//		return response.getBody();
+//    }
+    
+    private Service readService (String uuid) throws URISyntaxException{
+    	ResponseEntity<Service> response = getMessage(new URI("http://localhost:8080/services/" + uuid), Service.class);
 		if (response.getStatusCode().equals(HttpStatus.FOUND)){
 			log.info("Located service for URI: " + response.getBody().getUri());
 		}else{
@@ -80,10 +124,22 @@ public class Application implements CommandLineRunner{
 		return response.getBody();
     }
     
-    private Service[] getServices (){
-    	ResponseEntity<Service[]> response = restTemplate.getForEntity(
-    			"http://localhost:8080/services/", Service[].class);
-    		Service[] services = response.getBody();
+//    private Service[] getServices (){
+//    	ResponseEntity<Service[]> response = restTemplate.getForEntity(
+//    			"http://localhost:8080/services/", Service[].class);
+//    		Service[] services = response.getBody();
+//		if (response.getStatusCode().equals(HttpStatus.FOUND)){
+//			log.info("Located " + services.length + " service(s)");
+//		}else{
+//			log.info("There was a problem getting available services");
+//		}
+//		return services;
+//    }
+    
+    private Service[] getServices () throws URISyntaxException{
+    	ResponseEntity<Service[]> response = getMessage(
+    			new URI("http://localhost:8080/services/"), Service[].class);
+    	Service[] services = response.getBody();
 		if (response.getStatusCode().equals(HttpStatus.FOUND)){
 			log.info("Located " + services.length + " service(s)");
 		}else{
@@ -92,34 +148,58 @@ public class Application implements CommandLineRunner{
 		return services;
     }
     
-    private boolean removeService(String uuid){
-    	String url = "http://localhost:8080/services/" + uuid;
+//    private boolean removeService(String uuid){
+//    	String url = "http://localhost:8080/services/" + uuid;
+//    	boolean result = false;
+////		restTemplate.delete(url);
+//		
+//		HttpHeaders headers = new HttpHeaders();
+//	    headers.add("Content-Type", "application/json");
+//	    headers.add("Accept", "*/*");
+//		HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
+//	    ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class, "");
+//	    if (responseEntity.getStatusCode().equals(HttpStatus.ACCEPTED)){
+//			log.info("Deleted service " + uuid);
+//			result = true;
+//		}else{
+//			log.info("There was a problem deleting the service");
+//		}
+//		
+//	    return result;
+//    }
+    
+    private boolean removeService(String uuid) throws URISyntaxException{
     	boolean result = false;
-//		restTemplate.delete(url);
-		
-		HttpHeaders headers = new HttpHeaders();
-	    headers.add("Content-Type", "application/json");
-	    headers.add("Accept", "*/*");
-		HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-	    ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class, "");
+	    ResponseEntity<String> responseEntity = deleteJsonMessage(new URI ("http://localhost:8080/services/" + uuid));
 	    if (responseEntity.getStatusCode().equals(HttpStatus.ACCEPTED)){
 			log.info("Deleted service " + uuid);
 			result = true;
 		}else{
 			log.info("There was a problem deleting the service");
 		}
-		
 	    return result;
     }
     
-    private boolean removeAllServices (){
+//    private boolean removeAllServices (){
+//    	boolean result = false;
+//    	String url = "http://localhost:8080/services/";
+//    	HttpHeaders headers = new HttpHeaders();
+//	    headers.add("Content-Type", "application/json");
+//	    headers.add("Accept", "*/*");
+//		HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
+//    	ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class, "");
+//	    if (responseEntity.getStatusCode().equals(HttpStatus.ACCEPTED)){
+//			log.info("Deleted all services");
+//			result = true;
+//		}else{
+//			log.info("There was a problem deleting the services");
+//		}
+//	    return result;
+//    }
+    
+    private boolean removeAllServices () throws URISyntaxException{
     	boolean result = false;
-    	String url = "http://localhost:8080/services/";
-    	HttpHeaders headers = new HttpHeaders();
-	    headers.add("Content-Type", "application/json");
-	    headers.add("Accept", "*/*");
-		HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-    	ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.DELETE, requestEntity, String.class, "");
+    	ResponseEntity<String> responseEntity = deleteJsonMessage(new URI ("http://localhost:8080/services/"));
 	    if (responseEntity.getStatusCode().equals(HttpStatus.ACCEPTED)){
 			log.info("Deleted all services");
 			result = true;
