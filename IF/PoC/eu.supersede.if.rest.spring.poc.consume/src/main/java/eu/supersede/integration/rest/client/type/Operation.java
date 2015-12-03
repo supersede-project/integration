@@ -52,4 +52,8 @@ public class Operation {
 		return (o instanceof Operation) && 
 		this.name.equals (((Operation)o).name) && this.returnType.equals(((Operation)o).returnType);
 	}
+
+	public void setUuid(String ouuid) {
+		this.uuid = UUID.fromString(ouuid);
+	}
 }

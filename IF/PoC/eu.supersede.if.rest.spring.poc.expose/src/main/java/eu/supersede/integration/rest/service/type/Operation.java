@@ -13,12 +13,20 @@ public class Operation {
 	String returnType;
 	
 	public Operation(){
-		uuid = UUID.randomUUID();
+		this.uuid = UUID.randomUUID();
+	}
+	
+	public Operation(UUID uuid){
+		this.uuid = uuid;
 	}
 	
 	@XmlElement
 	public UUID getUuid() {
 		return uuid;
+	}
+	
+	public void setUuid(UUID ouuid) {
+		this.uuid = ouuid;
 	}
 	
 	@XmlElement
@@ -49,7 +57,6 @@ public class Operation {
 	
 	@Override 
 	public boolean equals (Object o){
-		return (o instanceof Operation) && 
-		this.name.equals (((Operation)o).name) && this.returnType.equals(((Operation)o).returnType);
+		return (o instanceof Operation) && this.uuid.equals(((Operation)o).uuid);
 	}
 }

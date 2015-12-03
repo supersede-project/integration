@@ -87,4 +87,8 @@ public class Service {
 		return (o instanceof Service) && 
 		this.uri.equals (((Service)o).uri);
 	}
+
+	public void setUuid(String suuid) {
+		this.uuid = UUID.fromString(suuid);
+	}
 }

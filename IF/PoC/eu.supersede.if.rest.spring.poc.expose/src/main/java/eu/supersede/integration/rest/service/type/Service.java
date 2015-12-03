@@ -20,12 +20,20 @@ public class Service {
 	List<Operation> operations = new ArrayList<>();
 	
 	public Service(){
-		uuid = UUID.randomUUID();
+		this.uuid = UUID.randomUUID();
+	}
+	
+	public Service(UUID uuid){
+		this.uuid = uuid;
 	}
 	
 	@XmlElement
 	public UUID getUuid() {
 		return uuid;
+	}
+	
+	public void setUuid(UUID suuid) {
+		this.uuid = suuid;
 	}
 	
 	@XmlElement
@@ -87,6 +95,24 @@ public class Service {
 	@Override 
 	public boolean equals (Object o){
 		return (o instanceof Service) && 
-		this.uri.equals (((Service)o).uri);
+		this.uuid.equals (((Service)o).uuid);
+	}
+
+	public Operation getOperation(UUID ouuid) {
+		for (Operation op: getOperations()){
+			if (op.getUuid().equals(ouuid)){
+				return op;
+			}
+		}
+		return null;
+	}
+
+	public void replaceOperation(Operation op) {
+		getOperations().set(getOperations().indexOf(op), op);
+		
+	}
+	
+	public void removeOperation (Operation op){
+		getOperations().remove(op);
 	}
 }

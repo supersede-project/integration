@@ -66,14 +66,20 @@ public class ServiceControllerTest {
     
     @Test
     public void testServiceController() throws Exception{
-    	String uuid = addService();
-    	listServices(1, uuid);
-    	getService(uuid);
-    	addOperation(uuid);
-    	deleteService(uuid);
+    	String suuid = addService();
+    	getService(suuid);
+    	updateService (suuid);
+    	listServices(1, suuid);
+    	String ouuid = addOperation(suuid);
+    	getOperation (suuid, ouuid);
+    	updateOperation(suuid, ouuid);
+    	listOperations (1, suuid, ouuid);
+    	deleteOperation (suuid, ouuid);
+    	deleteService(suuid);
     	listServices(0, null);
     }
     
+    //Service Tests
     private String addService() throws Exception {
     	Service service = new Service();
     	service.setUri(new URI("http://localhost/supersede/services/dm/dynamicAdaptation"));
@@ -88,12 +94,23 @@ public class ServiceControllerTest {
         return uuid;
     }
     
+    private void updateService(String uuid) throws Exception {
+    	Service service = new Service(UUID.fromString(uuid));
+    	service.setUri(new URI("http://localhost/supersede/services/dm/dynamicAdaptationModified"));
+    	service.setName("DynamicAdaptationDM");
+    	service.setDescription("Dynamic Adaptation Decision Making support");
+    	service.setAvailable(true);
+        mockMvc.perform(put("/services/")
+                .content(this.json(service))
+                .contentType(contentType))
+                .andExpect(status().isAccepted());
+    }
     
     private void getService(String uuid) throws Exception {
-        mockMvc.perform(get("/services/" + uuid + "/"))
+    	mockMvc.perform(get("/services/" + uuid + "/"))
                 .andExpect(status().isFound())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$.uuid", is (uuid)));
+                .andExpect(jsonPath("$.uuid", is (uuid))).andReturn();
     }
     
     private void deleteService(String uuid) throws Exception {
@@ -110,6 +127,7 @@ public class ServiceControllerTest {
                 ra.andExpect(jsonPath("$[0].uuid", is(uuid)));
     }
     
+    //Operation Tests
     private String addOperation(String uuid) throws Exception {
     	Operation operation = new Operation();
     	operation.setName("computeDynamicAdaptationActions");
@@ -120,6 +138,37 @@ public class ServiceControllerTest {
                 .andExpect(status().isCreated()).andReturn();
         String opUuid = result.getResponse().getContentAsString().replace("\"", ""); //remove surrounding quotes returned in content
         return opUuid;
+    }
+    
+    private void getOperation(String suuid, String ouuid) throws Exception {
+    	mockMvc.perform(get("/services/" + suuid + "/operations/" + ouuid))
+                .andExpect(status().isFound())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.uuid", is (ouuid))).andReturn();
+    }
+    
+    private void updateOperation(String suuid, String ouuid) throws Exception {
+    	Operation operation = new Operation(UUID.fromString(ouuid));
+    	operation.setName("computeDynamicAdaptationActionsModified");
+    	operation.setReturnType("Collection<DAAction>");
+        mockMvc.perform(put("/services/" + suuid + "/operations/")
+                .content(this.json(operation))
+                .contentType(contentType))
+                .andExpect(status().isAccepted());
+    }
+    
+    private void listOperations(int size, String suuid, String ouuid) throws Exception {
+    	ResultActions ra = mockMvc.perform(get("/services/" + suuid + "/operations/"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$", hasSize(size)));
+        if (ouuid != null)
+                ra.andExpect(jsonPath("$[0].uuid", is(ouuid)));
+    }
+    
+    private void deleteOperation(String suuid, String ouuid) throws Exception {
+        mockMvc.perform(delete("/services/" + suuid + "/operations/" + ouuid))
+                .andExpect(status().isAccepted());
     }
     
     protected String json(Object o) throws IOException {
