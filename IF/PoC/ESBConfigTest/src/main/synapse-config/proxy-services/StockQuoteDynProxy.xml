@@ -32,7 +32,9 @@
       <log level="custom">
         <property expression="$ctx:endpoint" name="SQ Service Proxy: forwarding to endpoint"/>
       </log>
-      <send/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
     </inSequence>
     <outSequence>
       <send/>
