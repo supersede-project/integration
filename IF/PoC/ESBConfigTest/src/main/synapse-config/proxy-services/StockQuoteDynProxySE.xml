@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<proxy name="StockQuoteDynProxyWithStaticEndpoint" startOnLoad="true"
-  statistics="enable" trace="disable" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+<proxy name="StockQuoteDynProxySE" startOnLoad="true" trace="disable"
+  transports="http https" xmlns="http://ws.apache.org/ns/synapse">
   <target>
     <inSequence>
       <log level="full"/>
