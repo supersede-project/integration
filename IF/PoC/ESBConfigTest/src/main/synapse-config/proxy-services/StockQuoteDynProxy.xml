@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="StockQuoteDynProxy" startOnLoad="true" statistics="enable"
+  trace="disable" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+  <target>
+    <inSequence>
+      <log level="full"/>
+      <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
+        <case regex="foo">
+          <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ssqs.endpoint.1"/>
+          <log level="custom">
+            <property name="SQ Service Proxy: detected input symbol" value="FOO"/>
+          </log>
+        </case>
+        <case regex="bar">
+          <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ssqs.endpoint.2"/>
+          <log level="custom">
+            <property name="SQ Service Proxy: detected input symbol" value="BAR"/>
+          </log>
+        </case>
+        <case regex="WSO2">
+          <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ssqs.endpoint.3"/>
+          <log level="custom">
+            <property name="SQ Service Proxy: detected input symbol" value="WSO2"/>
+          </log>
+        </case>
+        <default>
+          <log level="custom">
+            <property name="StockQuoteDynProxy" value="No symbol detected"/>
+          </log>
+        </default>
+      </switch>
+      <log level="custom">
+        <property expression="$ctx:endpoint" name="SQ Service Proxy: forwarding to endpoint"/>
+      </log>
+      <send/>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </target>
+</proxy>

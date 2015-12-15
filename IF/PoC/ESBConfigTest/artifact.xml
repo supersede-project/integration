@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="StockQuoteProxy" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/StockQuoteProxy.xml</file>
+    </artifact>
+    <artifact name="StockQuoteDynProxy" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/StockQuoteDynProxy.xml</file>
+    </artifact>
+    <artifact name="SSQSStaticEndpoint1" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SSQSStaticEndpoint1.xml</file>
+    </artifact>
+</artifacts>
