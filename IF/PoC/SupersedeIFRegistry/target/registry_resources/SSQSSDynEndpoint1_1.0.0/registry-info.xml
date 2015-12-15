@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <item>
+        <file>SSQSSDynEndpoint1.xml</file>
+        <path>/_system/governance/repository/endpoint</path>
+        <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+    </item>
+</resources>

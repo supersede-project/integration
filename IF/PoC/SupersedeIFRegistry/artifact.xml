@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="SSQSSDynEndpoint1" groupId="eu.supersede.if.SupersedeIFRegistry.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SSQSSDynEndpoint1.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+</artifacts>

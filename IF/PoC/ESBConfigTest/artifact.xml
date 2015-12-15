@@ -8,4 +8,13 @@
     <artifact name="SSQSStaticEndpoint1" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/endpoints/SSQSStaticEndpoint1.xml</file>
     </artifact>
+    <artifact name="SSQSStaticEndpoint2" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SSQSStaticEndpoint2.xml</file>
+    </artifact>
+    <artifact name="SSQSStaticEndpoint3" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/SSQSStaticEndpoint3.xml</file>
+    </artifact>
+    <artifact name="StockQuoteDynProxySE" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/StockQuoteDynProxySE.xml</file>
+    </artifact>
 </artifacts>
