@@ -1,0 +1,7 @@
+{"email": {
+       "subject":"Test, Email sent through WSO2 ESB",
+       "to":"jesus.gorronogoitia@atos.net",
+       "cc":"jgorro@gmail.com",
+       "bcc":"jgorro@gmail.com",
+       "body":"This message has been sent by requesting to WSO2 ESB to dispatch the message"
+}}

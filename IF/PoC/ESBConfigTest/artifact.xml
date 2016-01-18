@@ -26,4 +26,7 @@
     <artifact name="sendEmailProxy" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/proxy-services/sendEmailProxy.xml</file>
     </artifact>
+    <artifact name="mail" groupId="org.wso2.carbon.SimpleStockQuoteESBSample.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/mail.xml</file>
+    </artifact>
 </artifacts>

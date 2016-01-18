@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/mail" name="mail" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/send*">
+    <inSequence>
+      <log level="full"/>
+      <property description="getSubject"
+        expression="json-eval($.email.subject)" name="email_subject"
+        scope="default" type="STRING"/>
+      <property description="getTo" expression="json-eval($.email.to)"
+        name="email_to" scope="default" type="STRING"/>
+      <property description="getCc" expression="json-eval($.email.cc)"
+        name="email_cc" scope="default" type="STRING"/>
+      <property description="getBcc" expression="json-eval($.email.bcc)"
+        name="email_bcc" scope="default" type="STRING"/>
+      <property description="getMessageContent"
+        expression="json-eval($.email.body)" name="email_body"
+        scope="default" type="STRING"/>
+      <sequence key="sendEmail"/>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </resource>
+</api>
