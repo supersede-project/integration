@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/enactment" name="DynAdaptEnactAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/triggerAdaptationDecision/{decisionId}/{systemId}">
+    <inSequence>
+      <log level="full">
+        <property name="Enactment Message" value="triggerAdaptationDecision message forwarded to Enactment"/>
+      </log>
+      <send/>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </resource>
+</api>

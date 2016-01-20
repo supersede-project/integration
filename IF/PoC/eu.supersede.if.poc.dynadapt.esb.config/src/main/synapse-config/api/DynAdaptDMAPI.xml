@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/dm" name="DynAdaptDMAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/adaptationDecisions/{systemId}">
+    <inSequence>
+      <log level="full">
+        <property name="DM Message" value="getAdaptationDecisions message forwarded to DM"/>
+      </log>
+      <send>
+        <endpoint>
+          <http method="get" trace="disable" uri-template="http://localhost:9764/dm/adaptationDecisions/{systemId}"/>
+        </endpoint>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence/>
+  </resource>
+</api>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="DynAdaptEnactAPI" groupId="com.example.eu.supersede.if.poc.dynadapt.esb.config.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/DynAdaptEnactAPI.xml</file>
+    </artifact>
+    <artifact name="DynAdaptDMAPI" groupId="com.example.eu.supersede.if.poc.dynadapt.esb.config.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/DynAdaptDMAPI.xml</file>
+    </artifact>
+</artifacts>
