@@ -18,7 +18,9 @@ import eu.supersede.integration.poc.dynadapt.rest.client.IFMessageClient;
 public class DashboardImpl {
 	private static final Logger log = LoggerFactory.getLogger(DashboardImpl.class);
 	private IFMessageClient messageClient = new IFMessageClient();
-	
+	private final static String DM_ENDPOINT = DynAdaptProperty.getProperty("dm.endpoint");
+	private final static String ENACT_ENDPOINT = DynAdaptProperty.getProperty("enactment.endpoint");
+
 	public void run() {
 		// TODO Auto-generated method stub
 		log.info("Executing dashboard implementation");
@@ -36,7 +38,8 @@ public class DashboardImpl {
 	}
 
 	private Collection<UUID> getAdaptationDecisions(UUID systemId) throws URISyntaxException {
-		URI uri = new URI("http://localhost:8080/dm/adaptationDecisions/" + systemId);
+//		URI uri = new URI("http://localhost:8080/dm/adaptationDecisions/" + systemId);
+		URI uri = new URI(DM_ENDPOINT + "adaptationDecisions/" + systemId);
 		ResponseEntity<UUID[]> response = messageClient.getMessage(uri, UUID[].class);
 		UUID[] decisions = response.getBody();
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
@@ -51,7 +54,9 @@ public class DashboardImpl {
 	}
 	
 	public boolean triggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId) throws URISyntaxException {
-		URI uri = new URI("http://localhost:8080/enactment/triggerAdaptationDecision/" + 
+//		URI uri = new URI("http://localhost:8080/enactment/triggerAdaptationDecision/" + 
+//				decisionId +"/" + systemId);
+		URI uri = new URI(ENACT_ENDPOINT + "triggerAdaptationDecision/" + 
 				decisionId +"/" + systemId);
 		ResponseEntity<String> response = messageClient.postJsonMessage("", uri);
 		boolean enactment = Boolean.getBoolean(response.getBody());
