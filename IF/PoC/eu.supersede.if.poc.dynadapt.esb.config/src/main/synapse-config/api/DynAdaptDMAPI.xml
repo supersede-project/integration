@@ -5,15 +5,16 @@
       <log level="full">
         <property name="DM Message" value="getAdaptationDecisions message forwarded to DM"/>
       </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/DM_getAdaptationDecisionsEndpoint.xml"/>
       <send>
-        <endpoint>
-          <http method="get" trace="disable" uri-template="http://localhost:9764/dm/adaptationDecisions/{systemId}"/>
-        </endpoint>
+        <endpoint key-expression="$ctx:endpoint"/>
       </send>
     </inSequence>
     <outSequence>
       <send/>
     </outSequence>
-    <faultSequence/>
+    <faultSequence>
+      <send/>
+    </faultSequence>
   </resource>
 </api>

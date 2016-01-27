@@ -58,7 +58,8 @@ public class DashboardImpl {
 //				decisionId +"/" + systemId);
 		URI uri = new URI(ENACT_ENDPOINT + "triggerAdaptationDecision/" + 
 				decisionId +"/" + systemId);
-		ResponseEntity<String> response = messageClient.postJsonMessage("", uri);
+		//Note, object whose String serialization is valid Json must be sent to postJsonMessage
+		ResponseEntity<String> response = messageClient.postJsonMessage("{}", uri);
 		boolean enactment = Boolean.parseBoolean(response.getBody());
 		if (response.getStatusCode().equals(HttpStatus.CREATED) && enactment) {
 			log.info("Successful enactment of decision: " + decisionId);

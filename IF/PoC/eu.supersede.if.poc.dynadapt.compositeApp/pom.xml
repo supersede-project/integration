@@ -9,9 +9,11 @@
   <name>eu.supersede.if.poc.dynadapt.compositeApp</name>
   <description>eu.supersede.if.poc.dynadapt.compositeApp</description>
   <properties>
-    <com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>capp/EnterpriseServiceBus</com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>
-    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
     <com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptEnactAPI>capp/EnterpriseServiceBus</com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptEnactAPI>
+    <eu.supersede.if.SupersedeIFRegistry.resource_._DM_getAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.SupersedeIFRegistry.resource_._DM_getAdaptationDecisionsEndpoint>
+    <com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>capp/EnterpriseServiceBus</com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>
+    <eu.supersede.if.SupersedeIFRegistry.resource_._Enactment_triggerAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.SupersedeIFRegistry.resource_._Enactment_triggerAdaptationDecisionsEndpoint>
+    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
   </properties>
   <dependencies>
     <dependency>
@@ -25,6 +27,18 @@
       <artifactId>DynAdaptEnactAPI</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.SupersedeIFRegistry.resource</groupId>
+      <artifactId>DM_getAdaptationDecisionsEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.SupersedeIFRegistry.resource</groupId>
+      <artifactId>Enactment_triggerAdaptationDecisionsEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
     </dependency>
   </dependencies>
   <repositories>

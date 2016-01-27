@@ -5,11 +5,16 @@
       <log level="full">
         <property name="Enactment Message" value="triggerAdaptationDecision message forwarded to Enactment"/>
       </log>
-      <send/>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerAdaptationDecisionsEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
     </inSequence>
     <outSequence>
       <send/>
     </outSequence>
-    <faultSequence/>
+    <faultSequence>
+      <send/>
+    </faultSequence>
   </resource>
 </api>

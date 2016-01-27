@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="Enactment_triggerAdaptationDecisionsEndpoint" xmlns="http://ws.apache.org/ns/synapse">
+  <http method="post" trace="enable" uri-template="http://localhost:8080/enactment/triggerAdaptationDecision/{uri.var.decisionId}/{uri.var.systemId}"/>
+</endpoint>
