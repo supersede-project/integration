@@ -10,13 +10,20 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import eu.supersede.integration.poc.dynadapt.DynAdaptProperty;
+
 public class IFMessageClient {
 	private RestTemplate restTemplate = new RestTemplate();
+	private final static String AUTH_TOKEN = DynAdaptProperty.getProperty("is.authorization.token");
 
 	//Note: S Object requires a correct JSON serialization
 	//Note: Sending POST messages through ESB requires content-type header
 	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri) {
-		RequestEntity<S> request = RequestEntity.post(uri).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).body(object);
+		RequestEntity<S> request = RequestEntity.post(uri)
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
 	}
 	
@@ -26,7 +33,12 @@ public class IFMessageClient {
 	}
 
 	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz) {
-		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
+		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
+				.accept(MediaType.APPLICATION_JSON)
+				.header("Authorization", "Bearer " + AUTH_TOKEN);
+		return restTemplate.exchange(request, clazz);
+
+//		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
 	}
 	
 	public ResponseEntity<String> deleteJsonMessage (URI uri){
