@@ -35,7 +35,7 @@ public class IFMessageClient {
 	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz) {
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
-				.header("Authorization", "Bearer " + AUTH_TOKEN);
+				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
 		return restTemplate.exchange(request, clazz);
 
 //		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
