@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import eu.supersede.integration.poc.dynadapt.DynAdaptProperty;
@@ -32,7 +33,7 @@ public class IFMessageClient {
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
 	}
 
-	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz) {
+	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
 				.header("Authorization", "Bearer " + AUTH_TOKEN).build();

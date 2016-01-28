@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
+
 import eu.supersede.integration.poc.dynadapt.rest.client.IFMessageClient;
 
 @Component
@@ -40,17 +42,22 @@ public class DashboardImpl {
 	private Collection<UUID> getAdaptationDecisions(UUID systemId) throws URISyntaxException {
 //		URI uri = new URI("http://localhost:8080/dm/adaptationDecisions/" + systemId);
 		URI uri = new URI(DM_ENDPOINT + "adaptationDecisions/" + systemId);
-		ResponseEntity<UUID[]> response = messageClient.getMessage(uri, UUID[].class);
-		UUID[] decisions = response.getBody();
-		if (response.getStatusCode().equals(HttpStatus.OK)) {
-			log.info("Located " + decisions.length + " decision(s)");
-			for (UUID decision:decisions){
-				log.info("Decision: " + decision);
+		try {
+			ResponseEntity<UUID[]> response = messageClient.getMessage(uri, UUID[].class);
+			UUID[] decisions = response.getBody();
+			if (response.getStatusCode().equals(HttpStatus.OK)) {
+				log.info("Located " + decisions.length + " decision(s)");
+				for (UUID decision:decisions){
+					log.info("Decision: " + decision);
+				}
+			} else {
+				log.info("There was a problem getting available adaptation decisions");
 			}
-		} else {
-			log.info("There was a problem getting available adaptation decisions");
+			return (Collection<UUID>) Arrays.asList(decisions);
+		} catch (RestClientException e) {
+			e.printStackTrace();
+			throw e;
 		}
-		return (Collection<UUID>) Arrays.asList(decisions);
 	}
 	
 	public boolean triggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId) throws URISyntaxException {
