@@ -20,7 +20,7 @@
             <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
         </item>
     </artifact>
-        <artifact name="DM_getAdaptationDecisionsEndpoint" groupId="eu.supersede.if.SupersedeIFRegistry.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+    <artifact name="DM_getAdaptationDecisionsEndpoint" groupId="eu.supersede.if.SupersedeIFRegistry.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
         <item>
             <file>DM_getAdaptationDecisionsEndpoint.xml</file>
             <path>/_system/governance/repository/endpoint</path>
@@ -32,6 +32,13 @@
             <file>Enactment_triggerAdaptationDecisionsEndpoint.xml</file>
             <path>/_system/governance/repository/endpoint</path>
             <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SuperedeAuthentication" groupId="eu.supersede.if.SupersedeIFRegistry.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SuperedeAuthentication.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
         </item>
     </artifact>
 </artifacts>

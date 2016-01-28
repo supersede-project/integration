@@ -5,6 +5,7 @@
       <log level="full">
         <property name="Enactment Message" value="triggerAdaptationDecision message forwarded to Enactment"/>
       </log>
+      <sequence key="conf:/SuperedeAuthentication.xml"/>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerAdaptationDecisionsEndpoint.xml"/>
       <send>
         <endpoint key-expression="$ctx:endpoint"/>
