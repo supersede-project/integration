@@ -9,6 +9,7 @@
   <name>eu.supersede.if.poc.dynadapt.compositeApp</name>
   <description>eu.supersede.if.poc.dynadapt.compositeApp</description>
   <properties>
+    <eu.supersede.if.SupersedeIFRegistry.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.SupersedeIFRegistry.resource_._sendErrorMessage>
     <eu.supersede.if.SupersedeIFRegistry.resource_._Enactment_triggerAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.SupersedeIFRegistry.resource_._Enactment_triggerAdaptationDecisionsEndpoint>
     <eu.supersede.if.SupersedeIFRegistry.resource_._DM_getAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.SupersedeIFRegistry.resource_._DM_getAdaptationDecisionsEndpoint>
     <eu.supersede.if.SupersedeIFRegistry.resource_._SuperedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.SupersedeIFRegistry.resource_._SuperedeAuthentication>
@@ -44,6 +45,12 @@
     <dependency>
       <groupId>eu.supersede.if.SupersedeIFRegistry.resource</groupId>
       <artifactId>SuperedeAuthentication</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.SupersedeIFRegistry.resource</groupId>
+      <artifactId>sendErrorMessage</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>
