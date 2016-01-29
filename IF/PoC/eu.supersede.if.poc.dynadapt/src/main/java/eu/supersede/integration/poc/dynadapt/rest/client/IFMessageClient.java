@@ -19,6 +19,7 @@ public class IFMessageClient {
 
 	//Note: S Object requires a correct JSON serialization
 	//Note: Sending POST messages through ESB requires content-type header
+	//Returned payload is an String
 	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_JSON)
@@ -26,6 +27,15 @@ public class IFMessageClient {
 				.header("Authorization", "Bearer " + AUTH_TOKEN)
 				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+	}
+	
+	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, Class clazz) {
+		RequestEntity<S> request = RequestEntity.post(uri)
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
 	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri) {

@@ -4,6 +4,8 @@ import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 
+import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
+
 public interface iDynAdaptEnact {
-	ResponseEntity<Boolean> triggerEnactmentForAdaptationDecision (UUID decisionId, UUID systemId);
+	ResponseEntity<AdaptationEnactment> triggerEnactmentForAdaptationDecision (UUID decisionId, UUID systemId);
 }
