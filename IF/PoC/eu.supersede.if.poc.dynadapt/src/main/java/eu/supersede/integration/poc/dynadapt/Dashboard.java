@@ -7,14 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.ApplicationPreparedEvent;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-
-import eu.supersede.integration.poc.dynadapt.rest.client.IFMessageClient;
-
 
 @SpringBootApplication
 public class Dashboard extends SpringBootServletInitializer {

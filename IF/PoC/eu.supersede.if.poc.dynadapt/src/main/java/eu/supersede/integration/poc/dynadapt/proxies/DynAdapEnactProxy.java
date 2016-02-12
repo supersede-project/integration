@@ -9,14 +9,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import eu.supersede.integration.poc.dynadapt.DynAdaptProperty;
-import eu.supersede.integration.poc.dynadapt.rest.client.IFMessageClient;
 import eu.supersede.integration.poc.dynadapt.services.iDynAdaptEnact;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
+import eu.supersede.integration.properties.IntegrationProperty;
+import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class DynAdapEnactProxy implements iDynAdaptEnact {
 	private IFMessageClient messageClient = new IFMessageClient();
-	private final static String ENACT_ENDPOINT = DynAdaptProperty.getProperty("enactment.endpoint");
+	private final static String ENACT_ENDPOINT = IntegrationProperty.getProperty("enactment.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(DynAdapEnactProxy.class);
 	
 	@Override

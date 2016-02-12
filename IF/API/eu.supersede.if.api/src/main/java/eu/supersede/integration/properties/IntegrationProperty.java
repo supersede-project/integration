@@ -1,13 +1,13 @@
-package eu.supersede.integration.poc.dynadapt;
+package eu.supersede.integration.properties;
 
 import java.io.InputStream;
 import java.util.Properties;
 
-public class DynAdaptProperty {
+public class IntegrationProperty {
 	public static Properties prop = new Properties();
-	public static String propFileName = "dynadapt.properties";
+	public static String propFileName = "if.properties";
 	static{
-		InputStream is = DynAdaptProperty.class.getClassLoader().getResourceAsStream(propFileName);
+		InputStream is = IntegrationProperty.class.getClassLoader().getResourceAsStream(propFileName);
 		
 		try {
 			if (is != null){

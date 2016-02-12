@@ -1,4 +1,4 @@
-package eu.supersede.integration.poc.dynadapt.rest.client;
+package eu.supersede.integration.rest.client;
 
 import java.net.URI;
 
@@ -10,12 +10,11 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-
-import eu.supersede.integration.poc.dynadapt.DynAdaptProperty;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFMessageClient {
 	private RestTemplate restTemplate = new RestTemplate();
-	private final static String AUTH_TOKEN = DynAdaptProperty.getProperty("is.authorization.token");
+	private final static String AUTH_TOKEN = IntegrationProperty.getProperty("is.authorization.token");
 
 	//Note: S Object requires a correct JSON serialization
 	//Note: Sending POST messages through ESB requires content-type header
