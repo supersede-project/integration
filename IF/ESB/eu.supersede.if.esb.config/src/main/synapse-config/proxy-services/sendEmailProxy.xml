@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="sendEmailProxy" startOnLoad="true" trace="disable"
+  transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+  <target>
+    <inSequence>
+      <log level="full"/>
+      <property description="getSubject"
+        expression="$body/email/subject" name="email_subject"
+        scope="default" type="STRING"/>
+      <property description="getTo" expression="$body/email/to"
+        name="email_to" scope="default" type="STRING"/>
+      <property description="getMessageBody"
+        expression="$body/email/body" name="email_body" scope="default" type="STRING"/>
+      <sequence key="sendEmail"/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </target>
+</proxy>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="mail" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/mail.xml</file>
+    </artifact>
+    <artifact name="sendEmailProxy" groupId="eu.supersede.if.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/sendEmailProxy.xml</file>
+    </artifact>
+    <artifact name="sendEmail" groupId="eu.supersede.if.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/sendEmail.xml</file>
+    </artifact>
+</artifacts>

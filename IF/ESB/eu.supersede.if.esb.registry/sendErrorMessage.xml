@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="sendErrorMessage" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <log level="custom">
+    <property name="text" value="An unexpected error occured"/>
+    <property expression="get-property('ERROR_MESSAGE')" name="message" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <property expression="get-property('ERROR_CODE')" name="code" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <property expression="get-property('ERROR_DETAIL')" name="detail" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <property expression="get-property('ERROR_EXCEPTION')"
+      name="exception" xmlns:ns="http://org.apache.synapse/xsd"/>
+  </log>
+  <makefault version="pox">
+    <reason expression="get-property('ERROR_MESSAGE')" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <detail expression="get-property('ERROR_DETAIL')" xmlns:ns="http://org.apache.synapse/xsd"/>
+  </makefault>
+  <send/>
+</sequence>

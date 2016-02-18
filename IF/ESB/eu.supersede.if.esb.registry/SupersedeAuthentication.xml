@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SuperedeAuthentication"
+  onError="conf:sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <oauthService password="$2pRSid#"
+    remoteServiceUrl="https://localhost:9445/services/" username="admin"/>
+</sequence>
