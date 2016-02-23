@@ -18,4 +18,43 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource faultSequence="conf:sendErrorMessage.xml" methods="POST"
+    protocol="http" uri-template="/triggerTopRankedAdaptationDecision/{systemId}">
+    <inSequence>
+      <log level="full">
+        <property name="Enactment Message" value="triggerTopRankedAdaptationDecision message forwarded to Enactment"/>
+      </log>
+      <!--  <sequence key="conf:/SuperedeAuthentication.xml"/>  -->
+      <payloadFactory media-type="json">
+        <format>
+    		{
+        		"TopRankedAdaptationDecision" : {
+        		"uuid" : "$1",
+            	"decisionName" : "$2",
+            	"decisionDescription" : "$3",
+            	"priority" : "$4",
+            	"supervisionRequired" : "$5",
+            	"status" : ""
+            }}
+        </format>
+        <args>
+          <arg evaluator="json" expression="$.id"/>
+          <arg evaluator="json" expression="$.name"/>
+          <arg evaluator="json" expression="$.description"/>
+          <arg evaluator="json" expression="$.priority"/>
+          <arg evaluator="json" expression="$.supervised"/>
+        </args>
+      </payloadFactory>
+      <log level="full">
+        <property name="Modified Enactment Message" value="triggerTopRankedAdaptationDecision modified message forwarded to Enactment"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerAdaptationDecisionsEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+  </resource>
 </api>

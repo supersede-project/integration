@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
+import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
 
 @RestController
 @RequestMapping(value="/enactment")
@@ -30,7 +31,6 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 		failureReasons.add("Component not available");
 		failureReasons.add("Component not running");
 	}
-	
 	
 	//@Override
 	@RequestMapping(value="/triggerAdaptationDecision/{decisionId}/{systemId}", method=RequestMethod.POST)
@@ -49,5 +49,26 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 		
 		log.info("Enactment of decision: " + decisionId + " was: " + (successfulEnactment?"successful":"failed"));
 		return new ResponseEntity<AdaptationEnactment>(ae, HttpStatus.CREATED);
+	}
+
+
+	@Override
+	@RequestMapping(value="/triggerTopRankedAdaptationDecision/{systemId}", method=RequestMethod.POST)
+	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecision(
+			TopRankedAdaptationDecision decision, UUID systemId) {
+		// Acknowledge triggering of enactment decision, returning random triggering result (success, failure)
+			log.info("Enactment of decision: " + decision.getId() + " for system: " + systemId);
+			
+			//Computing enactment result
+			boolean successfulEnactment = new Random().nextBoolean();
+			AdaptationEnactment ae = new AdaptationEnactment();
+			ae.setDecisionId(decision.getId());
+			ae.setEnactmentResult(successfulEnactment);
+			ae.setEnactmentTimestamp(Calendar.getInstance().getTime());
+			if (!successfulEnactment)
+				ae.setFailureReason(failureReasons.get(random.nextInt(failureReasons.size())));
+			
+			log.info("Enactment of decision: " + decision.getId() + " was: " + (successfulEnactment?"successful":"failed"));
+			return ae;
 	}
 }
