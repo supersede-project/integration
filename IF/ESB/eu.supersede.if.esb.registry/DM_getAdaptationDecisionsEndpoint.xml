@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="DM_getAdaptationDecisionsEndpoint" xmlns="http://ws.apache.org/ns/synapse">
+  <http method="get" trace="disable" uri-template="http://localhost:8080/dm/adaptationDecisions/{uri.var.systemId}"/>
+</endpoint>
