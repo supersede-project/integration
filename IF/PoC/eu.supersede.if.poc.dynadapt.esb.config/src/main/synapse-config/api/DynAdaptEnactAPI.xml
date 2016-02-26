@@ -32,7 +32,7 @@
             	"decisionDescription" : "$3",
             	"priority" : "$4",
             	"supervisionRequired" : "$5",
-            	"status" : "suggested"
+            	"status" : "0"
             }
         </format>
         <args>
