@@ -5,9 +5,11 @@
       <log level="full">
         <property name="Enactment Message" value="triggerAdaptationDecision message forwarded to Enactment"/>
       </log>
-      <sequence key="conf:/SuperedeAuthentication.xml"/>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerAdaptationDecisionsEndpoint.xml"/>
-      <send/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
     </inSequence>
     <outSequence>
       <send/>
@@ -21,7 +23,7 @@
       <log level="full">
         <property name="Enactment Message" value="triggerTopRankedAdaptationDecision message forwarded to Enactment"/>
       </log>
-      <!--  <sequence key="conf:/SuperedeAuthentication.xml"/>  -->
+      <!--  <sequence key="conf:/SupersedeAuthentication.xml"/>  -->
       <payloadFactory media-type="json">
         <format>
     		{
@@ -45,11 +47,15 @@
         <property name="Modified Enactment Message" value="triggerTopRankedAdaptationDecision modified message forwarded to Enactment"/>
       </log>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerTopRankedAdaptationDecisionsEndpoint.xml"/>
-      <send/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
     </inSequence>
     <outSequence>
       <send/>
     </outSequence>
-    <faultSequence/>
+    <faultSequence>
+      <send/>
+    </faultSequence>
   </resource>
 </api>

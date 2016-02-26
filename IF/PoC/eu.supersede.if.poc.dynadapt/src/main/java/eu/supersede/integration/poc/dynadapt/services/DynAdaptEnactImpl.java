@@ -62,7 +62,7 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 			//Computing enactment result
 			boolean successfulEnactment = new Random().nextBoolean();
 			AdaptationEnactment ae = new AdaptationEnactment();
-			ae.setDecisionId(decision.getId());
+			ae.setDecisionId(UUID.fromString(decision.getId()));
 			ae.setEnactmentResult(successfulEnactment);
 			ae.setEnactmentTimestamp(Calendar.getInstance().getTime());
 			if (!successfulEnactment)

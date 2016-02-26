@@ -4,18 +4,18 @@ import java.util.UUID;
 
 public class TopRankedAdaptationDecision {
 
-	private UUID uuid;
+	private String uuid;
 	private String decisionName;
 	private String decisionDescription;
 	private boolean supervisionRequired;
 	private int priority;
 	private int status;
 	
-	public UUID getId() {
+	public String getId() {
 		return uuid;
 	}
 
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.uuid = id;
 	}
 
