@@ -51,9 +51,9 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 			AdaptationEnactment ae = response.getBody();
 			boolean enactment = ae.isEnactmentResult();
 			if (enactment) {
-				log.info("Successful enactment of decision: " + decision.getId() + ". Enactment: " + ae.toString());
+				log.info("Successful enactment of decision: " + decision.getUuid() + ". Enactment: " + ae.toString());
 			} else {
-				log.info("There was a problem enacting decision: " + decision.getId() + ". Enactment: " + ae.toString());
+				log.info("There was a problem enacting decision: " + decision.getUuid() + ". Enactment: " + ae.toString());
 			}
 			return ae;
 		} catch (URISyntaxException e) {

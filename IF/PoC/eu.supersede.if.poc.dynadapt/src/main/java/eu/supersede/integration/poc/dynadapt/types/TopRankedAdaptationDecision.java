@@ -4,43 +4,43 @@ import java.util.UUID;
 
 public class TopRankedAdaptationDecision {
 
-	private String uuid;
+	private UUID uuid;
 	private String decisionName;
 	private String decisionDescription;
 	private boolean supervisionRequired;
 	private int priority;
 	private int status;
-	
-	public String getId() {
+
+	public UUID getUuid() {
 		return uuid;
 	}
 
-	public void setId(String id) {
-		this.uuid = id;
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 
-	public String getName() {
+	public String getDecisionName() {
 		return decisionName;
 	}
 
-	public void setName(String name) {
-		this.decisionName = name;
+	public void setDecisionName(String decisionName) {
+		this.decisionName = decisionName;
 	}
 
-	public String getDescription() {
+	public String getDecisionDescription() {
 		return decisionDescription;
 	}
 
-	public void setDescription(String description) {
-		this.decisionDescription = description;
+	public void setDecisionDescription(String decisionDescription) {
+		this.decisionDescription = decisionDescription;
 	}
 
-	public boolean isSupervised() {
+	public boolean isSupervisionRequired() {
 		return supervisionRequired;
 	}
 
-	public void setSupervised(boolean supervised) {
-		this.supervisionRequired = supervised;
+	public void setSupervisionRequired(boolean supervisionRequired) {
+		this.supervisionRequired = supervisionRequired;
 	}
 
 	public int getPriority() {
@@ -54,11 +54,12 @@ public class TopRankedAdaptationDecision {
 	@Override
     public String toString() {
 		return "AdaptationDecision{" +
-                "id=" + uuid +
-                ", name='" + decisionName + '\'' +
-                ", description='" + decisionDescription + '\'' +
+                "uuid=" + uuid +
+                ", decisionName='" + decisionName + '\'' +
+                ", decisionDescription='" + decisionDescription + '\'' +
                 ", priority='" + priority + '\'' +
-                ", supervised='" + supervisionRequired + '\'' +
+                ", supervisionRequired='" + supervisionRequired + '\'' +
+                ", status='" + status + '\'' +
                 '}';
 	}
 
