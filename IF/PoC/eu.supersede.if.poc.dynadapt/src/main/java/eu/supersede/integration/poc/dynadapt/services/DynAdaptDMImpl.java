@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import eu.supersede.integration.poc.dynadapt.proxies.DynAdapEnactProxy;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
+import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
 
 @RestController
 @RequestMapping(value="/dm")
@@ -52,13 +54,14 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 		return currentDecisions;
 	}
 	
-	public static void computeDecisions(){
+	public static Collection<AdaptationDecision> computeDecisions(){
 		currentDecisions.clear();
 		int number = random.nextInt(10);
 		for (int i=0; i<number; i++){
 			currentDecisions.add(computeDecision(UUID.randomUUID()));
 		}
 		log.info("Computed " + number + " adaptation decisions");
+		return currentDecisions;
 	}
 	
 	
@@ -80,13 +83,33 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 
 class ComputeDecisionsTask extends TimerTask{
 	private static final Logger log = LoggerFactory.getLogger(ComputeDecisionsTask.class);
-	
+	private static DynAdapEnactProxy enactProxy = new DynAdapEnactProxy();
+	private static boolean firstInvocation = false;
 	public ComputeDecisionsTask(){
 	}
 
 	@Override
 	public void run() {
 		log.info("Launching scheduled ComputeDecisionsTask");
-		DynAdaptDMImpl.computeDecisions();
+		Collection<AdaptationDecision> decisions = DynAdaptDMImpl.computeDecisions();
+		
+		if (!firstInvocation){
+			firstInvocation = true;
+			return;
+		}
+		
+		log.info("Requested to enact top ranked decision");
+		if (decisions.iterator().hasNext()){
+			AdaptationDecision decision = decisions.iterator().next();
+			TopRankedAdaptationDecision topDecision = new TopRankedAdaptationDecision();
+			topDecision.setUuid(decision.getId());
+			topDecision.setDecisionName(decision.getName());
+			topDecision.setDecisionDescription(decision.getDescription());
+			topDecision.setPriority(decision.getPriority());
+			topDecision.setStatus(0);
+			topDecision.setSupervisionRequired(decision.isSupervised());
+			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(topDecision, UUID.randomUUID());
 	}
+		
+}
 }
