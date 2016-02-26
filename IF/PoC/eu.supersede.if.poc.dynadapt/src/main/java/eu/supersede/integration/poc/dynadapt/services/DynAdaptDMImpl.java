@@ -101,14 +101,19 @@ class ComputeDecisionsTask extends TimerTask{
 		log.info("Requested to enact top ranked decision");
 		if (decisions.iterator().hasNext()){
 			AdaptationDecision decision = decisions.iterator().next();
-			TopRankedAdaptationDecision topDecision = new TopRankedAdaptationDecision();
-			topDecision.setUuid(decision.getId());
-			topDecision.setDecisionName(decision.getName());
-			topDecision.setDecisionDescription(decision.getDescription());
-			topDecision.setPriority(decision.getPriority());
-			topDecision.setStatus(0);
-			topDecision.setSupervisionRequired(decision.isSupervised());
-			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(topDecision, UUID.randomUUID());
+			
+			//To be sent without ESB mediation
+//			TopRankedAdaptationDecision topDecision = new TopRankedAdaptationDecision();
+//			topDecision.setUuid(decision.getId());
+//			topDecision.setDecisionName(decision.getName());
+//			topDecision.setDecisionDescription(decision.getDescription());
+//			topDecision.setPriority(decision.getPriority());
+//			topDecision.setStatus(0);
+//			topDecision.setSupervisionRequired(decision.isSupervised());
+//			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(topDecision, UUID.randomUUID());
+			
+			//To be sent with ESB mediation
+			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(decision, UUID.randomUUID());
 	}
 		
 }

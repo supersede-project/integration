@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import eu.supersede.integration.poc.dynadapt.services.iDynAdaptEnact;
+import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
 import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
 import eu.supersede.integration.properties.IntegrationProperty;
@@ -62,4 +63,24 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 		}
 	}
 
+	
+	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecision(
+			AdaptationDecision decision, UUID systemId) {
+		try {
+			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecision/" + systemId);
+			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
+			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class);
+			AdaptationEnactment ae = response.getBody();
+			boolean enactment = ae.isEnactmentResult();
+			if (enactment) {
+				log.info("Successful enactment of decision: " + decision.getId() + ". Enactment: " + ae.toString());
+			} else {
+				log.info("There was a problem enacting decision: " + decision.getId() + ". Enactment: " + ae.toString());
+			}
+			return ae;
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
