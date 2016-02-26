@@ -7,9 +7,7 @@
       </log>
       <sequence key="conf:/SuperedeAuthentication.xml"/>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerAdaptationDecisionsEndpoint.xml"/>
-      <send>
-        <endpoint key-expression="$ctx:endpoint"/>
-      </send>
+      <send/>
     </inSequence>
     <outSequence>
       <send/>
@@ -18,8 +16,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource faultSequence="conf:sendErrorMessage.xml" methods="POST"
-    protocol="http" uri-template="/triggerTopRankedAdaptationDecision/{systemId}">
+  <resource methods="POST" protocol="http" uri-template="/triggerTopRankedAdaptationDecision/{systemId}">
     <inSequence>
       <log level="full">
         <property name="Enactment Message" value="triggerTopRankedAdaptationDecision message forwarded to Enactment"/>
@@ -28,14 +25,13 @@
       <payloadFactory media-type="json">
         <format>
     		{
-        		"TopRankedAdaptationDecision" : {
         		"uuid" : "$1",
             	"decisionName" : "$2",
             	"decisionDescription" : "$3",
             	"priority" : "$4",
             	"supervisionRequired" : "$5",
-            	"status" : ""
-            }}
+            	"status" : "suggested"
+            }
         </format>
         <args>
           <arg evaluator="json" expression="$.id"/>
@@ -48,13 +44,12 @@
       <log level="full">
         <property name="Modified Enactment Message" value="triggerTopRankedAdaptationDecision modified message forwarded to Enactment"/>
       </log>
-      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerAdaptationDecisionsEndpoint.xml"/>
-      <send>
-        <endpoint key-expression="$ctx:endpoint"/>
-      </send>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerTopRankedAdaptationDecisionsEndpoint.xml"/>
+      <send/>
     </inSequence>
     <outSequence>
       <send/>
     </outSequence>
+    <faultSequence/>
   </resource>
 </api>

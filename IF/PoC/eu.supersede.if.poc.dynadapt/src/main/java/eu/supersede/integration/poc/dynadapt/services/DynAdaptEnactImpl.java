@@ -57,7 +57,7 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecision(
 			TopRankedAdaptationDecision decision, UUID systemId) {
 		// Acknowledge triggering of enactment decision, returning random triggering result (success, failure)
-			log.info("Enactment of decision: " + decision.getId() + " for system: " + systemId);
+			log.info("Enactment of top ranked decision: " + decision.getId() + " for system: " + systemId);
 			
 			//Computing enactment result
 			boolean successfulEnactment = new Random().nextBoolean();
@@ -68,7 +68,7 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 			if (!successfulEnactment)
 				ae.setFailureReason(failureReasons.get(random.nextInt(failureReasons.size())));
 			
-			log.info("Enactment of decision: " + decision.getId() + " was: " + (successfulEnactment?"successful":"failed"));
+			log.info("Enactment of top ranked decision: " + decision.getId() + " was: " + (successfulEnactment?"successful":"failed"));
 			return ae;
 	}
 }
