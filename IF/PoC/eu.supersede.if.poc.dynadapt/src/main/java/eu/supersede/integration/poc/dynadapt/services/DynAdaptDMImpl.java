@@ -10,15 +10,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import eu.supersede.integration.poc.dynadapt.proxies.DynAdapEnactProxy;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
+import eu.supersede.integration.poc.dynadapt.types.CollectionOfDecisions;
 import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
 
 @RestController
@@ -47,11 +50,32 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 	}
 	
 	@Override
-	@RequestMapping(value="/adaptationDecisions/{systemId}", method=RequestMethod.GET)
-	public Collection<AdaptationDecision> getAdaptationDecisions(@PathVariable UUID systemId) {
+	//Only returns JSON representation, expressed explicitly
+	@RequestMapping(value="/adaptationDecisions/{systemId}", method=RequestMethod.GET, headers="Accept=application/json" )
+	public @ResponseBody Collection<AdaptationDecision> getAdaptationDecisions(@PathVariable UUID systemId) {
 		log.info("getAdaptationDecisions processed for system: " + systemId);
 		if (currentDecisions.isEmpty()) computeDecisions();
 		return currentDecisions;
+	}
+	
+	@Override
+	//Only returns XML representation, expressed explicitly
+	@RequestMapping(value="/allAdaptationDecisions/{systemId}", method=RequestMethod.GET, 
+			headers="Accept=application/xml", produces="application/xml")
+	public @ResponseBody CollectionOfDecisions getAllAdaptationDecisions(@PathVariable UUID systemId) {
+		log.info("getAdaptationDecisions processed for system: " + systemId);
+		if (currentDecisions.isEmpty()) computeDecisions();
+		return new CollectionOfDecisions(currentDecisions);
+	}
+	
+	@Override
+	//Accepts both JSON and XML representations
+	@RequestMapping(value="/topRankedAdaptationDecision/{systemId}", method=RequestMethod.GET, 
+		headers="Accept=application/json, application/xml", produces = {"application/json", "application/xml"})
+	public @ResponseBody AdaptationDecision getTopRankedAdaptationDecisions(@PathVariable UUID systemId) {
+		log.info("getAdaptationDecisions processed for system: " + systemId);
+		if (currentDecisions.isEmpty()) computeDecisions();
+		return currentDecisions.iterator().next();
 	}
 	
 	public static Collection<AdaptationDecision> computeDecisions(){
@@ -63,10 +87,7 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 		log.info("Computed " + number + " adaptation decisions");
 		return currentDecisions;
 	}
-	
-	
-	
-	
+
 	private static AdaptationDecision computeDecision(UUID id) {
 		int index = random.nextInt(decisions.size());
 		String name = (String) decisions.keySet().toArray()[index];

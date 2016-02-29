@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 import eu.supersede.integration.poc.dynadapt.services.iDynAdaptDM;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
+import eu.supersede.integration.poc.dynadapt.types.CollectionOfDecisions;
 import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
@@ -35,6 +36,45 @@ public class DynAdapDMProxy implements iDynAdaptDM {
 				log.info("There was a problem getting available adaptation decisions");
 			}
 			return (Collection<AdaptationDecision>) Arrays.asList(decisions);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public CollectionOfDecisions getAllAdaptationDecisions(UUID systemId) {
+		try {
+			URI uri = new URI(DM_ENDPOINT + "allAdaptationDecisions/" + systemId);
+			ResponseEntity<CollectionOfDecisions> response = messageClient.getMessage(uri, CollectionOfDecisions.class);
+			CollectionOfDecisions decisions = response.getBody();
+			if (response.getStatusCode().equals(HttpStatus.OK)) {
+				log.info("Located " + decisions.getCollection().size() + " decision(s)");
+				for (AdaptationDecision decision:decisions.getCollection()){
+					log.info("Decision: " + decision.toString());
+				}
+			} else {
+				log.info("There was a problem getting available adaptation decisions");
+			}
+			return decisions;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public AdaptationDecision getTopRankedAdaptationDecisions(UUID systemId) {
+		try {
+			URI uri = new URI(DM_ENDPOINT + "topRankedAdaptationDecision/" + systemId);
+			ResponseEntity<AdaptationDecision> response = messageClient.getMessage(uri, AdaptationDecision.class);
+			AdaptationDecision decision = response.getBody();
+			if (response.getStatusCode().equals(HttpStatus.OK)) {
+				log.info("Located decision: " + decision);
+			} else {
+				log.info("There was a problem getting top ranked adaptation decision");
+			}
+			return decision;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

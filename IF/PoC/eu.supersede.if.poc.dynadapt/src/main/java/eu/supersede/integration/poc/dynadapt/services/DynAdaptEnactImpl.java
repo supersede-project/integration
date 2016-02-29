@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
 import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
 
@@ -53,6 +54,7 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 	}
 
 
+	//This method receives a JSON AdaptationDecision payload (not explicit) and produces a JSON response
 	@Override
 	@RequestMapping(value="/triggerTopRankedAdaptationDecision/{systemId}", method=RequestMethod.POST)
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecision(
@@ -70,6 +72,47 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 				ae.setFailureReason(failureReasons.get(random.nextInt(failureReasons.size())));
 			
 			log.info("Enactment of top ranked decision: " + decision.getUuid() + " was: " + (successfulEnactment?"successful":"failed"));
+			return ae;
+	}
+	
+	//This method receives a JSON AdaptationDecision payload (explicit) and produces a JSON response
+	@RequestMapping(value="/triggerTopRankedAdaptationDecisionAsJSON/{systemId}", method=RequestMethod.POST,
+			headers="Accept=application/json", produces="application/json")
+	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsJSON(
+			@RequestBody AdaptationDecision decision, @PathVariable UUID systemId) {
+		// Acknowledge triggering of enactment decision, returning random triggering result (success, failure)
+			log.info("Enactment of top ranked decision: " + decision.getId() + " for system: " + systemId);
+			
+			//Computing enactment result
+			boolean successfulEnactment = new Random().nextBoolean();
+			AdaptationEnactment ae = new AdaptationEnactment();
+			ae.setDecisionId(decision.getId());
+			ae.setEnactmentResult(successfulEnactment);
+			ae.setEnactmentTimestamp(Calendar.getInstance().getTime());
+			if (!successfulEnactment)
+				ae.setFailureReason(failureReasons.get(random.nextInt(failureReasons.size())));
+			
+			log.info("Enactment of top ranked decision: " + decision.getId() + " was: " + (successfulEnactment?"successful":"failed"));
+			return ae;
+	}
+	
+	@RequestMapping(value="/triggerTopRankedAdaptationDecisionAsXML/{systemId}", method=RequestMethod.POST,
+			headers="Accept=application/xml", produces="application/xml")
+	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsXML(
+			@RequestBody AdaptationDecision decision, @PathVariable UUID systemId) {
+		// Acknowledge triggering of enactment decision, returning random triggering result (success, failure)
+			log.info("Enactment of top ranked decision: " + decision.getId() + " for system: " + systemId);
+			
+			//Computing enactment result
+			boolean successfulEnactment = new Random().nextBoolean();
+			AdaptationEnactment ae = new AdaptationEnactment();
+			ae.setDecisionId(decision.getId());
+			ae.setEnactmentResult(successfulEnactment);
+			ae.setEnactmentTimestamp(Calendar.getInstance().getTime());
+			if (!successfulEnactment)
+				ae.setFailureReason(failureReasons.get(random.nextInt(failureReasons.size())));
+			
+			log.info("Enactment of top ranked decision: " + decision.getId() + " was: " + (successfulEnactment?"successful":"failed"));
 			return ae;
 	}
 }

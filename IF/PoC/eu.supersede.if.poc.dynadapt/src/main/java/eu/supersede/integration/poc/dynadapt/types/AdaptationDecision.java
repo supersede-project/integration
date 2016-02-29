@@ -2,6 +2,10 @@ package eu.supersede.integration.poc.dynadapt.types;
 
 import java.util.UUID;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "AdaptationDecision")
 public class AdaptationDecision {
 
 	private UUID id;
@@ -10,6 +14,7 @@ public class AdaptationDecision {
 	private boolean supervised;
 	private int priority;
 	
+	@XmlElement
 	public UUID getId() {
 		return id;
 	}
@@ -18,6 +23,7 @@ public class AdaptationDecision {
 		this.id = id;
 	}
 
+	@XmlElement
 	public String getName() {
 		return name;
 	}
@@ -26,6 +32,7 @@ public class AdaptationDecision {
 		this.name = name;
 	}
 
+	@XmlElement
 	public String getDescription() {
 		return description;
 	}
@@ -34,6 +41,7 @@ public class AdaptationDecision {
 		this.description = description;
 	}
 
+	@XmlElement
 	public boolean isSupervised() {
 		return supervised;
 	}
@@ -42,6 +50,7 @@ public class AdaptationDecision {
 		this.supervised = supervised;
 	}
 
+	@XmlElement
 	public int getPriority() {
 		return priority;
 	}
