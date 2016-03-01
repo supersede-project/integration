@@ -34,7 +34,7 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 		failureReasons.add("Component not running");
 	}
 	
-	//@Override
+	@Override
 	@RequestMapping(value="/triggerAdaptationDecision/{decisionId}/{systemId}", method=RequestMethod.POST)
 	public ResponseEntity<AdaptationEnactment> triggerEnactmentForAdaptationDecision(@PathVariable UUID decisionId, @PathVariable UUID systemId) {
 		// Acknowledge triggering of enactment decision, returning random triggering result (success, failure)
@@ -76,6 +76,7 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 	}
 	
 	//This method receives a JSON AdaptationDecision payload (explicit) and produces a JSON response
+	@Override
 	@RequestMapping(value="/triggerTopRankedAdaptationDecisionAsJSON/{systemId}", method=RequestMethod.POST,
 			headers="Accept=application/json", produces="application/json")
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsJSON(
@@ -96,6 +97,8 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 			return ae;
 	}
 	
+	//This method receives a XML AdaptationDecision payload (explicit) and produces a XML response
+	@Override
 	@RequestMapping(value="/triggerTopRankedAdaptationDecisionAsXML/{systemId}", method=RequestMethod.POST,
 			headers="Accept=application/xml", produces="application/xml")
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsXML(

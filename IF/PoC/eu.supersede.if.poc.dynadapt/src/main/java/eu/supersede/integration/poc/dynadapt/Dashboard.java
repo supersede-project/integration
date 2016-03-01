@@ -17,7 +17,7 @@ public class Dashboard extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication (Dashboard.class);
 		ConfigurableApplicationContext ctx = app.run(args);
-		ctx.publishEvent(new ApplicationPreparedEvent(app, args, ctx));;
+		ctx.publishEvent(new ApplicationPreparedEvent(app, args, ctx));
 	}
 	
 	@Override

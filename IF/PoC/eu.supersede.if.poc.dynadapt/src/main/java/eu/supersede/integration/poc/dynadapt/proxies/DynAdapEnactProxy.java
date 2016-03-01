@@ -63,13 +63,57 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 		}
 	}
 
-	
+	//This method receives a JSON AdaptationDecision payload (not explicit) and produces a JSON response
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecision(
 			AdaptationDecision decision, UUID systemId) {
 		try {
 			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecision/" + systemId);
 			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
 			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class);
+			AdaptationEnactment ae = response.getBody();
+			boolean enactment = ae.isEnactmentResult();
+			if (enactment) {
+				log.info("Successful enactment of decision: " + decision.getId() + ". Enactment: " + ae.toString());
+			} else {
+				log.info("There was a problem enacting decision: " + decision.getId() + ". Enactment: " + ae.toString());
+			}
+			return ae;
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	//This method receives a JSON AdaptationDecision payload (explicit) and produces a JSON response
+	@Override
+	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsJSON(AdaptationDecision decision,
+			UUID systemId) {
+		try {
+			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecisionAsJSON/" + systemId);
+			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
+			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class);
+			AdaptationEnactment ae = response.getBody();
+			boolean enactment = ae.isEnactmentResult();
+			if (enactment) {
+				log.info("Successful enactment of decision: " + decision.getId() + ". Enactment: " + ae.toString());
+			} else {
+				log.info("There was a problem enacting decision: " + decision.getId() + ". Enactment: " + ae.toString());
+			}
+			return ae;
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	//This method receives a XML AdaptationDecision payload (explicit) and produces a XML response
+	@Override
+	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsXML(AdaptationDecision decision,
+			UUID systemId) {
+		try {
+			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecisionAsXML/" + systemId);
+
+			ResponseEntity<AdaptationEnactment> response = messageClient.postXmlMessage(decision, uri, AdaptationEnactment.class);
 			AdaptationEnactment ae = response.getBody();
 			boolean enactment = ae.isEnactmentResult();
 			if (enactment) {

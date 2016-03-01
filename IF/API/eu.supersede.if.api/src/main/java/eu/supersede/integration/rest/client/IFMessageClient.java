@@ -28,6 +28,15 @@ public class IFMessageClient {
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
 	}
 	
+	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri) {
+		RequestEntity<S> request = RequestEntity.post(uri)
+				.accept(MediaType.APPLICATION_XML)
+				.contentType(MediaType.APPLICATION_XML)
+				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+	}
+	
 	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, Class clazz) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_JSON)
@@ -37,14 +46,49 @@ public class IFMessageClient {
 		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
+	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, Class clazz) {
+		RequestEntity<S> request = RequestEntity.post(uri)
+				.accept(MediaType.APPLICATION_XML)
+				.contentType(MediaType.APPLICATION_XML)
+				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
+	}
+	
+	
 	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri) {
 		RequestEntity<S> request = RequestEntity.put(uri).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
 	}
+	
+	public <T, S> ResponseEntity<T> putXmlMessage(S object, URI uri) {
+		RequestEntity<S> request = RequestEntity.put(uri).accept(MediaType.APPLICATION_XML).contentType(MediaType.APPLICATION_XML).body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+	}
 
+	/**
+	 * Send GET message to uri, accepting an object of class clazz in JSON representation
+	 * @param uri URI of GET message
+	 * @param clazz Class representing returned object
+	 */
 	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
+				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
+		return restTemplate.exchange(request, clazz);
+
+//		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
+	}
+	
+	/**
+	 * Send GET message to uri, accepting an object of class clazz in type representation
+	 * @param uri URI of GET message
+	 * @param clazz Class representing returned object
+	 * @param type The media type representation accepted for returned object
+	 */
+	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz, MediaType type) throws RestClientException{
+		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
+				.accept(type)
 				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
 		return restTemplate.exchange(request, clazz);
 

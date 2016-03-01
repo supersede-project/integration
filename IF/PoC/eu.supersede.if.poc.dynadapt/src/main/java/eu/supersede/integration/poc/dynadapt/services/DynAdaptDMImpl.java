@@ -72,7 +72,7 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 	//Accepts both JSON and XML representations
 	@RequestMapping(value="/topRankedAdaptationDecision/{systemId}", method=RequestMethod.GET, 
 		headers="Accept=application/json, application/xml", produces = {"application/json", "application/xml"})
-	public @ResponseBody AdaptationDecision getTopRankedAdaptationDecisions(@PathVariable UUID systemId) {
+	public @ResponseBody AdaptationDecision getTopRankedAdaptationDecision(@PathVariable UUID systemId) {
 		log.info("getAdaptationDecisions processed for system: " + systemId);
 		if (currentDecisions.isEmpty()) computeDecisions();
 		return currentDecisions.iterator().next();
