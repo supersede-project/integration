@@ -46,24 +46,15 @@
       </send>
     </inSequence>
     <outSequence>
+      <log level="full"/>
       <filter regex="application/json" source="get-property('http_accept')">
         <then>
-          <payloadFactory media-type="xml">
+          <payloadFactory media-type="json">
             <format>
-              <AdaptationDecision>
-                <id>$1</id>
-                <name>$2</name>
-                <description>$3</description>
-                <supervised>$4</supervised>
-                <priority>$5</priority>
-              </AdaptationDecision>
+				$1
             </format>
             <args>
-              <arg evaluator="json" expression="$.id"/>
-              <arg evaluator="json" expression="$.name"/>
-              <arg evaluator="json" expression="$.description"/>
-              <arg evaluator="json" expression="$.supervised"/>
-              <arg evaluator="json" expression="$.priority"/>
+              <arg evaluator="json" expression="collection.decision"/>
             </args>
           </payloadFactory>
           <log level="full">
