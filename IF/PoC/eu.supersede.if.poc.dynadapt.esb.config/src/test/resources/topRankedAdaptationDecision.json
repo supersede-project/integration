@@ -1,0 +1,1 @@
+{ "uuid" : "ebed6a0f-e4c9-48d6-b539-cd85f5a5e00d", "decisionName" : "Switch to local regional CDN", "decisionDescription" : "Reconfigure backend topology: activate video content dispatching using closest regional CDN", "priority" : "2", "supervisionRequired" : "true", "status" : "0" }

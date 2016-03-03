@@ -1,0 +1,3 @@
+
+{"id":"68eeeb21-4e82-40c2-a32e-cea928622107","name":"Switch to local regional CDN","description":"Reconfigure backend topology: activate video content dispatching using closest regional CDN","supervised":true,"priority":3}
+

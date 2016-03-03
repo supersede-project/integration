@@ -1,0 +1,7 @@
+<AdaptationDecision>
+	<id>68eeeb21-4e82-40c2-a32e-cea928622107</id>
+	<name>Switch to local regional CDN</name>
+	<description>Reconfigure backend topology: activate video content dispatching using closest regional CDN</description>
+	<supervised>true</supervised>
+	<priority>3</priority>
+</AdaptationDecision>

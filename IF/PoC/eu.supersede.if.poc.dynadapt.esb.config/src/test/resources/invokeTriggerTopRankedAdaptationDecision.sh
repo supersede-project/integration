@@ -1,0 +1,1 @@
+curl -v -X POST -d @adaptationDecision.json -H "Authorization: Bearer 3920c55ad88cc4feecc1921566505e3b" http://62.14.219.13:8280/enactment/triggerTopRankedAdaptationDecision/68eeeb21-4e82-40c2-a32e-cea928622107 --header "Content-Type:application/json"
