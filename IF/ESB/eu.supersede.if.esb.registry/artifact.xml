@@ -34,4 +34,32 @@
             <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
         </item>
     </artifact>
+    <artifact name="DM_allAdaptationDecisionsEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>DM_allAdaptationDecisionsEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="DM_topRankedAdaptationDecisionEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>DM_topRankedAdaptationDecisionEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
 </artifacts>

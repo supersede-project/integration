@@ -9,12 +9,16 @@
   <name>eu.supersede.if.poc.dynadapt.compositeApp</name>
   <description>eu.supersede.if.poc.dynadapt.compositeApp</description>
   <properties>
-    <eu.supersede.if.esb.resource_._DM_getAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DM_getAdaptationDecisionsEndpoint>
     <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
-    <eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionsEndpoint>
     <eu.supersede.if.esb.resource_._Enactment_triggerAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerAdaptationDecisionsEndpoint>
-    <com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>capp/EnterpriseServiceBus</com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
+    <eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint>
+    <eu.supersede.if.esb.resource_._DM_allAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DM_allAdaptationDecisionsEndpoint>
+    <com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>capp/EnterpriseServiceBus</com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptDMAPI>
+    <eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint>
+    <eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionsEndpoint>
+    <eu.supersede.if.esb.resource_._DM_topRankedAdaptationDecisionEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DM_topRankedAdaptationDecisionEndpoint>
+    <eu.supersede.if.esb.resource_._DM_getAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DM_getAdaptationDecisionsEndpoint>
     <eu.supersede.if.esb.resource_._SupersedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._SupersedeAuthentication>
     <com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptEnactAPI>capp/EnterpriseServiceBus</com.example.eu.supersede.if.poc.dynadapt.esb.config.api_._DynAdaptEnactAPI>
   </properties>
@@ -33,13 +37,43 @@
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>DM_allAdaptationDecisionsEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>DM_getAdaptationDecisionsEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>DM_topRankedAdaptationDecisionEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>Enactment_triggerAdaptationDecisionsEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>Enactment_triggerTopRankedAdaptationDecisionsEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>
@@ -52,12 +86,6 @@
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>sendErrorMessage</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>Enactment_triggerTopRankedAdaptationDecisionsEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>

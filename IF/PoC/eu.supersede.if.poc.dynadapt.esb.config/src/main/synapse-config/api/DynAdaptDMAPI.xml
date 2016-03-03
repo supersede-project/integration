@@ -18,4 +18,68 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="GET" protocol="http" uri-template="/allAdaptationDecisions/{systemId}">
+    <inSequence>
+      <log level="full">
+        <property name="DM Message" value="allAdaptationDecisions message forwarded to DM"/>
+      </log>
+      <!--  <sequence key="conf:/SupersedeAuthentication.xml"/> -->
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/DM_allAdaptationDecisionsEndpoint.xml"/>
+      <property description="HttpAccept"
+        expression="get-property('transport','Accept')"
+        name="http_accept" scope="default" type="STRING"/>
+      <filter regex="application/json" source="get-property('http_accept')">
+        <then>
+          <header name="Accept" scope="transport" value="application/xml"/>
+          <log level="full">
+            <property name="HTTP_HEADER_ACCEPT" value="HTTP Header Accept changed to application/xml as requested by endpoint"/>
+          </log>
+        </then>
+        <else>
+          <log>
+            <property name="HTTP_HEADER_ACCEPT" value="HTTP header accept unchanged"/>
+          </log>
+        </else>
+      </filter>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <filter regex="application/json" source="get-property('http_accept')">
+        <then>
+          <payloadFactory media-type="xml">
+            <format>
+              <AdaptationDecision>
+                <id>$1</id>
+                <name>$2</name>
+                <description>$3</description>
+                <supervised>$4</supervised>
+                <priority>$5</priority>
+              </AdaptationDecision>
+            </format>
+            <args>
+              <arg evaluator="json" expression="$.id"/>
+              <arg evaluator="json" expression="$.name"/>
+              <arg evaluator="json" expression="$.description"/>
+              <arg evaluator="json" expression="$.supervised"/>
+              <arg evaluator="json" expression="$.priority"/>
+            </args>
+          </payloadFactory>
+          <log level="full">
+            <property name="JSON_PAYLOAD" value="Payload transformed to JSON "/>
+          </log>
+        </then>
+        <else>
+          <log>
+            <property name="XML_PAYLOAD" value="XML payload unchanged"/>
+          </log>
+        </else>
+      </filter>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>
