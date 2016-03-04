@@ -178,14 +178,18 @@
       <log level="full"/>
       <filter regex="application/xml" source="get-property('http_accept')">
         <then>
-          <payloadFactory media-type="json">
-            <format/>
+          <payloadFactory media-type="xml">
+            <format>
+              <AdaptationDecision xmlns="">
+                <decisionId>$1</decisionId>
+                <enactmentResult>$2</enactmentResult>
+                <enactmentTimestamp>$3</enactmentTimestamp>
+              </AdaptationDecision>
+            </format>
             <args>
-              <arg evaluator="json" expression="$.id"/>
-              <arg evaluator="json" expression="$.name"/>
-              <arg evaluator="json" expression="$.description"/>
-              <arg evaluator="json" expression="$.supervised"/>
-              <arg evaluator="json" expression="$.priority"/>
+              <arg evaluator="json" expression="$.decisionId"/>
+              <arg evaluator="json" expression="$.enactmentResult"/>
+              <arg evaluator="json" expression="$.enactmentTimestamp"/>
             </args>
           </payloadFactory>
           <log level="full">
