@@ -64,9 +64,6 @@
         <property name="Enactment Message" value="triggerTopRankedAdaptationDecisionAsXML message forwarded to Enactment"/>
       </log>
       <!--  <sequence key="conf:/SupersedeAuthentication.xml"/>  -->
-      <log level="full">
-        <property name="Modified Enactment Message" value="triggerTopRankedAdaptationDecision modified message forwarded to Enactment"/>
-      </log>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint.xml"/>
       <property description="HTTP_Accept"
         expression="get-property('transport','Accept')"
@@ -77,9 +74,10 @@
       <filter regex="application/json" source="get-property('http_content_type')">
         <then>
           <header name="Content-Type" scope="transport" value="application/xml"/>
+          <header name="Accept" scope="transport" value="application/xml"/>
           <payloadFactory media-type="xml">
             <format>
-              <AdaptationDecision>
+              <AdaptationDecision xmlns="">
                 <id>$1</id>
                 <name>$2</name>
                 <description>$3</description>
@@ -100,7 +98,7 @@
           </log>
         </then>
         <else>
-          <log>
+          <log level="full">
             <property name="HTTP_HEADER_CONTENT_TYPE" value="HTTP header Content-Type unchanged"/>
           </log>
         </else>
