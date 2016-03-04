@@ -135,4 +135,73 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="POST" protocol="http" uri-template="/triggerTopRankedAdaptationDecisionAsJSON/{systemId}">
+    <inSequence>
+      <log level="full">
+        <property name="Enactment Message" value="triggerTopRankedAdaptationDecisionAsJSON message forwarded to Enactment"/>
+      </log>
+      <!--  <sequence key="conf:/SupersedeAuthentication.xml"/>  -->
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint.xml"/>
+      <property description="HTTP_Accept"
+        expression="get-property('transport','Accept')"
+        name="http_accept" scope="default" type="STRING"/>
+      <property description="HTTP_Content_Type"
+        expression="get-property('transport','Content-Type')"
+        name="http_content_type" scope="default" type="STRING"/>
+      <filter regex="application/xml" source="get-property('http_content_type')">
+        <then>
+          <header name="Content-Type" scope="transport" value="application/json"/>
+          <header name="Accept" scope="transport" value="application/json"/>
+          <payloadFactory media-type="json">
+            <format>
+              $1
+            </format>
+            <args>
+              <arg evaluator="json" expression="AdaptationDecision"/>
+            </args>
+          </payloadFactory>
+          <log level="full">
+            <property name="HTTP_HEADER_CONTENT_TYPE" value="HTTP Header Content-Type changed to application/json as requested by endpoint"/>
+          </log>
+        </then>
+        <else>
+          <log level="full">
+            <property name="HTTP_HEADER_CONTENT_TYPE" value="HTTP header Content-Type unchanged"/>
+          </log>
+        </else>
+      </filter>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <log level="full"/>
+      <filter regex="application/xml" source="get-property('http_accept')">
+        <then>
+          <payloadFactory media-type="json">
+            <format/>
+            <args>
+              <arg evaluator="json" expression="$.id"/>
+              <arg evaluator="json" expression="$.name"/>
+              <arg evaluator="json" expression="$.description"/>
+              <arg evaluator="json" expression="$.supervised"/>
+              <arg evaluator="json" expression="$.priority"/>
+            </args>
+          </payloadFactory>
+          <log level="full">
+            <property name="XML_PAYLOAD" value="Payload transformed to XML "/>
+          </log>
+        </then>
+        <else>
+          <log>
+            <property name="JSON_PAYLOAD" value="JSON payload unchanged"/>
+          </log>
+        </else>
+      </filter>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>
