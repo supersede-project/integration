@@ -8,14 +8,20 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFMessageClient {
 	private RestTemplate restTemplate = new RestTemplate();
+	private AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
 	private final static String AUTH_TOKEN = IntegrationProperty.getProperty("is.authorization.token");
 
+	
+	// SYNCRONOUS MESSAGING
+	
 	//Note: S Object requires a correct JSON serialization
 	//Note: Sending POST messages through ESB requires content-type header
 	//Returned payload is an String
@@ -107,4 +113,15 @@ public class IFMessageClient {
     	RequestEntity request = (RequestEntity) RequestEntity.delete(uri);
         return restTemplate.exchange(request, String.class);
     }
+	
+	
+	//ASYNCHRONOUS MESSAGING
+	public <T, S> ListenableFuture<ResponseEntity<T>> asyncPostJsonMessage(S object, URI uri, Class clazz) {
+		RequestEntity<S> request = RequestEntity.post(uri)
+				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.body(object);
+		return (ListenableFuture<ResponseEntity<T>>) asyncRestTemplate.exchange(uri, HttpMethod.POST, request, clazz);
+	}
 }

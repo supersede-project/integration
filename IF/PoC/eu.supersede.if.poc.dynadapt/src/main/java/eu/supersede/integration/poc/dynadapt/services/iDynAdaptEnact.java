@@ -3,6 +3,7 @@ package eu.supersede.integration.poc.dynadapt.services;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.concurrent.ListenableFuture;
 
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;

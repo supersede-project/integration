@@ -40,6 +40,16 @@ public class DynAdaptEnactImpl implements iDynAdaptEnact {
 		// Acknowledge triggering of enactment decision, returning random triggering result (success, failure)
 		log.info("Enactment of decision: " + decisionId + " for system: " + systemId);
 		
+		// Simulating adaptation enactment process
+		try {
+			log.info("Processing Enactment ...");
+			Thread.sleep(10000);
+			log.info("Enactment finalised");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//Computing enactment result
 		boolean successfulEnactment = new Random().nextBoolean();
 		AdaptationEnactment ae = new AdaptationEnactment();

@@ -13,14 +13,22 @@ import java.util.UUID;
 import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.AsyncRestTemplate;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import eu.supersede.integration.poc.dynadapt.proxies.DynAdapEnactProxy;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
+import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
 import eu.supersede.integration.poc.dynadapt.types.CollectionOfDecisions;
 import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
 
@@ -32,6 +40,7 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 	static final int A_MINUTE = 1000*60;
 	static Random random = new Random();
 	private static Map<String, String> decisions = new HashMap<>();
+	private static DynAdapEnactProxy enactProxy = new DynAdapEnactProxy();
 	
 	//Service generates random (1 to 10) adaptation decisions: Collection<UUID> every minute
 	static{
@@ -55,6 +64,7 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 	public @ResponseBody Collection<AdaptationDecision> getAdaptationDecisions(@PathVariable UUID systemId) {
 		log.info("getAdaptationDecisions processed for system: " + systemId);
 		if (currentDecisions.isEmpty()) computeDecisions();
+		
 		return currentDecisions;
 	}
 	
@@ -100,12 +110,14 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 		
 		return ad;
 	}
+	
 }
 
 class ComputeDecisionsTask extends TimerTask{
 	private static final Logger log = LoggerFactory.getLogger(ComputeDecisionsTask.class);
-	private static DynAdapEnactProxy enactProxy = new DynAdapEnactProxy();
 	private static boolean firstInvocation = false;
+	private static DynAdapEnactProxy enactProxy = new DynAdapEnactProxy();
+	
 	public ComputeDecisionsTask(){
 	}
 
@@ -135,7 +147,41 @@ class ComputeDecisionsTask extends TimerTask{
 			
 			//To be sent with ESB mediation
 			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(decision, UUID.randomUUID());
+			
+//			//To be sent asynchronously
+			log.info("BEFORE Invoking asynchronousTriggerEnactmentForAdaptationDecision. Not-blocking");
+			asynchronousTriggerEnactmentForAdaptationDecision (decision.getId(), UUID.randomUUID());
+			log.info("AFTER Invoking asynchronousTriggerEnactmentForAdaptationDecision. Not-blocking");
+		}
 	}
 		
-}
+	DeferredResult<ResponseEntity<?>> asynchronousTriggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId){
+		ListenableFuture<ResponseEntity<AdaptationEnactment>> enactmentAdapter = enactProxy.asynchronousTriggerEnactmentForAdaptationDecision (decisionId, systemId);
+		DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>();
+		enactmentAdapter.addCallback(
+                new ListenableFutureCallback<ResponseEntity<AdaptationEnactment>>() {
+                    @Override
+                    public void onSuccess(ResponseEntity<AdaptationEnactment> response) {
+                    	log.info("ASYNCHRONOUS response received"); 
+                    	AdaptationEnactment ae = response.getBody();
+                    	boolean enactment = ae.isEnactmentResult();
+                		if (enactment) {
+                			log.info("Successful enactment of decision: " + ae.getDecisionId() + ". Enactment: " + ae.toString());
+                		} else {
+                			log.info("There was a problem enacting decision: " + ae.getDecisionId() + ". Enactment: " + ae.toString());
+                		}
+                		deferredResult.setResult(response);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                    	log.info("There was a problem obtaining the enacting decision");
+                    	ResponseEntity<Void> response = new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
+                    	deferredResult.setResult(response);
+                    }
+                }
+        );
+		return deferredResult;
+		
+	}
 }
