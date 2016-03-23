@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence name="SupersedeDS_InsertUser_Request_DSSSequence"
-  trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
   <payloadFactory media-type="xml">
     <format>
       <p:insert_Users_operation xmlns:p="http://schema.authentication.supersede.eu">
