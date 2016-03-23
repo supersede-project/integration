@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/supersede" name="SupersedeDS_UsersAPI" xmlns="http://ws.apache.org/ns/synapse">
-  <resource methods="POST" protocol="http" uri-template="/users">
+<api context="/supersede/users" name="SupersedeDS_UsersAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/">
     <inSequence>
       <log/>
       <sequence key="conf:/SupersedeDS_InsertUser_Request_DSSSequence.xml"/>
@@ -15,7 +15,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/users">
+  <resource methods="GET" protocol="http" uri-template="/">
     <inSequence>
       <log/>
       <sequence key="conf:/SupersedeDS_GetAllUsers_Request_DSSSequence.xml"/>
@@ -30,7 +30,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/users/{userId}">
+  <resource methods="GET" protocol="http" uri-template="/{userId}">
     <inSequence>
       <property expression="get-property('uri.var.userId')"
         name="userId" scope="default" type="STRING"/>
@@ -49,7 +49,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="DELETE" protocol="http" uri-template="/users/{userId}">
+  <resource methods="DELETE" protocol="http" uri-template="/{userId}">
     <inSequence>
       <property expression="get-property('uri.var.userId')"
         name="userId" scope="default" type="STRING"/>
@@ -67,7 +67,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/users/{userId}">
+  <resource methods="PUT" protocol="http" uri-template="/{userId}">
     <inSequence>
       <property expression="get-property('uri.var.userId')"
         name="userId" scope="default" type="STRING"/>

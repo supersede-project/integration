@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/supersede" name="SupersedeDS_RolesAPI" xmlns="http://ws.apache.org/ns/synapse">
-  <resource methods="POST" protocol="http" uri-template="/roles">
+<api context="/supersede/roles" name="SupersedeDS_RolesAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/">
     <inSequence>
       <log/>
       <sequence key="conf:/SupersedeDS_InsertRole_Request_DSSSequence.xml"/>
@@ -15,7 +15,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/roles">
+  <resource methods="GET" protocol="http" uri-template="/">
     <inSequence>
       <log/>
       <sequence key="conf:/SupersedeDS_GetAllRoles_Request_DSSSequence.xml"/>
@@ -30,7 +30,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/roles/{roleId}">
+  <resource methods="GET" protocol="http" uri-template="/{roleId}">
     <inSequence>
       <property expression="get-property('uri.var.roleId')"
         name="roleId" scope="default" type="STRING"/>
@@ -49,7 +49,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="DELETE" protocol="http" uri-template="/roles/{roleId}">
+  <resource methods="DELETE" protocol="http" uri-template="/{roleId}">
     <inSequence>
       <property expression="get-property('uri.var.roleId')"
         name="roleId" scope="default" type="STRING"/>
@@ -67,7 +67,7 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/roles/{roleId}">
+  <resource methods="PUT" protocol="http" uri-template="/{roleId}">
     <inSequence>
       <property expression="get-property('uri.var.roleId')"
         name="roleId" scope="default" type="STRING"/>
