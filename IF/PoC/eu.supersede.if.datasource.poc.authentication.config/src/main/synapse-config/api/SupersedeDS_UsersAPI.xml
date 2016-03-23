@@ -2,6 +2,7 @@
 <api context="/supersede" name="SupersedeDS_UsersAPI" xmlns="http://ws.apache.org/ns/synapse">
   <resource methods="POST" protocol="http" uri-template="/users">
     <inSequence>
+      <log/>
       <sequence key="conf:/SupersedeDS_InsertUser_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
@@ -9,6 +10,40 @@
         </endpoint>
       </call>
       <sequence key="conf:/SupersedeDS_InsertUser_Response_DSSSequence.xml"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/users">
+    <inSequence>
+      <log/>
+      <sequence key="conf:/SupersedeDS_GetAllUsers_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+        </endpoint>
+      </call>
+      <sequence key="conf:/SupersedeDS_GetAllUsers_Response_DSSSequence.xml"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/users/{userId}">
+    <inSequence>
+      <property expression="get-property('uri.var.userId')"
+        name="userId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:userId" name="userId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_GetUser_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+        </endpoint>
+      </call>
+      <sequence key="conf:/SupersedeDS_GetAllUsers_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
     <outSequence/>
