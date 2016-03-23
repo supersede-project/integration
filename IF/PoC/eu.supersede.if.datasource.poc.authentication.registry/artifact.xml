@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="SupersedeDS_InsertUser_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_InsertUser_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_InsertUser_Response_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_InsertUser_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+</artifacts>

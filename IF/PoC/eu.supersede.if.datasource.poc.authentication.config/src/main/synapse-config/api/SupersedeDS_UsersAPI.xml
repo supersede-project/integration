@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/supersede" name="SupersedeDS_UsersAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/users">
+    <inSequence>
+      <sequence key="conf:/SupersedeDS_InsertUser_Request_DSSSequence"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+        </endpoint>
+      </call>
+      <sequence key="conf:/SupersedeDS_InsertUser_Response_DSSSequence"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+</api>
