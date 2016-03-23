@@ -48,4 +48,53 @@
             <mediaType>application/vnd.wso2.sequence</mediaType>
         </item>
     </artifact>
+    <artifact name="SupersedeDS_DeleteRole_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_DeleteRole_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_GetAllRoles_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetAllRoles_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_GetAllRoles_Response_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetAllRoles_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_GetRole_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetRole_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_InsertRole_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_InsertRole_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_InsertRole_Response_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_InsertRole_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_UpdateRole_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_UpdateRole_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
 </artifacts>

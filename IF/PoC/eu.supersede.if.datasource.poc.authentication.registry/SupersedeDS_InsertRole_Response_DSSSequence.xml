@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_InsertRole_Response_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <log/>
+  <payloadFactory media-type="json">
+    <format> {"RoleRecord":{"RoleID":$1, "Status":"Successfully created"}}            </format>
+    <args>
+      <arg evaluator="json" expression="$.GeneratedKeys.Entry.ID"/>
+    </args>
+  </payloadFactory>
+  <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+</sequence>

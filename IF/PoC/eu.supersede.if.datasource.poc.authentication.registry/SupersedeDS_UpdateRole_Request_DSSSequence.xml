@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_UpdateRole_Request_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <payloadFactory media-type="xml">
+    <format>
+      <p:update_Roles_operation xmlns:p="http://schema.authentication.supersede.eu">
+        <xs:name xmlns:xs="http://schema.authentication.supersede.eu">$1</xs:name>
+        <xs:description xmlns:xs="http://schema.authentication.supersede.eu">$1</xs:description>
+        <xs:active xmlns:xs="http://schema.authentication.supersede.eu">$2</xs:active>
+        <xs:idRoles xmlns:xs="http://schema.authentication.supersede.eu">$8</xs:idRoles>
+      </p:update_Roles_operation>
+    </format>
+    <args>
+      <arg evaluator="json" expression="$.role.name"/>
+      <arg evaluator="json" expression="$.role.description"/>
+      <arg evaluator="json" expression="$.role.active"/>
+      <arg evaluator="xml" expression="$ctx:userId"/>
+    </args>
+  </payloadFactory>
+</sequence>

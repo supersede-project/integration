@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_GetAllRoles_Response_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <log/>
+  <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+</sequence>
