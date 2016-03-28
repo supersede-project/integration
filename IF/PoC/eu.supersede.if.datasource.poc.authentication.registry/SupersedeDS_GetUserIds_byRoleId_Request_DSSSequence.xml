@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_GetUserIds_byRoleId_Request_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <payloadFactory media-type="xml">
+    <format>
+      <p:select_with_key_idRoles_operation xmlns:p="http://schema.authentication.supersede.eu">
+        <xs:Roles_idRoles xmlns:xs="http://schema.authentication.supersede.eu">$1</xs:Roles_idRoles>
+      </p:select_with_key_idRoles_operation>
+    </format>
+    <args>
+      <arg evaluator="xml" expression="$ctx:roleId"/>
+    </args>
+  </payloadFactory>
+</sequence>

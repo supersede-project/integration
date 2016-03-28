@@ -5,4 +5,7 @@
     <artifact name="SupersedeDS_RolesAPI" groupId="eu.supersede.if.datasource.poc.authentication.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeDS_RolesAPI.xml</file>
     </artifact>
+    <artifact name="SupersedeDS_RolesxUsersAPI" groupId="eu.supersede.if.datasource.poc.authentication.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeDS_RolesxUsersAPI.xml</file>
+    </artifact>
 </artifacts>

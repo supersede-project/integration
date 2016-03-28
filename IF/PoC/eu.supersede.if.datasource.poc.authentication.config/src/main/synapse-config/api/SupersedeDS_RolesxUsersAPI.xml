@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/supersede/rolesxusers" name="SupersedeDS_RolesxUsersAPI" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/role/{roleId}/user/{userId}">
+    <inSequence>
+      <log/>
+      <property expression="get-property('uri.var.roleId')"
+        name="roleId" scope="default" type="STRING"/>
+      <property expression="get-property('uri.var.userId')"
+        name="userId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:roleId" name="roleId"/>
+        <property expression="$ctx:userId" name="userId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_InsertRoleshasUsers_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+        </endpoint>
+      </call>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/">
+    <inSequence>
+      <log/>
+      <sequence key="conf:/SupersedeDS_GetAllRoleshasUsers_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+        </endpoint>
+      </call>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/role/{roleId}">
+    <inSequence>
+      <property expression="get-property('uri.var.roleId')"
+        name="roleId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:roleId" name="roleId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_GetUserIds_byRoleId_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+        </endpoint>
+      </call>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/user/{userId}">
+    <inSequence>
+      <property expression="get-property('uri.var.userId')"
+        name="userId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:userId" name="userId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_GetRoleIds_byUserId_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+        </endpoint>
+      </call>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/role/{roleId}/user/{userId}">
+    <inSequence>
+      <property expression="get-property('uri.var.roleId')"
+        name="roleId" scope="default" type="STRING"/>
+      <property expression="get-property('uri.var.userId')"
+        name="userId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:roleId" name="roleId"/>
+        <property expression="$ctx:roleId" name="userId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_DeleteRoleIdandUserId_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+        </endpoint>
+      </call>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/role/{roleId}">
+    <inSequence>
+      <property expression="get-property('uri.var.roleId')"
+        name="roleId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:roleId" name="roleId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_DeleteUserIdforRoleId_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+        </endpoint>
+      </call>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/user/{userId}">
+    <inSequence>
+      <property expression="get-property('uri.var.userId')"
+        name="userId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:userId" name="userId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_DeleteRoleIdforUserId_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+        </endpoint>
+      </call>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+</api>

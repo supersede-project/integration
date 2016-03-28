@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_InsertRoleshasUsers_Request_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <payloadFactory media-type="xml">
+    <format>
+      <p:insert_Roles_has_Users_operation xmlns:p="http://schema.authentication.supersede.eu">
+        <xs:Users_idUsers xmlns:xs="http://schema.authentication.supersede.eu">$1</xs:Users_idUsers>
+        <xs:Roles_idRoles xmlns:xs="http://schema.authentication.supersede.eu">$2</xs:Roles_idRoles>
+      </p:insert_Roles_has_Users_operation>
+    </format>
+    <args>
+      <arg evaluator="xml" expression="$ctx:roleId"/>
+      <arg evaluator="xml" expression="$ctx:userId"/>
+    </args>
+  </payloadFactory>
+</sequence>

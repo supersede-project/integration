@@ -97,4 +97,53 @@
             <mediaType>application/vnd.wso2.sequence</mediaType>
         </item>
     </artifact>
+    <artifact name="SupersedeDS_GetRoleIds_byUserId_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetRoleIds_byUserId_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_InsertRoleshasUsers_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_InsertRoleshasUsers_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_DeleteUserIdforRoleId_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_DeleteUserIdforRoleId_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_DeleteRoleIdforUserId_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_DeleteRoleIdforUserId_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_GetAllRoleshasUsers_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetAllRoleshasUsers_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_GetUserIds_byRoleId_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetUserIds_byRoleId_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_DeleteRoleIdandUserId_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_DeleteRoleIdandUserId_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
 </artifacts>
