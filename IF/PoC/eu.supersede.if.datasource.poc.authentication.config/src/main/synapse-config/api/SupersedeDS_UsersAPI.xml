@@ -49,6 +49,25 @@
     <outSequence/>
     <faultSequence/>
   </resource>
+  <resource methods="GET" protocol="http" uri-template="/{userId}/withGroups">
+    <inSequence>
+      <property expression="get-property('uri.var.userId')"
+        name="userId" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:userId" name="userId"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_GetUserWithGroups_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+        </endpoint>
+      </call>
+      <sequence key="conf:/SupersedeDS_GetAllUsers_Response_DSSSequence.xml"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
   <resource methods="DELETE" protocol="http" uri-template="/{userId}">
     <inSequence>
       <property expression="get-property('uri.var.userId')"

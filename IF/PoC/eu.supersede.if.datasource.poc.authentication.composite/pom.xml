@@ -9,6 +9,7 @@
   <name>eu.supersede.if.datasource.poc.authentication.composite</name>
   <description>eu.supersede.if.datasource.poc.authentication.composite</description>
   <properties>
+    <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetRoleWithUsers_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetRoleWithUsers_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetAllRoles_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetAllRoles_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_DeleteRole_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_DeleteRole_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_DeleteRoleIdandUserId_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_DeleteRoleIdandUserId_Request_DSSSequence>
@@ -16,6 +17,7 @@
     <eu.supersede.if.datasource.poc.authentication.api_._SupersedeDS_RolesxUsersAPI>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication.api_._SupersedeDS_RolesxUsersAPI>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_InsertUser_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_InsertUser_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetRoleIds_byUserId_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetRoleIds_byUserId_Request_DSSSequence>
+    <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetUserWithGroups_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetUserWithGroups_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetAllRoles_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetAllRoles_Response_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_UpdateRole_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_UpdateRole_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_InsertRoleshasUsers_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_InsertRoleshasUsers_Request_DSSSequence>
@@ -177,6 +179,18 @@
     <dependency>
       <groupId>eu.supersede.if.datasource.poc.authentication..resource</groupId>
       <artifactId>SupersedeDS_DeleteRoleIdandUserId_Request_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.poc.authentication..resource</groupId>
+      <artifactId>SupersedeDS_GetRoleWithUsers_Request_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.poc.authentication..resource</groupId>
+      <artifactId>SupersedeDS_GetUserWithGroups_Request_DSSSequence</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>

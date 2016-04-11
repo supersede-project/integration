@@ -146,4 +146,18 @@
             <mediaType>application/vnd.wso2.sequence</mediaType>
         </item>
     </artifact>
+    <artifact name="SupersedeDS_GetUserWithGroups_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetUserWithGroups_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_GetRoleWithUsers_Request_DSSSequence" groupId="eu.supersede.if.datasource.poc.authentication..resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_GetRoleWithUsers_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
 </artifacts>
