@@ -17,14 +17,16 @@
   </resource>
   <resource methods="GET" protocol="http" uri-template="/">
     <inSequence>
-      <log/>
+      <log level="full"/>
       <sequence key="conf:/SupersedeDS_GetAllUsers_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
           <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
         </endpoint>
       </call>
+      <log level="full"/>
       <sequence key="conf:/SupersedeDS_GetAllUsers_Response_DSSSequence.xml"/>
+      <log level="full"/>
       <respond/>
     </inSequence>
     <outSequence/>
@@ -43,7 +45,7 @@
           <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
         </endpoint>
       </call>
-      <sequence key="conf:/SupersedeDS_GetAllUsers_Response_DSSSequence.xml"/>
+      <sequence key="conf:/SupersedeDS_GetUser_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
     <outSequence/>
@@ -62,7 +64,7 @@
           <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
         </endpoint>
       </call>
-      <sequence key="conf:/SupersedeDS_GetAllUsers_Response_DSSSequence.xml"/>
+      <sequence key="conf:/SupersedeDS_GetUser_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
     <outSequence/>
