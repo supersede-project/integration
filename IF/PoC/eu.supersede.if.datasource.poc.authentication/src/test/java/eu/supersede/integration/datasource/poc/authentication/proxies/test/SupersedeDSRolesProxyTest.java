@@ -14,8 +14,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import eu.supersede.integration.datasource.poc.authentication.DataStoreApp;
 import eu.supersede.integration.datasource.poc.authentication.proxies.SupersedeDSRolesProxy;
+import eu.supersede.integration.datasource.poc.authentication.proxies.SupersedeDSUsersProxy;
 import eu.supersede.integration.datasource.poc.authentication.types.Role;
 import eu.supersede.integration.datasource.poc.authentication.types.RolesCollection;
+import eu.supersede.integration.datasource.poc.authentication.types.User;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,10 +25,11 @@ import eu.supersede.integration.datasource.poc.authentication.types.RolesCollect
 @WebIntegrationTest
 public class SupersedeDSRolesProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(SupersedeDSRolesProxyTest.class);
-
+	private SupersedeDSRolesProxy proxy;
+	
     @Before
     public void setup() throws Exception {
- 
+    	proxy = new SupersedeDSRolesProxy();
     }
 
     @Test
@@ -44,11 +47,30 @@ public class SupersedeDSRolesProxyTest {
     }
     
     @Test
-    public void testInsertRole() throws Exception{
-    	log.info("Testing testInsertRole");
+    public void testCreateRole() throws Exception{
+    	log.info("Testing testCreateRole");
     	Role role = createRole();
-		int roleId = new SupersedeDSRolesProxy().insertRole(role);
+		int roleId = new SupersedeDSRolesProxy().createRole(role);
 		Assert.assertTrue(roleId>0);
+    }
+    
+    @Test
+    public void testUpdateRole() throws Exception{
+    	log.info("Testing testUpdateRole");
+    	Role role = createRole();
+    	int roleId = proxy.createRole(role);
+    	role.setRoleId(roleId);
+    	role.setDescription(role.getDescription() + " .UPDATED");
+		proxy.updateRole(role);
+    }
+    
+    @Test
+    public void testDeleteRole() throws Exception{
+    	log.info("Testing testDeleteRole");
+    	Role role = createRole();
+    	int roleId = proxy.createRole(role);
+    	role.setRoleId(roleId);
+		proxy.deleteRole(role);
     }
 
 	private Role createRole() {
@@ -58,4 +80,5 @@ public class SupersedeDSRolesProxyTest {
 		role.setActive(false);
 		return role;
 	}
+
 }

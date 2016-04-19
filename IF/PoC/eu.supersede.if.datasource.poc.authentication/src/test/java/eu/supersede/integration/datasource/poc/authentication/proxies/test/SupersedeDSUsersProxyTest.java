@@ -22,32 +22,52 @@ import eu.supersede.integration.datasource.poc.authentication.types.UsersCollect
 @WebIntegrationTest
 public class SupersedeDSUsersProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(SupersedeDSUsersProxyTest.class);
-
+	private SupersedeDSUsersProxy proxy;
+	
     @Before
     public void setup() throws Exception {
- 
+    	proxy = new SupersedeDSUsersProxy();
     }
 
     @Test
     public void testGetUsers() throws Exception{
     	log.info("Testing testGetUsers");
-		UsersCollection collection = new SupersedeDSUsersProxy().getUsers();
+		UsersCollection collection = proxy.getUsers();
 		Assert.assertTrue(!collection.getUsers().isEmpty());
     }
     
     @Test
     public void testGetUser() throws Exception{
     	log.info("Testing testGetUser");
-		User user = new SupersedeDSUsersProxy().getUser(1);
+		User user = proxy.getUser(1);
 		Assert.assertNotNull(user);
     }
     
     @Test
-    public void testInsertUser() throws Exception{
-    	log.info("Testing testInsertUser");
+    public void testCreateUser() throws Exception{
+    	log.info("Testing testCreateUser");
     	User user = createUser();
-		int userId = new SupersedeDSUsersProxy().insertUser(user);
+		int userId = proxy.createUser(user);
 		Assert.assertTrue(userId>0);
+    }
+    
+    @Test
+    public void testUpdateUser() throws Exception{
+    	log.info("Testing testUpdateUser");
+    	User user = createUser();
+		int userId = proxy.createUser(user);
+		user.setUserId(userId);
+    	user.setLogin(user.getLogin() + "UPDATED");
+		proxy.updateUser(user);
+    }
+    
+    @Test
+    public void testDeleteUser() throws Exception{
+    	log.info("Testing testDeleteUser");
+    	User user = createUser();
+		int userId = proxy.createUser(user);
+		user.setUserId(userId);
+		proxy.deleteUser(user);
     }
 
 	private User createUser() {

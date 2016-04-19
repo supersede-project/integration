@@ -1,6 +1,5 @@
 package eu.supersede.integration.datasource.poc.authentication.proxies;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
 
@@ -9,10 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.util.Assert;
 
 import eu.supersede.integration.datasource.poc.authentication.json.JsonUtils;
 import eu.supersede.integration.datasource.poc.authentication.types.User;
@@ -45,6 +41,7 @@ public class SupersedeDSUsersProxy {
 	
 	public User getUser(int userId) {
 		try {
+			Assert.isTrue(userId>0, "User id cannot be unasigned");
 			URI uri = new URI(SUPERSEDE_DS_USERS_ENDPOINT + userId);
 			ResponseEntity<User> response = messageClient.getMessage(uri, User.class, MediaType.APPLICATION_XML);
 			User user = response.getBody();
@@ -60,7 +57,7 @@ public class SupersedeDSUsersProxy {
 		}
 	}
 	
-	public int insertUser (User user){
+	public int createUser (User user){
 		try {
 			URI uri = new URI(SUPERSEDE_DS_USERS_ENDPOINT);
 			ResponseEntity<String> response = messageClient.postJsonMessage(user, uri, String.class);
@@ -78,6 +75,35 @@ public class SupersedeDSUsersProxy {
 		}
 	}
 	
-
+	public void updateUser (User user){
+		try {
+			Assert.notNull(user, "User cannot be null");
+			Assert.isTrue(user.getUserId()>0, "User id cannot be unasigned");
+			URI uri = new URI(SUPERSEDE_DS_USERS_ENDPOINT + user.getUserId());
+			ResponseEntity<String> response = messageClient.putJsonMessage(user, uri);
+			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
+				log.info("User: " + user.getLogin() + " updated");
+			} else {
+				log.info("There was a problem updating the supersede user for login: " + user.getLogin());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteUser (User user){
+		try {
+			Assert.isTrue(user.getUserId()>0, "User id cannot be unasigned");
+			URI uri = new URI(SUPERSEDE_DS_USERS_ENDPOINT + user.getUserId());
+			ResponseEntity<String> response = messageClient.deleteJsonMessage(uri);
+			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
+				log.info("User: " + user.getLogin() + " deleted");
+			} else {
+				log.info("There was a problem deleting the supersede user for login: " + user.getLogin());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

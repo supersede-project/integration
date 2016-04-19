@@ -8,10 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 
 import eu.supersede.integration.datasource.poc.authentication.json.JsonUtils;
 import eu.supersede.integration.datasource.poc.authentication.types.Role;
 import eu.supersede.integration.datasource.poc.authentication.types.RolesCollection;
+import eu.supersede.integration.datasource.poc.authentication.types.User;
 import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
@@ -55,7 +57,7 @@ public class SupersedeDSRolesProxy {
 		}
 	}
 	
-	public int insertRole (Role role){
+	public int createRole (Role role){
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT);
 			ResponseEntity<String> response = messageClient.postJsonMessage(role, uri, String.class);
@@ -70,6 +72,37 @@ public class SupersedeDSRolesProxy {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
+		}
+	}
+	
+	public void updateRole (Role role){
+		try {
+			Assert.notNull(role, "Role cannot be null");
+			Assert.isTrue(role.getRoleId()>0, "Role id cannot be unasigned");
+			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + role.getRoleId());
+			ResponseEntity<String> response = messageClient.putJsonMessage(role, uri);
+			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
+				log.info("Role: " + role.getName() + " updated");
+			} else {
+				log.info("There was a problem updating the supersede role for name: " + role.getName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteRole (Role role){
+		try {
+			Assert.isTrue(role.getRoleId()>0, "Role id cannot be unasigned");
+			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + role.getRoleId());
+			ResponseEntity<String> response = messageClient.deleteJsonMessage(uri);
+			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
+				log.info("Role: " + role.getName() + " deleted");
+			} else {
+				log.info("There was a problem deleting the supersede role for name: " + role.getName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
