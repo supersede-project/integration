@@ -64,7 +64,7 @@ public class IFMessageClient {
 	
 	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, Class clazz) {
 		RequestEntity<S> request = RequestEntity.post(uri)
-				.accept(MediaType.APPLICATION_JSON)
+//				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
 				.header("Authorization", "Bearer " + AUTH_TOKEN)
 				.body(object);
@@ -96,9 +96,19 @@ public class IFMessageClient {
 	 * @param uri URI of GET message
 	 * @param clazz Class representing returned object
 	 */
-	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz) throws RestClientException{
+	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
+				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
+		return restTemplate.exchange(request, clazz);
+
+//		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
+	}
+	
+	public <T> ResponseEntity<T> getXMLMessage(URI uri, Class<T> clazz) throws RestClientException{
+		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
+				.accept(MediaType.APPLICATION_XML)
+				.header("Content-Type", "application/json")
 				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
 		return restTemplate.exchange(request, clazz);
 

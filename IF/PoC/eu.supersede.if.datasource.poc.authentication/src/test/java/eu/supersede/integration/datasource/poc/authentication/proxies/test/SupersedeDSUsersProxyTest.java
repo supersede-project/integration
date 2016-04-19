@@ -1,6 +1,7 @@
 package eu.supersede.integration.datasource.poc.authentication.proxies.test;
 
-import java.util.Collection;
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,8 +30,35 @@ public class SupersedeDSUsersProxyTest {
 
     @Test
     public void testGetUsers() throws Exception{
-    	log.info("Testing testGetAdaptationDecisions");
+    	log.info("Testing testGetUsers");
 		UsersCollection collection = new SupersedeDSUsersProxy().getUsers();
 		Assert.assertTrue(!collection.getUsers().isEmpty());
     }
+    
+    @Test
+    public void testGetUser() throws Exception{
+    	log.info("Testing testGetUser");
+		User user = new SupersedeDSUsersProxy().getUser(1);
+		Assert.assertNotNull(user);
+    }
+    
+    @Test
+    public void testInsertUser() throws Exception{
+    	log.info("Testing testInsertUser");
+    	User user = createUser();
+		int userId = new SupersedeDSUsersProxy().insertUser(user);
+		Assert.assertTrue(userId>0);
+    }
+
+	private User createUser() {
+		User user = new User();
+		user.setLogin("clara");
+		user.setPassword("claraPassword");
+		user.setFirst_name("Clara");
+		user.setFamily_name("Pezuela");
+		user.setEmail("clara.pezuela@atos.net");
+		user.setCreation_date(new Date());
+		user.setActive(false);
+		return user;
+	}
 }

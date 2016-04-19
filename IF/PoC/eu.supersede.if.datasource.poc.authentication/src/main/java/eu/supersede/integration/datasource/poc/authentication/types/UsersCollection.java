@@ -20,14 +20,14 @@ public class UsersCollection implements Serializable{
 	}
 	
     /**
-     * @return the persons
+     * @return the users
      */
     public List<User> getUsers() {
         return users;
     }
 
     /**
-     * @param persons the persons to set
+     * @param users the users to set
      */
     public void setUsers(List<User> users) {
         this.users = users;

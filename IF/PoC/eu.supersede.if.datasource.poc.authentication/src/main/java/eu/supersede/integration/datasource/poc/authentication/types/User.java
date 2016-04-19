@@ -3,8 +3,10 @@ package eu.supersede.integration.datasource.poc.authentication.types;
 import java.util.Date;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import eu.supersede.integration.datasource.poc.authentication.json.CustomJsonDateDeserializer;
+import eu.supersede.integration.datasource.poc.authentication.json.CustomJsonDateSerializer;
 
 public class User {
 	private int userId;
@@ -50,6 +52,7 @@ public class User {
 		return creation_date;
 	}
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
 	public void setCreation_date(Date creation_date) {
 		this.creation_date = creation_date;
 	}
