@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_GetRoleWithUsers_Response_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <log level="full"/>
+  <payloadFactory media-type="json">
+    <format>
+    {
+    "roleId": "$1",  
+    "name": "$2",
+    "description": "$3",
+    "active": "$4",
+    "users": $5
+	}
+    </format>
+    <args>
+      <arg evaluator="json" expression="$.Role.roleId"/>
+      <arg evaluator="json" expression="$.Role.name"/>
+      <arg evaluator="json" expression="$.Role.description"/>
+      <arg evaluator="json" expression="$.Role.active"/>
+      <arg evaluator="json" expression="$..user"/>
+    </args>
+  </payloadFactory>
+  <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+</sequence>

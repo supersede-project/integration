@@ -62,7 +62,7 @@
           <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_DataService"/>
         </endpoint>
       </call>
-      <sequence key="conf:/SupersedeDS_GetRole_Response_DSSSequence.xml"/>
+      <sequence key="conf:/SupersedeDS_GetRoleWithUsers_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
     <outSequence/>
