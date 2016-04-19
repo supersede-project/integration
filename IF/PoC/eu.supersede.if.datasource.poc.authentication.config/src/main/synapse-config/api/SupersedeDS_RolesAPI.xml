@@ -4,7 +4,11 @@
     <inSequence>
       <log/>
       <sequence key="conf:/SupersedeDS_InsertRole_Request_DSSSequence.xml"/>
-      <call/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_DataService"/>
+        </endpoint>
+      </call>
       <sequence key="conf:/SupersedeDS_InsertRole_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
@@ -15,7 +19,11 @@
     <inSequence>
       <log/>
       <sequence key="conf:/SupersedeDS_GetAllRoles_Request_DSSSequence.xml"/>
-      <call/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_DataService"/>
+        </endpoint>
+      </call>
       <sequence key="conf:/SupersedeDS_GetAllRoles_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
@@ -30,8 +38,12 @@
         <property expression="$ctx:roleId" name="roleId"/>
       </log>
       <sequence key="conf:/SupersedeDS_GetRole_Request_DSSSequence.xml"/>
-      <call/>
-      <sequence key="conf:/SupersedeDS_GetAllRoles_Response_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_DataService"/>
+        </endpoint>
+      </call>
+      <sequence key="conf:/SupersedeDS_GetRole_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
     <outSequence/>
@@ -45,8 +57,12 @@
         <property expression="$ctx:roleId" name="roleId"/>
       </log>
       <sequence key="conf:/SupersedeDS_GetRoleWithUsers_Request_DSSSequence.xml"/>
-      <call/>
-      <sequence key="conf:/SupersedeDS_GetAllRoles_Response_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_DataService"/>
+        </endpoint>
+      </call>
+      <sequence key="conf:/SupersedeDS_GetRole_Response_DSSSequence.xml"/>
       <respond/>
     </inSequence>
     <outSequence/>
@@ -60,7 +76,11 @@
         <property expression="$ctx:roleId" name="roleId"/>
       </log>
       <sequence key="conf:/SupersedeDS_DeleteRole_Request_DSSSequence.xml"/>
-      <call/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_DataService"/>
+        </endpoint>
+      </call>
       <respond/>
     </inSequence>
     <outSequence/>
@@ -74,7 +94,11 @@
         <property expression="$ctx:roleId" name="roleId"/>
       </log>
       <sequence key="conf:/SupersedeDS_UpdateRole_Request_DSSSequence.xml"/>
-      <call/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_DataService"/>
+        </endpoint>
+      </call>
       <respond/>
     </inSequence>
     <outSequence/>

@@ -21,6 +21,7 @@
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetUserWithGroups_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetUserWithGroups_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetAllRoles_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetAllRoles_Response_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_UpdateRole_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_UpdateRole_Request_DSSSequence>
+    <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetRole_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetRole_Response_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_InsertRoleshasUsers_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_InsertRoleshasUsers_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetUserIds_byRoleId_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_GetUserIds_byRoleId_Request_DSSSequence>
     <eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_UpdateUser_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.poc.authentication..resource_._SupersedeDS_UpdateUser_Request_DSSSequence>
@@ -198,6 +199,12 @@
     <dependency>
       <groupId>eu.supersede.if.datasource.poc.authentication..resource</groupId>
       <artifactId>SupersedeDS_GetUser_Response_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.poc.authentication..resource</groupId>
+      <artifactId>SupersedeDS_GetRole_Response_DSSSequence</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>

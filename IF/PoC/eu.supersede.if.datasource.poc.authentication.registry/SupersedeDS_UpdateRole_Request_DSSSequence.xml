@@ -11,9 +11,9 @@
       </p:update_Roles_operation>
     </format>
     <args>
-      <arg evaluator="json" expression="$.role.name"/>
-      <arg evaluator="json" expression="$.role.description"/>
-      <arg evaluator="json" expression="$.role.active"/>
+      <arg evaluator="json" expression="$.name"/>
+      <arg evaluator="json" expression="$.description"/>
+      <arg evaluator="json" expression="$.active"/>
       <arg evaluator="xml" expression="$ctx:roleId"/>
     </args>
   </payloadFactory>

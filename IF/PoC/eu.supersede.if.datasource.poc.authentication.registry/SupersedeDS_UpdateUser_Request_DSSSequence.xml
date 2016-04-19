@@ -15,13 +15,13 @@
       </p:update_Users_operation>
     </format>
     <args>
-      <arg evaluator="json" expression="$.user.password"/>
-      <arg evaluator="json" expression="$.user.active"/>
-      <arg evaluator="json" expression="$.user.creation_date"/>
-      <arg evaluator="json" expression="$.user.login"/>
-      <arg evaluator="json" expression="$.user.first_name"/>
-      <arg evaluator="json" expression="$.user.family_name"/>
-      <arg evaluator="json" expression="$.user.email"/>
+      <arg evaluator="json" expression="$.password"/>
+      <arg evaluator="json" expression="$.active"/>
+      <arg evaluator="json" expression="$.creation_date"/>
+      <arg evaluator="json" expression="$.login"/>
+      <arg evaluator="json" expression="$.first_name"/>
+      <arg evaluator="json" expression="$.family_name"/>
+      <arg evaluator="json" expression="$.email"/>
       <arg evaluator="xml" expression="$ctx:userId"/>
     </args>
   </payloadFactory>
