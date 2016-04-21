@@ -68,7 +68,20 @@ public class SupersedeDSRolesxUsersProxy {
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("Role " + role.getName() + " removed from user " + user.getLogin());
 			} else {
-				log.info("There was a problem deleting the role " + role.getName() + " from user " + user.getLogin());
+				log.info("There was a problem deleting the role " + role.getName() + " for user " + user.getLogin());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteUserForRole (User user, Role role){
+		try {
+			ResponseEntity<String> response = removeRoleForUser (role, user);
+			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
+				log.info("User " + user.getLogin() + " removed from role " + role.getName());
+			} else {
+				log.info("There was a problem deleting the user " + user.getLogin() + " for role " + role.getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,6 +108,19 @@ public class SupersedeDSRolesxUsersProxy {
 				log.info("Role " + role.getName() + " removed from user " + user.getLogin());
 			} else {
 				log.info("There was a problem deleting the user " + user.getLogin() + " from role " + role.getName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteAllUsersForRole (Role role){
+		try {
+			List<Integer> userIds = getAllUsersForRole(role);
+			for (Integer id: userIds){
+				User user = new User();
+				user.setUserId(id.intValue());
+				deleteUserForRole(user, role);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,10 +178,26 @@ public class SupersedeDSRolesxUsersProxy {
 			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "user/" + user.getUserId());
 			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON);
 			if (!response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("There was a problem getting roles for the user " + user.getUserId());
+				log.info("There was a problem getting roles for the user " + user.getLogin());
 			}
 			String rolesIds = JsonUtils.evaluatePathInJson(response.getBody(), "/roleId").asText();
 			result = getArray (rolesIds);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public List<Integer> getAllUsersForRole(Role role){
+		List<Integer> result = null;
+		try {
+			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "role/" + role.getRoleId());
+			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON);
+			if (!response.getStatusCode().equals(HttpStatus.OK)) {
+				log.info("There was a problem getting users for the role " + role.getName());
+			}
+			String userIds = JsonUtils.evaluatePathInJson(response.getBody(), "/userId").asText();
+			result = getArray (userIds);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

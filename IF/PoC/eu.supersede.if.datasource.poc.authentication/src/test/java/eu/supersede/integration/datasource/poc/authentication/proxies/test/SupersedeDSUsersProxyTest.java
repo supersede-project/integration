@@ -86,14 +86,14 @@ public class SupersedeDSUsersProxyTest {
     
     @Test
     public void testUpdateUserWithRoles() throws Exception{
-    	log.info("Testing testUpdateUser");
+    	log.info("Testing testUpdateUserWithRoles");
     	User user = createUserWithRoles();
 		int userId = proxy.createUser(user);
 		user.setUserId(userId);
     	user.setLogin(user.getLogin() + "UPDATED");
-    	List<Role> newRoles = Arrays.asList(user.getRoles());
+    	List<Role> newRoles = new ArrayList<Role> (Arrays.asList(user.getRoles())); //Required since Arrays.asList returns an unmutable array
     	newRoles.add(rolesProxy.getRole(2));
-    	user.setRoles((Role[]) newRoles.toArray());
+    	user.setRoles(newRoles.toArray(new Role[]{}));
 		proxy.updateUser(user);
     }
     
@@ -101,6 +101,15 @@ public class SupersedeDSUsersProxyTest {
     public void testDeleteUser() throws Exception{
     	log.info("Testing testDeleteUser");
     	User user = createUser();
+		int userId = proxy.createUser(user);
+		user.setUserId(userId);
+		proxy.deleteUser(user);
+    }
+    
+    @Test
+    public void testDeleteUserWithRoles() throws Exception{
+    	log.info("Testing testDeleteUserWithRoles");
+    	User user = createUserWithRoles();
 		int userId = proxy.createUser(user);
 		user.setUserId(userId);
 		proxy.deleteUser(user);

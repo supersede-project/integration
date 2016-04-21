@@ -89,7 +89,7 @@ public class SupersedeDSUsersProxy {
 			} else {
 				log.info("There was a problem creating the supersede user for login: " + user.getLogin());
 			}
-			if (response.getStatusCode().equals(HttpStatus.OK) && user.getRoles().length > 0){
+			if (response.getStatusCode().equals(HttpStatus.OK) && user.getRoles() != null){
 				Role[] roles = user.getRoles();
 				for (int i=0; i<roles.length; i++){
 					Role role = roles[i];
@@ -117,7 +117,7 @@ public class SupersedeDSUsersProxy {
 				log.info("There was a problem updating the supersede user for login: " + user.getLogin());
 			}
 			
-			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)){
+			if (response.getStatusCode().equals(HttpStatus.ACCEPTED) && user.getRoles()!= null){
 				Role[] roles = user.getRoles();
 				rolesxUsersProxy.deleteAllRolesForUser(user);
 				for (int i=0; i<roles.length; i++){
@@ -133,6 +133,9 @@ public class SupersedeDSUsersProxy {
 	public void deleteUser (User user){
 		try {
 			Assert.isTrue(user.getUserId()>0, "User id cannot be unasigned");
+			// Relations between users and roles have to be removed first
+			rolesxUsersProxy.deleteAllRolesForUser(user);
+			
 			URI uri = new URI(SUPERSEDE_DS_USERS_ENDPOINT + user.getUserId());
 			ResponseEntity<String> response = messageClient.deleteJsonMessage(uri);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
@@ -140,9 +143,7 @@ public class SupersedeDSUsersProxy {
 			} else {
 				log.info("There was a problem deleting the supersede user for login: " + user.getLogin());
 			}
-			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)){
-				rolesxUsersProxy.deleteAllRolesForUser(user);
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

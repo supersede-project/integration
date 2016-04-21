@@ -21,6 +21,7 @@ public class SupersedeDSRolesProxy {
 	private IFMessageClient messageClient = new IFMessageClient();
 	private final static String SUPERSEDE_DS_ROLES_ENDPOINT = IntegrationProperty.getProperty("supersede.ds.roles");
 	private static final Logger log = LoggerFactory.getLogger(SupersedeDSRolesProxy.class);
+	private SupersedeDSRolesxUsersProxy rolesxUsersProxy = new SupersedeDSRolesxUsersProxy();
 	
 	//Only returns JSON representation, expressed explicitly
 	public RolesCollection getRoles() {
@@ -80,11 +81,21 @@ public class SupersedeDSRolesProxy {
 			ResponseEntity<String> response = messageClient.postJsonMessage(role, uri, String.class);
 			String roleId = JsonUtils.evaluatePathInJson(response.getBody(), "/RoleRecord/RoleID").asText();
 			int result = Integer.parseInt(roleId);
+			role.setRoleId(result);
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Role: " + role.getName() + " created");
 			} else {
 				log.info("There was a problem creating the supersede role for name: " + role.getName());
 			}
+			
+			if (response.getStatusCode().equals(HttpStatus.OK) && role.getUsers() != null){
+				User[] users = role.getUsers();
+				for (int i=0; i<users.length; i++){
+					User user = users[i];
+					rolesxUsersProxy.addUserForRole(role, user);
+				}
+			}
+			
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,6 +114,15 @@ public class SupersedeDSRolesProxy {
 			} else {
 				log.info("There was a problem updating the supersede role for name: " + role.getName());
 			}
+			if (response.getStatusCode().equals(HttpStatus.ACCEPTED) && role.getUsers()!= null){
+				User[] users = role.getUsers();
+				rolesxUsersProxy.deleteAllUsersForRole(role);
+				for (int i=0; i<users.length; i++){
+					User user = users[i];
+					rolesxUsersProxy.addUserForRole(role, user);
+				}
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -111,6 +131,9 @@ public class SupersedeDSRolesProxy {
 	public void deleteRole (Role role){
 		try {
 			Assert.isTrue(role.getRoleId()>0, "Role id cannot be unasigned");
+			// Relations between users and roles have to be removed first
+			rolesxUsersProxy.deleteAllUsersForRole(role);
+						
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + role.getRoleId());
 			ResponseEntity<String> response = messageClient.deleteJsonMessage(uri);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
