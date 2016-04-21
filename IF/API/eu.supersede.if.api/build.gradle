@@ -39,8 +39,12 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
+    compile 'org.apache.axis2:axis2:1.6.1'
+    compile 'org.apache.axis2:axis2-transport-http:1.6.1'
+    compile 'org.apache.axis2:axis2-transport-local:1.6.1'
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile('com.jayway.jsonpath:json-path')
+    compile files('lib/org.wso2.carbon.um.ws.api.stub_4.2.2.jar')
     
     compile("org.springframework.boot:spring-boot-starter-web")
 }
