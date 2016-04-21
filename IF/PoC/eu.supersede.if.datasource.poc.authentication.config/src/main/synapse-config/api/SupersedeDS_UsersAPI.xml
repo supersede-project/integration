@@ -6,7 +6,7 @@
       <sequence key="conf:/SupersedeDS_InsertUser_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataServicePoC"/>
         </endpoint>
       </call>
       <sequence key="conf:/SupersedeDS_InsertUser_Response_DSSSequence.xml"/>
@@ -21,7 +21,7 @@
       <sequence key="conf:/SupersedeDS_GetAllUsers_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataServicePoC"/>
         </endpoint>
       </call>
       <log level="full"/>
@@ -42,7 +42,7 @@
       <sequence key="conf:/SupersedeDS_GetUser_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataServicePoC"/>
         </endpoint>
       </call>
       <sequence key="conf:/SupersedeDS_GetUser_Response_DSSSequence.xml"/>
@@ -61,7 +61,7 @@
       <sequence key="conf:/SupersedeDS_GetUserWithGroups_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataServicePoC"/>
         </endpoint>
       </call>
       <sequence key="conf:/SupersedeDS_GetUserWithRoles_Response_DSSSequence.xml"/>
@@ -80,7 +80,7 @@
       <sequence key="conf:/SupersedeDS_DeleteUser_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataServicePoC"/>
         </endpoint>
       </call>
       <respond/>
@@ -98,7 +98,7 @@
       <sequence key="conf:/SupersedeDS_UpdateUser_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Users_DataServicePoC"/>
         </endpoint>
       </call>
       <respond/>

@@ -14,7 +14,7 @@
       <sequence key="conf:/SupersedeDS_InsertRoleshasUsers_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataServicePoC"/>
         </endpoint>
       </call>
       <respond/>
@@ -28,7 +28,7 @@
       <sequence key="conf:/SupersedeDS_GetAllRoleshasUsers_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataServicePoC"/>
         </endpoint>
       </call>
       <respond/>
@@ -46,7 +46,7 @@
       <sequence key="conf:/SupersedeDS_GetUserIds_byRoleId_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataServicePoC"/>
         </endpoint>
       </call>
       <sequence key="conf:/SupersedeDS_GetUserIds_byRoleId_Respond_DSSSequence.xml"/>
@@ -65,7 +65,7 @@
       <sequence key="conf:/SupersedeDS_GetRoleIds_byUserId_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataServicePoC"/>
         </endpoint>
       </call>
       <sequence key="conf:/SupersedeDS_GetRoleIds_byUserId_Respond_DSSSequence.xml"/>
@@ -87,7 +87,7 @@
       <sequence key="conf:/SupersedeDS_DeleteRoleIdandUserId_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataServicePoC"/>
         </endpoint>
       </call>
       <respond/>
@@ -105,7 +105,7 @@
       <sequence key="conf:/SupersedeDS_DeleteUserIdforRoleId_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataServicePoC"/>
         </endpoint>
       </call>
       <respond/>
@@ -123,7 +123,7 @@
       <sequence key="conf:/SupersedeDS_DeleteRoleIdforUserId_Request_DSSSequence.xml"/>
       <call>
         <endpoint>
-          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataService"/>
+          <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/Roles_has_Users_DataServicePoC"/>
         </endpoint>
       </call>
       <respond/>
