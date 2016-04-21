@@ -1,7 +1,5 @@
 package eu.supersede.integration.datasource.poc.authentication.proxies.test;
 
-import java.util.Date;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import eu.supersede.integration.datasource.poc.authentication.DataStoreApp;
 import eu.supersede.integration.datasource.poc.authentication.proxies.SupersedeDSRolesProxy;
-import eu.supersede.integration.datasource.poc.authentication.proxies.SupersedeDSUsersProxy;
 import eu.supersede.integration.datasource.poc.authentication.types.Role;
 import eu.supersede.integration.datasource.poc.authentication.types.RolesCollection;
-import eu.supersede.integration.datasource.poc.authentication.types.User;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,6 +39,13 @@ public class SupersedeDSRolesProxyTest {
     public void testGetRole() throws Exception{
     	log.info("Testing testGetRole");
 		Role role = new SupersedeDSRolesProxy().getRole(1);
+		Assert.assertNotNull(role);
+    }
+    
+    @Test
+    public void testGetRoleWithUsers() throws Exception{
+    	log.info("Testing testGetRoleWithUsers");
+		Role role = new SupersedeDSRolesProxy().getRoleWithUsers(1);
 		Assert.assertNotNull(role);
     }
     

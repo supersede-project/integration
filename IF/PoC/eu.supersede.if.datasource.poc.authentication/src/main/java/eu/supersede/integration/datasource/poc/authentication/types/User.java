@@ -17,6 +17,7 @@ public class User {
 	private Date creation_date;
 	private String email;
 	private boolean active;
+	private Role[] roles;
 	
 	public int getUserId() {
 		return userId;
@@ -67,5 +68,11 @@ public class User {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public Role[] getRoles() {
+		return roles;
+	}
+	public void setRoles(Role[] roles) {
+		this.roles = roles;
 	}
 }

@@ -5,6 +5,7 @@ public class Role {
 	private String name;
 	private String description;
 	private boolean active;
+	private User[] users;
 	
 	public int getRoleId() {
 		return roleId;
@@ -29,6 +30,12 @@ public class Role {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public User[] getUsers() {
+		return users;
+	}
+	public void setUsers(User[] users) {
+		this.users = users;
 	}
 	
 }

@@ -57,11 +57,28 @@ public class SupersedeDSRolesProxy {
 		}
 	}
 	
+	public Role getRoleWithUsers(int roleId) {
+		try {
+			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + roleId + "/withUsers");
+			ResponseEntity<Role> response = messageClient.getMessage(uri, Role.class, MediaType.APPLICATION_XML);
+			Role role = response.getBody();
+			if (response.getStatusCode().equals(HttpStatus.OK)) {
+				log.info("Located role: " + role.getName());
+			} else {
+				log.info("There was a problem getting the supersede role for id: " + roleId);
+			}
+			return role;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public int createRole (Role role){
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT);
 			ResponseEntity<String> response = messageClient.postJsonMessage(role, uri, String.class);
-			String roleId = JsonUtils.evaluatePathInJson(response.getBody(), "/RoleRecord/RoleID");
+			String roleId = JsonUtils.evaluatePathInJson(response.getBody(), "/RoleRecord/RoleID").asText();
 			int result = Integer.parseInt(roleId);
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Role: " + role.getName() + " created");

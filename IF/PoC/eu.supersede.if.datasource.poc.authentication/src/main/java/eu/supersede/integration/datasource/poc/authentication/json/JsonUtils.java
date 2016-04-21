@@ -7,12 +7,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtils {
-	public static String evaluatePathInJson (String json, String path){
-		String result = null;
+	public static JsonNode evaluatePathInJson (String json, String path){
+		JsonNode result = null;
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode root = mapper.readTree(json);
-			result = root.at(path).asText();
+			result = root.at(path);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
