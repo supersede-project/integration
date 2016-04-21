@@ -1,0 +1,81 @@
+<data description="multiple services per each table" enableBatchRequests="false" enableBoxcarring="false" name="Roles_has_Users_DataServicePoC" serviceNamespace="http://schema.authentication.supersede.eu" serviceStatus="active">
+   <config id="default">
+      <property name="carbon_datasource_name">SupersedePoC</property>
+   </config>
+   <query id="insert_Roles_has_Users_query" useConfig="default">
+      <sql>INSERT INTO Roles_has_Users(Roles_idRoles,Users_idUsers) VALUES(?,?)</sql>
+      <param name="Roles_idRoles" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <param name="Users_idUsers" ordinal="2" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+   </query>
+   <query id="delete_by_idRoles_query" useConfig="default">
+      <sql>DELETE FROM Roles_has_Users WHERE Roles_idRoles=?</sql>
+      <param name="Roles_idRoles" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+   </query>
+   <query id="delete_by_idUsers_query" useConfig="default">
+      <sql>DELETE FROM Roles_has_Users WHERE Users_idUsers=?</sql>
+      <param name="Users_idUsers" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+   </query>
+   <query id="delete_by_idRoles_and_idUsers_query" useConfig="default">
+      <sql>DELETE FROM Roles_has_Users WHERE Roles_idRoles=? and Users_idUsers=?</sql>
+      <param name="Roles_idRoles" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <param name="Users_idUsers" ordinal="2" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+   </query>
+   <query id="select_all_Roles_has_Users_query" useConfig="default">
+      <sql>SELECT Roles_idRoles, Users_idUsers FROM Roles_has_Users</sql>
+      <result element="RolesxUsersCollection" rowName="RolesxUsers">
+         <element column="Roles_idRoles" name="roleId" xsdType="xs:integer"/>
+         <element column="Users_idUsers" name="userId" xsdType="xs:integer"/>
+      </result>
+   </query>
+   <query id="select_with_key_idRoles_query" useConfig="default">
+      <sql>SELECT Roles_idRoles, Users_idUsers FROM Roles_has_Users WHERE Roles_idRoles=?</sql>
+      <param name="Roles_idRoles" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <result element="RolesxUsersCollection" rowName="RolesxUsers">
+         <element column="Roles_idRoles" name="roleId" xsdType="xs:integer"/>
+         <element column="Users_idUsers" name="userId" xsdType="xs:integer"/>
+      </result>
+   </query>
+   <query id="select_with_key_idUsers_query" useConfig="default">
+      <sql>SELECT Roles_idRoles, Users_idUsers FROM Roles_has_Users WHERE Users_idUsers=?</sql>
+      <param name="Users_idUsers" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <result element="RolesxUsersCollection" rowName="RolesxUsers">
+         <element column="Roles_idRoles" name="roleId" xsdType="xs:integer"/>
+         <element column="Users_idUsers" name="userId" xsdType="xs:integer"/>
+      </result>
+   </query>
+   <operation name="select_all_Roles_has_Users_operation">
+      <call-query href="select_all_Roles_has_Users_query"/>
+   </operation>
+   <operation name="insert_Roles_has_Users_operation">
+      <call-query href="insert_Roles_has_Users_query">
+         <with-param name="Users_idUsers" query-param="Users_idUsers"/>
+         <with-param name="Roles_idRoles" query-param="Roles_idRoles"/>
+      </call-query>
+   </operation>
+   <operation name="delete_by_idUsers_operation">
+      <call-query href="delete_by_idUsers_query">
+         <with-param name="Users_idUsers" query-param="Users_idUsers"/>
+      </call-query>
+   </operation>
+   <operation name="delete_by_idRoles_operation">
+      <call-query href="delete_by_idRoles_query">
+         <with-param name="Roles_idRoles" query-param="Roles_idRoles"/>
+      </call-query>
+   </operation>
+   <operation name="delete_by_idRoles_and_idUsers_operation">
+      <call-query href="delete_by_idRoles_and_idUsers_query">
+         <with-param name="Roles_idRoles" query-param="Roles_idRoles"/>
+         <with-param name="Users_idUsers" query-param="Users_idUsers"/>
+      </call-query>
+   </operation>
+   <operation name="select_with_key_idRoles_operation">
+      <call-query href="select_with_key_idRoles_query">
+         <with-param name="Roles_idRoles" query-param="Roles_idRoles"/>
+      </call-query>
+   </operation>
+   <operation name="select_with_key_idUsers_operation">
+      <call-query href="select_with_key_idUsers_query">
+         <with-param name="Users_idUsers" query-param="Users_idUsers"/>
+      </call-query>
+   </operation>
+</data>

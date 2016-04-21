@@ -1,0 +1,128 @@
+<data name="Users_DataServicePoC" serviceNamespace="http://schema.authentication.supersede.eu">
+   <config enableOData="false" id="default">
+      <property name="carbon_datasource_name">SupersedePoC</property>
+   </config>
+   <query id="select_all_Users_query" useConfig="default">
+      <sql>SELECT idUsers, login, password, first_name, family_name, creation_date, email, active FROM Users</sql>
+      <result element="Users" rowName="User">
+         <element column="idUsers" name="userId" xsdType="xs:integer"/>
+         <element column="login" name="login" xsdType="xs:string"/>
+         <element column="password" name="password" xsdType="xs:string"/>
+         <element column="first_name" name="first_name" xsdType="xs:string"/>
+         <element column="family_name" name="family_name" xsdType="xs:string"/>
+         <element column="creation_date" name="creation_date" xsdType="xs:date"/>
+         <element column="email" name="email" xsdType="xs:string"/>
+         <element column="active" name="active" xsdType="xs:integer"/>
+      </result>
+   </query>
+   <query id="update_Users_query" useConfig="default">
+      <sql>UPDATE Users SET login=?,password=?,first_name=?,family_name=?,creation_date=?,email=?,active=? WHERE idUsers=?</sql>
+      <param name="login" ordinal="1" sqlType="STRING"/>
+      <param name="password" ordinal="2" sqlType="STRING"/>
+      <param name="first_name" ordinal="3" sqlType="STRING"/>
+      <param name="family_name" ordinal="4" sqlType="STRING"/>
+      <param name="creation_date" ordinal="5" sqlType="DATE"/>
+      <param name="email" ordinal="6" sqlType="STRING"/>
+      <param name="active" ordinal="7" sqlType="BIT"/>
+      <param name="idUsers" ordinal="8" sqlType="INTEGER"/>
+   </query>
+   <query id="select_with_key_Users_query" useConfig="default">
+      <sql>SELECT idUsers, login, password, first_name, family_name, creation_date, email, active FROM Users WHERE idUsers=?</sql>
+      <result element="User">
+         <element column="idUsers" name="userId" xsdType="xs:integer"/>
+         <element column="login" name="login" xsdType="xs:string"/>
+         <element column="password" name="password" xsdType="xs:string"/>
+         <element column="first_name" name="first_name" xsdType="xs:string"/>
+         <element column="family_name" name="family_name" xsdType="xs:string"/>
+         <element column="creation_date" name="creation_date" xsdType="xs:date"/>
+         <element column="email" name="email" xsdType="xs:string"/>
+         <element column="active" name="active" xsdType="xs:integer"/>
+      </result>
+      <param name="idUsers" ordinal="1" sqlType="INTEGER"/>
+   </query>
+   <query id="delete_Users_query" useConfig="default">
+      <sql>DELETE FROM Users WHERE idUsers=?</sql>
+      <param name="idUsers" ordinal="1" sqlType="INTEGER"/>
+   </query>
+   <query id="insert_Users_query" returnGeneratedKeys="true" useConfig="default">
+      <sql>INSERT INTO Users(login,password,first_name,family_name,creation_date,email,active) VALUES(?,?,?,?,?,?,?)</sql>
+      <result element="GeneratedKeys" rowName="Entry" useColumnNumbers="true">
+         <element column="1" name="ID" xsdType="integer"/>
+      </result>
+      <param name="login" ordinal="1" sqlType="STRING"/>
+      <param name="password" ordinal="2" sqlType="STRING"/>
+      <param name="first_name" ordinal="3" sqlType="STRING"/>
+      <param name="family_name" ordinal="4" sqlType="STRING"/>
+      <param name="creation_date" ordinal="5" sqlType="DATE"/>
+      <param name="email" ordinal="6" sqlType="STRING"/>
+      <param name="active" ordinal="7" sqlType="BIT"/>
+   </query>
+   <query id="select_Roles_for_UserId_query" useConfig="default">
+      <sql>select r.* from Roles r inner join Roles_has_Users ru on r.idRoles=ru.Roles_idRoles and ru.Users_idUsers=?</sql>
+      <param name="idUsers" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <result element="roles" rowName="role">
+         <element column="idRoles" name="roleId" xsdType="xs:integer"/>
+         <element column="name" name="name" xsdType="xs:string"/>
+         <element column="description" name="description" xsdType="xs:string"/>
+         <element column="active" name="active" xsdType="xs:integer"/>
+      </result>
+   </query>
+   <query id="select_Users_for_UserId_query" useConfig="default">
+      <sql>SELECT idUsers, login, password, first_name, family_name, creation_date, email, active FROM Users WHERE idUsers=?</sql>
+      <param name="idUsers" ordinal="1" sqlType="INTEGER"/>
+      <result element="User">
+         <element column="idUsers" name="userId" xsdType="xs:integer"/>
+         <element column="login" name="login" xsdType="xs:string"/>
+         <element column="password" name="password" xsdType="xs:string"/>
+         <element column="first_name" name="first_name" xsdType="xs:string"/>
+         <element column="family_name" name="family_name" xsdType="xs:string"/>
+         <element column="creation_date" name="creation_date" xsdType="xs:date"/>
+         <element column="email" name="email" xsdType="xs:string"/>
+         <element column="active" name="active" xsdType="xs:integer"/>
+         <call-query href="select_Roles_for_UserId_query">
+            <with-param name="idUsers" query-param="idUsers"/>
+         </call-query>
+      </result>
+   </query>
+   <operation name="select_Users_for_UserId_operation">
+      <call-query href="select_Users_for_UserId_query">
+         <with-param name="idUsers" query-param="idUsers"/>
+      </call-query>
+   </operation>
+   <operation name="select_with_key_Users_operation">
+      <call-query href="select_with_key_Users_query">
+         <with-param name="idUsers" query-param="idUsers"/>
+      </call-query>
+   </operation>
+   <operation name="update_Users_operation">
+      <call-query href="update_Users_query">
+         <with-param name="password" query-param="password"/>
+         <with-param name="active" query-param="active"/>
+         <with-param name="creation_date" query-param="creation_date"/>
+         <with-param name="idUsers" query-param="idUsers"/>
+         <with-param name="login" query-param="login"/>
+         <with-param name="first_name" query-param="first_name"/>
+         <with-param name="family_name" query-param="family_name"/>
+         <with-param name="email" query-param="email"/>
+      </call-query>
+   </operation>
+   <operation name="insert_Users_operation">
+      <call-query href="insert_Users_query">
+         <with-param name="password" query-param="password"/>
+         <with-param name="active" query-param="active"/>
+         <with-param name="creation_date" query-param="creation_date"/>
+         <with-param name="login" query-param="login"/>
+         <with-param name="first_name" query-param="first_name"/>
+         <with-param name="family_name" query-param="family_name"/>
+         <with-param name="email" query-param="email"/>
+      </call-query>
+   </operation>
+   <operation name="delete_Users_operation">
+      <call-query href="delete_Users_query">
+         <with-param name="idUsers" query-param="idUsers"/>
+      </call-query>
+   </operation>
+   <operation name="select_all_Users_operation">
+      <call-query href="select_all_Users_query"/>
+   </operation>
+</data>
