@@ -1,21 +1,55 @@
+/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
 package eu.supersede.integration.api.security;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import org.junit.Assert;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreException;
 import org.wso2.carbon.user.core.claim.Claim;
 
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
+import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class IFAuthenticationManager {
 	private IFUserStoreManager usm = new IFUserStoreManager();
+	private RestTemplate restTemplate = new RestTemplate();
+	
+	static {
+		//This is use to enable the https SSL connection with IF WSO2 IS
+	    HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> hostname.equals("192.168.145.13"));
+	}
 	
 	//User Authentication
 	public boolean authenticateUser(String userName, String credential) throws UserStoreException{
@@ -159,5 +193,16 @@ public class IFAuthenticationManager {
 		Assert.assertNotNull(role.getRoleName());
 		Assert.assertTrue(!role.getRoleName().isEmpty());
 		usm.deleteRole(role.getRoleName());
+	}
+	
+	//Getting authorization token
+	
+	public ResponseEntity<String> getAuthorizationToken (String userName, String credential) throws URISyntaxException{
+		RequestEntity<String> request = RequestEntity.post(new URI("https://192.168.145.13:9445/oauth2/token"))
+				.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
+				.header("Authorization", "Basic " + "NXM5b3dXRW1xTVdRdG1ySGhLb2pVUXVwT0RFYTphREsyeVFWb1Y3Zjh3ZEwzMzZaQXN1STNyWFVh")
+				.body("grant_type=password&username=yosu&password=yosupass");
+		return (ResponseEntity<String>) restTemplate.exchange(request, String.class);
+
 	}
 }
