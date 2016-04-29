@@ -46,7 +46,8 @@ public class DynAdapDMProxy implements iDynAdaptDM {
 	public Collection<AdaptationDecision> getAdaptationDecisions(UUID systemId) {
 		try {
 			URI uri = new URI(DM_ENDPOINT + "adaptationDecisions/" + systemId);
-			ResponseEntity<AdaptationDecision[]> response = messageClient.getMessage(uri, AdaptationDecision[].class);
+			ResponseEntity<AdaptationDecision[]> response = messageClient.getMessage(uri, AdaptationDecision[].class, MediaType.APPLICATION_JSON
+					);
 			AdaptationDecision[] decisions = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located " + decisions.length + " decision(s)");
@@ -91,7 +92,7 @@ public class DynAdapDMProxy implements iDynAdaptDM {
 	public AdaptationDecision getTopRankedAdaptationDecision(UUID systemId) {
 		try {
 			URI uri = new URI(DM_ENDPOINT + "topRankedAdaptationDecision/" + systemId);
-			ResponseEntity<AdaptationDecision> response = messageClient.getMessage(uri, AdaptationDecision.class);
+			ResponseEntity<AdaptationDecision> response = messageClient.getMessage(uri, AdaptationDecision.class, MediaType.APPLICATION_JSON);
 			AdaptationDecision decision = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located decision: " + decision);
