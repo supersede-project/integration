@@ -46,10 +46,19 @@ dependencies {
     testCompile('com.jayway.jsonpath:json-path')
     compile files('lib/org.wso2.carbon.um.ws.api.stub_4.2.2.jar')
     compile files('lib/org.wso2.carbon.um.ws.api_4.2.2.jar')
-    compile files('lib/org.wso2.carbon.um.ws.api_4.2.2.jar')
     compile files('lib/org.wso2.carbon.user.api_4.2.0.jar')
     compile files('lib/org.wso2.carbon.user.core_4.2.0.jar')
     compile files('lib/org.wso2.carbon.utils_4.2.0.jar')
+    compile files('lib/opensaml2_2.4.1-wso2v1.jar')
+    
+    testCompile 'org.apache.rampart:rahas:1.6.2'
+    testCompile 'org.apache.rampart:rampart-core:1.6.2'
+    compile 'org.springframework:spring-core'
+    
+//    testCompile 'org.opensaml:opensaml'
+//    testCompile 'org.opensaml:xmltooling'
+//    testCompile 'org.opensaml:core'
+
     compile("org.springframework.boot:spring-boot-starter-web")
 }
 

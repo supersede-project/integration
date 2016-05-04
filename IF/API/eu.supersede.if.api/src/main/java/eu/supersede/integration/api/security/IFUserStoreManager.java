@@ -555,7 +555,5 @@ public class IFUserStoreManager implements UserStoreManager{
     public boolean isSharedGroupEnabled() {
 	    return false;
     }
-	
-
 
 }

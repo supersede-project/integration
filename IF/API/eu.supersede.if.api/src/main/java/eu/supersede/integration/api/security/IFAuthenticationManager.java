@@ -22,6 +22,7 @@ package eu.supersede.integration.api.security;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,10 +30,10 @@ import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.junit.Assert;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreException;
@@ -40,15 +41,23 @@ import org.wso2.carbon.user.core.claim.Claim;
 
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
+import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class IFAuthenticationManager {
 	private IFUserStoreManager usm = new IFUserStoreManager();
 	private RestTemplate restTemplate = new RestTemplate();
+	private static String TOKEN_SERVICE_ENDPOINT =  IntegrationProperty.getProperty("is.server.services.token");
+	private static String AUTHORIZATION_PAIR_BASE64 =  IntegrationProperty.getProperty("is.authorization.pair.base64");
 	
 	static {
 		//This is use to enable the https SSL connection with IF WSO2 IS
-	    HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> hostname.equals("192.168.145.13"));
+		try {
+			String token_service_hostname = new URL (TOKEN_SERVICE_ENDPOINT).getHost();
+			HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> hostname.equals(token_service_hostname));
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//User Authentication
@@ -59,13 +68,14 @@ public class IFAuthenticationManager {
 	//User CRUD operations
 	
 	public void addUser (User user, String credential, boolean requirePasswordChange) throws UserStoreException{
-		Assert.assertNotNull(user.getUserName());
-		Assert.assertNotNull(credential);
-		Assert.assertTrue(!user.getUserName().isEmpty());
-		Assert.assertTrue(!credential.isEmpty());
+		Assert.notNull(user, "user shouldn't be null");
+		Assert.notNull(user.getUserName(), "Username shouldn't be null");
+		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
+		Assert.notNull(credential, "credential shouldn't be null");
+		Assert.isTrue(!credential.isEmpty(), "credential shouldn't be empty");
 		String[] profiles = usm.getAllProfileNames();
-		Assert.assertNotNull(profiles);
-		Assert.assertTrue (profiles.length>0);
+		Assert.notNull(profiles, "profiles shouldn't be empty");
+		Assert.isTrue (profiles.length>0, "There should be at least one profile");
 		String[] roleNames = new String[user.getRoles().size()];
 		int i = 0;
 		for (Role role: user.getRoles()){
@@ -76,13 +86,13 @@ public class IFAuthenticationManager {
 	}
 	
 	public User getUser(String userName) throws UserStoreException, MalformedURLException{
-		Assert.assertNotNull(userName);
-		Assert.assertTrue(!userName.isEmpty());
+		Assert.notNull(userName, "Username shouldn't be null");
+		Assert.isTrue(!userName.isEmpty(), "Username shouldn't be empty");
 		User user = new User();
 		user.setUserName(userName);
 		String[] profiles = usm.getAllProfileNames();
-		Assert.assertNotNull(profiles);
-		Assert.assertTrue (profiles.length>0);
+		Assert.notNull(profiles, "profiles shouldn't be empty");
+		Assert.isTrue (profiles.length>0, "There should be at least one profile");
 		Claim[] claims = usm.getUserClaimValues(userName, profiles[0]);
 		user.readClaims(claims);
 		Set<Role> roles = getAllRolesOfUser(user);
@@ -92,30 +102,35 @@ public class IFAuthenticationManager {
 	}
 	
 	public List<User> getAllUsersForRole(Role role) throws UserStoreException, MalformedURLException{
-		Assert.assertNotNull(role);
-		Assert.assertNotNull(role.getRoleName());
-		Assert.assertTrue(!role.getRoleName().isEmpty());
+		Assert.notNull(role, "role shouldn't be null");
+		Assert.notNull(role.getRoleName(), "Role name shouldn't be null");
+		Assert.isTrue(!role.getRoleName().isEmpty(), "Role name shouldn't be empty");
+		
 		String[] userNames = usm.getUserListOfRole(role.getRoleName());
 		List<User> users = new ArrayList<User>();
-		for (int i=0; i<userNames.length; i++){
-			users.add (getUser(userNames[i]));
+		if (userNames != null){
+			for (int i=0; i<userNames.length; i++){
+				users.add (getUser(userNames[i]));
+			}
 		}
 		return users;
 	}
 	
 	public void updateUserCredential(User user, String newCredential, String oldCredential) throws UserStoreException{
-		Assert.assertNotNull(user);
-		Assert.assertNotNull(user.getUserName());
-		Assert.assertTrue(!user.getUserName().isEmpty());
+		Assert.notNull(user, "user shouldn't be null");
+		Assert.notNull(user.getUserName(), "Username shouldn't be null");
+		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
+		
 		usm.updateCredential(user.getUserName(), newCredential, oldCredential);
 	}
 	
 	public void updateUser(User user) throws UserStoreException, MalformedURLException{
-		Assert.assertNotNull(user);
-		Assert.assertNotNull(user.getUserName());
-		Assert.assertTrue(!user.getUserName().isEmpty());
+		Assert.notNull(user, "user shouldn't be null");
+		Assert.notNull(user.getUserName(), "Username shouldn't be null");
+		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
+		
 		User oldUser = getUser(user.getUserName());
-		Assert.assertNotNull(oldUser);
+		Assert.notNull(oldUser);
 		
 		Set<Role> rolesInNewUser = user.getRoles();
 		Set<Role> rolesInOldUser = oldUser.getRoles();
@@ -130,46 +145,47 @@ public class IFAuthenticationManager {
 		
 		//Updating user profile
 		String[] profiles = usm.getProfileNames(user.getUserName());
-		Assert.assertNotNull(profiles);
-		Assert.assertTrue (profiles.length>0);
+		Assert.notNull(profiles, "profiles shouldn't be null");
+		Assert.isTrue(profiles.length>0, "profiles shouldn't be empty");
+		
 		usm.setUserClaimValues(user.getUserName(), user.getClaims(), profiles[0]);
 	}
 	
 	public void deleteUser (User user) throws UserStoreException{
-		Assert.assertNotNull(user);
-		Assert.assertNotNull(user.getUserName());
-		Assert.assertTrue(!user.getUserName().isEmpty());
+		Assert.notNull(user, "user shouldn't be null");
+		Assert.notNull(user.getUserName(), "Username shouldn't be null");
+		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
 		usm.deleteUser(user.getUserName());
 	}
 	
 	//Role CRUD operations
 	public Set<Role> getAllRoles() throws UserStoreException{
 		String[] roleNames = usm.getRoleNames();
-    	Assert.assertNotNull(roleNames);
+    	Assert.notNull(roleNames, "Role names shouldn't be null");
     	return Role.roles(roleNames);
 	}
 	
 	public Set<Role> getAllRolesOfUser(User user) throws UserStoreException{
-		Assert.assertNotNull(user);
-		Assert.assertNotNull(user.getUserName());
-		Assert.assertTrue(!user.getUserName().isEmpty());
+		Assert.notNull(user, "user shouldn't be null");
+		Assert.notNull(user.getUserName(), "Username shouldn't be null");
+		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
 		String[] roleNames = usm.getRoleListOfUser(user.getUserName());
-    	Assert.assertNotNull(roleNames);
+		Assert.notNull(roleNames, "Role names shouldn't be null");
     	return Role.roles(roleNames);
 	}
 	
 	public void addRole (Role role) throws UserStoreException{
-		Assert.assertNotNull(role);
-		Assert.assertNotNull(role.getRoleName());
-		Assert.assertTrue(!role.getRoleName().isEmpty());
+		Assert.notNull(role, "role shouldn't be null");
+		Assert.notNull(role.getRoleName(), "Role name shouldn't be null");
+		Assert.isTrue(!role.getRoleName().isEmpty(), "Role name shouldn't be empty");
     	String[] userList = User.userNames (role.getUsers());
 		usm.addRole(role.getRoleName(), userList, role.getPermissions().toArray(new Permission[]{}));
 	}
 	
 	public void updateRole (Role role, String oldRoleName) throws UserStoreException{
-		Assert.assertNotNull(role);
-		Assert.assertNotNull(role.getRoleName());
-		Assert.assertTrue(!role.getRoleName().isEmpty());
+		Assert.notNull(role, "role shouldn't be null");
+		Assert.notNull(role.getRoleName(), "Role name shouldn't be null");
+		Assert.isTrue(!role.getRoleName().isEmpty(), "Role name shouldn't be empty");
 		// Role name
 		usm.updateRoleName(oldRoleName, role.getRoleName());
 		
@@ -189,20 +205,19 @@ public class IFAuthenticationManager {
 	}
 	
 	public void deleteRole (Role role) throws UserStoreException{
-		Assert.assertNotNull(role);
-		Assert.assertNotNull(role.getRoleName());
-		Assert.assertTrue(!role.getRoleName().isEmpty());
+		Assert.notNull(role, "role shouldn't be null");
+		Assert.notNull(role.getRoleName(), "Role name shouldn't be null");
+		Assert.isTrue(!role.getRoleName().isEmpty(), "Role name shouldn't be empty");
 		usm.deleteRole(role.getRoleName());
 	}
 	
 	//Getting authorization token
 	
 	public ResponseEntity<String> getAuthorizationToken (String userName, String credential) throws URISyntaxException{
-		RequestEntity<String> request = RequestEntity.post(new URI("https://192.168.145.13:9445/oauth2/token"))
+		RequestEntity<String> request = RequestEntity.post(new URI(TOKEN_SERVICE_ENDPOINT))
 				.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
-				.header("Authorization", "Basic " + "NXM5b3dXRW1xTVdRdG1ySGhLb2pVUXVwT0RFYTphREsyeVFWb1Y3Zjh3ZEwzMzZaQXN1STNyWFVh")
-				.body("grant_type=password&username=yosu&password=yosupass");
+				.header("Authorization", "Basic " + AUTHORIZATION_PAIR_BASE64)
+				.body("grant_type=password&username=" + userName + "&password=" + credential);
 		return (ResponseEntity<String>) restTemplate.exchange(request, String.class);
-
 	}
 }

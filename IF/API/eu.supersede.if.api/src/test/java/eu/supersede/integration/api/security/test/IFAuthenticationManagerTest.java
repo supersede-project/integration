@@ -49,7 +49,7 @@ public class IFAuthenticationManagerTest {
 	//Authentication Test
 	@Test
     public void authenticateUserTest() throws Exception{
-    	Assert.isTrue(am.authenticateUser("yosu", "yosutest"));
+    	Assert.isTrue(am.authenticateUser("yosu", "yosupass"));
     }
 	
 	//User tests
@@ -117,7 +117,7 @@ public class IFAuthenticationManagerTest {
 		updateUser(user);
 
     	//Updating password and user profile
-    	am.updateUserCredential(user, "userpassword", "userpasswd");
+    	am.updateUserCredential(user, "userpasswordNew", "userpassword");
     	am.updateUser(user);
 	}
 
@@ -223,7 +223,7 @@ public class IFAuthenticationManagerTest {
 	
 	@Test
 	public void getAuthorizationTokenTest() throws UserStoreException, URISyntaxException{
-		ResponseEntity<String> response = am.getAuthorizationToken("", "");
+		ResponseEntity<String> response = am.getAuthorizationToken("yosu", "yosupass");
 	}
 	
 }
