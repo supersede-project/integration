@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_FE_GetProfile_Request_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <payloadFactory media-type="xml">
+    <format>
+      <p:select_with_key_profiles_operation xmlns:p="http://schema.authentication.supersede.eu">
+        <xs:profile_id xmlns:xs="http://schema.supersede.eu">$1</xs:profile_id>
+      </p:select_with_key_profiles_operation>
+    </format>
+    <args>
+      <arg evaluator="xml" expression="$ctx:profile_id"/>
+    </args>
+  </payloadFactory>
+</sequence>

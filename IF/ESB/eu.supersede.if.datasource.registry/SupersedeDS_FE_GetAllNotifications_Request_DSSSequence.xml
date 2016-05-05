@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sequence name="SupersedeDS_FE_GetAllUsers_Request_DSSSequence"
+<sequence name="SupersedeDS_FE_GetAllNotifications_Request_DSSSequence"
   onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
   <payloadFactory media-type="xml">
     <format>
-      <p:select_all_users_operation xmlns:p="http://schema.supersede.eu"/>
+      <p:select_all_notifications_operation xmlns:p="http://schema.supersede.eu"/>
     </format>
     <args/>
   </payloadFactory>

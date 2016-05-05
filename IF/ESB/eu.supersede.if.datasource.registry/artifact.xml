@@ -13,4 +13,88 @@
             <mediaType>application/vnd.wso2.sequence</mediaType>
         </item>
     </artifact>
+    <artifact name="SupersedeDS_FE_GetAllUsersLazy_Request_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetAllUsersLazy_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetUser_Request_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetUser_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetUser_Response_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetUser_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetUserLazy_Request_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetUserLazy_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetAllNotifications_Request_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetAllNotifications_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetAllNotifications_Response_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetAllNotifications_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetNotification_Request_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetNotification_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetNotification_Response_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetNotification_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetAllProfiles_Request_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetAllProfiles_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetAllProfiles_Response_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetAllProfiles_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetProfile_Request_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetProfile_Request_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
+    <artifact name="SupersedeDS_FE_GetProfile_Response_DSSSequence" groupId="eu.supersede.if.datasource.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>SupersedeDS_FE_GetProfile_Response_DSSSequence.xml</file>
+            <path>/_system/config</path>
+            <mediaType>application/vnd.wso2.sequence</mediaType>
+        </item>
+    </artifact>
 </artifacts>
