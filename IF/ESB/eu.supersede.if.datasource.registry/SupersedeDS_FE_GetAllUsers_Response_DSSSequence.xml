@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_FE_GetAllUsers_Response_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <log/>
+  <payloadFactory media-type="json">
+    <format>$1</format>
+    <args>
+      <arg evaluator="json" expression="$.users.user"/>
+    </args>
+  </payloadFactory>
+  <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+</sequence>

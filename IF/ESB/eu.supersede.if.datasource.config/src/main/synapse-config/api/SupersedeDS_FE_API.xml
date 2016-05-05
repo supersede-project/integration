@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/supersede/fe" name="SupersedeDS_FE_API" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/tenant/{id_tenant}/users">
+    <inSequence>
+      <property expression="get-property('uri.var.id_tenant')"
+        name="id_tenant" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:id_tenant" name="id_tenant"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_FE_GetAllUsers_Request_DSSSequence.xml"/>
+      <switch source="$ctx:id_tenant">
+        <case regex="atos">
+          <property name="endpoint" scope="default" type="STRING" value="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+          <call>
+            <endpoint>
+              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+            </endpoint>
+          </call>
+        </case>
+        <case regex="siemens">
+          <property name="endpoint" scope="default" type="STRING" value="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+          <call>
+            <endpoint>
+              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+            </endpoint>
+          </call>
+        </case>
+        <case regex="senercon">
+          <property name="endpoint" scope="default" type="STRING" value="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+          <call>
+            <endpoint>
+              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+            </endpoint>
+          </call>
+        </case>
+        <default/>
+      </switch>
+      <log level="full">
+        <property expression="$ctx:endpoint" name="endpoint"/>
+      </log>
+      <!--       <call> -->
+      <!--         <endpoint key-expression="$ctx:endpoint"/> -->
+      <!--       </call> -->
+      <log level="full"/>
+      <sequence key="conf:/SupersedeDS_FE_GetAllUsers_Response_DSSSequence.xml"/>
+      <log level="full"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+</api>
