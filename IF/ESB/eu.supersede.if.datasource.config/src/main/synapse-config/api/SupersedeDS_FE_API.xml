@@ -35,9 +35,9 @@
         </case>
         <default/>
       </switch>
-      <log level="full">
-        <property expression="$ctx:endpoint" name="endpoint"/>
-      </log>
+      <!--       <log level="full"> -->
+      <!--         <property expression="$ctx:endpoint" name="endpoint"/> -->
+      <!--       </log> -->
       <!--       <call> -->
       <!--         <endpoint key-expression="$ctx:endpoint"/> -->
       <!--       </call> -->
