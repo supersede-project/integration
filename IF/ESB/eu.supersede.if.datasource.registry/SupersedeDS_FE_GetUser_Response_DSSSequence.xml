@@ -5,7 +5,7 @@
   <payloadFactory media-type="json">
     <format>$1</format>
     <args>
-      <arg evaluator="json" expression="$..user"/>
+      <arg evaluator="json" expression="$..user[0]"/>
     </args>
   </payloadFactory>
   <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
