@@ -7,6 +7,10 @@
       <log level="full">
         <property expression="$ctx:id_tenant" name="id_tenant"/>
       </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
+      </log>
       <sequence key="conf:/SupersedeDS_FE_GetAllUsers_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
         <case regex="atos">
@@ -56,6 +60,10 @@
       <log level="full">
         <property expression="$ctx:id_tenant" name="id_tenant"/>
       </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
+      </log>
       <sequence key="conf:/SupersedeDS_FE_GetAllUsersLazy_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
         <case regex="atos">
@@ -98,6 +106,10 @@
       <log level="full">
         <property expression="$ctx:id_tenant" name="id_tenant"/>
         <property expression="$ctx:id_user" name="id_user"/>
+      </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
       </log>
       <sequence key="conf:/SupersedeDS_FE_GetUser_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
@@ -142,6 +154,10 @@
         <property expression="$ctx:id_tenant" name="id_tenant"/>
         <property expression="$ctx:id_user" name="id_user"/>
       </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
+      </log>
       <sequence key="conf:/SupersedeDS_FE_GetUserLazy_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
         <case regex="atos">
@@ -181,6 +197,10 @@
         name="id_tenant" scope="default" type="STRING"/>
       <log level="full">
         <property expression="$ctx:id_tenant" name="id_tenant"/>
+      </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
       </log>
       <sequence key="conf:/SupersedeDS_FE_GetAllNotifications_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
@@ -225,6 +245,10 @@
         <property expression="$ctx:id_tenant" name="id_tenant"/>
         <property expression="$ctx:notification_id" name="notification_id"/>
       </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
+      </log>
       <sequence key="conf:/SupersedeDS_FE_GetNotification_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
         <case regex="atos">
@@ -264,6 +288,10 @@
         name="id_tenant" scope="default" type="STRING"/>
       <log level="full">
         <property expression="$ctx:id_tenant" name="id_tenant"/>
+      </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
       </log>
       <sequence key="conf:/SupersedeDS_FE_GetAllProfiles_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
@@ -307,6 +335,10 @@
       <log level="full">
         <property expression="$ctx:id_tenant" name="id_tenant"/>
         <property expression="$ctx:profile_id" name="profile_id"/>
+      </log>
+      <sequence key="conf:/SupersedeAuthentication.xml"/>
+      <log>
+        <property name="Authorization" value="Message Authorization passed"/>
       </log>
       <sequence key="conf:/SupersedeDS_FE_GetProfile_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">

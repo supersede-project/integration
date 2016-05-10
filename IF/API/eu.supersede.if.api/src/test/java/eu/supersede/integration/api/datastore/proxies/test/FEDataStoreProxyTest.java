@@ -77,7 +77,7 @@ public class FEDataStoreProxyTest {
     public void testGetUser() throws Exception{
     	String tenandId = "atos";
     	int userId = 1438;
-    	User user = proxy.getUser(tenandId, userId, false,token);
+    	User user = proxy.getUser(tenandId, userId, false, token);
     	Assert.notNull(user);
     }
     

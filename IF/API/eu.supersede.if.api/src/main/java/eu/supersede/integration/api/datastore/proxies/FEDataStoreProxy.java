@@ -46,6 +46,9 @@ public class FEDataStoreProxy{
 	public List<User> getUsers(String tenantId, boolean lazy, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
+			Assert.notNull(authenticationToken, "Provide a valid authentication token");
+			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/users";
 			if (lazy) suri = suri + "_lazy";
 			URI uri = new URI(suri);
@@ -67,6 +70,9 @@ public class FEDataStoreProxy{
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			Assert.isTrue(userId>-1, "User id cannot be unasigned");
+			Assert.notNull(authenticationToken, "Provide a valid authentication token");
+			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/users";
 			if (lazy) suri = suri + "_lazy";
 			suri = suri + "/" + userId;
@@ -88,6 +94,9 @@ public class FEDataStoreProxy{
 	public List<Notification> getNotifications(String tenantId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
+			Assert.notNull(authenticationToken, "Provide a valid authentication token");
+			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications";
 			URI uri = new URI(suri);
 			ResponseEntity<Notification[]> response = messageClient.getMessage(uri, Notification[].class, MediaType.APPLICATION_XML, authenticationToken);
@@ -108,6 +117,9 @@ public class FEDataStoreProxy{
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			Assert.isTrue(notificationId>-1, "Notification id cannot be unasigned");
+			Assert.notNull(authenticationToken, "Provide a valid authentication token");
+			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications/" + notificationId;
 			URI uri = new URI(suri);
 			ResponseEntity<Notification> response = messageClient.getMessage(uri, Notification.class, MediaType.APPLICATION_XML, authenticationToken);
@@ -127,6 +139,9 @@ public class FEDataStoreProxy{
 	public List<Profile> getProfiles(String tenantId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
+			Assert.notNull(authenticationToken, "Provide a valid authentication token");
+			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles";
 			URI uri = new URI(suri);
 			ResponseEntity<Profile[]> response = messageClient.getMessage(uri, Profile[].class, MediaType.APPLICATION_XML, authenticationToken);
@@ -147,6 +162,9 @@ public class FEDataStoreProxy{
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			Assert.isTrue(profileId>-1, "Profile id cannot be unasigned");
+			Assert.notNull(authenticationToken, "Provide a valid authentication token");
+			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles/" + profileId;
 			URI uri = new URI(suri);
 			ResponseEntity<Profile> response = messageClient.getMessage(uri, Profile.class, MediaType.APPLICATION_XML, authenticationToken);
