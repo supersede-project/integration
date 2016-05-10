@@ -31,7 +31,9 @@ import org.wso2.carbon.CarbonConstants;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreManager;
 
+import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.IFUserStoreManager;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IdentityManagerClientTest {
 //	private static final Logger log = LoggerFactory.getLogger(IdentityManagerClientTest.class);
@@ -50,7 +52,9 @@ public class IdentityManagerClientTest {
 	
     @Before
     public void setup() throws Exception {
-        usm = new IFUserStoreManager();
+    	String admin = IntegrationProperty.getProperty("is.admin.user");
+		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        usm = new IFUserStoreManager(admin, password);
     }
 
     @Test

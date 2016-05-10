@@ -24,6 +24,7 @@ import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
 import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;

@@ -30,17 +30,26 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import eu.supersede.integration.api.common.proxies.MailProxy;
 import eu.supersede.integration.api.common.types.Email;
+import eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy;
+import eu.supersede.integration.api.security.IFAuthenticationManager;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.application.SpringAppTest;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SpringAppTest.class)
 @WebAppConfiguration
 public class MailProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(MailProxyTest.class);
-
+	private IFAuthenticationManager am;
+	private AuthorizationToken token;
+	
     @Before
     public void setup() throws Exception {
-        
+    	String admin = IntegrationProperty.getProperty("is.admin.user");
+		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        am = new IFAuthenticationManager(admin, password);
+        token = am.getAuthorizationToken("yosu", "yosupass");
     }
 
     @Test
@@ -53,6 +62,6 @@ public class MailProxyTest {
     	email.setSubject("Test, Email sent through WSO2 ESB");
     	email.setBody("This message has been sent by requesting to WSO2 ESB to dispatch the message");
     	log.info("Testing sending email");
-		new MailProxy().sendEmail(email);
+		new MailProxy().sendEmail(email, token);
     }
 }

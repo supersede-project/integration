@@ -19,6 +19,7 @@
  *******************************************************************************/
 package eu.supersede.integration.poc.dynadapt.services;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -42,10 +43,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import eu.supersede.integration.api.security.IFAuthenticationManager;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.poc.dynadapt.proxies.DynAdapEnactProxy;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
 import eu.supersede.integration.poc.dynadapt.types.CollectionOfDecisions;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 @RestController
 @RequestMapping(value="/dm")
@@ -59,17 +63,22 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 	
 	//Service generates random (1 to 10) adaptation decisions: Collection<UUID> every minute
 	static{
-		ComputeDecisionsTask task = new ComputeDecisionsTask();
-		Timer timer = new Timer();
-		log.info("Scheduled ComputeDecisionsTask");
-		timer.schedule(task, Calendar.getInstance().getTime(), A_MINUTE);
-		
-		//Populating decisions
-		decisions.put("Decrease Video Resolution", "Reconfigure player: reduce video resolution during playing");
-		decisions.put("Increment number of CDNs", "Reconfigure backend topology: increase number of CDNs by 10");
-		decisions.put("Switch to local regional CDN", "Reconfigure backend topology: activate video content dispatching using closest regional CDN");
-		decisions.put("Decrease frames", "Reconfigure player: reduce video streaming frames per second by 10%");
-		decisions.put("Reconfigure streaming balance", "Reconfigure backend topology: redistribute streaming workload to closest regional CDN network");
+		try {
+			ComputeDecisionsTask task = new ComputeDecisionsTask();
+			Timer timer = new Timer();
+			log.info("Scheduled ComputeDecisionsTask");
+			timer.schedule(task, Calendar.getInstance().getTime(), A_MINUTE);
+			
+			//Populating decisions
+			decisions.put("Decrease Video Resolution", "Reconfigure player: reduce video resolution during playing");
+			decisions.put("Increment number of CDNs", "Reconfigure backend topology: increase number of CDNs by 10");
+			decisions.put("Switch to local regional CDN", "Reconfigure backend topology: activate video content dispatching using closest regional CDN");
+			decisions.put("Decrease frames", "Reconfigure player: reduce video streaming frames per second by 10%");
+			decisions.put("Reconfigure streaming balance", "Reconfigure backend topology: redistribute streaming workload to closest regional CDN network");
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -132,8 +141,14 @@ class ComputeDecisionsTask extends TimerTask{
 	private static final Logger log = LoggerFactory.getLogger(ComputeDecisionsTask.class);
 	private static boolean firstInvocation = false;
 	private static DynAdapEnactProxy enactProxy = new DynAdapEnactProxy();
+	private IFAuthenticationManager am;
+	private AuthorizationToken token;
 	
-	public ComputeDecisionsTask(){
+	public ComputeDecisionsTask() throws URISyntaxException {
+		String admin = IntegrationProperty.getProperty("is.admin.user");
+		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        am = new IFAuthenticationManager(admin, password);
+        token = am.getAuthorizationToken("yosu", "yosupass");
 	}
 
 	@Override
@@ -161,7 +176,7 @@ class ComputeDecisionsTask extends TimerTask{
 //			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(topDecision, UUID.randomUUID());
 			
 			//To be sent with ESB mediation
-			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(decision, UUID.randomUUID());
+			enactProxy.triggerTopRankedEnactmentForAdaptationDecision(decision, UUID.randomUUID(), token);
 			
 //			//To be sent asynchronously
 			log.info("BEFORE Invoking asynchronousTriggerEnactmentForAdaptationDecision. Not-blocking");
@@ -171,7 +186,7 @@ class ComputeDecisionsTask extends TimerTask{
 	}
 		
 	DeferredResult<ResponseEntity<?>> asynchronousTriggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId){
-		ListenableFuture<ResponseEntity<AdaptationEnactment>> enactmentAdapter = enactProxy.asynchronousTriggerEnactmentForAdaptationDecision (decisionId, systemId);
+		ListenableFuture<ResponseEntity<AdaptationEnactment>> enactmentAdapter = enactProxy.asynchronousTriggerEnactmentForAdaptationDecision (decisionId, systemId, token);
 		DeferredResult<ResponseEntity<?>> deferredResult = new DeferredResult<>();
 		enactmentAdapter.addCallback(
                 new ListenableFutureCallback<ResponseEntity<AdaptationEnactment>>() {

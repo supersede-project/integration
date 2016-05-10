@@ -33,6 +33,7 @@ import org.springframework.util.Assert;
 import eu.supersede.integration.api.datastore.fe.types.Notification;
 import eu.supersede.integration.api.datastore.fe.types.Profile;
 import eu.supersede.integration.api.datastore.fe.types.User;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
@@ -42,13 +43,13 @@ public class FEDataStoreProxy{
 	private static final Logger log = LoggerFactory.getLogger(FEDataStoreProxy.class);
 	
 	
-	public List<User> getUsers(String tenantId, boolean lazy) {
+	public List<User> getUsers(String tenantId, boolean lazy, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/users";
 			if (lazy) suri = suri + "_lazy";
 			URI uri = new URI(suri);
-			ResponseEntity<User[]> response = messageClient.getMessage(uri, User[].class, MediaType.APPLICATION_XML);
+			ResponseEntity<User[]> response = messageClient.getMessage(uri, User[].class, MediaType.APPLICATION_XML, authenticationToken);
 			User[] collection = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located " + collection.length + " user(s)");
@@ -62,7 +63,7 @@ public class FEDataStoreProxy{
 		}
 	}
 	
-	public User getUser(String tenantId, int userId, boolean lazy) {
+	public User getUser(String tenantId, int userId, boolean lazy, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			Assert.isTrue(userId>-1, "User id cannot be unasigned");
@@ -70,7 +71,7 @@ public class FEDataStoreProxy{
 			if (lazy) suri = suri + "_lazy";
 			suri = suri + "/" + userId;
 			URI uri = new URI(suri);
-			ResponseEntity<User> response = messageClient.getMessage(uri, User.class, MediaType.APPLICATION_XML);
+			ResponseEntity<User> response = messageClient.getMessage(uri, User.class, MediaType.APPLICATION_XML, authenticationToken);
 			User user = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located user: " + user.getName());
@@ -84,12 +85,12 @@ public class FEDataStoreProxy{
 		}
 	}
 	
-	public List<Notification> getNotifications(String tenantId) {
+	public List<Notification> getNotifications(String tenantId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications";
 			URI uri = new URI(suri);
-			ResponseEntity<Notification[]> response = messageClient.getMessage(uri, Notification[].class, MediaType.APPLICATION_XML);
+			ResponseEntity<Notification[]> response = messageClient.getMessage(uri, Notification[].class, MediaType.APPLICATION_XML, authenticationToken);
 			Notification[] collection = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located " + collection.length + " notifications(s)");
@@ -103,13 +104,13 @@ public class FEDataStoreProxy{
 		}
 	}
 	
-	public Notification getNotification(String tenantId, int notificationId) {
+	public Notification getNotification(String tenantId, int notificationId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			Assert.isTrue(notificationId>-1, "Notification id cannot be unasigned");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications/" + notificationId;
 			URI uri = new URI(suri);
-			ResponseEntity<Notification> response = messageClient.getMessage(uri, Notification.class, MediaType.APPLICATION_XML);
+			ResponseEntity<Notification> response = messageClient.getMessage(uri, Notification.class, MediaType.APPLICATION_XML, authenticationToken);
 			Notification notification = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located notification: " + notification.getNotification_id());
@@ -123,12 +124,12 @@ public class FEDataStoreProxy{
 		}
 	}
 	
-	public List<Profile> getProfiles(String tenantId) {
+	public List<Profile> getProfiles(String tenantId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles";
 			URI uri = new URI(suri);
-			ResponseEntity<Profile[]> response = messageClient.getMessage(uri, Profile[].class, MediaType.APPLICATION_XML);
+			ResponseEntity<Profile[]> response = messageClient.getMessage(uri, Profile[].class, MediaType.APPLICATION_XML, authenticationToken);
 			Profile[] collection = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located " + collection.length + " profile(s)");
@@ -142,13 +143,13 @@ public class FEDataStoreProxy{
 		}
 	}
 	
-	public Profile getProfile(String tenantId, int profileId) {
+	public Profile getProfile(String tenantId, int profileId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
 			Assert.isTrue(profileId>-1, "Profile id cannot be unasigned");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles/" + profileId;
 			URI uri = new URI(suri);
-			ResponseEntity<Profile> response = messageClient.getMessage(uri, Profile.class, MediaType.APPLICATION_XML);
+			ResponseEntity<Profile> response = messageClient.getMessage(uri, Profile.class, MediaType.APPLICATION_XML, authenticationToken);
 			Profile profile = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located profile: " + profile.getName());

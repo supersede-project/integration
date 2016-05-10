@@ -29,6 +29,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.datasource.poc.authentication.json.JsonUtils;
 import eu.supersede.integration.datasource.poc.authentication.types.Role;
 import eu.supersede.integration.datasource.poc.authentication.types.RolesCollection;
@@ -43,10 +44,10 @@ public class SupersedeDSRolesProxy {
 	private SupersedeDSRolesxUsersProxy rolesxUsersProxy = new SupersedeDSRolesxUsersProxy();
 	
 	//Only returns JSON representation, expressed explicitly
-	public RolesCollection getRoles() {
+	public RolesCollection getRoles(AuthorizationToken token) {
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT);
-			ResponseEntity<Role[]> response = messageClient.getMessage(uri, Role[].class, MediaType.APPLICATION_XML);
+			ResponseEntity<Role[]> response = messageClient.getMessage(uri, Role[].class, MediaType.APPLICATION_XML, token);
 			Role[] collection = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located " + collection.length + " roles(s)");
@@ -60,10 +61,10 @@ public class SupersedeDSRolesProxy {
 		}
 	}
 	
-	public Role getRole(int roleId) {
+	public Role getRole(int roleId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + roleId);
-			ResponseEntity<Role> response = messageClient.getMessage(uri, Role.class, MediaType.APPLICATION_XML);
+			ResponseEntity<Role> response = messageClient.getMessage(uri, Role.class, MediaType.APPLICATION_XML, token);
 			Role role = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located role: " + role.getName());
@@ -77,10 +78,10 @@ public class SupersedeDSRolesProxy {
 		}
 	}
 	
-	public Role getRoleWithUsers(int roleId) {
+	public Role getRoleWithUsers(int roleId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + roleId + "/withUsers");
-			ResponseEntity<Role> response = messageClient.getMessage(uri, Role.class, MediaType.APPLICATION_XML);
+			ResponseEntity<Role> response = messageClient.getMessage(uri, Role.class, MediaType.APPLICATION_XML, token);
 			Role role = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located role: " + role.getName());
@@ -94,10 +95,10 @@ public class SupersedeDSRolesProxy {
 		}
 	}
 	
-	public int createRole (Role role){
+	public int createRole (Role role, AuthorizationToken token){
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT);
-			ResponseEntity<String> response = messageClient.postJsonMessage(role, uri, String.class);
+			ResponseEntity<String> response = messageClient.postJsonMessage(role, uri, String.class, token);
 			String roleId = JsonUtils.evaluatePathInJson(response.getBody(), "/RoleRecord/RoleID").asText();
 			int result = Integer.parseInt(roleId);
 			role.setRoleId(result);
@@ -111,7 +112,7 @@ public class SupersedeDSRolesProxy {
 				User[] users = role.getUsers();
 				for (int i=0; i<users.length; i++){
 					User user = users[i];
-					rolesxUsersProxy.addUserForRole(role, user);
+					rolesxUsersProxy.addUserForRole(role, user, token);
 				}
 			}
 			
@@ -122,12 +123,12 @@ public class SupersedeDSRolesProxy {
 		}
 	}
 	
-	public void updateRole (Role role){
+	public void updateRole (Role role, AuthorizationToken token){
 		try {
 			Assert.notNull(role, "Role cannot be null");
 			Assert.isTrue(role.getRoleId()>0, "Role id cannot be unasigned");
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + role.getRoleId());
-			ResponseEntity<String> response = messageClient.putJsonMessage(role, uri);
+			ResponseEntity<String> response = messageClient.putJsonMessage(role, uri, token);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("Role: " + role.getName() + " updated");
 			} else {
@@ -135,10 +136,10 @@ public class SupersedeDSRolesProxy {
 			}
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED) && role.getUsers()!= null){
 				User[] users = role.getUsers();
-				rolesxUsersProxy.deleteAllUsersForRole(role);
+				rolesxUsersProxy.deleteAllUsersForRole(role, token);
 				for (int i=0; i<users.length; i++){
 					User user = users[i];
-					rolesxUsersProxy.addUserForRole(role, user);
+					rolesxUsersProxy.addUserForRole(role, user, token);
 				}
 			}
 			
@@ -147,14 +148,14 @@ public class SupersedeDSRolesProxy {
 		}
 	}
 	
-	public void deleteRole (Role role){
+	public void deleteRole (Role role, AuthorizationToken token){
 		try {
 			Assert.isTrue(role.getRoleId()>0, "Role id cannot be unasigned");
 			// Relations between users and roles have to be removed first
-			rolesxUsersProxy.deleteAllUsersForRole(role);
+			rolesxUsersProxy.deleteAllUsersForRole(role, token);
 						
 			URI uri = new URI(SUPERSEDE_DS_ROLES_ENDPOINT + role.getRoleId());
-			ResponseEntity<String> response = messageClient.deleteJsonMessage(uri);
+			ResponseEntity<String> response = messageClient.deleteJsonMessage(uri, token);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("Role: " + role.getName() + " deleted");
 			} else {

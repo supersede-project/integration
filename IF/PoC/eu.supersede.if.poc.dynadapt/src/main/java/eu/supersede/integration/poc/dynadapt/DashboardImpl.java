@@ -26,15 +26,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import eu.supersede.integration.api.security.IFAuthenticationManager;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.poc.dynadapt.proxies.DynAdapDMProxy;
 import eu.supersede.integration.poc.dynadapt.proxies.DynAdapEnactProxy;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 @Component
 public class DashboardImpl {
 	private static final Logger log = LoggerFactory.getLogger(DashboardImpl.class);
 	private static DynAdapDMProxy dmProxy = new DynAdapDMProxy();
 	private static DynAdapEnactProxy enactProxy = new DynAdapEnactProxy();
+	private IFAuthenticationManager am;
+	private AuthorizationToken token;
 	
 //	private IFMessageClient messageClient = new IFMessageClient();
 //	private final static String DM_ENDPOINT = DynAdaptProperty.getProperty("dm.endpoint");
@@ -45,10 +50,14 @@ public class DashboardImpl {
 		log.info("Executing dashboard implementation");
 		log.info("Getting available adaptation decisions");
 		try {
+			String admin = IntegrationProperty.getProperty("is.admin.user");
+			String password = IntegrationProperty.getProperty("is.admin.passwd");
+	        am = new IFAuthenticationManager(admin, password);
+	        token = am.getAuthorizationToken("yosu", "yosupass");
 			UUID systemId = UUID.randomUUID();
-			Collection<AdaptationDecision> decisions = dmProxy.getAdaptationDecisions(systemId);
+			Collection<AdaptationDecision> decisions = dmProxy.getAdaptationDecisions(systemId, token);
 			if (!decisions.isEmpty()){
-				enactProxy.triggerEnactmentForAdaptationDecision(decisions.iterator().next().getId(), systemId);
+				enactProxy.triggerEnactmentForAdaptationDecision(decisions.iterator().next().getId(), systemId, token);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

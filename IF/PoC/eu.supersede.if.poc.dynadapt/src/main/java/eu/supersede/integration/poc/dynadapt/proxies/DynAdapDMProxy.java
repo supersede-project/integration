@@ -30,24 +30,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.poc.dynadapt.services.iDynAdaptDM;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.CollectionOfDecisions;
 import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
-public class DynAdapDMProxy implements iDynAdaptDM {
+public class DynAdapDMProxy  {
 	private IFMessageClient messageClient = new IFMessageClient();
 	private final static String DM_ENDPOINT = IntegrationProperty.getProperty("dm.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(DynAdapDMProxy.class);
 	
 	//Only returns JSON representation, expressed explicitly
-	@Override
-	public Collection<AdaptationDecision> getAdaptationDecisions(UUID systemId) {
+	public Collection<AdaptationDecision> getAdaptationDecisions(UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(DM_ENDPOINT + "adaptationDecisions/" + systemId);
-			ResponseEntity<AdaptationDecision[]> response = messageClient.getMessage(uri, AdaptationDecision[].class, MediaType.APPLICATION_JSON
-					);
+			ResponseEntity<AdaptationDecision[]> response = 
+					messageClient.getMessage(uri, AdaptationDecision[].class, MediaType.APPLICATION_JSON, token);
 			AdaptationDecision[] decisions = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located " + decisions.length + " decision(s)");
@@ -65,12 +65,11 @@ public class DynAdapDMProxy implements iDynAdaptDM {
 	}
 
 	//Only returns XML representation, expressed explicitly
-	@Override
-	public CollectionOfDecisions getAllAdaptationDecisions(UUID systemId) {
+	public CollectionOfDecisions getAllAdaptationDecisions(UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(DM_ENDPOINT + "allAdaptationDecisions/" + systemId);
 			ResponseEntity<CollectionOfDecisions> response = 
-					messageClient.getMessage(uri, CollectionOfDecisions.class, MediaType.APPLICATION_XML);
+					messageClient.getMessage(uri, CollectionOfDecisions.class, MediaType.APPLICATION_XML, token);
 			CollectionOfDecisions decisions = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located " + decisions.getCollection().size() + " decision(s)");
@@ -88,11 +87,11 @@ public class DynAdapDMProxy implements iDynAdaptDM {
 	}
 
 	//Accepts both JSON and XML representations (client implemented for JSON)
-	@Override
-	public AdaptationDecision getTopRankedAdaptationDecision(UUID systemId) {
+	public AdaptationDecision getTopRankedAdaptationDecision(UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(DM_ENDPOINT + "topRankedAdaptationDecision/" + systemId);
-			ResponseEntity<AdaptationDecision> response = messageClient.getMessage(uri, AdaptationDecision.class, MediaType.APPLICATION_JSON);
+			ResponseEntity<AdaptationDecision> response = 
+					messageClient.getMessage(uri, AdaptationDecision.class, MediaType.APPLICATION_JSON, token);
 			AdaptationDecision decision = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("Located decision: " + decision);

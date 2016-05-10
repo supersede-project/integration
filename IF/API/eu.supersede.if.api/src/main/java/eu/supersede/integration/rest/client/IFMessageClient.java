@@ -31,12 +31,14 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFMessageClient {
 	private RestTemplate restTemplate = new RestTemplate();
 	private AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
-	private final static String AUTH_TOKEN = IntegrationProperty.getProperty("is.authorization.token");
+//	private final static String AUTH_TOKEN = IntegrationProperty.getProperty("is.authorization.token");
 
 	
 	// SYNCRONOUS MESSAGING
@@ -44,51 +46,59 @@ public class IFMessageClient {
 	//Note: S Object requires a correct JSON serialization
 	//Note: Sending POST messages through ESB requires content-type header
 	//Returned payload is an String
-	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri) {
+	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
-				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.header("Authorization", "Bearer " + token.getAccessToken())
 				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
 	}
 	
-	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri) {
+	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_XML)
 				.contentType(MediaType.APPLICATION_XML)
-				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.header("Authorization", "Bearer " + token.getAccessToken())
 				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
 	}
 	
-	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, Class clazz) {
+	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 //				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
-				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.header("Authorization", "Bearer " + token.getAccessToken())
 				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
-	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, Class clazz) {
+	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_XML)
 				.contentType(MediaType.APPLICATION_XML)
-				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.header("Authorization", "Bearer " + token.getAccessToken())
 				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
 	
-	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri) {
-		RequestEntity<S> request = RequestEntity.put(uri).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).body(object);
+	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri, AuthorizationToken token) {
+		RequestEntity<S> request = RequestEntity.put(uri).
+				accept(MediaType.APPLICATION_JSON).
+				contentType(MediaType.APPLICATION_JSON).
+				header("Authorization", "Bearer " + token.getAccessToken()).
+				body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
 	}
 	
-	public <T, S> ResponseEntity<T> putXmlMessage(S object, URI uri) {
-		RequestEntity<S> request = RequestEntity.put(uri).accept(MediaType.APPLICATION_XML).contentType(MediaType.APPLICATION_XML).body(object);
-		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+	public <T, S> ResponseEntity<T> putXmlMessage(S object, URI uri, AuthorizationToken token) {
+		RequestEntity<S> request = RequestEntity.put(uri).
+				accept(MediaType.APPLICATION_XML).
+				contentType(MediaType.APPLICATION_XML).
+				header("Authorization", "Bearer " + token.getAccessToken()).
+				body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, AuthorizationToken.class);
 	}
 
 	/**
@@ -96,20 +106,22 @@ public class IFMessageClient {
 	 * @param uri URI of GET message
 	 * @param clazz Class representing returned object
 	 */
-	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz) throws RestClientException{
+	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz, AuthorizationToken token) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
-				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
+				.header("Authorization", "Bearer " + token.getAccessToken())
+				.build();
 		return restTemplate.exchange(request, clazz);
 
 //		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
 	}
 	
-	public <T> ResponseEntity<T> getXMLMessage(URI uri, Class<T> clazz) throws RestClientException{
+	public <T> ResponseEntity<T> getXMLMessage(URI uri, Class<T> clazz, AuthorizationToken token) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_XML)
 				.header("Content-Type", "application/json")
-				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
+				.header("Authorization", "Bearer " + token.getAccessToken())
+				.build();
 		return restTemplate.exchange(request, clazz);
 
 //		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
@@ -121,35 +133,37 @@ public class IFMessageClient {
 	 * @param clazz Class representing returned object
 	 * @param type The media type representation accepted for returned object
 	 */
-	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz, MediaType type) throws RestClientException{
+	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz, MediaType type, AuthorizationToken token) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(type)
-				.header("Authorization", "Bearer " + AUTH_TOKEN).build();
+				.header("Authorization", "Bearer " + token.getAccessToken())
+				.build();
 		return restTemplate.exchange(request, clazz);
 
 //		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
 	}
 	
-	public ResponseEntity<String> deleteJsonMessage (URI uri){
+	public ResponseEntity<String> deleteJsonMessage (URI uri, AuthorizationToken token){
     	HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Accept", "*/*");
+        headers.add("Authorization", "Bearer " + token.getAccessToken());
     	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
         return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
     }
 	
-	public ResponseEntity<String> deleteMessage (URI uri){
-    	RequestEntity request = (RequestEntity) RequestEntity.delete(uri);
+	public ResponseEntity<String> deleteMessage (URI uri, AuthorizationToken token){
+    	RequestEntity request = (RequestEntity) RequestEntity.delete(uri).header("Authorization", "Bearer " + token.getAccessToken());
         return restTemplate.exchange(request, String.class);
     }
 	
 	
 	//ASYNCHRONOUS MESSAGING
-	public <T, S> ListenableFuture<ResponseEntity<T>> asyncPostJsonMessage(S object, URI uri, Class clazz) {
+	public <T, S> ListenableFuture<ResponseEntity<T>> asyncPostJsonMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON)
-				.header("Authorization", "Bearer " + AUTH_TOKEN)
+				.header("Authorization", "Bearer " + token.getAccessToken())
 				.body(object);
 		return (ListenableFuture<ResponseEntity<T>>) asyncRestTemplate.exchange(uri, HttpMethod.POST, request, clazz);
 	}

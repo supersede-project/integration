@@ -54,9 +54,24 @@
 package eu.supersede.integration.api.security;
 
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 import java.util.Date;
 import java.util.Map;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import org.apache.commons.httpclient.contrib.ssl.EasySSLProtocolSocketFactory;
+import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.transport.http.HTTPConstants;
@@ -83,13 +98,28 @@ public class IFUserStoreManager implements UserStoreManager{
 	private static Log log = LogFactory.getLog(IFUserStoreManager.class);
 	private RemoteUserStoreManagerServiceStub stub = null;
 	
-	public IFUserStoreManager(){
+	static {
+		EasySSLProtocolSocketFactory easySSLProtocolSocketFactory;
+		try {
+		     easySSLProtocolSocketFactory = new EasySSLProtocolSocketFactory();
+		     Protocol.unregisterProtocol("https");
+		     Protocol.registerProtocol("https", new Protocol("https",
+		                  (ProtocolSocketFactory) easySSLProtocolSocketFactory, 443));
+		}
+		catch (Exception e) {
+		      e.printStackTrace();
+		}
+	}
+	
+	public IFUserStoreManager(String admin, String password){
 		try {
 			if (stub == null) {
 				stub = new RemoteUserStoreManagerServiceStub(null, IS_ENDPOINT + "RemoteUserStoreManagerService");
 				HttpTransportProperties.Authenticator basicAuth = new HttpTransportProperties.Authenticator();
-				basicAuth.setUsername(IntegrationProperty.getProperty("is.admin.user"));
-				basicAuth.setPassword(IntegrationProperty.getProperty("is.admin.passwd"));
+//				basicAuth.setUsername(IntegrationProperty.getProperty("is.admin.user"));
+//				basicAuth.setPassword(IntegrationProperty.getProperty("is.admin.passwd"));
+				basicAuth.setUsername(admin);
+				basicAuth.setPassword(password);
 				basicAuth.setPreemptiveAuthentication(true);
 
 				final Options clientOptions = stub._getServiceClient().getOptions();

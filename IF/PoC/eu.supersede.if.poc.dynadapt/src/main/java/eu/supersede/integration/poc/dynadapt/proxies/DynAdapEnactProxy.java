@@ -37,6 +37,7 @@ import org.springframework.util.concurrent.ListenableFutureAdapter;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.client.AsyncRestTemplate;
 
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.poc.dynadapt.services.iDynAdaptEnact;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
@@ -44,20 +45,18 @@ import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
 import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
-public class DynAdapEnactProxy implements iDynAdaptEnact {
+public class DynAdapEnactProxy{
 	private IFMessageClient messageClient = new IFMessageClient();
 	private final static String ENACT_ENDPOINT = IntegrationProperty.getProperty("enactment.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(DynAdapEnactProxy.class);
 	
 	//Synchronous API
-    
-	@Override
-	public ResponseEntity<AdaptationEnactment> triggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId) {
+	public ResponseEntity<AdaptationEnactment> triggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(ENACT_ENDPOINT + "triggerAdaptationDecision/" + 
 					decisionId +"/" + systemId);
 			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
-			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage("{}", uri, AdaptationEnactment.class);
+			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage("{}", uri, AdaptationEnactment.class, token);
 			AdaptationEnactment ae = response.getBody();
 			boolean enactment = ae.isEnactmentResult();
 			if (response.getStatusCode().equals(HttpStatus.CREATED) && enactment) {
@@ -72,13 +71,12 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 		}
 	}
 
-	@Override
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecision(
-			TopRankedAdaptationDecision decision, UUID systemId) {
+			TopRankedAdaptationDecision decision, UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecision/" + systemId);
 			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
-			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class);
+			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class, token);
 			AdaptationEnactment ae = response.getBody();
 			boolean enactment = ae.isEnactmentResult();
 			if (enactment) {
@@ -95,11 +93,11 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 
 	//This method receives a JSON AdaptationDecision payload (not explicit) and produces a JSON response
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecision(
-			AdaptationDecision decision, UUID systemId) {
+			AdaptationDecision decision, UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecision/" + systemId);
 			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
-			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class);
+			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class, token);
 			AdaptationEnactment ae = response.getBody();
 			boolean enactment = ae.isEnactmentResult();
 			if (enactment) {
@@ -115,13 +113,12 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 	}
 
 	//This method receives a JSON AdaptationDecision payload (explicit) and produces a JSON response
-	@Override
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsJSON(AdaptationDecision decision,
-			UUID systemId) {
+			UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecisionAsJSON/" + systemId);
 			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
-			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class);
+			ResponseEntity<AdaptationEnactment> response = messageClient.postJsonMessage(decision, uri, AdaptationEnactment.class, token);
 			AdaptationEnactment ae = response.getBody();
 			boolean enactment = ae.isEnactmentResult();
 			if (enactment) {
@@ -137,13 +134,12 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 	}
 
 	//This method receives a XML AdaptationDecision payload (explicit) and produces a XML response
-	@Override
 	public AdaptationEnactment triggerTopRankedEnactmentForAdaptationDecisionAsXML(AdaptationDecision decision,
-			UUID systemId) {
+			UUID systemId, AuthorizationToken token) {
 		try {
 			URI uri = new URI(ENACT_ENDPOINT + "triggerTopRankedAdaptationDecisionAsXML/" + systemId);
 
-			ResponseEntity<AdaptationEnactment> response = messageClient.postXmlMessage(decision, uri, AdaptationEnactment.class);
+			ResponseEntity<AdaptationEnactment> response = messageClient.postXmlMessage(decision, uri, AdaptationEnactment.class, token);
 			AdaptationEnactment ae = response.getBody();
 			boolean enactment = ae.isEnactmentResult();
 			if (enactment) {
@@ -159,12 +155,14 @@ public class DynAdapEnactProxy implements iDynAdaptEnact {
 	}
 	
 	// Asynchronous API
-	public ListenableFuture<ResponseEntity<AdaptationEnactment>> asynchronousTriggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId) {
+	public ListenableFuture<ResponseEntity<AdaptationEnactment>> 
+	asynchronousTriggerEnactmentForAdaptationDecision(UUID decisionId, UUID systemId, AuthorizationToken token) {
         try {
 			URI uri = new URI(ENACT_ENDPOINT + "triggerAdaptationDecision/" + 
 					decisionId +"/" + systemId);
 			//Note, object whose String serialization is valid Json must be sent to postJsonMessage
-			ListenableFuture<ResponseEntity<AdaptationEnactment>> response = messageClient.asyncPostJsonMessage("{}", uri, AdaptationEnactment.class);
+			ListenableFuture<ResponseEntity<AdaptationEnactment>> response = 
+					messageClient.asyncPostJsonMessage("{}", uri, AdaptationEnactment.class, token);
 			return response;
 		} catch (URISyntaxException e) {
 			e.printStackTrace();

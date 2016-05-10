@@ -34,6 +34,8 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import eu.supersede.integration.api.security.IFAuthenticationManager;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.poc.dynadapt.Dashboard;
 import eu.supersede.integration.poc.dynadapt.proxies.DynAdapDMProxy;
 import eu.supersede.integration.poc.dynadapt.proxies.DynAdapEnactProxy;
@@ -41,6 +43,7 @@ import eu.supersede.integration.poc.dynadapt.test.SpringAppTest;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
 import eu.supersede.integration.poc.dynadapt.types.CollectionOfDecisions;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Dashboard.class)
@@ -49,6 +52,8 @@ import eu.supersede.integration.poc.dynadapt.types.CollectionOfDecisions;
 public class DynAdapEnactProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(DynAdapEnactProxyTest.class);
 	private static boolean ready = false;
+	private static IFAuthenticationManager am;
+	private static AuthorizationToken token;
 	
 	public static void setReady(boolean ready){
 		DynAdapEnactProxyTest.ready = ready;
@@ -56,16 +61,19 @@ public class DynAdapEnactProxyTest {
 	
     @Before
     public void setup() throws Exception {
- 
+    	String admin = IntegrationProperty.getProperty("is.admin.user");
+		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        am = new IFAuthenticationManager(admin, password);
+        token = am.getAuthorizationToken("yosu", "yosupass");
     }
 
     @Test
     public void testTriggerTopRankedEnactmentForAdaptationDecisionAsXML() throws Exception{
     	log.info("Testing testTriggerTopRankedEnactmentForAdaptationDecisionAsXML");
-		Collection<AdaptationDecision> decisions = new DynAdapDMProxy().getAdaptationDecisions(UUID.randomUUID());
+		Collection<AdaptationDecision> decisions = new DynAdapDMProxy().getAdaptationDecisions(UUID.randomUUID(), token);
 		Assert.assertTrue(!decisions.isEmpty());
 		AdaptationEnactment enactment = 
-				new DynAdapEnactProxy().triggerTopRankedEnactmentForAdaptationDecisionAsXML(decisions.iterator().next(), UUID.randomUUID());
+				new DynAdapEnactProxy().triggerTopRankedEnactmentForAdaptationDecisionAsXML(decisions.iterator().next(), UUID.randomUUID(), token);
 
 		Assert.assertTrue(enactment!=null);
     }
@@ -73,10 +81,10 @@ public class DynAdapEnactProxyTest {
     @Test
     public void testTriggerTopRankedEnactmentForAdaptationDecisionAsJSON() throws Exception{
     	log.info("Testing testTriggerTopRankedEnactmentForAdaptationDecisionAsJSON");
-		Collection<AdaptationDecision> decisions = new DynAdapDMProxy().getAdaptationDecisions(UUID.randomUUID());
+		Collection<AdaptationDecision> decisions = new DynAdapDMProxy().getAdaptationDecisions(UUID.randomUUID(), token);
 		Assert.assertTrue(!decisions.isEmpty());
 		AdaptationEnactment enactment = 
-				new DynAdapEnactProxy().triggerTopRankedEnactmentForAdaptationDecisionAsJSON(decisions.iterator().next(), UUID.randomUUID());
+				new DynAdapEnactProxy().triggerTopRankedEnactmentForAdaptationDecisionAsJSON(decisions.iterator().next(), UUID.randomUUID(), token);
 
 		Assert.assertTrue(enactment!=null);
     }

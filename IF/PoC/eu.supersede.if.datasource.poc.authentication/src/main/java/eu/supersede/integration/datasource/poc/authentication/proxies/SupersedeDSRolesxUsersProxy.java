@@ -31,6 +31,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.datasource.poc.authentication.json.JsonUtils;
 import eu.supersede.integration.datasource.poc.authentication.types.Role;
 import eu.supersede.integration.datasource.poc.authentication.types.User;
@@ -42,9 +43,9 @@ public class SupersedeDSRolesxUsersProxy {
 	private final static String SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT = IntegrationProperty.getProperty("supersede.ds.rolesxusers");
 	private static final Logger log = LoggerFactory.getLogger(SupersedeDSRolesxUsersProxy.class);
 
-	public void addRoleForUser (Role role, User user){
+	public void addRoleForUser (Role role, User user, AuthorizationToken token){
 		try {
-			ResponseEntity<String> response = createRoleForUser (role, user);
+			ResponseEntity<String> response = createRoleForUser (role, user, token);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("Role " + role.getName() + " added to user " + user.getLogin());
 			} else {
@@ -55,9 +56,9 @@ public class SupersedeDSRolesxUsersProxy {
 		}
 	}
 	
-	public void addUserForRole (Role role, User user){
+	public void addUserForRole (Role role, User user, AuthorizationToken token){
 		try {
-			ResponseEntity<String> response = createRoleForUser (role, user);
+			ResponseEntity<String> response = createRoleForUser (role, user, token);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("User " + user.getLogin() + " added to role " + role.getName());
 			} else {
@@ -68,22 +69,22 @@ public class SupersedeDSRolesxUsersProxy {
 		}
 	}
 	
-	private ResponseEntity<String> createRoleForUser (Role role, User user){
+	private ResponseEntity<String> createRoleForUser (Role role, User user, AuthorizationToken token){
 		ResponseEntity<String> response = null;
 		try {
 			Assert.isTrue(role.getRoleId()>0, "Role id cannot be unasigned");
 			Assert.isTrue(user.getUserId()>0, "User id cannot be unasigned");
 			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "role/" + role.getRoleId() + "/user/" + user.getUserId());
-			response = messageClient.postJsonMessage("{}", uri, String.class);
+			response = messageClient.postJsonMessage("{}", uri, String.class, token);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return response;
 	}
 	
-	public void deleteRoleForUser (Role role, User user){
+	public void deleteRoleForUser (Role role, User user, AuthorizationToken token){
 		try {
-			ResponseEntity<String> response = removeRoleForUser (role, user);
+			ResponseEntity<String> response = removeRoleForUser (role, user, token);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("Role " + role.getName() + " removed from user " + user.getLogin());
 			} else {
@@ -94,9 +95,9 @@ public class SupersedeDSRolesxUsersProxy {
 		}
 	}
 	
-	public void deleteUserForRole (User user, Role role){
+	public void deleteUserForRole (User user, Role role, AuthorizationToken token){
 		try {
-			ResponseEntity<String> response = removeRoleForUser (role, user);
+			ResponseEntity<String> response = removeRoleForUser (role, user, token);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("User " + user.getLogin() + " removed from role " + role.getName());
 			} else {
@@ -107,22 +108,22 @@ public class SupersedeDSRolesxUsersProxy {
 		}
 	}
 	
-	public void deleteAllRolesForUser (User user){
+	public void deleteAllRolesForUser (User user, AuthorizationToken token){
 		try {
-			List<Integer> roleIds = getAllRolesForUser(user);
+			List<Integer> roleIds = getAllRolesForUser(user, token);
 			for (Integer id: roleIds){
 				Role role = new Role();
 				role.setRoleId(id.intValue());
-				deleteRoleForUser(role, user);
+				deleteRoleForUser(role, user, token);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void deleteUserForRole (Role role, User user){
+	public void deleteUserForRole (Role role, User user, AuthorizationToken token){
 		try {
-			ResponseEntity<String> response = removeRoleForUser (role, user);
+			ResponseEntity<String> response = removeRoleForUser (role, user, token);
 			if (response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 				log.info("Role " + role.getName() + " removed from user " + user.getLogin());
 			} else {
@@ -133,37 +134,37 @@ public class SupersedeDSRolesxUsersProxy {
 		}
 	}
 	
-	public void deleteAllUsersForRole (Role role){
+	public void deleteAllUsersForRole (Role role, AuthorizationToken token){
 		try {
-			List<Integer> userIds = getAllUsersForRole(role);
+			List<Integer> userIds = getAllUsersForRole(role, token);
 			for (Integer id: userIds){
 				User user = new User();
 				user.setUserId(id.intValue());
-				deleteUserForRole(user, role);
+				deleteUserForRole(user, role, token);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private ResponseEntity<String> removeRoleForUser (Role role, User user){
+	private ResponseEntity<String> removeRoleForUser (Role role, User user, AuthorizationToken token){
 		ResponseEntity<String> response = null;
 		try {
 			Assert.isTrue(role.getRoleId()>0, "Role id cannot be unasigned");
 			Assert.isTrue(user.getUserId()>0, "User id cannot be unasigned");
 			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "role/" + role.getRoleId() + "/user/" + user.getUserId());
-			response = messageClient.deleteJsonMessage(uri);
+			response = messageClient.deleteJsonMessage(uri, token);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return response;
 	}
 	
-	public boolean roleHasUser (Role role, User user){
+	public boolean roleHasUser (Role role, User user, AuthorizationToken token){
 		boolean result = false;
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "role/" + role.getRoleId());
-			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON);
+			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON, token);
 			if (!response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("There was a problem getting users for the role " + role.getName());
 			}
@@ -175,11 +176,11 @@ public class SupersedeDSRolesxUsersProxy {
 		return result;
 	}
 	
-	public boolean userHasRole (User user, Role role){
+	public boolean userHasRole (User user, Role role, AuthorizationToken token){
 		boolean result = false;
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "user/" + user.getUserId());
-			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON);
+			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON, token);
 			if (!response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("There was a problem getting roles for the user " + user.getUserId());
 			}
@@ -191,11 +192,11 @@ public class SupersedeDSRolesxUsersProxy {
 		return result;
 	}
 	
-	public List<Integer> getAllRolesForUser(User user){
+	public List<Integer> getAllRolesForUser(User user, AuthorizationToken token){
 		List<Integer> result = null;
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "user/" + user.getUserId());
-			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON);
+			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON, token);
 			if (!response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("There was a problem getting roles for the user " + user.getLogin());
 			}
@@ -207,11 +208,11 @@ public class SupersedeDSRolesxUsersProxy {
 		return result;
 	}
 	
-	public List<Integer> getAllUsersForRole(Role role){
+	public List<Integer> getAllUsersForRole(Role role, AuthorizationToken token){
 		List<Integer> result = null;
 		try {
 			URI uri = new URI(SUPERSEDE_DS_ROLEXxUSERS_ENDPOINT + "role/" + role.getRoleId());
-			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON);
+			ResponseEntity<String> response = messageClient.getMessage(uri, String.class, MediaType.APPLICATION_JSON, token);
 			if (!response.getStatusCode().equals(HttpStatus.OK)) {
 				log.info("There was a problem getting users for the role " + role.getName());
 			}

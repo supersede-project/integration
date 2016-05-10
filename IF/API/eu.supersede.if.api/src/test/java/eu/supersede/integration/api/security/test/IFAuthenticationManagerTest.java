@@ -35,15 +35,19 @@ import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreException;
 
 import eu.supersede.integration.api.security.IFAuthenticationManager;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFAuthenticationManagerTest {
 	IFAuthenticationManager am;
 	
 	@Before
     public void setup() throws Exception {
-        am = new IFAuthenticationManager();
+		String admin = IntegrationProperty.getProperty("is.admin.user");
+		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        am = new IFAuthenticationManager(admin, password);
     }
 	
 	//Authentication Test
@@ -223,7 +227,10 @@ public class IFAuthenticationManagerTest {
 	
 	@Test
 	public void getAuthorizationTokenTest() throws UserStoreException, URISyntaxException{
-		ResponseEntity<String> response = am.getAuthorizationToken("yosu", "yosupass");
+		AuthorizationToken token = am.getAuthorizationToken("yosu", "yosupass");
+		Assert.notNull(token);
+		Assert.notNull(token.getAccessToken());
+		Assert.isTrue(!token.getAccessToken().isEmpty());
 	}
 	
 }

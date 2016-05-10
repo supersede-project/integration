@@ -34,12 +34,15 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import eu.supersede.integration.api.security.IFAuthenticationManager;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.datasource.poc.authentication.DataStoreApp;
 import eu.supersede.integration.datasource.poc.authentication.proxies.SupersedeDSRolesProxy;
 import eu.supersede.integration.datasource.poc.authentication.proxies.SupersedeDSUsersProxy;
 import eu.supersede.integration.datasource.poc.authentication.types.Role;
 import eu.supersede.integration.datasource.poc.authentication.types.User;
 import eu.supersede.integration.datasource.poc.authentication.types.UsersCollection;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DataStoreApp.class)
@@ -48,31 +51,37 @@ public class SupersedeDSUsersProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(SupersedeDSUsersProxyTest.class);
 	private SupersedeDSUsersProxy proxy;
 	private SupersedeDSRolesProxy rolesProxy;
+	private IFAuthenticationManager am;
+	private AuthorizationToken token;
 	
     @Before
     public void setup() throws Exception {
     	proxy = new SupersedeDSUsersProxy();
     	rolesProxy = new SupersedeDSRolesProxy();
+    	String admin = IntegrationProperty.getProperty("is.admin.user");
+		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        am = new IFAuthenticationManager(admin, password);
+        token = am.getAuthorizationToken("yosu", "yosupass");
     }
 
     @Test
     public void testGetUsers() throws Exception{
     	log.info("Testing testGetUsers");
-		UsersCollection collection = proxy.getUsers();
+		UsersCollection collection = proxy.getUsers(token);
 		Assert.assertTrue(!collection.getUsers().isEmpty());
     }
     
     @Test
     public void testGetUser() throws Exception{
     	log.info("Testing testGetUser");
-		User user = proxy.getUser(1);
+		User user = proxy.getUser(1, token);
 		Assert.assertNotNull(user);
     }
     
     @Test
     public void testGetUserWithRoles() throws Exception{
     	log.info("Testing testGetUserWithRoles");
-		User user = proxy.getUserWithRoles(1);
+		User user = proxy.getUserWithRoles(1, token);
 		Assert.assertNotNull(user);
     }
     
@@ -80,7 +89,7 @@ public class SupersedeDSUsersProxyTest {
     public void testCreateUser() throws Exception{
     	log.info("Testing testCreateUser");
     	User user = createUser();
-		int userId = proxy.createUser(user);
+		int userId = proxy.createUser(user, token);
 		Assert.assertTrue(userId>0);
     }
     
@@ -88,7 +97,7 @@ public class SupersedeDSUsersProxyTest {
     public void testCreateUserWithRoles() throws Exception{
     	log.info("Testing testCreateUser");
     	User user = createUserWithRoles();
-		int userId = proxy.createUser(user);
+		int userId = proxy.createUser(user, token);
 		Assert.assertTrue(userId>0);
 		
     }
@@ -97,41 +106,41 @@ public class SupersedeDSUsersProxyTest {
     public void testUpdateUser() throws Exception{
     	log.info("Testing testUpdateUser");
     	User user = createUser();
-		int userId = proxy.createUser(user);
+		int userId = proxy.createUser(user, token);
 		user.setUserId(userId);
     	user.setLogin(user.getLogin() + "UPDATED");
-		proxy.updateUser(user);
+		proxy.updateUser(user, token);
     }
     
     @Test
     public void testUpdateUserWithRoles() throws Exception{
     	log.info("Testing testUpdateUserWithRoles");
     	User user = createUserWithRoles();
-		int userId = proxy.createUser(user);
+		int userId = proxy.createUser(user, token);
 		user.setUserId(userId);
     	user.setLogin(user.getLogin() + "UPDATED");
     	List<Role> newRoles = new ArrayList<Role> (Arrays.asList(user.getRoles())); //Required since Arrays.asList returns an unmutable array
-    	newRoles.add(rolesProxy.getRole(2));
+    	newRoles.add(rolesProxy.getRole(2, token));
     	user.setRoles(newRoles.toArray(new Role[]{}));
-		proxy.updateUser(user);
+		proxy.updateUser(user, token);
     }
     
     @Test
     public void testDeleteUser() throws Exception{
     	log.info("Testing testDeleteUser");
     	User user = createUser();
-		int userId = proxy.createUser(user);
+		int userId = proxy.createUser(user, token);
 		user.setUserId(userId);
-		proxy.deleteUser(user);
+		proxy.deleteUser(user, token);
     }
     
     @Test
     public void testDeleteUserWithRoles() throws Exception{
     	log.info("Testing testDeleteUserWithRoles");
     	User user = createUserWithRoles();
-		int userId = proxy.createUser(user);
+		int userId = proxy.createUser(user, token);
 		user.setUserId(userId);
-		proxy.deleteUser(user);
+		proxy.deleteUser(user, token);
     }
 
 	private User createUser() {
@@ -155,7 +164,7 @@ public class SupersedeDSUsersProxyTest {
 		user.setEmail("clara.pezuela@atos.net");
 		user.setCreation_date(new Date());
 		user.setActive(false);
-		Role role = rolesProxy.getRole(1);
+		Role role = rolesProxy.getRole(1, token);
 		user.setRoles(new Role[]{role});
 		return user;
 	}

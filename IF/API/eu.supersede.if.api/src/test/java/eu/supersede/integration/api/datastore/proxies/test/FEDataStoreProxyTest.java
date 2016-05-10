@@ -31,27 +31,37 @@ import eu.supersede.integration.api.datastore.fe.types.Notification;
 import eu.supersede.integration.api.datastore.fe.types.Profile;
 import eu.supersede.integration.api.datastore.fe.types.User;
 import eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy;
+import eu.supersede.integration.api.security.IFAuthenticationManager;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.properties.IntegrationProperty;
 
 
 public class FEDataStoreProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(FEDataStoreProxyTest.class);
 	private FEDataStoreProxy proxy;
+	private IFAuthenticationManager am;
+	private AuthorizationToken token;
+	
     @Before
     public void setup() throws Exception {
         proxy = new FEDataStoreProxy();
+        String admin = IntegrationProperty.getProperty("is.admin.user");
+		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        am = new IFAuthenticationManager(admin, password);
+        token = am.getAuthorizationToken("yosu", "yosupass");
     }
 
     @Test
     public void testGetUsersLazy() throws Exception{
     	String tenandId = "atos";
-    	List<User> users = proxy.getUsers(tenandId, true);
+    	List<User> users = proxy.getUsers(tenandId, true, token);
     	Assert.notEmpty(users);
     }
     
     @Test
     public void testGetUsers() throws Exception{
     	String tenandId = "atos";
-    	List<User> users = proxy.getUsers(tenandId, false);
+    	List<User> users = proxy.getUsers(tenandId, false, token);
     	Assert.notEmpty(users);
     }
     
@@ -59,7 +69,7 @@ public class FEDataStoreProxyTest {
     public void testGetUserLazy() throws Exception{
     	String tenandId = "atos";
     	int userId = 1438;
-    	User user = proxy.getUser(tenandId, userId, true);
+    	User user = proxy.getUser(tenandId, userId, true, token);
     	Assert.notNull(user);
     }
     
@@ -67,14 +77,14 @@ public class FEDataStoreProxyTest {
     public void testGetUser() throws Exception{
     	String tenandId = "atos";
     	int userId = 1438;
-    	User user = proxy.getUser(tenandId, userId, false);
+    	User user = proxy.getUser(tenandId, userId, false,token);
     	Assert.notNull(user);
     }
     
     @Test
     public void testGetNotifications() throws Exception{
     	String tenandId = "atos";
-    	List<Notification> notifications = proxy.getNotifications(tenandId);
+    	List<Notification> notifications = proxy.getNotifications(tenandId, token);
     	Assert.notEmpty(notifications);
     }
     
@@ -82,14 +92,14 @@ public class FEDataStoreProxyTest {
     public void testGetNotification() throws Exception{
     	String tenandId = "atos";
     	int notificationId = 1456;
-    	Notification notification = proxy.getNotification(tenandId, notificationId);
+    	Notification notification = proxy.getNotification(tenandId, notificationId, token);
     	Assert.notNull(notification);
     }
     
     @Test
     public void testGetProfiles() throws Exception{
     	String tenandId = "atos";
-    	List<Profile> profiles = proxy.getProfiles(tenandId);
+    	List<Profile> profiles = proxy.getProfiles(tenandId, token);
     	Assert.notEmpty(profiles);
     }
     
@@ -97,7 +107,7 @@ public class FEDataStoreProxyTest {
     public void testGetProfile() throws Exception{
     	String tenandId = "atos";
     	int profileId = 1;
-    	Profile profile = proxy.getProfile(tenandId, profileId);
+    	Profile profile = proxy.getProfile(tenandId, profileId, token);
     	Assert.notNull(profile);
     }
 }

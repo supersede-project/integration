@@ -30,6 +30,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import eu.supersede.integration.api.common.types.Email;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
@@ -39,12 +40,12 @@ public class MailProxy implements iMail {
 	private static final Logger log = LoggerFactory.getLogger(MailProxy.class);
 	
 	@Override
-	public void sendEmail(Email email) throws Exception{
+	public void sendEmail(Email email, AuthorizationToken authenticationToken) throws Exception{
 
 		URI uri = new URI(MAIL_ENDPOINT + "send");
 		EmailPayload payload = new EmailPayload();
 		payload.setEmail(email);
-		ResponseEntity<String> response = messageClient.postJsonMessage(payload, uri);
+		ResponseEntity<String> response = messageClient.postJsonMessage(payload, uri, authenticationToken);
 		if (!response.getStatusCode().equals(HttpStatus.ACCEPTED)) {
 			log.error("There was a problem sending the email");
 			throw new Exception ("Send Email: There was a problem sending the email");

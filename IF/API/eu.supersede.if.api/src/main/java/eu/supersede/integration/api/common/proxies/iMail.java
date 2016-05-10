@@ -20,7 +20,8 @@
 package eu.supersede.integration.api.common.proxies;
 
 import eu.supersede.integration.api.common.types.Email;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
 
 public interface iMail {
-	void sendEmail (Email email) throws Exception;
+	void sendEmail (Email email, AuthorizationToken authenticationToken) throws Exception;
 }
