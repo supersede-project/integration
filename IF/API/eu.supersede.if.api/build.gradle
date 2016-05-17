@@ -52,8 +52,15 @@ dependencies {
     compile files('lib/org.wso2.carbon.utils_4.2.0.jar')
     compile files('lib/opensaml2_2.4.1-wso2v1.jar')
     
-    testCompile 'org.apache.rampart:rahas:1.6.2'
-    testCompile 'org.apache.rampart:rampart-core:1.6.2'
+//    compile group: 'xalan', name: 'xalan', version: '2.7.1'
+//    compile group: 'org.apache.rampart', name: 'rampart', version: '1.6.2'
+//    compile group: 'org.apache.rampart', name: 'rahas', version: '1.6.2'
+    
+//    testCompile 'org.apache.rampart:rahas'
+//    testCompile 'org.apache.rampart:rampart-core'
+    
+    
+    
     compile 'org.springframework:spring-core'
     
 //    testCompile 'org.opensaml:opensaml'
