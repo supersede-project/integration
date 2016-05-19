@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Copyright (c) 2016 ATOS Spain S.A.
-    All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-   
-        http://www.apache.org/licenses/LICENSE-2.0
-   
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-   
-    Contributors:
-        Yosu Gorroñogoitia (ATOS) - main development
-   
-    Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- -->
-
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
@@ -29,75 +9,14 @@
   <name>eu.supersede.if.esb</name>
   <description>eu.supersede.if.esb</description>
   <properties>
-    <eu.supersede.if.sequence_._sendEmail2>capp/EnterpriseServiceBus</eu.supersede.if.sequence_._sendEmail2>
-    <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
-    <eu.supersede.if.esb.resource_._Enactment_triggerAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerAdaptationDecisionsEndpoint>
-    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
-    <eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint>
-    <eu.supersede.if.api_._mail>capp/EnterpriseServiceBus</eu.supersede.if.api_._mail>
-    <eu.supersede.if.esb.resource_._DM_allAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DM_allAdaptationDecisionsEndpoint>
-    <eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint>
-    <eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._Enactment_triggerTopRankedAdaptationDecisionsEndpoint>
-    <eu.supersede.if.esb.resource_._DM_topRankedAdaptationDecisionEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DM_topRankedAdaptationDecisionEndpoint>
     <eu.supersede.if.proxy-service_._sendEmailProxy>capp/EnterpriseServiceBus</eu.supersede.if.proxy-service_._sendEmailProxy>
-    <eu.supersede.if.esb.resource_._DM_getAdaptationDecisionsEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DM_getAdaptationDecisionsEndpoint>
+    <eu.supersede.if.sequence_._sendEmailSequence>capp/EnterpriseServiceBus</eu.supersede.if.sequence_._sendEmailSequence>
+    <eu.supersede.if.api_._mail>capp/EnterpriseServiceBus</eu.supersede.if.api_._mail>
+    <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
+    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
     <eu.supersede.if.esb.resource_._SupersedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._SupersedeAuthentication>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>mail</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>DM_allAdaptationDecisionsEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>DM_getAdaptationDecisionsEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>DM_topRankedAdaptationDecisionEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>Enactment_triggerAdaptationDecisionsEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>Enactment_triggerTopRankedAdaptationDecisionsEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>SupersedeAuthentication</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>sendErrorMessage</artifactId>
@@ -111,10 +30,22 @@
       <type>xml</type>
     </dependency>
     <dependency>
-      <groupId>eu.supersede.if.sequence</groupId>
-      <artifactId>sendEmail2</artifactId>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>mail</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.sequence</groupId>
+      <artifactId>sendEmailSequence</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>SupersedeAuthentication</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
     </dependency>
   </dependencies>
   <repositories>
