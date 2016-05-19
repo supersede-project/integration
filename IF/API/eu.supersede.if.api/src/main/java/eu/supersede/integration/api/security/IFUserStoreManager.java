@@ -104,8 +104,6 @@ public class IFUserStoreManager implements UserStoreManager{
 			if (stub == null) {
 				stub = new RemoteUserStoreManagerServiceStub(null, IS_ENDPOINT + "RemoteUserStoreManagerService");
 				HttpTransportProperties.Authenticator basicAuth = new HttpTransportProperties.Authenticator();
-//				basicAuth.setUsername(IntegrationProperty.getProperty("is.admin.user"));
-//				basicAuth.setPassword(IntegrationProperty.getProperty("is.admin.passwd"));
 				basicAuth.setUsername(admin);
 				basicAuth.setPassword(password);
 				basicAuth.setPreemptiveAuthentication(true);

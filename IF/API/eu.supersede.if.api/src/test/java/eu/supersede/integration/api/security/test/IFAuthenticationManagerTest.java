@@ -45,8 +45,12 @@ public class IFAuthenticationManagerTest {
 	
 	@Before
     public void setup() throws Exception {
-		String admin = IntegrationProperty.getProperty("is.admin.user");
-		String password = IntegrationProperty.getProperty("is.admin.passwd");
+		// Set Identity Server user/password as Java launcher properties:
+		// -Dis.admin.user=
+		// -Dis.admin.passwd=
+		// for each tenant organization, use its admin account
+		String admin = System.getProperty("is.admin.user");
+		String password = System.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
     }
 	
