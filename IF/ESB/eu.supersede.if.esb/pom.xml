@@ -18,12 +18,6 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>sendErrorMessage</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
       <groupId>eu.supersede.if.proxy-service</groupId>
       <artifactId>sendEmailProxy</artifactId>
       <version>1.0.0</version>
@@ -44,6 +38,12 @@
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>SupersedeAuthentication</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>sendErrorMessage</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>

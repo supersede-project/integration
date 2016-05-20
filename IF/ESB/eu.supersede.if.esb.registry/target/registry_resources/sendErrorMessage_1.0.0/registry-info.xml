@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><resources>
-    <item>
-        <file>sendErrorMessage.xml</file>
-        <path>/_system/config</path>
-        <mediaType>application/vnd.wso2.sequence</mediaType>
-    </item>
-</resources>
