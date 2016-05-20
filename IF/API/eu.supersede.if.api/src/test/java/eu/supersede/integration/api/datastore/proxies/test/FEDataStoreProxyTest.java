@@ -45,8 +45,8 @@ public class FEDataStoreProxyTest {
     @Before
     public void setup() throws Exception {
         proxy = new FEDataStoreProxy();
-        String admin = IntegrationProperty.getProperty("is.admin.user");
-		String password = IntegrationProperty.getProperty("is.admin.passwd");
+        String admin = System.getProperty("is.admin.user");
+		String password = System.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
         token = am.getAuthorizationToken("yosu", "yosupass");
     }
