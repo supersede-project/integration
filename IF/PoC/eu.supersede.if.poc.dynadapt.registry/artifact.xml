@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (c) 2016 ATOS Spain S.A.
+    All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+   
+        http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+   
+    Contributors:
+        Yosu Gorroñogoitia (ATOS) - main development
+   
+    Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ -->
+<artifacts>
+    <artifact name="DM_getAdaptationDecisionsEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>/DM_getAdaptationDecisionsEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="Enactment_triggerAdaptationDecisionsEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>/Enactment_triggerAdaptationDecisionsEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="Enactment_triggerTopRankedAdaptationDecisionsEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>/Enactment_triggerTopRankedAdaptationDecisionsEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="DM_allAdaptationDecisionsEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>/DM_allAdaptationDecisionsEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="DM_topRankedAdaptationDecisionEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>/DM_topRankedAdaptationDecisionEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>/Enactment_triggerTopRankedAdaptationDecisionAsJSONEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>/Enactment_triggerTopRankedAdaptationDecisionAsXMLEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+</artifacts>
