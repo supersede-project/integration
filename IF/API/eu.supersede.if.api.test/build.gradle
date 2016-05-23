@@ -45,6 +45,7 @@ dependencies {
     compile 'org.apache.axis2:axis2-transport-local:1.6.1'
     compile files('lib/eu.supersede.if.api.jar')
     compile files('lib/org.wso2.carbon.um.ws.api.stub_4.2.2.jar')
+    compile files('lib/org.wso2.carbon.tenant.mgt.stub_4.2.0.jar')
     compile files('lib/org.wso2.carbon.um.ws.api_4.2.2.jar')
     compile files('lib/org.wso2.carbon.user.api_4.2.0.jar')
     compile files('lib/org.wso2.carbon.user.core_4.2.0.jar')

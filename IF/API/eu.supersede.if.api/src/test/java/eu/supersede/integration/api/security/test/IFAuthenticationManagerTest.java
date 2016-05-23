@@ -28,9 +28,9 @@ import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.wso2.carbon.CarbonConstants;
+import org.wso2.carbon.tenant.mgt.stub.TenantMgtAdminServiceExceptionException;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreException;
 
@@ -38,7 +38,6 @@ import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
-import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFAuthenticationManagerTest {
 	IFAuthenticationManager am;
@@ -230,8 +229,8 @@ public class IFAuthenticationManagerTest {
 	}
 	
 	@Test
-	public void getAuthorizationTokenTest() throws UserStoreException, URISyntaxException{
-		AuthorizationToken token = am.getAuthorizationToken("yosu", "yosupass");
+	public void getAuthorizationTokenTest() throws TenantMgtAdminServiceExceptionException, URISyntaxException{
+		AuthorizationToken token = am.getAuthorizationToken("test", "test1", "siemens");
 		Assert.notNull(token);
 		Assert.notNull(token.getAccessToken());
 		Assert.isTrue(!token.getAccessToken().isEmpty());

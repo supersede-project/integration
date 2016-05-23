@@ -39,6 +39,7 @@ import javax.net.ssl.X509TrustManager;
 import org.springframework.http.RequestEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
+import org.wso2.carbon.tenant.mgt.stub.TenantMgtAdminServiceExceptionException;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreException;
 import org.wso2.carbon.user.core.claim.Claim;
@@ -46,13 +47,16 @@ import org.wso2.carbon.user.core.claim.Claim;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
+import eu.supersede.integration.api.tenants.IFTenantsManager;
+import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFAuthenticationManager {
 	private IFUserStoreManager usm = null;
+//	private IFTenantsManager tm = null;
 	private RestTemplate restTemplate = new RestTemplate();
 	private static String TOKEN_SERVICE_ENDPOINT = IntegrationProperty.getProperty("is.server.services.token");
-	private static String AUTHORIZATION_PAIR_BASE64 = IntegrationProperty.getProperty("is.authorization.pair.base64");
+//	private static String AUTHORIZATION_PAIR_BASE64 = IntegrationProperty.getProperty("is.authorization.pair.base64");
 
 	static {
 		// This is use to enable the https SSL connection with IF WSO2 IS
@@ -122,6 +126,7 @@ public class IFAuthenticationManager {
 	
 	public IFAuthenticationManager(String admin, String password){
 		usm = new IFUserStoreManager(admin, password);
+//		tm = new IFTenantsManager(admin, password);
 	}
 
 	// User Authentication
@@ -277,11 +282,27 @@ public class IFAuthenticationManager {
 
 	// Getting authorization token
 
-	public AuthorizationToken getAuthorizationToken(String userName, String credential) throws URISyntaxException {
+	public AuthorizationToken getAuthorizationToken(String userName, String credential, String tenant) throws TenantMgtAdminServiceExceptionException, URISyntaxException {
+		Assert.isTrue(userName!=null & !userName.isEmpty(), "Username not set");
+		Assert.isTrue(credential!=null & !credential.isEmpty(), "Credential not set");
+		
+		String tenantDomain = "";
+		if (tenant!=null && !tenant.isEmpty()) {
+			tenantDomain = IntegrationProperty.getProperty("is.authorization." + tenant + ".tenant.domain");
+			Assert.isTrue(tenantDomain!=null & !tenantDomain.isEmpty(), "TenantUrl not retrieved from configuration");
+		}//If tenant not set, using default IS
+		
+//		if (!tm.doesExistTenantDomain(tenantDomain)){
+//			throw new IFException(tenantDomain + "does not exist in IF IS");
+//		}
+		
+		String base64AuthorizationPair = IntegrationProperty.getProperty("is.authorization." + tenant + ".tenant.pair.base64");
+		Assert.isTrue(base64AuthorizationPair!=null & !base64AuthorizationPair.isEmpty(), "Tenant base 64 authorization pair not retrieved from configuration");
+		
 		RequestEntity<String> request = RequestEntity.post(new URI(TOKEN_SERVICE_ENDPOINT))
-				.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
-				.header("Authorization", "Basic " + AUTHORIZATION_PAIR_BASE64)
-				.body("grant_type=password&username=" + userName + "&password=" + credential);
+					.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
+					.header("Authorization", "Basic " + base64AuthorizationPair)
+					.body("grant_type=password&username=" + userName+tenantDomain + "&password=" + credential);
 		return restTemplate.exchange(request, AuthorizationToken.class).getBody();
 	}
 }

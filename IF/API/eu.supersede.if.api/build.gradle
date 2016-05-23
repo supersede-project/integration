@@ -46,11 +46,13 @@ dependencies {
     testCompile('com.jayway.jsonpath:json-path')
     compile 'ca.juliusdavies:not-yet-commons-ssl:0.3.9' //Required for EasySSLProtocolSocketFactory class
     compile files('lib/org.wso2.carbon.um.ws.api.stub_4.2.2.jar')
+    compile files('lib/org.wso2.carbon.tenant.mgt.stub_4.2.0.jar')
     compile files('lib/org.wso2.carbon.um.ws.api_4.2.2.jar')
     compile files('lib/org.wso2.carbon.user.api_4.2.0.jar')
     compile files('lib/org.wso2.carbon.user.core_4.2.0.jar')
     compile files('lib/org.wso2.carbon.utils_4.2.0.jar')
     compile files('lib/opensaml2_2.4.1-wso2v1.jar')
+    
     
 //    compile group: 'xalan', name: 'xalan', version: '2.7.1'
 //    compile group: 'org.apache.rampart', name: 'rampart', version: '1.6.2'

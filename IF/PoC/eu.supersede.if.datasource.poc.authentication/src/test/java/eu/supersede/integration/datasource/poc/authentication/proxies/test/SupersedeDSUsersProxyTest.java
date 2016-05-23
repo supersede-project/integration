@@ -61,7 +61,7 @@ public class SupersedeDSUsersProxyTest {
     	String admin = IntegrationProperty.getProperty("is.admin.user");
 		String password = IntegrationProperty.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
-        token = am.getAuthorizationToken("yosu", "yosupass");
+        token = am.getAuthorizationToken("yosu", "yosupass", "");
     }
 
     @Test

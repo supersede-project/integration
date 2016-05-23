@@ -42,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
+import org.wso2.carbon.tenant.mgt.stub.TenantMgtAdminServiceExceptionException;
 
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
@@ -75,7 +76,7 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 			decisions.put("Switch to local regional CDN", "Reconfigure backend topology: activate video content dispatching using closest regional CDN");
 			decisions.put("Decrease frames", "Reconfigure player: reduce video streaming frames per second by 10%");
 			decisions.put("Reconfigure streaming balance", "Reconfigure backend topology: redistribute streaming workload to closest regional CDN network");
-		} catch (URISyntaxException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -144,11 +145,11 @@ class ComputeDecisionsTask extends TimerTask{
 	private IFAuthenticationManager am;
 	private AuthorizationToken token;
 	
-	public ComputeDecisionsTask() throws URISyntaxException {
+	public ComputeDecisionsTask() throws URISyntaxException, TenantMgtAdminServiceExceptionException {
 		String admin = IntegrationProperty.getProperty("is.admin.user");
 		String password = IntegrationProperty.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
-        token = am.getAuthorizationToken("yosu", "yosupass");
+        token = am.getAuthorizationToken("yosu", "yosupass", "");
 	}
 
 	@Override

@@ -49,7 +49,8 @@ public class MailProxyTest {
     	String admin = IntegrationProperty.getProperty("is.admin.user");
 		String password = IntegrationProperty.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
-        token = am.getAuthorizationToken("yosu", "yosupass");
+        String base64AuthorizationPair = System.getProperty("is.authorization.pair.base64");
+        token = am.getAuthorizationToken("yosu", "yosupass", base64AuthorizationPair);
     }
 
     @Test

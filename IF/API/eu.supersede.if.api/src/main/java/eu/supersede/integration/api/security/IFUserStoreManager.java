@@ -66,6 +66,7 @@ import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.Assert;
 import org.wso2.carbon.um.ws.api.WSRealmUtil;
 import org.wso2.carbon.um.ws.api.stub.ClaimValue;
 import org.wso2.carbon.um.ws.api.stub.PermissionDTO;
@@ -100,6 +101,8 @@ public class IFUserStoreManager implements UserStoreManager{
 	}
 	
 	public IFUserStoreManager(String admin, String password){
+		Assert.isTrue(admin!=null && !admin.isEmpty(), "IS admin user not provided");
+		Assert.isTrue(password!=null && !password.isEmpty(), "IS admin password not provided");
 		try {
 			if (stub == null) {
 				stub = new RemoteUserStoreManagerServiceStub(null, IS_ENDPOINT + "RemoteUserStoreManagerService");

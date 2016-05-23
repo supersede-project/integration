@@ -53,7 +53,7 @@ public class DashboardImpl {
 			String admin = IntegrationProperty.getProperty("is.admin.user");
 			String password = IntegrationProperty.getProperty("is.admin.passwd");
 	        am = new IFAuthenticationManager(admin, password);
-	        token = am.getAuthorizationToken("yosu", "yosupass");
+	        token = am.getAuthorizationToken("yosu", "yosupass", "");
 			UUID systemId = UUID.randomUUID();
 			Collection<AdaptationDecision> decisions = dmProxy.getAdaptationDecisions(systemId, token);
 			if (!decisions.isEmpty()){
