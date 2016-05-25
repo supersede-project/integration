@@ -75,3 +75,20 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.8'
 }
+
+// Test execution JVM properties
+tasks.withType(Test){
+	systemProperty 'is.admin.user', System.getProperty ('is.admin.user', 'admin@atos.supersede.eu')
+	systemProperty 'is.admin.passwd', System.getProperty ('is.admin.passwd', 'rtgWCyrc')
+	systemProperty 'supersede.if.properties', System.getProperty ('supersede.if.properties', 'if.properties')
+}
+
+// Test execution filter
+test {
+	filter {
+		includeTestsMatching "*MailProxyTest"
+		includeTestsMatching "*FEDataStoreProxyTest"
+//		includeTestsMatching "*IFTenantsManagerTest"
+		includeTestsMatching "*IFAuthenticationManagerTest"
+	}
+}

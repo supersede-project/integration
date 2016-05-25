@@ -19,9 +19,12 @@
  *******************************************************************************/
 package eu.supersede.integration.api.tenants.test;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.Assert;
+import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
 
 import eu.supersede.integration.api.tenants.IFTenantsManager;
 
@@ -42,7 +45,9 @@ public class IFTenantsManagerTest {
 	//Authentication Test
 	@Test
     public void getAllTenantsTest() throws Exception{
-    	Assert.notEmpty(tm.getAllTenants());
+		List<TenantInfoBean> tenants = tm.getAllTenants();
+    	Assert.notEmpty(tenants);
+    	System.out.println("Located " + tenants.size() + " tenants");
     }
 	
 }

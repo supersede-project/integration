@@ -157,6 +157,10 @@ public class IFAuthenticationManager {
 	public User getUser(String userName) throws UserStoreException, MalformedURLException {
 		Assert.notNull(userName, "Username shouldn't be null");
 		Assert.isTrue(!userName.isEmpty(), "Username shouldn't be empty");
+		
+		String[] foundUsers = usm.listUsers(userName, 1);
+		if (foundUsers == null || foundUsers.length == 0)
+			return null;
 		User user = new User();
 		user.setUserName(userName);
 		String[] profiles = usm.getAllProfileNames();
@@ -287,7 +291,9 @@ public class IFAuthenticationManager {
 		Assert.isTrue(credential!=null & !credential.isEmpty(), "Credential not set");
 		
 		String tenantDomain = "";
+		String base64AuthorizationPair= IntegrationProperty.getProperty("is.authorization.pair.base64");
 		if (tenant!=null && !tenant.isEmpty()) {
+			base64AuthorizationPair = IntegrationProperty.getProperty("is.authorization." + tenant + ".tenant.pair.base64");
 			tenantDomain = IntegrationProperty.getProperty("is.authorization." + tenant + ".tenant.domain");
 			Assert.isTrue(tenantDomain!=null & !tenantDomain.isEmpty(), "TenantUrl not retrieved from configuration");
 		}//If tenant not set, using default IS
@@ -296,7 +302,6 @@ public class IFAuthenticationManager {
 //			throw new IFException(tenantDomain + "does not exist in IF IS");
 //		}
 		
-		String base64AuthorizationPair = IntegrationProperty.getProperty("is.authorization." + tenant + ".tenant.pair.base64");
 		Assert.isTrue(base64AuthorizationPair!=null & !base64AuthorizationPair.isEmpty(), "Tenant base 64 authorization pair not retrieved from configuration");
 		
 		RequestEntity<String> request = RequestEntity.post(new URI(TOKEN_SERVICE_ENDPOINT))

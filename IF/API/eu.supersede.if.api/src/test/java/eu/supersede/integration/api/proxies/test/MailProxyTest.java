@@ -46,11 +46,10 @@ public class MailProxyTest {
 	
     @Before
     public void setup() throws Exception {
-    	String admin = IntegrationProperty.getProperty("is.admin.user");
-		String password = IntegrationProperty.getProperty("is.admin.passwd");
+    	String admin = System.getProperty("is.admin.user");
+		String password = System.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
-        String base64AuthorizationPair = System.getProperty("is.authorization.pair.base64");
-        token = am.getAuthorizationToken("yosu", "yosupass", base64AuthorizationPair);
+        token = am.getAuthorizationToken("yosu", "yosupass", "");
     }
 
     @Test

@@ -41,6 +41,13 @@ import eu.supersede.integration.api.security.types.User;
 
 public class IFAuthenticationManagerTest {
 	IFAuthenticationManager am;
+	//User test
+	String testUserName = "test";
+	String testUserPassword = "testpassword";
+	String tenant = "atos";
+	//Role test
+	String testRoleName = "testRole";
+	boolean requirePasswordChange = false;
 	
 	@Before
     public void setup() throws Exception {
@@ -56,21 +63,31 @@ public class IFAuthenticationManagerTest {
 	//Authentication Test
 	@Test
     public void authenticateUserTest() throws Exception{
-    	Assert.isTrue(am.authenticateUser("yosu", "yosupass"));
+		//If user does not exist, create user
+		if (am.getUser(testUserName)==null){
+			User user = createTestUser();
+			
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
+    	Assert.isTrue(am.authenticateUser(testUserName, testUserPassword));
     }
 	
 	//User tests
 	
 	@Test
-	public void addUserTest() throws UserStoreException{
-		User user = createUser();
-    	boolean requirePasswordChange = false;
-    	am.addUser(user, "userpassword", requirePasswordChange);
+	public void addUserTest() throws UserStoreException, MalformedURLException{
+		User user = createTestUser();
+		//If user exist remove user
+		if (am.getUser(user.getUserName())!=null){
+			am.deleteUser(user);
+		}
+		
+    	am.addUser(user, testUserPassword, requirePasswordChange);
 	}
 
-	private User createUser() throws UserStoreException {
+	private User createTestUser() throws UserStoreException {
 		User user = new User();
-		user.setUserName("test");
+		user.setUserName(testUserName);
 		user.setFirstname("User Test firstname");
 		user.setLastname("User Test lastname");
 		user.setOrganization("User Test organization");
@@ -90,27 +107,46 @@ public class IFAuthenticationManagerTest {
     	//Adding roles
     	Set<Role>roles = new HashSet<Role>();
     	Set<Role> allRoles = am.getAllRoles();
-    	for (Role role: allRoles){
-    		if (role.getRoleName().contains("Supersede")){
-    			roles.add(role);
-    		}
+    	Role role = createTestRole();
+    	if (!allRoles.contains(role)){
+    		am.addRole(role);
     	}
+//    	for (Role role: allRoles){
+//    		if (role.getRoleName().contains("testRole")){
+//    			roles.add(role);
+//    		}
+//    	}
+    	roles.add(role);
     	user.setRoles(roles);
 		return user;
 	}
 	
 	@Test
 	public void getUserTest() throws UserStoreException, MalformedURLException{
-		String username = "test";
-		User user = am.getUser(username);
+		//If user does not exist, create user
+		if (am.getUser(testUserName)==null){
+			User user = createTestUser();
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
+		User user = am.getUser(testUserName);
 		Assert.notNull(user);
 	}
 	
 	@Test
 	public void getAllUsersForRoleTest() throws UserStoreException, MalformedURLException{
-		String rolename = "SupersedeSupervisor";
-		Role role = new Role();
-		role.setRoleName(rolename);
+		Role role = createTestRole();
+		//Add role if it does not exist
+		Set<Role> allRoles = am.getAllRoles();
+    	if (!allRoles.contains(role)){
+    		am.addRole(role);
+    	}
+    	
+		//Add user if user does not exist
+		if (am.getUser(testUserName)==null){
+			User user = createTestUser();
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
+		
 		List<User> users = am.getAllUsersForRole(role);
 		Assert.notNull(users);
 		Assert.isTrue(users.size()>0);
@@ -118,13 +154,17 @@ public class IFAuthenticationManagerTest {
 	
 	@Test
 	public void updateUserTest() throws UserStoreException, MalformedURLException{
-		User user = am.getUser("test");
-		Assert.notNull(user);
-		
+		User user = am.getUser(testUserName);
+		//If user does not exist, create user
+		if (user==null){
+			user = createTestUser();
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
+
 		updateUser(user);
 
     	//Updating password and user profile
-    	am.updateUserCredential(user, "userpasswordNew", "userpassword");
+    	am.updateUserCredential(user, testUserPassword + "New", testUserPassword);
     	am.updateUser(user);
 	}
 
@@ -171,24 +211,37 @@ public class IFAuthenticationManagerTest {
 	
 	@Test
 	public void deleteUserTest() throws UserStoreException, MalformedURLException{
-		User user = am.getUser("test");
-		Assert.notNull(user);
+		User user = am.getUser(testUserName);
+		//If user does not exist, create user
+		if (user==null){
+			user = createTestUser();
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
 		am.deleteUser(user);
 	}
 	
 	//Role tests
 	@Test
 	public void addRoleTest() throws UserStoreException, MalformedURLException{
+		Role role = createTestRole();
+    	
+    	//if role exist, remove role
+    	if (am.getAllRoles().contains(role)){
+    		am.deleteRole(role);
+    	}
+    	
+    	am.addRole(role);
+	}
+
+	private Role createTestRole() {
 		Role role = new Role();
-		role.setRoleName ("testRole");
+		role.setRoleName (testRoleName);
     	
 		//Permissions
     	Permission permission = new Permission("/permission/admin/login", CarbonConstants.UI_PERMISSION_ACTION);
     	Permission[] permissions = new Permission[]{permission};
-    	
     	role.setPermissions(permissions);
-    	
-    	am.addRole(role);
+		return role;
 	}
 	
 	/**
@@ -198,7 +251,12 @@ public class IFAuthenticationManagerTest {
 	 */
 	@Test
 	public void getAllRolesForUserTest() throws UserStoreException, MalformedURLException{
-		User user = am.getUser("test");
+		User user = am.getUser(testUserName);
+		//If user does not exist, create user
+		if (user==null){
+			user = createTestUser();
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
 		Assert.notNull(user);
 		Set<Role> roles = am.getAllRolesOfUser(user);
 		Assert.notNull(roles);
@@ -207,30 +265,39 @@ public class IFAuthenticationManagerTest {
 	/*
 	 * User test should be available before executing this test.
 	 */
-	@Test
-	public void updateRoleTest() throws UserStoreException, MalformedURLException{
-		Role role = new Role();
-		role.setRoleName ("testRoleModified");
-		
-		User user = am.getUser("test");
-		Assert.notNull(user);
-		
-		role.getUsers().add(user);
-    	
-    	am.updateRole(role, "testRole");
-	}
+//	@Test
+//	public void updateRoleTest() throws UserStoreException, MalformedURLException{
+//		Role role = new Role();
+//		role.setRoleName ("testRoleModified");
+//		
+//		User user = am.getUser(testUserName);
+//		Assert.notNull(user);
+//		
+//		role.getUsers().add(user);
+//    	
+//    	am.updateRole(role, "testRole");
+//	}
 	
 	@Test
 	public void deleteRoleTest() throws UserStoreException{
-		Role role = new Role();
-		role.setRoleName ("testRoleModified");
+		Role role = createTestRole();
+    	//if role does no exist, create role
+    	if (!am.getAllRoles().contains(role)){
+    		am.addRole(role);
+    	}
 		
 		am.deleteRole(role);
 	}
 	
 	@Test
-	public void getAuthorizationTokenTest() throws TenantMgtAdminServiceExceptionException, URISyntaxException{
-		AuthorizationToken token = am.getAuthorizationToken("test", "test1", "siemens");
+	public void getAuthorizationTokenTest() throws TenantMgtAdminServiceExceptionException, URISyntaxException, UserStoreException, MalformedURLException{
+		//Create user if it does not exist
+		if (am.getUser(testUserName)==null){
+			User user = createTestUser();
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
+		
+		AuthorizationToken token = am.getAuthorizationToken(testUserName, testUserPassword, "atos");
 		Assert.notNull(token);
 		Assert.notNull(token.getAccessToken());
 		Assert.isTrue(!token.getAccessToken().isEmpty());

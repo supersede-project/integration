@@ -68,6 +68,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 import org.wso2.carbon.um.ws.api.WSRealmUtil;
+import org.wso2.carbon.um.ws.api.stub.ClaimDTO;
 import org.wso2.carbon.um.ws.api.stub.ClaimValue;
 import org.wso2.carbon.um.ws.api.stub.PermissionDTO;
 import org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceStub;
@@ -304,7 +305,9 @@ public class IFUserStoreManager implements UserStoreManager{
     public Claim[] getUserClaimValues(String userName, String profileName)
             throws UserStoreException {
         try {
-            return WSRealmUtil.convertToClaims(stub.getUserClaimValues(userName, profileName));
+        	ClaimDTO[] claims = stub.getUserClaimValues(userName, profileName);
+        	if (claims != null)
+        		return WSRealmUtil.convertToClaims(claims);
         } catch (Exception e) {
             handleException(e.getMessage(), e);
         }

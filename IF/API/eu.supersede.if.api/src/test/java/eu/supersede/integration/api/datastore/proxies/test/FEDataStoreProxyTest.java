@@ -33,7 +33,6 @@ import eu.supersede.integration.api.datastore.fe.types.User;
 import eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
-import eu.supersede.integration.properties.IntegrationProperty;
 
 
 public class FEDataStoreProxyTest {
@@ -48,8 +47,7 @@ public class FEDataStoreProxyTest {
         String admin = System.getProperty("is.admin.user");
 		String password = System.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
-        String base64AuthorizationPair = System.getProperty("is.authorization.pair.base64");
-        token = am.getAuthorizationToken("yosu", "yosupass", base64AuthorizationPair);
+        token = am.getAuthorizationToken("yosu", "yosupass", "");
     }
 
     @Test

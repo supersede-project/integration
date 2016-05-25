@@ -31,5 +31,9 @@
     <property expression="$ctx:email_cc" name="cc"/>
     <property expression="get-property('transport', 'CC')" name="cc"/>
   </log>
-  <send/>
+  <send>
+    <endpoint>
+      <address trace="disable" uri="mailto:"/>
+    </endpoint>
+  </send>
 </sequence>
