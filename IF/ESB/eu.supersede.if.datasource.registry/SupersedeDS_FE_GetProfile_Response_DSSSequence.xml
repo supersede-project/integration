@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence name="SupersedeDS_FE_GetProfile_Response_DSSSequence"
   onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-  <log/>
-  <payloadFactory media-type="json">
-    <format>$1</format>
+  <!-- Remove namespace. Otherwise fn:count() does not work -->
+  <payloadFactory media-type="xml">
+    <format>
+      <profiles xmlns="">
+                $1
+            </profiles>
+    </format>
     <args>
-      <arg evaluator="json" expression="$..profile[0]"/>
+      <arg evaluator="json" expression="$..profiles"/>
     </args>
   </payloadFactory>
+  <property expression="fn:count(//profile)" name="itemCount"
+    scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+  <log level="full">
+    <property expression="fn:number(get-property('itemCount'))"
+      name="number users" xmlns:ns="http://org.apache.synapse/xsd"/>
+  </log>
+  <!-- If user not found, we return a empty JSON object {}, but not an empty collection [] -->
+  <filter xmlns:ns="http://org.apache.synapse/xsd" xpath="fn:number(get-property('itemCount')) = fn:number(0)">
+    <then>
+      <log>
+        <property name="Profile" value="Profile not found"/>
+      </log>
+      <payloadFactory media-type="json">
+        <format>{}</format>
+        <args/>
+      </payloadFactory>
+    </then>
+    <else>
+      <log>
+        <property name="Profile" value="Profile found"/>
+      </log>
+      <payloadFactory media-type="json">
+        <format>$1</format>
+        <args>
+          <arg evaluator="json" expression="$..profile[0]"/>
+        </args>
+      </payloadFactory>
+    </else>
+  </filter>
   <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
 </sequence>

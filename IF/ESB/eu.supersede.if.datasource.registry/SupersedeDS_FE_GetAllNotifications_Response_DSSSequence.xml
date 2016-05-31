@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence name="SupersedeDS_FE_GetAllNotifications_Response_DSSSequence"
   onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-  <log/>
-  <payloadFactory media-type="json">
-    <format>$1</format>
-    <args>
-      <arg evaluator="json" expression="$.notifications.notification"/>
-    </args>
-  </payloadFactory>
+  <log>
+    <property name="Notifications" value="Processing notifications received"/>
+    <property expression="count(/notifications/notification)"
+      name="Number of notifications" xmlns:ns="http://org.apache.synapse/xsd"/>
+  </log>
+  <filter regex="0.0" source="count(/notifications/notification)" xmlns:ns="http://org.apache.synapse/xsd">
+    <then>
+      <payloadFactory media-type="json">
+        <format>[]</format>
+        <args/>
+      </payloadFactory>
+    </then>
+    <else>
+      <payloadFactory media-type="json">
+        <format>$1</format>
+        <args>
+          <arg evaluator="json" expression="$.notifications.notification"/>
+        </args>
+      </payloadFactory>
+    </else>
+  </filter>
   <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
 </sequence>

@@ -69,7 +69,7 @@ public class FEDataStoreProxy{
 	public User getUser(String tenantId, int userId, boolean lazy, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
-			Assert.isTrue(userId>-1, "User id cannot be unasigned");
+			Assert.isTrue(userId>=-1, "User id cannot be unasigned");
 			Assert.notNull(authenticationToken, "Provide a valid authentication token");
 			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
@@ -80,7 +80,12 @@ public class FEDataStoreProxy{
 			ResponseEntity<User> response = messageClient.getMessage(uri, User.class, MediaType.APPLICATION_XML, authenticationToken);
 			User user = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Located user: " + user.getName());
+				if (user.getUser_id() == userId & user.getUsername()!= null){
+					log.info("Located user: " + user.getUsername());
+				}else{
+					log.info("User for id: " + userId + " and tenant: " + tenantId + " was not located");
+					user = null;
+				}
 			} else {
 				log.info("There was a problem getting the supersede user for id: " + userId + " and tenant: " + tenantId);
 			}
@@ -125,7 +130,12 @@ public class FEDataStoreProxy{
 			ResponseEntity<Notification> response = messageClient.getMessage(uri, Notification.class, MediaType.APPLICATION_XML, authenticationToken);
 			Notification notification = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Located notification: " + notification.getNotification_id());
+				if (notification.getNotification_id() == notificationId){
+					log.info("Located notification: " + notification.getNotification_id());
+				}else{
+					log.info("Notification for id: " + notificationId + " and tenant: " + tenantId + " was not located");
+					notification = null;
+				}
 			} else {
 				log.info("There was a problem getting the supersede notification for id: " + notificationId + " and tenant: " + tenantId);
 			}
@@ -161,7 +171,7 @@ public class FEDataStoreProxy{
 	public Profile getProfile(String tenantId, int profileId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
-			Assert.isTrue(profileId>-1, "Profile id cannot be unasigned");
+			Assert.isTrue(profileId>=-1, "Profile id cannot be unasigned");
 			Assert.notNull(authenticationToken, "Provide a valid authentication token");
 			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
@@ -170,7 +180,12 @@ public class FEDataStoreProxy{
 			ResponseEntity<Profile> response = messageClient.getMessage(uri, Profile.class, MediaType.APPLICATION_XML, authenticationToken);
 			Profile profile = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Located profile: " + profile.getName());
+				if (profile.getProfile_id() == profileId){
+					log.info("Located profile: " + profile.getName());
+				}else{
+					log.info("Profile for id: " + profileId + " and tenant: " + tenantId + " was not located");
+					profile = null;
+				}
 			} else {
 				log.info("There was a problem getting the supersede profile for id: " + profileId + " and tenant: " + tenantId);
 			}

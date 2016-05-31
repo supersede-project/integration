@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import eu.supersede.integration.api.datastore.fe.types.Profile;
 
-public class LocaleJsonDeserializer extends JsonDeserializer<String> {
+public class NillableObjectJsonDeserializer extends JsonDeserializer<String> {
 
     private static final String NIL = "@nil";
     private static final ObjectMapper mapper = new ObjectMapper();
