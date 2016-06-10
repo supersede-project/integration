@@ -47,7 +47,7 @@ public class FEDataStoreProxyTest {
         String admin = System.getProperty("is.admin.user");
 		String password = System.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
-        token = am.getAuthorizationToken("yosu", "yosupass", "");
+        token = am.getAuthorizationToken(admin, password, "");
     }
 
     @Test
