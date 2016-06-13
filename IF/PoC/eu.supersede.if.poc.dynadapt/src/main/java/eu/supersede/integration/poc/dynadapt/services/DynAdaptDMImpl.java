@@ -57,7 +57,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 public class DynAdaptDMImpl implements iDynAdaptDM {
 	private static final Logger log = LoggerFactory.getLogger(DynAdaptDMImpl.class);
 	static Collection<AdaptationDecision> currentDecisions = new ArrayList<AdaptationDecision>();
-	static final int A_MINUTE = 1000*60;
+	static final int SCHEDULED_TIME = 1000*30;
 	static Random random = new Random();
 	private static Map<String, String> decisions = new HashMap<>();
 	private static DynAdapEnactProxy enactProxy = new DynAdapEnactProxy();
@@ -68,7 +68,7 @@ public class DynAdaptDMImpl implements iDynAdaptDM {
 			ComputeDecisionsTask task = new ComputeDecisionsTask();
 			Timer timer = new Timer();
 			log.info("Scheduled ComputeDecisionsTask");
-			timer.schedule(task, Calendar.getInstance().getTime(), A_MINUTE);
+			timer.schedule(task, Calendar.getInstance().getTime(), SCHEDULED_TIME);
 			
 			//Populating decisions
 			decisions.put("Decrease Video Resolution", "Reconfigure player: reduce video resolution during playing");
