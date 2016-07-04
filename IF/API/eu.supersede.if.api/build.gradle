@@ -91,5 +91,6 @@ test {
 		includeTestsMatching "*FEDataStoreProxyTest"
 //		includeTestsMatching "*IFTenantsManagerTest"
 		includeTestsMatching "*IFAuthenticationManagerTest"
+		includeTestsMatching "*DecisionMakingSystemProxyTest"
 	}
 }
