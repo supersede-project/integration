@@ -69,7 +69,7 @@ dependencies {
     compile files('lib/org.wso2.carbon.user.core_4.2.0.jar')
     compile files('lib/org.wso2.carbon.utils_4.2.0.jar')
     compile files('lib/opensaml2_2.4.1-wso2v1.jar')
-    compile files ('../../../../dm_game/applications/game-requirements/build/libs/game-requirements-0.0.1-SNAPSHOT.jar')
+//    compile files ('../../../../dm_game/applications/game-requirements/build/libs/game-requirements-0.0.1-SNAPSHOT.jar')
     
     
 //    compile group: 'xalan', name: 'xalan', version: '2.7.1'
