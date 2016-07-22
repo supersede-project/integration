@@ -39,7 +39,6 @@ public class MailProxy implements iMail {
 	private final static String MAIL_ENDPOINT = IntegrationProperty.getProperty("mail.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(MailProxy.class);
 	
-	@Override
 	public void sendEmail(Email email, AuthorizationToken authenticationToken) throws Exception{
 
 		URI uri = new URI(MAIL_ENDPOINT + "send");

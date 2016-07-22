@@ -6,9 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import demo.unsecured.model.Alert;
-import demo.unsecured.model.AlertLevel;
 import eu.supersede.integration.api.dm.proxies.DecisionMakingSystemProxy;
+import eu.supersede.integration.api.dm.types.Alert;
+import eu.supersede.integration.api.dm.types.AlertLevel;
 
 public class DecisionMakingSystemProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxyTest.class);
