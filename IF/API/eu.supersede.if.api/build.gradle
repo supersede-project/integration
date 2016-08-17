@@ -13,6 +13,10 @@ buildscript {
 	maven {
             url 'http://localhost:10080/artifactory/plugins-snapshot'
             name = 'maven-supersede'
+	    credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+	    }
         }
     }
     dependencies {
@@ -81,13 +85,13 @@ dependencies {
     
     
     
-    compile 'org.springframework:spring-core'
+    compile 'org.springframework:spring-core:4.1.8.RELEASE'
     
 //    testCompile 'org.opensaml:opensaml'
 //    testCompile 'org.opensaml:xmltooling'
 //    testCompile 'org.opensaml:core'
 
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-web:1.2.7.RELEASE")
 }
 
 task wrapper(type: Wrapper) {
@@ -118,8 +122,9 @@ artifactory {
     publish {
         repository {
             repoKey = 'libs-snapshot-local'
+	    username = "${artifactory_user}"
+	    password = "${artifactory_password}"
             maven = true
-            
         }
 	defaults {
    	    publications ('mavenJava')
@@ -128,8 +133,9 @@ artifactory {
     resolve {
         repository {
             repoKey = 'libs-snapshot'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
             maven = true
-            
         }
     }
 }
