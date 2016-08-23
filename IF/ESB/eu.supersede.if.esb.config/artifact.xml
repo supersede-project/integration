@@ -11,4 +11,10 @@
     <artifact name="SupersedeDMGame" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeDMGame.xml</file>
     </artifact>
+    <artifact name="SupersedeFeedbackRepository" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeFeedbackRepository.xml</file>
+    </artifact>
+    <artifact name="SupersedeFeedbackOrchestrator" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeFeedbackOrchestrator.xml</file>
+    </artifact>
 </artifacts>

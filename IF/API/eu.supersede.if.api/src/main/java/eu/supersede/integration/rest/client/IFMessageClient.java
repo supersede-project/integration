@@ -32,6 +32,7 @@ import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 
@@ -91,13 +92,22 @@ public class IFMessageClient {
 	}
 	
 	
-	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri, AuthorizationToken token) {
+	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.put(uri).
-				accept(MediaType.APPLICATION_JSON).
+//				accept(MediaType.APPLICATION_JSON).
 				contentType(MediaType.APPLICATION_JSON).
 				header("Authorization", "Bearer " + token.getAccessToken()).
 				body(object);
-		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
+	}
+	
+	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri, Class clazz) {
+		RequestEntity<S> request = RequestEntity.put(uri).
+//				accept(MediaType.APPLICATION_JSON).
+				contentType(MediaType.APPLICATION_JSON).
+//				header("Authorization", "Bearer " + token.getAccessToken()).
+				body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
 	public <T, S> ResponseEntity<T> putXmlMessage(S object, URI uri, AuthorizationToken token) {
@@ -118,6 +128,16 @@ public class IFMessageClient {
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
 				.header("Authorization", "Bearer " + token.getAccessToken())
+				.build();
+		return restTemplate.exchange(request, clazz);
+
+//		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
+	}
+	
+	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz) throws RestClientException{
+		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
+				.accept(MediaType.APPLICATION_JSON)
+//				.header("Authorization", "Bearer " + token.getAccessToken())
 				.build();
 		return restTemplate.exchange(request, clazz);
 
@@ -160,6 +180,14 @@ public class IFMessageClient {
         return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
     }
 	
+	public ResponseEntity<String> deleteJsonMessage (URI uri){
+    	HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Accept", "*/*");
+    	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
+        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
+    }
+	
 	public ResponseEntity<String> deleteMessage (URI uri, AuthorizationToken token){
     	RequestEntity request = (RequestEntity) RequestEntity.delete(uri).header("Authorization", "Bearer " + token.getAccessToken());
         return restTemplate.exchange(request, String.class);
@@ -175,4 +203,6 @@ public class IFMessageClient {
 				.body(object);
 		return (ListenableFuture<ResponseEntity<T>>) asyncRestTemplate.exchange(uri, HttpMethod.POST, request, clazz);
 	}
+
+	
 }

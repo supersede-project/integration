@@ -31,34 +31,65 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 
 public class CustomJsonDateDeserializer extends JsonDeserializer<Date>
 {
+//    @Override
+//    public Date deserialize(JsonParser jsonparser,
+//            DeserializationContext deserializationcontext) throws IOException, JsonProcessingException {
+//    	Date result = null;
+//        SimpleDateFormat sdfIn = new SimpleDateFormat("yyyy-MM-dd+HH:mm");
+//        String date = jsonparser.getText();
+//        try {
+//        	result = sdfIn.parse(date);
+//        } catch (ParseException e) {
+//        	//Parsing notification dates
+//        	date = date.substring(0, date.indexOf('.'));
+//        	date = date.replace('T', ' ');
+//            sdfIn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//			try {
+//				result = sdfIn.parse(date);
+//			} catch (ParseException e1) {
+//				e1.printStackTrace();
+//			}
+//        }
+//        
+//        return result;
+//    }
+    
+	private String[] dateFormats = 
+			new String[]{"yyyy-MM-dd+HH:mm", "yyyy-MM-dd HH:mm:ss"};
+	
     @Override
     public Date deserialize(JsonParser jsonparser,
             DeserializationContext deserializationcontext) throws IOException, JsonProcessingException {
-    	Date result = null;
-        SimpleDateFormat sdfIn = new SimpleDateFormat("yyyy-MM-dd+HH:mm");
         String date = jsonparser.getText();
+        return formatDate (date, dateFormats, 0);
+    }
+    
+    private Date formatDate (String date, String[] dateFormats, int index){
+    	Date result = null;
+    	if (index >= dateFormats.length){
+    		return result;
+    	}
+    	
+        SimpleDateFormat sdfIn = new SimpleDateFormat(dateFormats[index]);
         try {
-        	result = sdfIn.parse(date);
+        	return sdfIn.parse(date);
         } catch (ParseException e) {
-        	//Parsing notification dates
-        	date = date.substring(0, date.indexOf('.'));
-        	date = date.replace('T', ' ');
-            sdfIn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			try {
-				result = sdfIn.parse(date);
-			} catch (ParseException e1) {
-				e1.printStackTrace();
-			}
+        	return formatDate (date, dateFormats, ++index);
         }
-        
-        return result;
     }
     
     public static void main (String[] args) throws java.text.ParseException{
     	String inputDate = "2015-03-22+01:00";
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd+HH:mm");
     	Date parsedDate = sdf.parse(inputDate);
+    	
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    	System.out.println(format.format(parsedDate));
+    	
+    	//CreateAt date deserializer for Feedback Gathering orchestrator
+    	inputDate = "2016-08-13 05:07:31.0";
+    	sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+    	parsedDate = sdf.parse(inputDate);
     	System.out.println(format.format(parsedDate));
     }
 }

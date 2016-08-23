@@ -81,6 +81,7 @@ dependencies {
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.user.core', version: '4.2.0')
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.utils', version: '4.2.0')
     compile(group: 'opensaml.wso2', name: 'opensaml2', version: '2.4.1.wso2v1')
+    compile files ('./lib/feedback_library.jar')
     
 //    compile group: 'xalan', name: 'xalan', version: '2.7.1'
 //    compile group: 'org.apache.rampart', name: 'rampart', version: '1.6.2'

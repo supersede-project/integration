@@ -9,13 +9,17 @@
   <name>eu.supersede.if.esb</name>
   <description>eu.supersede.if.esb</description>
   <properties>
-    <eu.supersede.if.api_._SupersedeDMGame>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMGame>
-    <eu.supersede.if.proxy-service_._sendEmailProxy>capp/EnterpriseServiceBus</eu.supersede.if.proxy-service_._sendEmailProxy>
-    <eu.supersede.if.sequence_._sendEmailSequence>capp/EnterpriseServiceBus</eu.supersede.if.sequence_._sendEmailSequence>
-    <eu.supersede.if.api_._mail>capp/EnterpriseServiceBus</eu.supersede.if.api_._mail>
+    <eu.supersede.if.esb.resource_._FeedbackRepositoryEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackRepositoryEndpoint>
     <eu.supersede.if.esb.resource_._DMGameAlertEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DMGameAlertEndpoint>
     <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
+    <eu.supersede.if.api_._mail>capp/EnterpriseServiceBus</eu.supersede.if.api_._mail>
+    <eu.supersede.if.api_._SupersedeFeedbackOrchestrator>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeFeedbackOrchestrator>
+    <eu.supersede.if.api_._SupersedeDMGame>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMGame>
+    <eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>
+    <eu.supersede.if.sequence_._sendEmailSequence>capp/EnterpriseServiceBus</eu.supersede.if.sequence_._sendEmailSequence>
+    <eu.supersede.if.proxy-service_._sendEmailProxy>capp/EnterpriseServiceBus</eu.supersede.if.proxy-service_._sendEmailProxy>
+    <eu.supersede.if.api_._SupersedeFeedbackRepository>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeFeedbackRepository>
     <eu.supersede.if.esb.resource_._SupersedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._SupersedeAuthentication>
   </properties>
   <dependencies>
@@ -58,6 +62,30 @@
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>DMGameAlertEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeFeedbackOrchestrator</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeFeedbackRepository</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>FeedbackOrchestratorEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>FeedbackRepositoryEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>
