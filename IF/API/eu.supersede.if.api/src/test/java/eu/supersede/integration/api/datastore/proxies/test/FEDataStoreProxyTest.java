@@ -109,4 +109,11 @@ public class FEDataStoreProxyTest {
     	Profile profile = proxy.getProfile(tenandId, profileId, token);
     	Assert.notNull(profile);
     }
+    
+//    @Test
+//    public void testDMGameIssue() throws Exception{
+//    	token = am.getAuthorizationToken("test_game", "test_game", "atos");
+//    	User user = proxy.getUser("atos", 3368, false, token);
+//    	Assert.notNull(user);
+//    }
 }

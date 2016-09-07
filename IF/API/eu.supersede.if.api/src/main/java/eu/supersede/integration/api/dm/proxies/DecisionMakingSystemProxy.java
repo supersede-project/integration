@@ -14,7 +14,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class DecisionMakingSystemProxy implements IDecisionMakingSystem {
-	private IFMessageClient messageClient = new IFMessageClient();
+	private IFMessageClient messageClient = IFMessageClient.getInstance();
 	private final static String SUPERSEDE_DMGAME_ENDPOINT = IntegrationProperty.getProperty("dmgame.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxy.class);
 	

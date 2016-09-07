@@ -21,22 +21,13 @@ package eu.supersede.integration.api.proxies.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.velocity.VelocityAutoConfiguration;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import eu.supersede.integration.api.common.proxies.MailProxy;
 import eu.supersede.integration.api.common.types.Email;
-import eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
-import eu.supersede.integration.application.SpringAppTest;
-import eu.supersede.integration.properties.IntegrationProperty;
 
 public class MailProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(MailProxyTest.class);

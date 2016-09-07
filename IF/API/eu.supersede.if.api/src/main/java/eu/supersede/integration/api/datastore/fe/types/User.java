@@ -2,12 +2,14 @@ package eu.supersede.integration.api.datastore.fe.types;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import eu.supersede.integration.api.json.NillableObjectJsonDeserializer;
 import eu.supersede.integration.api.json.NotificationArrayJsonDeserializer;
 import eu.supersede.integration.api.json.ProfileArrayJsonDeserializer;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class User {
 	int user_id;
 	String username;

@@ -38,7 +38,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class FEDataStoreProxy{
-	private IFMessageClient messageClient = new IFMessageClient();
+	private IFMessageClient messageClient = IFMessageClient.getInstance();
 	private final static String SUPERSEDE_FE_DS_ENDPOINT = IntegrationProperty.getProperty("fe.datastore.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(FEDataStoreProxy.class);
 	
@@ -80,7 +80,10 @@ public class FEDataStoreProxy{
 			ResponseEntity<User> response = messageClient.getMessage(uri, User.class, MediaType.APPLICATION_XML, authenticationToken);
 			User user = response.getBody();
 			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				if (user.getUser_id() == userId & user.getUsername()!= null){
+				if (user == null){
+					log.info("User " + userId + " not located");
+				}
+				else if (user.getUser_id() == userId & user.getUsername()!= null){
 					log.info("Located user: " + user.getUsername());
 				}else{
 					log.info("User for id: " + userId + " and tenant: " + tenantId + " was not located");

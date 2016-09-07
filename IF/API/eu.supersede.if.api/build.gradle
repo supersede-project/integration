@@ -89,13 +89,13 @@ dependencies {
 //    testCompile 'org.apache.rampart:rahas:1.6.2'
 //    testCompile 'org.apache.rampart:rampart-core:1.6.2'
     
-    compile 'org.springframework:spring-core:4.1.8.RELEASE'
+    compile 'org.springframework:spring-core:4.3.2.RELEASE'
     
 //    testCompile 'org.opensaml:opensaml'
 //    testCompile 'org.opensaml:xmltooling'
 //    testCompile 'org.opensaml:core'
 
-    compile("org.springframework.boot:spring-boot-starter-web:1.2.7.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE")
 }
 
 task wrapper(type: Wrapper) {
