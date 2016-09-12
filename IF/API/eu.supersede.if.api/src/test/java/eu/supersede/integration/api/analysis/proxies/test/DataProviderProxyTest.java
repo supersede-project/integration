@@ -15,7 +15,6 @@ import eu.supersede.integration.api.analysis.proxies.DataProviderProxy;
 import eu.supersede.integration.api.analysis.types.MonitoringData;
 
 public class DataProviderProxyTest {
-	private static final Logger log = LoggerFactory.getLogger(DataProviderProxyTest.class);
 	private DataProviderProxy proxy;
 	
 	
@@ -30,7 +29,7 @@ public class DataProviderProxyTest {
 		String timeStamp = Calendar.getInstance().getTime().toString();
 		int outputId = 2;
 		int confId = 3;
-		String topic = "monitoring_test";
+		String topic = "atos";
 		proxy.ingestMonitoringData(dataList, timeStamp, outputId, confId, topic);
     }
 
