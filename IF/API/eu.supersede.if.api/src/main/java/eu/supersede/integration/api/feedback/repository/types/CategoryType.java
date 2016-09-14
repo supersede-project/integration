@@ -2,12 +2,15 @@ package eu.supersede.integration.api.feedback.repository.types;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
 import ch.uzh.ifi.feedback.library.rest.validation.Id;
 import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
 
+@JsonInclude(Include.NON_NULL)
 public class CategoryType {
 
 	@Id

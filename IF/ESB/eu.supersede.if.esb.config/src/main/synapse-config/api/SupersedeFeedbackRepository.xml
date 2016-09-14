@@ -68,21 +68,4 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="DELETE" protocol="http" uri-template="/en/feedbacks/{id}">
-    <inSequence>
-      <log level="full">
-        <property name="Feedback Repository" value="Delete feedback message forwarded to Feedback Repository endpoint"/>
-      </log>
-      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
-      <send>
-        <endpoint key-expression="$ctx:endpoint"/>
-      </send>
-    </inSequence>
-    <outSequence>
-      <send/>
-    </outSequence>
-    <faultSequence>
-      <send/>
-    </faultSequence>
-  </resource>
 </api>

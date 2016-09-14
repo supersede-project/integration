@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import ch.uzh.ifi.feedback.library.rest.Service.IDbItem;
 import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
@@ -14,13 +17,24 @@ import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
 import ch.uzh.ifi.feedback.library.rest.validation.Id;
 import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 import ch.uzh.ifi.feedback.library.rest.validation.Validate;
+//import ch.uzh.ifi.feedback.orchestrator.model.FeedbackMechanism;
+//import ch.uzh.ifi.feedback.orchestrator.model.FeedbackParameter;
+//import ch.uzh.ifi.feedback.orchestrator.model.OrchestratorItem;
 //import ch.uzh.ifi.feedback.orchestrator.serialization.ApplicationSerializationService;
 //import ch.uzh.ifi.feedback.orchestrator.serialization.MechanismSerializationService;
 //import ch.uzh.ifi.feedback.orchestrator.validation.MechanismValidator;
 //
 //@Validate(MechanismValidator.class)
 //@Serialize(MechanismSerializationService.class)
-public class FeedbackMechanism extends ItemBase<FeedbackMechanism> {
+@JsonInclude(Include.NON_NULL)
+public class FeedbackMechanism extends OrchestratorItem<FeedbackMechanism> {
+	
+	@Id
+	@DbAttribute("mechanisms_id")
+	private Integer id;
+	
+	@DbAttribute("configurations_id")
+	private Integer configurationsId;
 	
 	@NotNull
 	@DbAttribute("name")
@@ -86,21 +100,40 @@ public class FeedbackMechanism extends ItemBase<FeedbackMechanism> {
 		this.type = type;
 	}
 	
+//	@Override
+//	public FeedbackMechanism Merge(FeedbackMechanism original) {
+//		
+//		for(FeedbackParameter param : original.getParameters())
+//		{
+//			Optional<FeedbackParameter> newParam = getParameters().stream().filter(p -> p.getId().equals(param.getId())).findFirst();
+//			if(!newParam.isPresent())
+//			{
+//				getParameters().add(param);
+//			}else{ 
+//				newParam.get().Merge(param);
+//			}
+//		}
+//		
+//		super.Merge(original);
+//		
+//		return this;
+//	}
+	
 	@Override
-	public FeedbackMechanism Merge(FeedbackMechanism original) {
-		super.Merge(original);
-		
-		for(FeedbackParameter param : original.getParameters())
-		{
-			Optional<FeedbackParameter> newParam = getParameters().stream().filter(p -> p.getId().equals(param.getId())).findFirst();
-			if(!newParam.isPresent())
-			{
-				getParameters().add(param);
-			}else{ 
-				newParam.get().Merge(param);
-			}
-		}
-		
-		return this;
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getConfigurationsid() {
+		return configurationsId;
+	}
+
+	public void setConfigurationsid(Integer configurationsid) {
+		this.configurationsId = configurationsid;
 	}
 }

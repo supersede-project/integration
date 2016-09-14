@@ -5,8 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
+import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
+import ch.uzh.ifi.feedback.library.rest.validation.Id;
+import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
+import ch.uzh.ifi.feedback.library.rest.validation.Unique;
 import ch.uzh.ifi.feedback.library.rest.Service.IDbItem;
 import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
@@ -23,13 +30,16 @@ import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
 //
 //@Validate(ConfigurationValidator.class)
 //@Serialize(ConfigurationSerializationService.class)
-public class Configuration extends ItemBase<Configuration> {
+@JsonInclude(Include.NON_NULL)
+public class Configuration extends OrchestratorItem<Configuration> {
+	
+	@Id
+	@DbAttribute("configurations_id")
+	private Integer id;
 	
 	@Unique
 	private String name;
-
-	@DbAttribute("created_at")
-	private Timestamp createdAt;
+	
 	@NotNull
 	private ConfigurationType type;
 	@DbIgnore
@@ -37,9 +47,10 @@ public class Configuration extends ItemBase<Configuration> {
 	@DbIgnore
 	private GeneralConfiguration generalConfiguration;
 	
-	@DbAttribute("general_configuration_id")
+	@DbAttribute("general_configurations_id")
 	private transient Integer generalConfigurationId;
-	@DbAttribute("application_id")
+	
+	@DbAttribute("applications_id")
 	private transient Integer applicationId;
 	
 	public Configuration(){
@@ -59,15 +70,6 @@ public class Configuration extends ItemBase<Configuration> {
 			mechanisms = new ArrayList<>();
 		
 		return mechanisms;
-	}
-
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-
-	@JsonDeserialize(using = CustomJsonTimestampDeserializer.class)
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
 	}
 
 	public ConfigurationType getType() {
@@ -94,29 +96,29 @@ public class Configuration extends ItemBase<Configuration> {
 		this.generalConfigurationId = generalConfigurationId;
 	}
 	
-	@Override
-	public Configuration Merge(Configuration original) {
-		super.Merge(original);
-		
-		for(FeedbackMechanism mechanism : original.getFeedbackMechanisms())
-		{
-			Optional<FeedbackMechanism> newMechanism = getFeedbackMechanisms().stream().filter(p -> p.getId().equals(mechanism.getId())).findFirst();
-			if(!newMechanism.isPresent())
-			{
-				mechanisms.add(mechanism);
-			}else{ 
-				newMechanism.get().Merge(mechanism);
-			}
-		}
-		
-		if(generalConfiguration != null){
-			generalConfiguration.Merge(original.getGeneralConfiguration());
-		}else{
-			generalConfiguration = original.getGeneralConfiguration();
-		}
-		
-		return this;
-	}
+//	@Override
+//	public Configuration Merge(Configuration original) {
+//		for(FeedbackMechanism mechanism : original.getFeedbackMechanisms())
+//		{
+//			Optional<FeedbackMechanism> newMechanism = getFeedbackMechanisms().stream().filter(p -> p.getId().equals(mechanism.getId())).findFirst();
+//			if(!newMechanism.isPresent())
+//			{
+//				mechanisms.add(mechanism);
+//			}else{ 
+//				newMechanism.get().Merge(mechanism);
+//			}
+//		}
+//		
+//		if(generalConfiguration != null){
+//			generalConfiguration.Merge(original.getGeneralConfiguration());
+//		}else{
+//			generalConfiguration = original.getGeneralConfiguration();
+//		}
+//		
+//		super.Merge(original);
+//		
+//		return this;
+//	}
 
 	public Integer getApplicationId() {
 		return applicationId;
@@ -125,4 +127,15 @@ public class Configuration extends ItemBase<Configuration> {
 	public void setApplicationId(Integer applicationId) {
 		this.applicationId = applicationId;
 	}
+
+	@Override
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 }

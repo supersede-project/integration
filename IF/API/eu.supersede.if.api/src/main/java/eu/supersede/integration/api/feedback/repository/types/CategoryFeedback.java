@@ -2,11 +2,14 @@ package eu.supersede.integration.api.feedback.repository.types;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
 import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
 import ch.uzh.ifi.feedback.library.rest.validation.Id;
 
-
+@JsonInclude(Include.NON_NULL)
 public class CategoryFeedback {
 
 	@Id

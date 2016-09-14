@@ -22,7 +22,7 @@ public class FeedbackRepositoryProxy implements IFeedbackRepository {
 
 	
 	@Override
-	public List<Feedback> GetAllFeedbacks() throws Exception {
+	public List<Feedback> getAllFeedbacks() throws Exception {
 		try {
 			URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/feedbacks");
 			ResponseEntity<Feedback[]> response = 
@@ -40,28 +40,28 @@ public class FeedbackRepositoryProxy implements IFeedbackRepository {
 		}
 	}
 
-	@Override
-	public List<Feedback> GetAllFeedbacksForApplication(Integer applicationId) throws Exception {
-		try {
-			Assert.notNull(applicationId, "Provide a valid application id");
-			URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + applicationId + "/feedbacks");
-			ResponseEntity<Feedback[]> response = 
-					messageClient.getJSONMessage(uri, Feedback[].class);
-			Feedback[] feedbacks = response.getBody();
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Located " + feedbacks.length + " feedback(s)");
-			} else {
-				log.info("There was a problem getting all feedbacks");
-			}
-			return (List<Feedback>) Arrays.asList(feedbacks);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+//	@Override
+//	public List<Feedback> getAllFeedbacksForApplication(Integer applicationId) throws Exception {
+//		try {
+//			Assert.notNull(applicationId, "Provide a valid application id");
+//			URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + applicationId + "/feedbacks");
+//			ResponseEntity<Feedback[]> response = 
+//					messageClient.getJSONMessage(uri, Feedback[].class);
+//			Feedback[] feedbacks = response.getBody();
+//			if (response.getStatusCode().equals(HttpStatus.OK)) {
+//				log.info("Located " + feedbacks.length + " feedback(s)");
+//			} else {
+//				log.info("There was a problem getting all feedbacks");
+//			}
+//			return (List<Feedback>) Arrays.asList(feedbacks);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
 
 	@Override
-	public Feedback GetByFeedbackId(Integer id) throws Exception {
+	public Feedback getFeedbackById(Integer id) throws Exception {
 		try {
 			Assert.notNull(id, "Provide a valid feedback id");
 			URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/feedbacks/" + id);
@@ -81,7 +81,7 @@ public class FeedbackRepositoryProxy implements IFeedbackRepository {
 	}
 
 	@Override
-	public Feedback InsertFeedback(Feedback feedback) throws Exception {
+	public Feedback insertFeedback(Feedback feedback) throws Exception {
 		Feedback result = feedback;
 		try {
 			Assert.notNull(feedback, "Provide a valid feedback");
@@ -103,22 +103,22 @@ public class FeedbackRepositoryProxy implements IFeedbackRepository {
 		}
 	}
 
-	@Override
-	public void DeleteFeedback(Integer id) throws Exception {
-		try {
-			Assert.notNull(id, "Provide a valid feedback id");
-			URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/feedbacks" + id);
-//			AuthorizationToken authenticationToken = null;
-			ResponseEntity<String> response = 
-					messageClient.deleteJsonMessage(uri);
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Successfully deleted feedback " + id);
-			} else {
-				log.info("There was a problem deleting feedback " + id);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	public void deleteFeedback(Integer id) throws Exception {
+//		try {
+//			Assert.notNull(id, "Provide a valid feedback id");
+//			URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/feedbacks" + id);
+////			AuthorizationToken authenticationToken = null;
+//			ResponseEntity<String> response = 
+//					messageClient.deleteJsonMessage(uri);
+//			if (response.getStatusCode().equals(HttpStatus.OK)) {
+//				log.info("Successfully deleted feedback " + id);
+//			} else {
+//				log.info("There was a problem deleting feedback " + id);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }

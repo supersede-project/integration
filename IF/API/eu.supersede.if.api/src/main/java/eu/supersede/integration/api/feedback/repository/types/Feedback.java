@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
@@ -15,6 +17,7 @@ import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
 //import ch.uzh.ifi.feedback.repository.serialization.FeedbackSerializationService;
 //
 //@Serialize(FeedbackSerializationService.class)
+@JsonInclude(Include.NON_NULL)
 public class Feedback {
 
 	@NotNull

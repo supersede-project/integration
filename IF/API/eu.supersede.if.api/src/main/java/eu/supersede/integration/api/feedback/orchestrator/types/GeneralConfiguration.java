@@ -5,17 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ch.uzh.ifi.feedback.library.rest.Service.IDbItem;
-import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
 import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
-import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
 import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 import ch.uzh.ifi.feedback.library.rest.validation.Unique;
-import ch.uzh.ifi.feedback.library.rest.validation.Validate;
+//import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
+//import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
+//import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
+//import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
+//import ch.uzh.ifi.feedback.library.rest.validation.Id;
+//import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
+//import ch.uzh.ifi.feedback.library.rest.validation.Unique;
+//import ch.uzh.ifi.feedback.library.rest.validation.Validate;
+//import ch.uzh.ifi.feedback.orchestrator.model.FeedbackParameter;
+//import ch.uzh.ifi.feedback.orchestrator.model.GeneralConfiguration;
+//import ch.uzh.ifi.feedback.orchestrator.model.OrchestratorItem;
 import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
 //import ch.uzh.ifi.feedback.orchestrator.serialization.ApplicationSerializationService;
 //import ch.uzh.ifi.feedback.orchestrator.serialization.GeneralConfigurationSerializationService;
@@ -23,12 +32,12 @@ import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
 //
 //@Validate(GeneralConfigurationValidator.class)
 //@Serialize(GeneralConfigurationSerializationService.class)
-public class GeneralConfiguration extends ItemBase<GeneralConfiguration>{
+@JsonInclude(Include.NON_NULL)
+public class GeneralConfiguration extends OrchestratorItem<GeneralConfiguration>{
 	
-	@DbAttribute("created_at")
-	private Timestamp createdAt;
-	@DbAttribute("updated_at")
-	private Timestamp updatedAt;
+	@Id
+	@DbAttribute("general_configurations_id")
+	private Integer id;
 	@DbIgnore
 	private List<FeedbackParameter> parameters;
 	@Unique
@@ -39,20 +48,6 @@ public class GeneralConfiguration extends ItemBase<GeneralConfiguration>{
 		parameters = new ArrayList<FeedbackParameter>();
 	}
 	
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-	@JsonDeserialize(using = CustomJsonTimestampDeserializer.class)
-	public void setCreatedAt(Timestamp created_at) {
-		this.createdAt = created_at;
-	}
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-	@JsonDeserialize(using = CustomJsonTimestampDeserializer.class)
-	public void setUpdatedAt(Timestamp updated_at) {
-		this.updatedAt = updated_at;
-	}
 	public List<FeedbackParameter> getParameters() {
 		if (parameters == null)
 			parameters = new ArrayList<>();
@@ -71,29 +66,40 @@ public class GeneralConfiguration extends ItemBase<GeneralConfiguration>{
 		this.name = name;
 	}
 	
+//	@Override
+//	public GeneralConfiguration Merge(GeneralConfiguration original) {
+//		for(FeedbackParameter param : original.getParameters())
+//		{
+//			try{
+//				List<FeedbackParameter> parameters = getParameters();
+//				Optional<FeedbackParameter> newParam = getParameters().stream().filter(p -> param.getId().equals(p.getId())).findFirst();
+//				
+//				if(!newParam.isPresent())
+//				{
+//					getParameters().add(param);
+//				}else{ 
+//					newParam.get().Merge(param);
+//				}
+//			} catch(NullPointerException e)
+//			{
+//				e.printStackTrace();
+//			}
+//		
+//		}
+//		
+//		super.Merge(original);
+//		
+//		return this;
+//	}
+	
+	
 	@Override
-	public GeneralConfiguration Merge(GeneralConfiguration original) {
-		super.Merge(original);
-		
-		for(FeedbackParameter param : original.getParameters())
-		{
-			try{
-				List<FeedbackParameter> parameters = getParameters();
-				Optional<FeedbackParameter> newParam = getParameters().stream().filter(p -> param.getId().equals(p.getId())).findFirst();
-				
-				if(!newParam.isPresent())
-				{
-					getParameters().add(param);
-				}else{ 
-					newParam.get().Merge(param);
-				}
-			} catch(NullPointerException e)
-			{
-				e.printStackTrace();
-			}
-		
-		}
-		
-		return this;
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

@@ -2,6 +2,8 @@ package eu.supersede.integration.api.feedback.repository.types;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
@@ -10,6 +12,7 @@ import ch.uzh.ifi.feedback.library.rest.validation.Id;
 import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 
+@JsonInclude(Include.NON_NULL)
 public class ContextInformation {
 
 	@Id

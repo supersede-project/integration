@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ch.uzh.ifi.feedback.library.rest.Service.IDbItem;
@@ -13,54 +15,41 @@ import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
 import ch.uzh.ifi.feedback.library.rest.validation.Id;
 import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 import ch.uzh.ifi.feedback.library.rest.validation.Validate;
-import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
+//import ch.uzh.ifi.feedback.orchestrator.model.FeedbackParameter;
+//import ch.uzh.ifi.feedback.orchestrator.model.OrchestratorItem;
+//import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
 //import ch.uzh.ifi.feedback.orchestrator.serialization.ApplicationSerializationService;
 //import ch.uzh.ifi.feedback.orchestrator.serialization.ParameterSerializationService;
 //import ch.uzh.ifi.feedback.orchestrator.validation.ParameterValidator;
 //
 //@Validate(ParameterValidator.class)
 //@Serialize(ParameterSerializationService.class)
-public class FeedbackParameter extends ItemBase<FeedbackParameter> {
+@JsonInclude(Include.NON_NULL)
+public class FeedbackParameter extends OrchestratorItem<FeedbackParameter> {
+	
+	@Id
+	@DbAttribute("parameters_id")
+	private Integer id;
 	
 	@NotNull
 	private String key;
-	
-	@NotNull
+
 	private Object value;
 	
 	@DbAttribute("default_value")
 	private Object defaultValue;
 	@DbAttribute("editable_by_user")
 	private Boolean editableByUser;
-	@DbAttribute("created_at")
-	private Timestamp createdAt;
-	@DbAttribute("updated_at")
-	private Timestamp updatedAt;
+
 	private String language;
 
-	@DbAttribute("parameters_id")
+	@DbAttribute("parent_parameters_id")
 	private transient Integer parametersId;
-	@DbAttribute("mechanism_id")
+	@DbAttribute("mechanisms_id")
 	private transient Integer mechanismId;
 	@DbAttribute("general_configurations_id")
 	private transient Integer generalConfigurationsId;
 	
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-	
-	@JsonDeserialize(using = CustomJsonTimestampDeserializer.class)
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-	
-	@JsonDeserialize(using = CustomJsonTimestampDeserializer.class)
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 	public String getLanguage() {
 		return language;
 	}
@@ -111,28 +100,39 @@ public class FeedbackParameter extends ItemBase<FeedbackParameter> {
 		this.generalConfigurationsId = genaralConfigurationId;
 	}
 	
+//	@Override
+//	public FeedbackParameter Merge(FeedbackParameter original) {
+//		if(List.class.isAssignableFrom(original.getValue().getClass()))
+//		{
+//			List<FeedbackParameter> oldChildren = (List<FeedbackParameter>)original.getValue();
+//			if(List.class.isAssignableFrom(this.getValue().getClass()))
+//			{
+//				List<FeedbackParameter> newChildren = (List<FeedbackParameter>)this.getValue();
+//				for(FeedbackParameter param : oldChildren)
+//				{
+//					Optional<FeedbackParameter> newParam = newChildren.stream().filter(p -> p.getId().equals(param.getId())).findFirst();
+//					if(!newParam.isPresent())
+//					{
+//						newChildren.add(param);
+//					}else{ 
+//						newParam.get().Merge(param);
+//					}
+//				}
+//			}
+//		}
+//		
+//		super.Merge(original);
+//		
+//		return this;
+//	}
+	
 	@Override
-	public FeedbackParameter Merge(FeedbackParameter original) {
-		super.Merge(original);
-		if(List.class.isAssignableFrom(original.getValue().getClass()))
-		{
-			List<FeedbackParameter> oldChildren = (List<FeedbackParameter>)original.getValue();
-			if(List.class.isAssignableFrom(this.getValue().getClass()))
-			{
-				List<FeedbackParameter> newChildren = (List<FeedbackParameter>)this.getValue();
-				for(FeedbackParameter param : oldChildren)
-				{
-					Optional<FeedbackParameter> newParam = newChildren.stream().filter(p -> p.getId().equals(param.getId())).findFirst();
-					if(!newParam.isPresent())
-					{
-						newChildren.add(param);
-					}else{ 
-						newParam.get().Merge(param);
-					}
-				}
-			}
-		}
-		
-		return this;
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }
