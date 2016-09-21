@@ -5,10 +5,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
-import org.wso2.carbon.user.core.tracker.UserStoreManagerRegistry;
 
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
@@ -19,7 +16,7 @@ import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfigura
 import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
 
 public class FeedbackOrchestratorProxyTest {
-	private static final Logger log = LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
+//	private static final Logger log = LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
 	private FeedbackOrchestratorProxy proxy;
 	
 	

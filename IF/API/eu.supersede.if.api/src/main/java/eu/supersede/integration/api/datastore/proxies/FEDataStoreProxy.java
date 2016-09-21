@@ -20,77 +20,53 @@
 package eu.supersede.integration.api.datastore.proxies;
 
 import java.net.URI;
-import java.util.Arrays;
+import java.net.URISyntaxException;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.datastore.fe.types.Notification;
 import eu.supersede.integration.api.datastore.fe.types.Profile;
 import eu.supersede.integration.api.datastore.fe.types.User;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
-import eu.supersede.integration.rest.client.IFMessageClient;
 
-public class FEDataStoreProxy{
-	private IFMessageClient messageClient = new IFMessageClient();
+public class FEDataStoreProxy<T> extends IFServiceProxy<T> {
 	private final static String SUPERSEDE_FE_DS_ENDPOINT = IntegrationProperty.getProperty("fe.datastore.endpoint");
-	private static final Logger log = LoggerFactory.getLogger(FEDataStoreProxy.class);
-	
-	
-	public List<User> getUsers(String tenantId, boolean lazy, AuthorizationToken authenticationToken) {
-		try {
-			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
-			Assert.notNull(authenticationToken, "Provide a valid authentication token");
-			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
-			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
-			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/users";
-			if (lazy) suri = suri + "_lazy";
-			URI uri = new URI(suri);
-			ResponseEntity<User[]> response = messageClient.getMessage(uri, User[].class, MediaType.APPLICATION_XML, authenticationToken);
-			User[] collection = response.getBody();
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Located " + collection.length + " user(s)");
-			} else {
-				log.info("There was a problem getting supersede users for tenant " + tenantId);
-			}
-			return Arrays.asList(collection);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+
+	public List<User> getUsers(String tenantId, boolean lazy, AuthorizationToken authenticationToken)
+			throws URISyntaxException {
+
+		Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
+		Assert.notNull(authenticationToken, "Provide a valid authentication token");
+		Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+		Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
+		String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/users";
+		if (lazy)
+			suri = suri + "_lazy";
+		URI uri = new URI(suri);
+
+		return getObjectsListForType(User[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 	}
 	
 	public User getUser(String tenantId, int userId, boolean lazy, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
-			Assert.isTrue(userId>=-1, "User id cannot be unasigned");
+			Assert.isTrue(userId >= -1, "User id cannot be unasigned");
 			Assert.notNull(authenticationToken, "Provide a valid authentication token");
 			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/users";
-			if (lazy) suri = suri + "_lazy";
+			if (lazy)
+				suri = suri + "_lazy";
 			suri = suri + "/" + userId;
 			URI uri = new URI(suri);
-			ResponseEntity<User> response = messageClient.getMessage(uri, User.class, MediaType.APPLICATION_XML, authenticationToken);
-			User user = response.getBody();
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				if (user.getUser_id() == userId & user.getUsername()!= null){
-					log.info("Located user: " + user.getUsername());
-				}else{
-					log.info("User for id: " + userId + " and tenant: " + tenantId + " was not located");
-					user = null;
-				}
-			} else {
-				log.info("There was a problem getting the supersede user for id: " + userId + " and tenant: " + tenantId);
-			}
-			return user;
-		} catch (Exception e) {
+		
+			return getObjectForType(User.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
+		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -104,14 +80,8 @@ public class FEDataStoreProxy{
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications";
 			URI uri = new URI(suri);
-			ResponseEntity<Notification[]> response = messageClient.getMessage(uri, Notification[].class, MediaType.APPLICATION_XML, authenticationToken);
-			Notification[] collection = response.getBody();
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Located " + collection.length + " notifications(s)");
-			} else {
-				log.info("There was a problem getting supersede notifications for tenant " + tenantId);
-			}
-			return Arrays.asList(collection);
+			
+			return getObjectsListForType(Notification[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -121,31 +91,20 @@ public class FEDataStoreProxy{
 	public Notification getNotification(String tenantId, int notificationId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
-			Assert.isTrue(notificationId>-1, "Notification id cannot be unasigned");
+			Assert.isTrue(notificationId > -1, "Notification id cannot be unasigned");
 			Assert.notNull(authenticationToken, "Provide a valid authentication token");
 			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications/" + notificationId;
 			URI uri = new URI(suri);
-			ResponseEntity<Notification> response = messageClient.getMessage(uri, Notification.class, MediaType.APPLICATION_XML, authenticationToken);
-			Notification notification = response.getBody();
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				if (notification.getNotification_id() == notificationId){
-					log.info("Located notification: " + notification.getNotification_id());
-				}else{
-					log.info("Notification for id: " + notificationId + " and tenant: " + tenantId + " was not located");
-					notification = null;
-				}
-			} else {
-				log.info("There was a problem getting the supersede notification for id: " + notificationId + " and tenant: " + tenantId);
-			}
-			return notification;
+			
+			return getObjectForType(Notification.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-	}
-	
+	}	
+			
 	public List<Profile> getProfiles(String tenantId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
@@ -154,14 +113,8 @@ public class FEDataStoreProxy{
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles";
 			URI uri = new URI(suri);
-			ResponseEntity<Profile[]> response = messageClient.getMessage(uri, Profile[].class, MediaType.APPLICATION_XML, authenticationToken);
-			Profile[] collection = response.getBody();
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				log.info("Located " + collection.length + " profile(s)");
-			} else {
-				log.info("There was a problem getting supersede profile for tenant " + tenantId);
-			}
-			return Arrays.asList(collection);
+			
+			return getObjectsListForType(Profile[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -171,25 +124,14 @@ public class FEDataStoreProxy{
 	public Profile getProfile(String tenantId, int profileId, AuthorizationToken authenticationToken) {
 		try {
 			Assert.isTrue(tenantId == null || !tenantId.equals(""), "Tenant id cannot be unasigned");
-			Assert.isTrue(profileId>=-1, "Profile id cannot be unasigned");
+			Assert.isTrue(profileId >= -1, "Profile id cannot be unasigned");
 			Assert.notNull(authenticationToken, "Provide a valid authentication token");
 			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles/" + profileId;
 			URI uri = new URI(suri);
-			ResponseEntity<Profile> response = messageClient.getMessage(uri, Profile.class, MediaType.APPLICATION_XML, authenticationToken);
-			Profile profile = response.getBody();
-			if (response.getStatusCode().equals(HttpStatus.OK)) {
-				if (profile.getProfile_id() == profileId){
-					log.info("Located profile: " + profile.getName());
-				}else{
-					log.info("Profile for id: " + profileId + " and tenant: " + tenantId + " was not located");
-					profile = null;
-				}
-			} else {
-				log.info("There was a problem getting the supersede profile for id: " + profileId + " and tenant: " + tenantId);
-			}
-			return profile;
+			
+			return getObjectForType(Profile.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

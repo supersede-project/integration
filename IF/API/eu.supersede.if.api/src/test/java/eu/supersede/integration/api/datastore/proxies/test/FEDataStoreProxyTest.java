@@ -90,7 +90,7 @@ public class FEDataStoreProxyTest {
     @Test
     public void testGetNotification() throws Exception{
     	String tenandId = "atos";
-    	int notificationId = 1;
+    	int notificationId = 3342;
     	Notification notification = proxy.getNotification(tenandId, notificationId, token);
 //    	Assert.notNull(notification);
     }
