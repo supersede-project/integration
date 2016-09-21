@@ -38,7 +38,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class DynAdapDMProxy  {
-	private IFMessageClient messageClient = new IFMessageClient();
+	private IFMessageClient messageClient = IFMessageClient.getInstance();
 	private final static String DM_ENDPOINT = IntegrationProperty.getProperty("dm.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(DynAdapDMProxy.class);
 	

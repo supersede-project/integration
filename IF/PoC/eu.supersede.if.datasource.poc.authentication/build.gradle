@@ -10,9 +10,27 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url 'http://supersede.es.atos.net:10080/artifactory/libs-snapshot'
+            name = 'maven-supersede-snapshot'
+	    credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+	    }
+        }
+	maven {
+            url 'http://supersede.es.atos.net:10080/artifactory/libs-release'
+            name = 'maven-supersede-release'
+	    credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+	    }
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
+	//Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
     }
 }
 
@@ -28,6 +46,8 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     //jcenter()
     mavenCentral()
+    add buildscript.repositories.getByName ("maven-supersede-snapshot")
+    add buildscript.repositories.getByName ("maven-supersede-release")
 }
 
 configurations {
@@ -58,7 +78,9 @@ dependencies {
     
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile project(':eu.supersede.if.api')
+    compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.tenant.mgt.stub', version: '4.2.0')
+    compile 'eu.supersede.if:eu.supersede.if.api:1.0.0-SNAPSHOT'
+    //compile project(':eu.supersede.if.api')
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
 

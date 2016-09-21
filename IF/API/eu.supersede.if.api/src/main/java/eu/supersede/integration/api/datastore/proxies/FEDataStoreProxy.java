@@ -34,6 +34,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 
+
 public class FEDataStoreProxy<T> extends IFServiceProxy<T> {
 	private final static String SUPERSEDE_FE_DS_ENDPOINT = IntegrationProperty.getProperty("fe.datastore.endpoint");
 

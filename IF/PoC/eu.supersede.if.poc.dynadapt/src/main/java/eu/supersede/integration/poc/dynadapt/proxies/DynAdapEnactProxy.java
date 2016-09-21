@@ -22,23 +22,14 @@ package eu.supersede.integration.poc.dynadapt.proxies;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.util.concurrent.ListenableFutureAdapter;
-import org.springframework.util.concurrent.ListenableFutureCallback;
-import org.springframework.web.client.AsyncRestTemplate;
 
 import eu.supersede.integration.api.security.types.AuthorizationToken;
-import eu.supersede.integration.poc.dynadapt.services.iDynAdaptEnact;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationDecision;
 import eu.supersede.integration.poc.dynadapt.types.AdaptationEnactment;
 import eu.supersede.integration.poc.dynadapt.types.TopRankedAdaptationDecision;
@@ -46,7 +37,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class DynAdapEnactProxy{
-	private IFMessageClient messageClient = new IFMessageClient();
+	private IFMessageClient messageClient = IFMessageClient.getInstance();
 	private final static String ENACT_ENDPOINT = IntegrationProperty.getProperty("enactment.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(DynAdapEnactProxy.class);
 	

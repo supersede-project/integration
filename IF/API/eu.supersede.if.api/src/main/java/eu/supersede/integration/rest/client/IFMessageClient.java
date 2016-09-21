@@ -27,20 +27,40 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
-import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFMessageClient {
-	private RestTemplate restTemplate = new RestTemplate();
+//	private RestTemplate restTemplate = new RestTemplate();
+	RestTemplate restTemplate;
 	private AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
 //	private final static String AUTH_TOKEN = IntegrationProperty.getProperty("is.authorization.token");
+	private static IFMessageClient instance = new IFMessageClient();
+	
+	private IFMessageClient (){
+		ObjectMapper objectMapper = new ObjectMapper();
+		// configure your ObjectMapper here
+		objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
 
+		restTemplate = new RestTemplate();    
+
+		MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
+		messageConverter.setPrettyPrint(false);
+		messageConverter.setObjectMapper(objectMapper);
+		restTemplate.getMessageConverters().removeIf(m -> m.getClass().getName().equals(MappingJackson2HttpMessageConverter.class.getName()));
+		restTemplate.getMessageConverters().add(messageConverter);
+	}
+	
+	public static IFMessageClient getInstance(){
+		return instance;
+	}
 	
 	// SYNCRONOUS MESSAGING
 	

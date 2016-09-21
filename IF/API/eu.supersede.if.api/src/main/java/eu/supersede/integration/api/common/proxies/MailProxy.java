@@ -35,7 +35,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public class MailProxy implements iMail {
-	private IFMessageClient messageClient = new IFMessageClient();
+	private IFMessageClient messageClient = IFMessageClient.getInstance();
 	private final static String MAIL_ENDPOINT = IntegrationProperty.getProperty("mail.endpoint");
 	private static final Logger log = LoggerFactory.getLogger(MailProxy.class);
 	
