@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/replan" name="SupersedeReplanController" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/projects/{project_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Update project by Id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/features">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get features of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/features/{feature_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get feature by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/projects/{project_id}/features/{feature_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Update feature by id for project by Id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/features/{feature_id}/skills">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add skills for feature by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/features/{feature_id}/skills?*">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete skilss of feature by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/features/{feature_id}/dependencies">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add dependencies for feature by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/features/{feature_id}/dependencies?*">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete dependencies of feature by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/releases">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get releases of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/releases">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add releases for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Update release by Id for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete release by Id for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}/resources">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add resources by ids for release by id for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}/resources?*">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete resources by Ids for release by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}/features">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get features of release by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}/features">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add features by ids for release by id for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}/features?*">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete features by Ids for release by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}/plan">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get plans of release by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}/plan">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Cancel last plan of release by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/skills">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get skills of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/skills">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add skill for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/projects/{project_id}/skills/{skill_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Update skill by Id for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/skills/{skill_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete skill by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/resources">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get resources of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/resources">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add resource for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/projects/{project_id}/resources/{resource_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Update resource by Id for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/resources/{resources_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete resource by Id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/resources/{resource_id}/skills">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add skills by Ids for resource by id for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/projects/{project_id}/resources/{resource_id}/skills?*">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Delete skills by Ids for resource by id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+</api>
