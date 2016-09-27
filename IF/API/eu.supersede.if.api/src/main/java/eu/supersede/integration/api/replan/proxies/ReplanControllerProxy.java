@@ -111,14 +111,7 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 	@Override
 	public Feature addSkillsOfFeatureByIdOfProjectById(List<Skill> skills, int featureId, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/" + featureId + "/skills");
-		
 		JSONArray jsonArray = createJSONArrayOfIdentifiers(skills, "skill_id");
-//		JSONArray jsonArray = new JSONArray();
-//		for (Skill skill : skills) {
-//			JSONObject jsonItem = new JSONObject();
-//			jsonItem.put("skill_id", skill.getId());
-//			jsonArray.put(jsonItem);
-//		}
 		
 		return postJSONStringForReturnType(Feature.class, jsonArray.toString(), uri, HttpStatus.OK);
 	}
@@ -126,15 +119,8 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 	@Override
 	public Feature addDependenciesOfFeatureByIdOfProjectById(List<Feature> features, int featureId, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/" + featureId + "/dependencies");
-		
 		JSONArray jsonArray = createJSONArrayOfIdentifiers(features, "feature_id");
-//		JSONArray jsonArray = new JSONArray();
-//		for (Feature feature : features) {
-//			JSONObject jsonItem = new JSONObject();
-//			jsonItem.put("feature_id", feature.getId());
-//			jsonArray.put(jsonItem);
-//		}
-		
+
 		return postJSONStringForReturnType(Feature.class, jsonArray.toString(), uri, HttpStatus.OK);
 	}
 	
@@ -148,15 +134,8 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 	@Override
 	public Release addResourcesOfReleaseByIdOfProjectById(List<Resource> resources, int releaseId, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + releaseId + "/resources");
-		
 		JSONArray jsonArray = createJSONArrayOfIdentifiers(resources, "resource_id");
-//		JSONArray jsonArray = new JSONArray();
-//		for (Resource resource : resources) {
-//			JSONObject jsonItem = new JSONObject();
-//			jsonItem.put("resource_id", resource.getId());
-//			jsonArray.put(jsonItem);
-//		}
-		
+
 		return postJSONStringForReturnType(Release.class, jsonArray.toString(), uri, HttpStatus.OK);
 	}
 	
@@ -165,12 +144,6 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + releaseId + "/features");
 		
 		JSONArray jsonArray = createJSONArrayOfIdentifiers(features, "feature_id");
-//		JSONArray jsonArray = new JSONArray();
-//		for (Feature feature : features) {
-//			JSONObject jsonItem = new JSONObject();
-//			jsonItem.put("feature_id", feature.getId());
-//			jsonArray.put(jsonItem);
-//		}
 		
 		return postJSONString(jsonArray.toString(), uri, HttpStatus.OK);
 	}
@@ -194,12 +167,6 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/resources/" + resourceId + "/skills");
 		
 		JSONArray jsonArray = createJSONArrayOfIdentifiers(skills, "skill_id");
-//		JSONArray jsonArray = new JSONArray();
-//		for (Skill skill : skills) {
-//			JSONObject jsonItem = new JSONObject();
-//			jsonItem.put("skill_id", skill.getId());
-//			jsonArray.put(jsonItem);
-//		}
 		
 		return postJSONStringForReturnType(Resource.class, jsonArray.toString(), uri, HttpStatus.OK);
 	}
@@ -208,14 +175,6 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 	public Feature deleteSkillsOfFeatureByIdOfProjectById(List<Skill> skills, int featureId, int projectId) throws Exception {
 		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/" + featureId + "/skills?";
 		uriString = addURIQueryArray(uriString, skills, "skill_id");
-//		boolean queryStarted = false;
-//		for (Skill skill: skills){
-//			if (queryStarted){
-//				uriString = uriString + "&";
-//			}
-//			uriString = uriString + "skill_id[]=" + skill.getId();
-//			queryStarted = true;
-//		}
 
 		return deleteUriResourceForReturnType(Feature.class, new URI(uriString), HttpStatus.OK);
 	}
@@ -224,14 +183,6 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 	public Feature deleteDependenciesOfFeatureByIdOfProjectById(List<Feature> features, int featureId, int projectId) throws Exception {
 		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/" + featureId + "/dependencies?";
 		uriString = addURIQueryArray(uriString, features, "feature_id");
-//		boolean queryStarted = false;
-//		for (Feature feature: features){
-//			if (queryStarted){
-//				uriString = uriString + "&";
-//			}
-//			uriString = uriString + "feature_id[]=" + feature.getId();
-//			queryStarted = true;
-//		}
 
 		return deleteUriResourceForReturnType(Feature.class, new URI(uriString), HttpStatus.OK);
 	}
@@ -246,14 +197,6 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 	public Release deleteResourcesOfReleaseByIdOfProjectById(List<Resource> resources, int releaseId, int projectId) throws Exception {
 		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + releaseId + "/resources?";
 		uriString = addURIQueryArray(uriString, resources, "ResourceId");
-//		boolean queryStarted = false;
-//		for (Resource resource: resources){
-//			if (queryStarted){
-//				uriString = uriString + "&";
-//			}
-//			uriString = uriString + "ResourceId[]=" + resource.getId();
-//			queryStarted = true;
-//		}
 
 		return deleteUriResourceForReturnType(Release.class, new URI(uriString), HttpStatus.OK);
 	}
