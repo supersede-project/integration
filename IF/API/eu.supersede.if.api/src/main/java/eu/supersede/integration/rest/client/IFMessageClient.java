@@ -208,6 +208,14 @@ public class IFMessageClient {
         return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
     }
 	
+	public <T> ResponseEntity<T> deleteJsonMessage(URI uri, Class<T> clazz) {
+		HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Accept", "*/*");
+    	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
+        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, clazz);
+	}
+	
 	public ResponseEntity<String> deleteMessage (URI uri, AuthorizationToken token){
     	RequestEntity request = (RequestEntity) RequestEntity.delete(uri).header("Authorization", "Bearer " + token.getAccessToken());
         return restTemplate.exchange(request, String.class);

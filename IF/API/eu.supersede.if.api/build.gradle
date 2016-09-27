@@ -102,6 +102,9 @@ dependencies {
 	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.9.0.0'
 	compile group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.9.0.0'
 	compile group: 'org.json', name: 'json', version: '20160212'
+	
+	//JSON Library
+	compile group: 'org.json', name: 'json', version: '20160212'
 }
 
 configurations.all {

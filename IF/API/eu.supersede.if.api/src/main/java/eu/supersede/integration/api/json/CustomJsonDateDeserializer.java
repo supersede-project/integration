@@ -55,7 +55,7 @@ public class CustomJsonDateDeserializer extends JsonDeserializer<Date>
 //    }
     
 	private String[] dateFormats = 
-			new String[]{"yyyy-MM-dd+HH:mm", "yyyy-MM-dd HH:mm:ss"};
+			new String[]{"yyyy-MM-dd+HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"};
 	
     @Override
     public Date deserialize(JsonParser jsonparser,

@@ -20,6 +20,7 @@ public abstract class IFServiceProxy<T> {
 
 	public <T> List<T> getJSONObjectsListForType(Class<T[]> type, URI uri, HttpStatus expectedStatus) {
 		try {
+			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T[]> response = messageClient.getJSONMessage(uri, type);
 			T[] objects = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
@@ -36,6 +37,7 @@ public abstract class IFServiceProxy<T> {
 	
 	public <T> List<T> getObjectsListForType(Class<T[]> type, URI uri, HttpStatus expectedStatus, MediaType objectMediaType, AuthorizationToken authenticationToken) {
 		try {
+			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T[]> response = messageClient.getMessage(uri, type, objectMediaType, authenticationToken);
 			T[] objects = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
@@ -52,6 +54,7 @@ public abstract class IFServiceProxy<T> {
 	
 	public <T> T getJSONObjectForType(Class<T> type, URI uri, HttpStatus expectedStatus) {
 		try {
+			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T> response = messageClient.getJSONMessage(uri, type);
 			T object = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
@@ -68,6 +71,7 @@ public abstract class IFServiceProxy<T> {
 	
 	public <T> T getObjectForType(Class<T> type, URI uri, HttpStatus expectedStatus, MediaType objectMediaType, AuthorizationToken authenticationToken) {
 		try {
+			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T> response = messageClient.getMessage(uri, type, objectMediaType, authenticationToken);
 			T object = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
@@ -86,6 +90,7 @@ public abstract class IFServiceProxy<T> {
 		T result = null;
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T> response = 
 					messageClient.postJsonMessage(object, uri, object.getClass());
 			result = response.getBody();
@@ -106,6 +111,7 @@ public abstract class IFServiceProxy<T> {
 		boolean result = false;
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<Boolean> response = 
 					messageClient.postJsonMessage(object, uri, object.getClass());
 			if (response.getStatusCode().equals(expectedStatus)) {
@@ -125,6 +131,7 @@ public abstract class IFServiceProxy<T> {
 		T result = null;
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T> response = 
 					messageClient.putJsonMessage(object, uri, object.getClass());
 			result = response.getBody();
@@ -138,6 +145,86 @@ public abstract class IFServiceProxy<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public <T> T postJSONStringForReturnType(Class<T> type, String jsonInput, URI uri, HttpStatus expectedStatus) throws Exception {
+		T result = null;
+		try {
+			Assert.notNull(jsonInput, "Provide a valid json object");
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<T> response = 
+					messageClient.postJsonMessage(jsonInput, uri, type);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + jsonInput);
+			} else {
+				log.info("There was a problem inserting JSON object " + jsonInput + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean postJSONString(String jsonInput, URI uri, HttpStatus expectedStatus) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(jsonInput, "Provide a valid json object");
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<Boolean> response = 
+					messageClient.postJsonMessage(jsonInput, uri, jsonInput.getClass());
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + jsonInput);
+				result = true;
+			} else {
+				log.info("There was a problem inserting JSON object " + jsonInput + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public <T> T deleteUriResourceForReturnType(Class<T> type, URI uri, HttpStatus expectedStatus) throws Exception {
+		T result = null;
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<T> response = 
+					messageClient.deleteJsonMessage(uri, type);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully delete in uri " + uri);
+			} else {
+				log.info("There was a problem deleting in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean deleteUriResource(URI uri, HttpStatus expectedStatus) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<String> response = 
+					messageClient.deleteJsonMessage(uri);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully delete in uri " + uri);
+				result = true;
+			} else {
+				log.info("There was a problem deleting in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 
