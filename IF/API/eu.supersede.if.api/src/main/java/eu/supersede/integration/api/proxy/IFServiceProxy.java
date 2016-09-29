@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -107,6 +108,28 @@ public abstract class IFServiceProxy<T> {
 		}
 	}
 	
+	public <T> T insertandReturnJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		T result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			Assert.hasText(token, "Provide a valid token");
+			ResponseEntity<T> response = 
+					messageClient.postJsonMessage(object, uri, object.getClass(), token);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public <T> boolean insertJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
 		boolean result = false;
 		try {
@@ -124,6 +147,49 @@ public abstract class IFServiceProxy<T> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public <T> String postJSONObjectAndReturnValueForJsonLabel(T object, URI uri, HttpStatus expectedStatus, String label) throws Exception {
+		String result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<String> response = 
+					messageClient.postJsonMessage(object, uri, object.getClass());
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully posted JSON object " + object);
+				JSONObject json = new JSONObject(response.getBody());
+				result = json.getString(label);
+			} else {
+				log.info("There was a problem posting JSON object " + result + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public <T> T updateJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		T result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			Assert.hasText(token, "Provide a valid token");
+			ResponseEntity<T> response = 
+					messageClient.putJsonMessage(object, uri, object.getClass(), token);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully updated JSON object " + object);
+			} else {
+				log.info("There was a problem updating JSON object " + result + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

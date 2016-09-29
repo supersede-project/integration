@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
@@ -53,6 +54,9 @@ public class Configuration extends OrchestratorItem<Configuration> {
 	@DbAttribute("applications_id")
 	private transient Integer applicationId;
 	
+	@DbAttribute("user_groups_id")
+	private transient Integer userGroupsId;
+	
 	public Configuration(){
 		mechanisms = new ArrayList<>();
 	}
@@ -65,6 +69,7 @@ public class Configuration extends OrchestratorItem<Configuration> {
 		this.name = applicationName;
 	}
 
+	@JsonProperty ("mechanisms")
 	public List<FeedbackMechanism> getFeedbackMechanisms() {
 		if (mechanisms == null)
 			mechanisms = new ArrayList<>();

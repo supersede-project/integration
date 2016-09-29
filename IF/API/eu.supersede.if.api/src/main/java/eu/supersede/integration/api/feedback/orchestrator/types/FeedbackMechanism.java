@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.uzh.ifi.feedback.library.rest.Service.IDbItem;
 import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
@@ -129,11 +130,11 @@ public class FeedbackMechanism extends OrchestratorItem<FeedbackMechanism> {
 		this.id = id;
 	}
 
-	public Integer getConfigurationsid() {
+	public Integer getConfigurationsId() {
 		return configurationsId;
 	}
 
-	public void setConfigurationsid(Integer configurationsid) {
+	public void setConfigurationsId(Integer configurationsid) {
 		this.configurationsId = configurationsid;
 	}
 }

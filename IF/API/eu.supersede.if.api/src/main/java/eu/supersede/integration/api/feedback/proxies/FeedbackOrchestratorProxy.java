@@ -3,6 +3,7 @@ package eu.supersede.integration.api.feedback.proxies;
 import java.net.URI;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -35,9 +36,9 @@ public class FeedbackOrchestratorProxy <T> extends IFServiceProxy<T> implements 
 	}
 
 	@Override
-	public Application insertApplication(Application app) throws Exception {
+	public Application insertApplication(Application app, String token) throws Exception {
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications");
-		return insertandReturnJSONObject(app, uri, HttpStatus.OK);
+		return insertandReturnJSONObject(app, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -81,11 +82,11 @@ public class FeedbackOrchestratorProxy <T> extends IFServiceProxy<T> implements 
 	}
 
 	@Override
-	public GeneralConfiguration updateGeneralConfigurations(GeneralConfiguration generalConfiguration)
+	public GeneralConfiguration updateGeneralConfigurations(GeneralConfiguration generalConfiguration, String token)
 			throws Exception {
 		Assert.notNull(generalConfiguration, "Provide a valid general configuration");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/general_configurations");
-		return updateJSONObject(generalConfiguration, uri, HttpStatus.OK);
+		return updateJSONObject(generalConfiguration, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -110,19 +111,19 @@ public class FeedbackOrchestratorProxy <T> extends IFServiceProxy<T> implements 
 
 	@Override
 	public FeedbackMechanism insertFeedbackMechanismForConfigurationById(Integer id,
-			FeedbackMechanism feedbackMechanism) throws Exception {
+			FeedbackMechanism feedbackMechanism, String token) throws Exception {
 		Assert.notNull(feedbackMechanism, "Provide a valid feedback mechanism");
 		Assert.notNull(id, "Provide a valid configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/configurations/" + id + "/mechanisms");
-		return insertandReturnJSONObject(feedbackMechanism, uri, HttpStatus.OK);
+		return insertandReturnJSONObject(feedbackMechanism, uri, HttpStatus.OK, token);
 	}
 
 	@Override
 	public FeedbackMechanism updateFeedbackMechanismForConfigurationById(Integer id,
-			FeedbackMechanism feedbackMechanism) throws Exception {
+			FeedbackMechanism feedbackMechanism, String token) throws Exception {
 		Assert.notNull(feedbackMechanism, "Provide a valid feedback mechanism");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/configurations/" + id + "/mechanisms");
-		return updateJSONObject(feedbackMechanism, uri, HttpStatus.OK);
+		return updateJSONObject(feedbackMechanism, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -154,27 +155,38 @@ public class FeedbackOrchestratorProxy <T> extends IFServiceProxy<T> implements 
 	
 	@Override
 	public FeedbackParameter insertFeedbackParameterForGeneralConfigurationById(Integer id,
-			FeedbackParameter feedbackParameter) throws Exception {
+			FeedbackParameter feedbackParameter, String token) throws Exception {
 		Assert.notNull(feedbackParameter, "Provide a valid feedback parameter");
 		Assert.notNull(id, "Provide a valid general configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/general_configurations/" + id + "/parameters");
-		return insertandReturnJSONObject(feedbackParameter, uri, HttpStatus.OK);
+		return insertandReturnJSONObject(feedbackParameter, uri, HttpStatus.OK, token);
 	}
 
 	@Override
 	public FeedbackParameter insertFeedbackParameterForFeedbackMechanismById(Integer id,
-			FeedbackParameter feedbackParameter) throws Exception {
+			FeedbackParameter feedbackParameter, String token) throws Exception {
 		Assert.notNull(feedbackParameter, "Provide a valid feedback parameter");
 		Assert.notNull(id, "Provide a valid feedback mechanism id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/mechanisms/" + id + "/parameters");
-		return insertandReturnJSONObject(feedbackParameter, uri, HttpStatus.OK);
+		return insertandReturnJSONObject(feedbackParameter, uri, HttpStatus.OK, token);
 	}
 
 	@Override
-	public FeedbackParameter updateFeedbackParameter(FeedbackParameter feedbackParameter) throws Exception {
+	public FeedbackParameter updateFeedbackParameter(FeedbackParameter feedbackParameter, String token) throws Exception {
 		Assert.notNull(feedbackParameter, "Provide a valid feedback parameter");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/parameters");
-		return updateJSONObject(feedbackParameter, uri, HttpStatus.OK);
+		return updateJSONObject(feedbackParameter, uri, HttpStatus.OK, token);
+	}
+	
+	@Override
+	public String authenticate (String user, String password) throws Exception{
+		Assert.hasText(user, "Provide a valid user");
+		Assert.hasText(user, "Provide a valid password");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "authenticate");
+		JSONObject accountJson = new JSONObject();
+		accountJson.put("name", user);
+		accountJson.put("password", password);
+		return postJSONObjectAndReturnValueForJsonLabel(accountJson.toString(), uri, HttpStatus.OK, "token");
 	}
 
 }

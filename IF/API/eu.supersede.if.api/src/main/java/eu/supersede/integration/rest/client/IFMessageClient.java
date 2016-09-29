@@ -102,6 +102,15 @@ public class IFMessageClient {
 		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
+	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, Class clazz, String token) {
+		RequestEntity<S> request = RequestEntity.post(uri)
+//				.accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("Authorization", token)
+				.body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
+	}
+	
 	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_XML)
@@ -126,6 +135,15 @@ public class IFMessageClient {
 //				accept(MediaType.APPLICATION_JSON).
 				contentType(MediaType.APPLICATION_JSON).
 //				header("Authorization", "Bearer " + token.getAccessToken()).
+				body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
+	}
+	
+	public <T, S> ResponseEntity<T> putJsonMessage(S object, URI uri, Class clazz, String token) {
+		RequestEntity<S> request = RequestEntity.put(uri).
+//				accept(MediaType.APPLICATION_JSON).
+				contentType(MediaType.APPLICATION_JSON).
+				header("Authorization", token).
 				body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}

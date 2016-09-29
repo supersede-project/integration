@@ -2,6 +2,7 @@ package eu.supersede.integration.api.feedback.proxies.test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,11 +19,14 @@ import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
 public class FeedbackOrchestratorProxyTest {
 //	private static final Logger log = LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
 	private FeedbackOrchestratorProxy proxy;
-	
+	private String token;
 	
     @Before
     public void setup() throws Exception {
         proxy = new FeedbackOrchestratorProxy();
+        String user = "api_user";
+    	String password = "password";
+    	token = proxy.authenticate(user, password);
     }
 
     @Test
@@ -41,13 +45,13 @@ public class FeedbackOrchestratorProxyTest {
     @Test
     public void testInsertApplication() throws Exception{
     	Application app = createApplication();
-    	Application result = proxy.insertApplication(app);
+    	Application result = proxy.insertApplication(app, token);
     	Assert.notNull(result);
     }
     
     private Application createApplication() {
     	Application app = new Application ();
-    	app.setName("Test Website 11");
+    	app.setName("Test Website " + new Random().nextInt(1000));
     	app.setState(1);
     	
     	List<FeedbackParameter> fps = new ArrayList<>();
@@ -115,7 +119,7 @@ public class FeedbackOrchestratorProxyTest {
     @Test
     public void testUpdateGeneralConfigurations() throws Exception{
     	GeneralConfiguration generalConfiguration = updateGeneralConfiguration();
-		GeneralConfiguration result = proxy.updateGeneralConfigurations(generalConfiguration);
+		GeneralConfiguration result = proxy.updateGeneralConfigurations(generalConfiguration, token);
     	Assert.notNull(result);
     }
     
@@ -159,7 +163,7 @@ public class FeedbackOrchestratorProxyTest {
     @Test
     public void testInsertFeedbackMechanismForConfigurationById() throws Exception{
     	FeedbackMechanism fm = createFeedbackMechanism();
-    	FeedbackMechanism result = proxy.insertFeedbackMechanismForConfigurationById(1, fm);
+    	FeedbackMechanism result = proxy.insertFeedbackMechanismForConfigurationById(1, fm, token);
     	Assert.notNull(result);
     }
     
@@ -200,7 +204,7 @@ public class FeedbackOrchestratorProxyTest {
     	fm.getParameters().get(0).setId(76);
     	fm.getParameters().get(0).setValue(Double.valueOf(20.0));
     	fm.getParameters().remove(1);
-    	FeedbackMechanism result = proxy.updateFeedbackMechanismForConfigurationById(1, fm);
+    	FeedbackMechanism result = proxy.updateFeedbackMechanismForConfigurationById(1, fm, token);
     	Assert.notNull(result);
     }
     
@@ -234,7 +238,7 @@ public class FeedbackOrchestratorProxyTest {
     @Test
     public void testInsertFeedbackParameterForGeneralConfigurationById() throws Exception{
     	FeedbackParameter fp = createFeedbackParameter("test", "test");
-    	FeedbackParameter result = proxy.insertFeedbackParameterForGeneralConfigurationById(1, fp);
+    	FeedbackParameter result = proxy.insertFeedbackParameterForGeneralConfigurationById(1, fp, token);
     	Assert.notNull(result);
     }
     
@@ -248,7 +252,7 @@ public class FeedbackOrchestratorProxyTest {
 	@Test
     public void testInsertFeedbackParameterForFeedbackMechanismById() throws Exception{
 		FeedbackParameter fp = createFeedbackParameter("test", "test");
-    	FeedbackParameter result = proxy.insertFeedbackParameterForFeedbackMechanismById(1, fp);
+    	FeedbackParameter result = proxy.insertFeedbackParameterForFeedbackMechanismById(1, fp, token);
     	Assert.notNull(result);
     }
     
@@ -257,8 +261,16 @@ public class FeedbackOrchestratorProxyTest {
     	FeedbackParameter fp = createFeedbackParameter("test", "test");
     	fp.setId(10);
     	fp.setValue(Double.valueOf(100.0));
-    	FeedbackParameter result = proxy.updateFeedbackParameter(fp);
+    	FeedbackParameter result = proxy.updateFeedbackParameter(fp, token);
     	Assert.notNull(result);
+    }
+    
+    @Test
+    public void testAuthenticate() throws Exception{
+    	String user = "api_user";
+    	String password = "password";
+    	String token = proxy.authenticate(user, password);
+    	Assert.notNull(token);
     }
 
 }
