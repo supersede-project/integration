@@ -17,7 +17,7 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.common.proxies;
+package eu.supersede.integration.api.mail.proxies;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import eu.supersede.integration.api.common.types.Email;
+import eu.supersede.integration.api.mail.types.Email;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;

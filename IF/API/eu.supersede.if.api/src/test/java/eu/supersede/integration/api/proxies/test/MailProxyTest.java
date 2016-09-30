@@ -24,8 +24,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.supersede.integration.api.common.proxies.MailProxy;
-import eu.supersede.integration.api.common.types.Email;
+import eu.supersede.integration.api.mail.proxies.MailProxy;
+import eu.supersede.integration.api.mail.types.Email;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 

@@ -17,9 +17,9 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.common.proxies;
+package eu.supersede.integration.api.mail.proxies;
 
-import eu.supersede.integration.api.common.types.Email;
+import eu.supersede.integration.api.mail.types.Email;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
 public interface iMail {

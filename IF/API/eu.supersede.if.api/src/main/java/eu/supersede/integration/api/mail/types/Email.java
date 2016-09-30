@@ -17,7 +17,7 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.common.types;
+package eu.supersede.integration.api.mail.types;
 
 import java.util.Arrays;
 import java.util.List;
