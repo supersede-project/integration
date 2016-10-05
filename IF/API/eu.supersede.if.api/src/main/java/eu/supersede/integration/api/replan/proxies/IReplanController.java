@@ -3,6 +3,7 @@ package eu.supersede.integration.api.replan.proxies;
 import java.util.List;
 
 import eu.supersede.integration.api.replan.types.Feature;
+import eu.supersede.integration.api.replan.types.FeatureStatus;
 import eu.supersede.integration.api.replan.types.Plan;
 import eu.supersede.integration.api.replan.types.Project;
 import eu.supersede.integration.api.replan.types.Release;
@@ -12,6 +13,7 @@ import eu.supersede.integration.api.replan.types.Skill;
 public interface IReplanController {
 	Project getProjectById(int projectId) throws Exception;
 	List<Feature> getFeaturesOfProjectById (int projectId) throws Exception;
+	List<Feature> getFeaturesOfProjectById (int projectId, FeatureStatus status) throws Exception;
 	Feature getFeatureByIdOfProjectById(int featureId, int projectId) throws Exception;
 	List<Release> getReleasesOfProjectById(int projectId) throws Exception;
 	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int featureId, int projectId) throws Exception;
