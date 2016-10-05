@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import eu.supersede.integration.api.replan.proxies.IReplanController;
 import eu.supersede.integration.api.replan.proxies.ReplanControllerProxy;
 import eu.supersede.integration.api.replan.types.Feature;
+import eu.supersede.integration.api.replan.types.FeatureStatus;
 import eu.supersede.integration.api.replan.types.Plan;
 import eu.supersede.integration.api.replan.types.Project;
 import eu.supersede.integration.api.replan.types.Release;
@@ -39,6 +40,10 @@ public class ReplanControllerProxyTest {
     @Test
     public void testGetFeaturesOfProjectById() throws Exception{
     	List<Feature> features = proxy.getFeaturesOfProjectById(1);
+    	Assert.notNull(features);
+    	Assert.notEmpty(features);
+    	
+    	features = proxy.getFeaturesOfProjectById(1, FeatureStatus.PENDING);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     }

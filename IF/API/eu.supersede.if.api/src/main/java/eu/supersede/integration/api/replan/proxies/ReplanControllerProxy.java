@@ -15,6 +15,7 @@ import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackParamete
 import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.api.replan.types.Feature;
+import eu.supersede.integration.api.replan.types.FeatureStatus;
 import eu.supersede.integration.api.replan.types.Plan;
 import eu.supersede.integration.api.replan.types.Project;
 import eu.supersede.integration.api.replan.types.Release;
@@ -35,10 +36,18 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 		return getJSONObjectForType(Project.class, uri, HttpStatus.OK);
 	}
 
-
 	@Override
 	public List<Feature> getFeaturesOfProjectById(int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features");
+		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public List<Feature> getFeaturesOfProjectById(int projectId, FeatureStatus status) throws Exception {
+		String suri = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features";
+		if (status != null)
+			suri += "?status=" + status;
+		URI uri = new URI(suri);
 		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);
 	}
 	
