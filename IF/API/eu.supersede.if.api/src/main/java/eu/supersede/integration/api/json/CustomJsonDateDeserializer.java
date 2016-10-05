@@ -53,9 +53,10 @@ public class CustomJsonDateDeserializer extends JsonDeserializer<Date>
 //        
 //        return result;
 //    }
-    
-	private String[] dateFormats = 
-			new String[]{"yyyy-MM-dd+HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"};
+	
+	//NOTE: place generic formatter "yyyy-MM-dd" that only gets the date as the last element in the array
+	private static String[] dateFormats = 
+			new String[]{"yyyy-MM-dd+HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "yyyy-MM-dd"};
 	
     @Override
     public Date deserialize(JsonParser jsonparser,
@@ -91,5 +92,10 @@ public class CustomJsonDateDeserializer extends JsonDeserializer<Date>
     	sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
     	parsedDate = sdf.parse(inputDate);
     	System.out.println(format.format(parsedDate));
+    	
+    	//Created_at date deserializer for replan controller
+    	inputDate = "2016-10-05T15:49:19.303Z";
+    	parsedDate = new CustomJsonDateDeserializer().formatDate(inputDate, dateFormats, 0);
+    	System.out.println(parsedDate);
     }
 }
