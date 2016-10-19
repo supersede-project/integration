@@ -171,8 +171,8 @@ public class ReplanControllerProxyTest {
     	calendar.set(2016, 4, 30);
     	release.setDeadline(calendar.getTime());
     	
-    	release = proxy.addReleaseOfProjectById(release, 1);
-    	Assert.notNull(release);
+    	boolean result = proxy.addReleaseOfProjectById(release, 1);
+    	Assert.isTrue(result);
     }
     
     @Test
@@ -289,10 +289,13 @@ public class ReplanControllerProxyTest {
     	calendar.set(2016, 4, 30);
     	release.setDeadline(calendar.getTime());
     	
-    	release = proxy.addReleaseOfProjectById(release, 1);
-    	Assert.notNull(release);
+    	boolean result = proxy.addReleaseOfProjectById(release, 1);
+    	Assert.isTrue(result);
     	
-    	Boolean result = proxy.deleteReleaseByIdOfProjectById(release.getId(), 1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(1);
+    	release = releases.get(releases.size()-1);
+    	
+    	result = proxy.deleteReleaseByIdOfProjectById(release.getId(), 1);
     	Assert.isTrue(result);
     }
     

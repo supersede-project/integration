@@ -28,7 +28,7 @@ public interface IReplanController {
 	Feature addSkillsOfFeatureByIdOfProjectById(List<Skill> skills, int featureId, int projectId) throws Exception;
 	Feature addDependenciesOfFeatureByIdOfProjectById(List<Feature> features, int featureId, int projectId)
 			throws Exception;
-	Release addReleaseOfProjectById(Release release, int projectId) throws Exception;
+	boolean addReleaseOfProjectById(Release release, int projectId) throws Exception;
 	Release addResourcesOfReleaseByIdOfProjectById(List<Resource> resources, int releaseId, int projectId)
 			throws Exception;
 	boolean addFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, int projectId)

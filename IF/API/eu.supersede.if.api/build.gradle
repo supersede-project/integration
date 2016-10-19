@@ -11,7 +11,7 @@ buildscript {
     repositories {
         mavenCentral()
 	maven {
-            url 'http://${artifactory_contextUrl}:10080/artifactory/libs-snapshot'
+            url "${artifactory_contextUrl}/libs-snapshot"
             name = 'maven-supersede-snapshot'
 	    credentials {
                 username = "${artifactory_user}"
@@ -19,7 +19,7 @@ buildscript {
 	    }
         }
 	maven {
-            url 'http://${artifactory_contextUrl}:10080/artifactory/libs-release'
+            url "${artifactory_contextUrl}/libs-release"
             name = 'maven-supersede-release'
 	    credentials {
                 username = "${artifactory_user}"

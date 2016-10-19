@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="ReplanOptimizerEndpoint" xmlns="http://ws.apache.org/ns/synapse">
+  <address trace="disable" uri="http://192.168.145.13:8080/replan_optimizer/"/>
+</endpoint>

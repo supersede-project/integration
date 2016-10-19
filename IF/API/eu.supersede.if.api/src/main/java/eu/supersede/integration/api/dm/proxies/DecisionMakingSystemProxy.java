@@ -9,7 +9,7 @@ import eu.supersede.integration.api.dm.types.Alert;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
-public class DecisionMakingSystemProxy <T> extends IFServiceProxy<T> implements IDecisionMakingSystem {
+public class DecisionMakingSystemProxy <T, S> extends IFServiceProxy<T,S> implements IDecisionMakingSystem {
 	private final static String SUPERSEDE_DMGAME_ENDPOINT = IntegrationProperty.getProperty("dmgame.endpoint");
 	
 	@Override

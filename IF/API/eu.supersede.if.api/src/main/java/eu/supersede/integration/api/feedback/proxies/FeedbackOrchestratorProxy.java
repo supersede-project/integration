@@ -16,7 +16,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 //import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 
-public class FeedbackOrchestratorProxy <T> extends IFServiceProxy<T> implements IFeedbackOrchestrator {
+public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> implements IFeedbackOrchestrator {
 	private final static String SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT = 
 			IntegrationProperty.getProperty("feedback.orchestrator.endpoint");
 

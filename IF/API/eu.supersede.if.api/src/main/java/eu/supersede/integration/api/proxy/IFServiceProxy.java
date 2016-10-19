@@ -15,7 +15,7 @@ import org.springframework.util.Assert;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
-public abstract class IFServiceProxy<T> {
+public abstract class IFServiceProxy<T, S> {
 	private IFMessageClient messageClient = IFMessageClient.getInstance();
 	private static final Logger log = LoggerFactory.getLogger(IFServiceProxy.class);
 
@@ -116,6 +116,27 @@ public abstract class IFServiceProxy<T> {
 			Assert.hasText(token, "Provide a valid token");
 			ResponseEntity<T> response = 
 					messageClient.postJsonMessage(object, uri, object.getClass(), token);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public <T,S> S insertJSONObjectAndReturnAnotherType(T object, Class<S> returnedType, URI uri, HttpStatus expectedStatus) throws Exception {
+		S result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<S> response = 
+					messageClient.postJsonMessage(object, uri, returnedType);
 			result = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);

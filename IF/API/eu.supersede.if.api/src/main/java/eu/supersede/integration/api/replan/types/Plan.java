@@ -36,7 +36,7 @@ public class Plan extends ReplanIdentifiableObject{
 	}
 	public List<Job> getJobs() {
 		if (jobs == null)
-			return new ArrayList<>();
+			jobs = new ArrayList<>();
 		return jobs;
 	}
 	public void setJobs(List<Job> jobs) {

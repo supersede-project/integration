@@ -1,4 +1,4 @@
-package eu.supersede.integration.api.replan.types;
+package eu.supersede.integration.api.replan.optimizer.types;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 import eu.supersede.integration.api.json.CustomJsonDateSerializer;
 import eu.supersede.integration.api.json.ReplanFeatureReleaseJsonDeserializer;
+import eu.supersede.integration.api.replan.types.ReplanBaseObject;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Feature extends ReplanBaseObject{
@@ -20,13 +21,14 @@ public class Feature extends ReplanBaseObject{
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
 	@JsonSerialize(using = CustomJsonDateSerializer.class)
 	private Date deadline;
-	private Integer priority;
-	@JsonProperty ("required_skills")
+	private Priority priority;
+	@JsonProperty ("requiredSkills")
 	private List<Skill> requiredSkills;
-	@JsonProperty ("depends_on")
+	@JsonProperty ("dependsOn")
 	private List<Feature> dependencies;
 	@JsonProperty ("release")
 	private Integer releaseId;
+	private Double setDuration;
 	
 	public Feature()
 	{
@@ -52,10 +54,10 @@ public class Feature extends ReplanBaseObject{
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
-	public Integer getPriority() {
+	public Priority getPriority() {
 		return priority;
 	}
-	public void setPriority(Integer priority) {
+	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
 	public List<Skill> getRequiredSkills() {
@@ -84,6 +86,14 @@ public class Feature extends ReplanBaseObject{
 	@JsonDeserialize(using = ReplanFeatureReleaseJsonDeserializer.class)
 	public void setReleaseId(Integer releaseId) {
 		this.releaseId = releaseId;
+	}
+
+	public void setDuration(Double duration) {
+		this.setDuration = duration;
+	}
+	
+	public Double getDuration(){
+		return this.setDuration;
 	}
 	
 }

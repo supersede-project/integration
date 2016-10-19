@@ -39,7 +39,7 @@ public class Project extends ReplanBaseObject{
 	}
 	public List<Resource> getResources() {
 		if (resources == null)
-			return new ArrayList<>();
+			resources = new ArrayList<>();
 		
 		return resources;
 	}

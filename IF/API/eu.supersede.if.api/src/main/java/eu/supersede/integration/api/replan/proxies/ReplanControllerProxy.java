@@ -6,13 +6,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
-import org.springframework.util.Assert;
-
-import eu.supersede.integration.api.feedback.orchestrator.types.Application;
-import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
-import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackMechanism;
-import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackParameter;
-import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.api.replan.types.Feature;
 import eu.supersede.integration.api.replan.types.FeatureStatus;
@@ -25,7 +18,7 @@ import eu.supersede.integration.api.replan.types.Skill;
 //import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 
-public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IReplanController {
+public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implements IReplanController {
 	private final static String SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT = 
 			IntegrationProperty.getProperty("replan_controller.endpoint");
 
@@ -134,10 +127,10 @@ public class ReplanControllerProxy <T> extends IFServiceProxy<T> implements IRep
 	}
 	
 	@Override
-	public Release addReleaseOfProjectById(Release release, int projectId) throws Exception {
+	public boolean addReleaseOfProjectById(Release release, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases");
 		
-		return insertandReturnJSONObject(release, uri, HttpStatus.OK);
+		return insertJSONObject(release, uri, HttpStatus.ACCEPTED);
 	}
 	
 	@Override

@@ -1,9 +1,14 @@
-package eu.supersede.integration.api.replan.types;
+package eu.supersede.integration.api.replan.optimizer.types;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import eu.supersede.integration.api.replan.types.ReplanBaseObject;
+
 public class Resource extends ReplanBaseObject{
+	@JsonProperty ("weekAvailability")
 	private Double availability;
 	private List<Skill> skills;
 	

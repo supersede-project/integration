@@ -10,7 +10,7 @@ import eu.supersede.integration.api.feedback.repository.types.Feedback;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
-public class FeedbackRepositoryProxy <T> extends IFServiceProxy<T> implements IFeedbackRepository {
+public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implements IFeedbackRepository {
 	private final static String SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT = 
 			IntegrationProperty.getProperty("feedback.repository.endpoint");
 
