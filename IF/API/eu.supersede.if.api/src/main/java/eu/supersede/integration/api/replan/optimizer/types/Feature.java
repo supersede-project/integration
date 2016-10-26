@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 import eu.supersede.integration.api.json.CustomJsonDateSerializer;
 import eu.supersede.integration.api.json.ReplanFeatureReleaseJsonDeserializer;
-import eu.supersede.integration.api.replan.types.ReplanBaseObject;
+import eu.supersede.integration.api.replan.controller.types.ReplanBaseObject;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Feature extends ReplanBaseObject{

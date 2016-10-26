@@ -583,4 +583,25 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="POST" protocol="http" uri-template="/projects/{project_id}/features">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Add features for project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerForWP3Endpoint.xml"/>
+      <property name="FORCE_HTTP_CONTENT_LENGTH" scope="axis2"
+        type="STRING" value="true"/>
+      <property name="COPY_CONTENT_LENGTH_FROM_INCOMING" scope="axis2"
+        type="STRING" value="true"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>

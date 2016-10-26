@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import eu.supersede.integration.api.replan.types.ReplanBaseObject;
+import eu.supersede.integration.api.replan.controller.types.ReplanBaseObject;
 
 public class Resource extends ReplanBaseObject{
 	@JsonProperty ("weekAvailability")

@@ -3,7 +3,7 @@ package eu.supersede.integration.api.replan.optimizer.types;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.supersede.integration.api.replan.types.Job;
+import eu.supersede.integration.api.replan.controller.types.Job;
 
 public class PlanningSolution {
 	private List<PlannedFeature> jobs;

@@ -1,4 +1,4 @@
-package eu.supersede.integration.api.replan.proxies;
+package eu.supersede.integration.api.replan.controller.proxies;
 
 import java.net.URI;
 import java.util.List;
@@ -7,14 +7,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
-import eu.supersede.integration.api.replan.types.Feature;
-import eu.supersede.integration.api.replan.types.FeatureStatus;
-import eu.supersede.integration.api.replan.types.Plan;
-import eu.supersede.integration.api.replan.types.Project;
-import eu.supersede.integration.api.replan.types.Release;
-import eu.supersede.integration.api.replan.types.ReplanIdentifiableObject;
-import eu.supersede.integration.api.replan.types.Resource;
-import eu.supersede.integration.api.replan.types.Skill;
+import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
+import eu.supersede.integration.api.replan.controller.types.Feature;
+import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
+import eu.supersede.integration.api.replan.controller.types.Plan;
+import eu.supersede.integration.api.replan.controller.types.Project;
+import eu.supersede.integration.api.replan.controller.types.Release;
+import eu.supersede.integration.api.replan.controller.types.ReplanIdentifiableObject;
+import eu.supersede.integration.api.replan.controller.types.Resource;
+import eu.supersede.integration.api.replan.controller.types.Skill;
 //import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 
@@ -239,6 +240,12 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 		uriString = addURIQueryArray(uriString, skills, "skillId");
 
 		return deleteUriResourceForReturnType(Resource.class, new URI(uriString), HttpStatus.OK);
+	}
+	
+	@Override
+	public boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws Exception {
+		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/");
+		return postJSONObject(payload, uri, HttpStatus.OK);
 	}
 	
 	private <T extends ReplanIdentifiableObject> String addURIQueryArray (String uriString, List<T> tokens, String idLabel){

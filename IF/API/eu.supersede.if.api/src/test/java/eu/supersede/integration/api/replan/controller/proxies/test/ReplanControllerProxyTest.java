@@ -1,4 +1,4 @@
-package eu.supersede.integration.api.replan.proxies.test;
+package eu.supersede.integration.api.replan.controller.proxies.test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,19 +7,28 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.objenesis.instantiator.android.Android17Instantiator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import eu.supersede.integration.api.replan.proxies.IReplanController;
-import eu.supersede.integration.api.replan.proxies.ReplanControllerProxy;
-import eu.supersede.integration.api.replan.types.Feature;
-import eu.supersede.integration.api.replan.types.FeatureStatus;
-import eu.supersede.integration.api.replan.types.Plan;
-import eu.supersede.integration.api.replan.types.Project;
-import eu.supersede.integration.api.replan.types.Release;
-import eu.supersede.integration.api.replan.types.Resource;
-import eu.supersede.integration.api.replan.types.Skill;
+import eu.supersede.integration.api.replan.controller.proxies.IReplanController;
+import eu.supersede.integration.api.replan.controller.proxies.ReplanControllerProxy;
+import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
+import eu.supersede.integration.api.replan.controller.types.Constraint;
+import eu.supersede.integration.api.replan.controller.types.Feature;
+import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
+import eu.supersede.integration.api.replan.controller.types.FeatureWP3;
+import eu.supersede.integration.api.replan.controller.types.Format;
+import eu.supersede.integration.api.replan.controller.types.Plan;
+import eu.supersede.integration.api.replan.controller.types.Priority;
+import eu.supersede.integration.api.replan.controller.types.Project;
+import eu.supersede.integration.api.replan.controller.types.Property;
+import eu.supersede.integration.api.replan.controller.types.Release;
+import eu.supersede.integration.api.replan.controller.types.Resource;
+import eu.supersede.integration.api.replan.controller.types.Skill;
+import eu.supersede.integration.api.replan.controller.types.SoftDependency;
+import eu.supersede.integration.api.replan.controller.types.SoftDependencyType;
 
 public class ReplanControllerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
@@ -413,4 +422,68 @@ public class ReplanControllerProxyTest {
     	Assert.notNull(resource);
     	Assert.isTrue(resource.getSkills().size() == numberOfSkills - 1);
     }
+    
+    @Test
+    public void testAddFeaturesToProjectById() throws Exception{
+    	AddFeaturesForProjectPayload payload = new AddFeaturesForProjectPayload();
+    	payload.setEvaluationTime("2016-10-21");
+    	
+    	FeatureWP3 feature1 = new FeatureWP3();
+    	feature1.setId(1008);;
+    	feature1.setName("New login form");
+    	feature1.setEffort(5.0);
+    	feature1.setPriority(Priority.FIVE);
+    	
+    	Property property1 = new Property();
+    	property1.setKey("description");
+    	property1.setValue("New login for mobile devices");
+    	property1.setFormat(Format.STRING);
+    	
+    	feature1.getProperties().add(property1);
+    	feature1.setArguments("Some managers have asked for this feature");
+    	
+    	payload.getFeatures().add(feature1);
+    	
+    	FeatureWP3 feature2 = new FeatureWP3();
+    	feature2.setId(2009);;
+    	feature2.setName("Welcome page");
+    	feature2.setEffort(23.0);
+    	feature2.setPriority(Priority.TWO);
+    	
+    	Property property2 = new Property();
+    	property2.setKey("deadline");
+    	property2.setValue("2016-12-28");
+    	property2.setFormat(Format.DATETIME);
+    	
+    	feature2.getProperties().add(property2);
+    	
+    	SoftDependency sd = new SoftDependency();
+    	sd.setId(1008);
+    	sd.setType(SoftDependencyType.FUNCTIONAL);
+    	sd.setValue(2.0);
+    	
+    	feature2.getSoftDependencies().add(sd);
+    	
+    	payload.getFeatures().add(feature2);
+    	
+    	FeatureWP3 feature3 = new FeatureWP3();
+    	feature3.setId(3010);;
+    	feature3.setName("Mobile version");
+    	feature3.setEffort(45.0);
+    	feature3.setPriority(Priority.TWO);
+    	feature3.getHardDependencies().add(1008);
+    	feature3.getHardDependencies().add(2009);
+    	
+    	payload.getFeatures().add(feature3);
+    	
+    	Constraint cons = new Constraint();
+    	cons.setVariable("deadline");
+    	cons.setOperator("<");
+    	cons.setValue(2017.0);
+    	
+    	payload.getConstraints().add(cons);
+    	
+		proxy.addFeaturesToProjectById(payload, 1);
+    }
 }
+

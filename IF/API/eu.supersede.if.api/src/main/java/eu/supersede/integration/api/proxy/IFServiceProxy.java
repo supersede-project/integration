@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
 
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.rest.client.IFMessageClient;
@@ -188,6 +191,38 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public <T> Boolean postJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+		Boolean result = false;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<String> response = 
+					messageClient.postJsonMessage(object, uri, String.class);
+			JSONObject json = new JSONObject(response.getBody());
+			String message = json.getString("message");
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully posted JSON object " + object);
+				if (message != null){
+					log.info(message);
+				}
+			} else {
+				log.info("There was a problem posting JSON object " + result + " in URI: " + uri);
+				if (message != null){
+					log.info(message);
+				}
+			}
+			return result;
+		} catch (HttpClientErrorException|HttpServerErrorException e) {
+			e.printStackTrace();
+			JSONObject json = new JSONObject(e.getResponseBodyAsString());
+			String message = json.getString("message");
+			if (message != null){
+				log.error(message);
+			}
 			return null;
 		}
 	}

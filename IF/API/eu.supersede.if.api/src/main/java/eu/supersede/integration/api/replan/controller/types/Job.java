@@ -1,4 +1,4 @@
-package eu.supersede.integration.api.replan.types;
+package eu.supersede.integration.api.replan.controller.types;
 
 import java.util.Date;
 

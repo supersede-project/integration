@@ -1,14 +1,15 @@
-package eu.supersede.integration.api.replan.proxies;
+package eu.supersede.integration.api.replan.controller.proxies;
 
 import java.util.List;
 
-import eu.supersede.integration.api.replan.types.Feature;
-import eu.supersede.integration.api.replan.types.FeatureStatus;
-import eu.supersede.integration.api.replan.types.Plan;
-import eu.supersede.integration.api.replan.types.Project;
-import eu.supersede.integration.api.replan.types.Release;
-import eu.supersede.integration.api.replan.types.Resource;
-import eu.supersede.integration.api.replan.types.Skill;
+import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
+import eu.supersede.integration.api.replan.controller.types.Feature;
+import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
+import eu.supersede.integration.api.replan.controller.types.Plan;
+import eu.supersede.integration.api.replan.controller.types.Project;
+import eu.supersede.integration.api.replan.controller.types.Release;
+import eu.supersede.integration.api.replan.controller.types.Resource;
+import eu.supersede.integration.api.replan.controller.types.Skill;
 
 public interface IReplanController {
 	Project getProjectById(int projectId) throws Exception;
@@ -48,5 +49,6 @@ public interface IReplanController {
 	boolean deleteSkillByIdOfProjectById(int skillId, int projectId) throws Exception;
 	boolean deleteResourceByIdOfProjectById(int resourceId, int projectId) throws Exception;
 	Resource deleteSkillsOfResourceByIdOfProjectById(List<Skill> skills, int resourceId, int projectId) throws Exception;
+	boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws Exception;
 }
 

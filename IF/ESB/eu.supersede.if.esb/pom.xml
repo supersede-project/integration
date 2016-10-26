@@ -16,59 +16,18 @@
     <eu.supersede.if.api_._mail>capp/EnterpriseServiceBus</eu.supersede.if.api_._mail>
     <eu.supersede.if.api_._SupersedeFeedbackOrchestrator>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeFeedbackOrchestrator>
     <eu.supersede.if.api_._SupersedeDMGame>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMGame>
+    <eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>
     <eu.supersede.if.api_._SupersedeReplanOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizer>
     <eu.supersede.if.esb.resource_._ReplanControllerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerEndpoint>
+    <eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>
     <eu.supersede.if.sequence_._sendEmailSequence>capp/EnterpriseServiceBus</eu.supersede.if.sequence_._sendEmailSequence>
     <eu.supersede.if.proxy-service_._sendEmailProxy>capp/EnterpriseServiceBus</eu.supersede.if.proxy-service_._sendEmailProxy>
-    <eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>
-    <eu.supersede.if.api_._SupersedeReplanController>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanController>
-    <eu.supersede.if.api_._SupersedeFeedbackRepository>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeFeedbackRepository>
     <eu.supersede.if.esb.resource_._SupersedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._SupersedeAuthentication>
     <eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>
+    <eu.supersede.if.api_._SupersedeReplanController>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanController>
+    <eu.supersede.if.api_._SupersedeFeedbackRepository>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeFeedbackRepository>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>DMGameAlertEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>FeedbackOrchestratorEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>FeedbackRepositoryEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>ReplanControllerEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>ReplanOptimizerEndpoint</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>SupersedeAuthentication</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.esb.resource</groupId>
-      <artifactId>sendErrorMessage</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeDMGame</artifactId>
@@ -116,6 +75,54 @@
       <artifactId>sendEmailSequence</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>DMGameAlertEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>FeedbackOrchestratorEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>FeedbackRepositoryEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ReplanControllerEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ReplanControllerForWP3Endpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ReplanOptimizerEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>SupersedeAuthentication</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>sendErrorMessage</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
     </dependency>
   </dependencies>
   <repositories>
