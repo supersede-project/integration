@@ -1,5 +1,5 @@
 <link rel="shortcut icon" type="image/png" href="images/favicon.png">
-# [![SUPERSEDE](images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Integration Framework (IF)
+# [![SUPERSEDE](../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Integration Framework (IF)
 This repository contains code, artefacts, configuration, and so on, developed in SUPERSEDE WP5, that provides the backend integration framework for the SUPERSEDE platform.
 
 See deliverables D5.5 in [Supersede Portal](https://www.supersede.eu/) for more details about this framework, including its functional description, its architecture and its components.
@@ -15,4 +15,4 @@ SUPERSEDE Integration Framework is licensed under the [Apache License, Version 2
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
-<center>![Project funded by the European Union](images/european.union.logo.png)</center>
+<center>![Project funded by the European Union](../images/european.union.logo.png)</center>
