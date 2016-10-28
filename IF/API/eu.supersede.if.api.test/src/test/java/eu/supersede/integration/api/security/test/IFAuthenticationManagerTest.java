@@ -51,6 +51,9 @@ public class IFAuthenticationManagerTest {
 	
 	@Before
     public void setup() throws Exception {
+		// Set Identity Server user/password as Java launcher properties:
+		// -Dis.admin.user=
+		// -Dis.admin.passwd=
 		// for each tenant organization, use its admin account
 		String admin = System.getProperty("is.admin.user");
 		String password = System.getProperty("is.admin.passwd");
@@ -108,7 +111,11 @@ public class IFAuthenticationManagerTest {
     	if (!allRoles.contains(role)){
     		am.addRole(role);
     	}
-
+//    	for (Role role: allRoles){
+//    		if (role.getRoleName().contains("testRole")){
+//    			roles.add(role);
+//    		}
+//    	}
     	roles.add(role);
     	user.setRoles(roles);
 		return user;
@@ -254,6 +261,22 @@ public class IFAuthenticationManagerTest {
 		Set<Role> roles = am.getAllRolesOfUser(user);
 		Assert.notNull(roles);
 	}
+	
+	/*
+	 * User test should be available before executing this test.
+	 */
+//	@Test
+//	public void updateRoleTest() throws UserStoreException, MalformedURLException{
+//		Role role = new Role();
+//		role.setRoleName ("testRoleModified");
+//		
+//		User user = am.getUser(testUserName);
+//		Assert.notNull(user);
+//		
+//		role.getUsers().add(user);
+//    	
+//    	am.updateRole(role, "testRole");
+//	}
 	
 	@Test
 	public void deleteRoleTest() throws UserStoreException{

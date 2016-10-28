@@ -12,3 +12,6 @@ This creates a directory into your filesystem, hereafter referenced as INTEGRATI
 Follow this order: addUserTest, getUserTest, addRoleTest, getAllRolesForUser, getAllUsersForRole, updateUserTest,
 updateRoleTest, deleteRoleTest, deleteUserTest, getAuthorizationTokenTest, authenticateUserTest
 
+
+Testing using Gradle:
+In root folder, issue the following command: gradle test
