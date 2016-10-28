@@ -47,7 +47,7 @@ public class FEDataStoreProxyTest {
         String admin = System.getProperty("is.admin.user");
 		String password = System.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
-        token = am.getAuthorizationToken("yosu", "yosupass", "");
+        token = am.getAuthorizationToken(admin, password, "");
     }
 
     @Test
@@ -90,7 +90,7 @@ public class FEDataStoreProxyTest {
     @Test
     public void testGetNotification() throws Exception{
     	String tenandId = "atos";
-    	int notificationId = 1;
+    	int notificationId = 3342;
     	Notification notification = proxy.getNotification(tenandId, notificationId, token);
 //    	Assert.notNull(notification);
     }
@@ -109,4 +109,11 @@ public class FEDataStoreProxyTest {
     	Profile profile = proxy.getProfile(tenandId, profileId, token);
     	Assert.notNull(profile);
     }
+    
+//    @Test
+//    public void testDMGameIssue() throws Exception{
+//    	token = am.getAuthorizationToken("test_game", "test_game", "atos");
+//    	User user = proxy.getUser("atos", 3368, false, token);
+//    	Assert.notNull(user);
+//    }
 }

@@ -63,7 +63,7 @@ dependencies {
     compile 'org.apache.axis2:axis2:1.6.1'
     compile 'org.apache.axis2:axis2-transport-http:1.6.1'
     compile 'org.apache.axis2:axis2-transport-local:1.6.1'
-    compile 'eu.supersede.if:eu.supersede.if.api:1.0.0-SNAPSHOT'
+    compile 'eu.supersede.if:eu.supersede.if.api:0.2.0-SNAPSHOT'
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.um.ws.api.stub', version: '4.2.2')
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.tenant.mgt.stub', version: '4.2.0')
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.um.ws.api', version: '4.2.2')
@@ -73,6 +73,12 @@ dependencies {
     compile(group: 'opensaml.wso2', name: 'opensaml2', version: '2.4.1.wso2v1')
     compile 'ca.juliusdavies:not-yet-commons-ssl:0.3.9' //Required for EasySSLProtocolSocketFactory class
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile files ('./lib/feedback_library.jar')
+}
+
+configurations.all {
+	//Avoids conflict: SL4J Multiple bindings were found on the class path 
+	exclude group: "org.slf4j", module: "slf4j-log4j12"
 }
 
 task wrapper(type: Wrapper) {
