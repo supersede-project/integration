@@ -63,7 +63,8 @@ dependencies {
     compile 'org.apache.axis2:axis2:1.6.1'
     compile 'org.apache.axis2:axis2-transport-http:1.6.1'
     compile 'org.apache.axis2:axis2-transport-local:1.6.1'
-    compile 'eu.supersede.if:eu.supersede.if.api:0.2.0-SNAPSHOT'
+    //compile 'eu.supersede.if:eu.supersede.if.api:0.2.0-SNAPSHOT'
+    compile(group: 'eu.supersede.if', name: 'eu.supersede.if.api', version: '0.2.0-SNAPSHOT', changing: true)
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.um.ws.api.stub', version: '4.2.2')
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.tenant.mgt.stub', version: '4.2.0')
     compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.um.ws.api', version: '4.2.2')
@@ -79,6 +80,8 @@ dependencies {
 configurations.all {
 	//Avoids conflict: SL4J Multiple bindings were found on the class path 
 	exclude group: "org.slf4j", module: "slf4j-log4j12"
+	// check for updates every build
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 task wrapper(type: Wrapper) {

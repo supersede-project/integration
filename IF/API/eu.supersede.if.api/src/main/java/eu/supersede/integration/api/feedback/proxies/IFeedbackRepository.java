@@ -19,14 +19,23 @@
  *******************************************************************************/
 package eu.supersede.integration.api.feedback.proxies;
 
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 import eu.supersede.integration.api.feedback.repository.types.Feedback;
 
 public interface IFeedbackRepository {
-	public List<Feedback> getAllFeedbacks() throws Exception;
+	String authenticate(String user, String password) throws Exception;
+	public List<Feedback> getAllFeedbacksForApplication(Integer idApplication, String token) throws Exception;
 //	public List<Feedback> getAllFeedbacksForApplication(Integer applicationId) throws Exception;
-	public Feedback getFeedbackById(Integer id) throws Exception;
-	public Feedback insertFeedback(Feedback feedback) throws Exception;
+	public Feedback getFeedbackForApplication(Integer idFeedback, Integer idApplication, String token) throws Exception;
+	public Feedback createFeedbackForApplication(
+			Feedback feedback, Map<String, Path> attachmentsPaths, 
+			Map<String, Path> screenshotsPaths, Map<String, Path> audiosPaths, 
+			Integer idApplication, String token) throws Exception;
 //	public void deleteFeedback(Integer id) throws Exception;
+	public byte[] downloadAttachement (String attachmentName, String token) throws Exception;
+	public byte[] downloadScreenshot (String screenshotName, String token) throws Exception;
+	public byte[] downloadAudio (String audioName, String token) throws Exception;
 }
