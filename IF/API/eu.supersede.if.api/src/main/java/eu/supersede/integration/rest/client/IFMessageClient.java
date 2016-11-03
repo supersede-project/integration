@@ -19,7 +19,9 @@
  *******************************************************************************/
 package eu.supersede.integration.rest.client;
 
+import java.io.File;
 import java.net.URI;
+import java.util.Arrays;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +29,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.client.AsyncRestTemplate;
@@ -39,13 +42,14 @@ import eu.supersede.integration.api.security.types.AuthorizationToken;
 
 public class IFMessageClient {
 //	private RestTemplate restTemplate = new RestTemplate();
-	RestTemplate restTemplate;
+	private RestTemplate restTemplate;
 	private AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();
 //	private final static String AUTH_TOKEN = IntegrationProperty.getProperty("is.authorization.token");
 	private static IFMessageClient instance = new IFMessageClient();
+	private ObjectMapper objectMapper;
 	
 	private IFMessageClient (){
-		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper = new ObjectMapper();
 		// configure your ObjectMapper here
 		objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
 
@@ -54,12 +58,24 @@ public class IFMessageClient {
 		MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
 		messageConverter.setPrettyPrint(false);
 		messageConverter.setObjectMapper(objectMapper);
+		
+		messageConverter.setSupportedMediaTypes(
+                Arrays.asList(new MediaType[]{MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_OCTET_STREAM}));
+		
 		restTemplate.getMessageConverters().removeIf(m -> m.getClass().getName().equals(MappingJackson2HttpMessageConverter.class.getName()));
 		restTemplate.getMessageConverters().add(messageConverter);
 	}
 	
 	public static IFMessageClient getInstance(){
 		return instance;
+	}
+	
+	public RestTemplate getRestTemplate(){
+		return restTemplate;
+	}
+	
+	public ObjectMapper getMapper(){
+		return objectMapper;
 	}
 	
 	// SYNCRONOUS MESSAGING
@@ -168,18 +184,22 @@ public class IFMessageClient {
 				.header("Authorization", "Bearer " + token.getAccessToken())
 				.build();
 		return restTemplate.exchange(request, clazz);
-
-//		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
 	}
 	
 	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
-//				.header("Authorization", "Bearer " + token.getAccessToken())
 				.build();
 		return restTemplate.exchange(request, clazz);
 
-//		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
+	}
+	
+	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz, String token) throws RestClientException{
+		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
+				.accept(MediaType.APPLICATION_JSON)
+				.header("Authorization", token)
+				.build();
+		return restTemplate.exchange(request, clazz);
 	}
 	
 	public <T> ResponseEntity<T> getXMLMessage(URI uri, Class<T> clazz, AuthorizationToken token) throws RestClientException{
@@ -205,9 +225,16 @@ public class IFMessageClient {
 				.header("Authorization", "Bearer " + token.getAccessToken())
 				.build();
 		return restTemplate.exchange(request, clazz);
-
-//		return (ResponseEntity<T>) restTemplate.getForEntity(uri, clazz);
 	}
+	
+	public <T> ResponseEntity<T> getMessage(URI uri, Class<T> clazz, MediaType type, String token) throws RestClientException{
+		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
+				.accept(type)
+				.header("Authorization", token)
+				.build();
+		return restTemplate.exchange(request, clazz);
+	}
+	
 	
 	public ResponseEntity<String> deleteJsonMessage (URI uri, AuthorizationToken token){
     	HttpHeaders headers = new HttpHeaders();

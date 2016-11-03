@@ -19,41 +19,29 @@
  *******************************************************************************/
 package eu.supersede.integration.api.feedback.repository.types;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
 import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 
 @JsonInclude(Include.NON_NULL)
-public class ScreenshotFeedback {
+public class ScreenshotFeedback extends FileFeedback {
 
-	@Id
-	private Integer id;
-	
 	@DbAttribute("feedback_id")
 	private transient Integer feedbackId;
-	
-	@NotNull
-	private String path;
-	
-	@NotNull
-	private int size;
-		
-	private String name;
-	
+
 	@DbAttribute("mechanism_id")
 	private Integer mechanismId;
+	
+	@DbIgnore
+	private List<TextAnnotation> textAnnotations;
 
-	private String part;
-	
-	@DbAttribute("file_extension")
-	private String fileExtension;
-	
 	public ScreenshotFeedback() {
-		
+		setTextAnnotations(new ArrayList<>());
 	}
 
 	public ScreenshotFeedback(Integer id, Integer feedbackId, String path, int size, String name, Integer mechanismId,
@@ -67,14 +55,7 @@ public class ScreenshotFeedback {
 		this.mechanismId = mechanismId;
 		this.part = part;
 		this.fileExtension = fileExtension;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		setTextAnnotations(new ArrayList<>());
 	}
 
 	public Integer getFeedbackId() {
@@ -85,30 +66,6 @@ public class ScreenshotFeedback {
 		this.feedbackId = feedbackId;
 	}
 
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Integer getMechanismId() {
 		return mechanismId;
 	}
@@ -117,19 +74,14 @@ public class ScreenshotFeedback {
 		this.mechanismId = mechanismId;
 	}
 
-	public String getPart() {
-		return part;
+	public List<TextAnnotation> getTextAnnotations() {
+		if(textAnnotations == null)
+			textAnnotations = new ArrayList<>();
+		
+		return textAnnotations;
 	}
 
-	public void setPart(String part) {
-		this.part = part;
-	}
-
-	public String getFileExtension() {
-		return fileExtension;
-	}
-
-	public void setFileExtension(String fileExtension) {
-		this.fileExtension = fileExtension;
+	public void setTextAnnotations(List<TextAnnotation> textAnnotations) {
+		this.textAnnotations = textAnnotations;
 	}
 }
