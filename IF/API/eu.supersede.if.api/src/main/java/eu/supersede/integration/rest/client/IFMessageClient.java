@@ -74,7 +74,6 @@ public class IFMessageClient {
 		return instance;
 	}
 	
-	
 	// SYNCRONOUS MESSAGING
 	
 	//Note: S Object requires a correct JSON serialization
@@ -238,6 +237,15 @@ public class IFMessageClient {
         headers.add("Content-Type", "application/json");
         headers.add("Accept", "*/*");
         headers.add("Authorization", "Bearer " + token.getAccessToken());
+    	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
+        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
+    }
+	
+	public ResponseEntity<String> deleteJsonMessage (URI uri, String token){
+    	HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Accept", "*/*");
+        headers.add("Authorization", token);
     	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
         return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
     }

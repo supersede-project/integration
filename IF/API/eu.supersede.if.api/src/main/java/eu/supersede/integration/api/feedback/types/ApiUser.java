@@ -17,11 +17,15 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.feedback.orchestrator.types;
+package eu.supersede.integration.api.feedback.types;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
-import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
+import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
 import ch.uzh.ifi.feedback.library.rest.validation.Id;
+import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 import ch.uzh.ifi.feedback.library.rest.validation.Unique;
 
 //@Serialize(ApiUserSerializationService.class)
@@ -31,10 +35,17 @@ public class ApiUser extends ItemBase<ApiUser> {
 	private Integer id;
 	
 	@Unique
+	@NotNull
 	private String name;
 	
+	@NotNull
 	private String password;
 	
+	private UserRole role;
+	
+	@DbIgnore
+	private List<ApiUserPermission> permissions;
+	 
 	@Override
 	public Integer getId() {
 		return id;
@@ -59,5 +70,24 @@ public class ApiUser extends ItemBase<ApiUser> {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
+	public List<ApiUserPermission> getPermissions() {
+		if(permissions == null)
+			permissions = new ArrayList<>();
+		
+		return permissions;
+	}
+
+	public void setPermissions(List<ApiUserPermission> permissions) {
+		this.permissions = permissions;
 	}
 }

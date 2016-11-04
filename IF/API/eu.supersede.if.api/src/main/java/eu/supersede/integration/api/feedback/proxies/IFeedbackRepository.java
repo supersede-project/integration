@@ -24,18 +24,42 @@ import java.util.List;
 import java.util.Map;
 
 import eu.supersede.integration.api.feedback.repository.types.Feedback;
+import eu.supersede.integration.api.feedback.repository.types.Status;
+import eu.supersede.integration.api.feedback.repository.types.StatusOption;
+import eu.supersede.integration.api.feedback.types.ApiUser;
+import eu.supersede.integration.api.feedback.types.ApiUserPermission;
 
 public interface IFeedbackRepository {
 	String authenticate(String user, String password) throws Exception;
-	public List<Feedback> getAllFeedbacksForApplication(Integer idApplication, String token) throws Exception;
+	List<Feedback> listAllFeedbacksForApplication(Integer idApplication, String token) throws Exception;
 //	public List<Feedback> getAllFeedbacksForApplication(Integer applicationId) throws Exception;
-	public Feedback getFeedbackForApplication(Integer idFeedback, Integer idApplication, String token) throws Exception;
-	public Feedback createFeedbackForApplication(
-			Feedback feedback, Map<String, Path> attachmentsPaths, 
-			Map<String, Path> screenshotsPaths, Map<String, Path> audiosPaths, 
-			Integer idApplication, String token) throws Exception;
+	Feedback getFeedbackForApplication(Integer idFeedback, Integer idApplication, String token) throws Exception;
+	Feedback createFeedbackForApplication(
+	Feedback feedback, Map<String, Path> attachmentsPaths, 
+	Map<String, Path> screenshotsPaths, Map<String, Path> audiosPaths, 
+	Integer idApplication, String token) throws Exception;
 //	public void deleteFeedback(Integer id) throws Exception;
-	public byte[] downloadAttachement (String attachmentName, String token) throws Exception;
-	public byte[] downloadScreenshot (String screenshotName, String token) throws Exception;
-	public byte[] downloadAudio (String audioName, String token) throws Exception;
+	byte[] downloadAttachement (String attachmentName, String token) throws Exception;
+	byte[] downloadScreenshot (String screenshotName, String token, boolean base64) throws Exception;
+	byte[] downloadAudio (String audioName, String token) throws Exception;
+	
+	List<ApiUser> listAllAPIUsers () throws Exception;
+	ApiUser createAPIUser (ApiUser user) throws Exception;
+	ApiUser updateAPIUser (ApiUser user, String token) throws Exception;
+	ApiUser getAPIUser (Integer idUser) throws Exception;
+	void deleteAPIUser (Integer idUser, String token) throws Exception;
+	
+	List<ApiUserPermission> listApplicationPermissionsOfApiUser (Integer userId) throws Exception;
+	ApiUserPermission createApplicationPermissionOfApiUser (ApiUserPermission permission, Integer userId, String token) throws Exception;
+	void deleteApplicationPermissionsOfApiUser (Integer permissionId, Integer userId) throws Exception;
+	
+	Status getGeneralStatusOfFeedbackInApplication (Integer idFeedback, Integer idApplication, String token) throws Exception;
+	Status getUserSpecificStatusOfFeedbackInApplication (Integer idFeedback, Integer idApplication, Integer idUser, String token) throws Exception;
+	List<Status> listAllUserSpecificStatusOfFeedbackInApplication (Integer idApplication, Integer idUser, String token) throws Exception;
+	void deleteFeedbackStatusInApplication (Integer idApplication, Integer idStatus, String token) throws Exception;
+	Status updateFeedbackStatusInApplication (Status status, Integer idApplication, String token) throws Exception;
+	List<StatusOption> listAllStatusOptions() throws Exception; 
+	StatusOption createStatusOption(StatusOption statusOption, String token) throws Exception; 
+	StatusOption updateStatusOption(StatusOption statusOption, String token) throws Exception; 
+	void deleteStatusOption(Integer idStatusOption, String token) throws Exception;
 }

@@ -39,7 +39,6 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import eu.supersede.integration.api.feedback.repository.types.Feedback;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
@@ -413,6 +412,25 @@ public abstract class IFServiceProxy<T, S> {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<String> response = 
 					messageClient.deleteJsonMessage(uri);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully delete in uri " + uri);
+				result = true;
+			} else {
+				log.info("There was a problem deleting in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteUriResource(URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<String> response = 
+					messageClient.deleteJsonMessage(uri, token);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully delete in uri " + uri);
 				result = true;
