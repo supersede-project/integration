@@ -122,9 +122,6 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 			parts.add(key, new ByteArrayResource(Files.readAllBytes(audiosPaths.get(key))));
 		}
 		
-		Feedback response = sendMultipartFormDataMessage(uri, Feedback.class, parts, HttpMethod.POST);
-		
-		return response;
+		return sendMultipartFormDataMessage(uri, Feedback.class, parts, HttpMethod.POST);
 	}
-
 }

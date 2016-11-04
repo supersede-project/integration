@@ -74,7 +74,6 @@ public class IFMessageClient {
 		return instance;
 	}
 	
-	
 	// SYNCRONOUS MESSAGING
 	
 	//Note: S Object requires a correct JSON serialization
