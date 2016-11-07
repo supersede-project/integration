@@ -54,7 +54,7 @@ public class FeedbackRepositoryProxyTest {
 	private FeedbackRepositoryProxy proxy;
 	private String token;
 	private Integer applicationId = 1;
-	private Integer feedbackId = 88;
+	private Integer feedbackId = 80;
 	private Integer userId = 2;
 	
     @Before
