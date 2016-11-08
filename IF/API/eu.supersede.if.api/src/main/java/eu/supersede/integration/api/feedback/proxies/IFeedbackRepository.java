@@ -51,7 +51,7 @@ public interface IFeedbackRepository {
 	
 	List<ApiUserPermission> listApplicationPermissionsOfApiUser (Integer userId) throws Exception;
 	ApiUserPermission createApplicationPermissionOfApiUser (ApiUserPermission permission, Integer userId, String token) throws Exception;
-	void deleteApplicationPermissionsOfApiUser (Integer permissionId, Integer userId) throws Exception;
+	void deleteApplicationPermissionsOfApiUser (Integer permissionId, String token) throws Exception;
 	
 	Status getGeneralStatusOfFeedbackInApplication (Integer idFeedback, Integer idApplication, String token) throws Exception;
 	Status getUserSpecificStatusOfFeedbackInApplication (Integer idFeedback, Integer idApplication, Integer idUser, String token) throws Exception;

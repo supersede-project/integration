@@ -54,8 +54,8 @@ public class FeedbackRepositoryProxyTest {
 	private FeedbackRepositoryProxy proxy;
 	private String token;
 	private Integer applicationId = 1;
-	private Integer feedbackId = 80;
-	private Integer userId = 2;
+	private Integer feedbackId = 69;
+	private Integer userId = 1;
 	
     @Before
     public void setup() throws Exception {
@@ -291,7 +291,7 @@ public class FeedbackRepositoryProxyTest {
     }
     
     public void testDeleteApplicationPermissionOfApiUser(ApiUserPermission permission) throws Exception{
-		proxy.deleteApplicationPermissionsOfApiUser(permission.getId(), userId);
+		proxy.deleteApplicationPermissionsOfApiUser(permission.getId(), token);
     }
     
     @Test

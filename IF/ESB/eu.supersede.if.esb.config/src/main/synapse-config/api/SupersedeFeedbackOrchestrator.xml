@@ -256,7 +256,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/applications/{app_id}/general_configuration">
+  <resource methods="PUT" protocol="http" uri-template="/en/applications/{app_id}/general_configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update general configuration for application by Id message forwarded to Feedback Orchestrator endpoint"/>

@@ -168,7 +168,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(generalConfiguration, "Provide a valid general configuration");
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/general_configuration");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/general_configurations");
 		return updateJSONObject(generalConfiguration, uri, HttpStatus.OK, token);
 	}
 

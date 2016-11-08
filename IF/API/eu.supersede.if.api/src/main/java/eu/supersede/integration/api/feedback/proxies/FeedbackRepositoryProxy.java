@@ -182,11 +182,10 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 	}
 
 	@Override
-	public void deleteApplicationPermissionsOfApiUser(Integer permissionId, Integer userId) throws Exception {
+	public void deleteApplicationPermissionsOfApiUser(Integer permissionId, String token) throws Exception {
 		Assert.notNull(permissionId, "Provide a valid api user permission id");
-		Assert.notNull(userId, "Provide a valid api user id");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users/" + userId + "/permissions/" + permissionId);
-		deleteUriResource(uri, HttpStatus.OK);	
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users/permissions/" + permissionId);
+		deleteUriResource(uri, HttpStatus.OK, token);	
 	}
 
 	@Override

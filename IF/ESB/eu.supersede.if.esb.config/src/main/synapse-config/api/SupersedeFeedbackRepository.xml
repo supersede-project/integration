@@ -255,10 +255,10 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="DELETE" protocol="http" uri-template="/en/api_users/{id_user}/permissions/{id_permission}">
+  <resource methods="DELETE" protocol="http" uri-template="/en/api_users/permissions/{id_permission}">
     <inSequence>
       <log level="full">
-        <property name="Feedback Repository" value="Delete application permission of user by id  message forwarded to Feedback Repository endpoint"/>
+        <property name="Feedback Repository" value="Delete application permission by id of user message forwarded to Feedback Repository endpoint"/>
       </log>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
       <send>
