@@ -28,7 +28,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.7.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
 	//Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
     }
@@ -90,13 +90,13 @@ dependencies {
 //    testCompile 'org.apache.rampart:rahas:1.6.2'
 //    testCompile 'org.apache.rampart:rampart-core:1.6.2'
     
-    compile 'org.springframework:spring-core:4.3.2.RELEASE'
+    compile 'org.springframework:spring-core:4.3.4.RELEASE'
     
 //    testCompile 'org.opensaml:opensaml'
 //    testCompile 'org.opensaml:xmltooling'
 //    testCompile 'org.opensaml:core'
 
-    compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.2.RELEASE")
    
     //Kafka dependencies (WP2 Data Provider)
 	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.9.0.0'
@@ -113,7 +113,7 @@ configurations.all {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.8'
+    gradleVersion = '3.2'
 }
 
 // Test execution JVM properties
