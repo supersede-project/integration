@@ -21,17 +21,22 @@ package eu.supersede.integration.api.feedback.orchestrator.types;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
 import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
 import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
+import eu.supersede.integration.api.json.CustomJsonTimestampSerializer;
 
 public abstract class OrchestratorItem<T> extends ItemBase<T> implements IOrchestratorItem<T> {
 
 	@DbAttribute("current_version")
 	private transient boolean currentVersion;
 	
+	@JsonIgnore
 	@DbAttribute("created_at")
 	private Timestamp createdAt;
 	
@@ -49,10 +54,13 @@ public abstract class OrchestratorItem<T> extends ItemBase<T> implements IOrches
 		this.currentVersion = currentVersion;
 	}
 
+	@JsonIgnore
+	@JsonSerialize(using = CustomJsonTimestampSerializer.class)
 	public Timestamp getCreatedAt() {
 		return createdAt;
 	}
 
+	@JsonProperty
 	@JsonDeserialize(using = CustomJsonTimestampDeserializer.class)
 	public void setCreatedAt(Timestamp createdAt) {
 		this.createdAt = createdAt;
