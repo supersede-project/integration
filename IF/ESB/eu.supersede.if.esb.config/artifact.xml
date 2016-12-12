@@ -23,4 +23,10 @@
     <artifact name="SupersedeReplanOptimizer" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeReplanOptimizer.xml</file>
     </artifact>
+    <artifact name="SupersedeFeedbackOrchestrator" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeFeedbackOrchestrator.xml</file>
+    </artifact>
+    <artifact name="SupersedeMonitoringOrchestrator" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeMonitoringOrchestrator.xml</file>
+    </artifact>
 </artifacts>
