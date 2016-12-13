@@ -47,6 +47,13 @@ allprojects {
 group = 'eu.supersede.if'
 version = '0.2.0-SNAPSHOT'
 
+jar {
+    baseName = 'eu.supersede.if.api'
+}
+
+//Avoids to package an Spring Boot executable jar that cannot be used as dependency
+bootRepackage.enabled = false
+
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'jcenter' for resolving your dependencies.
