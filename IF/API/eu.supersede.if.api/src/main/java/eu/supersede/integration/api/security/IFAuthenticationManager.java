@@ -36,6 +36,8 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.RequestEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
@@ -47,8 +49,6 @@ import org.wso2.carbon.user.core.claim.Claim;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
-import eu.supersede.integration.api.tenants.IFTenantsManager;
-import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFAuthenticationManager {
@@ -57,7 +57,8 @@ public class IFAuthenticationManager {
 	private RestTemplate restTemplate = new RestTemplate();
 	private static String TOKEN_SERVICE_ENDPOINT = IntegrationProperty.getProperty("is.server.services.token");
 //	private static String AUTHORIZATION_PAIR_BASE64 = IntegrationProperty.getProperty("is.authorization.pair.base64");
-
+	private static final Logger log = LoggerFactory.getLogger(IFAuthenticationManager.class);
+	
 	static {
 		// This is use to enable the https SSL connection with IF WSO2 IS
 		/*
@@ -131,6 +132,8 @@ public class IFAuthenticationManager {
 
 	// User Authentication
 	public boolean authenticateUser(String userName, String credential) throws UserStoreException {
+		log.info("Requested to authenticate user: " + userName);
+		System.out.println("Requested to authenticate user: " + userName);
 		return usm.authenticate(userName, credential);
 	}
 
@@ -289,6 +292,8 @@ public class IFAuthenticationManager {
 	public AuthorizationToken getAuthorizationToken(String userName, String credential, String tenant) throws TenantMgtAdminServiceExceptionException, URISyntaxException {
 		Assert.isTrue(userName!=null & !userName.isEmpty(), "Username not set");
 		Assert.isTrue(credential!=null & !credential.isEmpty(), "Credential not set");
+		log.info("Requested authorization token for user: " + userName + " for tenant: " + tenant);
+		System.out.println("Requested authorization token for user: " + userName + " for tenant: " + tenant);
 		
 		String tenantDomain = "";
 		String base64AuthorizationPair= IntegrationProperty.getProperty("is.authorization.pair.base64");
@@ -308,6 +313,14 @@ public class IFAuthenticationManager {
 					.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
 					.header("Authorization", "Basic " + base64AuthorizationPair)
 					.body("grant_type=password&username=" + userName+tenantDomain + "&password=" + credential);
-		return restTemplate.exchange(request, AuthorizationToken.class).getBody();
+		AuthorizationToken token = restTemplate.exchange(request, AuthorizationToken.class).getBody();
+		if (token != null){
+			log.info("Retrived valid token that expires in " + token.getExpiresIn());
+			System.out.println("Retrived valid token that expires in " + token.getExpiresIn());
+		}else{
+			log.info("Null token was returned by IS");
+			System.out.println("Null token was returned by IS");
+		}
+		return token;
 	}
 }
