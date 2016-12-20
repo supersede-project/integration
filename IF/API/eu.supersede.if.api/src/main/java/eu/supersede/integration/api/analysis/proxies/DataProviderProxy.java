@@ -48,6 +48,11 @@ public class DataProviderProxy implements IDataProvider{
 	 * @param confId			the id of the configuration
 	 * @param topic				the topic for the Kafka communication
 	 */
+	
+	//TODO: Implement these generic methods
+	//public <T> ingestData (T data, String topic)
+	//public <T> ingestData (List<T> data, String topic)
+	
 	@Override
 	public void ingestMonitoringData(List<MonitoringData> dataList, String timeStamp,
 			int outputId, int confId, String topic) {

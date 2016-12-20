@@ -35,7 +35,7 @@ public class DecisionMakingSystemProxy <T, S> extends IFServiceProxy<T,S> implem
 	public boolean notifyAlert(Alert alert)  {
 		try {
 			Assert.notNull(alert, "Provide a valid alert");
-			String suri = SUPERSEDE_DMGAME_ENDPOINT + "alert";
+			String suri = SUPERSEDE_DMGAME_ENDPOINT + "public/monitoring/alert";
 			URI uri = new URI(suri);
 			return insertJSONObject(alert, uri, HttpStatus.OK);
 		} catch (Exception e) {
