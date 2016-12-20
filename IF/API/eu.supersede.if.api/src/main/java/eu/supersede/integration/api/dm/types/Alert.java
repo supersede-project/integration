@@ -1,89 +1,90 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A.
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 package eu.supersede.integration.api.dm.types;
 
+import java.util.List;
+
 public class Alert {
-
-	private Long timestamp;
-	private AlertLevel level;
-	private AlertType type;
-	private String id;
-	private String message;
-	private Double value;
 	
-	public Alert() {}
-	
-	public Alert( AlertLevel type, String id, String message, Double value ) {
-		this.level = type;
-		this.id = id;
-		this.message = message;
-		this.value = value;
-	}
-	
-	public Long getTimestamp() {
-		return timestamp;
+	public List<UserRequest> getRequests() {
+		return requests;
 	}
 
-	public void setTimestamp(Long timestamp) {
+
+	public void setRequests(List<UserRequest> requests) {
+		this.requests = requests;
+	}
+
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+
+	public void setApplicationID(String applicationID) {
+		this.applicationID = applicationID;
+	}
+
+
+	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	public AlertLevel getLevel() {
-		return level;
+
+	public void setTenant(String tenant) {
+		this.tenant = tenant;
 	}
 
-	public void setLevel(AlertLevel level) {
-		this.level = level;
+
+	public void setConditions(List<Condition> conditions) {
+		this.conditions = conditions;
 	}
 
-	public AlertType getType() {
-		return type;
-	}
 
-	public void setType(AlertType type) {
-		this.type = type;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public Double getValue() {
-		return value;
-	}
-
-	public void setValue(Double value) {
-		this.value = value;
-	}
+	String				ID;
+	String				applicationID;
+	long				timestamp;
+	String				tenant;
+	List<Condition>		conditions;
+	List<UserRequest>	requests;
 	
 	
+	public Alert(	String iD, String applicationID, long timestamp, 
+					String tenant, List<Condition> conditions, List<UserRequest>	requests ) {
+		super();
+		ID = iD;
+		this.applicationID = applicationID;
+		this.timestamp = timestamp;
+		this.tenant = tenant;
+		this.conditions = conditions;
+		this.requests = requests;
+	}
+
+
+	public Alert() {}
+	
+	
+	public String getID() {
+		return ID;
+	}
+
+
+	public String getApplicationID() {
+		return applicationID;
+	}
+
+
+	public long getTimestamp() {
+		return timestamp;
+	}
+
+
+	public String getTenant() {
+		return tenant;
+	}
+
+
+	public List<Condition> getConditions() {
+		return conditions;
+	}
+
+
 }

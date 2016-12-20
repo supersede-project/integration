@@ -19,6 +19,9 @@
  *******************************************************************************/
 package eu.supersede.integration.api.dm.proxies.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -27,7 +30,12 @@ import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.dm.proxies.DecisionMakingSystemProxy;
 import eu.supersede.integration.api.dm.types.Alert;
-import eu.supersede.integration.api.dm.types.AlertLevel;
+import eu.supersede.integration.api.dm.types.Condition;
+import eu.supersede.integration.api.dm.types.DataID;
+import eu.supersede.integration.api.dm.types.Operator;
+import eu.supersede.integration.api.dm.types.RequestClassification;
+import eu.supersede.integration.api.dm.types.UserRequest;
+
 
 public class DecisionMakingSystemProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxyTest.class);
@@ -41,9 +49,31 @@ public class DecisionMakingSystemProxyTest {
 
     @Test
     public void testNotifyAlert() throws Exception{
-    	Alert alert = new Alert(AlertLevel.Normal, "1", "Message", 10.0 );
+    	Alert alert = createAlert();
     	boolean result = proxy.notifyAlert(alert);
     	Assert.isTrue(result);
     }
+
+	private Alert createAlert() {
+		Alert alert = new Alert();
+		
+		alert.setID("id1");
+		alert.setApplicationID("appId1");
+		alert.setTimestamp(1481717773760L);
+		alert.setTenant("Delta");
+		
+		List<Condition> conditions = new ArrayList<Condition>();
+		conditions.add (new Condition(DataID.UNSPECIFIED, Operator.GEq, 10.5));
+		alert.setConditions(conditions);
+		
+		List<UserRequest> requests = new ArrayList<>();
+		String[] feedbackIDs = new String[]{"feedbackId1"};
+		String[] features = new String[]{"UI","backend"};
+		requests.add(new UserRequest("id1", RequestClassification.FeatureRequest, 
+				0.5, "description string", 1, 2, 0, feedbackIDs, features));
+		alert.setRequests(requests);
+		
+		return alert;
+	}
 
 }

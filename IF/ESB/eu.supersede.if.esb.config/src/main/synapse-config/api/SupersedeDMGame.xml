@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/game-requirements" name="SupersedeDMGame" xmlns="http://ws.apache.org/ns/synapse">
-  <resource methods="POST" protocol="http" uri-template="/alert">
+<api context="/dm-app" name="SupersedeDMGame" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/public/monitoring/alert">
     <inSequence>
       <log level="full">
-        <property name="DM Game alert message" value="DM Game alert message forwarded to DM Game endpoint"/>
+        <property name="DM Game alert message" value="DM App notify alert message forwarded to DM App endpoint"/>
       </log>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/DMGameAlertEndpoint.xml"/>
       <send>
