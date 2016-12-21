@@ -21,6 +21,7 @@ package eu.supersede.integration.rest.client;
 
 import java.io.File;
 import java.net.URI;
+import java.net.URL;
 import java.util.Arrays;
 
 import org.springframework.http.HttpEntity;
@@ -32,6 +33,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.RestClientException;
@@ -86,6 +88,13 @@ public class IFMessageClient {
 				.header("Authorization", "Bearer " + token.getAccessToken())
 				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+	}
+	
+	public ResponseEntity<String> postQuery(URI query) {
+		RequestEntity<String> request = RequestEntity.post(query)
+				.accept(MediaType.APPLICATION_JSON)
+				.body("");
+		return (ResponseEntity<String>) restTemplate.exchange(request, String.class);
 	}
 	
 	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, AuthorizationToken token) {
@@ -291,5 +300,9 @@ public class IFMessageClient {
 	public <T> String convertToJSON(T object) throws JsonProcessingException {
 		// TODO Auto-generated method stub
 		return objectMapper.writeValueAsString(object);
+	}
+	
+	public <T,S> ResponseEntity<T> postForEntity (URI uri, HttpEntity<MultiValueMap<String, S>> request, Class<T> returnType){
+		return restTemplate.postForEntity (uri, request, returnType);
 	}
 }

@@ -34,6 +34,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
@@ -378,6 +379,46 @@ public abstract class IFServiceProxy<T, S> {
 				result = true;
 			} else {
 				log.info("There was a problem inserting JSON object " + jsonInput + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Sends a post message with an array of values encoded as form
+	 * @param query
+	 * @param valueLabel
+	 * @param values
+	 * @param expectedStatus
+	 * @return
+	 * @throws Exception
+	 */
+	public <T> boolean postFormURLEncoded(URI query, String valueLabel, List<T> values, HttpStatus expectedStatus) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(query, "Provide a valid query");
+			
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+			MultiValueMap<String, T> map= new LinkedMultiValueMap<String, T>();
+			for (T value:values)
+				map.add(valueLabel, value);
+
+			HttpEntity<MultiValueMap<String, T>> request = new HttpEntity<MultiValueMap<String, T>>(map, headers);
+
+			ResponseEntity<String> response = messageClient.postForEntity( query, request , String.class );
+			
+//			ResponseEntity<String> response = 
+//					messageClient.postQuery(query);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully posted query " + query);
+				result = true;
+			} else {
+				log.info("There was a problem posting query query");
 			}
 			return result;
 		} catch (Exception e) {
