@@ -69,4 +69,11 @@
             <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
         </item>
     </artifact>
+    <artifact name="AdapterEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>AdapterEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
 </artifacts>

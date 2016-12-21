@@ -16,9 +16,11 @@
     <eu.supersede.if.api_._mail>capp/EnterpriseServiceBus</eu.supersede.if.api_._mail>
     <eu.supersede.if.proxy-service_._sendEmailProxy>capp/EnterpriseServiceBus</eu.supersede.if.proxy-service_._sendEmailProxy>
     <eu.supersede.if.esb.resource_._MDMEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MDMEndpoint>
+    <eu.supersede.if.api_._SupersedeAdapter>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeAdapter>
     <eu.supersede.if.esb.resource_._ReplanControllerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerEndpoint>
     <eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>
     <eu.supersede.if.api_._SupersedeReplanOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizer>
+    <eu.supersede.if.esb.resource_._AdapterEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AdapterEndpoint>
     <eu.supersede.if.api_._SupersedeDMGame>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMGame>
     <eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>
     <eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>
@@ -151,6 +153,18 @@
       <artifactId>MDMEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>AdapterEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeAdapter</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
     </dependency>
   </dependencies>
   <repositories>

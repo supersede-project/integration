@@ -32,4 +32,7 @@
     <artifact name="SupersedeMDM" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeMDM.xml</file>
     </artifact>
+    <artifact name="SupersedeAdapter" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeAdapter.xml</file>
+    </artifact>
 </artifacts>
