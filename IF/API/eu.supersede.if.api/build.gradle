@@ -45,7 +45,7 @@ allprojects {
 }
 
 group = 'eu.supersede.if'
-version = '0.2.0-SNAPSHOT'
+version = '0.3.0-SNAPSHOT'
 
 jar {
     baseName = 'eu.supersede.if.api'
@@ -145,9 +145,10 @@ test {
 // Artifactory configuration to publish built jars
 artifactory {
     contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    String repo = version.endsWith('SNAPSHOT') ? 'libs-snapshot-local' : 'libs-release-local'
     publish {
         repository {
-            repoKey = 'libs-snapshot-local'
+            repoKey = repo
 	    username = "${artifactory_user}"
 	    password = "${artifactory_password}"
             maven = true
