@@ -22,6 +22,7 @@ package eu.supersede.integration.api.proxy;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -400,6 +401,9 @@ public abstract class IFServiceProxy<T, S> {
 		boolean result = false;
 		try {
 			Assert.notNull(query, "Provide a valid query");
+			Assert.notNull(valueLabel, "Provide a valid valueLabel");
+			Assert.notNull(values, "Provide a valid values");
+			Assert.notNull(expectedStatus, "Provide a valid expectedStatus");
 			
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -412,8 +416,6 @@ public abstract class IFServiceProxy<T, S> {
 
 			ResponseEntity<String> response = messageClient.postForEntity( query, request , String.class );
 			
-//			ResponseEntity<String> response = 
-//					messageClient.postQuery(query);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully posted query " + query);
 				result = true;
@@ -424,6 +426,27 @@ public abstract class IFServiceProxy<T, S> {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public <T, S> T getFormURLEncoded(String uri, Map<String, S> parameters, HttpStatus expectedStatus, Class<T> returnType) throws Exception {
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			Assert.notNull(parameters, "Provide a valid parameters");
+			Assert.notNull(expectedStatus, "Provide a valid expectedStatus");
+			Assert.notNull(returnType, "Provide a valid returnType");
+
+			ResponseEntity<T> response = messageClient.getForEntity( uri, returnType,  parameters);
+			
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully get uri " + uri);
+			} else {
+				log.info("There was a problem getting uri");
+			}
+			return response.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

@@ -23,6 +23,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 //import eu.supersede.integration.api.security.types.AuthorizationToken;
@@ -32,37 +33,29 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 	private final static String SUPERSEDE_ADAPTER_ENDPOINT = 
 			IntegrationProperty.getProperty("adapter.endpoint");
 
-	private String addURIQueryArray (String uriString, List<String> ids, String idLabel){
-		boolean queryStarted = false;
-		for (String id: ids){
-			if (queryStarted){
-				uriString = uriString + "&";
-			}
-			uriString = uriString + idLabel + "=" + id;
-			queryStarted = true;
-		}
-		
-		return uriString;
-	}
-	
-	private String createXFormValuesBody (String uriString, List<String> ids, String idLabel){
-		boolean queryStarted = false;
-		for (String id: ids){
-			if (queryStarted){
-				uriString = uriString + "&";
-			}
-			uriString = uriString + idLabel + "=" + id;
-			queryStarted = true;
-		}
-		
-		return uriString;
-	}
+//	private String addURIQueryArray (String uriString, List<String> ids, String idLabel){
+//		boolean queryStarted = false;
+//		for (String id: ids){
+//			if (queryStarted){
+//				uriString = uriString + "&";
+//			}
+//			uriString = uriString + idLabel + "=" + id;
+//			queryStarted = true;
+//		}
+//		
+//		return uriString;
+//	}
+
 
 	@Override
 	public boolean enactAdaptationDecisionActions(String systemId, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId) throws Exception {
+		Assert.notNull(systemId, "Provide a valid system id");
+		Assert.notNull(adaptationDecisionActionIds, "Provide valid adaptationDecisionActionIds");
+		Assert.notEmpty(adaptationDecisionActionIds, "Provide not empty adaptationDecisionActionIds");
+		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
 		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/featureConfiguration/" + featureConfigurationId + "/system/" + systemId + "?";
-		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
+//		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
 		
 		return postFormURLEncoded(new URI(uriString), "adaptationDecisionActionIds", adaptationDecisionActionIds, HttpStatus.OK);
 	}

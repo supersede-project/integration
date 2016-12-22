@@ -23,6 +23,7 @@ import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Map;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -298,11 +299,14 @@ public class IFMessageClient {
 	}
 
 	public <T> String convertToJSON(T object) throws JsonProcessingException {
-		// TODO Auto-generated method stub
 		return objectMapper.writeValueAsString(object);
 	}
 	
 	public <T,S> ResponseEntity<T> postForEntity (URI uri, HttpEntity<MultiValueMap<String, S>> request, Class<T> returnType){
 		return restTemplate.postForEntity (uri, request, returnType);
+	}
+	
+	public <T,S> ResponseEntity<T> getForEntity (String url, Class<T> responseType, Map<String, S> urlVariables){
+		return restTemplate.getForEntity(url, responseType, urlVariables);
 	}
 }
