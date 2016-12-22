@@ -35,4 +35,7 @@
     <artifact name="SupersedeAdapter" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeAdapter.xml</file>
     </artifact>
+    <artifact name="SupersedeDMOptimizer" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeDMOptimizer.xml</file>
+    </artifact>
 </artifacts>

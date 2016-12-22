@@ -18,6 +18,8 @@
     <eu.supersede.if.esb.resource_._MDMEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MDMEndpoint>
     <eu.supersede.if.api_._SupersedeAdapter>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeAdapter>
     <eu.supersede.if.esb.resource_._ReplanControllerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerEndpoint>
+    <eu.supersede.if.esb.resource_._DMOptimizerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DMOptimizerEndpoint>
+    <eu.supersede.if.api_._SupersedeDMOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMOptimizer>
     <eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>
     <eu.supersede.if.api_._SupersedeReplanOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizer>
     <eu.supersede.if.esb.resource_._AdapterEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AdapterEndpoint>
@@ -165,6 +167,18 @@
       <artifactId>SupersedeAdapter</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeDMOptimizer</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>DMOptimizerEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
     </dependency>
   </dependencies>
   <repositories>
