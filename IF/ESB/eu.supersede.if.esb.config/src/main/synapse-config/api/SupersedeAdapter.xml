@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/enactment" name="SupersedeAdapter" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/ping/{message}">
+    <inSequence>
+      <log level="full">
+        <property name="Adapter" value="Ping message forwarded to Adapter endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/AdapterEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/adaptationDecisionActions/featureConfiguration/{featureConfigurationId}/system/{systemId}?*">
+    <inSequence>
+      <log level="full">
+        <property name="Adapter" value="Enact adaptation decision actions message forwarded to Adapter endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/AdapterEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+</api>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/orchestrator/monitoring"
+  name="SupersedeMonitoringOrchestrator" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/MonitorTypes">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="List all Monitor Types message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/MonitorTypes">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Insert a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Get a single monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Delete a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}/Tools">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Insert a monitor tool for a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}/Tools/{tool_name}">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Get a monitor tool for a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}/Tools/{tool_name}">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Delete a monitor tool for a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}/Tools/{tool_name}/ToolConfigurations">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Create a monitor configuration for a monitor tool for a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}/Tools/{tool_name}/ToolConfigurations/{id_configuration}">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Get a monitor configuration for a monitor tool for a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}/Tools/{tool_name}/ToolConfigurations/{id_configuration}">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Update a monitor configuration for a monitor tool for a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/MonitorTypes/{monitor_type_name}/Tools/{tool_name}/ToolConfigurations/{id_configuration}">
+    <inSequence>
+      <log level="full">
+        <property name="Monitoring Orchestrator" value="Delete a monitor configuration for a monitor tool for a monitor type message forwarded to Monitoring Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MonitoringOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+</api>

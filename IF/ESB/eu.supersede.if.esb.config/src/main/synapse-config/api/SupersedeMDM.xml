@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/mdm" name="SupersedeMDM" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/release">
+    <inSequence>
+      <log level="full">
+        <property name="Metadata Management System" value="Insert a new schema release forwarded to MDM endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MDMEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+</api>

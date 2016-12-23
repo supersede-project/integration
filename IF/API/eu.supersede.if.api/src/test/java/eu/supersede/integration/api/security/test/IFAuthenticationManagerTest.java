@@ -303,4 +303,12 @@ public class IFAuthenticationManagerTest {
 		Assert.isTrue(!token.getAccessToken().isEmpty());
 	}
 	
+	@Test
+	public void getAuthorizationTokenTest2() throws TenantMgtAdminServiceExceptionException, URISyntaxException, UserStoreException, MalformedURLException{
+		AuthorizationToken token = am.getAuthorizationToken("wp_admin", "12345", "atos");
+		Assert.notNull(token);
+		Assert.notNull(token.getAccessToken());
+		Assert.isTrue(!token.getAccessToken().isEmpty());
+	}
+	
 }

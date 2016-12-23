@@ -17,10 +17,26 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.dm.types;
+package eu.supersede.integration.api.mdm.proxies;
 
-public enum AlertLevel {
-	
-	Normal, Critical, Info;
+import java.net.URI;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
+
+import eu.supersede.integration.api.mdm.types.KafkaTopic;
+import eu.supersede.integration.api.mdm.types.SchemaRelease;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implements IMetadataManagement {
+	private final static String SUPERSEDE_MDM_ENDPOINT = IntegrationProperty
+			.getProperty("metadata.management.endpoint");
+
+	@Override
+	public KafkaTopic registerSchemaRelease (SchemaRelease release) throws Exception {
+		Assert.notNull(release, "Provide a valid release");
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
+		return insertJSONObjectAndReturnAnotherType(release, KafkaTopic.class, uri,  HttpStatus.OK);
+	}
 	
 }

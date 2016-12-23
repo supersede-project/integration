@@ -22,29 +22,53 @@ package eu.supersede.integration.api.proxy;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestClientException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public abstract class IFServiceProxy<T, S> {
-	private IFMessageClient messageClient = IFMessageClient.getInstance();
+	protected IFMessageClient messageClient = IFMessageClient.getInstance();
 	private static final Logger log = LoggerFactory.getLogger(IFServiceProxy.class);
 
 	public <T> List<T> getJSONObjectsListForType(Class<T[]> type, URI uri, HttpStatus expectedStatus) {
 		try {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T[]> response = messageClient.getJSONMessage(uri, type);
+			T[] objects = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Located " + objects.length + " JSON object(s) for type " + type);
+			} else {
+				log.info("There was a problem getting JSON object(s) in uri: " + uri);
+			}
+			return (List<T>) Arrays.asList(objects);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public <T> List<T> getJSONObjectsListForType(Class<T[]> type, URI uri, HttpStatus expectedStatus, String token) {
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<T[]> response = messageClient.getJSONMessage(uri, type, token);
 			T[] objects = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Located " + objects.length + " JSON object(s) for type " + type);
@@ -92,6 +116,23 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public <T> T getJSONObjectForType(Class<T> type, URI uri, HttpStatus expectedStatus, String token) {
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<T> response = messageClient.getJSONMessage(uri, type, token);
+			T object = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Located " + type + " JSON object: " + object);
+			} else {
+				log.info("There was a problem getting JSON object in uri: " + uri);
+			}
+			return object;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public <T> T getObjectForType(Class<T> type, URI uri, HttpStatus expectedStatus, MediaType objectMediaType, AuthorizationToken authenticationToken) {
 		try {
 			Assert.notNull(uri, "Provide a valid uri");
@@ -101,6 +142,23 @@ public abstract class IFServiceProxy<T, S> {
 				log.info("Located " + type + " JSON object: " + object);
 			} else {
 				log.info("There was a problem getting JSON object in uri: " + uri);
+			}
+			return object;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public byte[] getObjectAsInputStream(URI uri, HttpStatus expectedStatus, String token) {
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<byte[]> response = messageClient.getMessage(uri, byte[].class, MediaType.APPLICATION_OCTET_STREAM, token);
+			byte[] object = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Located object: " + object);
+			} else {
+				log.info("There was a problem getting object in uri: " + uri);
 			}
 			return object;
 		} catch (Exception e) {
@@ -205,7 +263,7 @@ public abstract class IFServiceProxy<T, S> {
 				JSONObject json = new JSONObject(response.getBody());
 				result = json.getString(label);
 			} else {
-				log.info("There was a problem posting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem posting JSON object " + object + " in URI: " + uri);
 			}
 			return result;
 		} catch (Exception e) {
@@ -330,6 +388,68 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	/**
+	 * Sends a post message with an array of values encoded as form
+	 * @param query
+	 * @param valueLabel
+	 * @param values
+	 * @param expectedStatus
+	 * @return
+	 * @throws Exception
+	 */
+	public <T> boolean postFormURLEncoded(URI query, String valueLabel, List<T> values, HttpStatus expectedStatus) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(query, "Provide a valid query");
+			Assert.notNull(valueLabel, "Provide a valid valueLabel");
+			Assert.notNull(values, "Provide a valid values");
+			Assert.notNull(expectedStatus, "Provide a valid expectedStatus");
+			
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+			MultiValueMap<String, T> map= new LinkedMultiValueMap<String, T>();
+			for (T value:values)
+				map.add(valueLabel, value);
+
+			HttpEntity<MultiValueMap<String, T>> request = new HttpEntity<MultiValueMap<String, T>>(map, headers);
+
+			ResponseEntity<String> response = messageClient.postForEntity( query, request , String.class );
+			
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully posted query " + query);
+				result = true;
+			} else {
+				log.info("There was a problem posting query query");
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public <T, S> T getFormURLEncoded(String uri, Map<String, S> parameters, HttpStatus expectedStatus, Class<T> returnType) throws Exception {
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			Assert.notNull(parameters, "Provide a valid parameters");
+			Assert.notNull(expectedStatus, "Provide a valid expectedStatus");
+			Assert.notNull(returnType, "Provide a valid returnType");
+
+			ResponseEntity<T> response = messageClient.getForEntity( uri, returnType,  parameters);
+			
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully get uri " + uri);
+			} else {
+				log.info("There was a problem getting uri");
+			}
+			return response.getBody();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public <T> T deleteUriResourceForReturnType(Class<T> type, URI uri, HttpStatus expectedStatus) throws Exception {
 		T result = null;
 		try {
@@ -367,6 +487,42 @@ public abstract class IFServiceProxy<T, S> {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public boolean deleteUriResource(URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<String> response = 
+					messageClient.deleteJsonMessage(uri, token);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully delete in uri " + uri);
+				result = true;
+			} else {
+				log.info("There was a problem deleting in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public <T> T sendMultipartFormDataMessage(URI uri, Class<T> returnType, LinkedMultiValueMap<String, Object> parts, HttpMethod method) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		
+		HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
+		          new HttpEntity<LinkedMultiValueMap<String, Object>>(parts, headers);
+		
+		ResponseEntity<T> response =
+				messageClient.exchange(uri, 
+		                  method, requestEntity, returnType);
+		return response.getBody();
+	}
+
+	public <T> String convertToJSON(T object) throws JsonProcessingException {
+		return messageClient.convertToJSON(object);
 	}
 
 }

@@ -17,47 +17,27 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.feedback.orchestrator.types;
+package eu.supersede.integration.api.json;
 
-import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
-import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.Unique;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-//@Serialize(ApiUserSerializationService.class)
-public class ApiUser extends ItemBase<ApiUser> {
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
 
-	@Id
-	private Integer id;
-	
-	@Unique
-	private String name;
-	
-	private String password;
-	
-	@Override
-	public Integer getId() {
-		return id;
-	}
+public class CustomJsonTimestampSerializer extends JsonSerializer<Timestamp>{
 
 	@Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void serialize(Timestamp timestamp, JsonGenerator jgen, SerializerProvider provider)
+			throws IOException, JsonProcessingException {
+		Date date = new Date();
+		date.setTime(timestamp.getTime());
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	    String dateString = dateFormat.format(date);
+	    jgen.writeString(dateString);
 	}
 }

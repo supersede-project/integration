@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/feedback_repository" name="SupersedeFeedbackRepository" xmlns="http://ws.apache.org/ns/synapse">
-  <resource methods="GET" protocol="http" uri-template="/en/feedbacks">
-    <inSequence>
-      <log level="full">
-        <property name="Feedback Repository" value="Get all feedbacks message forwarded to Feedback Repository endpoint"/>
-      </log>
-      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
-      <send>
-        <endpoint key-expression="$ctx:endpoint"/>
-      </send>
-    </inSequence>
-    <outSequence>
-      <send/>
-    </outSequence>
-    <faultSequence>
-      <send/>
-    </faultSequence>
-  </resource>
   <resource methods="GET" protocol="http" uri-template="/en/applications/{appId}/feedbacks">
     <inSequence>
       <log level="full">
-        <property name="Feedback Repository" value="Get all feedbacks for application Id message forwarded to Feedback Repository endpoint"/>
+        <property name="Feedback Repository" value="List all feedbacks for application Id message forwarded to Feedback Repository endpoint"/>
       </log>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
       <send>
@@ -34,10 +17,10 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/feedbacks/{id}">
+  <resource methods="GET" protocol="http" uri-template="/en/applications/{id_app}/feedbacks/{id_feedback}">
     <inSequence>
       <log level="full">
-        <property name="Feedback Repository" value="Get feedback for Id message forwarded to Feedback Repository endpoint"/>
+        <property name="Feedback Repository" value="Get feedback by Id for application by Id message forwarded to Feedback Repository endpoint"/>
       </log>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
       <send>
@@ -51,10 +34,384 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/feedbacks">
+  <resource methods="GET" protocol="http" uri-template="/attachments/{id_attachment}">
     <inSequence>
       <log level="full">
-        <property name="Feedback Repository" value="Insert feedback message forwarded to Feedback Repository endpoint"/>
+        <property name="Feedback Repository" value="Get attachment by Id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/screenshots/{id_screenshot}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Get screenshot by Id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/screenshots/{id_screenshot}/base64">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Get screenshot by Id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/audios/{id_audio}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Get audio by Id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/en/applications/{id_app}/feedbacks">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Insert feedback for application by Id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/authenticate">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Authentica message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/en/api_users">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="List all users message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/en/api_users">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Create user message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/en/api_users">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Update user message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/en/api_users/{id_user}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Get user by id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/en/api_users/{id_user}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Delete user by id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/en/api_users/{id_user}/permissions">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="List application permissions of user by id  message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/en/api_users/{id_user}/permissions">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Create application permissions of user by id  message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/en/api_users/permissions/{id_permission}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Delete application permission by id of user message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/en/applications/{id_application}/feedbacks/{id_feedback}/status">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Get general status of feedback by id in application by id  message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/en/applications/{id_application}/feedbacks/{id_feedback}/api_users/{id_user}/status">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Get user by id specific status of feedback by id in application by id  message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/en/applications/{id_application}/api_users/{id_user}/states">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Get all user specific status for user by id in application by id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/en/applications/{id_application}/states/{id_status}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Delete feedback status by id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/en/applications/{id_application}/states">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Update feedback status message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/en/status_options">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="List all status options message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/en/status_options">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Create status option message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/en/status_options">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Update status option message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/en/status_options/{id_option}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Delete status option by id message forwarded to Feedback Repository endpoint"/>
       </log>
       <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
       <send>

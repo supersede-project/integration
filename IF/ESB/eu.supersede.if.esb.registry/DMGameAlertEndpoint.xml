@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="DMGameAlertEndpoint" xmlns="http://ws.apache.org/ns/synapse">
-  <address trace="enable" uri="http://localhost:8080/game-requirements/api/public/"/>
+  <address trace="enable" uri="http://localhost:8080/supersede-dm-app/api/"/>
 </endpoint>

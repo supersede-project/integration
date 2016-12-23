@@ -55,4 +55,32 @@
             <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
         </item>
     </artifact>
+    <artifact name="MonitoringOrchestratorEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>MonitoringOrchestratorEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="MDMEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>MDMEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="AdapterEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>AdapterEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="DMOptimizerEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>DMOptimizerEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
 </artifacts>

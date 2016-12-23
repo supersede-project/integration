@@ -17,13 +17,11 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.dm.types;
+package eu.supersede.integration.api.mdm.proxies;
 
-public enum AlertType {
-	
-	AudienceOver85PercentOfMaximum, 
-	MoreThan20pctUsersWithPlaybackErrorVideo, 
-	MoreThan20pctUsersWithRebufferingGT2,
-	SyncAttemptOutlierDetection;
-	
+import eu.supersede.integration.api.mdm.types.KafkaTopic;
+import eu.supersede.integration.api.mdm.types.SchemaRelease;
+
+public interface IMetadataManagement {
+	KafkaTopic registerSchemaRelease (SchemaRelease release) throws Exception;
 }

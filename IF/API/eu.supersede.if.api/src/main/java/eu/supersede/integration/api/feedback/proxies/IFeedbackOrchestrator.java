@@ -26,58 +26,89 @@ import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
 import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackMechanism;
 import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackParameter;
 import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
+import eu.supersede.integration.api.feedback.orchestrator.types.User;
+import eu.supersede.integration.api.feedback.orchestrator.types.UserGroup;
 
 public interface IFeedbackOrchestrator {
-	public List<Application> getAllApplications() throws Exception;
+	//Applications
+	List<Application> listAllApplications() throws Exception;
 
-	public Application getApplicationById(Integer id) throws Exception;
+	Application getApplication(Integer idApplication) throws Exception;
 
-	public Application insertApplication(Application app, String token) throws Exception;
+	Application createApplication(Application app, String token) throws Exception;
 
 	// public Application updateApplication(Application app) throws Exception;
-	public List<Configuration> getAllConfigurations() throws Exception;
+	
+	// Configurations
+	List<Configuration> listAllConfigurations() throws Exception;
 
-	public Configuration getConfigurationById(Integer id) throws Exception;
+	Configuration getConfiguration(Integer idConfiguration) throws Exception;
 
-	public List<Configuration> getAllConfigurationsForApplicationById(Integer id) throws Exception;
+	List<Configuration> listConfigurationsInApplication(Integer idApplication) throws Exception;
+	
+	Configuration updateConfigurationInApplication(Configuration configuration, Integer idApplication, String token) throws Exception;
+	
+	Configuration createConfigurationInApplication(Configuration configuration, Integer idApplication, String token) throws Exception;
+	
+	List<Configuration> listConfigurationsInApplicationForUserGroup(Integer idApplication, Integer idUserGroup) throws Exception;
+	
+	List<Configuration> listConfigurationsInApplicationForUser(Integer idApplication, Integer idUser) throws Exception;
+	
+	Configuration createConfigurationInApplicationForUserGroup(Configuration configuration, Integer idApplication, Integer idUserGroup, String token) throws Exception;
 
-	public List<GeneralConfiguration> getAllGeneralConfigurations() throws Exception;
+	// General Configurations
+//	public List<GeneralConfiguration> listAllGeneralConfigurations() throws Exception;
 
-	public GeneralConfiguration getGeneralConfigurationById(Integer id) throws Exception;
+	GeneralConfiguration getGeneralConfiguration(Integer idGeneralConfiguration) throws Exception;
 
-	public GeneralConfiguration getGeneralConfigurationForApplicationById(Integer id) throws Exception;
+	GeneralConfiguration getGeneralConfigurationInApplication(Integer idApplication) throws Exception;
+	
+	GeneralConfiguration getGeneralConfigurationInConfiguration(Integer idConfiguration) throws Exception;
 
-	public GeneralConfiguration updateGeneralConfigurations(GeneralConfiguration generalConfiguration, String token)
+	GeneralConfiguration updateGeneralConfigurationInApplication(GeneralConfiguration generalConfiguration, Integer idApplication, String token)
 			throws Exception;
+	
+	//Mechanisms
+	List<FeedbackMechanism> listAllFeedbackMechanisms() throws Exception;
 
-	public List<FeedbackMechanism> getAllFeedbackMechanisms() throws Exception;
+	FeedbackMechanism getFeedbackMechanism(Integer idMechanism) throws Exception;
 
-	public FeedbackMechanism getFeedbackMechanismById(Integer id) throws Exception;
+	List<FeedbackMechanism> listAllFeedbackMechanismsInConfiguration(Integer idConfiguration) throws Exception;
 
-	public List<FeedbackMechanism> getAllFeedbackMechanismsForConfigurationById(Integer id) throws Exception;
+	FeedbackMechanism createFeedbackMechanismInConfigurationInApplication(
+			FeedbackMechanism feedbackMechanism, Integer idConfiguration, Integer idApplication, String token) throws Exception;
 
-	public FeedbackMechanism insertFeedbackMechanismForConfigurationById(Integer id,
-			FeedbackMechanism feedbackMechanism, String token) throws Exception;
+	FeedbackMechanism updateFeedbackMechanismInConfigurationInApplication(
+			FeedbackMechanism feedbackMechanism, Integer idConfiguration, Integer idApplication, String token) throws Exception;
 
-	public FeedbackMechanism updateFeedbackMechanismForConfigurationById(Integer id,
-			FeedbackMechanism feedbackMechanism, String token) throws Exception;
+	//Parameters
+	List<FeedbackParameter> listAllFeedbackParameters() throws Exception;
 
-	public List<FeedbackParameter> getAllFeedbackParameters() throws Exception;
+	FeedbackParameter getFeedbackParameter(Integer idParameter) throws Exception;
 
-	public FeedbackParameter getFeedbackParameterById(Integer id) throws Exception;
+	List<FeedbackParameter> listAllFeedbackParametersInFeedbackMechanism(Integer idMechanism) throws Exception;
 
-	public List<FeedbackParameter> getAllFeedbackParametersForFeedbackMechanismById(Integer id) throws Exception;
+	List<FeedbackParameter> listAllFeedbackParametersInGeneralConfiguration(Integer idGeneralConfiguration) throws Exception;
 
-	public List<FeedbackParameter> getAllFeedbackParametersForGeneralConfigurationById(Integer id) throws Exception;
+	FeedbackParameter createFeedbackParameterInGeneralConfigurationInApplication(
+			FeedbackParameter feedbackParameter, Integer idGeneralConfiguration, Integer idApplication, String token) throws Exception;
 
-	public FeedbackParameter insertFeedbackParameterForGeneralConfigurationById(Integer id,
-			FeedbackParameter feedbackParameter, String token) throws Exception;
+	FeedbackParameter createFeedbackParameterInFeedbackMechanismInApplication(
+			FeedbackParameter feedbackParameter, Integer idMechanism, Integer idApplication, String token) throws Exception;
 
-	public FeedbackParameter insertFeedbackParameterForFeedbackMechanismById(Integer id,
-			FeedbackParameter feedbackParameter, String token) throws Exception;
+	FeedbackParameter updateFeedbackParameterInApplication(FeedbackParameter feedbackParameter, Integer idApplication, String token) throws Exception;
 
-	public FeedbackParameter updateFeedbackParameter(FeedbackParameter feedbackParameter, String token)
-			throws Exception;
-
+	//Authentication
 	String authenticate(String user, String password) throws Exception;
+	
+	//Users and Groups
+	List<User> listAllUsers() throws Exception;
+	
+	User updateUser (User user, String token) throws Exception;
+	
+	List<UserGroup> listAllUserGroups() throws Exception;
+	
+	UserGroup getUserGroup (Integer idGroup) throws Exception;
+	
+	UserGroup createUserGroup(UserGroup group, String token) throws Exception;
 }
