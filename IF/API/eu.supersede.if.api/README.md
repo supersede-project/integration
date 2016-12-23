@@ -1,5 +1,5 @@
 <link rel="shortcut icon" type="../../../images/png" href="../../../images/favicon.png">
-# [![SUPERSEDE](images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Integration Framework (IF) Client API
+# [![SUPERSEDE](../../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Integration Framework (IF) Client API
 This library provides a number of proxies for dispatching messages to backend components of the SUPERSEDE platform instance deployed in the [Supersede Integration Server](http://supersede.es.atos.net:8080/).
 
 See deliverable D5.5 in [Supersede Portal](https://www.supersede.eu/) for more details about this framework, including its functional description, its architecture and its components.
