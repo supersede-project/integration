@@ -103,6 +103,24 @@ public class FeedbackOrchestratorProxyTest {
     }
 ```
 
+Next table collects the SUPERSEDE Platform backend components supported by the IF Client API and their associated proxies:
+
+SUPERSEDE Component | Proxy
+------------------- | -----
+
+Dynamic Adaptation Adapter | eu.supersede.integration.api.adaptation.proxies.AdapterProxy.java
+Analysis DataProvider | eu.supersede.integration.api.analysis.proxies.DataProviderProxy.java
+Frontend DataStorage | eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy.java
+Dynamic Adaptation DM Optimizer | eu.supersede.integration.api.dm.proxies.DMOptimizerProxy.java
+Decision Making System | eu.supersede.integration.api.dm.proxies.DecisionMakingSystemProxy.java
+Feedback Gathering Orchestrator | eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy.java
+Feedback Gathering Repository | eu.supersede.integration.api.feedback.proxies.FeedbackRepositoryProxy.java
+Metadata Management System | eu.supersede.integration.api.mdm.proxies.MetadataManagementProxy.java
+Monitoring Orchestrator | eu.supersede.integration.api.monitoring.orchestrator.proxies.MonitoringOrchestratorProxy.java
+Replan Controller | eu.supersede.integration.api.replan.controller.proxies.ReplanControllerProxy.java
+Replan Optimizer | eu.supersede.integration.api.replan.optimizer.proxies.ReplanOptimizerProxy.java
+
+
 SUPERSEDE Integration Framework is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
