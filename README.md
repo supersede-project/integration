@@ -12,6 +12,7 @@ Repository Structure:
 SUPERSEDE Integration Framework is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 *Please check the respective README.md for details.*
+In particular, see [IF Client README.md](https://github.com/supersede-project/integration/blob/master/IF/API/eu.supersede.if.api/README.md) for datails on the configuration and usage of the IF Client API library to send messages to the backend components of the SUPERSEDE Platform
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
