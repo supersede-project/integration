@@ -102,7 +102,6 @@ public class FeedbackOrchestratorProxyTest {
     	Assert.notNull(result);
     }
 ```
-
 SUPERSEDE Integration Framework is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
