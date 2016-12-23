@@ -107,7 +107,6 @@ Next table collects the SUPERSEDE Platform backend components supported by the I
 
 SUPERSEDE Component | Proxy
 ------------------- | -----
-
 Dynamic Adaptation Adapter | eu.supersede.integration.api.adaptation.proxies.AdapterProxy.java
 Analysis DataProvider | eu.supersede.integration.api.analysis.proxies.DataProviderProxy.java
 Frontend DataStorage | eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy.java
