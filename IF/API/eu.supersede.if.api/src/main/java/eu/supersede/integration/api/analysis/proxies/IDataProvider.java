@@ -21,8 +21,13 @@ package eu.supersede.integration.api.analysis.proxies;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import eu.supersede.integration.api.analysis.types.MonitoringData;
 
 public interface IDataProvider {
+	public void ingestData(String data, String topic);
+	public void ingestData(JSONObject data, String topic);
+	public void ingestData(JSONArray items, String itemsLabel, String topic);
 	public void ingestMonitoringData(List<MonitoringData> dataList, String timeStamp, int outputId, int confId, String topic);
 }

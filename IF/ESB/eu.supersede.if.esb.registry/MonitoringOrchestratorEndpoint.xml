@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="MonitoringOrchestratorEndpoint" xmlns="http://ws.apache.org/ns/synapse">
-  <address trace="enable" uri="http://localhost:8080/orchestrator/monitoring"/>
+  <address trace="enable" uri="http://localhost:8081/orchestrator/monitoring"/>
 </endpoint>

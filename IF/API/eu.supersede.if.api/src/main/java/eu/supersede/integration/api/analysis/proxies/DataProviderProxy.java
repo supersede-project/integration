@@ -84,5 +84,26 @@ public class DataProviderProxy implements IDataProvider{
 		log.debug("Sending message " + jsonData + " to DataProvider on topic " + topic);
 		kafka.sendMessage(jsonData, topic);
 	}
+	
+	@Override
+	public void ingestData(JSONArray items, String itemsLabel, String topic) {
+		JSONObject jsonData = new JSONObject();
+		jsonData.put (itemsLabel, items);
+		
+		log.debug("Sending message " + jsonData + " to DataProvider on topic " + topic);
+		kafka.sendMessage(jsonData, topic);
+	}
+	
+	@Override
+	public void ingestData(JSONObject data, String topic) {
+		log.debug("Sending message " + data + " to DataProvider on topic " + topic);
+		kafka.sendMessage(data, topic);
+	}
 
+	@Override
+	public void ingestData(String data, String topic) {
+		log.debug("Sending message " + data + " to DataProvider on topic " + topic);
+		JSONObject jsonData = new JSONObject(data);
+		kafka.sendMessage(jsonData, topic);
+	}
 }

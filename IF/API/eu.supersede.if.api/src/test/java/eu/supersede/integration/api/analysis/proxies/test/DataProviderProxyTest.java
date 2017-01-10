@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -50,6 +52,54 @@ public class DataProviderProxyTest {
 		int confId = 3;
 		String topic = "atos";
 		proxy.ingestMonitoringData(dataList, timeStamp, outputId, confId, topic);
+    }
+    
+    @Test
+    public void testIngestJsonData() throws Exception{
+    	JSONObject jsonData = createMonitoringDataListAsJson();
+		String topic = "atos";
+		proxy.ingestData(jsonData, topic);
+    }
+    
+    @Test
+    public void testIngestData() throws Exception{
+    	JSONObject jsonData = createMonitoringDataListAsJson();
+		String topic = "atos";
+		proxy.ingestData(jsonData.toString(), topic);
+    }
+    
+    private JSONObject createMonitoringDataListAsJson(){
+    	List<MonitoringData> dataList = createMonitoringDataList();
+		String timeStamp = Calendar.getInstance().getTime().toString();
+		int outputId = 2;
+		int confId = 3;
+    	
+    	JSONArray items = new JSONArray();
+		for (MonitoringData item : dataList) {
+			JSONObject jsonItem = new JSONObject();
+			
+			jsonItem.put("idItem", item.getId());
+			jsonItem.put("timeStamp", item.getTimeStamp());
+			jsonItem.put("message", item.getMessage());
+			jsonItem.put("author", item.getAuthor());
+			jsonItem.put("link", item.getLink());
+			
+			items.put(jsonItem);
+		}
+		
+		JSONObject mainInfo = new JSONObject();
+		
+		mainInfo.put("idOutput", String.valueOf(outputId));
+		mainInfo.put("confId", String.valueOf(confId));
+		mainInfo.put("searchTimeStamp", timeStamp);
+		mainInfo.put("numDataItems", dataList.size());
+		mainInfo.put("DataItems", items);
+		
+		JSONObject jsonData = new JSONObject();
+		
+		jsonData.put("SocialNetworksMonitoredData", mainInfo);
+		
+		return jsonData;
     }
 
 	private List<MonitoringData> createMonitoringDataList() {

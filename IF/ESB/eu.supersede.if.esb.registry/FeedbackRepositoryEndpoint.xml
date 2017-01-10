@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="FeedbackRepositoryEndpoint" xmlns="http://ws.apache.org/ns/synapse">
-  <address trace="enable" uri="http://localhost:8080/feedback_repository/"/>
+  <address trace="enable" uri="http://localhost:8081/feedback_repository/"/>
 </endpoint>
