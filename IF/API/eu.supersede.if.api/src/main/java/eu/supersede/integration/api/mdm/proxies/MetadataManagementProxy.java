@@ -20,11 +20,13 @@
 package eu.supersede.integration.api.mdm.proxies;
 
 import java.net.URI;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
-import eu.supersede.integration.api.mdm.types.SchemaRelease;
+import eu.supersede.integration.api.mdm.types.Release;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
@@ -33,10 +35,16 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 			.getProperty("metadata.management.endpoint");
 
 	@Override
-	public KafkaTopic registerSchemaRelease (SchemaRelease release) throws Exception {
+	public KafkaTopic registerRelease (Release release) throws Exception {
 		Assert.notNull(release, "Provide a valid release");
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
 		return insertJSONObjectAndReturnAnotherType(release, KafkaTopic.class, uri,  HttpStatus.OK);
+	}
+
+	@Override
+	public List<Release> getAllReleases() throws Exception {
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
+		return getJSONObjectsListForType(Release[].class, uri, HttpStatus.OK);
 	}
 	
 }

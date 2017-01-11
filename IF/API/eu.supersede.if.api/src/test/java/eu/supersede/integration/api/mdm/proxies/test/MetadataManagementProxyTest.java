@@ -19,13 +19,15 @@
  *******************************************************************************/
 package eu.supersede.integration.api.mdm.proxies.test;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.mdm.proxies.MetadataManagementProxy;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
-import eu.supersede.integration.api.mdm.types.SchemaRelease;
+import eu.supersede.integration.api.mdm.types.Release;
 
 public class MetadataManagementProxyTest {
 	// private static final Logger log =
@@ -38,15 +40,22 @@ public class MetadataManagementProxyTest {
 	}
 
 	@Test
-	public void testRegisterSchemaRelease() throws Exception {
-		SchemaRelease release = new SchemaRelease();
+	public void testRegisterRelease() throws Exception {
+		Release release = new Release();
 		release.setEvent("TwitterMonitor");
 		release.setSchemaVersion("Sample_Version_1"); 
 		//String jsonInstances = "{\\\"SocialNetworksMonitoredData\\\":{\\\"idOutput\\\":\\\"12345\\\",\\\"confId\\\":\\\"67890\\\",\\\"searchTimeStamp\\\":\\\"2016-07-19 17:23:00.000\\\",\\\"numDataItems\\\":1,\\\"DataItems\\\":[{\\\"idItem\\\":\\\"6253282\\\",\\\"timeStamp\\\":\\\"2016-05-25 20:03\\\",\\\"message\\\":\\\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\\\",\\\"author\\\":\\\"@SnoopDogg\\\",\\\"link\\\":\\\"https:\\/\\/twitter.com\\/SnoopDogg\\/status\\/734894106967703552\\\"}]}}";
 		String jsonInstances = "{\"SocialNetworksMonitoredData\":{\"idOutput\":\"12345\",\"confId\":\"67890\",\"searchTimeStamp\":\"2016-07-19 17:23:00.000\",\"numDataItems\":1,\"DataItems\":[{\"idItem\":\"6253282\",\"timeStamp\":\"2016-05-25 20:03\",\"message\":\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\",\"author\":\"@SnoopDogg\",\"link\":\"https://twitter.com/SnoopDogg/status/734894106967703552\"}]}}";
 		release.setJsonInstances(jsonInstances);
-		KafkaTopic result = proxy.registerSchemaRelease(release );
+		KafkaTopic result = proxy.registerRelease(release );
 		Assert.notNull(result);
+	}
+	
+	@Test
+	public void testGelAllReleases() throws Exception {
+		List<Release> result = proxy.getAllReleases();
+		Assert.notNull(result);
+		Assert.notEmpty(result);
 	}
 	
 	@Test
