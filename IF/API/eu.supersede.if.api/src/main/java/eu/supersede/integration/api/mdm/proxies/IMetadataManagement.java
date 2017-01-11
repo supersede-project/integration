@@ -19,9 +19,12 @@
  *******************************************************************************/
 package eu.supersede.integration.api.mdm.proxies;
 
+import java.util.List;
+
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
-import eu.supersede.integration.api.mdm.types.SchemaRelease;
+import eu.supersede.integration.api.mdm.types.Release;
 
 public interface IMetadataManagement {
-	KafkaTopic registerSchemaRelease (SchemaRelease release) throws Exception;
+	KafkaTopic registerRelease (Release release) throws Exception;
+	List<Release> getAllReleases () throws Exception;
 }
