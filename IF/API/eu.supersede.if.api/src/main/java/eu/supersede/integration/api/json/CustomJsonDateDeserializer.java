@@ -79,23 +79,23 @@ public class CustomJsonDateDeserializer extends JsonDeserializer<Date>
         }
     }
     
-    public static void main (String[] args) throws java.text.ParseException{
-    	String inputDate = "2015-03-22+01:00";
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd+HH:mm");
-    	Date parsedDate = sdf.parse(inputDate);
-    	
-    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-    	System.out.println(format.format(parsedDate));
-    	
-    	//CreateAt date deserializer for Feedback Gathering orchestrator
-    	inputDate = "2016-08-13 05:07:31.0";
-    	sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-    	parsedDate = sdf.parse(inputDate);
-    	System.out.println(format.format(parsedDate));
-    	
-    	//Created_at date deserializer for replan controller
-    	inputDate = "2016-10-05T15:49:19.303Z";
-    	parsedDate = new CustomJsonDateDeserializer().formatDate(inputDate, dateFormats, 0);
-    	System.out.println(parsedDate);
-    }
+//    public static void main (String[] args) throws java.text.ParseException{
+//    	String inputDate = "2015-03-22+01:00";
+//    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd+HH:mm");
+//    	Date parsedDate = sdf.parse(inputDate);
+//    	
+//    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//    	System.out.println(format.format(parsedDate));
+//    	
+//    	//CreateAt date deserializer for Feedback Gathering orchestrator
+//    	inputDate = "2016-08-13 05:07:31.0";
+//    	sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//    	parsedDate = sdf.parse(inputDate);
+//    	System.out.println(format.format(parsedDate));
+//    	
+//    	//Created_at date deserializer for replan controller
+//    	inputDate = "2016-10-05T15:49:19.303Z";
+//    	parsedDate = new CustomJsonDateDeserializer().formatDate(inputDate, dateFormats, 0);
+//    	System.out.println(parsedDate);
+//    }
 }

@@ -5,23 +5,24 @@ import javax.naming.NamingException;
 
 public class TopicPublisher extends TopicMessageAgent implements iTopicPublisher{
 
-	public static void main(String[] args) throws NamingException {
-		iTopicPublisher publisher = null;
-		try {
-			publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC, true);
-			publisher.publishTextMesssageInTopic("Analysis event for DM: detected memory leak in managed system");
-		} catch (JMSException e) {
-			e.printStackTrace();
-		} finally {
-			if (publisher != null){
-				try {
-					publisher.closeTopicConnection();
-				} catch (JMSException e) {
-					throw new RuntimeException("Error in closing topic connection", e);
-				}
-			}
-		}
-	}
+
+//	public static void main(String[] args) throws NamingException {
+//		iTopicPublisher publisher = null;
+//		try {
+//			publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC, true);
+//			publisher.publishTextMesssageInTopic("Analysis event for DM: detected memory leak in managed system");
+//		} catch (JMSException e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (publisher != null){
+//				try {
+//					publisher.closeTopicConnection();
+//				} catch (JMSException e) {
+//					throw new RuntimeException("Error in closing topic connection", e);
+//				}
+//			}
+//		}
+//	}
 
 	public TopicPublisher(SubscriptionTopic subscriptionTopic) throws NamingException {
 		super (subscriptionTopic);

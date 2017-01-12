@@ -13,34 +13,35 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 	private javax.jms.TopicSubscriber topicSubscriber;
 	private TopicSession topicSession;
 
-	public static void main(String[] args) throws NamingException {
-		iTopicSubscriber subscriber = null;
-		try {
-			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC);
-			subscriber.openTopicConnection();
-			TextMessageListener messageListener = ((TopicSubscriber)subscriber).new TextMessageListener();
-			subscriber.createTopicSubscriptionAndKeepListening(messageListener);
-			try {
-				while (true) {
-					Thread.sleep(1000); // FIXME Configure sleeping time
-				}
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			subscriber.closeSubscription();
-			subscriber.closeTopicConnection();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		} finally {
-			if (subscriber != null) {
-				try {
-					subscriber.closeTopicConnection();
-				} catch (JMSException e) {
-					throw new RuntimeException("Error in closing topic connection", e);
-				}
-			}
-		}
-	}
+
+//	public static void main(String[] args) throws NamingException {
+//		iTopicSubscriber subscriber = null;
+//		try {
+//			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC);
+//			subscriber.openTopicConnection();
+//			TextMessageListener messageListener = ((TopicSubscriber)subscriber).new TextMessageListener();
+//			subscriber.createTopicSubscriptionAndKeepListening(messageListener);
+//			try {
+//				while (true) {
+//					Thread.sleep(1000); // FIXME Configure sleeping time
+//				}
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			subscriber.closeSubscription();
+//			subscriber.closeTopicConnection();
+//		} catch (JMSException e) {
+//			e.printStackTrace();
+//		} finally {
+//			if (subscriber != null) {
+//				try {
+//					subscriber.closeTopicConnection();
+//				} catch (JMSException e) {
+//					throw new RuntimeException("Error in closing topic connection", e);
+//				}
+//			}
+//		}
+//	}
 
 	/* (non-Javadoc)
 	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#closeSubscription()
