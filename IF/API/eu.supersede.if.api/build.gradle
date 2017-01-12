@@ -106,12 +106,18 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.4.2.RELEASE")
    
     //Kafka dependencies (WP2 Data Provider)
-	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.9.0.0'
-	compile group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.9.0.0'
-	compile group: 'org.json', name: 'json', version: '20160212'
+	compile group: 'org.apache.kafka', name: 'kafka-clients', version: '0.10.1.1'
+	compile group: 'org.apache.kafka', name: 'kafka_2.10', version: '0.10.1.1'
 	
 	//JSON Library
 	compile group: 'org.json', name: 'json', version: '20160212'
+	
+	//WSO2 Message Broker - PubSub library
+	compile files ('./lib/andes-client-3.1.1.jar')
+	compile files ('./lib/geronimo-jms_1.1_spec-1.1.0.wso2v1.jar')
+	compile files ('./lib/org.wso2.carbon.logging-4.4.1.jar')
+	compile files ('./lib/org.wso2.securevault-1.0.0-wso2v2.jar')
+	//compile files ('./lib/slf4j-1.5.10.wso2v1.jar')
 }
 
 configurations.all {
