@@ -150,7 +150,7 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 		Assert.notNull(user, "Provide a valid user");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users");
-		return updateJSONObject(user, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -229,7 +229,7 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/states");
-		return updateJSONObject(status, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(status, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -251,7 +251,7 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 		Assert.notNull(statusOption, "Provide a valid status option");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/status_options");
-		return updateJSONObject(statusOption, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(statusOption, uri, HttpStatus.OK, token);
 	}
 
 	@Override

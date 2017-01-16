@@ -130,7 +130,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		Assert.notNull(monitorTypeName, "Provide a valid monitor type name");
 		URI uri = new URI(SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT + "MonitorTypes/" + monitorTypeName + "/Tools/"
 				+ monitorToolName + "/ToolConfigurations/" + monitorConfiguration.getId());
-		return updateJSONObject(monitorConfiguration, uri, HttpStatus.OK);
+		return updateAndReturnJSONObject(monitorConfiguration, uri, HttpStatus.OK);
 	}
 
 	@Override

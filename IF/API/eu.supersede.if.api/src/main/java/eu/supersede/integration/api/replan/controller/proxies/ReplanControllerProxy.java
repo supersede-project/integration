@@ -103,31 +103,31 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	@Override
 	public Project updateProject(Project project) throws Exception{
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + project.getId());
-		return updateJSONObject(project, uri, HttpStatus.OK);
+		return updateAndReturnJSONObject(project, uri, HttpStatus.OK);
 	}
 	
 	@Override
 	public Feature updateFeatureOfProjectById(Feature feature, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/" + feature.getId());
-		return updateJSONObject(feature, uri, HttpStatus.OK);
+		return updateAndReturnJSONObject(feature, uri, HttpStatus.OK);
 	}
 	
 	@Override
 	public Release updateReleaseOfProjectById(Release release, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + release.getId());
-		return updateJSONObject(release, uri, HttpStatus.OK);
+		return updateAndReturnJSONObject(release, uri, HttpStatus.OK);
 	}
 	
 	@Override
 	public Skill updateSkillOfProjectById(Skill skill, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/skills/" + skill.getId());
-		return updateJSONObject(skill, uri, HttpStatus.OK);
+		return updateAndReturnJSONObject(skill, uri, HttpStatus.OK);
 	}
 	
 	@Override
 	public Resource updateResourceOfProjectById(Resource resource, int projectId) throws Exception {
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/resources/" + resource.getId());
-		return updateJSONObject(resource, uri, HttpStatus.OK);
+		return updateAndReturnJSONObject(resource, uri, HttpStatus.OK);
 	}
 	
 	@Override

@@ -91,7 +91,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/configurations");
-		return updateJSONObject(configuration, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(configuration, uri, HttpStatus.OK, token);
 	}
 
 
@@ -169,7 +169,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/general_configurations");
-		return updateJSONObject(generalConfiguration, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(generalConfiguration, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -211,7 +211,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/configurations/" + idConfiguration + "/mechanisms");
-		return updateJSONObject(feedbackMechanism, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(feedbackMechanism, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -269,7 +269,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/parameters");
-		return updateJSONObject(feedbackParameter, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(feedbackParameter, uri, HttpStatus.OK, token);
 	}
 	
 	@Override
@@ -295,7 +295,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(user, "Provide a valid user");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/users");
-		return updateJSONObject(user, uri, HttpStatus.OK, token);
+		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);
 	}
 
 
