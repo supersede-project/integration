@@ -38,4 +38,16 @@
     <artifact name="SupersedeDMOptimizer" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeDMOptimizer.xml</file>
     </artifact>
+    <artifact name="SupersedeMonitorManager" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeMonitorManager.xml</file>
+    </artifact>
+    <artifact name="SupersedeTwitterMonitor" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeTwitterMonitor.xml</file>
+    </artifact>
+    <artifact name="SupersedeAppStoreMonitor" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeAppStoreMonitor.xml</file>
+    </artifact>
+    <artifact name="SupersedeGooglePlayMonitor" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeGooglePlayMonitor.xml</file>
+    </artifact>
 </artifacts>

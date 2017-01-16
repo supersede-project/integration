@@ -83,4 +83,32 @@
             <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
         </item>
     </artifact>
+    <artifact name="MonitorManagerEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>MonitorManagerEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="TwitterMonitorEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>TwitterMonitorEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="AppStoreMonitorEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>AppStoreMonitorEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+    <artifact name="GooglePlayMonitorEndpoint" groupId="eu.supersede.if.esb.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>GooglePlayMonitorEndpoint.xml</file>
+            <path>/_system/governance/repository/endpoint</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
 </artifacts>
