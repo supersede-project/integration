@@ -30,7 +30,7 @@ public class PubSubTest implements Runnable{
 	private void startPublisher() throws NamingException {
 		TopicSubscriber subscriber = null;
 		try {
-			iTopicPublisher publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC, true);
+			iTopicPublisher publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC, true);
 			publisher.publishTextMesssageInTopic("Analysis event for DM: detected memory leak in managed system");
 		} catch (JMSException e) {
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class PubSubTest implements Runnable{
 	private void startSubscriber() throws NamingException {
 		TopicSubscriber subscriber = null;
 		try {
-			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC);
+			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);
 			subscriber.openTopicConnection();
 			TextMessageListener messageListener = new TextMessageListener();
 			subscriber.createTopicSubscriptionAndKeepListening (messageListener);
