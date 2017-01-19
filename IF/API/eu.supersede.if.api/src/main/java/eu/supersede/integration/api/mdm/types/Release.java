@@ -10,6 +10,8 @@ public class Release {
 	String kafkaTopic;
 	String releaseID;
 	String graph;
+	boolean dispatch;
+	String dispatcherPath;
 	
 	public String getKafkaTopic() {
 		return kafkaTopic;
@@ -46,6 +48,18 @@ public class Release {
 	}
 	public void setJsonInstances(String jsonInstances) {
 		this.jsonInstances = jsonInstances;
+	}
+	public boolean isDispatch() {
+		return dispatch;
+	}
+	public void setDispatch(boolean dispatch) {
+		this.dispatch = dispatch;
+	}
+	public String getDispatcherPath() {
+		return dispatcherPath;
+	}
+	public void setDispatcherPath(String dispatcherPath) {
+		this.dispatcherPath = dispatcherPath;
 	}
 	
 }
