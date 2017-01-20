@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="ReplanControllerForWP3Endpoint" xmlns="http://ws.apache.org/ns/synapse">
-  <address trace="disable" uri="http://localhost:3000/api/wp3/v1/"/>
+  <address trace="disable" uri="http://192.168.145.13:3000/api/wp3/v1/"/>
 </endpoint>
