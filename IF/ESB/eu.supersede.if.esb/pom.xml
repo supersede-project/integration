@@ -26,6 +26,7 @@
     <eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>
     <eu.supersede.if.api_._SupersedeReplanOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizer>
     <eu.supersede.if.api_._SupersedeDMOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMOptimizer>
+    <eu.supersede.if.api_._SupersedeModelRepositoryManager>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeModelRepositoryManager>
     <eu.supersede.if.esb.resource_._AdapterEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AdapterEndpoint>
     <eu.supersede.if.api_._SupersedeDMGame>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMGame>
     <eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>
@@ -42,6 +43,7 @@
     <eu.supersede.if.esb.resource_._MonitorManagerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MonitorManagerEndpoint>
     <eu.supersede.if.api_._SupersedeGooglePlayMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeGooglePlayMonitor>
     <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
+    <eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>
   </properties>
   <dependencies>
     <dependency>
@@ -89,6 +91,12 @@
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeMDM</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeModelRepositoryManager</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
@@ -185,6 +193,12 @@
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>MDMEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ModelRepositoryManagerEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>
