@@ -25,6 +25,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.mdm.types.ECA_Rule;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
 import eu.supersede.integration.api.mdm.types.Release;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
@@ -45,6 +46,12 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 	public List<Release> getAllReleases() throws Exception {
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
 		return getJSONObjectsListForType(Release[].class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public List<ECA_Rule> getAllECARules() throws Exception {
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "eca_rule");
+		return getJSONObjectsListForType(ECA_Rule[].class, uri, HttpStatus.OK);
 	}
 	
 }
