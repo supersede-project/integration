@@ -35,6 +35,7 @@ import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
+import eu.supersede.integration.api.adaptation.types.BaseModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -66,6 +67,23 @@ public class ModelRepositoryProxyTest {
 		
 		//Delete created model
 		proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId());
+	}
+	
+	@Test
+	public void testCreateGetAndDeleteBaseModel() throws Exception {
+		//Create model
+		ModelMetadata metadata = createBaseModelMetadata();
+		IModel[] result = proxy.createModelInstances(ModelType.BaseModel, metadata);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+		BaseModel am = (BaseModel) result[0];
+		
+		//Read created model
+		am = (BaseModel) proxy.getModelInstance(ModelType.BaseModel, am.getId());
+		Assert.notNull(am);
+		
+		//Delete created model
+		proxy.deleteModelInstance(ModelType.BaseModel, am.getId());
 	}
 	
 	@Test
@@ -134,6 +152,45 @@ public class ModelRepositoryProxyTest {
 				"/src/test/resources/files/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
 		String content = "";
 		for (String s : lines) content += s + "\n";
+		return content;
+	}
+	
+	private ModelMetadata createBaseModelMetadata() throws IOException {
+		ModelMetadata metadata = new ModelMetadata();
+		
+		metadata.setSender("Adapter");
+		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		List<IModel> modelInstances = createBaseModelMetadataInstances();
+		metadata.setModelInstances(modelInstances);
+		
+		return metadata;
+	}
+
+	private List<IModel> createBaseModelMetadataInstances() throws IOException {
+		List<IModel> modelInstances = new ArrayList<>();
+		BaseModel am = new BaseModel();
+		modelInstances.add(am);
+		
+		am.setName("ATOS Base Model");
+		am.setAuthorId("yosu");
+		am.setCreationDate("2016-10-13 12:54:21.0");
+		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setFileExtension(ModelType.BaseModel.getExtension());
+		am.setSystemId(ModelSystem.Atos.getId());
+		am.setStatus("not adapted");
+		am.setModelContent(getBaseModelContent());
+		
+		return modelInstances;
+	}
+
+	private String getBaseModelContent() throws IOException {
+		File f = new File("");
+		List<String> lines = Files.readAllLines(
+			Paths.get(f.getAbsolutePath() + 
+				"/src/test/resources/files/atos_base_model.uml"), StandardCharsets.UTF_8);
+		String content = "";
+		for (String s : lines) content += s + "\n";
+		content = content.replace("\"","'");
 		return content;
 	}
 	
