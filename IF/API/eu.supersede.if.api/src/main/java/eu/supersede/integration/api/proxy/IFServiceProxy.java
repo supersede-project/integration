@@ -251,11 +251,36 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public <T> String insertJSONObjectAndReturnValueForJsonLabel(T object, URI uri, HttpStatus expectedStatus, String label) throws Exception {
+		String result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			Assert.notNull(expectedStatus, "Provide a valid expectedStatus");
+			Assert.notNull(label, "Provide a valid label");
+			ResponseEntity<String> response = 
+					messageClient.postJsonMessage(object, uri, String.class);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+				JSONObject json = new JSONObject(response.getBody());
+				result = json.get(label).toString();
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public <T> String postJSONObjectAndReturnValueForJsonLabel(T object, URI uri, HttpStatus expectedStatus, String label) throws Exception {
 		String result = null;
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
 			Assert.notNull(uri, "Provide a valid uri");
+			Assert.notNull(expectedStatus, "Provide a valid expectedStatus");
+			Assert.notNull(label, "Provide a valid label");
 			ResponseEntity<String> response = 
 					messageClient.postJsonMessage(object, uri, object.getClass());
 			if (response.getStatusCode().equals(expectedStatus)) {

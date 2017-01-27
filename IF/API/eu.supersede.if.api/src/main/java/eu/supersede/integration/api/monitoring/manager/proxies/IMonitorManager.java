@@ -19,10 +19,10 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.manager.proxies;
 
-import eu.supersede.integration.api.monitoring.manager.types.MonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
 
 public interface IMonitorManager {
-	void createMonitorConfiguration (MonitorConfiguration conf) throws Exception;
-	void updateMonitorConfiguration (MonitorConfiguration conf) throws Exception;
-	void deleteMonitorConfiguration (MonitorConfiguration conf) throws Exception;
+	<T extends MonitorSpecificConfiguration> T createMonitorConfiguration(T conf) throws Exception;
+	<T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf, String id) throws Exception;
+	void deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception;
 }

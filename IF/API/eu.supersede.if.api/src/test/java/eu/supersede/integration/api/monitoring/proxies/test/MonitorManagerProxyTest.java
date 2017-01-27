@@ -26,8 +26,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import eu.supersede.integration.api.monitoring.manager.proxies.MonitorManagerProxy;
-import eu.supersede.integration.api.monitoring.manager.types.MonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.TwitterMonitorConfiguration;
+import org.junit.Assert;
 
 public class MonitorManagerProxyTest {
 	// private static final Logger log =
@@ -36,21 +37,15 @@ public class MonitorManagerProxyTest {
 
 	@Before
 	public void setup() throws Exception {
-		proxy = new MonitorManagerProxy<Object, Object>();
+		proxy = new MonitorManagerProxy<MonitorSpecificConfiguration, Object>();
 	}
 
 	@Test
-	public void testCreateMonitorConfiguration() throws Exception {
-		MonitorConfiguration conf = createMonitorConfiguration();
-		proxy.createMonitorConfiguration(conf);
-	}
-
-	private MonitorConfiguration createMonitorConfiguration() throws MalformedURLException {
-		MonitorConfiguration conf = new MonitorConfiguration();
-		conf.setMonitor("Twitter");
-		TwitterMonitorConfiguration twitterConf = createTwitterMonitorConfiguration();
-		conf.setMonitorSpecificConfiguration(twitterConf);
-		return conf;
+	public void testCreateAndDeleteMonitorConfiguration() throws Exception {
+		TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
+		conf = proxy.createMonitorConfiguration(conf);
+		Assert.assertNotNull(conf);
+		proxy.deleteMonitorConfiguration(conf);
 	}
 
 	private TwitterMonitorConfiguration createTwitterMonitorConfiguration() throws MalformedURLException {
