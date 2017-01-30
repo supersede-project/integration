@@ -73,6 +73,70 @@ artifactory_contextUrl=http://supersede.es.atos.net:10080/artifactory
 ```
 Ask SUPERSEDE Contact Point for [[supersede_password]] 
 
+### Maven Configuration
+Add to your pom.xml file the Supersede Artifactory repositories in repositories and pluginRepositories configuration
+
+```sh
+  <repositories>
+    <repository>
+        <id>central</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/libs-release</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+    <repository>
+        <id>snapshots</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/libs-snapshot</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+        <id>central</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/plugins-release</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+        <id>snapshots</id>
+        <url>http://supersede.es.atos.net:10080/artifactory/plugins-snapshot</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+    </pluginRepository>
+</pluginRepositories>
+```
+
+Then, add to pom.xml the IF dependencies
+```sh
+  <dependencies>
+     <dependency>
+    	<groupId>eu.supersede.if</groupId>
+    	<artifactId>eu.supersede.if.api</artifactId>
+    	<version>0.3.0-SNAPSHOT</version>
+     </dependency>
+     <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.12</version>
+     </dependency>
+     <dependency>
+    	<groupId>javax.jms</groupId>
+    	<artifactId>jms</artifactId>
+    	<version>1.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>feedback_library</groupId>
+    	<artifactId>feedback_library</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+     </dependency>
+  </dependencies>
+```
+
 ### IF Client Usage
 
 To send messages to another SUPERSEDE component, select the associated IF Client Proxy. All supported proxies are located in packages like eu.supersede.integration.api.[[component_alias]].proxies, for instance:

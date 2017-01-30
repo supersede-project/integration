@@ -262,7 +262,7 @@ public class FeedbackOrchestratorProxyTest {
     
     private GeneralConfiguration updateGeneralConfiguration (){
     	GeneralConfiguration gc = new GeneralConfiguration();
-    	gc.setId(4);
+    	gc.setId(generalConfigurationId);
     	
     	List<FeedbackParameter> parameters = new ArrayList<>();
     	

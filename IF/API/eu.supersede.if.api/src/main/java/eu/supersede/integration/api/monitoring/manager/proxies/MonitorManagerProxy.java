@@ -24,34 +24,59 @@ import java.net.URI;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.monitoring.manager.types.AppStoreMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.GooglePlayMonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorType;
+import eu.supersede.integration.api.monitoring.manager.types.TwitterMonitorConfiguration;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
-public class MonitorManagerProxy<T, S> extends IFServiceProxy<T, S> implements IMonitorManager {
+public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> extends IFServiceProxy<T, S> implements IMonitorManager {
 	private final static String SUPERSEDE_MONITOR_MANAGER_ENDPOINT = IntegrationProperty
 			.getProperty("monitoring.manager.endpoint");
 
 	@Override
-	public void createMonitorConfiguration(MonitorConfiguration conf) throws Exception {
+	public <T extends MonitorSpecificConfiguration> T createMonitorConfiguration(T conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + "configuration");
-		insertJSONObject(conf, uri, HttpStatus.OK);
+		MonitorConfiguration monitorConf = new MonitorConfiguration();
+		monitorConf.setMonitorSpecificConfiguration(conf);
+		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/");
+		String id = insertJSONObjectAndReturnValueForJsonLabel (monitorConf, uri, HttpStatus.CREATED, "idConf");
+		conf.setId(Integer.valueOf(id));
+		return conf;
 	}
 
 
 	@Override
-	public void updateMonitorConfiguration(MonitorConfiguration conf) throws Exception {
+	public <T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf, String id) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + "configuration");
-		updateJSONObject(conf, uri, HttpStatus.OK);
+		Assert.notNull(id, "Provide a valid monitor configuration id");
+		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + id);
+		MonitorConfiguration monitorConf = new MonitorConfiguration();
+		monitorConf.setMonitorSpecificConfiguration(conf);
+		updateJSONObject(monitorConf, uri, HttpStatus.OK);
 	}
 
 
 	@Override
-	public void deleteMonitorConfiguration(MonitorConfiguration conf) throws Exception {
+	public void deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + "configuration");
+		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
 		deleteUriResource(uri, HttpStatus.OK);
+	}
+
+
+	private String getType(MonitorSpecificConfiguration conf) throws Exception{
+		if (conf instanceof TwitterMonitorConfiguration){
+			return MonitorType.Twitter.toString();
+		}else if (conf instanceof GooglePlayMonitorConfiguration){
+			return MonitorType.GooglePlay.toString();
+		}else if (conf instanceof AppStoreMonitorConfiguration){
+			return MonitorType.AppStore.toString();
+		}else{
+			throw new Exception ("Type " + conf.getClass() + " is not a valid Monitor configuration");
+		}
 	}
 }

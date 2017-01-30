@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/monitormanager" name="SupersedeMonitorManager" xmlns="http://ws.apache.org/ns/synapse">
-  <resource methods="POST" protocol="http" uri-template="/configuration">
+  <resource methods="POST" protocol="http" uri-template="/{monitor}/configuration">
     <inSequence>
       <log level="full">
         <property name="Monitor Manager" value="Insert a monitor configuration message forwarded to Monitor Manager endpoint"/>
@@ -17,7 +17,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/configuration">
+  <resource methods="PUT" protocol="http" uri-template="/{monitor}/configuration/{id}">
     <inSequence>
       <log level="full">
         <property name="Monitor Manager" value="Update a monitor configuration message forwarded to Monitor Manager endpoint"/>
@@ -34,7 +34,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="DELETE" protocol="http" uri-template="/configuration">
+  <resource methods="DELETE" protocol="http" uri-template="/{monitor}/configuration/{id}">
     <inSequence>
       <log level="full">
         <property name="Monitor Manager" value="Delete a monitor configuration message forwarded to Monitor Manager endpoint"/>

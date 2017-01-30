@@ -49,7 +49,7 @@ public class ReplanOptimizerProxyTest {
     }
 
     @Test
-    public void testGetProjectById() throws Exception{
+    public void testOptimizePlan() throws Exception{
     	NextReleaseProblem nrProblem = createNextReleaseProblem();
 		PlanningSolution solution = proxy.optimizePlan(nrProblem);
     	Assert.notNull(solution);

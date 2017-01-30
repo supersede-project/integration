@@ -50,4 +50,7 @@
     <artifact name="SupersedeGooglePlayMonitor" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeGooglePlayMonitor.xml</file>
     </artifact>
+    <artifact name="SupersedeModelRepositoryManager" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeModelRepositoryManager.xml</file>
+    </artifact>
 </artifacts>

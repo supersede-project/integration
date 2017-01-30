@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/modelrepositorymanager"
+  name="SupersedeModelRepositoryManager" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/models/{modelType}">
+    <inSequence>
+      <log level="full">
+        <property name="Model Repository Manager" value="Create Model of given type message forwarded to Model Repository Manager endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ModelRepositoryManagerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/models/{modelType}/{modelId}">
+    <inSequence>
+      <log level="full">
+        <property name="Model Repository Manager" value="Get model of given type by id message forwarded to Model Repository Manager endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ModelRepositoryManagerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/models/{modelType}/{modelId}">
+    <inSequence>
+      <log level="full">
+        <property name="Model Repository Manager" value="Update model of given type by id message forwarded to Model Repository Manager endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ModelRepositoryManagerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/models/{modelType}/{modelId}">
+    <inSequence>
+      <log level="full">
+        <property name="Model Repository Manager" value="Delete model of given type by id message forwarded to Model Repository Manager endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ModelRepositoryManagerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+</api>
