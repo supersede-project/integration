@@ -2,26 +2,12 @@ package eu.supersede.integration.api.pubsub.adaptation;
 
 import javax.jms.JMSException;
 import javax.jms.MessageListener;
-import javax.jms.TopicSession;
 import javax.naming.NamingException;
 
 import eu.supersede.integration.api.pubsub.SubscriptionTopic;
 import eu.supersede.integration.api.pubsub.TopicSubscriber;
 
 public class AdaptationSubscriber extends TopicSubscriber implements iAdaptationSubscriber {
-	private javax.jms.TopicSubscriber topicSubscriber;
-	private TopicSession topicSession;
-
-	/* (non-Javadoc)
-	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#closeSubscription()
-	 */
-	@Override
-	public void closeSubscription() throws JMSException {
-		topicSubscriber.close();
-		topicSession.close();
-		topicSubscriber = null;
-		topicSession = null;
-	}
 
 	public AdaptationSubscriber() throws NamingException {
 		super(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC);

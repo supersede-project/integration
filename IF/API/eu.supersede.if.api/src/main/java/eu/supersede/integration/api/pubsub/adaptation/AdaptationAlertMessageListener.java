@@ -25,4 +25,12 @@ public class AdaptationAlertMessageListener implements MessageListener{
 	public Alert getAlert (){
 		return this.alert;
 	}
+	
+	public boolean isMessageReceived (){
+		return this.messageReceived;
+	}
+	
+	public void resetMessageReceived(){
+		this.messageReceived = false;
+	}
 }

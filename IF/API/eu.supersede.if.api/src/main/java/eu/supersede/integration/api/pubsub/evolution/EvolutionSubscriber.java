@@ -9,19 +9,6 @@ import eu.supersede.integration.api.pubsub.SubscriptionTopic;
 import eu.supersede.integration.api.pubsub.TopicSubscriber;
 
 public class EvolutionSubscriber extends TopicSubscriber implements iEvolutionSubscriber {
-	private javax.jms.TopicSubscriber topicSubscriber;
-	private TopicSession topicSession;
-
-	/* (non-Javadoc)
-	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#closeSubscription()
-	 */
-	@Override
-	public void closeSubscription() throws JMSException {
-		topicSubscriber.close();
-		topicSession.close();
-		topicSubscriber = null;
-		topicSession = null;
-	}
 
 	public EvolutionSubscriber() throws NamingException {
 		super(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);
