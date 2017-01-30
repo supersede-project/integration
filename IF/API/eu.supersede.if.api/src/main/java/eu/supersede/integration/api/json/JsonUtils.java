@@ -21,7 +21,9 @@ package eu.supersede.integration.api.json;
 
 import java.io.IOException;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -40,5 +42,15 @@ public class JsonUtils {
 			e.printStackTrace();
 		} 
 		return result;
+	}
+	
+	public static <T> String serializeObjectAsJsonString (T obj) throws JsonProcessingException{
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(obj);
+	}
+	
+	public static <T> T deserializeJsonStringAsObject (String json, Class<T> clazz) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.readValue(json, clazz);
 	}
 }

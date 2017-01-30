@@ -110,17 +110,5 @@ public class PubSubTest implements Runnable{
 			}
 		}
 	}
-	
-	public class AlertMessageListener implements MessageListener {
-		public void onMessage(Message message) {
-			try {
-				System.out.println("Got the Message : " + ((TextMessage) message).getText());
-				//TODO Deserialize the message onto an Alert object
-				
-				messageReceived = true;
-			} catch (JMSException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+
 }
