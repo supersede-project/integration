@@ -95,7 +95,7 @@ public class EvolutionAlertPubSubTest implements Runnable{
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Received alert: " + messageListener.getAlert());
+			System.out.println("Received alert with id: " + messageListener.getAlert().getID());
 			messageReceived = true;
 			subscriber.closeSubscription();
 			subscriber.closeTopicConnection();
