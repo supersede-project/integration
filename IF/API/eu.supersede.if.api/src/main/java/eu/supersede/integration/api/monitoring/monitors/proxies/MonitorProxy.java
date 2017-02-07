@@ -111,6 +111,7 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 	public <T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse> T updateMonitorConfiguration(
 			T conf, Class<S> responseType) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
+		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(endpoint + "configuration/" + conf.getId());
 		S response = updateJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.OK);
 		if (response != null && response.getResult() != null && response.getResult().getIdConf() != null) {
@@ -136,6 +137,7 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 	@Override
 	public <T extends MonitorConfigurationRequest> void deleteMonitorConfiguration(T conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
+		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(endpoint + "configuration/" + conf.getId());
 		deleteUriResource(uri, HttpStatus.OK);
 	}

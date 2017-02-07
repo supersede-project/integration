@@ -63,6 +63,7 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 	@Override
 	public void deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
+		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
 		deleteUriResource(uri, HttpStatus.OK);
 	}
