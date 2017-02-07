@@ -19,6 +19,11 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.util.Assert;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationRequest;
@@ -38,18 +43,21 @@ public class TwitterMonitorProxy<T, S> extends MonitorProxy implements ITwitterM
 
 	@Override
 	public TwitterMonitorConfiguration createMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+		Assert.notNull(conf, "Provide a valid monitor configuration");
 		return (TwitterMonitorConfiguration) createMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf),
 				TwitterMonitorConfigurationResponse.class).getConfiguration();
 	}
 
 	@Override
 	public TwitterMonitorConfiguration updateMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+		Assert.notNull(conf, "Provide a valid monitor configuration");
 		return (TwitterMonitorConfiguration) updateMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf),
 				TwitterMonitorConfigurationResponse.class).getConfiguration();
 	}
 
 	@Override
 	public void deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+		Assert.notNull(conf, "Provide a valid monitor configuration");
 		deleteMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf));
 	}
 
@@ -88,6 +96,21 @@ class TwitterMonitorConfigurationRequest implements MonitorConfigurationRequest 
 	@Override
 	public TwitterMonitorConfiguration getConfiguration() {
 		return getTwitterMonitorConfiguration();
+	}
+	
+	@Override
+	public String toString (){
+		return "\"SocialNetworksMonitoringConfProf\": { "
+				+ "\"toolName\":\"" + twitterMonitoringConfiguration.getToolName() + "\","
+				+ "\"timeSlot\":\"" + twitterMonitoringConfiguration.getTimeSlot() + "\","
+				+ "\"kafkaEndpoint\":\"" + twitterMonitoringConfiguration.getKafkaEndpoint() + "\","
+				+ "\"kafkaTopic\":\"" + twitterMonitoringConfiguration.getKafkaTopic() + "\","
+				+ "\"keywordExpression\":\"" + twitterMonitoringConfiguration.getKeywordExpression() + "\","
+				+ "\"accounts\":[" + asCommaSeparateList(twitterMonitoringConfiguration.getAccounts()) + "]}}"; 
+	}
+	
+	private String asCommaSeparateList (List<String> list){
+		return list.stream().map(i -> "\"" + i + "\"").collect(Collectors.joining(", "));
 	}
 }
 

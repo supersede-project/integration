@@ -75,6 +75,8 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 		} else {
 			if (response != null && response.getResult() != null) {
 				log.error(response.getResult().getMessage());
+			}else{
+				log.error("There was a problem creating monitor configuration " + conf + " in uri: " + uri);
 			}
 			return null;
 		}
@@ -116,6 +118,8 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 		} else {
 			if (response != null && response.getResult() != null) {
 				log.error(response.getResult().getMessage());
+			}else{
+				log.error("There was a problem updating monitor configuration " + conf + " in uri: " + uri);
 			}
 			return null;
 		}
