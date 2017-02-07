@@ -50,10 +50,10 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 
 
 	@Override
-	public <T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf, String id) throws Exception {
+	public <T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		Assert.notNull(id, "Provide a valid monitor configuration id");
-		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + id);
+		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
+		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
 		MonitorConfiguration monitorConf = new MonitorConfiguration();
 		monitorConf.setMonitorSpecificConfiguration(conf);
 		updateJSONObject(monitorConf, uri, HttpStatus.OK);

@@ -41,10 +41,12 @@ public class MonitorManagerProxyTest {
 	}
 
 	@Test
-	public void testCreateAndDeleteMonitorConfiguration() throws Exception {
+	public void testCreateUpdateAndDeleteMonitorConfiguration() throws Exception {
 		TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
 		conf = proxy.createMonitorConfiguration(conf);
 		Assert.assertNotNull(conf);
+		conf.setTimeSlot(60);
+		proxy.updateMonitorConfiguration(conf);
 		proxy.deleteMonitorConfiguration(conf);
 	}
 

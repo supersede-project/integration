@@ -23,6 +23,6 @@ import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConf
 
 public interface IMonitorManager {
 	<T extends MonitorSpecificConfiguration> T createMonitorConfiguration(T conf) throws Exception;
-	<T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf, String id) throws Exception;
+	<T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception;
 	void deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception;
 }
