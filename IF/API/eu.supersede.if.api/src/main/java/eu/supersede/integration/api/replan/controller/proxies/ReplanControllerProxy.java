@@ -26,6 +26,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.api.replan.controller.exception.ReplanControllerDuplicatedIdException;
+import eu.supersede.integration.api.replan.controller.exception.ReplanControllerException;
 import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
 import eu.supersede.integration.api.replan.controller.types.Feature;
 import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
@@ -263,8 +265,17 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	
 	@Override
 	public boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws Exception {
-		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/");
-		return postJSONObject(payload, uri, HttpStatus.OK);
+		boolean result = false;
+		try {
+			URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/");
+			result = postJSONObject(payload, uri, HttpStatus.OK);
+		} catch (Exception e) {
+			if (e.getMessage().contains("Already exists features"))
+				throw new  ReplanControllerDuplicatedIdException (e.getMessage());
+			else
+				throw new ReplanControllerException (e.getMessage());
+		}
+		return result;
 	}
 	
 	private <T extends ReplanIdentifiableObject> String addURIQueryArray (String uriString, List<T> tokens, String idLabel){
