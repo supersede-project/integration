@@ -325,7 +325,7 @@ public abstract class IFServiceProxy<T, S> {
 			if (message != null){
 				log.error(message);
 			}
-			return null;
+			throw new Exception (message);
 		}
 	}
 	

@@ -21,6 +21,7 @@ package eu.supersede.integration.api.replan.controller.proxies;
 
 import java.util.List;
 
+import eu.supersede.integration.api.replan.controller.exception.ReplanControllerException;
 import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
 import eu.supersede.integration.api.replan.controller.types.Feature;
 import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
@@ -68,6 +69,6 @@ public interface IReplanController {
 	boolean deleteSkillByIdOfProjectById(int skillId, int projectId) throws Exception;
 	boolean deleteResourceByIdOfProjectById(int resourceId, int projectId) throws Exception;
 	Resource deleteSkillsOfResourceByIdOfProjectById(List<Skill> skills, int resourceId, int projectId) throws Exception;
-	boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws Exception;
+	boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws ReplanControllerException;
 }
 
