@@ -37,6 +37,7 @@ public interface IReplanController {
 	List<Feature> getFeaturesOfProjectById (int projectId, FeatureStatus status) throws Exception;
 	Feature getFeatureByIdOfProjectById(int featureId, int projectId) throws Exception;
 	List<Release> getReleasesOfProjectById(int projectId) throws Exception;
+	Release getReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception;
 	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int featureId, int projectId) throws Exception;
 	Plan getPlanOfReleaseByIdOfProjectById(int featureId, int projectId) throws Exception;
 	List<Skill> getSkillsOfProjectById(int projectId) throws Exception;

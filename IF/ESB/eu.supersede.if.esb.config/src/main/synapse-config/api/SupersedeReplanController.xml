@@ -224,6 +224,23 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="GET" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="Get release by id of project by id message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
   <resource methods="PUT" protocol="http" uri-template="/projects/{project_id}/releases/{release_id}">
     <inSequence>
       <log level="full">

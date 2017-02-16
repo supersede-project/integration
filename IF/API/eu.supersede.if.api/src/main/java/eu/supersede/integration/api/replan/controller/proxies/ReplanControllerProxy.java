@@ -302,4 +302,10 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 		
 		return jsonArray;
 	}
+
+	@Override
+	public Release getReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + releaseId);
+		return getJSONObjectForType(Release.class, uri, HttpStatus.OK);
+	}
 }
