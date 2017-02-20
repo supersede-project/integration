@@ -1,5 +1,8 @@
 package eu.supersede.integration.api.pubsub.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -9,12 +12,20 @@ import javax.naming.NamingException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import eu.supersede.integration.api.dm.types.Alert;
+import eu.supersede.integration.api.dm.types.Condition;
+import eu.supersede.integration.api.dm.types.DataID;
+import eu.supersede.integration.api.dm.types.Operator;
+import eu.supersede.integration.api.dm.types.RequestClassification;
+import eu.supersede.integration.api.dm.types.UserRequest;
+import eu.supersede.integration.api.json.JsonUtils;
 import eu.supersede.integration.api.pubsub.SubscriptionTopic;
 import eu.supersede.integration.api.pubsub.TopicPublisher;
 import eu.supersede.integration.api.pubsub.TopicSubscriber;
-import eu.supersede.integration.api.pubsub.iTopicPublisher;
 
-public class PubSubTest implements Runnable{
+public class AlertPubSubTest implements Runnable{
 	private boolean messageReceived = false;
 	private boolean subscriptionDone = false;
 	
@@ -24,11 +35,11 @@ public class PubSubTest implements Runnable{
     }
 
     @Test
-    public void testPublishTextMessage() throws Exception{
+    public void testPublishAlertMessage() throws Exception{
     	startPublisher();
     }
 
-	private void startPublisher() throws NamingException {
+	private void startPublisher() throws NamingException, JsonProcessingException {
 		TopicPublisher publisher = null;
 		try {
 			try {
@@ -39,7 +50,9 @@ public class PubSubTest implements Runnable{
 				e.printStackTrace();
 			}
 			publisher = new TopicPublisher(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC, true);
-			publisher.publishTextMesssageInTopic("Analysis event for DM: detected memory leak in managed system");
+			Alert alert = createAlert();
+			String json = JsonUtils.serializeObjectAsJsonString(alert);
+			publisher.publishTextMesssageInTopic(json);
 			try {
 				while (!messageReceived) {
 					Thread.sleep(1000); //FIXME Configure sleeping time
@@ -75,7 +88,7 @@ public class PubSubTest implements Runnable{
 		try {
 			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);
 			subscriber.openTopicConnection();
-			TextMessageListener messageListener = new TextMessageListener();
+			AlertMessageListener messageListener = new AlertMessageListener();
 			subscriber.createTopicSubscriptionAndKeepListening (messageListener);
 			subscriptionDone = true;
 			try {
@@ -100,15 +113,46 @@ public class PubSubTest implements Runnable{
 		}
 	}
 	
-	public class TextMessageListener implements MessageListener {
+	public class AlertMessageListener implements MessageListener {
+		private Alert alert;
+		
 		public void onMessage(Message message) {
 			try {
-				System.out.println("Got the Message : " + ((TextMessage) message).getText());
+				String json = ((TextMessage) message).getText();
+				System.out.println("Got the Json Message : " + json);
+				//TODO Deserialize the message onto an Alert object
+				this.alert = JsonUtils.deserializeJsonStringAsObject(json, Alert.class);
 				messageReceived = true;
-			} catch (JMSException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			} 
 		}
+		
+		public Alert getAlert (){
+			return this.alert;
+		}
+		
 	}
-
+	
+	private Alert createAlert() {
+		Alert alert = new Alert();
+		
+		alert.setID("id1");
+		alert.setApplicationID("appId1");
+		alert.setTimestamp(1481717773760L);
+		alert.setTenant("Delta");
+		
+		List<Condition> conditions = new ArrayList<Condition>();
+		conditions.add (new Condition(DataID.UNSPECIFIED, Operator.GEq, 10.5));
+		alert.setConditions(conditions);
+		
+		List<UserRequest> requests = new ArrayList<>();
+		String[] feedbackIDs = new String[]{"feedbackId1"};
+		String[] features = new String[]{"UI","backend"};
+		requests.add(new UserRequest("id1", RequestClassification.FeatureRequest, 
+				0.5, "description string", 1, 2, 0, feedbackIDs, features));
+		alert.setRequests(requests);
+		
+		return alert;
+	}
 }

@@ -44,9 +44,14 @@ And add them within the repositories block:
     add buildscript.repositories.getByName ("maven-supersede-snapshot")
     add buildscript.repositories.getByName ("maven-supersede-release")
 ```
-Next, declare the IF Client dependency in the dependencies block, adding the following line:
+Next, declare the IF Client dependencies in the dependencies block, adding the following line:
 ```sh
     compile("eu.supersede.if:eu.supersede.if.api:0.3.0-SNAPSHOT"){changing = true} 
+    compile (group: 'eu.supersede.feedback_gathering', name: 'feedback_library', version: '0.0.1-SNAPSHOT')
+    compile(group: 'org.wso2.andes.wso2', name: 'andes-client', version: '3.1.1')
+    compile(group: 'org.apache.geronimo.specs.wso2', name: 'geronimo-jms_1.1_spec', version: '1.1.0.wso2v1')
+    compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.logging', version: '4.4.1')
+    compile(group: 'org.wso2.securevault', name: 'org.wso2.securevault', version: '1.0.0-wso2v2')
 ```
 Then, 
 Add as well the following to your build.gradle:
@@ -130,9 +135,34 @@ Then, add to pom.xml the IF dependencies
     	<version>1.1</version>
      </dependency>
      <dependency>
-    	<groupId>feedback_library</groupId>
+    	<groupId>eu.supersede.feedback_gathering</groupId>
     	<artifactId>feedback_library</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
+     </dependency>
+     <dependency>
+    	<groupId>eu.supersede.feedback_gathering</groupId>
+    	<artifactId>feedback_library</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.apache.geronimo.specs.wso2</groupId>
+    	<artifactId>geronimo-jms_1.1_spec</artifactId>
+    	<version>1.1.0.wso2v1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.andes.wso2</groupId>
+    	<artifactId>andes-client</artifactId>
+    	<version>3.1.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.carbon</groupId>
+    	<artifactId>org.wso2.carbon.logging</artifactId>
+   		<version>4.4.1</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.wso2.securevault</groupId>
+    	<artifactId>org.wso2.securevault</artifactId>
+    	<version>1.0.0-wso2v2</version>
      </dependency>
   </dependencies>
 ```

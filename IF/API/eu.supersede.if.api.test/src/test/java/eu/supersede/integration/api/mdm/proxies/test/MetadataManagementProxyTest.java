@@ -26,6 +26,7 @@ import org.junit.Test;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.mdm.proxies.MetadataManagementProxy;
+import eu.supersede.integration.api.mdm.types.ECA_Rule;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
 import eu.supersede.integration.api.mdm.types.Release;
 
@@ -56,6 +57,13 @@ public class MetadataManagementProxyTest {
 	@Test
 	public void testGelAllReleases() throws Exception {
 		List<Release> result = proxy.getAllReleases();
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testGelAllECARules() throws Exception {
+		List<ECA_Rule> result = proxy.getAllECARules();
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}

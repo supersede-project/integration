@@ -88,6 +88,12 @@ public class ReplanControllerProxyTest {
     }
     
     @Test
+    public void testGetReleaseByIdOfProjectById() throws Exception{
+    	Release releases = proxy.getReleaseByIdOfProjectById(2, 1);
+    	Assert.notNull(releases);
+    }
+    
+    @Test
     public void testGetFeaturesOfReleaseByIdOfProjectById() throws Exception{
     	List<Feature> features = proxy.getFeaturesOfReleaseByIdOfProjectById(1, 1);
     	Assert.notNull(features);
