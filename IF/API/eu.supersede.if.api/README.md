@@ -123,6 +123,12 @@ Then, add to pom.xml the IF dependencies
     	<groupId>eu.supersede.if</groupId>
     	<artifactId>eu.supersede.if.api</artifactId>
     	<version>0.3.0-SNAPSHOT</version>
+	<exclusions>
+              <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+              </exclusion>
+        </exclusions>
      </dependency>
      <dependency>
     	<groupId>junit</groupId>
