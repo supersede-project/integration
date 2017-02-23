@@ -9,7 +9,10 @@ import javax.jms.Topic;
 import javax.jms.TopicSession;
 import javax.naming.NamingException;
 
+import org.apache.log4j.Logger;
+
 public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscriber {
+	private static final Logger log = Logger.getLogger(TopicSubscriber.class);
 	private javax.jms.TopicSubscriber topicSubscriber;
 	private TopicSession topicSession;
 
@@ -26,12 +29,12 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 //					Thread.sleep(1000); // FIXME Configure sleeping time
 //				}
 //			} catch (InterruptedException e) {
-//				e.printStackTrace();
+//				log.error(e.getMessage(), e);
 //			}
 //			subscriber.closeSubscription();
 //			subscriber.closeTopicConnection();
 //		} catch (JMSException e) {
-//			e.printStackTrace();
+//			log.error(e.getMessage(), e);
 //		} finally {
 //			if (subscriber != null) {
 //				try {
@@ -82,11 +85,11 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 	public void createTopicSubscriptionAndKeepListening(MessageListener messageListener) {
 		try {
 			if (topicSession != null && topicSubscriber != null) {
-				System.out.println("Closing Topic Connection for Topic " + subscriptionTopic.getTopic());
+				log.debug("Closing Topic Connection for Topic " + subscriptionTopic.getTopic());
 				closeSubscription();
 			}
 
-			System.out.println("Creating Topic Connection for Topic " + subscriptionTopic.getTopic());
+			log.debug("Creating Topic Connection for Topic " + subscriptionTopic.getTopic());
 			topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 
 			Topic topic = (Topic) ctx.lookup(subscriptionTopic.getTopic());
@@ -97,9 +100,9 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 			topicSubscriber = topicSession.createSubscriber(topic);
 			topicSubscriber.setMessageListener(messageListener);
 		} catch (JMSException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 	
@@ -120,11 +123,11 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 			throws InterruptedException {
 		try {
 			if (topicSession != null && topicSubscriber != null) {
-				System.out.println("Closing Topic Connection for Topic " + subscriptionTopic.getTopic());
+				log.debug("Closing Topic Connection for Topic " + subscriptionTopic.getTopic());
 				closeSubscription();
 			}
 
-			System.out.println("Creating Topic Connection for Topic " + subscriptionTopic.getTopic());
+			log.debug("Creating Topic Connection for Topic " + subscriptionTopic.getTopic());
 			topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 
 			Topic topic = (Topic) ctx.lookup(subscriptionTopic.getTopic());
@@ -140,18 +143,18 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 			topicSubscriber.close();
 			topicSession.close();
 		} catch (JMSException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 
 	protected class TextMessageListener implements MessageListener {
 		public void onMessage(Message message) {
 			try {
-				System.out.println("Got the Message : " + ((TextMessage) message).getText());
+				log.debug("Got the Message : " + ((TextMessage) message).getText());
 			} catch (JMSException e) {
-				e.printStackTrace();
+				log.error(e.getMessage(), e);
 			}
 		}
 	}

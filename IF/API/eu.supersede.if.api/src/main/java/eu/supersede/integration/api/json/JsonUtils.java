@@ -21,6 +21,8 @@ package eu.supersede.integration.api.json;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -28,6 +30,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtils {
+	private static final Logger log = Logger.getLogger(JsonUtils.class);
+	
 	public static JsonNode evaluatePathInJson (String json, String path){
 		JsonNode result = null;
 		try {
@@ -36,10 +40,10 @@ public class JsonUtils {
 			result = root.at(path);
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} 
 		return result;
 	}

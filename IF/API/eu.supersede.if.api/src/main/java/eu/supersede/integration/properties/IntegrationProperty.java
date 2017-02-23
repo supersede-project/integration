@@ -22,7 +22,10 @@ package eu.supersede.integration.properties;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 public class IntegrationProperty {
+	private static final Logger log = Logger.getLogger(IntegrationProperty.class);
 	public static Properties prop = new Properties();
 	public static String propFileName = "if.properties";
 	static{
@@ -43,7 +46,7 @@ public class IntegrationProperty {
 				throw new RuntimeException("Property file '" + propFileName + "'not found in classpath");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} 
 	}
 	

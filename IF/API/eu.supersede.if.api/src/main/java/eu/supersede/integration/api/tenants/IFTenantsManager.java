@@ -88,7 +88,7 @@ public class IFTenantsManager {
 		                  (ProtocolSocketFactory) easySSLProtocolSocketFactory, 443));
 		}
 		catch (Exception e) {
-		      e.printStackTrace();
+		      log.error(e.getMessage(), e);
 		}
 	}
 	
@@ -108,7 +108,7 @@ public class IFTenantsManager {
 				stub._getServiceClient().setOptions(clientOptions);
 			}
 		} catch (AxisFault e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 

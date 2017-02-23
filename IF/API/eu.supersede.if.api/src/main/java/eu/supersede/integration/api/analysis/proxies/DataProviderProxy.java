@@ -21,10 +21,9 @@ package eu.supersede.integration.api.analysis.proxies;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import eu.supersede.integration.api.analysis.types.MonitoringData;
 import eu.supersede.integration.properties.IntegrationProperty;
@@ -32,7 +31,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 
 public class DataProviderProxy implements IDataProvider{
 	private final static String SUPERSEDE_DATAPROVIDER_ENDPOINT = IntegrationProperty.getProperty("dataprovider.endpoint");
-	private static final Logger log = LoggerFactory.getLogger(DataProviderProxy.class);
+	private static final Logger log = Logger.getLogger(DataProviderProxy.class);
 	private KafkaClient kafka;
 	
 	public DataProviderProxy (){

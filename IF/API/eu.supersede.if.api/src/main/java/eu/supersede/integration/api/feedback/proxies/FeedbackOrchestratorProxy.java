@@ -22,6 +22,7 @@ package eu.supersede.integration.api.feedback.proxies;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
@@ -38,6 +39,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> implements IFeedbackOrchestrator {
+	private static final Logger log = Logger.getLogger(FeedbackOrchestratorProxy.class);
 	private final static String SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT = 
 			IntegrationProperty.getProperty("feedback.orchestrator.endpoint");
 
@@ -45,6 +47,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	@Override
 	public List<Application> listAllApplications() throws Exception{
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications");
+		log.debug("Sending message listAllApplications to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(Application[].class, uri, HttpStatus.OK);
 	}
 	
@@ -53,6 +56,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public Application getApplication(Integer idApplication) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid application id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication);
+		log.debug("Sending message getApplication with idApplication: " + idApplication 
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectForType(Application.class, uri, HttpStatus.OK);
 	}
 
@@ -61,12 +66,16 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(app, "Provide a valid application");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications");
+		log.debug("Sending message createApplication with app: " + app
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return insertandReturnJSONObject(app, uri, HttpStatus.CREATED, token);
 	}
 
 	@Override
 	public List<Configuration> listAllConfigurations() throws Exception {
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/configurations");
+		log.debug("Sending message listAllConfigurations to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(Configuration[].class, uri, HttpStatus.OK);
 	}
 	
@@ -74,6 +83,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public Configuration getConfiguration(Integer idConfiguration) throws Exception {
 		Assert.notNull(idConfiguration, "Provide a valid configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/configurations/" + idConfiguration);
+		log.debug("Sending message getConfiguration with idConfiguration: " + idConfiguration 
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectForType(Configuration.class, uri, HttpStatus.OK);
 	}
 
@@ -81,6 +92,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public List<Configuration> listConfigurationsInApplication(Integer idApplication) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid application id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/configurations");
+		log.debug("Sending message listConfigurationsInApplication with idApplication: " + idApplication 
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(Configuration[].class, uri, HttpStatus.OK);
 	}
 	
@@ -91,6 +104,10 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/configurations");
+		log.debug("Sending message updateConfigurationInApplication with configuration: " + configuration
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return updateAndReturnJSONObject(configuration, uri, HttpStatus.OK, token);
 	}
 
@@ -101,6 +118,10 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/configurations");
+		log.debug("Sending message createConfigurationInApplication with configuration: " + configuration
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return insertandReturnJSONObject(configuration, uri, HttpStatus.CREATED, token);
 	}
 	
@@ -109,7 +130,11 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public List<Configuration> listConfigurationsInApplicationForUserGroup(Integer idApplication, Integer idUserGroup)
 			throws Exception {
 		Assert.notNull(idApplication, "Provide a valid application id");
+		Assert.notNull(idUserGroup, "Provide a valid user group id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/user_groups/" + idUserGroup + "/configurations");
+		log.debug("Sending message listConfigurationsInApplicationForUserGroup with idApplication: " + idApplication
+				+ " with idUserGroup: " + idUserGroup
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(Configuration[].class, uri, HttpStatus.OK);
 	}
 
@@ -118,7 +143,11 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public List<Configuration> listConfigurationsInApplicationForUser(Integer idApplication, Integer idUser)
 			throws Exception {
 		Assert.notNull(idApplication, "Provide a valid application id");
+		Assert.notNull(idUser, "Provide a valid user id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/users/" + idUser + "/configurations");
+		log.debug("Sending message listConfigurationsInApplicationForUser with idApplication: " + idApplication
+				+ " with idUser: " + idUser
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(Configuration[].class, uri, HttpStatus.OK);
 	}
 
@@ -131,6 +160,11 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idUserGroup, "Provide a valid user group id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/user_groups/" + idUserGroup + "/configurations");
+		log.debug("Sending message createConfigurationInApplicationForUserGroup with configuration: " + configuration
+				+ " with idApplication: " + idApplication
+				+ " with idUserGroup: " + idUserGroup
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return insertandReturnJSONObject(configuration, uri, HttpStatus.CREATED, token);
 	}
 
@@ -145,6 +179,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public GeneralConfiguration getGeneralConfiguration(Integer idGeneralConfiguration) throws Exception {
 		Assert.notNull(idGeneralConfiguration, "Provide a valid general configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/general_configurations/" + idGeneralConfiguration);
+		log.debug("Sending message getGeneralConfiguration with idGeneralConfiguration: " + idGeneralConfiguration
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectForType(GeneralConfiguration.class, uri, HttpStatus.OK);
 	}
 
@@ -152,6 +188,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public GeneralConfiguration getGeneralConfigurationInApplication(Integer idGeneralConfiguration) throws Exception {
 		Assert.notNull(idGeneralConfiguration, "Provide a valid general configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idGeneralConfiguration + "/general_configuration");
+		log.debug("Sending message getGeneralConfigurationInApplication with idGeneralConfiguration: " + idGeneralConfiguration
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectForType(GeneralConfiguration.class, uri, HttpStatus.OK);
 	}
 	
@@ -159,6 +197,9 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public GeneralConfiguration getGeneralConfigurationInConfiguration(Integer idConfiguration) throws Exception {
 		Assert.notNull(idConfiguration, "Provide a valid configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/configurations/" + idConfiguration + "/general_configuration");
+		log.debug("Sending message getGeneralConfigurationInConfiguration with idConfiguration: " + idConfiguration
+				+ " to FeedbackOrchestrator at uri " + uri);
+
 		return getJSONObjectForType(GeneralConfiguration.class, uri, HttpStatus.OK);
 	}
 
@@ -169,12 +210,17 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/general_configurations");
+		log.debug("Sending message updateGeneralConfigurationInApplication with generalConfiguration: " + generalConfiguration
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return updateAndReturnJSONObject(generalConfiguration, uri, HttpStatus.OK, token);
 	}
 
 	@Override
 	public List<FeedbackMechanism> listAllFeedbackMechanisms() throws Exception {
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/mechanisms");
+		log.debug("Sending message listAllFeedbackMechanisms to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(FeedbackMechanism[].class, uri, HttpStatus.OK);
 	}
 
@@ -182,6 +228,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public FeedbackMechanism getFeedbackMechanism(Integer idMechanism) throws Exception {
 		Assert.notNull(idMechanism, "Provide a valid feedback mechanism id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/mechanisms/" + idMechanism);
+		log.debug("Sending message getFeedbackMechanism with idMechanism: " + idMechanism
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectForType(FeedbackMechanism.class, uri, HttpStatus.OK);
 	}
 
@@ -189,6 +237,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public List<FeedbackMechanism> listAllFeedbackMechanismsInConfiguration(Integer idConfiguration) throws Exception {
 		Assert.notNull(idConfiguration, "Provide a valid configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/configurations/" + idConfiguration + "/mechanisms");
+		log.debug("Sending message listAllFeedbackMechanismsInConfiguration with idConfiguration: " + idConfiguration
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(FeedbackMechanism[].class, uri, HttpStatus.OK);
 	}
 
@@ -200,6 +250,10 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/configurations/" + idConfiguration + "/mechanisms");
+		log.debug("Sending message createFeedbackMechanismInConfigurationInApplication with idConfiguration: " + idConfiguration
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return insertandReturnJSONObject(feedbackMechanism, uri, HttpStatus.CREATED, token);
 	}
 
@@ -211,12 +265,17 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/configurations/" + idConfiguration + "/mechanisms");
+		log.debug("Sending message updateFeedbackMechanismInConfigurationInApplication with idConfiguration: " + idConfiguration
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return updateAndReturnJSONObject(feedbackMechanism, uri, HttpStatus.OK, token);
 	}
 
 	@Override
 	public List<FeedbackParameter> listAllFeedbackParameters() throws Exception {
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/parameters");
+		log.debug("Sending message listAllFeedbackParameters to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(FeedbackParameter[].class, uri, HttpStatus.OK);
 	}
 
@@ -224,6 +283,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public FeedbackParameter getFeedbackParameter(Integer idParameter) throws Exception {
 		Assert.notNull(idParameter, "Provide a valid feedback parameter id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/parameters/" + idParameter);
+		log.debug("Sending message getFeedbackParameter with feedback parameter id: " + idParameter
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectForType(FeedbackParameter.class, uri, HttpStatus.OK);
 	}
 
@@ -231,6 +292,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public List<FeedbackParameter> listAllFeedbackParametersInFeedbackMechanism(Integer idMechanism) throws Exception {
 		Assert.notNull(idMechanism, "Provide a valid feedback mechanism id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/mechanisms/" + idMechanism + "/parameters");
+		log.debug("Sending message listAllFeedbackParametersInFeedbackMechanism with idMechanism: " + idMechanism
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(FeedbackParameter[].class, uri, HttpStatus.OK);
 	}
 	
@@ -238,6 +301,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public List<FeedbackParameter> listAllFeedbackParametersInGeneralConfiguration(Integer idConfiguration) throws Exception {
 		Assert.notNull(idConfiguration, "Provide a valid configuration id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/general_configurations/" + idConfiguration + "/parameters");
+		log.debug("Sending message listAllFeedbackParametersInGeneralConfiguration with idConfiguration: " + idConfiguration
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(FeedbackParameter[].class, uri, HttpStatus.OK);
 	}
 	
@@ -249,6 +314,11 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/general_configurations/" + idGeneralConfiguration + "/parameters");
+		log.debug("Sending message createFeedbackParameterInGeneralConfigurationInApplication with feedbackParameter: " + feedbackParameter
+				+ " with idGeneralConfiguration: " + idGeneralConfiguration
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return insertandReturnJSONObject(feedbackParameter, uri, HttpStatus.CREATED, token);
 	}
 
@@ -260,6 +330,11 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/mechanisms/" + idMechanism + "/parameters");
+		log.debug("Sending message createFeedbackParameterInFeedbackMechanismInApplication with feedbackParameter: " + feedbackParameter
+				+ " with idMechanism: " + idMechanism
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return insertandReturnJSONObject(feedbackParameter, uri, HttpStatus.CREATED, token);
 	}
 
@@ -269,6 +344,10 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/applications/" + idApplication + "/parameters");
+		log.debug("Sending message updateFeedbackParameterInApplication with feedbackParameter: " + feedbackParameter
+				+ " with idApplication: " + idApplication
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return updateAndReturnJSONObject(feedbackParameter, uri, HttpStatus.OK, token);
 	}
 	
@@ -280,12 +359,17 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		JSONObject accountJson = new JSONObject();
 		accountJson.put("name", user);
 		accountJson.put("password", password);
+		log.debug("Sending message authenticate with user: " + user
+				+ " with password: " + (password != null? "not null":"null")
+				+ " with password: " + (password != null && !password.isEmpty()? "not empty":"empty")
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return postJSONObjectAndReturnValueForJsonLabel(accountJson.toString(), uri, HttpStatus.CREATED, "token");
 	}
 
 	@Override
 	public List<User> listAllUsers() throws Exception {
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/users");
+		log.debug("Sending message listAllUsers to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(User[].class, uri, HttpStatus.OK);
 	}
 
@@ -295,6 +379,9 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(user, "Provide a valid user");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/users");
+		log.debug("Sending message updateUser with user: " + user
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);
 	}
 
@@ -302,6 +389,7 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	@Override
 	public List<UserGroup> listAllUserGroups() throws Exception {
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/user_groups");
+		log.debug("Sending message listAllUserGroups to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectsListForType(UserGroup[].class, uri, HttpStatus.OK);
 	}
 
@@ -310,6 +398,8 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 	public UserGroup getUserGroup(Integer idGroup) throws Exception {
 		Assert.notNull(idGroup, "Provide a valid user group id");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/user_groups/" + idGroup);
+		log.debug("Sending message getUserGroup with idGroup: " + idGroup
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return getJSONObjectForType(UserGroup.class, uri, HttpStatus.OK);
 	}
 
@@ -319,6 +409,9 @@ public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> impleme
 		Assert.notNull(group, "Provide a valid user group");
 		Assert.notNull(token, "Provide a valid token");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + "en/user_groups");
+		log.debug("Sending message createUserGroup with group: " + group
+				+ " with token: " + token
+				+ " to FeedbackOrchestrator at uri " + uri);
 		return insertandReturnJSONObject(group, uri, HttpStatus.CREATED, token);
 	}
 }

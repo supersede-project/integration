@@ -23,13 +23,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.wso2.carbon.user.core.claim.Claim;
 
+
 public class User {
+	private static final Logger log = Logger.getLogger(User.class);
 	private static final String CLAIM_FIRST_NAME_URI = "http://wso2.org/claims/givenname";
 	private static final String CLAIM_LAST_NAME_URI = "http://wso2.org/claims/lastname";
 	private static final String CLAIM_ORGANIZATION_URI = "http://wso2.org/claims/organization";
@@ -143,7 +145,7 @@ public class User {
 		try {
 			url = new URL (claims.get(CLAIM_URL_URI));
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 		return url;
 	}
@@ -155,8 +157,8 @@ public class User {
 	public void readClaims(Claim[] _claims) throws MalformedURLException {
 		claims = new HashMap<String, String>();
 		for (int i=0; i<_claims.length; i++){
-			System.out.println("URI: " + _claims[i].getClaimUri());
-			System.out.println("VALUE: " + _claims[i].getValue());
+			log.debug("URI: " + _claims[i].getClaimUri());
+			log.debug("VALUE: " + _claims[i].getValue());
 			switch (_claims[i].getClaimUri()){
 			case "phone_number":
 			case "http://wso2.org/claims/telephone":

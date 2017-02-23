@@ -20,14 +20,12 @@
 package eu.supersede.integration.api.mail.proxies;
 
 import java.net.URI;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.mail.types.Email;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
@@ -40,9 +38,13 @@ public class MailProxy implements iMail {
 	private static final Logger log = LoggerFactory.getLogger(MailProxy.class);
 	
 	public void sendEmail(Email email, AuthorizationToken authenticationToken) throws Exception{
-
+		Assert.notNull(email, "Provide a valid email");
+		Assert.notNull(authenticationToken, "Provide a valid authenticationToken");
 		URI uri = new URI(MAIL_ENDPOINT + "send");
 		EmailPayload payload = new EmailPayload();
+		log.debug("Sending message sendEmail with email: " + email 
+			+ " with: authenticationToken " + authenticationToken
+			+ " to Mail at uri " + uri);
 		payload.setEmail(email);
 		ResponseEntity<String> response = messageClient.postJsonMessage(payload, uri, authenticationToken);
 		if (!response.getStatusCode().equals(HttpStatus.ACCEPTED)) {

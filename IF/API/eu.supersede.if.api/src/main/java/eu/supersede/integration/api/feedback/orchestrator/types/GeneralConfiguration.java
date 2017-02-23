@@ -101,7 +101,7 @@ public class GeneralConfiguration extends OrchestratorItem<GeneralConfiguration>
 //				}
 //			} catch(NullPointerException e)
 //			{
-//				e.printStackTrace();
+//				log.error(e.getMessage(), e);
 //			}
 //		
 //		}

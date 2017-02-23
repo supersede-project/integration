@@ -23,14 +23,17 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
 import eu.supersede.integration.api.dm.types.FeatureConfiguration;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class DMOptimizerProxy<T, S> extends IFServiceProxy<T, S> implements IDMOptimizer {
+	private static final Logger log = Logger.getLogger(DMOptimizerProxy.class);
 	private final static String SUPERSEDE_DM_OPTIMIZER_ENDPOINT = IntegrationProperty
 			.getProperty("dm.optimizer.endpoint");
 
@@ -39,6 +42,11 @@ public class DMOptimizerProxy<T, S> extends IFServiceProxy<T, S> implements IDMO
 			String alertAttribute, String alertThresholdValue, boolean multiObjective) {
 		try {
 			Assert.notNull(modelURI, "Provide a valid modelURI");
+			Assert.notNull(currentConfig, "Provide a valid currentConfig");
+			Assert.notNull(qualityAttributePath, "Provide a valid qualityAttributePath");
+			Assert.notNull(alertAttribute, "Provide a valid alertAttribute");
+			Assert.notNull(alertThresholdValue, "Provide a valid alertThresholdValue");
+			Assert.notNull(multiObjective, "Provide a valid multiObjective");
 			String suri = SUPERSEDE_DM_OPTIMIZER_ENDPOINT + "optimize?";	
 			Map<String, String> parameters = new HashMap<>();
 			parameters.put("modelURI", modelURI);
@@ -48,11 +56,17 @@ public class DMOptimizerProxy<T, S> extends IFServiceProxy<T, S> implements IDMO
 			parameters.put("alertThresholdValue", alertThresholdValue);
 			parameters.put("multiObjective", String.valueOf(multiObjective));
 			suri = addURIQueryParameters (suri, parameters);
-			
+			log.debug("Sending message optimize with modelURI: " + modelURI 
+					+ " for currentConfig: " + currentConfig 
+					+ " for qualityAttributePath: " + qualityAttributePath 
+					+ " for alertAttribute: " + alertAttribute 
+					+ " for alertThresholdValue: " + alertThresholdValue 
+					+ " for multiObjective: " + multiObjective 
+					+ " to DMOptimizer at uri " + suri);
 			return getJSONObjectForType(FeatureConfiguration.class, new URI (suri), HttpStatus.OK);
 //			return getFormURLEncoded(suri, parameters, HttpStatus.OK, FeatureConfiguration.class);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			return null;
 		}
 	}

@@ -36,8 +36,7 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.http.RequestEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
@@ -57,7 +56,7 @@ public class IFAuthenticationManager {
 	private RestTemplate restTemplate = new RestTemplate();
 	private static String TOKEN_SERVICE_ENDPOINT = IntegrationProperty.getProperty("is.server.services.token");
 //	private static String AUTHORIZATION_PAIR_BASE64 = IntegrationProperty.getProperty("is.authorization.pair.base64");
-	private static final Logger log = LoggerFactory.getLogger(IFAuthenticationManager.class);
+	private static final Logger log = Logger.getLogger(IFAuthenticationManager.class);
 	
 	static {
 		// This is use to enable the https SSL connection with IF WSO2 IS
@@ -87,19 +86,19 @@ public class IFAuthenticationManager {
 			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 
 		HostnameVerifier supersedeISValid = new HostnameVerifier() {
 			@Override
 			public boolean verify(String hostname, SSLSession session) {
-				System.out.println("Verifying hostname: " + hostname);
+				log.debug("Verifying hostname: " + hostname);
 				String token_service_hostname = null;
 				try {
 					token_service_hostname = new URL(TOKEN_SERVICE_ENDPOINT).getHost();
 				} catch (MalformedURLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 				if (token_service_hostname == null) {
 					return false;
@@ -121,7 +120,7 @@ public class IFAuthenticationManager {
 		// (hostname, session) -> {System.out.println("Verifying hostname: " +
 		// hostname); return hostname.equals(token_service_hostname);});
 		// } catch (MalformedURLException e) {
-		// e.printStackTrace();
+		// log.error(e.getMessage(), e);
 		// }
 	}
 	
@@ -132,8 +131,11 @@ public class IFAuthenticationManager {
 
 	// User Authentication
 	public boolean authenticateUser(String userName, String credential) throws UserStoreException {
+		Assert.hasText(userName, "provide a valid userName");
+		Assert.hasText(credential, "provide a valid credential");
 		log.info("Requested to authenticate user: " + userName);
-		System.out.println("Requested to authenticate user: " + userName);
+		log.debug("Sending message authenticateUser with userName: " + userName 
+				+ " to IFUserStoreManager");
 		return usm.authenticate(userName, credential);
 	}
 
@@ -141,10 +143,9 @@ public class IFAuthenticationManager {
 
 	public void addUser(User user, String credential, boolean requirePasswordChange) throws UserStoreException {
 		Assert.notNull(user, "user shouldn't be null");
-		Assert.notNull(user.getUserName(), "Username shouldn't be null");
-		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
-		Assert.notNull(credential, "credential shouldn't be null");
-		Assert.isTrue(!credential.isEmpty(), "credential shouldn't be empty");
+		Assert.hasText(user.getUserName(), "provide a valid userName");
+		Assert.hasText(credential, "provide a valid credential");
+		
 		String[] profiles = usm.getAllProfileNames();
 		Assert.notNull(profiles, "profiles shouldn't be empty");
 		Assert.isTrue(profiles.length > 0, "There should be at least one profile");
@@ -158,8 +159,7 @@ public class IFAuthenticationManager {
 	}
 
 	public User getUser(String userName) throws UserStoreException, MalformedURLException {
-		Assert.notNull(userName, "Username shouldn't be null");
-		Assert.isTrue(!userName.isEmpty(), "Username shouldn't be empty");
+		Assert.hasText(userName, "provide a valid userName");
 		
 		String[] foundUsers = usm.listUsers(userName, 1);
 		if (foundUsers == null || foundUsers.length == 0)
@@ -202,8 +202,7 @@ public class IFAuthenticationManager {
 
 	public void updateUser(User user) throws UserStoreException, MalformedURLException {
 		Assert.notNull(user, "user shouldn't be null");
-		Assert.notNull(user.getUserName(), "Username shouldn't be null");
-		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
+		Assert.hasText(user.getUserName(), "provide a valid userName");
 
 		User oldUser = getUser(user.getUserName());
 		Assert.notNull(oldUser);
@@ -229,8 +228,7 @@ public class IFAuthenticationManager {
 
 	public void deleteUser(User user) throws UserStoreException {
 		Assert.notNull(user, "user shouldn't be null");
-		Assert.notNull(user.getUserName(), "Username shouldn't be null");
-		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
+		Assert.hasText(user.getUserName(), "provide a valid userName");
 		usm.deleteUser(user.getUserName());
 	}
 
@@ -243,8 +241,7 @@ public class IFAuthenticationManager {
 
 	public Set<Role> getAllRolesOfUser(User user) throws UserStoreException {
 		Assert.notNull(user, "user shouldn't be null");
-		Assert.notNull(user.getUserName(), "Username shouldn't be null");
-		Assert.isTrue(!user.getUserName().isEmpty(), "Username shouldn't be empty");
+		Assert.hasText(user.getUserName(), "provide a valid userName");
 		String[] roleNames = usm.getRoleListOfUser(user.getUserName());
 		Assert.notNull(roleNames, "Role names shouldn't be null");
 		return Role.roles(roleNames);
@@ -252,16 +249,14 @@ public class IFAuthenticationManager {
 
 	public void addRole(Role role) throws UserStoreException {
 		Assert.notNull(role, "role shouldn't be null");
-		Assert.notNull(role.getRoleName(), "Role name shouldn't be null");
-		Assert.isTrue(!role.getRoleName().isEmpty(), "Role name shouldn't be empty");
+		Assert.hasText(role.getRoleName(), "provide a valid role name");
 		String[] userList = User.userNames(role.getUsers());
 		usm.addRole(role.getRoleName(), userList, role.getPermissions().toArray(new Permission[] {}));
 	}
 
 	public void updateRole(Role role, String oldRoleName) throws UserStoreException {
 		Assert.notNull(role, "role shouldn't be null");
-		Assert.notNull(role.getRoleName(), "Role name shouldn't be null");
-		Assert.isTrue(!role.getRoleName().isEmpty(), "Role name shouldn't be empty");
+		Assert.hasText(role.getRoleName(), "provide a valid role name");
 		// Role name
 		usm.updateRoleName(oldRoleName, role.getRoleName());
 
@@ -282,8 +277,7 @@ public class IFAuthenticationManager {
 
 	public void deleteRole(Role role) throws UserStoreException {
 		Assert.notNull(role, "role shouldn't be null");
-		Assert.notNull(role.getRoleName(), "Role name shouldn't be null");
-		Assert.isTrue(!role.getRoleName().isEmpty(), "Role name shouldn't be empty");
+		Assert.hasText(role.getRoleName(), "provide a valid role name");
 		usm.deleteRole(role.getRoleName());
 	}
 
@@ -293,7 +287,6 @@ public class IFAuthenticationManager {
 		Assert.isTrue(userName!=null & !userName.isEmpty(), "Username not set");
 		Assert.isTrue(credential!=null & !credential.isEmpty(), "Credential not set");
 		log.info("Requested authorization token for user: " + userName + " for tenant: " + tenant);
-		System.out.println("Requested authorization token for user: " + userName + " for tenant: " + tenant);
 		
 		String tenantDomain = "";
 		String base64AuthorizationPair= IntegrationProperty.getProperty("is.authorization.pair.base64");
@@ -316,10 +309,8 @@ public class IFAuthenticationManager {
 		AuthorizationToken token = restTemplate.exchange(request, AuthorizationToken.class).getBody();
 		if (token != null){
 			log.info("Retrived valid token that expires in " + token.getExpiresIn());
-			System.out.println("Retrived valid token that expires in " + token.getExpiresIn());
 		}else{
 			log.info("Null token was returned by IS");
-			System.out.println("Null token was returned by IS");
 		}
 		return token;
 	}

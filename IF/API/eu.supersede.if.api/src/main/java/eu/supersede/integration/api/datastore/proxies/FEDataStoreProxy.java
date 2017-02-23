@@ -23,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
@@ -36,6 +37,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 
 
 public class FEDataStoreProxy<T,S> extends IFServiceProxy<T,S> {
+	private static final Logger log = Logger.getLogger(FEDataStoreProxy.class);
 	private final static String SUPERSEDE_FE_DS_ENDPOINT = IntegrationProperty.getProperty("fe.datastore.endpoint");
 
 	public List<User> getUsers(String tenantId, boolean lazy, AuthorizationToken authenticationToken)
@@ -50,6 +52,9 @@ public class FEDataStoreProxy<T,S> extends IFServiceProxy<T,S> {
 			suri = suri + "_lazy";
 		URI uri = new URI(suri);
 
+		log.debug("Sending message getUsers with tenantId: " + tenantId 
+				+ ", lazy: " + lazy  + ", authenticationToken: " + authenticationToken 
+				+ " to FEDataStore at uri " + uri);
 		return getObjectsListForType(User[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 	}
 	
@@ -65,10 +70,12 @@ public class FEDataStoreProxy<T,S> extends IFServiceProxy<T,S> {
 				suri = suri + "_lazy";
 			suri = suri + "/" + userId;
 			URI uri = new URI(suri);
-		
+			log.debug("Sending message getUser with tenantId: " + tenantId + ", userId: " + userId 
+					+ ", lazy: " + lazy  + ", authenticationToken: " + authenticationToken 
+					+ " to FEDataStore at uri " + uri);
 			return getObjectForType(User.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		}catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -81,10 +88,12 @@ public class FEDataStoreProxy<T,S> extends IFServiceProxy<T,S> {
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications";
 			URI uri = new URI(suri);
-			
+			log.debug("Sending message getNotifications with tenantId: " + tenantId 
+					+ ", authenticationToken: " + authenticationToken 
+					+ " to FEDataStore at uri " + uri);
 			return getObjectsListForType(Notification[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -98,10 +107,13 @@ public class FEDataStoreProxy<T,S> extends IFServiceProxy<T,S> {
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/notifications/" + notificationId;
 			URI uri = new URI(suri);
-			
+			log.debug("Sending message getNotification with tenantId: " + tenantId 
+					+ ", notificationId: " + notificationId 
+					+ ", authenticationToken: " + authenticationToken 
+					+ " to FEDataStore at uri " + uri);
 			return getObjectForType(Notification.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			return null;
 		}
 	}	
@@ -114,10 +126,12 @@ public class FEDataStoreProxy<T,S> extends IFServiceProxy<T,S> {
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles";
 			URI uri = new URI(suri);
-			
+			log.debug("Sending message getProfiles with tenantId: " + tenantId 
+					+ ", authenticationToken: " + authenticationToken 
+					+ " to FEDataStore at uri " + uri);
 			return getObjectsListForType(Profile[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -131,10 +145,13 @@ public class FEDataStoreProxy<T,S> extends IFServiceProxy<T,S> {
 			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
 			String suri = SUPERSEDE_FE_DS_ENDPOINT + "tenant/" + tenantId + "/profiles/" + profileId;
 			URI uri = new URI(suri);
-			
+			log.debug("Sending message getProfile with tenantId: " + tenantId 
+					+ ", profileId: " + profileId
+					+ ", authenticationToken: " + authenticationToken 
+					+ " to FEDataStore at uri " + uri);
 			return getObjectForType(Profile.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 			return null;
 		}
 	}

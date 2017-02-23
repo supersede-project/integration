@@ -68,6 +68,7 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 			T conf, Class<S> responseType) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		URI uri = new URI(endpoint + "configuration");
+		log.debug("Sending message createMonitorConfiguration with conf: " + conf + " to Monitor at uri " + uri);
 		S response = insertJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.OK);
 		if (response != null && response.getResult() != null && response.getResult().getIdConf() != null) {
 			conf.setId(response.getResult().getIdConf());
@@ -113,6 +114,7 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(endpoint + "configuration/" + conf.getId());
+		log.debug("Sending message updateMonitorConfiguration with conf: " + conf + " to Monitor at uri " + uri);
 		S response = updateJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.OK);
 		if (response != null && response.getResult() != null && response.getResult().getIdConf() != null) {
 			return conf;
@@ -139,6 +141,7 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(endpoint + "configuration/" + conf.getId());
+		log.debug("Sending message deleteMonitorConfiguration with conf: " + conf + " to Monitor at uri " + uri);
 		deleteUriResource(uri, HttpStatus.OK);
 	}
 }

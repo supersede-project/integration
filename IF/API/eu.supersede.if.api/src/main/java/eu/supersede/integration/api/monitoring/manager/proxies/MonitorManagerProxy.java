@@ -21,6 +21,7 @@ package eu.supersede.integration.api.monitoring.manager.proxies;
 
 import java.net.URI;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -34,6 +35,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> extends IFServiceProxy<T, S> implements IMonitorManager {
+	private static final Logger log = Logger.getLogger(MonitorManagerProxy.class);
 	private final static String SUPERSEDE_MONITOR_MANAGER_ENDPOINT = IntegrationProperty
 			.getProperty("monitoring.manager.endpoint");
 
@@ -43,6 +45,7 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 		MonitorConfiguration monitorConf = new MonitorConfiguration();
 		monitorConf.setMonitorSpecificConfiguration(conf);
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/");
+		log.debug("Sending message createMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
 		String id = insertJSONObjectAndReturnValueForJsonLabel (monitorConf, uri, HttpStatus.CREATED, "idConf");
 		conf.setId(Integer.valueOf(id));
 		return conf;
@@ -56,6 +59,7 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
 		MonitorConfiguration monitorConf = new MonitorConfiguration();
 		monitorConf.setMonitorSpecificConfiguration(conf);
+		log.debug("Sending message updateMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
 		updateJSONObject(monitorConf, uri, HttpStatus.OK);
 	}
 
@@ -65,6 +69,7 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
+		log.debug("Sending message deleteMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
 		deleteUriResource(uri, HttpStatus.OK);
 	}
 

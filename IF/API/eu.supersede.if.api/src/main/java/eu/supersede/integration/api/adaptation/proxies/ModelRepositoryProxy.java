@@ -20,6 +20,8 @@
 package eu.supersede.integration.api.adaptation.proxies;
 
 import java.net.URI;
+
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -32,6 +34,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements IModelRepository {
+	private static final Logger log = Logger.getLogger(ModelRepositoryProxy.class);
 	private final static String SUPERSEDE_MODELREPOSITORY_ENDPOINT = 
 			IntegrationProperty.getProperty("modelrepository.endpoint");
 
@@ -40,6 +43,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(modelType, "Provide a valid model type");
 		Assert.notNull(metadata, "Provide a valid model metadata");
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType);
+		log.debug("Sending message createModelInstances with metadata: " + metadata + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
 		return (IModel[]) insertJSONObjectAndReturnAnotherType(metadata, modelType.getTypeArrayClass(), uri, HttpStatus.CREATED);
 	}
 
@@ -49,6 +53,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(metadata, "Provide a valid model update metadata");
 		Assert.notNull(modelId, "Provide a valid model id");
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "/" + modelId);
+		log.debug("Sending message updateModelInstance with metadata: " + metadata + " for modelId: " + modelId + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
 		return (IModel) updateJSONObjectAndReturnAnotherType(metadata, modelType.getTypeClass(), uri, HttpStatus.OK);
 	}
 
@@ -57,6 +62,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(modelType, "Provide a valid model type");
 		Assert.notNull(modelId, "Provide a valid model id");
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "/" + modelId);
+		log.debug("Sending message getModelInstance for modelId: " + modelId + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
 		return (IModel) getJSONObjectForType(modelType.getTypeClass(), uri, HttpStatus.OK);
 	}
 
@@ -65,6 +71,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(modelType, "Provide a valid model type");
 		Assert.notNull(modelId, "Provide a valid model id");
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "/" + modelId);
+		log.debug("Sending message deleteModelInstance for modelId: " + modelId + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
 		deleteUriResource(uri, HttpStatus.OK);
 	}
 }
