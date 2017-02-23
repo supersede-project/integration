@@ -219,6 +219,35 @@ Monitoring Orchestrator | eu.supersede.integration.api.monitoring.orchestrator.p
 Replan Controller | eu.supersede.integration.api.replan.controller.proxies.ReplanControllerProxy.java
 Replan Optimizer | eu.supersede.integration.api.replan.optimizer.proxies.ReplanOptimizerProxy.java
 
+### IF Logging
+IF uses Log4j 1.2.X for logging. It is configured to log to:
+- a file, located at ../logs/supersede.log (relative to execution path)
+- a syslog file, placed at /var/log/supersede/supersede.log. Only Supersede components (and third party components) logging using Log4j 1.2.X forward these logs to syslog, in current configuration (pending to configure syslog for Apache logging and Log4J2)
+
+Log level is set to INFO, excepting for eu.supersede loggers, which is set to DEBUG by default.
+log4j.properties is included in IF jar, together with Apache Logging (logging.properties) and Logback (logback.xml) configurations, set to INFO level. SUPERSEDE Components not using Log4j, but Apache Logging or similar frameworks, store logging messages into the Tomcat logs.
+
+Development server logs (including Tomcat logs for Front-End and Backend components) are browsable at http://supersede.es.atos.net/logs/
+
+Supersede components can log execution information, by adopting Log4J 1.2.X:
+- Add log4j.jar dependency to your component
+- Create a logger:
+```sh
+import org.apache.log4j.Logger;
+...
+private static final Logger log = Logger.getLogger(YourClass.class);
+```
+- Log a message within the execution:
+```sh
+log.debug("your message")
+```
+- Log exceptions using the logger as well:
+```sh
+catch (Exception e) {
+   log.error(e.getMessage(), e);
+   return null;
+}
+```
 
 SUPERSEDE Integration Framework is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
