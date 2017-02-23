@@ -22,6 +22,7 @@ package eu.supersede.integration.api.adaptation.proxies;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -30,6 +31,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapter {
+	private static final Logger log = Logger.getLogger(AdapterProxy.class);
 	private final static String SUPERSEDE_ADAPTER_ENDPOINT = 
 			IntegrationProperty.getProperty("adapter.endpoint");
 
@@ -56,7 +58,9 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
 		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/featureConfiguration/" + featureConfigurationId + "/system/" + systemId + "?";
 //		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
-		
+		log.debug("Invoking enactAdaptationDecisionActions (systemId: " + systemId 
+				+ ", adaptationDecisionActionIds: " + adaptationDecisionActionIds
+				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
 		return postFormURLEncoded(new URI(uriString), "adaptationDecisionActionIds", adaptationDecisionActionIds, HttpStatus.OK);
 	}
 }

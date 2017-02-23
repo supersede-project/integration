@@ -22,6 +22,7 @@ package eu.supersede.integration.api.mdm.proxies;
 import java.net.URI;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -32,6 +33,8 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implements IMetadataManagement {
+	private static final Logger log = Logger.getLogger(MetadataManagementProxy.class);
+
 	private final static String SUPERSEDE_MDM_ENDPOINT = IntegrationProperty
 			.getProperty("metadata.management.endpoint");
 
@@ -39,18 +42,22 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 	public KafkaTopic registerRelease (Release release) throws Exception {
 		Assert.notNull(release, "Provide a valid release");
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
+		log.debug("Sending message registerRelease with release: " + release +
+				" to MetadataManagement at uri " + uri);
 		return insertJSONObjectAndReturnAnotherType(release, KafkaTopic.class, uri,  HttpStatus.OK);
 	}
 
 	@Override
 	public List<Release> getAllReleases() throws Exception {
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
+		log.debug("Sending message getAllReleases to MetadataManagement at uri " + uri);
 		return getJSONObjectsListForType(Release[].class, uri, HttpStatus.OK);
 	}
 
 	@Override
 	public List<ECA_Rule> getAllECARules() throws Exception {
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "eca_rule");
+		log.debug("Sending message getAllECARules to MetadataManagement at uri " + uri);
 		return getJSONObjectsListForType(ECA_Rule[].class, uri, HttpStatus.OK);
 	}
 	

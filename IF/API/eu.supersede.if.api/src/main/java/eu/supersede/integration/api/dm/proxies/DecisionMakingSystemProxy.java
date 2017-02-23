@@ -21,6 +21,7 @@ package eu.supersede.integration.api.dm.proxies;
 
 import java.net.URI;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -29,6 +30,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class DecisionMakingSystemProxy <T, S> extends IFServiceProxy<T,S> implements IDecisionMakingSystem {
+	private static final Logger log = Logger.getLogger(DecisionMakingSystemProxy.class);
 	private final static String SUPERSEDE_DMGAME_ENDPOINT = IntegrationProperty.getProperty("dmgame.endpoint");
 	
 	@Override
@@ -37,6 +39,7 @@ public class DecisionMakingSystemProxy <T, S> extends IFServiceProxy<T,S> implem
 			Assert.notNull(alert, "Provide a valid alert");
 			String suri = SUPERSEDE_DMGAME_ENDPOINT + "public/monitoring/alert";
 			URI uri = new URI(suri);
+			log.debug("Sending message notifyAlert with alert: " + alert + " to DecisionMakingSystem at uri " + uri);
 			return insertJSONObject(alert, uri, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
