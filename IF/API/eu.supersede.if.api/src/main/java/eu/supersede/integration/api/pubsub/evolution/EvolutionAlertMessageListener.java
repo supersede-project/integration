@@ -4,13 +4,14 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import eu.supersede.integration.api.dm.types.Alert;
 import eu.supersede.integration.api.json.JsonUtils;
 
 public class EvolutionAlertMessageListener implements MessageListener{
-	private static final Logger log = Logger.getLogger(EvolutionAlertMessageListener.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private Alert alert;
 	private boolean messageReceived = false;
 	

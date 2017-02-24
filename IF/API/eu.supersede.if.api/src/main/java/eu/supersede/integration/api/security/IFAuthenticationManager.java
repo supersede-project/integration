@@ -36,7 +36,8 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.RequestEntity;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
@@ -56,7 +57,7 @@ public class IFAuthenticationManager {
 	private RestTemplate restTemplate = new RestTemplate();
 	private static String TOKEN_SERVICE_ENDPOINT = IntegrationProperty.getProperty("is.server.services.token");
 //	private static String AUTHORIZATION_PAIR_BASE64 = IntegrationProperty.getProperty("is.authorization.pair.base64");
-	private static final Logger log = Logger.getLogger(IFAuthenticationManager.class);
+	private static final Logger log = LoggerFactory.getLogger(IFAuthenticationManager.class);
 	
 	static {
 		// This is use to enable the https SSL connection with IF WSO2 IS

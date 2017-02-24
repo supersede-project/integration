@@ -25,8 +25,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implements IFeedbackRepository {
-	private static final Logger log = Logger.getLogger(FeedbackRepositoryProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT = 
 			IntegrationProperty.getProperty("feedback.repository.endpoint");
 

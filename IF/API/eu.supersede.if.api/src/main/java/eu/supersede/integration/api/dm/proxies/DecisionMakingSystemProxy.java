@@ -21,7 +21,8 @@ package eu.supersede.integration.api.dm.proxies;
 
 import java.net.URI;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -30,7 +31,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class DecisionMakingSystemProxy <T, S> extends IFServiceProxy<T,S> implements IDecisionMakingSystem {
-	private static final Logger log = Logger.getLogger(DecisionMakingSystemProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_DMGAME_ENDPOINT = IntegrationProperty.getProperty("dmgame.endpoint");
 	
 	@Override

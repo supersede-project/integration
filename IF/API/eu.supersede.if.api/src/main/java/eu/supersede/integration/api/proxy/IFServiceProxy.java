@@ -24,8 +24,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -45,7 +46,7 @@ import eu.supersede.integration.rest.client.IFMessageClient;
 
 public abstract class IFServiceProxy<T, S> {
 	protected IFMessageClient messageClient = IFMessageClient.getInstance();
-	private static final Logger log = Logger.getLogger(IFServiceProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	public <T> List<T> getJSONObjectsListForType(Class<T[]> type, URI uri, HttpStatus expectedStatus) {
 		try {

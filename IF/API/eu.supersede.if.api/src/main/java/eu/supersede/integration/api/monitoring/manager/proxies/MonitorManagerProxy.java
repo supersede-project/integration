@@ -21,7 +21,8 @@ package eu.supersede.integration.api.monitoring.manager.proxies;
 
 import java.net.URI;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -35,7 +36,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> extends IFServiceProxy<T, S> implements IMonitorManager {
-	private static final Logger log = Logger.getLogger(MonitorManagerProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_MONITOR_MANAGER_ENDPOINT = IntegrationProperty
 			.getProperty("monitoring.manager.endpoint");
 

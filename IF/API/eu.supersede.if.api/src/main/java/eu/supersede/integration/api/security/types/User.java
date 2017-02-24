@@ -26,12 +26,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.wso2.carbon.user.core.claim.Claim;
 
 
 public class User {
-	private static final Logger log = Logger.getLogger(User.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private static final String CLAIM_FIRST_NAME_URI = "http://wso2.org/claims/givenname";
 	private static final String CLAIM_LAST_NAME_URI = "http://wso2.org/claims/lastname";
 	private static final String CLAIM_ORGANIZATION_URI = "http://wso2.org/claims/organization";

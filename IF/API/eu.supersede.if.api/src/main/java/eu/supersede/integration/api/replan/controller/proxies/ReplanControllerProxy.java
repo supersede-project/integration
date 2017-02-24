@@ -22,9 +22,10 @@ package eu.supersede.integration.api.replan.controller.proxies;
 import java.net.URI;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -44,7 +45,7 @@ import eu.supersede.integration.api.replan.controller.types.Skill;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implements IReplanController {
-	private static final Logger log = Logger.getLogger(ReplanControllerProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT = 
 			IntegrationProperty.getProperty("replan_controller.endpoint");
 

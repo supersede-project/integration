@@ -23,17 +23,17 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
-import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
 import eu.supersede.integration.api.dm.types.FeatureConfiguration;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class DMOptimizerProxy<T, S> extends IFServiceProxy<T, S> implements IDMOptimizer {
-	private static final Logger log = Logger.getLogger(DMOptimizerProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_DM_OPTIMIZER_ENDPOINT = IntegrationProperty
 			.getProperty("dm.optimizer.endpoint");
 

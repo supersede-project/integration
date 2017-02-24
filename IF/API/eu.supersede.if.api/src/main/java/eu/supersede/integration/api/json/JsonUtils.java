@@ -21,7 +21,8 @@ package eu.supersede.integration.api.json;
 
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -30,7 +31,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtils {
-	private static final Logger log = Logger.getLogger(JsonUtils.class);
+	private final static Logger log = LoggerFactory.getLogger(JsonUtils.class);
 	
 	public static JsonNode evaluatePathInJson (String json, String path){
 		JsonNode result = null;

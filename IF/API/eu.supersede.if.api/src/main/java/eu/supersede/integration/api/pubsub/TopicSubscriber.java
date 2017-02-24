@@ -9,10 +9,11 @@ import javax.jms.Topic;
 import javax.jms.TopicSession;
 import javax.naming.NamingException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscriber {
-	private static final Logger log = Logger.getLogger(TopicSubscriber.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private javax.jms.TopicSubscriber topicSubscriber;
 	private TopicSession topicSession;
 

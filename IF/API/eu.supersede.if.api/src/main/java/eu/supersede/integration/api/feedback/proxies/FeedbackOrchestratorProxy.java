@@ -22,8 +22,9 @@ package eu.supersede.integration.api.feedback.proxies;
 import java.net.URI;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -39,7 +40,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class FeedbackOrchestratorProxy <T,S> extends IFServiceProxy<T,S> implements IFeedbackOrchestrator {
-	private static final Logger log = Logger.getLogger(FeedbackOrchestratorProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT = 
 			IntegrationProperty.getProperty("feedback.orchestrator.endpoint");
 
