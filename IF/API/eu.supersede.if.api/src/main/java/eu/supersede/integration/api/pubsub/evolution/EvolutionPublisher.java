@@ -1,9 +1,14 @@
 package eu.supersede.integration.api.pubsub.evolution;
 
-import javax.jms.*;
+import javax.jms.JMSException;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.jms.TopicSession;
 import javax.naming.NamingException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -13,7 +18,7 @@ import eu.supersede.integration.api.pubsub.SubscriptionTopic;
 import eu.supersede.integration.api.pubsub.TopicPublisher;
 
 public class EvolutionPublisher extends TopicPublisher implements iEvolutionPublisher{
-	private static final Logger log = Logger.getLogger(EvolutionPublisher.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	public EvolutionPublisher() throws NamingException {
 		super (SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);

@@ -22,7 +22,8 @@ package eu.supersede.integration.api.mdm.proxies;
 import java.net.URI;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
@@ -33,7 +34,7 @@ import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implements IMetadataManagement {
-	private static final Logger log = Logger.getLogger(MetadataManagementProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private final static String SUPERSEDE_MDM_ENDPOINT = IntegrationProperty
 			.getProperty("metadata.management.endpoint");

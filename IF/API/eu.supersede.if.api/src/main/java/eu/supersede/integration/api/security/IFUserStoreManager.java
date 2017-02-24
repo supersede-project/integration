@@ -64,7 +64,8 @@ import org.apache.axis2.transport.http.HttpTransportProperties;
 import org.apache.commons.httpclient.contrib.ssl.EasySSLProtocolSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 import org.wso2.carbon.um.ws.api.WSRealmUtil;
 import org.wso2.carbon.um.ws.api.stub.ClaimDTO;
@@ -84,7 +85,7 @@ import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IFUserStoreManager implements UserStoreManager{
 	private static String IS_ENDPOINT =  IntegrationProperty.getProperty("is.server.endpoint");
-	private static Logger log = Logger.getLogger(IFUserStoreManager.class);
+	private static final Logger log = LoggerFactory.getLogger(IFUserStoreManager.class);
 	private RemoteUserStoreManagerServiceStub stub = null;
 	
 	static {

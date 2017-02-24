@@ -21,17 +21,18 @@ package eu.supersede.integration.api.replan.optimizer.proxies;
 
 import java.net.URI;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.api.replan.optimizer.types.NextReleaseProblem;
 import eu.supersede.integration.api.replan.optimizer.types.PlanningSolution;
 import eu.supersede.integration.properties.IntegrationProperty;
 
-import org.apache.log4j.Logger;
-import org.springframework.http.HttpStatus;
-
 
 public class ReplanOptimizerProxy <T,S> extends IFServiceProxy<T,S> implements IReplanOptimizer{
-	private static final Logger log = Logger.getLogger(ReplanOptimizerProxy.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_REPLAN_OPTIMIZER_ENDPOINT = 
 			IntegrationProperty.getProperty("replan_optimizer.endpoint");
 	

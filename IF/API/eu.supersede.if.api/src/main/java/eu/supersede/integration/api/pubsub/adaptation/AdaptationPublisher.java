@@ -1,9 +1,14 @@
 package eu.supersede.integration.api.pubsub.adaptation;
 
-import javax.jms.*;
+import javax.jms.JMSException;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.jms.TopicSession;
 import javax.naming.NamingException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -13,7 +18,7 @@ import eu.supersede.integration.api.pubsub.SubscriptionTopic;
 import eu.supersede.integration.api.pubsub.TopicPublisher;
 
 public class AdaptationPublisher extends TopicPublisher implements iAdaptationPublisher{
-	private static final Logger log = Logger.getLogger(AdaptationPublisher.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	public AdaptationPublisher() throws NamingException {
 		super (SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC);

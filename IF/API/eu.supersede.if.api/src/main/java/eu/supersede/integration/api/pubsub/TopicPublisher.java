@@ -1,12 +1,17 @@
 package eu.supersede.integration.api.pubsub;
 
-import javax.jms.*;
+import javax.jms.JMSException;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.jms.TopicSession;
 import javax.naming.NamingException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TopicPublisher extends TopicMessageAgent implements iTopicPublisher{
-	private static final Logger log = Logger.getLogger(TopicPublisher.class);
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 //	public static void main(String[] args) throws NamingException {
 //		iTopicPublisher publisher = null;

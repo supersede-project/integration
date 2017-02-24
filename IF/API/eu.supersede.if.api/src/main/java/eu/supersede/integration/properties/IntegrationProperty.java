@@ -22,10 +22,11 @@ package eu.supersede.integration.properties;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IntegrationProperty {
-	private static final Logger log = Logger.getLogger(IntegrationProperty.class);
+	private static final Logger log = LoggerFactory.getLogger(IntegrationProperty.class);
 	public static Properties prop = new Properties();
 	public static String propFileName = "if.properties";
 	static{
