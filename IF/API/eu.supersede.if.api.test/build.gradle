@@ -10,8 +10,22 @@
 buildscript {
     repositories {
         mavenCentral()
+        
+        maven {
+            url 'http://supersede.es.atos.net:10080/artifactory/plugins-release'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
  	}
+ 	
+ 	dependencies {
+        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
 }
+
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
@@ -56,3 +70,30 @@ test {
 		includeTestsMatching "*IFAuthenticationManagerTest"
 	}
 }
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+}
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'libs-snapshot-local'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+            
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'supersede'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+            
+        }
+    }
+}
+
