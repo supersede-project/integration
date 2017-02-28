@@ -1,5 +1,8 @@
 package eu.supersede.integration.api.pubsub.evolution;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
@@ -12,29 +15,27 @@ import eu.supersede.integration.api.json.JsonUtils;
 
 public class EvolutionAlertMessageListener implements MessageListener{
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	private Alert alert;
-	private boolean messageReceived = false;
+	private Queue<Alert> alerts;
+	
+	public EvolutionAlertMessageListener(){
+        alerts = new LinkedList<>();
+    }
 	
 	public void onMessage(Message message) {
 		try {
 			String json = ((TextMessage) message).getText();
 			log.debug("Got the Json Message : " + json);
-			this.alert = JsonUtils.deserializeJsonStringAsObject(json, Alert.class);
-			messageReceived = true;
+			alerts.offer(JsonUtils.deserializeJsonStringAsObject(json, Alert.class));
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		} 
 	}
 	
-	public Alert getAlert (){
-		return this.alert;
-	}
+	public Alert getNextAlert(){
+        return alerts.poll();
+    }
 	
-	public boolean isMessageReceived (){
-		return this.messageReceived;
-	}
-	
-	public void resetMessageReceived(){
-		this.messageReceived = false;
+	public boolean areMessageReceived (){
+		return alerts.size() > 0;
 	}
 }

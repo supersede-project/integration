@@ -89,13 +89,13 @@ public class EvolutionAlertPubSubTest implements Runnable{
 				= subscriber.createEvolutionAlertSubscriptionAndKeepListening();
 			subscriptionDone = true;
 			try {
-				while (!messageListener.isMessageReceived()) {
+				while (!messageListener.areMessageReceived()) {
 					Thread.sleep(1000); //FIXME Configure sleeping time
 				}
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Received alert with id: " + messageListener.getAlert().getID());
+			System.out.println("Received alert with id: " + messageListener.getNextAlert().getID());
 			messageReceived = true;
 			subscriber.closeSubscription();
 			subscriber.closeTopicConnection();
