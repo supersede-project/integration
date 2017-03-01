@@ -103,6 +103,23 @@ public class ModelRepositoryProxyTest {
 		//Delete created model
 		proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId());
 	}
+	
+	@Test
+	public void testGetAllAdaptationModels() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.AdaptabilityModel, ModelSystem.MonitoringReconfiguration, null);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testGetAllBaseModels() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, null, null);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+		
+		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(result.size()-1).getValue("id"));
+		Assert.notNull(model.getValue("modelContent"));
+	}
 
 	private ModelUpdateMetadata createModelupdateMetadata() {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();

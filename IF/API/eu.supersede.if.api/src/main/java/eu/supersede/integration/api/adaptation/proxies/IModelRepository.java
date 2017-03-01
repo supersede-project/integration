@@ -19,15 +19,20 @@
  *******************************************************************************/
 package eu.supersede.integration.api.adaptation.proxies;
 
+import java.util.List;
+
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.Status;
 
 public interface IModelRepository {
 	IModel[] createModelInstances (ModelType modelType, ModelMetadata metadata) throws Exception;
 	IModel updateModelInstance (ModelType modelType, ModelUpdateMetadata metadata, String modelId) throws Exception;
 	IModel getModelInstance (ModelType modelType, String modelId) throws Exception;
+	List<IModel> getModelInstances (ModelType modelType, ModelSystem systemId, Status status) throws Exception;
 	void deleteModelInstance (ModelType modelType, String modelId) throws Exception;
 }
 

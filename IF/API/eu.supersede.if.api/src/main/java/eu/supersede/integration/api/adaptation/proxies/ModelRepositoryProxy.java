@@ -20,6 +20,7 @@
 package eu.supersede.integration.api.adaptation.proxies;
 
 import java.net.URI;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +29,10 @@ import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.Status;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 //import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
@@ -74,5 +77,31 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "/" + modelId);
 		log.debug("Sending message deleteModelInstance for modelId: " + modelId + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
 		deleteUriResource(uri, HttpStatus.OK);
+	}
+
+	@Override
+	/**
+	 * SystemId and status are optional
+	 */
+	public List<IModel> getModelInstances(ModelType modelType, ModelSystem systemId, Status status) throws Exception {
+		Assert.notNull(modelType, "Provide a valid model type");
+		String suri = SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "?";
+
+		if (systemId != null){
+			suri += "systemId=" + systemId;
+		}
+		
+		if (status != null){
+			if (systemId !=null){
+				suri += "&";
+			}
+			suri += "status=" + status;
+		}
+		
+		log.debug("Sending message getModelInstances with modelType: " + modelType 
+			+ " with systemId: " + systemId 
+			+ " with status: " + status
+			+ " to ModelRepository at uri " + suri);
+		return  (List<IModel>) getJSONObjectsListForType((Class<T[]>) modelType.getTypeArrayClass(), new URI (suri), HttpStatus.OK);
 	}
 }
