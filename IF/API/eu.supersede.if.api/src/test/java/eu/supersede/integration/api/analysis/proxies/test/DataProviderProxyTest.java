@@ -36,6 +36,7 @@ import eu.supersede.integration.api.analysis.proxies.DataProviderProxy;
 import eu.supersede.integration.api.analysis.types.MonitoringData;
 
 public class DataProviderProxyTest {
+	private final Logger log = LoggerFactory.getLogger(this.getClass()); 
 	private DataProviderProxy proxy;
 	
 	
@@ -66,6 +67,19 @@ public class DataProviderProxyTest {
     	JSONObject jsonData = createMonitoringDataListAsJson();
 		String topic = "atos";
 		proxy.ingestData(jsonData.toString(), topic);
+    }
+    
+    @Test
+    public void testIngestDataSequence() throws Exception{
+    	JSONObject jsonData = createMonitoringDataListAsJson();
+		String topic = "atos";
+		Long startTime = System.currentTimeMillis();
+		int iterations = 1000;
+		for (int i=0; i<=iterations; i++){
+			proxy.ingestData(jsonData.toString(), topic);
+		}
+		Long endTime = System.currentTimeMillis();
+		log.debug("Sent " + iterations + " Json messages to DataProvider in " + (endTime - startTime) + " miliseconds");
     }
     
     private JSONObject createMonitoringDataListAsJson(){

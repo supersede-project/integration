@@ -19,15 +19,16 @@
  *******************************************************************************/
 package eu.supersede.integration.api.analysis.proxies;
 
+import java.util.Map;
 import java.util.Properties;
 import org.json.JSONObject;
 
-import kafka.javaapi.producer.Producer;
-import kafka.producer.KeyedMessage;
-import kafka.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.ProducerConfig;
 
 public class KafkaClient {
-	private Producer<String, String> producer;
+	private KafkaProducer<String, String> producer;
 	
 	public KafkaClient (String kafkaEndpoint){
 		producer = initProducer (kafkaEndpoint);
@@ -39,14 +40,16 @@ public class KafkaClient {
 	 * @param kafkaEndpoint		the endpoint of the producer
 	 * @return					the created producer
 	 */
-	private Producer<String, String> initProducer(String kafkaEndpoint) {
+	private KafkaProducer<String, String> initProducer(String kafkaEndpoint) {
 		Properties props = new Properties();
 		props.put("metadata.broker.list", kafkaEndpoint);
+		props.put("bootstrap.servers", kafkaEndpoint);
+		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("serializer.class", "kafka.serializer.StringEncoder");
 		props.put("request.required.acks", "1");
-		ProducerConfig config = new ProducerConfig(props);
 		
-		return new Producer<String,String>(config);
+		return new KafkaProducer<String,String>(props);
 	}
 	
 	/**
@@ -56,7 +59,7 @@ public class KafkaClient {
 	 */
 	public void sendMessage(JSONObject jsonData, String topic) {
 		
-		KeyedMessage<String, String> msg = new KeyedMessage<String, String>(topic, jsonData.toString());
+		ProducerRecord<String, String> msg = new ProducerRecord<String, String>(topic, jsonData.toString());
 		producer.send(msg);
 		
 	}
