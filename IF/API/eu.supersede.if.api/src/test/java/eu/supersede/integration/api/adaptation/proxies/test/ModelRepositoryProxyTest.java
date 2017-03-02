@@ -25,6 +25,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -117,7 +119,9 @@ public class ModelRepositoryProxyTest {
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 		
-		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(result.size()-1).getValue("id"));
+		Collections.sort(result);
+		
+		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(result.size()-1).getValue("id").toString());
 		Assert.notNull(model.getValue("modelContent"));
 	}
 
