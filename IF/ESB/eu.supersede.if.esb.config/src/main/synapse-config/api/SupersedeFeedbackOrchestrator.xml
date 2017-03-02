@@ -18,7 +18,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/applications">
+  <resource methods="GET" protocol="http" uri-template="/{language}/applications">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get all applications message forwarded to Feedback Orchestrator endpoint"/>
@@ -35,7 +35,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/applications/{app_id}">
+  <resource methods="GET" protocol="http" uri-template="/{language}/applications/{app_id}">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -52,7 +52,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/applications">
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update application message forwarded to Feedback Orchestrator endpoint"/>
@@ -69,7 +69,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/applications">
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Insert application message forwarded to Feedback Orchestrator endpoint"/>
@@ -86,7 +86,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/configurations">
+  <resource methods="GET" protocol="http" uri-template="/{language}/configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get all configurations message forwarded to Feedback Orchestrator endpoint"/>
@@ -103,7 +103,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/configurations/{conf_id}">
+  <resource methods="GET" protocol="http" uri-template="/{language}/configurations/{conf_id}">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get configuration by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -120,7 +120,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/configurations/{conf_id}/general_configuration">
+  <resource methods="GET" protocol="http" uri-template="/{language}/configurations/{conf_id}/general_configuration">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get general configuration for configuration by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -137,7 +137,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/applications/{app_id}/configurations">
+  <resource methods="GET" protocol="http" uri-template="/{language}/applications/{app_id}/configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get configuration for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -154,7 +154,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/applications/{app_id}/configurations">
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update configuration for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -171,7 +171,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/applications/{app_id}/configurations">
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications/{app_id}/configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Insert configuration for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -188,7 +188,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/applications/{app_id}/configurations/{mechanism_id}/mechanisms">
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/configurations/{mechanism_id}/mechanisms">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update mechanism by id for configuration for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -205,7 +205,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/general_configurations">
+  <resource methods="GET" protocol="http" uri-template="/{language}/general_configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get all general configurations message forwarded to Feedback Orchestrator endpoint"/>
@@ -222,7 +222,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/general_configurations/{conf_id}">
+  <resource methods="GET" protocol="http" uri-template="/{language}/general_configurations/{conf_id}">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get general configuration by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -239,7 +239,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/applications/{app_id}/general_configuration">
+  <resource methods="GET" protocol="http" uri-template="/{language}/applications/{app_id}/general_configuration">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get general configurations for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -256,7 +256,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/applications/{app_id}/general_configurations">
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/general_configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update general configuration for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -273,7 +273,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/mechanisms">
+  <resource methods="GET" protocol="http" uri-template="/{language}/mechanisms">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get all mechanism message forwarded to Feedback Orchestrator endpoint"/>
@@ -290,7 +290,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/mechanisms/{mech_id}">
+  <resource methods="GET" protocol="http" uri-template="/{language}/mechanisms/{mech_id}">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get mechanism by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -307,7 +307,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/configurations/{conf_id}/mechanisms">
+  <resource methods="GET" protocol="http" uri-template="/{language}/configurations/{conf_id}/mechanisms">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get mechanism for configuration by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -324,7 +324,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/applications/{app_id}/configurations/{conf_id}/mechanisms">
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications/{app_id}/configurations/{conf_id}/mechanisms">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Insert mechanism for configuration by Id for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -341,7 +341,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/configurations/{conf_id}/mechanisms">
+  <resource methods="PUT" protocol="http" uri-template="/{language}/configurations/{conf_id}/mechanisms">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update mechanism for configuration by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -358,7 +358,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/parameters">
+  <resource methods="GET" protocol="http" uri-template="/{language}/parameters">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get all parameters message forwarded to Feedback Orchestrator endpoint"/>
@@ -375,7 +375,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/parameters/{par_id}">
+  <resource methods="GET" protocol="http" uri-template="/{language}/parameters/{par_id}">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get parameter by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -392,7 +392,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/mechanisms/{mech_id}/parameters">
+  <resource methods="GET" protocol="http" uri-template="/{language}/mechanisms/{mech_id}/parameters">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get parameter for mechanim by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -409,7 +409,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/general_configurations/{conf_id}/parameters">
+  <resource methods="GET" protocol="http" uri-template="/{language}/general_configurations/{conf_id}/parameters">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get parameter for general configuration by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -426,7 +426,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/applications/{app_id}/general_configurations/{conf_id}/parameters">
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications/{app_id}/general_configurations/{conf_id}/parameters">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Insert parameter for general configuration by Id in application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -443,7 +443,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/applications/{app_id}/mechanisms/{mech_id}/parameters">
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications/{app_id}/mechanisms/{mech_id}/parameters">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Insert parameter for mechanism by Id in application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -460,7 +460,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/applications/{app_id}/parameters">
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/parameters">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update parameter for application by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -494,7 +494,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/users">
+  <resource methods="GET" protocol="http" uri-template="/{language}/users">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="List all users message forwarded to Feedback Orchestrator endpoint"/>
@@ -511,7 +511,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="PUT" protocol="http" uri-template="/en/users">
+  <resource methods="PUT" protocol="http" uri-template="/{language}/users">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Update an user message forwarded to Feedback Orchestrator endpoint"/>
@@ -528,7 +528,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/user_groups/{group_id}">
+  <resource methods="GET" protocol="http" uri-template="/{language}/user_groups/{group_id}">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get user group by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -545,7 +545,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/user_groups">
+  <resource methods="GET" protocol="http" uri-template="/{language}/user_groups">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get all user groups message forwarded to Feedback Orchestrator endpoint"/>
@@ -562,7 +562,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/user_groups">
+  <resource methods="POST" protocol="http" uri-template="/{language}/user_groups">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Insert a user group message forwarded to Feedback Orchestrator endpoint"/>
@@ -579,7 +579,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/applications/{app_id}/user_groups/{group_id}/configurations">
+  <resource methods="GET" protocol="http" uri-template="/{language}/applications/{app_id}/user_groups/{group_id}/configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get configurations for application by Id and user group by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -596,7 +596,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/en/applications/{app_id}/user_groups/{group_id}/configurations">
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications/{app_id}/user_groups/{group_id}/configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Insert configuration for application by Id and user group by Id message forwarded to Feedback Orchestrator endpoint"/>
@@ -613,7 +613,7 @@
       <send/>
     </faultSequence>
   </resource>
-  <resource methods="GET" protocol="http" uri-template="/en/applications/{app_id}/users/{user_id}/configurations">
+  <resource methods="GET" protocol="http" uri-template="/{language}/applications/{app_id}/users/{user_id}/configurations">
     <inSequence>
       <log level="full">
         <property name="Feedback Orchestrator" value="Get configurations for application by Id and user by Id message forwarded to Feedback Orchestrator endpoint"/>
