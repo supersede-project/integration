@@ -26,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -121,7 +122,7 @@ public class ModelRepositoryProxyTest {
 		
 		Collections.sort(result);
 		
-		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(result.size()-1).getValue("id").toString());
+		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
 		Assert.notNull(model.getValue("modelContent"));
 	}
 
@@ -142,7 +143,7 @@ public class ModelRepositoryProxyTest {
 		ModelMetadata metadata = new ModelMetadata();
 		
 		metadata.setSender("Adapter");
-		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createAdaptabilityModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
 		
@@ -156,8 +157,8 @@ public class ModelRepositoryProxyTest {
 		
 		am.setName("googleplay_api_googleplay_tool");
 		am.setAuthorId("zavala");
-		am.setCreationDate("2016-10-13 12:54:21.0");
-		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
 		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
 		am.setFeatureId("GooglePlay");
@@ -180,7 +181,7 @@ public class ModelRepositoryProxyTest {
 		ModelMetadata metadata = new ModelMetadata();
 		
 		metadata.setSender("Adapter");
-		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createBaseModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
 		
@@ -194,8 +195,8 @@ public class ModelRepositoryProxyTest {
 		
 		am.setName("ATOS Base Model");
 		am.setAuthorId("yosu");
-		am.setCreationDate("2016-10-13 12:54:21.0");
-		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.BaseModel.getExtension());
 		am.setSystemId(ModelSystem.Atos.getId());
 		am.setStatus("not adapted");

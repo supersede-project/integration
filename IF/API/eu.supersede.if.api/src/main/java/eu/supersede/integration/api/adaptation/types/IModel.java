@@ -1,6 +1,7 @@
 package eu.supersede.integration.api.adaptation.types;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 
 public abstract class IModel implements Comparable<IModel>{
 
@@ -37,8 +38,8 @@ public abstract class IModel implements Comparable<IModel>{
 			if (m.getValue("lastModificationDate")!=null && 
 				this.getValue("lastModificationDate")!=null){
 				//TODO Parse dates and compare them
-				return ((String)m.getValue("lastModificationDate"))
-					.compareTo((String)this.getValue("lastModificationDate"));
+				return ((Date)m.getValue("lastModificationDate"))
+					.compareTo((Date)this.getValue("lastModificationDate"));
 			}
 		}catch (Exception e){
 			//Ignored
@@ -48,8 +49,8 @@ public abstract class IModel implements Comparable<IModel>{
 		try{
 			if (m.getValue("creationDate")!=null && 
 					this.getValue("creationDate")!=null){
-				return ((String)m.getValue("lastModificationDate"))
-						.compareTo((String)this.getValue("lastModificationDate"));	
+				return ((Date)m.getValue("creationDate"))
+						.compareTo((Date)this.getValue("creationDate"));	
 			}
 		}catch (Exception e){
 			//Ignored
@@ -59,8 +60,8 @@ public abstract class IModel implements Comparable<IModel>{
 		try{
 			if (m.getValue("id")!=null && 
 					this.getValue("id")!=null){
-				return ((String)m.getValue("lastModificationDate"))
-						.compareTo((String)this.getValue("lastModificationDate"));	
+				return (Integer.valueOf((String)m.getValue("id")))
+						.compareTo(Integer.valueOf((String)this.getValue("id")));	
 			}
 		}catch (Exception e){
 			//Ignored

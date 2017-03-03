@@ -1,12 +1,18 @@
 package eu.supersede.integration.api.adaptation.types;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+
 public class FeatureConfiguration extends IModel {
 	
 	private String id;
 	private String name;
 	private String authorId;
-	private String creationDate;
-	private String lastModificationDate;
+	private Date creationDate;
+	private Date lastModificationDate;
 	private String fileExtension;
 	private String systemId;
 	private String status;
@@ -30,16 +36,18 @@ public class FeatureConfiguration extends IModel {
 	public void setAuthorId(String authorId) {
 		this.authorId = authorId;
 	}
-	public String getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(String creationDate) {
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-	public String getLastModificationDate() {
+	public Date getLastModificationDate() {
 		return lastModificationDate;
 	}
-	public void setLastModificationDate(String lastModificationDate) {
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	public void setLastModificationDate(Date lastModificationDate) {
 		this.lastModificationDate = lastModificationDate;
 	}
 	public String getFileExtension() {
