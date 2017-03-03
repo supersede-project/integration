@@ -92,13 +92,13 @@ public class AdaptationAlertPubSubTest implements Runnable{
 				= subscriber.createAdaptationAlertSubscriptionAndKeepListening();
 			subscriptionDone = true;
 			try {
-				while (!messageListener.isMessageReceived()) {
+				while (!messageListener.areMessageReceived()) {
 					Thread.sleep(1000); //FIXME Configure sleeping time
 				}
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Received alert: " + messageListener.getAlert());
+			System.out.println("Received alert: " + messageListener.getNextAlert());
 			messageReceived = true;
 			subscriber.closeSubscription();
 			subscriber.closeTopicConnection();
