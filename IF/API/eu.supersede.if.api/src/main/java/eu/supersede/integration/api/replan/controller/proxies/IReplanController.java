@@ -32,7 +32,11 @@ import eu.supersede.integration.api.replan.controller.types.Resource;
 import eu.supersede.integration.api.replan.controller.types.Skill;
 
 public interface IReplanController {
+	List<Project> getAllProjects() throws Exception;
 	Project getProjectById(int projectId) throws Exception;
+	Project createProject(Project project) throws Exception;
+	Project updateProject(Project project) throws Exception;
+	boolean deleteProjectById(int projectId) throws Exception;
 	List<Feature> getFeaturesOfProjectById (int projectId) throws Exception;
 	List<Feature> getFeaturesOfProjectById (int projectId, FeatureStatus status) throws Exception;
 	Feature getFeatureByIdOfProjectById(int featureId, int projectId) throws Exception;
@@ -42,8 +46,9 @@ public interface IReplanController {
 	Plan getPlanOfReleaseByIdOfProjectById(int featureId, int projectId) throws Exception;
 	List<Skill> getSkillsOfProjectById(int projectId) throws Exception;
 	List<Resource> getResourcesOfProjectById(int projectId) throws Exception;
-	Project updateProject(Project project) throws Exception;
+	Feature createFeatureOfProjectById(Feature feature, int projectId) throws Exception;
 	Feature updateFeatureOfProjectById(Feature feature, int projectId) throws Exception;
+	boolean deleteFeatureByIdOfProjectById(int featureId, int projectId) throws Exception;
 	Release updateReleaseOfProjectById(Release release, int projectId) throws Exception;
 	Skill updateSkillOfProjectById(Skill skill, int projectId) throws Exception;
 	Resource updateResourceOfProjectById(Resource resource, int projectId) throws Exception;

@@ -58,6 +58,13 @@ public class ReplanControllerProxyTest {
     }
 
     @Test
+    public void testGetAllProjects() throws Exception{
+    	List<Project> projects = proxy.getAllProjects();
+    	Assert.notNull(projects);
+    	Assert.notEmpty(projects);
+    }
+    
+    @Test
     public void testGetProjectById() throws Exception{
     	Project project = proxy.getProjectById(1);
     	Assert.notNull(project);
@@ -121,6 +128,50 @@ public class ReplanControllerProxyTest {
     }
     
     @Test
+    public void testCreateAndDeleteProject() throws Exception{
+    	Project project = createProject();
+    	project = proxy.createProject(project);
+    	Assert.notNull(project);
+    	Assert.notNull(project.getId());
+    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
+    }
+    
+    private Project createProject() {
+		Project project = new Project();
+		project.setName("Project Test");
+		project.setDescription("Bla, bla, bla es mucho decir");
+		project.setEffortUnit("hour");
+		project.setHoursPerEffortUnit(1.0);
+		project.setHoursPerWeekFullTimeResource(40.0);
+		return project;
+	}
+
+    @Test
+    public void testCreateAndDeleteFeatureForProject() throws Exception{
+    	Project project = createProject();
+    	project = proxy.createProject(project);
+    	Assert.notNull(project);
+    	Assert.notNull(project.getId());
+    	Feature feature = createFeature();
+    	feature = proxy.createFeatureOfProjectById(feature, project.getId());
+    	Assert.notNull(feature);
+    	Assert.notNull(feature.getId());
+    	Assert.isTrue(proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
+    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
+    }
+    
+	private Feature createFeature() {
+		Feature feature = new Feature();
+		feature.setCode(111);
+		feature.setName("Fix auto upload");
+		feature.setDescription("Bla, bla, bla es mucho decir");
+		feature.setEffort(4.0);
+		feature.setDeadline(Calendar.getInstance().getTime());
+		feature.setPriority(5);
+		return feature;
+	}
+
+	@Test
     public void testUpdateProject() throws Exception{
     	Project project = proxy.getProjectById(1);
     	Assert.notNull(project);

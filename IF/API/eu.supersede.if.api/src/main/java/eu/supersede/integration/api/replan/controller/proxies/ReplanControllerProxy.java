@@ -479,4 +479,56 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + releaseId);
 		return getJSONObjectForType(Release.class, uri, HttpStatus.OK);
 	}
+
+	@Override
+	public List<Project> getAllProjects() throws Exception {
+		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects");
+		log.debug("Sending message getAllProjects to ReplanController at uri " + uri);
+		return getJSONObjectsListForType(Project[].class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public Project createProject(Project project) throws Exception {
+		Assert.notNull(project, "Provide a valid project");
+		Assert.isTrue(project.getResources()==null ||  project.getResources().isEmpty(), "Features are not accepted in new created projects");
+		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects");
+		log.debug("Sending message createProject with project: " + project 
+				+ " to ReplanController at uri " + uri);
+		return insertandReturnJSONObject(project, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public boolean deleteProjectById(int projectId) throws Exception {
+		Assert.notNull(projectId, "Provide a valid projectId");
+		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId);
+		log.debug("Sending message deleteProjectById with projectId: " + projectId 
+				+ " to ReplanController at uri " + uri);
+
+		return deleteUriResource(uri, HttpStatus.OK);
+	}
+
+	@Override
+	public Feature createFeatureOfProjectById(Feature feature, int projectId) throws Exception {
+		Assert.notNull(feature, "Provide a valid feature");
+		Assert.notNull(projectId, "Provide a valid projectId");
+		Assert.isTrue(feature.getRequiredSkills()==null ||  feature.getRequiredSkills().isEmpty(), "Required Skills are not accepted in new created features");
+		Assert.isTrue(feature.getDependencies()==null ||  feature.getDependencies().isEmpty(), "Dependencies are not accepted in new created features");
+		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/create_one");
+		log.debug("Sending message createFeatureOfProjectById with feature: " + feature 
+				+ " with projectId: " + projectId
+				+ " to ReplanController at uri " + uri);
+		return insertandReturnJSONObject(feature, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public boolean deleteFeatureByIdOfProjectById(int featureId, int projectId) throws Exception {
+		Assert.notNull(featureId, "Provide a valid featureId");
+		Assert.notNull(projectId, "Provide a valid projectId");
+		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/" + featureId);
+		log.debug("Sending message deleteFeatureByIdOfProjectById with featureId: " + featureId 
+				+ " with projectId: " + projectId
+				+ " to ReplanController at uri " + uri);
+
+		return deleteUriResource(uri, HttpStatus.OK);
+	}
 }
