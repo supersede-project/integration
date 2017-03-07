@@ -125,6 +125,13 @@ public class ModelRepositoryProxyTest {
 		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
 		Assert.notNull(model.getValue("modelContent"));
 	}
+	
+	@Test
+	public void testGetProfileModelsForSystem() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.ProfileModel, ModelSystem.Health, null);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
 
 	private ModelUpdateMetadata createModelupdateMetadata() {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
