@@ -58,7 +58,7 @@ public class DecisionMakingSystemProxyTest {
 		Alert alert = new Alert();
 		
 		alert.setID("id1");
-		alert.setApplicationID("appId1");
+		alert.setApplicationId("appId1");
 		alert.setTimestamp(1481717773760L);
 		alert.setTenant("Delta");
 		

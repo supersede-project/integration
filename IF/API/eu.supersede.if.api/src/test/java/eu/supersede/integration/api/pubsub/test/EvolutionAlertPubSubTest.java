@@ -95,7 +95,7 @@ public class EvolutionAlertPubSubTest implements Runnable{
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Received alert with id: " + messageListener.getNextAlert().getID());
+			System.out.println("Received alert with id: " + messageListener.getNextAlert().getId());
 			messageReceived = true;
 			subscriber.closeSubscription();
 			subscriber.closeTopicConnection();
@@ -117,7 +117,7 @@ public class EvolutionAlertPubSubTest implements Runnable{
 		Alert alert = new Alert();
 		
 		alert.setID("id1");
-		alert.setApplicationID("appId1");
+		alert.setApplicationId("appId1");
 		alert.setTimestamp(1481717773760L);
 		alert.setTenant("Delta");
 		

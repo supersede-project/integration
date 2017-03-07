@@ -14,13 +14,13 @@ public class Alert {
 	}
 
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String id) {
+		this.id = id;
 	}
 
 
-	public void setApplicationID(String applicationID) {
-		this.applicationID = applicationID;
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
 	}
 
 
@@ -39,19 +39,19 @@ public class Alert {
 	}
 
 
-	String				ID;
-	String				applicationID;
+	String				id;
+	String				applicationId;
 	long				timestamp;
 	String				tenant;
 	List<Condition>		conditions;
 	List<UserRequest>	requests;
 	
 	
-	public Alert(	String iD, String applicationID, long timestamp, 
+	public Alert(	String id, String applicationId, long timestamp, 
 					String tenant, List<Condition> conditions, List<UserRequest>	requests ) {
 		super();
-		ID = iD;
-		this.applicationID = applicationID;
+		this.id = id;
+		this.applicationId = applicationId;
 		this.timestamp = timestamp;
 		this.tenant = tenant;
 		this.conditions = conditions;
@@ -62,13 +62,13 @@ public class Alert {
 	public Alert() {}
 	
 	
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
 
-	public String getApplicationID() {
-		return applicationID;
+	public String getApplicationId() {
+		return applicationId;
 	}
 
 

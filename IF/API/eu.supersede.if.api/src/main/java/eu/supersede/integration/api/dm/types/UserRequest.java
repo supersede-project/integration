@@ -3,11 +3,11 @@ package eu.supersede.integration.api.dm.types;
 public class UserRequest {
 	
 	public String getId() {
-		return ID;
+		return id;
 	}
 
-	public void setId(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public RequestClassification getClassification() {
@@ -74,7 +74,7 @@ public class UserRequest {
 		this.features = features;
 	}
 
-	String					ID;
+	String					id;
 	RequestClassification	classification;
 	double					accuracy;
 	String					description;
@@ -87,7 +87,7 @@ public class UserRequest {
 	public UserRequest() {}
 	
 	public UserRequest( 
-			String					ID, 
+			String					id, 
 			RequestClassification	classification,
 			double					accuracy,
 			String					description,
@@ -98,7 +98,7 @@ public class UserRequest {
 			String[]				features
 			) {
 		
-		this.ID = ID;
+		this.id = id;
 		this.classification = classification;
 		this.accuracy = accuracy;
 		this.description = description;
