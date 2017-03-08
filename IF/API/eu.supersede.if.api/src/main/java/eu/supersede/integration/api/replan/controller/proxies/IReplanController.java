@@ -33,6 +33,7 @@ import eu.supersede.integration.api.replan.controller.types.Skill;
 
 public interface IReplanController {
 	List<Project> getAllProjects() throws Exception;
+	// APIs with projectId
 	Project getProjectById(int projectId) throws Exception;
 	Project createProject(Project project) throws Exception;
 	Project updateProject(Project project) throws Exception;
@@ -76,5 +77,48 @@ public interface IReplanController {
 	boolean deleteResourceByIdOfProjectById(int resourceId, int projectId) throws Exception;
 	Resource deleteSkillsOfResourceByIdOfProjectById(List<Skill> skills, int resourceId, int projectId) throws Exception;
 	boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws ReplanControllerException;
+	
+	// APIs with tenantId
+	Project getProjectById(String tenantId) throws Exception;
+	boolean deleteProjectById(String tenantId) throws Exception;
+	List<Feature> getFeaturesOfProjectById (String tenantId) throws Exception;
+	List<Feature> getFeaturesOfProjectById (String tenantId, FeatureStatus status) throws Exception;
+	Feature getFeatureByIdOfProjectById(int featureId, String tenantId) throws Exception;
+	List<Release> getReleasesOfProjectById(String tenantId) throws Exception;
+	Release getReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception;
+	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int featureId, String tenantId) throws Exception;
+	Plan getPlanOfReleaseByIdOfProjectById(int featureId, String tenantId) throws Exception;
+	List<Skill> getSkillsOfProjectById(String tenantId) throws Exception;
+	List<Resource> getResourcesOfProjectById(String tenantId) throws Exception;
+	Feature createFeatureOfProjectById(Feature feature, String tenantId) throws Exception;
+	Feature updateFeatureOfProjectById(Feature feature, String tenantId) throws Exception;
+	boolean deleteFeatureByIdOfProjectById(int featureId, String tenantId) throws Exception;
+	Release updateReleaseOfProjectById(Release release, String tenantId) throws Exception;
+	Skill updateSkillOfProjectById(Skill skill, String tenantId) throws Exception;
+	Resource updateResourceOfProjectById(Resource resource, String tenantId) throws Exception;
+	Feature addSkillsOfFeatureByIdOfProjectById(List<Skill> skills, int featureId, String tenantId) throws Exception;
+	Feature addDependenciesOfFeatureByIdOfProjectById(List<Feature> features, int featureId, String tenantId)
+			throws Exception;
+	boolean addReleaseOfProjectById(Release release, String tenantId) throws Exception;
+	Release addResourcesOfReleaseByIdOfProjectById(List<Resource> resources, int releaseId, String tenantId)
+			throws Exception;
+	boolean addFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, String tenantId)
+			throws Exception;
+	Skill addSkillOfProjectById(Skill skill, String tenantId) throws Exception;
+	Resource addResourceOfProjectById(Resource resource, String tenantId) throws Exception;
+	Resource addSkillOfResourceByIdOfProjectById(List<Skill> skills, int resourceId, String tenantId) throws Exception;
+	Feature deleteSkillsOfFeatureByIdOfProjectById(List<Skill> skills, int featureId, String tenantId) throws Exception;
+	Feature deleteDependenciesOfFeatureByIdOfProjectById(List<Feature> features, int featureId, String tenantId)
+			throws Exception;
+	boolean deleteReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception;
+	Release deleteResourcesOfReleaseByIdOfProjectById(List<Resource> resources, int releaseId, String tenantId)
+			throws Exception;
+	boolean deleteFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, String tenantId)
+			throws Exception;
+	boolean cancelLastPlanOfReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception;
+	boolean deleteSkillByIdOfProjectById(int skillId, String tenantId) throws Exception;
+	boolean deleteResourceByIdOfProjectById(int resourceId, String tenantId) throws Exception;
+	Resource deleteSkillsOfResourceByIdOfProjectById(List<Skill> skills, int resourceId, String tenantId) throws Exception;
+	boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, String tenantId) throws ReplanControllerException;
 }
 
