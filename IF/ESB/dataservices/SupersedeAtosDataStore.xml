@@ -1,0 +1,247 @@
+<data description="single service for whole database" enableBatchRequests="false" enableBoxcarring="false" name="SupersedeAtosDataStore" serviceNamespace="http://schema.supersede.eu" serviceStatus="active">
+   <config id="default">
+      <property name="carbon_datasource_name">Supersede_Atos</property>
+   </config>
+   <query id="select_all_users_profiles_query" useConfig="default">
+      <sql>SELECT user_id, profile_id FROM public.users_profiles</sql>
+      <result element="users_profiles" rowName="users_profile">
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+      </result>
+   </query>
+   <query id="select_all_profiles_query" useConfig="default">
+      <sql>SELECT profile_id, name FROM public.profiles</sql>
+      <result element="profiles" rowName="profile">
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+         <element column="name" name="name" xsdType="xs:string"/>
+         <call-query href="select_ProfilesLabels_for_ProfileId_query">
+            <with-param name="profile_id" query-param="profile_id"/>
+         </call-query>
+      </result>
+   </query>
+   <query id="select_all_profiles_lazy_query" useConfig="default">
+      <sql>SELECT profile_id, name FROM public.profiles</sql>
+      <result element="profiles" rowName="profile">
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+         <element column="name" name="name" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="select_with_key_users_query" useConfig="default">
+      <sql>SELECT user_id, first_name, last_name, username, email, locale FROM public.users WHERE user_id=?</sql>
+      <param name="user_id" ordinal="1" paramType="SCALAR" sqlType="BIGINT" type="IN"/>
+      <result element="users" rowName="user">
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="first_name" name="first_name" xsdType="xs:string"/>
+         <element column="last_name" name="last_name" xsdType="xs:string"/>
+         <element column="username" name="username" xsdType="xs:string"/>
+         <element column="email" name="email" xsdType="xs:string"/>
+         <element column="locale" name="locale" xsdType="xs:string"/>
+         <call-query href="select_Profiles_for_UserId_query">
+            <with-param name="user_id" query-param="user_id"/>
+         </call-query>
+         <call-query href="select_Notifications_for_UserId_query">
+            <with-param name="user_id" query-param="user_id"/>
+         </call-query>
+      </result>
+   </query>
+   <query id="select_with_key_users_lazy_query" useConfig="default">
+      <sql>SELECT user_id, first_name, last_name, username, email, locale FROM public.users WHERE user_id=?</sql>
+      <param name="user_id" ordinal="1" paramType="SCALAR" sqlType="BIGINT" type="IN"/>
+      <result element="users" rowName="user">
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="first_name" name="first_name" xsdType="xs:string"/>
+         <element column="last_name" name="last_name" xsdType="xs:string"/>
+         <element column="username" name="username" xsdType="xs:string"/>
+         <element column="email" name="email" xsdType="xs:string"/>
+         <element column="locale" name="locale" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="select_all_notifications_query" useConfig="default">
+      <sql>SELECT notification_id, message, user_id, read, email_sent, creation_time, link FROM public.notifications</sql>
+      <result element="notifications" rowName="notification">
+         <element column="notification_id" name="notification_id" xsdType="xs:long"/>
+         <element column="message" name="message" xsdType="xs:string"/>
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="read" name="read" xsdType="xs:integer"/>
+         <element column="email_sent" name="email_sent" xsdType="xs:integer"/>
+         <element column="creation_time" name="creation_time" xsdType="xs:dateTime"/>
+         <element column="link" name="link" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="select_with_key_profiles_query" useConfig="default">
+      <sql>SELECT profile_id, name FROM public.profiles WHERE profile_id=?</sql>
+      <param name="profile_id" ordinal="1" paramType="SCALAR" sqlType="BIGINT" type="IN"/>
+      <result element="profiles" rowName="profile">
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+         <element column="name" name="name" xsdType="xs:string"/>
+         <call-query href="select_ProfilesLabels_for_ProfileId_query">
+            <with-param name="profile_id" query-param="profile_id"/>
+         </call-query>
+      </result>
+   </query>
+   <query id="select_with_key_profiles_lazy_query" useConfig="default">
+      <sql>SELECT profile_id, name FROM public.profiles WHERE profile_id=?</sql>
+      <param name="profile_id" ordinal="1" paramType="SCALAR" sqlType="BIGINT" type="IN"/>
+      <result element="profiles" rowName="profile">
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+         <element column="name" name="name" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="select_all_profiles_labels_query" useConfig="default">
+      <sql>SELECT profile_id, lang, label, profile_label_id FROM public.profiles_labels</sql>
+      <result element="profiles_labels" rowName="profiles_label">
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+         <element column="lang" name="lang" xsdType="xs:string"/>
+         <element column="label" name="label" xsdType="xs:string"/>
+         <element column="profile_label_id" name="profile_label_id" xsdType="xs:long"/>
+      </result>
+   </query>
+   <query id="select_with_key_users_profiles_query" useConfig="default">
+      <sql>SELECT user_id, profile_id FROM public.users_profiles WHERE user_id=?</sql>
+      <param name="user_id" ordinal="1" paramType="SCALAR" sqlType="BIGINT" type="IN"/>
+      <result element="users_profiles" rowName="user_profile">
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+      </result>
+   </query>
+   <query id="select_with_key_profiles_labels_query" useConfig="default">
+      <sql>SELECT profile_id, lang, label, profile_label_id FROM public.profiles_labels WHERE profile_label_id=?</sql>
+      <param name="profile_label_id" ordinal="1" paramType="SCALAR" sqlType="BIGINT" type="IN"/>
+      <result element="profiles_labels" rowName="profiles_label">
+         <element column="profile_id" name="profile_id" xsdType="xs:long"/>
+         <element column="lang" name="lang" xsdType="xs:string"/>
+         <element column="label" name="label" xsdType="xs:string"/>
+         <element column="profile_label_id" name="profile_label_id" xsdType="xs:long"/>
+      </result>
+   </query>
+   <query id="select_all_users_lazy_query" useConfig="default">
+      <sql>SELECT user_id, first_name, last_name, username, email, locale FROM public.users</sql>
+      <result element="users" rowName="user">
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="first_name" name="first_name" xsdType="xs:string"/>
+         <element column="last_name" name="last_name" xsdType="xs:string"/>
+         <element column="username" name="username" xsdType="xs:string"/>
+         <element column="email" name="email" xsdType="xs:string"/>
+         <element column="locale" name="locale" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="select_all_users_query" useConfig="default">
+      <sql>SELECT user_id, first_name, last_name, username, email, locale FROM public.users</sql>
+      <result element="users" rowName="user">
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="first_name" name="first_name" xsdType="xs:string"/>
+         <element column="last_name" name="last_name" xsdType="xs:string"/>
+         <element column="username" name="username" xsdType="xs:string"/>
+         <element column="email" name="email" xsdType="xs:string"/>
+         <element column="locale" name="locale" xsdType="xs:string"/>
+         <call-query href="select_Profiles_for_UserId_query">
+            <with-param name="user_id" query-param="user_id"/>
+         </call-query>
+         <call-query href="select_Notifications_for_UserId_query">
+            <with-param name="user_id" query-param="user_id"/>
+         </call-query>
+      </result>
+   </query>
+   <query id="select_Profiles_for_UserId_query" useConfig="default">
+      <sql>select p.* from profiles p inner join users_profiles up on p.profile_id=up.profile_id and up.user_id=?</sql>
+      <param name="user_id" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <result element="profiles" rowName="profile">
+         <element column="profile_id" name="profile_id" xsdType="xs:integer"/>
+         <element column="name" name="name" xsdType="xs:string"/>
+         <call-query href="select_ProfilesLabels_for_ProfileId_query">
+            <with-param name="profile_id" query-param="profile_id"/>
+         </call-query>
+      </result>
+   </query>
+   <query id="select_ProfilesLabels_for_ProfileId_query" useConfig="default">
+      <sql>select pl.* from profiles_labels pl inner join profiles p on pl.profile_id=p.profile_id and p.profile_id=?</sql>
+      <param name="profile_id" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <result element="labels" rowName="label">
+         <element column="profile_label_id" name="profile_label_id" xsdType="xs:integer"/>
+         <element column="lang" name="lang" xsdType="xs:string"/>
+         <element column="label" name="label" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="select_Notifications_for_UserId_query" useConfig="default">
+      <sql>select n.* from notifications n inner join users u on n.user_id=u.user_id and u.user_id=?</sql>
+      <param name="user_id" ordinal="1" paramType="SCALAR" sqlType="INTEGER" type="IN"/>
+      <result element="notifications" rowName="notification">
+         <element column="notification_id" name="notification_id" xsdType="xs:long"/>
+         <element column="message" name="message" xsdType="xs:string"/>
+         <element column="read" name="read" xsdType="xs:integer"/>
+         <element column="email_sent" name="email_sent" xsdType="xs:integer"/>
+         <element column="creation_time" name="creation_time" xsdType="xs:dateTime"/>
+         <element column="link" name="link" xsdType="xs:string"/>
+      </result>
+   </query>
+   <query id="select_with_key_notifications_query" useConfig="default">
+      <sql>SELECT notification_id, message, user_id, read, email_sent, creation_time, link FROM public.notifications WHERE notification_id=?</sql>
+      <param name="notification_id" ordinal="1" paramType="SCALAR" sqlType="BIGINT" type="IN"/>
+      <result element="notifications" rowName="notification">
+         <element column="notification_id" name="notification_id" xsdType="xs:long"/>
+         <element column="message" name="message" xsdType="xs:string"/>
+         <element column="user_id" name="user_id" xsdType="xs:long"/>
+         <element column="read" name="read" xsdType="xs:integer"/>
+         <element column="email_sent" name="email_sent" xsdType="xs:integer"/>
+         <element column="creation_time" name="creation_time" xsdType="xs:dateTime"/>
+         <element column="link" name="link" xsdType="xs:string"/>
+      </result>
+   </query>
+   <operation name="select_with_key_users_operation">
+      <call-query href="select_with_key_users_query">
+         <with-param name="user_id" query-param="user_id"/>
+      </call-query>
+   </operation>
+   <operation name="select_with_key_users_lazy_operation">
+      <call-query href="select_with_key_users_lazy_query">
+         <with-param name="user_id" query-param="user_id"/>
+      </call-query>
+   </operation>
+   <operation name="select_all_profiles_operation">
+      <call-query href="select_all_profiles_query"/>
+   </operation>
+   <operation name="select_all_profiles_lazy_operation">
+      <call-query href="select_all_profiles_lazy_query"/>
+   </operation>
+   <operation name="select_all_users_profiles_operation">
+      <call-query href="select_all_users_profiles_query"/>
+   </operation>
+   <operation name="select_with_key_notifications_operation">
+      <call-query href="select_with_key_notifications_query">
+         <with-param name="notification_id" query-param="notification_id"/>
+      </call-query>
+   </operation>
+   <operation name="select_with_key_users_profiles_operation">
+      <call-query href="select_with_key_users_profiles_query">
+         <with-param name="user_id" query-param="user_id"/>
+      </call-query>
+   </operation>
+   <operation name="select_all_profiles_labels_operation">
+      <call-query href="select_all_profiles_labels_query"/>
+   </operation>
+   <operation name="select_with_key_profiles_labels_operation">
+      <call-query href="select_with_key_profiles_labels_query">
+         <with-param name="profile_label_id" query-param="profile_label_id"/>
+      </call-query>
+   </operation>
+   <operation name="select_all_notifications_operation">
+      <call-query href="select_all_notifications_query"/>
+   </operation>
+   <operation name="select_with_key_profiles_operation">
+      <call-query href="select_with_key_profiles_query">
+         <with-param name="profile_id" query-param="profile_id"/>
+      </call-query>
+   </operation>
+   <operation name="select_with_key_profiles_lazy_operation">
+      <call-query href="select_with_key_profiles_lazy_query">
+         <with-param name="profile_id" query-param="profile_id"/>
+      </call-query>
+   </operation>
+   <operation name="select_all_users_operation">
+      <call-query href="select_all_users_query"/>
+   </operation>
+   <operation name="select_all_users_lazy_operation">
+      <call-query href="select_all_users_lazy_query"/>
+   </operation>
+</data>
+
