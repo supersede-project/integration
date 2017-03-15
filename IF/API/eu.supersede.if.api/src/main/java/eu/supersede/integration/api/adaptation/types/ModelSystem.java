@@ -6,6 +6,7 @@ public enum ModelSystem {
 	FeedbackGatheringReconfiguration ("FeedbackGatheringReconfiguration"),
 	Siemens ("Siemens"),
 	Atos ("Atos"),
+	Atos_HSK ("Atos_HSK"),
 	Senercon ("Senercon"),
 	Health ("Health");
 	
