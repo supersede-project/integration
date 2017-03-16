@@ -307,6 +307,11 @@ public class IFAuthenticationManager {
 					.header("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8")
 					.header("Authorization", "Basic " + base64AuthorizationPair)
 					.body("grant_type=password&username=" + userName+tenantDomain + "&password=" + credential);
+		
+		System.out.println ("getAuthorizationToken.TOKEN_SERVICE_ENDPOINT:" + TOKEN_SERVICE_ENDPOINT);
+		System.out.println ("getAuthorizationToken.base64AuthorizationPair:" + base64AuthorizationPair);
+		System.out.println ("getAuthorizationToken.userName+tenantDomain:" + userName+tenantDomain);
+		
 		AuthorizationToken token = restTemplate.exchange(request, AuthorizationToken.class).getBody();
 		if (token != null){
 			log.info("Retrived valid token that expires in " + token.getExpiresIn());
