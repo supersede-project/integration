@@ -133,7 +133,14 @@ task wrapper(type: Wrapper) {
 tasks.withType(Test){
 	systemProperty 'is.admin.user', System.getProperty ('is.admin.user', 'admin@atos.supersede.eu')
 	systemProperty 'is.admin.passwd', System.getProperty ('is.admin.passwd', 'rtgWCyrc')
-	systemProperty 'supersede.if.properties', System.getProperty ('supersede.if.properties', 'if.properties')
+//	systemProperty 'supersede.if.properties', System.getProperty ('supersede.if.properties', 'if.properties')
+	systemProperties System.properties
+}
+
+tasks.withType(JavaExec) {
+    // Assign all Java system properties from
+    // the command line to the JavaExec task.
+    systemProperties System.properties
 }
 
 // Test execution filter

@@ -14,26 +14,26 @@
       <sequence key="conf:/SupersedeDS_FE_GetAllUsers_Request_DSSSequence.xml"/>
       <switch source="$ctx:id_tenant">
         <case regex="atos">
-          <property name="endpoint" scope="default" type="STRING" value="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+          <property name="endpoint" scope="default" type="STRING" value="http://localhost:9766/services/SupersedeAtosDataStore"/>
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
-          <property name="endpoint" scope="default" type="STRING" value="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+          <property name="endpoint" scope="default" type="STRING" value="http://localhost:9766/services/SupersedeSiemensDataStore"/>
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
-          <property name="endpoint" scope="default" type="STRING" value="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+          <property name="endpoint" scope="default" type="STRING" value="http://localhost:9766/services/SupersedeSenerconDataStore"/>
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>
@@ -69,21 +69,21 @@
         <case regex="atos">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>
@@ -116,21 +116,21 @@
         <case regex="atos">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>
@@ -163,21 +163,21 @@
         <case regex="atos">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>
@@ -207,21 +207,21 @@
         <case regex="atos">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>
@@ -254,21 +254,21 @@
         <case regex="atos">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>
@@ -298,21 +298,21 @@
         <case regex="atos">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>
@@ -345,21 +345,21 @@
         <case regex="atos">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeAtosDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeAtosDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="siemens">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSiemensDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSiemensDataStore"/>
             </endpoint>
           </call>
         </case>
         <case regex="senercon">
           <call>
             <endpoint>
-              <address format="soap12" trace="disable" uri="http://192.168.145.13:9766/services/SupersedeSenerconDataStore"/>
+              <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
         </case>

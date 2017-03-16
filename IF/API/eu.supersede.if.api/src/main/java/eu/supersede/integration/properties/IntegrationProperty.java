@@ -28,14 +28,14 @@ import org.slf4j.LoggerFactory;
 public class IntegrationProperty {
 	private static final Logger log = LoggerFactory.getLogger(IntegrationProperty.class);
 	public static Properties prop = new Properties();
-	public static String propFileName = "if.properties";
+	public static String propFileName = "if.development.properties";
 	static{
 		//Read configuration from environment
 		if (System.getProperty("supersede.if.properties")!=null){
 			propFileName = System.getProperty("supersede.if.properties");
 			System.out.println("Setting IF configuration to: " + propFileName);
 		}else{
-			System.out.println("Using default IF configuration");
+			System.out.println("Using default IF configuration: " + propFileName);
 		}
 		
 		InputStream is = IntegrationProperty.class.getClassLoader().getResourceAsStream(propFileName);

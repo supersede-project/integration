@@ -8,10 +8,13 @@ import javax.jms.TopicConnectionFactory;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import eu.supersede.integration.properties.IntegrationProperty;
+
 public abstract class TopicMessageAgent implements iTopicMessageAgent {
 	protected SubscriptionTopic subscriptionTopic;
 	protected String initialContextFactory = "org.wso2.andes.jndi." + "PropertiesFileInitialContextFactory";
-	protected String connectionString = "amqp:" + "//admin:$up3r$3d3@clientID/carbon?brokerlist='tcp://supersede.es.atos.net:5676'";
+//	protected String connectionString = "amqp:" + "//admin:$up3r$3d3@clientID/carbon?brokerlist='tcp://supersede.es.atos.net:5676'";
+	protected String connectionString = IntegrationProperty.getProperty("message.broker.connection");
 	protected Properties properties;
 	protected InitialContext ctx;
 	protected TopicConnection topicConnection;
