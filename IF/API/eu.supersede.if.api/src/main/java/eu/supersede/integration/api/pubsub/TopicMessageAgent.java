@@ -8,12 +8,15 @@ import javax.jms.TopicConnectionFactory;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public abstract class TopicMessageAgent implements iTopicMessageAgent {
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	protected SubscriptionTopic subscriptionTopic;
 	protected String initialContextFactory = "org.wso2.andes.jndi." + "PropertiesFileInitialContextFactory";
-//	protected String connectionString = "amqp:" + "//admin:$up3r$3d3@clientID/carbon?brokerlist='tcp://supersede.es.atos.net:5676'";
 	protected String connectionString = IntegrationProperty.getProperty("message.broker.connection");
 	protected Properties properties;
 	protected InitialContext ctx;
@@ -33,16 +36,19 @@ public abstract class TopicMessageAgent implements iTopicMessageAgent {
 	 */
 	@Override
 	public void openTopicConnection () throws JMSException{
-		if (topicConnection!=null){
-			closeTopicConnection();
-		}
+		
+		closeTopicConnection();
+		
 		try {
 			TopicConnectionFactory topicConnectionFactory = (TopicConnectionFactory) ctx
 					.lookup("QueueConnectionFactory");
 			topicConnection = topicConnectionFactory.createTopicConnection();
+			log.debug("Open topic connection with Message Broker");
 		} catch (NamingException e) {
+			closeTopicConnection();
 			throw new RuntimeException("Error in initial context lookup", e);
 		} catch (JMSException e) {
+			closeTopicConnection();
 			throw new RuntimeException("Error in JMS operations", e);
 		} finally {
 			
@@ -54,7 +60,15 @@ public abstract class TopicMessageAgent implements iTopicMessageAgent {
 	 */
 	@Override
 	public void closeTopicConnection() throws JMSException{
-		if (topicConnection != null)
+		if (topicConnection != null){
 			topicConnection.close();
+			log.debug("Close topic connection with Message Broker");
+		}
 	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		closeTopicConnection();
+	}
+	
 }

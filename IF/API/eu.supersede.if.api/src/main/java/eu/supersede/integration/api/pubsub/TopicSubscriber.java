@@ -159,5 +159,10 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 			}
 		}
 	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+	}
 
 }

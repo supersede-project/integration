@@ -58,5 +58,10 @@ public class TopicPublisher extends TopicMessageAgent implements iTopicPublisher
 		topicPublisher.close();
 		topicSession.close();
 	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+	}
 
 }

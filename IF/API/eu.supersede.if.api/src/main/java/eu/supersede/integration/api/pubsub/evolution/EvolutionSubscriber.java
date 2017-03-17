@@ -48,5 +48,8 @@ public class EvolutionSubscriber extends TopicSubscriber implements iEvolutionSu
 		return messageListener;
 	}
 
-
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+	}
 }

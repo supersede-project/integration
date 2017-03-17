@@ -44,5 +44,10 @@ public class EvolutionPublisher extends TopicPublisher implements iEvolutionPubl
 		topicPublisher.close();
 		topicSession.close();
 	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+	}
 
 }

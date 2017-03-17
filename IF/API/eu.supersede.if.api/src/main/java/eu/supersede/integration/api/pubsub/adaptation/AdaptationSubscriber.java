@@ -47,5 +47,9 @@ public class AdaptationSubscriber extends TopicSubscriber implements iAdaptation
 		return messageListener;
 	}
 
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+	}
 
 }

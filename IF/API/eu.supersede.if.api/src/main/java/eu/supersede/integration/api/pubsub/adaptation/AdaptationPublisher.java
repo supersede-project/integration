@@ -44,5 +44,10 @@ public class AdaptationPublisher extends TopicPublisher implements iAdaptationPu
 		topicPublisher.close();
 		topicSession.close();
 	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+	}
 
 }
