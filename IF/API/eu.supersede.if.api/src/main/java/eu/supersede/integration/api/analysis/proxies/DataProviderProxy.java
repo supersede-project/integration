@@ -33,10 +33,11 @@ import eu.supersede.integration.properties.IntegrationProperty;
 public class DataProviderProxy implements IDataProvider{
 	private final static String SUPERSEDE_DATAPROVIDER_ENDPOINT = IntegrationProperty.getProperty("dataprovider.endpoint");
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	private KafkaClient kafka;
+	private static KafkaClient kafka;
 	
 	public DataProviderProxy (){
-		kafka = new KafkaClient (SUPERSEDE_DATAPROVIDER_ENDPOINT);
+		if (kafka == null)
+			kafka = new KafkaClient (SUPERSEDE_DATAPROVIDER_ENDPOINT);
 	}
 	
 	/**
