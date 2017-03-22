@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/replan" name="SupersedeReplanController" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="OPTIONS" protocol="http" uri-template="/projects*">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="OPTIONS message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="OPTIONS" protocol="http" uri-template="/projects*?*">
+    <inSequence>
+      <log level="full">
+        <property name="Replan Controller" value="OPTIONS message forwarded to Replan Controller endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ReplanControllerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
   <resource methods="GET" protocol="http" uri-template="/projects">
     <inSequence>
       <log level="full">
