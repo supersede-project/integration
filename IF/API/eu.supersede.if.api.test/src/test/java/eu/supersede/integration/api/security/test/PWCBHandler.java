@@ -17,14 +17,21 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.adaptation.proxies;
+package eu.supersede.integration.api.security.test;
 
-import java.util.List;
+//import org.apache.ws.security.WSPasswordCallback;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.UnsupportedCallbackException;
 
-import eu.supersede.integration.api.adaptation.types.ModelSystem;
-
-public interface IAdapter {
-	boolean enactAdaptationDecisionActions (ModelSystem systemId, List<String> adaptationDecisionActionIds, String featureConfigurationId) throws Exception;
-	boolean enactAdaptationDecisionActionsForFC (ModelSystem system, String featureConfigurationId) throws Exception;
-}
-
+public class PWCBHandler implements CallbackHandler {
+	 
+    public void handle(Callback[] callbacks) throws UnsupportedCallbackException {
+//     WSPasswordCallback cb = (WSPasswordCallback) callbacks[0];
+//     if ("admin".equals(cb.getIdentifier())) {
+//      cb.setPassword("$2pRSid#");
+//     } else {
+//      cb.setPassword("ws02carbon");
+//     }
+    }
+   }

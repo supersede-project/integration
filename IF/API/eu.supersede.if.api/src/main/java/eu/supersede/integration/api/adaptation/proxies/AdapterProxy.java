@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 //import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
@@ -51,17 +52,28 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 
 
 	@Override
-	public boolean enactAdaptationDecisionActions(String systemId, List<String> adaptationDecisionActionIds,
+	public boolean enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId) throws Exception {
-		Assert.notNull(systemId, "Provide a valid system id");
+		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(adaptationDecisionActionIds, "Provide valid adaptationDecisionActionIds");
 		Assert.notEmpty(adaptationDecisionActionIds, "Provide not empty adaptationDecisionActionIds");
 		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
-		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/featureConfiguration/" + featureConfigurationId + "/system/" + systemId + "?";
+		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/featureConfiguration/" + featureConfigurationId + "/system/" + system + "?";
 //		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
-		log.debug("Invoking enactAdaptationDecisionActions (systemId: " + systemId 
+		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
 				+ ", adaptationDecisionActionIds: " + adaptationDecisionActionIds
 				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
 		return postFormURLEncoded(new URI(uriString), "adaptationDecisionActionIds", adaptationDecisionActionIds, HttpStatus.OK);
+	}
+
+	@Override
+	public boolean enactAdaptationDecisionActionsForFC(ModelSystem system, String featureConfigurationId)
+			throws Exception {
+		Assert.notNull(system, "Provide a valid system");
+		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
+		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActionsForFC/featureConfiguration/" + featureConfigurationId + "/system/" + system;
+		log.debug("Invoking enactAdaptationDecisionActionsForFC (system: " + system
+				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
+		return postJSONString("", new URI(uriString), HttpStatus.OK);
 	}
 }

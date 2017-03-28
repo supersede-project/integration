@@ -25,6 +25,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,11 +106,37 @@ public class ModelRepositoryProxyTest {
 		//Delete created model
 		proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId());
 	}
+	
+	@Test
+	public void testGetAllAdaptationModels() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.AdaptabilityModel, ModelSystem.MonitoringReconfiguration, null);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testGetAllBaseModels() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, null, null);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+		
+		Collections.sort(result);
+		
+		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+		Assert.notNull(model.getValue("modelContent"));
+	}
+	
+	@Test
+	public void testGetProfileModelsForSystem() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.ProfileModel, ModelSystem.Health, null);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
 
 	private ModelUpdateMetadata createModelupdateMetadata() {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
 		mum.setSender("Adapter");
-		mum.setTimeStamp("2016-10-20T20:10:30:201");
+		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
 		Map<String, String> values = new HashMap<>();
 		values.put("authorId", "marc");
@@ -121,7 +150,7 @@ public class ModelRepositoryProxyTest {
 		ModelMetadata metadata = new ModelMetadata();
 		
 		metadata.setSender("Adapter");
-		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createAdaptabilityModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
 		
@@ -135,8 +164,8 @@ public class ModelRepositoryProxyTest {
 		
 		am.setName("googleplay_api_googleplay_tool");
 		am.setAuthorId("zavala");
-		am.setCreationDate("2016-10-13 12:54:21.0");
-		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
 		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
 		am.setFeatureId("GooglePlay");
@@ -159,7 +188,7 @@ public class ModelRepositoryProxyTest {
 		ModelMetadata metadata = new ModelMetadata();
 		
 		metadata.setSender("Adapter");
-		metadata.setTimeStamp("2016-10-20T20:10:30:201");
+		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createBaseModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
 		
@@ -173,8 +202,8 @@ public class ModelRepositoryProxyTest {
 		
 		am.setName("ATOS Base Model");
 		am.setAuthorId("yosu");
-		am.setCreationDate("2016-10-13 12:54:21.0");
-		am.setLastModificationDate("2016-10-13 12:54:21.0");
+		am.setCreationDate(Calendar.getInstance().getTime());
+		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.BaseModel.getExtension());
 		am.setSystemId(ModelSystem.Atos.getId());
 		am.setStatus("not adapted");

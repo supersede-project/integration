@@ -5,7 +5,7 @@ import java.util.List;
 public class Alert {
 	
 	public List<UserRequest> getRequests() {
-		return requests;
+		return this.requests;
 	}
 
 
@@ -14,7 +14,7 @@ public class Alert {
 	}
 
 
-	public void setID(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -63,27 +63,27 @@ public class Alert {
 	
 	
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 
 	public String getApplicationId() {
-		return applicationId;
+		return this.applicationId;
 	}
 
 
 	public long getTimestamp() {
-		return timestamp;
+		return this.timestamp;
 	}
 
 
 	public String getTenant() {
-		return tenant;
+		return this.tenant;
 	}
 
 
 	public List<Condition> getConditions() {
-		return conditions;
+		return this.conditions;
 	}
 
 

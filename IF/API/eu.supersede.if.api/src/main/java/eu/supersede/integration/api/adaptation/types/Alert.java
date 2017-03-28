@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Alert {
 	
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
-	public void setApplicationID(String applicationID) {
-		this.applicationID = applicationID;
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
 	}
 
 
@@ -30,7 +30,7 @@ public class Alert {
 
 
 	public List<ActionOnFeature> getActionFeatures() {
-		return actionFeatures;
+		return this.actionFeatures;
 	}
 
 
@@ -40,7 +40,7 @@ public class Alert {
 
 
 	public List<ActionOnAttribute> getActionAttributes() {
-		return actionAttributes;
+		return this.actionAttributes;
 	}
 
 
@@ -50,8 +50,8 @@ public class Alert {
 
 
 
-	String					ID;
-	String					applicationID;
+	String					id;
+	String					applicationId;
 	long					timestamp;
 	String					tenant;
 	List<Condition>			conditions;
@@ -59,16 +59,16 @@ public class Alert {
 	List<ActionOnAttribute>	actionAttributes;	
 	
 	public Alert(	
-			String 					iD, 
-			String 					applicationID, 
+			String 					id, 
+			String 					applicationId, 
 			long 					timestamp, 
 			String 					tenant, 
 			List<Condition> 		conditions, 
 			List<ActionOnFeature>	actionFeatures,
 			List<ActionOnAttribute>	actionAttributes) {
 		super();
-		ID = iD;
-		this.applicationID = applicationID;
+		this.id = id;
+		this.applicationId = applicationId;
 		this.timestamp = timestamp;
 		this.tenant = tenant;
 		this.conditions = conditions;
@@ -81,28 +81,28 @@ public class Alert {
 	public Alert() {}
 	
 	
-	public String getID() {
-		return ID;
+	public String getId() {
+		return this.id;
 	}
 
 
-	public String getApplicationID() {
-		return applicationID;
+	public String getApplicationId() {
+		return this.applicationId;
 	}
 
 
 	public long getTimestamp() {
-		return timestamp;
+		return this.timestamp;
 	}
 
 
 	public String getTenant() {
-		return tenant;
+		return this.tenant;
 	}
 
 
 	public List<Condition> getConditions() {
-		return conditions;
+		return this.conditions;
 	}
 
 

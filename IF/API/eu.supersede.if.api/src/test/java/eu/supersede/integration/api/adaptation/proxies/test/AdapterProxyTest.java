@@ -27,6 +27,7 @@ import org.junit.Test;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class AdapterProxyTest {
 	// private static final Logger log =
@@ -40,12 +41,12 @@ public class AdapterProxyTest {
 
 	@Test
 	public void testEnactAdaptationDecisionActions() throws Exception {
-		String systemId = "atos";
+		ModelSystem system = ModelSystem.Atos;
 		String featureConfigurationId = "1"; 
 		List<String> adaptationDecisionActionIds = new ArrayList<>();
 		adaptationDecisionActionIds.add("cms_optimal_configuration");
 		adaptationDecisionActionIds.add("cms_standard_configuration");
-		Boolean result = proxy.enactAdaptationDecisionActions(systemId, adaptationDecisionActionIds, featureConfigurationId);
+		Boolean result = proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
 		Assert.isTrue(result);
 	}
 	
