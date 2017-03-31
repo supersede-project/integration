@@ -460,11 +460,10 @@ public abstract class IFServiceProxy<T, S> {
 	 * @return
 	 * @throws Exception
 	 */
-	public <T> boolean postFormURLEncoded(URI query, String valueLabel, List<T> values, HttpStatus expectedStatus) throws Exception {
+	public <T> boolean postFormURLEncoded(URI query, Map<String,List<T>> values, HttpStatus expectedStatus) throws Exception {
 		boolean result = false;
 		try {
 			Assert.notNull(query, "Provide a valid query");
-			Assert.notNull(valueLabel, "Provide a valid valueLabel");
 			Assert.notNull(values, "Provide a valid values");
 			Assert.notNull(expectedStatus, "Provide a valid expectedStatus");
 			
@@ -472,8 +471,10 @@ public abstract class IFServiceProxy<T, S> {
 			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
 			MultiValueMap<String, T> map= new LinkedMultiValueMap<String, T>();
-			for (T value:values)
-				map.add(valueLabel, value);
+			for (String parameter: values.keySet()){
+				for (T value:values.get(parameter))
+					map.add(parameter, value);
+			}
 
 			HttpEntity<MultiValueMap<String, T>> request = new HttpEntity<MultiValueMap<String, T>>(map, headers);
 

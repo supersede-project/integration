@@ -20,7 +20,12 @@
 package eu.supersede.integration.api.adaptation.proxies;
 
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +68,9 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
 				+ ", adaptationDecisionActionIds: " + adaptationDecisionActionIds
 				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
-		return postFormURLEncoded(new URI(uriString), "adaptationDecisionActionIds", adaptationDecisionActionIds, HttpStatus.OK);
+		Map<String,List<String>> values = new HashMap<>();
+		values.put("adaptationDecisionActionIds", adaptationDecisionActionIds);
+		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);
 	}
 
 	@Override
@@ -75,5 +82,25 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		log.debug("Invoking enactAdaptationDecisionActionsForFC (system: " + system
 				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
 		return postJSONString("", new URI(uriString), HttpStatus.OK);
+	}
+
+	@Override
+	public boolean enactAdaptationDecisionActionsInFCasString(ModelSystem system,
+			List<String> adaptationDecisionActionIds, String featureConfigurationAsString) throws Exception {
+		Assert.notNull(system, "Provide a valid system");
+		Assert.notNull(adaptationDecisionActionIds, "Provide valid adaptationDecisionActionIds");
+		Assert.notEmpty(adaptationDecisionActionIds, "Provide not empty adaptationDecisionActionIds");
+		Assert.notNull(featureConfigurationAsString, "Provide a valid featureConfigurationAsString");
+		Assert.isTrue(!featureConfigurationAsString.isEmpty(), "Provide a not empty featureConfigurationAsString content");
+		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/system/" + system + "?";
+//		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
+		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
+				+ ", adaptationDecisionActionIds: " + adaptationDecisionActionIds
+				+ ", featureConfigurationAsString: " + featureConfigurationAsString + ") in uri: " + uriString);
+		Map<String,List<String>> values = new HashMap<>();
+		values.put("adaptationDecisionActionIds", adaptationDecisionActionIds);
+		String[] fc = {featureConfigurationAsString};
+		values.put("fc",  Arrays.asList(fc));
+		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);
 	}
 }
