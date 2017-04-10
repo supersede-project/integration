@@ -19,6 +19,9 @@
  *******************************************************************************/
 package eu.supersede.integration.api.adaptation.proxies.test;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,4 +53,15 @@ public class AdapterProxyTest {
 		Assert.isTrue(result);
 	}
 	
+	@Test
+	public void testEnactAdaptationDecision() throws Exception {
+		ModelSystem system = ModelSystem.Atos_HSK;
+		List<String> adaptationDecisionActionIds = new ArrayList<>();
+		adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
+		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
+		Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_HighLoad.yafc");
+		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+		Boolean result = proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds, featureConfigurationAsString);
+		Assert.isTrue(result);
+	}
 }

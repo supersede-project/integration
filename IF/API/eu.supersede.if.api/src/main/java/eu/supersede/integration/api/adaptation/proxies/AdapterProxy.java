@@ -20,8 +20,6 @@
 package eu.supersede.integration.api.adaptation.proxies;
 
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -92,7 +90,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		Assert.notEmpty(adaptationDecisionActionIds, "Provide not empty adaptationDecisionActionIds");
 		Assert.notNull(featureConfigurationAsString, "Provide a valid featureConfigurationAsString");
 		Assert.isTrue(!featureConfigurationAsString.isEmpty(), "Provide a not empty featureConfigurationAsString content");
-		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/system/" + system + "?";
+		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/system/" + system;
 //		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
 		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
 				+ ", adaptationDecisionActionIds: " + adaptationDecisionActionIds

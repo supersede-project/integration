@@ -19,6 +19,9 @@
  *******************************************************************************/
 package eu.supersede.integration.api.adaptation.proxies.test;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +44,24 @@ public class AdapterProxyTest {
 
 	@Test
 	public void testEnactAdaptationDecisionActions() throws Exception {
-		ModelSystem system = ModelSystem.Atos;
+		ModelSystem system = ModelSystem.Atos_HSK;
 		String featureConfigurationId = "1"; 
 		List<String> adaptationDecisionActionIds = new ArrayList<>();
-		adaptationDecisionActionIds.add("cms_optimal_configuration");
-		adaptationDecisionActionIds.add("cms_standard_configuration");
+		adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
+		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
 		Boolean result = proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+		Assert.isTrue(result);
+	}
+	
+	@Test
+	public void testEnactAdaptationDecision() throws Exception {
+		ModelSystem system = ModelSystem.Atos_HSK;
+		List<String> adaptationDecisionActionIds = new ArrayList<>();
+		adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
+		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
+		Path fcPath = Paths.get("./src/test/java/eu/supersede/integration/api/adaptation/proxies/test/SmartPlatformFC_HSK_HighLoad.yafc");
+		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+		Boolean result = proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds, featureConfigurationAsString);
 		Assert.isTrue(result);
 	}
 	
