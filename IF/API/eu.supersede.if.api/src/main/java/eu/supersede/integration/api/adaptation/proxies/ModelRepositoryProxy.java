@@ -27,7 +27,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.adaptation.types.GenericModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
+import eu.supersede.integration.api.adaptation.types.ITypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
@@ -103,5 +105,135 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 			+ " with status: " + status
 			+ " to ModelRepository at uri " + suri);
 		return  (List<IModel>) getJSONObjectsListForType((Class<T[]>) modelType.getTypeArrayClass(), new URI (suri), HttpStatus.OK);
+	}
+
+	@Override
+	public <S extends GenericModel> List<IModel> getModelInstances (ModelType modelType, S metadata) throws Exception {
+		Assert.notNull(modelType, "Provide a valid model type");
+		Assert.notNull(metadata, "Provide a valid metadata");
+		String suri = SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "?";
+
+		boolean addParameterSeparator = false;
+		try{
+			if (metadata.getValue("systemId")!=null){
+				suri += "systemId=" + metadata.getValue("systemId");
+				addParameterSeparator = true;
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("status")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "status=" + metadata.getValue("status");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("name")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "name=" + metadata.getValue("name");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+			
+		try{
+			if (metadata.getValue("url")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "url=" + metadata.getValue("url");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("authorId")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "authorId=" + metadata.getValue("authorId");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("creationDate")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "creationDate=" + metadata.getValue("creationDate");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("lastModificationDate")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "lastModificationDate=" + metadata.getValue("lastModificationDate");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("fileExtension")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "fileExtension=" + metadata.getValue("fileExtension");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("relativePath")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "relativePath=" + metadata.getValue("relativePath");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		log.debug("Sending message getModelInstances with modelType: " + modelType 
+			+ " with metadata: " + metadata 
+			+ " to ModelRepository at uri " + suri);
+		return  (List<IModel>) getJSONObjectsListForType((Class<T[]>) modelType.getTypeArrayClass(), new URI (suri), HttpStatus.OK);
+	}
+
+	@Override
+	public IModel getModelInstance(ITypedModelId modelId) throws Exception {
+		return getModelInstance(modelId.getModelType(), modelId.getNumber());
+	}
+	
+	@Override
+	public IModel getModelInstance(ModelType modelType, ModelSystem system, String relativePath) throws Exception {
+		GenericModel metadata = new GenericModel();
+		metadata.setRelativePath(relativePath);
+		return getModelInstances (modelType, metadata).get(0);
 	}
 }

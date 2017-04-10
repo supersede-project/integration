@@ -40,10 +40,13 @@ import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.BaseModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
+import eu.supersede.integration.api.adaptation.types.IModelId;
+import eu.supersede.integration.api.adaptation.types.ITypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public class ModelRepositoryProxyTest {
 	// private static final Logger log =
@@ -127,10 +130,39 @@ public class ModelRepositoryProxyTest {
 	}
 	
 	@Test
+	public void testGetAllBaseModelsWithQueryMetadata() throws Exception {
+		BaseModel metadata = new BaseModel();
+		metadata.setName("BaseModelA");
+		metadata.setAuthorId("SUPERSEDE");
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, metadata);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+		
+		Collections.sort(result);
+		
+		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+		Assert.notNull(model.getValue("id"));
+	}
+	
+	@Test
 	public void testGetProfileModelsForSystem() throws Exception {
 		List<IModel> result = proxy.getModelInstances(ModelType.ProfileModel, ModelSystem.Health, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void getModelInstance() throws Exception {
+		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
+		IModel result = proxy.getModelInstance(modelId);
+		Assert.notNull(result);
+	}
+	
+	@Test
+	public void getModelInstance2() throws Exception {
+		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
+		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, "/path/to/model");
+		Assert.notNull(result);
 	}
 
 	private ModelUpdateMetadata createModelupdateMetadata() {
@@ -167,7 +199,7 @@ public class ModelRepositoryProxyTest {
 		am.setCreationDate(Calendar.getInstance().getTime());
 		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
-		am.setSystemId(ModelSystem.MonitoringReconfiguration.getId());
+		am.setSystemId(ModelSystem.MonitoringReconfiguration);
 		am.setFeatureId("GooglePlay");
 		am.setModelContent(getAdaptabilityModelContent());
 		
@@ -205,7 +237,7 @@ public class ModelRepositoryProxyTest {
 		am.setCreationDate(Calendar.getInstance().getTime());
 		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.BaseModel.getExtension());
-		am.setSystemId(ModelSystem.Atos.getId());
+		am.setSystemId(ModelSystem.Atos);
 		am.setStatus("not adapted");
 		am.setModelContent(getBaseModelContent());
 		
