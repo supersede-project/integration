@@ -25,7 +25,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
@@ -40,7 +39,6 @@ import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.BaseModel;
 import eu.supersede.integration.api.adaptation.types.IModel;
-import eu.supersede.integration.api.adaptation.types.IModelId;
 import eu.supersede.integration.api.adaptation.types.ITypedModelId;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
@@ -126,7 +124,7 @@ public class ModelRepositoryProxyTest {
 		Collections.sort(result);
 		
 		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
-		Assert.notNull(model.getValue("modelContent"));
+		Assert.notNull(model);
 	}
 	
 	@Test
@@ -145,8 +143,8 @@ public class ModelRepositoryProxyTest {
 	}
 	
 	@Test
-	public void testGetProfileModelsForSystem() throws Exception {
-		List<IModel> result = proxy.getModelInstances(ModelType.ProfileModel, ModelSystem.Health, null);
+	public void testGetBaseModelsForSystem() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
@@ -201,6 +199,8 @@ public class ModelRepositoryProxyTest {
 		am.setFileExtension(ModelType.AdaptabilityModel.getExtension());
 		am.setSystemId(ModelSystem.MonitoringReconfiguration);
 		am.setFeatureId("GooglePlay");
+		am.setRelativePath("path/to/model");
+		am.setDependencies(new ArrayList<TypedModelId>());
 		am.setModelContent(getAdaptabilityModelContent());
 		
 		return modelInstances;

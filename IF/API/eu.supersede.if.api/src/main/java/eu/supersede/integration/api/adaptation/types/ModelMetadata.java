@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+import eu.supersede.integration.api.json.ModelRepositoryJsonDateSerializer;
 
 public class ModelMetadata {
 	String sender;
@@ -21,6 +23,7 @@ public class ModelMetadata {
 		return timeStamp;
 	}
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = ModelRepositoryJsonDateSerializer.class)
 	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
 	}

@@ -20,6 +20,7 @@
 package eu.supersede.integration.api.adaptation.proxies;
 
 import java.net.URI;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -116,7 +117,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		boolean addParameterSeparator = false;
 		try{
 			if (metadata.getValue("systemId")!=null){
-				suri += "systemId=" + metadata.getValue("systemId");
+				suri += "systemId=" + URLEncoder.encode(metadata.getValue("systemId").toString(), "UTF-8");
 				addParameterSeparator = true;
 			}
 		}catch (Exception e){
@@ -129,7 +130,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "status=" + metadata.getValue("status");
+				suri += "status=" + URLEncoder.encode(metadata.getValue("status").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -141,7 +142,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "name=" + metadata.getValue("name");
+				suri += "name=" + URLEncoder.encode(metadata.getValue("name").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -153,7 +154,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "url=" + metadata.getValue("url");
+				suri += "url=" + URLEncoder.encode(metadata.getValue("url").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -165,7 +166,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "authorId=" + metadata.getValue("authorId");
+				suri += "authorId=" + URLEncoder.encode(metadata.getValue("authorId").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -177,7 +178,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "creationDate=" + metadata.getValue("creationDate");
+				suri += "creationDate=" + URLEncoder.encode(metadata.getValue("creationDate").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -189,7 +190,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "lastModificationDate=" + metadata.getValue("lastModificationDate");
+				suri += "lastModificationDate=" + URLEncoder.encode(metadata.getValue("lastModificationDate").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -201,7 +202,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "fileExtension=" + metadata.getValue("fileExtension");
+				suri += "fileExtension=" + URLEncoder.encode(metadata.getValue("fileExtension").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -213,7 +214,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 					suri += "&";
 				else
 					addParameterSeparator = true;
-				suri += "relativePath=" + metadata.getValue("relativePath");
+				suri += "relativePath=" + URLEncoder.encode(metadata.getValue("relativePath").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
@@ -234,6 +235,10 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 	public IModel getModelInstance(ModelType modelType, ModelSystem system, String relativePath) throws Exception {
 		GenericModel metadata = new GenericModel();
 		metadata.setRelativePath(relativePath);
-		return getModelInstances (modelType, metadata).get(0);
+		List<IModel> results = getModelInstances (modelType, metadata);
+		if (results.size()>0)
+			return results.get(0);
+		else
+			return null;
 	}
 }

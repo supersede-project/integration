@@ -1,13 +1,19 @@
 package eu.supersede.integration.api.adaptation.types;
 
-import java.net.URI;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+import eu.supersede.integration.api.json.ModelRepositoryJsonDateSerializer;
 
+@JsonInclude(Include.NON_NULL)
 public class GenericModel extends IModel {
 	
 	private String id;
@@ -19,7 +25,7 @@ public class GenericModel extends IModel {
 	private ModelSystem systemId;
 	private String modelContent;
 	private String relativePath;
-	private List<TypedModelId> dependencies;
+	private List<TypedModelId> dependencies = new ArrayList<TypedModelId>();
 	
 	public String getId() {
 		return id;
@@ -43,6 +49,7 @@ public class GenericModel extends IModel {
 		return creationDate;
 	}
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = ModelRepositoryJsonDateSerializer.class)
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
@@ -50,6 +57,7 @@ public class GenericModel extends IModel {
 		return lastModificationDate;
 	}
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = ModelRepositoryJsonDateSerializer.class)
 	public void setLastModificationDate(Date lastModificationDate) {
 		this.lastModificationDate = lastModificationDate;
 	}

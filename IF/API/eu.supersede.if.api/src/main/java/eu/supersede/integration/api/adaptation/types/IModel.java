@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class IModel implements Comparable<IModel>{
 
 	public void setValue(String property, Object value) throws Exception {
@@ -81,6 +83,7 @@ public abstract class IModel implements Comparable<IModel>{
 		return 0;
 	}
 	
+	@JsonIgnore
 	public List<Field> getFields() {
 		
 		Field[] fields1 = this.getClass().getDeclaredFields();
