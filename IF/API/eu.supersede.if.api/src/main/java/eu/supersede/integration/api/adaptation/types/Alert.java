@@ -19,7 +19,7 @@ public class Alert {
 	}
 
 
-	public void setTenant(String tenant) {
+	public void setTenant(ModelSystem tenant) {
 		this.tenant = tenant;
 	}
 
@@ -53,7 +53,7 @@ public class Alert {
 	String					id;
 	String					applicationId;
 	long					timestamp;
-	String					tenant;
+	ModelSystem					tenant;
 	List<Condition>			conditions;
 	List<ActionOnFeature>	actionFeatures;
 	List<ActionOnAttribute>	actionAttributes;	
@@ -62,7 +62,7 @@ public class Alert {
 			String 					id, 
 			String 					applicationId, 
 			long 					timestamp, 
-			String 					tenant, 
+			ModelSystem 			tenant, 
 			List<Condition> 		conditions, 
 			List<ActionOnFeature>	actionFeatures,
 			List<ActionOnAttribute>	actionAttributes) {
@@ -96,7 +96,7 @@ public class Alert {
 	}
 
 
-	public String getTenant() {
+	public ModelSystem getTenant() {
 		return this.tenant;
 	}
 

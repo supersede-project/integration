@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import eu.supersede.integration.api.adaptation.types.Alert;
 import eu.supersede.integration.api.adaptation.types.Condition;
 import eu.supersede.integration.api.adaptation.types.DataID;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.Operator;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationAlertMessageListener;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationPublisher;
@@ -122,7 +123,7 @@ public class AdaptationAlertPubSubTest implements Runnable{
 		alert.setId("id1");
 		alert.setApplicationId("appId1");
 		alert.setTimestamp(1481717773760L);
-		alert.setTenant("Delta");
+		alert.setTenant(ModelSystem.Atos);
 		
 		List<Condition> conditions = new ArrayList<Condition>();
 		DataID dataId = new DataID();
