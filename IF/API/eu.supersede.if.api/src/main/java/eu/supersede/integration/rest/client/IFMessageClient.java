@@ -133,6 +133,14 @@ public class IFMessageClient {
 		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
+	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, Class clazz) {
+		RequestEntity<S> request = RequestEntity.post(uri)
+				.accept(MediaType.APPLICATION_XML)
+				.contentType(MediaType.APPLICATION_XML)
+				.body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
+	}
+	
 	public <T, S> ResponseEntity<T> postXmlMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
 		RequestEntity<S> request = RequestEntity.post(uri)
 				.accept(MediaType.APPLICATION_XML)

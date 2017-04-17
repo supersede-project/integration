@@ -20,6 +20,7 @@
 package eu.supersede.integration.api.adaptation.proxies;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -100,5 +101,18 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		String[] fc = {featureConfigurationAsString};
 		values.put("fc",  Arrays.asList(fc));
 		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);
+	}
+	
+	@Override
+	public boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString) throws Exception {
+		Assert.notNull(system, "Provide a valid system");
+		Assert.notNull(featureConfigurationAsString, "Provide a valid featureConfigurationAsString");
+		Assert.isTrue(!featureConfigurationAsString.isEmpty(), "Provide a not empty featureConfigurationAsString content");
+		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationConfiguration/system/" + system;
+//		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
+		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
+				+ ", featureConfigurationAsString: " + featureConfigurationAsString + ") in uri: " + uriString);
+		
+		return postXMLString(featureConfigurationAsString, new URI(uriString), HttpStatus.OK);
 	}
 }

@@ -68,4 +68,21 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="POST" protocol="http" uri-template="/adaptationConfiguration/system/{systemId}">
+    <inSequence>
+      <log level="full">
+        <property name="Adapter" value="Enact adaptation feature configuration for system message forwarded to Adapter endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/AdapterEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>

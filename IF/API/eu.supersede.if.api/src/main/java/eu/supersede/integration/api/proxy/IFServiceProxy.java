@@ -451,6 +451,26 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public boolean postXMLString(String xmlInput, URI uri, HttpStatus expectedStatus) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(xmlInput, "Provide a valid XML object");
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<Boolean> response = 
+					messageClient.postXmlMessage(xmlInput, uri, xmlInput.getClass());
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted XML object " + xmlInput);
+				result = true;
+			} else {
+				log.info("There was a problem inserting XML object " + xmlInput + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return false;
+		}
+	}
+	
 	/**
 	 * Sends a post message with an array of values encoded as form
 	 * @param query
