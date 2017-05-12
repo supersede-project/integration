@@ -114,6 +114,18 @@ public class ReplanControllerProxyTest {
     }
     
     @Test
+    public void testGetPlanOfReleaseByIdOfTenantById() throws Exception{
+    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(10, "atos");
+    	Assert.notNull(plan);
+    }
+    
+    @Test
+    public void testGetPlanOfReleaseByIdOfTenantByIdForcingNew() throws Exception{
+    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(10, "atos", true);
+    	Assert.notNull(plan);
+    }
+    
+    @Test
     public void testGetSkillsOfProjectById() throws Exception{
     	List<Skill> skills = proxy.getSkillsOfProjectById(1);
     	Assert.notNull(skills);

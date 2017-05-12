@@ -125,6 +125,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 				+ " to ReplanController at uri " + uri);
 		return getJSONObjectForType(Plan.class, uri, HttpStatus.OK);
 	}
+
 	
 	@Override
 	public List<Skill> getSkillsOfProjectById(int projectId) throws Exception {
@@ -602,10 +603,21 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public Plan getPlanOfReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
+	public Plan getPlanOfReleaseByIdOfTenantById(int releaseId, String tenantId) throws Exception {
+		return getPlanOfReleaseByIdOfTenantById (releaseId, tenantId, null);
+	}
+	
+	@Override
+	public Plan getPlanOfReleaseByIdOfTenantById(int releaseId, String tenantId, Boolean forceNew) throws Exception {
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
-		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/releases/" + releaseId + "/plan");
+		
+		String suri = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/releases/" + releaseId + "/plan";
+		if (forceNew != null){
+			suri += "?force_new=" + (forceNew?"yes":"no");
+		}
+		URI uri = new URI(suri);
+			
 		log.debug("Sending message getPlanOfReleaseByIdOfProjectById with releaseId: " + releaseId 
 				+ " with tenantId: " + tenantId
 				+ " to ReplanController at uri " + uri);

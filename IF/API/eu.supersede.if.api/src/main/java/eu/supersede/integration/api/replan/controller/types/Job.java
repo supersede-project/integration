@@ -19,7 +19,9 @@
  *******************************************************************************/
 package eu.supersede.integration.api.replan.controller.types;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -29,6 +31,8 @@ import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 import eu.supersede.integration.api.json.CustomJsonDateSerializer;
 
 public class Job {
+	private Integer id;
+	
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
 	@JsonSerialize(using = CustomJsonDateSerializer.class)
 	@JsonProperty ("starts")
@@ -40,7 +44,34 @@ public class Job {
 	private Date endingDate;
 	
 	private Feature feature;
+	@JsonProperty ("feature_id")
+	private Integer featureId;
 	private Resource resource;
+	@JsonProperty ("resource_id")
+	private Integer resourceId;
+	@JsonProperty ("depends_on")
+	private List<Job> dependsOn;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public Integer getFeatureId() {
+		return featureId;
+	}
+	public void setFeatureId(Integer featureId) {
+		this.featureId = featureId;
+	}
+	
+	public Integer getResourceId() {
+		return resourceId;
+	}
+	public void setResourceId(Integer resourceId) {
+		this.resourceId = resourceId;
+	}
 	
 	public Date getStartingDate() {
 		return startingDate;
@@ -65,5 +96,14 @@ public class Job {
 	}
 	public void setResource(Resource resource) {
 		this.resource = resource;
+	}
+	
+	public List<Job> getDependsOn() {
+		if (dependsOn == null)
+			dependsOn = new ArrayList<>();
+		return dependsOn;
+	}
+	public void setDependsOn(List<Job> dependsOn) {
+		this.dependsOn = dependsOn;
 	}
 }

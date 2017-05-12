@@ -87,7 +87,8 @@ public interface IReplanController {
 	List<Release> getReleasesOfProjectById(String tenantId) throws Exception;
 	Release getReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception;
 	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int featureId, String tenantId) throws Exception;
-	Plan getPlanOfReleaseByIdOfProjectById(int featureId, String tenantId) throws Exception;
+	Plan getPlanOfReleaseByIdOfTenantById(int featureId, String tenantId) throws Exception;
+	Plan getPlanOfReleaseByIdOfTenantById(int releaseId, String tenantId, Boolean forceNew) throws Exception; 
 	List<Skill> getSkillsOfProjectById(String tenantId) throws Exception;
 	List<Resource> getResourcesOfProjectById(String tenantId) throws Exception;
 	Feature createFeatureOfProjectById(Feature feature, String tenantId) throws Exception;

@@ -34,6 +34,10 @@ public class Plan extends ReplanIdentifiableObject{
 	private Date creationDate;
 	@JsonProperty ("release_id")
 	private Integer releaseId;
+	@JsonProperty ("num_features")
+	private Integer numberFeatures;
+	@JsonProperty ("num_jobs")
+	private Integer numberJobs;
 	private List<Job> jobs;
 	
 	public Plan()
@@ -53,6 +57,21 @@ public class Plan extends ReplanIdentifiableObject{
 	public void setReleaseId(Integer releaseId) {
 		this.releaseId = releaseId;
 	}
+	
+	public Integer getNumberFeatures() {
+		return numberFeatures;
+	}
+	public void setgetNumberFeatures(Integer numberFeatures) {
+		this.numberFeatures = numberFeatures;
+	}
+	
+	public Integer getNumberJobs() {
+		return numberJobs;
+	}
+	public void setgetNumberJobs(Integer numberJobs) {
+		this.numberJobs = numberJobs;
+	}
+	
 	public List<Job> getJobs() {
 		if (jobs == null)
 			jobs = new ArrayList<>();
