@@ -26,6 +26,7 @@ public class EvolutionAlertMessageListener implements MessageListener{
 			String json = ((TextMessage) message).getText();
 			log.debug("Got the Json Message : " + json);
 			alerts.offer(JsonUtils.deserializeJsonStringAsObject(json, Alert.class));
+			log.debug("Queue a number of alerts: " + alerts.size());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		} 

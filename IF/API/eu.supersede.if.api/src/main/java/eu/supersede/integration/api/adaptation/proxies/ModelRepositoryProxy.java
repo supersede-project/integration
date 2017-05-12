@@ -137,6 +137,18 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		}
 		
 		try{
+			if (metadata.getValue("featureId")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "featureId=" + URLEncoder.encode(metadata.getValue("featureId").toString(), "UTF-8");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
 			if (metadata.getValue("name")!=null){
 				if (addParameterSeparator)
 					suri += "&";
