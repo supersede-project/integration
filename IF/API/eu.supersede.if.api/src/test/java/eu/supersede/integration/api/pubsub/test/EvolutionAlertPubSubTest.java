@@ -39,6 +39,7 @@ public class EvolutionAlertPubSubTest implements Runnable{
 
 	private void startPublisher() throws NamingException, JsonProcessingException {
 		iEvolutionPublisher publisher = null;
+		int num_messages = 1;
 		try {
 			try {
 				while (!subscriptionDone) {
@@ -49,7 +50,9 @@ public class EvolutionAlertPubSubTest implements Runnable{
 			}
 			publisher = new EvolutionPublisher(true);
 			Alert alert = createAlert();
-			publisher.publishEvolutionAlertMesssage(alert);
+			for (int i=0; i<num_messages; i++){
+				publisher.publishEvolutionAlertMesssage(alert);
+			}
 			try {
 				while (!messageReceived) {
 					Thread.sleep(1000); //FIXME Configure sleeping time
@@ -90,6 +93,7 @@ public class EvolutionAlertPubSubTest implements Runnable{
 			subscriptionDone = true;
 			try {
 				while (!messageListener.areMessageReceived()) {
+//				while (true) {
 					Thread.sleep(1000); //FIXME Configure sleeping time
 				}
 			}catch (InterruptedException e) {

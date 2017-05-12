@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 import org.wso2.carbon.CarbonConstants;
@@ -303,7 +304,7 @@ public class IFAuthenticationManagerTest {
 		Assert.isTrue(!token.getAccessToken().isEmpty());
 	}
 	
-	@Test
+	@Ignore @Test
 	public void getAuthorizationTokenTest2() throws TenantMgtAdminServiceExceptionException, URISyntaxException, UserStoreException, MalformedURLException{
 		AuthorizationToken token = am.getAuthorizationToken("wp_admin", "12345", "atos");
 		Assert.notNull(token);

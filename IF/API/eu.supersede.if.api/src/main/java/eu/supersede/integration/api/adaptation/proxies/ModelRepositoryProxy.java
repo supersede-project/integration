@@ -107,7 +107,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 			+ " to ModelRepository at uri " + suri);
 		return  (List<IModel>) getJSONObjectsListForType((Class<T[]>) modelType.getTypeArrayClass(), new URI (suri), HttpStatus.OK);
 	}
-
+	
 	@Override
 	public <S extends GenericModel> List<IModel> getModelInstances (ModelType modelType, S metadata) throws Exception {
 		Assert.notNull(modelType, "Provide a valid model type");
@@ -131,6 +131,18 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 				else
 					addParameterSeparator = true;
 				suri += "status=" + URLEncoder.encode(metadata.getValue("status").toString(), "UTF-8");
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		
+		try{
+			if (metadata.getValue("featureId")!=null){
+				if (addParameterSeparator)
+					suri += "&";
+				else
+					addParameterSeparator = true;
+				suri += "featureId=" + URLEncoder.encode(metadata.getValue("featureId").toString(), "UTF-8");
 			}
 		}catch (Exception e){
 			//Ignored
