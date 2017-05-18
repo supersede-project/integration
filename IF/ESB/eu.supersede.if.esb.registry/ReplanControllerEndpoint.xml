@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="ReplanControllerEndpoint" xmlns="http://ws.apache.org/ns/synapse">
-  <address trace="enable" uri="http://217.194.3.60:3000/api/ui/v1/"/>
+  <address trace="enable" uri="http://192.168.145.13:3000/api/ui/v1/"/>
 </endpoint>
