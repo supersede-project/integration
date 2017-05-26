@@ -37,6 +37,14 @@
             </endpoint>
           </call>
         </case>
+	<case regex="fbk">
+           <property name="endpoint" value="http://localhost:9766/services/SupersedeFbkDataStore" scope="default" type="STRING"/>
+           <call>
+             <endpoint>
+               <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
+             </endpoint>
+           </call>
+        </case>
         <default/>
       </switch>
       <!--       <log level="full"> -->
@@ -87,6 +95,13 @@
             </endpoint>
           </call>
         </case>
+        <case regex="fbk">
+          <call>
+            <endpoint>
+               <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
+            </endpoint>
+          </call>
+        </case>
         <default/>
       </switch>
       <log level="full"/>
@@ -131,6 +146,13 @@
           <call>
             <endpoint>
               <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
+            </endpoint>
+          </call>
+        </case>
+	<case regex="fbk">
+          <call>
+            <endpoint>
+              <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
             </endpoint>
           </call>
         </case>
@@ -181,6 +203,13 @@
             </endpoint>
           </call>
         </case>
+ 	<case regex="fbk">
+          <call>
+            <endpoint>
+               <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
+            </endpoint>
+          </call>
+        </case>
         <default/>
       </switch>
       <log level="full"/>
@@ -222,6 +251,13 @@
           <call>
             <endpoint>
               <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
+            </endpoint>
+          </call>
+        </case>
+	<case regex="fbk">
+          <call>
+            <endpoint>
+               <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
             </endpoint>
           </call>
         </case>
@@ -272,6 +308,13 @@
             </endpoint>
           </call>
         </case>
+	<case regex="fbk">
+          <call>
+            <endpoint>
+               <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
+            </endpoint>
+          </call>
+        </case>
         <default/>
       </switch>
       <log level="full"/>
@@ -315,6 +358,13 @@
               <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
+        </case>
+	<case regex="fbk">
+           <call>
+             <endpoint>
+                <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
+             </endpoint>
+           </call>
         </case>
         <default/>
       </switch>
@@ -362,6 +412,13 @@
               <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeSenerconDataStore"/>
             </endpoint>
           </call>
+        </case>
+	<case regex="fbk">
+           <call>
+              <endpoint>
+                 <address uri="http://localhost:9766/services/SupersedeFbkDataStore" trace="disable" format="soap12"/>
+              </endpoint>
+           </call>
         </case>
         <default/>
       </switch>
