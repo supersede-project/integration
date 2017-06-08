@@ -41,6 +41,7 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import eu.supersede.integration.api.fe.FrontendSession;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
@@ -52,6 +53,23 @@ public abstract class IFServiceProxy<T, S> {
 		try {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T[]> response = messageClient.getJSONMessage(uri, type);
+			T[] objects = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Located " + objects.length + " JSON object(s) for type " + type);
+			} else {
+				log.info("There was a problem getting JSON object(s) in uri: " + uri);
+			}
+			return (List<T>) Arrays.asList(objects);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return null;
+		}
+	}
+	
+	public <T> List<T> getJSONObjectsListForType(Class<T[]> type, URI uri, HttpStatus expectedStatus, FrontendSession session) {
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<T[]> response = messageClient.getJSONMessage(uri, type, session);
 			T[] objects = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Located " + objects.length + " JSON object(s) for type " + type);
@@ -240,6 +258,26 @@ public abstract class IFServiceProxy<T, S> {
 					messageClient.postJsonMessage(object, uri, object.getClass());
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
+				result = true;
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return false;
+		}
+	}
+	
+	public boolean insertJSONObject(String json, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(json, "Provide a valid json ");
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<String> response = 
+					messageClient.postJsonMessage(json, uri, String.class, session);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + json);
 				result = true;
 			} else {
 				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);

@@ -37,6 +37,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.client.AsyncRestTemplate;
+import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -44,6 +45,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import eu.supersede.integration.api.fe.FrontendSession;
 import eu.supersede.integration.api.feedback.repository.types.Feedback;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
@@ -89,6 +91,15 @@ public class IFMessageClient {
 				.header("Authorization", "Bearer " + token.getAccessToken())
 				.body(object);
 		return (ResponseEntity<T>) restTemplate.exchange(request, String.class);
+	}
+	
+	public <T, S> ResponseEntity<T> postJsonMessage(S object, URI uri, Class<S> clazz, FrontendSession session) {
+		RequestEntity<S> request = RequestEntity.post(uri)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.COOKIE, "SESSION=" + session.getSession())
+				.header("x-xsrf-token", session.getXsfrToken())
+				.body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
 	public ResponseEntity<String> postQuery(URI query) {
@@ -208,6 +219,16 @@ public class IFMessageClient {
 
 	}
 	
+	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz, FrontendSession session) throws RestClientException{
+		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
+				.accept(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.COOKIE, "SESSION=" + session.getSession())
+				.header("x-xsrf-token", session.getXsfrToken())
+				.header("TenandId", session.getTenantId())
+				.build();
+		return restTemplate.exchange(request, clazz);
+	}
+	
 	public <T> ResponseEntity<T> getJSONMessage(URI uri, Class<T> clazz, String token) throws RestClientException{
 		RequestEntity<T> request = (RequestEntity<T>) RequestEntity.get(uri)
 				.accept(MediaType.APPLICATION_JSON)
@@ -305,6 +326,10 @@ public class IFMessageClient {
 		return restTemplate.exchange(uri, 
                 method, requestEntity, clazz);
 	}
+	
+	public <T> ResponseEntity<T> exchange(RequestEntity<T> request, Class<T> clazz) {
+		return restTemplate.exchange(request, clazz);
+	}
 
 	public <T> String convertToJSON(T object) throws JsonProcessingException {
 		return objectMapper.writeValueAsString(object);
@@ -316,5 +341,9 @@ public class IFMessageClient {
 	
 	public <T,S> ResponseEntity<T> getForEntity (String url, Class<T> responseType, Map<String, S> urlVariables){
 		return restTemplate.getForEntity(url, responseType, urlVariables);
+	}
+
+	public void setErrorHandler(ResponseErrorHandler errorHandler) {
+		restTemplate.setErrorHandler(errorHandler);
 	}
 }

@@ -44,6 +44,7 @@ import eu.supersede.integration.api.adaptation.types.ModelMetadata;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.Status;
 import eu.supersede.integration.api.adaptation.types.TypedModelId;
 
 public class ModelRepositoryProxyTest {
@@ -238,8 +239,10 @@ public class ModelRepositoryProxyTest {
 		am.setLastModificationDate(Calendar.getInstance().getTime());
 		am.setFileExtension(ModelType.BaseModel.getExtension());
 		am.setSystemId(ModelSystem.Atos);
-		am.setStatus("not adapted");
+		am.setStatus(Status.Computed.toString());
 		am.setModelContent(getBaseModelContent());
+		am.setRelativePath("models/base");
+		am.setDependencies(new ArrayList<TypedModelId>());
 		
 		return modelInstances;
 	}
