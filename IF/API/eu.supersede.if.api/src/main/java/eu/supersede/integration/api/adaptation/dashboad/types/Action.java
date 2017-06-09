@@ -1,7 +1,9 @@
 package eu.supersede.integration.api.adaptation.dashboad.types;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Action {
 	private String fc_id;
 	@JsonProperty ("ac_id")

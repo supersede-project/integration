@@ -2,12 +2,14 @@ package eu.supersede.integration.api.adaptation.dashboad.types;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import eu.supersede.integration.api.json.AdaptationDashboardJsonDateSerializer;
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Enactment {
 
 	private String fc_id;

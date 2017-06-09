@@ -134,6 +134,23 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public <T> T getJSONObjectForType(Class<T> type, URI uri, HttpStatus expectedStatus, FrontendSession session) {
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<T> response = messageClient.getJSONMessage(uri, type, session);
+			T object = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Located " + type + " JSON object: " + object);
+			} else {
+				log.info("There was a problem getting JSON object in uri: " + uri);
+			}
+			return object;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return null;
+		}
+	}
+	
 	public <T> T getJSONObjectForType(Class<T> type, URI uri, HttpStatus expectedStatus, String token) {
 		try {
 			Assert.notNull(uri, "Provide a valid uri");
@@ -192,6 +209,27 @@ public abstract class IFServiceProxy<T, S> {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<T> response = 
 					messageClient.postJsonMessage(object, uri, object.getClass());
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return null;
+		}
+	}
+	
+	public <T> T insertandReturnJSONObject(T object, Class<T> type, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
+		T result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<T> response = 
+					messageClient.postJsonMessageReturningSameType(object, uri, type, session);
 			result = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
@@ -598,6 +636,25 @@ public abstract class IFServiceProxy<T, S> {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<String> response = 
 					messageClient.deleteJsonMessage(uri);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully delete in uri " + uri);
+				result = true;
+			} else {
+				log.info("There was a problem deleting in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return false;
+		}
+	}
+	
+	public boolean deleteUriResource(URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<String> response = 
+					messageClient.deleteJsonMessage(uri, session);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully delete in uri " + uri);
 				result = true;

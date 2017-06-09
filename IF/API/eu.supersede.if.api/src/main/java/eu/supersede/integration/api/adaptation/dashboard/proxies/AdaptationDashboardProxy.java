@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
+import eu.supersede.integration.api.adaptation.dashboad.types.Enactment;
 import eu.supersede.integration.api.fe.FrontendAuthentication;
 import eu.supersede.integration.api.fe.FrontendSession;
 import eu.supersede.integration.api.fe.IFErrorHandler;
@@ -38,8 +39,58 @@ import eu.supersede.integration.properties.IntegrationProperty;
 		}
 
 		@Override
-		public Adaptation addAdaptation(Adaptation adaptation) throws IOException {
-			// TODO Auto-generated method stub
-			return null;
+		public Adaptation addAdaptation(Adaptation adaptation) throws Exception {
+			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "adaptation/");
+			log.debug("Sending message addAdaptation to Adaptation Dashboard at uri " + uri);
+			
+			return insertandReturnJSONObject(adaptation, Adaptation.class, uri, HttpStatus.OK, feSession);
+		}
+
+		@Override
+		public Adaptation getAdaptation(String id) throws Exception {
+			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "adaptation/" + id);
+			log.debug("Sending message getAdaptation to Adaptation Dashboard at uri " + uri);
+			
+			return getJSONObjectForType(Adaptation.class, uri, HttpStatus.OK, feSession);
+		}
+
+		@Override
+		public void deleteAdaptation(String id) throws Exception {
+			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "adaptation/" + id);
+			log.debug("Sending message deleteAdaptation to Adaptation Dashboard at uri " + uri);
+			
+			deleteUriResource(uri, HttpStatus.OK, feSession);
+		}
+		
+		@Override
+		public List<Enactment> getAllEnactments() throws Exception{
+			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "enactment");
+			log.debug("Sending message getAllEnactments to Adaptation Dashboard at uri " + uri);
+			
+			return getJSONObjectsListForType (Enactment[].class, uri, HttpStatus.OK, feSession);
+		}
+
+		@Override
+		public Enactment addEnactment(Enactment enactment) throws Exception {
+			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "enactment/");
+			log.debug("Sending message addEnactment to Adaptation Dashboard at uri " + uri);
+			
+			return insertandReturnJSONObject(enactment, Enactment.class, uri, HttpStatus.OK, feSession);
+		}
+
+		@Override
+		public Enactment getEnactment(String id) throws Exception {
+			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "enactment/" + id);
+			log.debug("Sending message getEnactment to Adaptation Dashboard at uri " + uri);
+			
+			return getJSONObjectForType(Enactment.class, uri, HttpStatus.OK, feSession);
+		}
+
+		@Override
+		public void deleteEnactment(String id) throws Exception {
+			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "enactment/" + id);
+			log.debug("Sending message deleteEnactment to Adaptation Dashboard at uri " + uri);
+			
+			deleteUriResource(uri, HttpStatus.OK, feSession);
 		}
 }

@@ -102,6 +102,15 @@ public class IFMessageClient {
 		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
 	}
 	
+	public <T> ResponseEntity<T> postJsonMessageReturningSameType(T object, URI uri, Class<T> clazz, FrontendSession session) {
+		RequestEntity<T> request = RequestEntity.post(uri)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header(HttpHeaders.COOKIE, "SESSION=" + session.getSession())
+				.header("x-xsrf-token", session.getXsfrToken())
+				.body(object);
+		return (ResponseEntity<T>) restTemplate.exchange(request, clazz);
+	}
+	
 	public ResponseEntity<String> postQuery(URI query) {
 		RequestEntity<String> request = RequestEntity.post(query)
 				.accept(MediaType.APPLICATION_JSON)
@@ -293,6 +302,16 @@ public class IFMessageClient {
     	HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Accept", "*/*");
+    	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
+        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
+    }
+	
+	public ResponseEntity<String> deleteJsonMessage (URI uri, FrontendSession session){
+    	HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Accept", "*/*");
+        headers.add(HttpHeaders.COOKIE, "SESSION=" + session.getSession());
+        headers.add("x-xsrf-token", session.getXsfrToken());
     	HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
         return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);
     }
