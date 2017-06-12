@@ -16,4 +16,4 @@ In particular, see [IF Client README.md](https://github.com/supersede-project/in
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
-<center>![Project funded by the European Union](https://www.supersede.eu/wp-content/uploads/2015/07/cropped-SupersedeLogo_outline.png)</center>
+<center>![Project funded by the European Union](/images/european.union.logo.png)</center>
