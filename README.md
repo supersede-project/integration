@@ -1,4 +1,3 @@
-<link rel="shortcut icon" type="image/png" href="images/favicon.png">
 ![SUPERSEDE Project](/images/SUPERSEDE-logo.png)
 
 [https://www.supersede.eu/](https://www.supersede.eu/)
