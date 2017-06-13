@@ -3,7 +3,6 @@ package eu.supersede.integration.api.adaptation.dashboard.proxies.test;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -21,7 +20,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Before
 	public void setup() throws Exception{
-		proxy = new AdaptationDashboardProxy<>("wp_admin", "9jqUuNrZ", "atos");
+		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 	}
 
 	@Test
