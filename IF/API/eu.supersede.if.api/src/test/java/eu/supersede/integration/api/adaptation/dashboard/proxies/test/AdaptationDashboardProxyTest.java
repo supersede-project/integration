@@ -88,8 +88,8 @@ public class AdaptationDashboardProxyTest {
 		enactment = proxy.addEnactment(enactment);
 		Assert.notNull(enactment); 
 		
-		proxy.deleteAdaptation(adaptation.getFc_id());
 		proxy.deleteEnactment(adaptation.getFc_id());
+		proxy.deleteAdaptation(adaptation.getFc_id());
 	}
 
 	private Enactment createEnactment(String fc_id) {

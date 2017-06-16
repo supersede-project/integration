@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
-import eu.supersede.integration.api.json.AdaptationDashboardJsonDateSerializer;
+import eu.supersede.integration.api.json.AdaptationTimeJsonSerializer;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Adaptation {
@@ -18,7 +18,7 @@ public class Adaptation {
     private String fc_id;
 	private String name;
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
-	@JsonSerialize(using = AdaptationDashboardJsonDateSerializer.class)
+	@JsonSerialize(using = AdaptationTimeJsonSerializer.class)
     private Date computation_timestamp;
     private double rank;
     private ModelSystem model_system;

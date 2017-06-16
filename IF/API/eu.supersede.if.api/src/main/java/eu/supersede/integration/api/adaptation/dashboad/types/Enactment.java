@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import eu.supersede.integration.api.json.AdaptationDashboardJsonDateSerializer;
+import eu.supersede.integration.api.json.AdaptationTimeJsonSerializer;
+import eu.supersede.integration.api.json.EnactmentCompletionTimeJsonSerializer;
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,10 +15,10 @@ public class Enactment {
 
 	private String fc_id;
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
-	@JsonSerialize(using = AdaptationDashboardJsonDateSerializer.class)
+	@JsonSerialize(using = AdaptationTimeJsonSerializer.class)
 	private Date enactment_request_time;
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
-	@JsonSerialize(using = AdaptationDashboardJsonDateSerializer.class)
+	@JsonSerialize(using = EnactmentCompletionTimeJsonSerializer.class)
 	private Date enactment_completion_time;
 	private boolean result;
 	private Adaptation adaptation;

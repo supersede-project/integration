@@ -28,7 +28,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-public class AdaptationDashboardJsonDateSerializer extends JsonSerializer<Date>{
+public class AdaptationTimeJsonSerializer extends JsonSerializer<Date>{
 
 	@Override
 	public void serialize(Date date, JsonGenerator jgen, SerializerProvider provider)
