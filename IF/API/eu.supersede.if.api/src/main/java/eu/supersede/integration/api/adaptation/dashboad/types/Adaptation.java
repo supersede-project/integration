@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -20,6 +21,7 @@ public class Adaptation {
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
 	@JsonSerialize(using = AdaptationTimeJsonSerializer.class)
     private Date computation_timestamp;
+	@JsonIgnore
     private double rank;
     private ModelSystem model_system;
     private List<Action> actions;
