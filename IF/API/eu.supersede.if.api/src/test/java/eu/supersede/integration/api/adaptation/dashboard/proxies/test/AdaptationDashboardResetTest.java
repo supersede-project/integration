@@ -63,11 +63,33 @@ public class AdaptationDashboardResetTest {
 		adaptation.setModel_system(ModelSystem.Atos_HSK);
 		adaptation.setName("AtosSmart_HSK_SingleVM_LowLoad");
 		adaptation.setRank(1.0);
-		adaptation.getActions().add(createAtosAction());
+		adaptation.getActions().add(createLowLoadAction());
+		adaptation.getActions().add(createHSKAction());
+		adaptation.getActions().add(createCREAction());
 		return adaptation;
 	}
 
-	private Action createAtosAction() {
+	private Action createCREAction() {
+		Action action = new Action ();
+		action.setAction_id("cre_8739");
+		action.setDescription("Content Searching Index Engine in single VM");
+		action.setName("CRE");
+		action.setEnabled(true);
+		
+		return action;
+	}
+	
+	private Action createHSKAction() {
+		Action action = new Action ();
+		action.setAction_id("hsk_8273");
+		action.setDescription("Players - Smart platform Handshake service in single VM");
+		action.setName("HSK");
+		action.setEnabled(true);
+		
+		return action;
+	}
+	
+	private Action createLowLoadAction() {
 		Action action = new Action ();
 		action.setAction_id("lowloadconfigurationinvm2_a");
 		action.setDescription("Low load configuration for HSK service in single VM");
