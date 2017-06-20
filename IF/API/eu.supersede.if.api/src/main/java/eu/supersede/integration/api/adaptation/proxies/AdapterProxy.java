@@ -80,7 +80,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActionsForFC/featureConfiguration/" + featureConfigurationId + "/system/" + system;
 		log.debug("Invoking enactAdaptationDecisionActionsForFC (system: " + system
 				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
-		return postJSONString("", new URI(uriString), HttpStatus.OK);
+		return postJSONString("{}", new URI(uriString), HttpStatus.OK);
 	}
 
 	@Override

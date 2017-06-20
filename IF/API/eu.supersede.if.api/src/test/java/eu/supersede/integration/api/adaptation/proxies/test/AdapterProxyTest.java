@@ -74,4 +74,10 @@ public class AdapterProxyTest {
 		Boolean result = proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
 		Assert.isTrue(result);
 	}
+	
+	@Test
+	public void testEnactAdaptationDecisionActionsForFC() throws Exception {
+		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, "1150");
+		Assert.isTrue(result);
+	}
 }
