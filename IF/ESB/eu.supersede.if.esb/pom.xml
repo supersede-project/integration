@@ -18,8 +18,8 @@
     <eu.supersede.if.esb.resource_._DMOptimizerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DMOptimizerEndpoint>
     <eu.supersede.if.esb.resource_._ReplanControllerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerEndpoint>
     <eu.supersede.if.api_._SupersedeFeedbackRepository>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeFeedbackRepository>
-    <eu.supersede.if.esb.resource_._TwitterMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._TwitterMonitorEndpoint>
     <eu.supersede.if.api_._SupersedeReplanController>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanController>
+    <eu.supersede.if.esb.resource_._TwitterMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._TwitterMonitorEndpoint>
     <eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>
     <eu.supersede.if.esb.resource_._SupersedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._SupersedeAuthentication>
     <eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>
@@ -27,129 +27,29 @@
     <eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>
     <eu.supersede.if.esb.resource_._DMGameAlertEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DMGameAlertEndpoint>
     <eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackOrchestratorEndpoint>
-    <eu.supersede.if.esb.resource_._HttpMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._HttpMonitorEndpoint>
     <eu.supersede.if.api_._SupersedeDMGame>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMGame>
-    <eu.supersede.if.esb.resource_._AppStoreMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AppStoreMonitorEndpoint>
+    <eu.supersede.if.esb.resource_._HttpMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._HttpMonitorEndpoint>
     <eu.supersede.if.api_._SupersedeAppStoreMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeAppStoreMonitor>
-    <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
+    <eu.supersede.if.esb.resource_._AppStoreMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AppStoreMonitorEndpoint>
     <eu.supersede.if.api_._SupersedeReplanOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizer>
+    <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
     <eu.supersede.if.api_._SupersedeMonitorManager>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeMonitorManager>
     <eu.supersede.if.esb.resource_._AdapterEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AdapterEndpoint>
+    <eu.supersede.if.api_._SupersedeReplanOptimizerV2>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizerV2>
     <eu.supersede.if.api_._SupersedeModelRepositoryManager>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeModelRepositoryManager>
     <eu.supersede.if.api_._SupersedeHttpMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeHttpMonitor>
     <eu.supersede.if.api_._SupersedeTwitterMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeTwitterMonitor>
-    <eu.supersede.if.esb.resource_._FeedbackRepositoryEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackRepositoryEndpoint>
     <eu.supersede.if.api_._mail>capp/EnterpriseServiceBus</eu.supersede.if.api_._mail>
-    <eu.supersede.if.esb.resource_._MDMEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MDMEndpoint>
+    <eu.supersede.if.esb.resource_._FeedbackRepositoryEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._FeedbackRepositoryEndpoint>
     <eu.supersede.if.sequence_._sendEmailSequence>capp/EnterpriseServiceBus</eu.supersede.if.sequence_._sendEmailSequence>
+    <eu.supersede.if.esb.resource_._MDMEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MDMEndpoint>
     <eu.supersede.if.api_._SupersedeAdapter>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeAdapter>
+    <eu.supersede.if.esb.resource_._ReplanOptimizerV2Endpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanOptimizerV2Endpoint>
     <eu.supersede.if.esb.resource_._GooglePlayMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._GooglePlayMonitorEndpoint>
     <eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>
     <eu.supersede.if.api_._SupersedeGooglePlayMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeGooglePlayMonitor>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeAdapter</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeAppStoreMonitor</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeDMGame</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeDMOptimizer</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeFeedbackOrchestrator</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeFeedbackRepository</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeGooglePlayMonitor</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeMDM</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeModelRepositoryManager</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeMonitorManager</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeMonitoringOrchestrator</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeReplanController</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeReplanOptimizer</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeTwitterMonitor</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>mail</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.proxy-service</groupId>
-      <artifactId>sendEmailProxy</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.sequence</groupId>
-      <artifactId>sendEmailSequence</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>AdapterEndpoint</artifactId>
@@ -242,6 +142,12 @@
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ReplanOptimizerV2Endpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>SupersedeAuthentication</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
@@ -260,7 +166,115 @@
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeAdapter</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeAppStoreMonitor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeDMGame</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeDMOptimizer</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeFeedbackOrchestrator</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeFeedbackRepository</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeGooglePlayMonitor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeHttpMonitor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeMDM</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeModelRepositoryManager</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeMonitorManager</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeMonitoringOrchestrator</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeReplanController</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeReplanOptimizer</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeReplanOptimizerV2</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeTwitterMonitor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.proxy-service</groupId>
+      <artifactId>sendEmailProxy</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.sequence</groupId>
+      <artifactId>sendEmailSequence</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>

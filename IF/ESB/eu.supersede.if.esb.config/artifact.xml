@@ -56,4 +56,7 @@
     <artifact name="SupersedeHttpMonitor" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeHttpMonitor.xml</file>
     </artifact>
+    <artifact name="SupersedeReplanOptimizerV2" groupId="eu.supersede.if.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeReplanOptimizerV2.xml</file>
+    </artifact>
 </artifacts>

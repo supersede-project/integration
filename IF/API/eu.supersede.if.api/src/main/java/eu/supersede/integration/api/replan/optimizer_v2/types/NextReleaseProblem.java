@@ -17,7 +17,7 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.replan.optimizer.types;
+package eu.supersede.integration.api.replan.optimizer_v2.types;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,8 @@ public class NextReleaseProblem {
 	private Double hoursPerWeek;
 	private List<Feature> features;
 	private List<Resource> resources;
+	private PlanningSolution currentPlan;
+	private AlgorithmParameters algorithmParameters;
 	
 	public Integer getNbWeeks() {
 		return nbWeeks;
@@ -47,8 +49,8 @@ public class NextReleaseProblem {
 		
 		return resources;
 	}
-	public void setResources(List<Resource> features) {
-		this.resources = features;
+	public void setResources(List<Resource> resources) {
+		this.resources = resources;
 	}
 	
 	public List<Feature> getFeatures() {
@@ -59,5 +61,18 @@ public class NextReleaseProblem {
 	}
 	public void setFeatures(List<Feature> features) {
 		this.features = features;
+	}
+	
+	public PlanningSolution getCurrentPlan() {
+		return currentPlan;
+	}
+	public void setCurrentPlan(PlanningSolution currentPlan) {
+		this.currentPlan = currentPlan;
+	}
+	public AlgorithmParameters getAlgorithmParameters() {
+		return algorithmParameters;
+	}
+	public void setAlgorithmParameters(AlgorithmParameters algorithmParameters) {
+		this.algorithmParameters = algorithmParameters;
 	}
 }

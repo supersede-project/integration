@@ -17,47 +17,43 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.replan.optimizer.types;
+package eu.supersede.integration.api.replan.optimizer_v2.types;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class NextReleaseProblem {
+public class PlannedFeature {
+	private Double beginHour;
+	private Double endHour;
+	private Boolean frozen;
+	private Resource resource;
+	private Feature feature;
 	
-	private Integer nbWeeks;
-	private Double hoursPerWeek;
-	private List<Feature> features;
-	private List<Resource> resources;
-	
-	public Integer getNbWeeks() {
-		return nbWeeks;
+	public Double getBeginHour() {
+		return beginHour;
 	}
-	public void setNbWeeks(Integer nbWeeks) {
-		this.nbWeeks = nbWeeks;
+	public void setBeginHour(Double beginHour) {
+		this.beginHour = beginHour;
 	}
-	public Double getHoursPerWeek() {
-		return hoursPerWeek;
+	public Double getEndHour() {
+		return endHour;
 	}
-	public void setHoursPerWeek(Double hoursPerWeek) {
-		this.hoursPerWeek = hoursPerWeek;
+	public void setEndHour(Double endHour) {
+		this.endHour = endHour;
 	}
-	public List<Resource> getResources() {
-		if (resources == null)
-			resources = new ArrayList<>();
-		
-		return resources;
+	public Boolean getFrozen() {
+		return frozen;
 	}
-	public void setResources(List<Resource> features) {
-		this.resources = features;
+	public void setFrozen(Boolean frozen) {
+		this.frozen = frozen;
 	}
-	
-	public List<Feature> getFeatures() {
-		if (features == null)
-			features = new ArrayList<>();
-		
-		return features;
+	public Resource getResource() {
+		return resource;
 	}
-	public void setFeatures(List<Feature> features) {
-		this.features = features;
+	public void setResource(Resource resource) {
+		this.resource = resource;
+	}
+	public Feature getFeature() {
+		return feature;
+	}
+	public void setFeature(Feature feature) {
+		this.feature = feature;
 	}
 }

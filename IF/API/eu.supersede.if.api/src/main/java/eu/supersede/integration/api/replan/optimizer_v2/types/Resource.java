@@ -17,47 +17,45 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.replan.optimizer.types;
+package eu.supersede.integration.api.replan.optimizer_v2.types;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NextReleaseProblem {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import eu.supersede.integration.api.replan.controller.types.ReplanBaseObject;
+
+public class Resource {
+	private String name;
+	private Double availability;
+	private List<Skill> skills;
+
 	
-	private Integer nbWeeks;
-	private Double hoursPerWeek;
-	private List<Feature> features;
-	private List<Resource> resources;
+	public Resource()
+	{
+		skills = new ArrayList<>();
+	}
+	public String getName() {
+		return name;
+	}
 	
-	public Integer getNbWeeks() {
-		return nbWeeks;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setNbWeeks(Integer nbWeeks) {
-		this.nbWeeks = nbWeeks;
+	public Double getAvailability() {
+		return availability;
 	}
-	public Double getHoursPerWeek() {
-		return hoursPerWeek;
+	public void setAvailability(Double availability) {
+		this.availability = availability;
 	}
-	public void setHoursPerWeek(Double hoursPerWeek) {
-		this.hoursPerWeek = hoursPerWeek;
-	}
-	public List<Resource> getResources() {
-		if (resources == null)
-			resources = new ArrayList<>();
+	public List<Skill> getSkills() {
+		if (skills == null)
+			skills = new ArrayList<>();
 		
-		return resources;
+		return skills;
 	}
-	public void setResources(List<Resource> features) {
-		this.resources = features;
-	}
-	
-	public List<Feature> getFeatures() {
-		if (features == null)
-			features = new ArrayList<>();
-		
-		return features;
-	}
-	public void setFeatures(List<Feature> features) {
-		this.features = features;
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
 	}
 }
