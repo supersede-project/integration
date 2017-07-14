@@ -20,34 +20,20 @@
 package eu.supersede.integration.api.replan.optimizer.types;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
-import eu.supersede.integration.api.json.CustomJsonDateSerializer;
-import eu.supersede.integration.api.json.ReplanFeatureReleaseJsonDeserializer;
-import eu.supersede.integration.api.replan.controller.types.ReplanBaseObject;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Feature extends ReplanBaseObject{
-	private Integer code;
-	private Double effort;
-	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
-	@JsonSerialize(using = CustomJsonDateSerializer.class)
-	private Date deadline;
+public class Feature{
+	private String name;
+	private Double duration;
 	private Priority priority;
-	@JsonProperty ("requiredSkills")
+	@JsonProperty ("required_skills")
 	private List<Skill> requiredSkills;
-	@JsonProperty ("dependsOn")
+	@JsonProperty ("depends_on")
 	private List<Feature> dependencies;
-	@JsonProperty ("release")
-	private Integer releaseId;
-	private Double setDuration;
 	
 	public Feature()
 	{
@@ -55,23 +41,17 @@ public class Feature extends ReplanBaseObject{
 		dependencies = new ArrayList<>();
 	}
 	
-	public Integer getCode() {
-		return code;
+	public String getName() {
+		return name;
 	}
-	public void setCode(Integer code) {
-		this.code = code;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Double getEffort() {
-		return effort;
+	public Double getDuration() {
+		return duration;
 	}
-	public void setEffort(Double effort) {
-		this.effort = effort;
-	}
-	public Date getDeadline() {
-		return deadline;
-	}
-	public void setDeadline(Date deadline) {
-		this.deadline = deadline;
+	public void setDuration(Double duration) {
+		this.duration = duration;
 	}
 	public Priority getPriority() {
 		return priority;
@@ -96,23 +76,6 @@ public class Feature extends ReplanBaseObject{
 
 	public void setDependencies(List<Feature> dependencies) {
 		this.dependencies = dependencies;
-	}
-
-	public Integer getReleaseId() {
-		return releaseId;
-	}
-
-	@JsonDeserialize(using = ReplanFeatureReleaseJsonDeserializer.class)
-	public void setReleaseId(Integer releaseId) {
-		this.releaseId = releaseId;
-	}
-
-	public void setDuration(Double duration) {
-		this.setDuration = duration;
-	}
-	
-	public Double getDuration(){
-		return this.setDuration;
 	}
 	
 }

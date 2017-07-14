@@ -26,16 +26,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.supersede.integration.api.replan.controller.types.ReplanBaseObject;
 
-public class Resource extends ReplanBaseObject{
-	@JsonProperty ("weekAvailability")
+public class Resource {
+	private String name;
 	private Double availability;
 	private List<Skill> skills;
+
 	
 	public Resource()
 	{
 		skills = new ArrayList<>();
 	}
+	public String getName() {
+		return name;
+	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
 	public Double getAvailability() {
 		return availability;
 	}
@@ -51,6 +58,4 @@ public class Resource extends ReplanBaseObject{
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
 	}
-	
-	
 }
