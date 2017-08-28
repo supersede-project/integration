@@ -10,27 +10,31 @@
 buildscript {
     repositories {
         mavenCentral()
-	maven {
-            url "${artifactory_contextUrl}/libs-snapshot"
-            name = 'maven-supersede-snapshot'
-	    credentials {
-                username = "${artifactory_user}"
-                password = "${artifactory_password}"
-	    }
-        }
-	maven {
-            url "${artifactory_contextUrl}/libs-release"
-            name = 'maven-supersede-release'
-	    credentials {
-                username = "${artifactory_user}"
-                password = "${artifactory_password}"
-	    }
-        }
+        mavenLocal()
+		maven {
+	            url "${artifactory_contextUrl}/libs-snapshot"
+	            name = 'maven-supersede-snapshot'
+		    credentials {
+	                username = "${artifactory_user}"
+	                password = "${artifactory_password}"
+		    }
+	        }
+		maven {
+	            url "${artifactory_contextUrl}/libs-release"
+	            name = 'maven-supersede-release'
+		    credentials {
+	                username = "${artifactory_user}"
+	                password = "${artifactory_password}"
+		    }
+	        }
     }
+    configurations.maybeCreate("pitest")
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
 	//Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+        pitest 'fr.inria.stamp:descartes:0.2-SNAPSHOT'
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
     }
 }
 
@@ -39,6 +43,11 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'maven-publish'
+apply plugin: "info.solidsoft.pitest"
+
+pitest {
+  mutationEngine = "descartes"
+}
 
 allprojects {
     apply plugin: "com.jfrog.artifactory"
