@@ -44,6 +44,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'maven-publish'
 apply plugin: "info.solidsoft.pitest"
+apply plugin: 'maven'
 
 pitest {
   mutationEngine = "descartes"
