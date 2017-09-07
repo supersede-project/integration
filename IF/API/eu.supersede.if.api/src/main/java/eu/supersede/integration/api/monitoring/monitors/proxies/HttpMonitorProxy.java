@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationRequest;
@@ -67,13 +68,13 @@ class HttpMonitorConfigurationRequest implements MonitorConfigurationRequest {
 	@JsonProperty(value = "HttpMonitoringConfProf")
 	HttpMonitorConfiguration httpMonitoringConfiguration;
 
-	public HttpMonitorConfiguration getTwitterMonitorConfiguration() {
-		return httpMonitoringConfiguration;
-	}
-
-	public void setTwitterMonitorConfiguration(HttpMonitorConfiguration httpMonitoringConfiguration) {
-		this.httpMonitoringConfiguration = httpMonitoringConfiguration;
-	}
+//	public HttpMonitorConfiguration getTwitterMonitorConfiguration() {
+//		return httpMonitoringConfiguration;
+//	}
+//
+//	public void setTwitterMonitorConfiguration(HttpMonitorConfiguration httpMonitoringConfiguration) {
+//		this.httpMonitoringConfiguration = httpMonitoringConfiguration;
+//	}
 
 	public HttpMonitorConfigurationRequest(HttpMonitorConfiguration httpMonitoringConfiguration) {
 		this.httpMonitoringConfiguration = httpMonitoringConfiguration;
@@ -94,8 +95,9 @@ class HttpMonitorConfigurationRequest implements MonitorConfigurationRequest {
 	}
 
 	@Override
+	@JsonIgnore
 	public HttpMonitorConfiguration getConfiguration() {
-		return getTwitterMonitorConfiguration();
+		return httpMonitoringConfiguration;
 	}
 	
 	@Override
