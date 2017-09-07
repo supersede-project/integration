@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/ConfigurationFileHTMLMonitor"
+  name="SupersedeConfigurationFileHTMLMonitor" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="POST" protocol="http" uri-template="/configuration">
+    <inSequence>
+      <log level="full">
+        <property name="ConfigurationFileHTML Monitor" value="Insert a monitor configuration message forwarded to ConfigurationFileHTML Monitor endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/ConfigurationFileHTMLMonitorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+</api>

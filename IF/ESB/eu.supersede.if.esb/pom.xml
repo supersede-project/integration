@@ -22,6 +22,7 @@
     <eu.supersede.if.esb.resource_._TwitterMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._TwitterMonitorEndpoint>
     <eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>
     <eu.supersede.if.esb.resource_._SupersedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._SupersedeAuthentication>
+    <eu.supersede.if.api_._SupersedeConfigurationFileHTMLMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeConfigurationFileHTMLMonitor>
     <eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>
     <eu.supersede.if.api_._SupersedeMonitoringOrchestrator>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeMonitoringOrchestrator>
     <eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>
@@ -34,6 +35,7 @@
     <eu.supersede.if.api_._SupersedeReplanOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizer>
     <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
     <eu.supersede.if.api_._SupersedeMonitorManager>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeMonitorManager>
+    <eu.supersede.if.esb.resource_._ConfigurationFileHTMLMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ConfigurationFileHTMLMonitorEndpoint>
     <eu.supersede.if.esb.resource_._AdapterEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AdapterEndpoint>
     <eu.supersede.if.api_._SupersedeReplanOptimizerV2>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizerV2>
     <eu.supersede.if.api_._SupersedeModelRepositoryManager>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeModelRepositoryManager>
@@ -59,6 +61,12 @@
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>AppStoreMonitorEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ConfigurationFileHTMLMonitorEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>
@@ -173,6 +181,12 @@
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeAppStoreMonitor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeConfigurationFileHTMLMonitor</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
