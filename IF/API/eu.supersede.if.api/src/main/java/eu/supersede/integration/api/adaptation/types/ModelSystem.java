@@ -8,6 +8,12 @@ public enum ModelSystem {
 	Atos ("Atos"),
 	Atos_HSK ("Atos_HSK"),
 	Senercon ("Senercon"),
+	AtosMonitoring ("AtosMonitoring"),
+	SiemensMonitoring ("SiemensMonitoring"),
+	SenerconMonitoring ("SenerconMonitoring"),
+	AtosFG ("AtosFG"),
+	SiemensFG ("SiemensFG"),
+	SenerconFG ("SenerconFG"),
 	Health ("Health");
 	
 	String id;
