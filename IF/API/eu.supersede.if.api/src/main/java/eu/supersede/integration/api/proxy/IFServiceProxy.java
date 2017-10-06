@@ -483,6 +483,7 @@ public abstract class IFServiceProxy<T, S> {
 			
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+			throw e;
 		}
 	}
 	

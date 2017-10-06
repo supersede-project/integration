@@ -39,7 +39,7 @@ public class AdaptationConfigurationProxy <T, S> extends IFServiceProxy<T, S> im
 	@Override
 	public AdaptationMode getAdaptationConfigurationMode() throws Exception{
 		URI uri = new URI(SUPERSEDE_ADAPTATION_CONFIGURATION_ENDPOINT);
-		log.debug("Sending message getAdaptationConfigurationMode to DM Optimizer at uri " + uri);
+		log.debug("Sending message - getAdaptationConfigurationMode to DM Optimizer at uri " + uri);
 		return getJSONObjectForType(AdaptationMode.class, uri, HttpStatus.OK);
 	}
 	
@@ -47,7 +47,7 @@ public class AdaptationConfigurationProxy <T, S> extends IFServiceProxy<T, S> im
 	public void setAdaptationConfigurationMode(AdaptationMode mode) throws Exception{
 		Assert.notNull(mode, "Provide a valid adaptation mode");
 		URI uri = new URI(SUPERSEDE_ADAPTATION_CONFIGURATION_ENDPOINT);
-		log.debug("Sending message setAdaptationConfigurationMode to DM Optimizer at uri " + uri);
+		log.debug("Sending message - setAdaptationConfigurationMode to DM Optimizer at uri " + uri);
 		updateJSONObject(mode, uri, HttpStatus.OK);
 	}
 
