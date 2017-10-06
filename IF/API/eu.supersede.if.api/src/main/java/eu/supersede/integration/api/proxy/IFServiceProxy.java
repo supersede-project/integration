@@ -62,7 +62,7 @@ public abstract class IFServiceProxy<T, S> {
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -79,7 +79,7 @@ public abstract class IFServiceProxy<T, S> {
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -96,7 +96,7 @@ public abstract class IFServiceProxy<T, S> {
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -113,7 +113,7 @@ public abstract class IFServiceProxy<T, S> {
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -130,7 +130,7 @@ public abstract class IFServiceProxy<T, S> {
 			return object;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -147,7 +147,7 @@ public abstract class IFServiceProxy<T, S> {
 			return object;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -164,7 +164,7 @@ public abstract class IFServiceProxy<T, S> {
 			return object;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -181,7 +181,7 @@ public abstract class IFServiceProxy<T, S> {
 			return object;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -198,7 +198,7 @@ public abstract class IFServiceProxy<T, S> {
 			return object;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -219,7 +219,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -240,7 +240,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -262,7 +262,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -283,7 +283,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -346,7 +346,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -369,7 +369,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -423,7 +423,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -444,7 +444,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -465,7 +465,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -503,7 +503,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -606,7 +606,7 @@ public abstract class IFServiceProxy<T, S> {
 			return response.getBody();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
@@ -626,7 +626,7 @@ public abstract class IFServiceProxy<T, S> {
 			return result;
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return null;
+			throw e;
 		}
 	}
 	
