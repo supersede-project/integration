@@ -80,7 +80,12 @@ public class FeedbackRepositoryProxyTest {
     
     @Test
     public void testCreateFeedbackForApplication() throws Exception{
-    	Feedback feedback = createFeedback();
+    	Feedback result = createFeedbackForApplication();
+    	Assert.notNull(result);
+    }
+
+	private Feedback createFeedbackForApplication() throws Exception {
+		Feedback feedback = createFeedback();
     	Map<String, Path> attachments = new HashMap<>();
     	attachments.put("attachment1", FileSystems.getDefault().getPath("src/test/resources/files", "attachment1.txt"));
     	attachments.put("attachment2", FileSystems.getDefault().getPath("src/test/resources/files", "attachment2.txt"));
@@ -91,8 +96,8 @@ public class FeedbackRepositoryProxyTest {
     	audios.put("audio1", FileSystems.getDefault().getPath("src/test/resources/files", "track.mp3"));
 		Feedback result = 
 			proxy.createFeedbackForApplication(feedback, attachments, screenshots, audios, applicationId, token);
-    	Assert.notNull(result);
-    }
+		return result;
+	}
     
     private Feedback createFeedback(){
     	//Feedback
@@ -189,7 +194,12 @@ public class FeedbackRepositoryProxyTest {
     
     @Test
     public void testDownloadAttachment() throws Exception{
-		byte[] result = proxy.downloadAttachement("57377_1478098152653.txt", token);
+    	//Upload Attachment
+    	Feedback feedback = createFeedbackForApplication();
+    	Assert.notNull(feedback);
+
+    	String feedbackPath = feedback.getAttachmentFeedbacks().get(0).getPath();
+		byte[] result = proxy.downloadAttachement(feedbackPath.substring(feedbackPath.lastIndexOf("/") + 1), token);
     	Assert.notNull(result);
     	Path path = Paths.get("attachment.att");
         Files.write(path, result);
@@ -197,7 +207,13 @@ public class FeedbackRepositoryProxyTest {
     
     @Test
     public void testDownloadScreenshot() throws Exception{
-		byte[] result = proxy.downloadScreenshot("55684_1478181811604.jpeg", token, false);
+    	//Upload Screeenshot
+    	Feedback feedback = createFeedbackForApplication();
+    	Assert.notNull(feedback);
+
+    	String feedbackPath = feedback.getScreenshotFeedbacks().get(0).getPath();
+    	
+		byte[] result = proxy.downloadScreenshot(feedbackPath.substring(feedbackPath.lastIndexOf("/") + 1), token, false);
     	Assert.notNull(result);
     	Path path = Paths.get("screenshot.png");
         Files.write(path, result);
@@ -205,7 +221,13 @@ public class FeedbackRepositoryProxyTest {
     
     @Test
     public void testDownloadScreenshotAsBase64() throws Exception{
-		byte[] result = proxy.downloadScreenshot("55684_1478181811604.jpeg", token, true);
+    	//Upload Screeenshot
+    	Feedback feedback = createFeedbackForApplication();
+    	Assert.notNull(feedback);
+
+    	String feedbackPath = feedback.getScreenshotFeedbacks().get(0).getPath();
+    	
+		byte[] result = proxy.downloadScreenshot(feedbackPath.substring(feedbackPath.lastIndexOf("/") + 1), token, true);
     	Assert.notNull(result);
     	Path path = Paths.get("screenshot.png");
         Files.write(path, result);
@@ -213,7 +235,13 @@ public class FeedbackRepositoryProxyTest {
     
     @Test
     public void testDownloadAudio() throws Exception{
-		byte[] result = proxy.downloadAudio("535533_1478181811605.mp3", token);
+    	//Upload Audio
+    	Feedback feedback = createFeedbackForApplication();
+    	Assert.notNull(feedback);
+
+    	String feedbackPath = feedback.getAudioFeedbacks().get(0).getPath();
+    	
+		byte[] result = proxy.downloadAudio(feedbackPath.substring(feedbackPath.lastIndexOf("/") + 1), token);
     	Assert.notNull(result);
     	Path path = Paths.get("audio.mp3");
         Files.write(path, result);
@@ -322,16 +350,16 @@ public class FeedbackRepositoryProxyTest {
     	proxy.deleteFeedbackStatusInApplication (applicationId,  status.getId(),  token);
     }
     
-    @Test
-    public void testUpdateFeedbackStatusInApplication() throws Exception{
-    	List<Status> list = proxy.listAllUserSpecificStatusOfFeedbackInApplication (applicationId,  userId, token);
-    	Assert.notNull(list);
-    	Assert.isTrue(!list.isEmpty());
-    	Status status = list.get(list.size()-1);
-    	status.setStatus("approved");
-    	Status result = proxy.updateFeedbackStatusInApplication (status, applicationId, token);
-    	Assert.notNull(result);
-    }
+//    @Test
+//    public void testUpdateFeedbackStatusInApplication() throws Exception{
+//    	List<Status> list = proxy.listAllUserSpecificStatusOfFeedbackInApplication (applicationId,  userId, token);
+//    	Assert.notNull(list);
+//    	Assert.isTrue(!list.isEmpty());
+//    	Status status = list.get(list.size()-1);
+//    	status.setStatus(status.getStatus());
+//    	Status result = proxy.updateFeedbackStatusInApplication (status, applicationId, token);
+//    	Assert.notNull(result);
+//    }
     
     @Test
     public void testListAllStatusOptions() throws Exception{

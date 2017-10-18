@@ -21,9 +21,11 @@ package eu.supersede.integration.api.adaptation.proxies.test;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -101,7 +103,7 @@ public class ModelRepositoryProxyTest {
 		AdaptabilityModel am = (AdaptabilityModel) result[0];
 		
 		//Update created model
-		ModelUpdateMetadata mum = createModelupdateMetadata();
+		ModelUpdateMetadata mum = createModelupdateMetadata(am);
 		am = (AdaptabilityModel) proxy.updateModelInstance(ModelType.AdaptabilityModel, mum, am.getId());
 		Assert.notNull(am);
 		
@@ -150,28 +152,42 @@ public class ModelRepositoryProxyTest {
 		Assert.notEmpty(result);
 	}
 	
-	@Test
-	public void getModelInstance() throws Exception {
-		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
-		IModel result = proxy.getModelInstance(modelId);
-		Assert.notNull(result);
-	}
+//	@Test
+//	public void getModelInstance() throws Exception {
+//		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
+//		IModel result = proxy.getModelInstance(modelId);
+//		Assert.notNull(result);
+//	}
 	
 	@Test
-	public void getModelInstance2() throws Exception {
+	public void getModelInstance() throws Exception {
 		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
 		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, "/path/to/model");
 		Assert.notNull(result);
 	}
 
-	private ModelUpdateMetadata createModelupdateMetadata() {
+	private ModelUpdateMetadata createModelupdateMetadata(AdaptabilityModel am) throws IllegalArgumentException {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
 		mum.setSender("Adapter");
 		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
-		Map<String, String> values = new HashMap<>();
+		Map<String, Object> values = new HashMap<>();
+		
 		values.put("authorId", "marc");
 		values.put("featureId", "GooglePlay_API");
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		
+		values.put("lastModificationDate", dateFormat.format(am.getLastModificationDate()));
+		values.put("systemId", am.getSystemId().toString());
+		values.put("fileExtension", am.getFileExtension());
+		values.put("relativePath", am.getRelativePath());
+		values.put("name", am.getName());
+		values.put("id", am.getId());
+		values.put("modelContent", am.getModelContent());
+		values.put("creationDate", dateFormat.format(am.getCreationDate()));
+		values.put("dependencies", am.getDependencies());
+		
 		mum.setValues(values);
 		
 		return mum;

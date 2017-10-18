@@ -21,6 +21,7 @@ package eu.supersede.integration.api.replan.controller.proxies.test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -50,7 +51,7 @@ import eu.supersede.integration.api.replan.controller.types.SoftDependencyType;
 public class ReplanControllerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
 	private IReplanController proxy;
-	
+	private int projectId = 1;
 	
     @Before
     public void setup() throws Exception {
@@ -66,75 +67,92 @@ public class ReplanControllerProxyTest {
     
     @Test
     public void testGetProjectById() throws Exception{
-    	Project project = proxy.getProjectById(1);
+    	Project project = proxy.getProjectById(projectId);
     	Assert.notNull(project);
     }
     
     @Test
     public void testGetFeaturesOfProjectById() throws Exception{
-    	List<Feature> features = proxy.getFeaturesOfProjectById(1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     	
-    	features = proxy.getFeaturesOfProjectById(1, FeatureStatus.PENDING);
+    	features = proxy.getFeaturesOfProjectById(projectId, FeatureStatus.PENDING);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     }
 
     @Test
     public void testGetFeatureByIdOfProjectById() throws Exception{
-    	Feature feature = proxy.getFeatureByIdOfProjectById(1, 1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
+    	Assert.notEmpty(features);
+    	
+    	Feature feature = proxy.getFeatureByIdOfProjectById(features.get(0).getId(), projectId);
     	Assert.notNull(feature);
     }
     
     @Test
     public void testGetReleasesOfProjectById() throws Exception{
-    	List<Release> releases = proxy.getReleasesOfProjectById(1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
     	Assert.notNull(releases);
     	Assert.notEmpty(releases);
     }
     
     @Test
     public void testGetReleaseByIdOfProjectById() throws Exception{
-    	Release releases = proxy.getReleaseByIdOfProjectById(2, 1);
-    	Assert.notNull(releases);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
+    	Assert.notEmpty(releases);
+    	
+    	Release release = proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
+    	Assert.notNull(release);
     }
     
     @Test
     public void testGetFeaturesOfReleaseByIdOfProjectById() throws Exception{
-    	List<Feature> features = proxy.getFeaturesOfReleaseByIdOfProjectById(1, 1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
+    	Assert.notEmpty(releases);
+    	
+    	List<Feature> features = proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.notNull(features);
-    	Assert.notEmpty(features);
     }
     
     @Test
     public void testGetPlanOfReleaseByIdOfProjectById() throws Exception{
-    	Plan plan = proxy.getPlanOfReleaseByIdOfProjectById(1, 1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
+    	Assert.notEmpty(releases);
+    	
+    	Plan plan = proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.notNull(plan);
     }
     
     @Test
     public void testGetPlanOfReleaseByIdOfTenantById() throws Exception{
-    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(10, "atos");
+    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
+    	Assert.notEmpty(releases);
+    	
+    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos");
     	Assert.notNull(plan);
     }
     
     @Test
     public void testGetPlanOfReleaseByIdOfTenantByIdForcingNew() throws Exception{
-    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(10, "atos", true);
+    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
+    	Assert.notEmpty(releases);
+    	
+    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos", true);
     	Assert.notNull(plan);
     }
     
     @Test
     public void testGetSkillsOfProjectById() throws Exception{
-    	List<Skill> skills = proxy.getSkillsOfProjectById(1);
+    	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
     }
     
     @Test
     public void testGetResourcesOfProjectById() throws Exception{
-    	List<Resource> resources = proxy.getResourcesOfProjectById(1);
+    	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
     }
@@ -185,7 +203,7 @@ public class ReplanControllerProxyTest {
 
 	@Test
     public void testUpdateProject() throws Exception{
-    	Project project = proxy.getProjectById(1);
+    	Project project = proxy.getProjectById(projectId);
     	Assert.notNull(project);
     	project.setDescription(project.getDescription() + " modified by test");
     	project = proxy.updateProject(project);
@@ -194,111 +212,118 @@ public class ReplanControllerProxyTest {
     
     @Test
     public void testUpdateFeatureOfProjectById() throws Exception{
-    	Feature feature = proxy.getFeatureByIdOfProjectById(1, 1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
+    	Assert.notEmpty(features);
+    	
+    	Feature feature = proxy.getFeatureByIdOfProjectById(features.get(0).getId(), projectId);
     	Assert.notNull(feature);
     	feature.setDescription(feature.getDescription() + " modified by test");
-    	proxy.updateFeatureOfProjectById(feature, 1);
+    	proxy.updateFeatureOfProjectById(feature, projectId);
     	Assert.notNull(feature);
     }
     
     @Test
     public void testUpdateReleasesOfProjectById() throws Exception{
-    	List<Release> releases = proxy.getReleasesOfProjectById(1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
     	Assert.notNull(releases);
     	Assert.notEmpty(releases);
     	Release release = releases.get(0);
     	release.setDescription(release.getDescription() + " modified by test");
-    	release = proxy.updateReleaseOfProjectById(release, 1);
+    	release = proxy.updateReleaseOfProjectById(release, projectId);
     	Assert.notNull(release);
     }
     
     @Test
     public void testUpdateSkillsOfProjectById() throws Exception{
-    	List<Skill> skills = proxy.getSkillsOfProjectById(1);
+    	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
     	Skill skill = skills.get(0);
     	skill.setDescription(skill.getDescription() + " modified by test");
-    	skill = proxy.updateSkillOfProjectById(skill, 1);
+    	skill = proxy.updateSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
     }
     
     @Test
     public void testUpdateResourceOfProjectById() throws Exception{
-    	List<Resource> resources = proxy.getResourcesOfProjectById(1);
+    	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
     	Resource resource = resources.get(0);
     	resource.setDescription(resource.getDescription() + " modified by test");
-    	resource = proxy.updateResourceOfProjectById(resource, 1);
+    	resource = proxy.updateResourceOfProjectById(resource, projectId);
     	Assert.notNull(resource);
     }
     
     @Test
     public void testAddSkillsOfFeatureByIdOfProjectById() throws Exception{
-    	List<Skill> skills = proxy.getSkillsOfProjectById(1);
+    	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
     	
-    	Feature feature = proxy.addSkillsOfFeatureByIdOfProjectById(skills, 1, 1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
+    	Assert.notEmpty(features);
+    	
+    	Feature feature = proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), projectId);
     	Assert.notNull(feature);
     }
     
     @Test
     public void testAddDependenciesOfFeatureByIdOfProjectById() throws Exception{
-    	List<Feature> features = proxy.getFeaturesOfProjectById(1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     	Assert.isTrue (features.size()>2);
     	
     	List<Feature> dependencies = new ArrayList<>();
     	dependencies.add(features.get(0));
-    	Feature feature = proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), 1);
+    	Feature feature = proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), projectId);
     	Assert.notNull(feature);
     }
     
-    @Test
-    public void testAddReleaseOfProjectById() throws Exception{
-    	Release release = new Release();
-    	release.setName("Release April 2017");
-    	release.setDescription("M24 Release");
-    	Calendar calendar = Calendar.getInstance();
-    	calendar.set(2016, 4, 30);
-    	release.setDeadline(calendar.getTime());
-    	
-    	boolean result = proxy.addReleaseOfProjectById(release, 1);
-    	Assert.isTrue(result);
-    }
+//    @Test
+//    public void testAddReleaseOfProjectById() throws Exception{
+//    	Release release = new Release();
+//    	release.setName("Release April 2017");
+//    	release.setDescription("M24 Release");
+//    	Calendar calendar = Calendar.getInstance();
+//    	calendar.setTime (new Date());
+//    	calendar.add(Calendar.DATE, 1);
+//    	release.setDeadline(calendar.getTime());
+//    	
+//    	boolean result = proxy.addReleaseOfProjectById(release, projectId);
+//    	Assert.isTrue(result);
+//    }
     
     @Test
     public void testAddResourcesOfReleaseByIdOfProjectById() throws Exception{
-    	List<Resource> resources = proxy.getResourcesOfProjectById(1);
+    	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
     	
-    	List<Release> releases = proxy.getReleasesOfProjectById(1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
     	Assert.notNull(releases);
     	Assert.notEmpty(releases);
     	
     	List<Resource> resourcesToAdd = new ArrayList<>();
     	resourcesToAdd.add(resources.get(0));
-    	Release release = proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), 1);
+    	Release release = proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), projectId);
     	Assert.notNull(release);
     }
     
     @Test
     public void testAddFeaturesOfReleaseByIdOfProjectById() throws Exception{
-    	List<Feature> features = proxy.getFeaturesOfProjectById(1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     	
-    	List<Release> releases = proxy.getReleasesOfProjectById(1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
     	Assert.notNull(releases);
     	Assert.notEmpty(releases);
     	
     	List<Feature> featuresToAdd = new ArrayList<>();
     	featuresToAdd.add(features.get(0));
-    	boolean result = proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), 1);
+    	boolean result = proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId);
     	Assert.isTrue(result);
     }
     
@@ -308,7 +333,7 @@ public class ReplanControllerProxyTest {
     	skill.setName("Swift");
     	skill.setDescription("Swift development of iOS");
     	
-    	skill = proxy.addSkillOfProjectById(skill, 1);
+    	skill = proxy.addSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
     }
     
@@ -319,45 +344,49 @@ public class ReplanControllerProxyTest {
     	resource.setDescription("Swift developer with experience on iOS 10");
     	resource.setAvailability(80.0);
     	
-    	resource = proxy.addResourceOfProjectById(resource, 1);
+    	resource = proxy.addResourceOfProjectById(resource, projectId);
     	Assert.notNull(resource);
     }
     
     @Test
     public void testAddSkillsOfResourceByIdOfProjectById() throws Exception{
-    	List<Skill> skills = proxy.getSkillsOfProjectById(1);
+    	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
     	
-    	List<Resource> resources = proxy.getResourcesOfProjectById(1);
+    	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
     	
     	List<Skill> skillsToAdd = new ArrayList<>();
     	skillsToAdd.add(skills.get(0));
-    	Resource resource = proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), 1);
+    	Resource resource = proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), projectId);
     	Assert.notNull(resource);
     }
     
     @Test
     public void testDeleteSkillsOfFeatureByIdOfProjectById() throws Exception{
-    	List<Skill> skills = proxy.getSkillsOfProjectById(1);
+    	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
     	
-    	Feature feature = proxy.addSkillsOfFeatureByIdOfProjectById(skills, 1, 1);
+    	//GetFeatures of project
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
+    	Assert.notEmpty (features);
+    	
+    	Feature feature = proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), projectId);
     	Assert.notNull(feature);
     	
     	List<Skill> skillsToDelete = new ArrayList<>();
     	skillsToDelete.add(skills.get(0));
     	
-    	feature = proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), 1);
+    	feature = proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), projectId);
     	Assert.notNull(feature);
     }
     
     @Test
     public void testDeleteDependenciesOfFeatureByIdOfProjectById() throws Exception{
-    	List<Feature> features = proxy.getFeaturesOfProjectById(1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     	Assert.isTrue(features.size()>=2);
@@ -365,73 +394,74 @@ public class ReplanControllerProxyTest {
     	List<Feature> dependenciesToAdd = new ArrayList<>();
     	dependenciesToAdd.add(features.get(1));
     	
-    	Feature feature = proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), 1);
+    	Feature feature = proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), projectId);
     	Assert.notNull(feature);
     	
     	List<Feature> dependenciesToDelete = new ArrayList<>();
     	dependenciesToDelete.add(features.get(1));
     	
-    	feature = proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), 1);
+    	feature = proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), projectId);
     	Assert.notNull(feature);
     }
     
-    @Test
-    public void testDeleteReleaseByIdOfProjectById() throws Exception{
-    	Release release = new Release();
-    	release.setName("Release April 2017");
-    	release.setDescription("M24 Release");
-    	Calendar calendar = Calendar.getInstance();
-    	calendar.set(2016, 4, 30);
-    	release.setDeadline(calendar.getTime());
-    	
-    	boolean result = proxy.addReleaseOfProjectById(release, 1);
-    	Assert.isTrue(result);
-    	
-    	List<Release> releases = proxy.getReleasesOfProjectById(1);
-    	release = releases.get(releases.size()-1);
-    	
-    	result = proxy.deleteReleaseByIdOfProjectById(release.getId(), 1);
-    	Assert.isTrue(result);
-    }
+//    @Test
+//    public void testDeleteReleaseByIdOfProjectById() throws Exception{
+//    	Release release = new Release();
+//    	release.setName("Release April 2017");
+//    	release.setDescription("M24 Release");
+//    	Calendar calendar = Calendar.getInstance();
+//    	calendar.setTime (new Date());
+//    	calendar.add(Calendar.DATE, 1);
+//    	release.setDeadline(calendar.getTime());
+//    	
+//    	boolean result = proxy.addReleaseOfProjectById(release, projectId);
+//    	Assert.isTrue(result);
+//    	
+//    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
+//    	release = releases.get(releases.size()-1);
+//    	
+//    	result = proxy.deleteReleaseByIdOfProjectById(release.getId(), projectId);
+//    	Assert.isTrue(result);
+//    }
     
     @Test
     public void testDeleteResourcesOfReleaseByIdOfProjectById() throws Exception{
-    	List<Resource> resources = proxy.getResourcesOfProjectById(1);
+    	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
     	
-    	List<Release> releases = proxy.getReleasesOfProjectById(1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
     	Assert.notNull(releases);
     	Assert.notEmpty(releases);
     	
     	List<Resource> resourcesToAdd = new ArrayList<>();
     	resourcesToAdd.add(resources.get(0));
-    	Release release = proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), 1);
+    	Release release = proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), projectId);
     	Assert.notNull(release);
     	
     	List<Resource> resourcesToDelete = new ArrayList<>();
     	resourcesToDelete.add(resources.get(0));
     	
-    	release = proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), 1);
+    	release = proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), projectId);
     	Assert.notNull(release);
     }
     
     @Test
     public void testDeleteFeaturesOfReleaseByIdOfProjectById() throws Exception{
-    	List<Feature> features = proxy.getFeaturesOfProjectById(1);
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     	
-    	List<Release> releases = proxy.getReleasesOfProjectById(1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
     	Assert.notNull(releases);
     	Assert.notEmpty(releases);
     	
     	List<Feature> featuresToAdd = new ArrayList<>();
     	featuresToAdd.add(features.get(0));
-    	boolean result = proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), 1);
+    	boolean result = proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId);
     	Assert.isTrue(result);
     	
-    	List<Feature> featuresOfRelease = proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), 1);
+    	List<Feature> featuresOfRelease = proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
     	int numberOfFeaturesOfRelease = featuresOfRelease.size();
@@ -439,10 +469,10 @@ public class ReplanControllerProxyTest {
     	List<Feature> featuresToDelete = new ArrayList<>();
     	featuresToDelete.add(features.get(0));
     	
-    	result = proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), 1);
+    	result = proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), projectId);
     	Assert.isTrue(result);
     	
-    	featuresOfRelease = proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), 1);
+    	featuresOfRelease = proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.notNull(features);
     	
     	Assert.isTrue(featuresOfRelease.size() == numberOfFeaturesOfRelease - 1);
@@ -450,10 +480,13 @@ public class ReplanControllerProxyTest {
     
     @Test
     public void testCancelLastPlanOfReleaseByIdOfProjectById() throws Exception{
-    	Plan plan = proxy.getPlanOfReleaseByIdOfProjectById(1, 1);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
+    	Assert.notEmpty(releases);
+    	
+    	Plan plan = proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.notNull(plan);
     	
-    	Boolean result = proxy.cancelLastPlanOfReleaseByIdOfProjectById(1, 1);
+    	Boolean result = proxy.cancelLastPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.isTrue(result);
     }
     
@@ -463,10 +496,10 @@ public class ReplanControllerProxyTest {
     	skill.setName("Swift");
     	skill.setDescription("Swift development of iOS");
     	
-    	skill = proxy.addSkillOfProjectById(skill, 1);
+    	skill = proxy.addSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
     	
-    	boolean result = proxy.deleteSkillByIdOfProjectById(skill.getId(), 1);
+    	boolean result = proxy.deleteSkillByIdOfProjectById(skill.getId(), projectId);
     	Assert.isTrue(result);
     }
     
@@ -477,36 +510,36 @@ public class ReplanControllerProxyTest {
     	resource.setDescription("Swift developer with experience on iOS 10");
     	resource.setAvailability(80.0);
     	
-    	resource = proxy.addResourceOfProjectById(resource, 1);
+    	resource = proxy.addResourceOfProjectById(resource, projectId);
     	Assert.notNull(resource);
     	
-    	boolean result = proxy.deleteResourceByIdOfProjectById(resource.getId(), 1);
+    	boolean result = proxy.deleteResourceByIdOfProjectById(resource.getId(), projectId);
     	Assert.isTrue(result);
     }
     
     
     @Test
     public void testDelecteSkillsOfResourceByIdOfProjectById() throws Exception{
-    	List<Skill> skills = proxy.getSkillsOfProjectById(1);
+    	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
     	
-    	List<Resource> resources = proxy.getResourcesOfProjectById(1);
+    	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
     	
     	List<Skill> skillsToAdd = new ArrayList<>();
     	skillsToAdd.add(skills.get(0));
-    	Resource resource = proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), 1);
+    	Resource resource = proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), projectId);
     	Assert.notNull(resource);
     	
     	List<Skill> skillsToDelete = new ArrayList<>();
     	skillsToDelete.add(skills.get(0));
     	
     	int numberOfSkills = resource.getSkills().size();
-    	resource = proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), 1);
+    	resource = proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), projectId);
     	Assert.notNull(resource);
-    	Assert.isTrue(resource.getSkills().size() == numberOfSkills - 1);
+    	Assert.isTrue(resource.getSkills().size() == numberOfSkills - projectId);
     }
     
     @Test
@@ -514,8 +547,15 @@ public class ReplanControllerProxyTest {
     	AddFeaturesForProjectPayload payload = new AddFeaturesForProjectPayload();
     	payload.setEvaluationTime("2016-10-21");
     	
+    	int featureId = 1;
+    	
+    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
+    	if (!features.isEmpty()){
+    		featureId = features.get(features.size()-1).getId() + 1;
+    	}
+    	
     	FeatureWP3 feature1 = new FeatureWP3();
-    	feature1.setId(1008);;
+    	feature1.setId(featureId);
     	feature1.setName("New login form");
     	feature1.setEffort(5.0);
     	feature1.setPriority(Priority.FIVE);
@@ -531,7 +571,7 @@ public class ReplanControllerProxyTest {
     	payload.getFeatures().add(feature1);
     	
     	FeatureWP3 feature2 = new FeatureWP3();
-    	feature2.setId(2009);;
+    	feature2.setId(++featureId);;
     	feature2.setName("Welcome page");
     	feature2.setEffort(23.0);
     	feature2.setPriority(Priority.TWO);
@@ -553,7 +593,7 @@ public class ReplanControllerProxyTest {
     	payload.getFeatures().add(feature2);
     	
     	FeatureWP3 feature3 = new FeatureWP3();
-    	feature3.setId(3010);;
+    	feature3.setId(++featureId);;
     	feature3.setName("Mobile version");
     	feature3.setEffort(45.0);
     	feature3.setPriority(Priority.TWO);
@@ -569,7 +609,7 @@ public class ReplanControllerProxyTest {
     	
     	payload.getConstraints().add(cons);
     	
-		proxy.addFeaturesToProjectById(payload, 1);
+		proxy.addFeaturesToProjectById(payload, projectId);
     }
 }
 

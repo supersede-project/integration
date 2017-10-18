@@ -22,6 +22,7 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -42,6 +43,9 @@ public class MonitoringOrchestratorProxyTest {
 
 	@Test
 	public void testListAllMonitorTypes() throws Exception {
+		//Populate with a monitor type
+		createMonitorType();
+		
 		List<MonitorType> result = proxy.listAllMonitorTypes();
 		Assert.notNull(result);
 		Assert.isTrue(!result.isEmpty());
@@ -49,10 +53,7 @@ public class MonitoringOrchestratorProxyTest {
 
 	@Test
 	public void testCreateGetDeleteMonitorType() throws Exception {
-		MonitorType monitorType = new MonitorType();
-		monitorType.setName("MonitorTypeTest");
-		MonitorType result = proxy.createMonitorType(monitorType);
-		Assert.notNull(result);
+		MonitorType result = createMonitorType();
 
 		result = proxy.getMonitorType(result.getName());
 		Assert.notNull(result);
@@ -60,41 +61,65 @@ public class MonitoringOrchestratorProxyTest {
 		proxy.deleteMonitorType(result);
 	}
 
+	private MonitorType createMonitorType() throws Exception {
+		String monitorTypeName = "MonitorTypeTest";
+		//Remote monitor if exist
+		try{
+			MonitorType mt = proxy.getMonitorType(monitorTypeName);
+			if (mt != null){
+				proxy.deleteMonitorType(mt);
+			}
+		}catch (Exception ex){
+			//Ignore - monitor type does not exist
+		}
+		
+		MonitorType monitorType = new MonitorType();
+		monitorType.setName(monitorTypeName);
+		MonitorType result = proxy.createMonitorType(monitorType);
+		Assert.notNull(result);
+		return result;
+	}
+
 	@Test
 	public void testCreateGetDeleteMonitorTool() throws Exception {
-		MonitorType monitorType = new MonitorType();
-		monitorType.setName("MonitorTypeTest2");
-		MonitorType monitorTypeResult = proxy.createMonitorType(monitorType);
-		Assert.notNull(monitorTypeResult);
+		MonitorType monitorType = createMonitorType();
+		MonitorTool monitorTool = createMonitorTool(monitorType);
 
+		monitorTool = proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+		Assert.notNull(monitorTool);
+
+		proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+
+		proxy.deleteMonitorType(monitorType);
+	}
+
+	private MonitorTool createMonitorTool(MonitorType monitorType) throws Exception {
+		
+		//Remote monitor if exist
+		String monitorToolName = "TwitterAPITest";
+		try{
+			MonitorTool mt = proxy.getMonitorToolForMonitorType(monitorToolName, monitorType.getName());
+			if (mt != null){
+				proxy.deleteMonitorToolForMonitorType(mt, monitorType.getName());
+			}
+		}catch (Exception ex){
+			//Ignore - monitor tool does not exist
+		}
+		
 		MonitorTool monitorTool = new MonitorTool();
-		monitorTool.setName("TwitterAPITest2");
-		monitorTool.setMonitorName("TwitterAPIMonitorTest2");
+		monitorTool.setName(monitorToolName);
+		monitorTool.setMonitorName("Twitter");
 
-		MonitorTool monitorToolResult = proxy.createMonitorToolForMonitorType(monitorTool, monitorType.getName());
-		Assert.notNull(monitorToolResult);
-
-		monitorToolResult = proxy.getMonitorToolForMonitorType(monitorToolResult.getName(), monitorType.getName());
-		Assert.notNull(monitorToolResult);
-
-		proxy.deleteMonitorToolForMonitorType(monitorToolResult, monitorType.getName());
-
-		proxy.deleteMonitorType(monitorTypeResult);
+		monitorTool = proxy.createMonitorToolForMonitorType(monitorTool, monitorType.getName());
+		Assert.notNull(monitorTool);
+		return monitorTool;
 	}
 
 	@Test
 	public void testCreateGetUpdateDeleteMonitorConfiguration() throws Exception {
-		MonitorType monitorType = new MonitorType();
-		monitorType.setName("MonitorTypeForTest3");
-		MonitorType monitorTypeResult = proxy.createMonitorType(monitorType);
-		Assert.notNull(monitorTypeResult);
-
-		MonitorTool monitorTool = new MonitorTool();
-		monitorTool.setName("TwitterAPIForTest3");
-		monitorTool.setMonitorName("TwitterAPIMonitorForTest3");
-
-		MonitorTool monitorToolResult = proxy.createMonitorToolForMonitorType(monitorTool, monitorType.getName());
-		Assert.notNull(monitorToolResult);
+		
+		MonitorType monitorType = createMonitorType();
+		MonitorTool monitorTool = createMonitorTool(monitorType);
 
 		MonitorConfiguration conf = new MonitorConfiguration();
 		conf.setKafkaEndpoint("http://localhost:9092");
@@ -122,9 +147,9 @@ public class MonitoringOrchestratorProxyTest {
 		proxy.deleteMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(),
 				monitorType.getName());
 
-		proxy.deleteMonitorToolForMonitorType(monitorToolResult, monitorType.getName());
+		proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
 
-		proxy.deleteMonitorType(monitorTypeResult);
+		proxy.deleteMonitorType(monitorType);
 	}
 
 }

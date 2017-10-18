@@ -43,8 +43,8 @@ public interface IReplanController {
 	Feature getFeatureByIdOfProjectById(int featureId, int projectId) throws Exception;
 	List<Release> getReleasesOfProjectById(int projectId) throws Exception;
 	Release getReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception;
-	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int featureId, int projectId) throws Exception;
-	Plan getPlanOfReleaseByIdOfProjectById(int featureId, int projectId) throws Exception;
+	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception;
+	Plan getPlanOfReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception;
 	List<Skill> getSkillsOfProjectById(int projectId) throws Exception;
 	List<Resource> getResourcesOfProjectById(int projectId) throws Exception;
 	Feature createFeatureOfProjectById(Feature feature, int projectId) throws Exception;
@@ -86,8 +86,8 @@ public interface IReplanController {
 	Feature getFeatureByIdOfProjectById(int featureId, String tenantId) throws Exception;
 	List<Release> getReleasesOfProjectById(String tenantId) throws Exception;
 	Release getReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception;
-	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int featureId, String tenantId) throws Exception;
-	Plan getPlanOfReleaseByIdOfTenantById(int featureId, String tenantId) throws Exception;
+	List<Feature> getFeaturesOfReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception;
+	Plan getPlanOfReleaseByIdOfTenantById(int releaseId, String tenantId) throws Exception;
 	Plan getPlanOfReleaseByIdOfTenantById(int releaseId, String tenantId, Boolean forceNew) throws Exception; 
 	List<Skill> getSkillsOfProjectById(String tenantId) throws Exception;
 	List<Resource> getResourcesOfProjectById(String tenantId) throws Exception;
