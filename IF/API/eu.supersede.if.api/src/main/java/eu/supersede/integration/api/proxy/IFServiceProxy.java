@@ -276,6 +276,7 @@ public abstract class IFServiceProxy<T, S> {
 			result = response.getBody();
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
+				log.info("Result obtained: " + result);
 			} else {
 				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
 				result = null;
