@@ -55,7 +55,7 @@ public class AdaptationConfigurationProxyTest {
 	
 	@Test
 	public void testAdaptationMode() throws Exception {
-		AdaptationMode mode = AdaptationMode.valueOf("AUTOMATED");
+		AdaptationMode mode = AdaptationMode.valueOf("SUPERVISED");
 	}
 
 }

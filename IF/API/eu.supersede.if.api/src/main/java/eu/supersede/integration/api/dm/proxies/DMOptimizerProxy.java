@@ -38,27 +38,27 @@ public class DMOptimizerProxy<T, S> extends IFServiceProxy<T, S> implements IDMO
 			.getProperty("dm.optimizer.endpoint");
 
 	@Override
-	public FeatureConfiguration optimize(String modelURI, String currentConfig, String qualityAttributePath,
+	public FeatureConfiguration optimize(String system, String featureModelURI, String featureConfigurationURI,
 			String alertAttribute, String alertThresholdValue, boolean multiObjective) {
 		try {
-			Assert.notNull(modelURI, "Provide a valid modelURI");
-			Assert.notNull(currentConfig, "Provide a valid currentConfig");
-			Assert.notNull(qualityAttributePath, "Provide a valid qualityAttributePath");
+			Assert.notNull(system, "Provide a valid modelURI");
+			Assert.notNull(featureModelURI, "Provide a valid featureModelURI");
+			Assert.notNull(featureConfigurationURI, "Provide a valid featureConfigurationURI");
 			Assert.notNull(alertAttribute, "Provide a valid alertAttribute");
 			Assert.notNull(alertThresholdValue, "Provide a valid alertThresholdValue");
 			Assert.notNull(multiObjective, "Provide a valid multiObjective");
 			String suri = SUPERSEDE_DM_OPTIMIZER_ENDPOINT + "optimize?";	
 			Map<String, String> parameters = new HashMap<>();
-			parameters.put("modelURI", modelURI);
-			parameters.put("currentConfig", currentConfig);
-			parameters.put("qualityAttributePath", qualityAttributePath);
+			parameters.put("system", system);
+			parameters.put("featureModelURI", featureModelURI);
+			parameters.put("featureConfigurationURI", featureConfigurationURI);
 			parameters.put("alertAttribute", alertAttribute);
 			parameters.put("alertThresholdValue", alertThresholdValue);
 			parameters.put("multiObjective", String.valueOf(multiObjective));
 			suri = addURIQueryParameters (suri, parameters);
-			log.debug("Sending message optimize with modelURI: " + modelURI 
-					+ " for currentConfig: " + currentConfig 
-					+ " for qualityAttributePath: " + qualityAttributePath 
+			log.debug("Sending message optimize with system: " + system 
+					+ " for featureModelURI: " + featureModelURI 
+					+ " for featureConfigurationURI: " + featureConfigurationURI 
 					+ " for alertAttribute: " + alertAttribute 
 					+ " for alertThresholdValue: " + alertThresholdValue 
 					+ " for multiObjective: " + multiObjective 

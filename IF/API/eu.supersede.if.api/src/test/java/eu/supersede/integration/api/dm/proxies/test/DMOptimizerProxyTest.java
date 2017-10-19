@@ -30,23 +30,23 @@ import eu.supersede.integration.api.dm.types.FeatureConfiguration;
 
 public class DMOptimizerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(DMOptimizerProxyTest.class);
-	private DMOptimizerProxy proxy;
+	private DMOptimizerProxy<?, ?> proxy;
 
 	@Before
 	public void setup() throws Exception {
-		proxy = new DMOptimizerProxy();
+		proxy = new DMOptimizerProxy<Object, Object>();
 	}
 
 	
 	@Test
 	public void testOptimize() throws Exception {
-		String modelURI = "/opt/jenkins/apps/jenkins/jenkins_home/jobs/DynamicAdaptation/workspace/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/grammar/FeedbackGatheringConfig.bnf";
-		String currentConfig = "/opt/jenkins/apps/jenkins/jenkins_home/jobs/DynamicAdaptation/workspace/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/current.conf";
-		String qualityAttributePath = "/opt/jenkins/apps/jenkins/jenkins_home/jobs/DynamicAdaptation/workspace/DM/components/eu.supersede.dynadapt.dm.optimizer/input/refsq17/monitoring/feedbackreconfig/attribute_values";
+		String system = "Atos_HSK";
+		String featureModelURI = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
+		String featureConfigurationURI = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
 		String alertAttribute = "response_time";
 		String alertThresholdValue = "10";
 		boolean multiObjective = false;
-		FeatureConfiguration result = proxy.optimize(modelURI, currentConfig, qualityAttributePath, alertAttribute,
+		FeatureConfiguration result = proxy.optimize(system, featureModelURI, featureConfigurationURI, alertAttribute,
 				alertThresholdValue, multiObjective);
 		Assert.notNull(result);
 	}

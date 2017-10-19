@@ -51,7 +51,7 @@ import eu.supersede.integration.api.replan.controller.types.SoftDependencyType;
 public class ReplanControllerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
 	private IReplanController proxy;
-	private int projectId = 1;
+	private int projectId = 2;
 	
     @Before
     public void setup() throws Exception {
@@ -539,7 +539,7 @@ public class ReplanControllerProxyTest {
     	int numberOfSkills = resource.getSkills().size();
     	resource = proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), projectId);
     	Assert.notNull(resource);
-    	Assert.isTrue(resource.getSkills().size() == numberOfSkills - projectId);
+    	Assert.isTrue(resource.getSkills().size() == numberOfSkills - 1);
     }
     
     @Test
