@@ -51,7 +51,7 @@ import eu.supersede.integration.api.replan.controller.types.SoftDependencyType;
 public class ReplanControllerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
 	private IReplanController proxy;
-	private int projectId = 2;
+	private int projectId = 1;
 	
     @Before
     public void setup() throws Exception {
@@ -169,7 +169,7 @@ public class ReplanControllerProxyTest {
     private Project createProject() {
 		Project project = new Project();
 		project.setName("Project Test");
-		project.setDescription("Bla, bla, bla es mucho decir");
+		project.setDescription("Project Test Description");
 		project.setEffortUnit("hour");
 		project.setHoursPerEffortUnit(1.0);
 		project.setHoursPerWeekFullTimeResource(40.0);

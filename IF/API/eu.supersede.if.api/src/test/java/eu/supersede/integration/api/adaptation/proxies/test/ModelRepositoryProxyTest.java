@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -52,11 +53,16 @@ import eu.supersede.integration.api.adaptation.types.TypedModelId;
 public class ModelRepositoryProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private ModelRepositoryProxy<?, ?> proxy;
+	private static ModelRepositoryProxy<?, ?> proxy;
+	private static IModel baseModel;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new ModelRepositoryProxy<Object, Object>();
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
+		Assert.notEmpty(result);
+		baseModel = result.get(0);
+		Assert.notNull(baseModel);
 	}
 	
 	@Test
@@ -113,7 +119,7 @@ public class ModelRepositoryProxyTest {
 	
 	@Test
 	public void testGetAllAdaptationModels() throws Exception {
-		List<IModel> result = proxy.getModelInstances(ModelType.AdaptabilityModel, ModelSystem.MonitoringReconfiguration, null);
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
@@ -133,8 +139,7 @@ public class ModelRepositoryProxyTest {
 	@Test
 	public void testGetAllBaseModelsWithQueryMetadata() throws Exception {
 		BaseModel metadata = new BaseModel();
-		metadata.setName("BaseModelA");
-		metadata.setAuthorId("SUPERSEDE");
+		metadata.setAuthorId((String)baseModel.getValue("authorId"));
 		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, metadata);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
@@ -147,7 +152,7 @@ public class ModelRepositoryProxyTest {
 	
 	@Test
 	public void testGetBaseModelsForSystem() throws Exception {
-		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, null);
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
@@ -161,8 +166,8 @@ public class ModelRepositoryProxyTest {
 	
 	@Test
 	public void getModelInstance() throws Exception {
-		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
-		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, "/path/to/model");
+		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, (String) baseModel.getValue("id"));
+		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, (String) baseModel.getValue("relativePath"));
 		Assert.notNull(result);
 	}
 
