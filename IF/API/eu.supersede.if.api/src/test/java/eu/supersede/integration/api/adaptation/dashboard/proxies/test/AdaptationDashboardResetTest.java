@@ -3,10 +3,9 @@ package eu.supersede.integration.api.adaptation.dashboard.proxies.test;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -17,10 +16,10 @@ import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashb
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class AdaptationDashboardResetTest {
-	private AdaptationDashboardProxy <Object, Object> proxy;
+	private static AdaptationDashboardProxy <Object, Object> proxy;
 	
-	@Before
-	public void setup() throws Exception{
+	@BeforeClass
+	public static void setup() throws Exception{
 		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 	}
 

@@ -22,7 +22,7 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import eu.supersede.integration.api.monitoring.manager.proxies.MonitorManagerProxy;
@@ -33,10 +33,10 @@ import org.junit.Assert;
 public class MonitorManagerProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private MonitorManagerProxy<?, ?> proxy;
+	private static MonitorManagerProxy<?, ?> proxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new MonitorManagerProxy<MonitorSpecificConfiguration, Object>();
 	}
 

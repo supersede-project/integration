@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,11 +51,11 @@ import eu.supersede.integration.api.replan.controller.types.SoftDependencyType;
 
 public class ReplanControllerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
-	private IReplanController proxy;
+	private static IReplanController proxy;
 	private int projectId = 1;
 	
-    @Before
-    public void setup() throws Exception {
+    @BeforeClass
+    public static void setup() throws Exception {
         proxy = new ReplanControllerProxy();
     }
 

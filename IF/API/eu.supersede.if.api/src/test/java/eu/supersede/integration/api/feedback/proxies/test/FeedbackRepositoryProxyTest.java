@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,15 +51,15 @@ import eu.supersede.integration.api.feedback.types.UserRole;
 
 public class FeedbackRepositoryProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(FeedbackRepositoryProxyTest.class);
-	private FeedbackRepositoryProxy proxy;
-	private String token;
+	private static FeedbackRepositoryProxy<Object, Object> proxy;
+	private static String token;
 	private Integer applicationId = 1;
 	private Integer feedbackId = 69;
 	private Integer userId = 1;
 	
-    @Before
-    public void setup() throws Exception {
-        proxy = new FeedbackRepositoryProxy();
+    @BeforeClass
+    public static void setup() throws Exception {
+        proxy = new FeedbackRepositoryProxy<Object, Object>();
         String user = "api_user";
     	String password = "password";
     	token = proxy.authenticate(user, password);

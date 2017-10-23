@@ -26,7 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
@@ -41,7 +41,7 @@ import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
 
 public class IFAuthenticationManagerTest {
-	IFAuthenticationManager am;
+	static IFAuthenticationManager am;
 	//User test
 	String testUserName = "test";
 	String testUserPassword = "testpassword";
@@ -50,8 +50,8 @@ public class IFAuthenticationManagerTest {
 	String testRoleName = "testRole";
 	boolean requirePasswordChange = false;
 	
-	@Before
-    public void setup() throws Exception {
+	@BeforeClass
+    public static void setup() throws Exception {
 		// Set Identity Server user/password as Java launcher properties:
 		// -Dis.admin.user=
 		// -Dis.admin.passwd=

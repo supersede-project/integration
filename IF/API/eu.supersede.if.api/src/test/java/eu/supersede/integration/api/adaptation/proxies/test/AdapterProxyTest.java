@@ -22,16 +22,14 @@ package eu.supersede.integration.api.adaptation.proxies.test;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -40,7 +38,6 @@ import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
 import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashboardProxy;
 import eu.supersede.integration.api.adaptation.proxies.AdapterProxy;
 import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
-import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.FeatureConfiguration;
 import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelMetadata;
@@ -52,12 +49,12 @@ import eu.supersede.integration.api.adaptation.types.TypedModelId;
 public class AdapterProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private AdapterProxy<?, ?> proxy;
-	private AdaptationDashboardProxy <Object, Object> adaptationProxy;
-	private ModelRepositoryProxy<?, ?> modelRepositoryProxy;
+	private static AdapterProxy<?, ?> proxy;
+	private static AdaptationDashboardProxy <Object, Object> adaptationProxy;
+	private static ModelRepositoryProxy<?, ?> modelRepositoryProxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new AdapterProxy<Object, Object>();
 		adaptationProxy = new AdaptationDashboardProxy<Object, Object>("adaptation", "adaptation", "atos");
 		modelRepositoryProxy = new ModelRepositoryProxy<Object, Object>();

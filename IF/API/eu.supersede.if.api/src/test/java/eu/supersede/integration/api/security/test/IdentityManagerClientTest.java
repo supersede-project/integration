@@ -23,22 +23,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 import org.wso2.carbon.CarbonConstants;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreManager;
 
-import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.IFUserStoreManager;
-import eu.supersede.integration.properties.IntegrationProperty;
 
 public class IdentityManagerClientTest {
 //	private static final Logger log = LoggerFactory.getLogger(IdentityManagerClientTest.class);
-	private UserStoreManager usm;
+	private static UserStoreManager usm;
 	
 	public static final String CLAIM_FIRST_NAME_URI = "http://wso2.org/claims/givenname";
 	public static final String CLAIM_LAST_NAME_URI = "http://wso2.org/claims/lastname";
@@ -51,11 +47,11 @@ public class IdentityManagerClientTest {
 	public static final String CLAIM_IM_URI = "http://wso2.org/claims/im";
 	public static final String CLAIM_URL_URI = "http://wso2.org/claims/url";
 	
-	String admin;
-	String password;
+	private static String admin;
+	private static String password;
 	
-    @Before
-    public void setup() throws Exception {
+    @BeforeClass
+    public static void setup() throws Exception {
 //    	String admin = IntegrationProperty.getProperty("is.admin.user");
 //		String password = IntegrationProperty.getProperty("is.admin.passwd");
     	admin = System.getProperty("is.admin.user");

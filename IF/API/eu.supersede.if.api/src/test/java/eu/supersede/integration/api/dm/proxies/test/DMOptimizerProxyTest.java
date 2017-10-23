@@ -19,7 +19,7 @@
  *******************************************************************************/
 package eu.supersede.integration.api.dm.proxies.test;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,10 +30,10 @@ import eu.supersede.integration.api.dm.types.FeatureConfiguration;
 
 public class DMOptimizerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(DMOptimizerProxyTest.class);
-	private DMOptimizerProxy<?, ?> proxy;
+	private static DMOptimizerProxy<?, ?> proxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new DMOptimizerProxy<Object, Object>();
 	}
 

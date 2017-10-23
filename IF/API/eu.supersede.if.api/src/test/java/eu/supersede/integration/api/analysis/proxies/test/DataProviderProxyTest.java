@@ -27,7 +27,7 @@ import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,11 +37,11 @@ import eu.supersede.integration.api.analysis.types.MonitoringData;
 
 public class DataProviderProxyTest {
 	private final Logger log = LoggerFactory.getLogger(this.getClass()); 
-	private DataProviderProxy proxy;
+	private static DataProviderProxy proxy;
 	
 	
-    @Before
-    public void setup() throws Exception {
+    @BeforeClass
+    public static void setup() throws Exception {
         proxy = new DataProviderProxy();
     }
 

@@ -19,13 +19,7 @@
  *******************************************************************************/
 package eu.supersede.integration.api.adaptation.proxies.test;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -35,10 +29,10 @@ import eu.supersede.integration.api.adaptation.types.AdaptationMode;
 public class AdaptationConfigurationProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private AdaptationConfigurationProxy<?, ?> proxy;
+	private static AdaptationConfigurationProxy<?, ?> proxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new AdaptationConfigurationProxy<Object, Object>();
 	}
 

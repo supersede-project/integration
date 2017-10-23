@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -39,8 +39,8 @@ import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
 
 public class FeedbackOrchestratorProxyTest {
 //	private static final Logger log = LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private FeedbackOrchestratorProxy<?, ?> proxy;
-	private String token;
+	private static FeedbackOrchestratorProxy<?, ?> proxy;
+	private static String token;
 	private Integer applicationId = 3;
 	private Integer configurationId = 4;
 	private Integer generalConfigurationId = 6;
@@ -49,8 +49,8 @@ public class FeedbackOrchestratorProxyTest {
 	private Integer userId = 1;
 	private Integer userGroupId = 1;
 	
-    @Before
-    public void setup() throws Exception {
+    @BeforeClass
+    public static void setup() throws Exception {
         proxy = new FeedbackOrchestratorProxy<Object, Object>();
         String user = "api_user";
     	String password = "password";

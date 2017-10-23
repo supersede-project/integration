@@ -22,7 +22,7 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -32,10 +32,10 @@ import eu.supersede.integration.api.monitoring.monitors.proxies.HttpMonitorProxy
 public class HttpMonitorProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private HttpMonitorProxy<?, ?> proxy;
+	private static HttpMonitorProxy<?, ?> proxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new HttpMonitorProxy<Object, Object>();
 	}
 
