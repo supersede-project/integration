@@ -22,7 +22,7 @@ package eu.supersede.integration.api.dm.proxies.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +39,12 @@ import eu.supersede.integration.api.dm.types.UserRequest;
 
 public class DecisionMakingSystemProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxyTest.class);
-	private DecisionMakingSystemProxy proxy;
+	private static DecisionMakingSystemProxy<Object, Object> proxy;
 	
 	
-    @Before
-    public void setup() throws Exception {
-        proxy = new DecisionMakingSystemProxy();
+    @BeforeClass
+    public static void setup() throws Exception {
+        proxy = new DecisionMakingSystemProxy<Object, Object>();
     }
 
     @Test

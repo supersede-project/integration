@@ -17,38 +17,39 @@
  *
  * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
  *******************************************************************************/
-package eu.supersede.integration.api.dm.proxies.test;
+package eu.supersede.integration.api.adaptation.proxies.test;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import eu.supersede.integration.api.dm.proxies.DMOptimizerProxy;
-import eu.supersede.integration.api.dm.types.FeatureConfiguration;
+import eu.supersede.integration.api.adaptation.proxies.AdaptationConfigurationProxy;
+import eu.supersede.integration.api.adaptation.types.AdaptationMode;
 
-public class DMOptimizerProxyTest {
-	private static final Logger log = LoggerFactory.getLogger(DMOptimizerProxyTest.class);
-	private static DMOptimizerProxy<?, ?> proxy;
+public class AdaptationConfigurationProxyTest {
+	// private static final Logger log =
+	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
+	private static AdaptationConfigurationProxy<?, ?> proxy;
 
 	@BeforeClass
 	public static void setup() throws Exception {
-		proxy = new DMOptimizerProxy<Object, Object>();
+		proxy = new AdaptationConfigurationProxy<Object, Object>();
 	}
 
+	@Test
+	public void testGetAdaptationConfigurationMode() throws Exception {
+		AdaptationMode mode = proxy.getAdaptationConfigurationMode();
+		Assert.notNull(mode);
+	}
 	
 	@Test
-	public void testOptimize() throws Exception {
-		String system = "Atos_HSK";
-		String featureModelURI = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
-		String featureConfigurationURI = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
-		String alertAttribute = "response_time";
-		String alertThresholdValue = "10";
-		boolean multiObjective = false;
-		FeatureConfiguration result = proxy.optimize(system, featureModelURI, featureConfigurationURI, alertAttribute,
-				alertThresholdValue, multiObjective);
-		Assert.notNull(result);
+	public void testSetAdaptationConfigurationMode() throws Exception {
+		proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
+	}
+	
+	@Test
+	public void testAdaptationMode() throws Exception {
+		AdaptationMode mode = AdaptationMode.valueOf("SUPERVISED");
 	}
 
 }

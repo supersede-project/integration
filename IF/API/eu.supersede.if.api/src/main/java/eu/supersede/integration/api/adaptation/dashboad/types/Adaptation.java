@@ -10,11 +10,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+import eu.supersede.integration.api.adaptation.types.IModel;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 import eu.supersede.integration.api.json.AdaptationTimeJsonSerializer;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Adaptation {
+public class Adaptation implements Comparable<Adaptation>{
 
     private String fc_id;
 	private String name;
@@ -77,5 +78,20 @@ public class Adaptation {
 	
 	public void setModel_system(ModelSystem modelSystem) {
 		this.model_system = modelSystem;
+	}
+	
+	@Override
+	public int compareTo (Adaptation a){
+		//Comparing by fc_id (inverse order)
+		try{
+			if (a.getFc_id()!=null && 
+					this.getFc_id()!=null){
+				return (Integer.valueOf((String)a.getFc_id()))
+						.compareTo(Integer.valueOf((String)this.getFc_id()));	
+			}
+		}catch (Exception e){
+			//Ignored
+		}
+		return 0;
 	}
 }

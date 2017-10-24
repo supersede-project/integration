@@ -79,7 +79,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(modelId, "Provide a valid model id");
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "/" + modelId);
 		log.debug("Sending message deleteModelInstance for modelId: " + modelId + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK);
+		deleteUriResource(uri, HttpStatus.NO_CONTENT);
 	}
 
 	@Override

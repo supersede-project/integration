@@ -21,44 +21,42 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.util.Assert;
 
-import eu.supersede.integration.api.monitoring.manager.proxies.MonitorManagerProxy;
-import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
-import eu.supersede.integration.api.monitoring.manager.types.TwitterMonitorConfiguration;
-import org.junit.Assert;
+import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfigurationFile;
+import eu.supersede.integration.api.monitoring.monitors.proxies.ConfigurationFileHttpMonitorProxy;
 
-public class MonitorManagerProxyTest {
+public class ConfigurationFileHttpMonitorProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private static MonitorManagerProxy<?, ?> proxy;
+	private static ConfigurationFileHttpMonitorProxy<?, ?> proxy;
 
 	@BeforeClass
 	public static void setup() throws Exception {
-		proxy = new MonitorManagerProxy<MonitorSpecificConfiguration, Object>();
+		proxy = new ConfigurationFileHttpMonitorProxy<Object, Object>();
 	}
-
+	
 	@Test
-	public void testCreateUpdateAndDeleteMonitorConfiguration() throws Exception {
-		TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-		conf = proxy.createMonitorConfiguration(conf);
-		Assert.assertNotNull(conf);
-		conf.setTimeSlot(60);
-		proxy.updateMonitorConfiguration(conf);
-		proxy.deleteMonitorConfiguration(conf);
+	public void testCreateMonitorConfiguration() throws Exception {
+		HttpMonitorConfigurationFile conf = createMonitorConfiguration();
+		HttpMonitorConfigurationFile result = proxy.createHTMLMonitorConfigurationFile(conf);
+		Assert.notNull(result);
 	}
 
-	private TwitterMonitorConfiguration createTwitterMonitorConfiguration() throws MalformedURLException {
-		TwitterMonitorConfiguration twitterConf = new TwitterMonitorConfiguration();
-		twitterConf.setToolName("TwitterAPI");
-		twitterConf.setTimeSlot(30);
-		twitterConf.setKafkaEndpoint(new URL("http://localhost:9092"));
-		twitterConf.setKafkaTopic("tweeterMonitoring");
-		twitterConf.setKeywordExpression("(olympics) AND (streaming)");
-		
-		return twitterConf;
+	private HttpMonitorConfigurationFile createMonitorConfiguration() throws MalformedURLException {
+		HttpMonitorConfigurationFile conf = new HttpMonitorConfigurationFile();
+		conf.setToolName("HTMLMonitor");
+		conf.setKafkaEndpoint(new URL("http://localhost:9092"));
+		conf.setKafkaTopic("http");
+		conf.setServer("production");
+		conf.setProtocol("HTTPS");
+		conf.setTextContentSize(150);
+		conf.setListOfEvents(Arrays.asList("change", "input", "submit"));
+		return conf;
 	}
 
 }

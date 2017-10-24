@@ -3,10 +3,9 @@ package eu.supersede.integration.api.adaptation.dashboard.proxies.test;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -17,10 +16,10 @@ import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashb
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class AdaptationDashboardResetTest {
-	private AdaptationDashboardProxy <Object, Object> proxy;
+	private static AdaptationDashboardProxy <Object, Object> proxy;
 	
-	@Before
-	public void setup() throws Exception{
+	@BeforeClass
+	public static void setup() throws Exception{
 		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 	}
 
@@ -57,11 +56,12 @@ public class AdaptationDashboardResetTest {
 
 	private Adaptation createAtosAdaptation() {
 		Adaptation adaptation = new Adaptation();
-		adaptation.setFc_id("1");
+		String id = "1241";
+		adaptation.setFc_id(id);
 		Calendar computation = Calendar.getInstance();
 		adaptation.setComputation_timestamp(computation.getTime());
 		adaptation.setModel_system(ModelSystem.Atos_HSK);
-		adaptation.setName("AtosSmart_HSK_SingleVM_LowLoad");
+		adaptation.setName(ModelSystem.Atos_HSK + " " + id);
 		adaptation.setRank(1.0);
 		adaptation.getActions().add(createLowLoadAction());
 		adaptation.getActions().add(createHSKAction());
@@ -114,12 +114,13 @@ public class AdaptationDashboardResetTest {
 	
 	private Adaptation createSiemensAdaptation() {
 		Adaptation adaptation = new Adaptation();
-		adaptation.setFc_id("2");
+		String id = "1238";
+		adaptation.setFc_id(id);
 		Calendar computation = Calendar.getInstance();
 		computation.add(Calendar.MINUTE, 10);
 		adaptation.setComputation_timestamp(computation.getTime());
 		adaptation.setModel_system(ModelSystem.Siemens);
-		adaptation.setName("Siemens C1");
+		adaptation.setName(ModelSystem.Siemens + " " + id);
 		adaptation.setRank(1.0);
 		adaptation.getActions().add(createSiemensAction());
 		return adaptation;

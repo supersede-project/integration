@@ -21,27 +21,28 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
-import eu.supersede.integration.api.monitoring.manager.types.AppStoreMonitorConfiguration;
-import eu.supersede.integration.api.monitoring.monitors.proxies.AppStoreMonitorProxy;
+import eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.monitors.proxies.DiskMonitorProxy;
 
-public class AppStoreMonitorProxyTest {
+public class DiskMonitorProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private static AppStoreMonitorProxy<?, ?> proxy;
+	private static DiskMonitorProxy<?, ?> proxy;
 
 	@BeforeClass
 	public static void setup() throws Exception {
-		proxy = new AppStoreMonitorProxy<Object, Object>();
+		proxy = new DiskMonitorProxy<Object, Object>();
 	}
 
 	@Test
 	public void testCreateAndDeleteMonitorConfiguration() throws Exception {
-		AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-		AppStoreMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
+		DiskMonitorConfiguration conf = createMonitorConfiguration();
+		DiskMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
 		Assert.notNull(result);
 		Assert.isTrue(result.getId()>0);
 		proxy.deleteMonitorConfiguration(conf);
@@ -49,22 +50,26 @@ public class AppStoreMonitorProxyTest {
 	
 	@Test
 	public void testUpdateMonitorConfiguration() throws Exception {
-		AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-		AppStoreMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
+		DiskMonitorConfiguration conf = createMonitorConfiguration();
+		DiskMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
 		Assert.notNull(result);
-		result.setTimeSlot(60);
+		result.setTimeSlot(3);
+		Thread.sleep(5000);
 		result = proxy.updateMonitorConfiguration(result);
 		Assert.notNull(result);
-		Assert.isTrue(result.getTimeSlot() == 60);
+		Assert.isTrue(result.getTimeSlot() == 3);
 	}
 
-	private AppStoreMonitorConfiguration createMonitorConfiguration() throws MalformedURLException {
-		AppStoreMonitorConfiguration conf = new AppStoreMonitorConfiguration();
-		conf.setToolName("AppTweak");
-		conf.setTimeSlot(30);
+	private DiskMonitorConfiguration createMonitorConfiguration() throws MalformedURLException {
+		DiskMonitorConfiguration conf = new DiskMonitorConfiguration();
+		conf.setToolName("JSchTool");
+		conf.setTimeSlot(2);
 		conf.setKafkaEndpoint(new URL("http://localhost:9092"));
-		conf.setKafkaTopic("MarketPlace");
-		conf.setAppId("567630281");
+		conf.setKafkaTopic("disk");
+		conf.setUser("supersede");
+		conf.setHost("tools.supersede.atos-sports.tv");
+		conf.setInstruction("snmpdf -v2c -c supersede.ovp prt.tbs");
+		conf.setLabel("test-instruction");
 		return conf;
 	}
 

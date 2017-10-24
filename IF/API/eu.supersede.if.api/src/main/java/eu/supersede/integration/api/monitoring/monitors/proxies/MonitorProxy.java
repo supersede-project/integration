@@ -71,6 +71,7 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 		log.debug("Sending message createMonitorConfiguration with conf: " + conf + " to Monitor at uri " + uri);
 		S response = insertJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.OK);
 		if (response != null && response.getResult() != null && response.getResult().getIdConf() != null) {
+			log.debug ("Obtained response: " + response.getResult());
 			conf.setId(response.getResult().getIdConf());
 			return conf;
 		} else {

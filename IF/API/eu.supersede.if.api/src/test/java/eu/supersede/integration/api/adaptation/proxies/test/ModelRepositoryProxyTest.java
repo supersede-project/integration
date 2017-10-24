@@ -21,9 +21,11 @@ package eu.supersede.integration.api.adaptation.proxies.test;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -32,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -50,11 +53,16 @@ import eu.supersede.integration.api.adaptation.types.TypedModelId;
 public class ModelRepositoryProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private ModelRepositoryProxy<?, ?> proxy;
+	private static ModelRepositoryProxy<?, ?> proxy;
+	private static IModel baseModel;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new ModelRepositoryProxy<Object, Object>();
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
+		Assert.notEmpty(result);
+		baseModel = result.get(0);
+		Assert.notNull(baseModel);
 	}
 	
 	@Test
@@ -101,7 +109,7 @@ public class ModelRepositoryProxyTest {
 		AdaptabilityModel am = (AdaptabilityModel) result[0];
 		
 		//Update created model
-		ModelUpdateMetadata mum = createModelupdateMetadata();
+		ModelUpdateMetadata mum = createModelupdateMetadata(am);
 		am = (AdaptabilityModel) proxy.updateModelInstance(ModelType.AdaptabilityModel, mum, am.getId());
 		Assert.notNull(am);
 		
@@ -111,7 +119,7 @@ public class ModelRepositoryProxyTest {
 	
 	@Test
 	public void testGetAllAdaptationModels() throws Exception {
-		List<IModel> result = proxy.getModelInstances(ModelType.AdaptabilityModel, ModelSystem.MonitoringReconfiguration, null);
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
@@ -131,8 +139,7 @@ public class ModelRepositoryProxyTest {
 	@Test
 	public void testGetAllBaseModelsWithQueryMetadata() throws Exception {
 		BaseModel metadata = new BaseModel();
-		metadata.setName("BaseModelA");
-		metadata.setAuthorId("SUPERSEDE");
+		metadata.setAuthorId((String)baseModel.getValue("authorId"));
 		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, metadata);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
@@ -145,33 +152,47 @@ public class ModelRepositoryProxyTest {
 	
 	@Test
 	public void testGetBaseModelsForSystem() throws Exception {
-		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, null);
+		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
 	
-	@Test
-	public void getModelInstance() throws Exception {
-		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
-		IModel result = proxy.getModelInstance(modelId);
-		Assert.notNull(result);
-	}
+//	@Test
+//	public void getModelInstance() throws Exception {
+//		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
+//		IModel result = proxy.getModelInstance(modelId);
+//		Assert.notNull(result);
+//	}
 	
 	@Test
-	public void getModelInstance2() throws Exception {
-		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
-		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.MonitoringReconfiguration, "/path/to/model");
+	public void getModelInstance() throws Exception {
+		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, (String) baseModel.getValue("id"));
+		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, (String) baseModel.getValue("relativePath"));
 		Assert.notNull(result);
 	}
 
-	private ModelUpdateMetadata createModelupdateMetadata() {
+	private ModelUpdateMetadata createModelupdateMetadata(AdaptabilityModel am) throws IllegalArgumentException {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
 		mum.setSender("Adapter");
 		mum.setTimeStamp(Calendar.getInstance().getTime());
 		
-		Map<String, String> values = new HashMap<>();
+		Map<String, Object> values = new HashMap<>();
+		
 		values.put("authorId", "marc");
 		values.put("featureId", "GooglePlay_API");
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		
+		values.put("lastModificationDate", dateFormat.format(am.getLastModificationDate()));
+		values.put("systemId", am.getSystemId().toString());
+		values.put("fileExtension", am.getFileExtension());
+		values.put("relativePath", am.getRelativePath());
+		values.put("name", am.getName());
+		values.put("id", am.getId());
+		values.put("modelContent", am.getModelContent());
+		values.put("creationDate", dateFormat.format(am.getCreationDate()));
+		values.put("dependencies", am.getDependencies());
+		
 		mum.setValues(values);
 		
 		return mum;

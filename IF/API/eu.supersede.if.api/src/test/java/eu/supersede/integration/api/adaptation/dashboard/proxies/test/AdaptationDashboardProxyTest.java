@@ -1,11 +1,9 @@
 package eu.supersede.integration.api.adaptation.dashboard.proxies.test;
 
-import static org.junit.Assert.*;
-
 import java.util.Calendar;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -16,11 +14,23 @@ import eu.supersede.integration.api.adaptation.dashboard.proxies.AdaptationDashb
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public class AdaptationDashboardProxyTest {
-	private AdaptationDashboardProxy <Object, Object> proxy;
+	private static AdaptationDashboardProxy <Object, Object> proxy;
+	private static String adaptationId;
+	private static String enactmentId;
 	
-	@Before
-	public void setup() throws Exception{
+	@BeforeClass
+	public static void setup() throws Exception{
 		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		
+		List<Adaptation> adaptations = proxy.getAllAdaptations();
+		Assert.notEmpty(adaptations);
+		adaptationId = adaptations.get(0).getFc_id();
+		Assert.notNull(adaptationId);
+		
+		List<Enactment> enactments = proxy.getAllEnactments();
+		Assert.notEmpty(enactments);
+		enactmentId = enactments.get(0).getFc_id();
+		Assert.notNull(enactmentId);
 	}
 
 	@Test
@@ -31,8 +41,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testGetAdaptation() throws Exception {
-		String id = "FC_1";
-		Adaptation adaptation = proxy.getAdaptation(id);
+		Adaptation adaptation = proxy.getAdaptation(adaptationId);
 		Assert.notNull(adaptation);
 	}
 	
@@ -74,8 +83,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testGetEnactment() throws Exception {
-		String id = "FC_1";
-		Enactment enactment = proxy.getEnactment(id);
+		Enactment enactment = proxy.getEnactment(enactmentId);
 		Assert.notNull(enactment);
 	}
 	
