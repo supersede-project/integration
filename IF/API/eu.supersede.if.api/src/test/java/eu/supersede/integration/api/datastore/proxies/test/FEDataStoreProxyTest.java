@@ -22,6 +22,7 @@ package eu.supersede.integration.api.datastore.proxies.test;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,7 @@ import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
 
+@Ignore
 public class FEDataStoreProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(FEDataStoreProxyTest.class);
 	private static FEDataStoreProxy<Object, Object> proxy;

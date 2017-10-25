@@ -23,6 +23,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.supersede.integration.api.monitoring.manager.proxies.MonitorManagerProxy;
@@ -40,6 +41,7 @@ public class MonitorManagerProxyTest {
 		proxy = new MonitorManagerProxy<MonitorSpecificConfiguration, Object>();
 	}
 
+	
 	@Test
 	public void testCreateUpdateAndDeleteMonitorConfiguration() throws Exception {
 		TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();

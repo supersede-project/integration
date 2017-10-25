@@ -22,6 +22,7 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -79,6 +80,7 @@ public class MonitoringOrchestratorProxyTest {
 		return result;
 	}
 
+	@Ignore
 	@Test
 	public void testCreateGetDeleteMonitorTool() throws Exception {
 		MonitorType monitorType = createMonitorType();
@@ -114,6 +116,7 @@ public class MonitoringOrchestratorProxyTest {
 		return monitorTool;
 	}
 
+	@Ignore
 	@Test
 	public void testCreateGetUpdateDeleteMonitorConfiguration() throws Exception {
 		

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 import org.wso2.carbon.CarbonConstants;
@@ -32,6 +33,7 @@ import org.wso2.carbon.user.core.UserStoreManager;
 
 import eu.supersede.integration.api.security.IFUserStoreManager;
 
+@Ignore
 public class IdentityManagerClientTest {
 //	private static final Logger log = LoggerFactory.getLogger(IdentityManagerClientTest.class);
 	private static UserStoreManager usm;
@@ -88,7 +90,11 @@ public class IdentityManagerClientTest {
     	String credential = "test";
     	
     	//Remove user if exist
-    	usm.deleteUser(userName);
+    	try{
+    		usm.deleteUser(userName);
+    	}catch (Exception ignored){
+    		//Exception thrown when trying to delete a non-existing user - ignore
+    	}
     	
     	//Claims are use to add user metadata
     	Map<String, String> claims = new HashMap<String, String>();

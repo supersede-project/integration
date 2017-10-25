@@ -1,0 +1,79 @@
+================================================================================
+- Timings
+================================================================================
+> scan classpath : < 1 second
+> coverage and dependency analysis : 9 minutes and 9 seconds
+> build mutation tests : < 1 second
+> run mutation analysis : 31 minutes and 47 seconds
+--------------------------------------------------------------------------------
+> Total  : 40 minutes and 57 seconds
+--------------------------------------------------------------------------------
+================================================================================
+- Statistics
+================================================================================
+>> Generated 733 mutations Killed 339 (46%)
+>> Ran 627 tests (0.86 tests per mutation)
+================================================================================
+- Mutators
+================================================================================
+> ""
+>> Generated 34 Killed 13 (38%)
+> KILLED 8 SURVIVED 0 TIMED_OUT 2 NON_VIABLE 3 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 21 
+--------------------------------------------------------------------------------
+> 0
+>> Generated 14 Killed 1 (7%)
+> KILLED 0 SURVIVED 1 TIMED_OUT 0 NON_VIABLE 1 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 12 
+--------------------------------------------------------------------------------
+> 1
+>> Generated 14 Killed 1 (7%)
+> KILLED 0 SURVIVED 1 TIMED_OUT 0 NON_VIABLE 1 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 12 
+--------------------------------------------------------------------------------
+> "A"
+>> Generated 34 Killed 13 (38%)
+> KILLED 7 SURVIVED 0 TIMED_OUT 2 NON_VIABLE 4 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 21 
+--------------------------------------------------------------------------------
+> void
+>> Generated 110 Killed 29 (26%)
+> KILLED 14 SURVIVED 7 TIMED_OUT 8 NON_VIABLE 7 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 74 
+--------------------------------------------------------------------------------
+> null
+>> Generated 389 Killed 222 (57%)
+> KILLED 126 SURVIVED 11 TIMED_OUT 11 NON_VIABLE 85 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 156 
+--------------------------------------------------------------------------------
+> false
+>> Generated 47 Killed 21 (45%)
+> KILLED 12 SURVIVED 0 TIMED_OUT 2 NON_VIABLE 7 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 26 
+--------------------------------------------------------------------------------
+> true
+>> Generated 47 Killed 19 (40%)
+> KILLED 10 SURVIVED 2 TIMED_OUT 2 NON_VIABLE 7 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 26 
+--------------------------------------------------------------------------------
+> empty
+>> Generated 44 Killed 20 (45%)
+> KILLED 13 SURVIVED 5 TIMED_OUT 3 NON_VIABLE 4 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 19 
+--------------------------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 50:26 min
+[INFO] Finished at: 2017-10-25T10:39:16+02:00
+[INFO] Final Memory: 21M/430M
+[INFO] ------------------------------------------------------------------------

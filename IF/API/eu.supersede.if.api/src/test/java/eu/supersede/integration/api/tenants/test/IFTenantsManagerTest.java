@@ -22,12 +22,14 @@ package eu.supersede.integration.api.tenants.test;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
 
 import eu.supersede.integration.api.tenants.IFTenantsManager;
 
+@Ignore
 public class IFTenantsManagerTest {
 	static IFTenantsManager tm;
 	

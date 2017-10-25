@@ -40,6 +40,7 @@ import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
 
+@Ignore
 public class IFAuthenticationManagerTest {
 	static IFAuthenticationManager am;
 	//User test
@@ -290,7 +291,7 @@ public class IFAuthenticationManagerTest {
 		am.deleteRole(role);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void getAuthorizationTokenTest() throws TenantMgtAdminServiceExceptionException, URISyntaxException, UserStoreException, MalformedURLException{
 		//Create user if it does not exist
 		if (am.getUser(testUserName)==null){
