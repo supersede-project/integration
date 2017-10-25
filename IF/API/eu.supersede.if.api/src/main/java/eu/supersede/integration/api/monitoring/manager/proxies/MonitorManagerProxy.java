@@ -47,7 +47,7 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 		monitorConf.setMonitorSpecificConfiguration(conf);
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/");
 		log.debug("Sending message createMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
-		String id = insertJSONObjectAndReturnValueForJsonLabel (monitorConf, uri, HttpStatus.CREATED, "idConf");
+		String id = insertJSONObjectAndReturnValueForJsonLabel (monitorConf, uri, HttpStatus.CREATED, "id");
 		conf.setId(Integer.valueOf(id));
 		return conf;
 	}
