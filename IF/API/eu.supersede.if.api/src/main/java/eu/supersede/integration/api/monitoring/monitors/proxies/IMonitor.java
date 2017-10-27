@@ -20,6 +20,10 @@
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
 
+import java.nio.file.Path;
+
+import org.springframework.http.HttpMethod;
+
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationRequest;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationResponse;
 
@@ -33,4 +37,7 @@ public interface IMonitor {
 	public <T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse> T updateMonitorConfiguration(T conf, Class<S> responseType)
 			throws Exception;
 	public <T extends MonitorConfigurationRequest> void deleteMonitorConfiguration(T conf) throws Exception;
+	
+	public <T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse> T sendMonitorConfigurationMultipart 
+	(T conf, Path file, Class<S> responseType, HttpMethod method) throws Exception;
 }

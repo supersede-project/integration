@@ -19,10 +19,17 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpMethod;
 import org.springframework.util.Assert;
+import org.springframework.util.LinkedMultiValueMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationRequest;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationResponse;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfigurationResult;
+import eu.supersede.integration.api.feedback.repository.types.Feedback;
 import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
 import eu.supersede.integration.properties.IntegrationProperty;
 
@@ -60,6 +68,24 @@ public class HttpMonitorProxy<T, S> extends MonitorProxy implements IHttpMonitor
 	public void deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		deleteMonitorConfiguration(new HttpMonitorConfigurationRequest(conf));
+	}
+	
+	@Override
+	public HttpMonitorConfiguration createMonitorConfiguration(HttpMonitorConfiguration conf, Path file) throws Exception {
+		Assert.notNull(conf, "Provide a valid HttpMonitorConfiguration conf");
+		Assert.notNull(file, "Provide a valid Path file");
+		
+		return (HttpMonitorConfiguration) sendMonitorConfigurationMultipart(new HttpMonitorConfigurationRequest(conf), file, 
+				HttpMonitorConfigurationResponse.class, HttpMethod.POST).getConfiguration();
+	}
+	
+	@Override
+	public HttpMonitorConfiguration updateMonitorConfiguration(HttpMonitorConfiguration conf, Path file) throws Exception {
+		Assert.notNull(conf, "Provide a valid HttpMonitorConfiguration conf");
+		Assert.notNull(file, "Provide a valid Path file");
+		
+		return (HttpMonitorConfiguration) sendMonitorConfigurationMultipart(new HttpMonitorConfigurationRequest(conf), file, 
+				HttpMonitorConfigurationResponse.class, HttpMethod.POST).getConfiguration();
 	}
 
 }
