@@ -33,7 +33,7 @@ public class CustomJsonDateDeserializer extends JsonDeserializer<Date>
 {	
 	//NOTE: place generic formatter "yyyy-MM-dd" that only gets the date as the last element in the array
 	private static String[] dateFormats = 
-			new String[]{"yyyy-MM-dd+HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss.SSS"};
+			new String[]{"yyyy-MM-dd+HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", "yyyy-MM-dd", "yyyy-MM-dd HH:mm:ss.SSS", "yyyy/MM/dd HH:mm:ss"};
 	
     @Override
     public Date deserialize(JsonParser jsonparser,

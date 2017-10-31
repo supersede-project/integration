@@ -10,6 +10,7 @@
   <description>eu.supersede.if.esb</description>
   <properties>
     <eu.supersede.if.api_._SupersedeMDM>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeMDM>
+    <eu.supersede.if.api_._SupersedeDiskMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDiskMonitor>
     <eu.supersede.if.api_._SupersedeFeedbackOrchestrator>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeFeedbackOrchestrator>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
     <eu.supersede.if.api_._SupersedeDMOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeDMOptimizer>
@@ -22,6 +23,7 @@
     <eu.supersede.if.api_._SupersedeReplanController>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanController>
     <eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MonitoringOrchestratorEndpoint>
     <eu.supersede.if.esb.resource_._SupersedeAuthentication>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._SupersedeAuthentication>
+    <eu.supersede.if.api_._SupersedeConfigurationFileHTMLMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeConfigurationFileHTMLMonitor>
     <eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanControllerForWP3Endpoint>
     <eu.supersede.if.api_._SupersedeMonitoringOrchestrator>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeMonitoringOrchestrator>
     <eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ModelRepositoryManagerEndpoint>
@@ -34,7 +36,10 @@
     <eu.supersede.if.esb.resource_._sendErrorMessage>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._sendErrorMessage>
     <eu.supersede.if.api_._SupersedeReplanOptimizer>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizer>
     <eu.supersede.if.api_._SupersedeMonitorManager>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeMonitorManager>
+    <eu.supersede.if.esb.resource_._ConfigurationFileHTMLMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ConfigurationFileHTMLMonitorEndpoint>
+    <eu.supersede.if.esb.resource_._DiskMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._DiskMonitorEndpoint>
     <eu.supersede.if.esb.resource_._AdapterEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._AdapterEndpoint>
+    <eu.supersede.if.api_._SupersedeReplanOptimizerV2>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeReplanOptimizerV2>
     <eu.supersede.if.api_._SupersedeModelRepositoryManager>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeModelRepositoryManager>
     <eu.supersede.if.api_._SupersedeHttpMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeHttpMonitor>
     <eu.supersede.if.api_._SupersedeTwitterMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeTwitterMonitor>
@@ -43,6 +48,7 @@
     <eu.supersede.if.esb.resource_._MDMEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._MDMEndpoint>
     <eu.supersede.if.sequence_._sendEmailSequence>capp/EnterpriseServiceBus</eu.supersede.if.sequence_._sendEmailSequence>
     <eu.supersede.if.api_._SupersedeAdapter>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeAdapter>
+    <eu.supersede.if.esb.resource_._ReplanOptimizerV2Endpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanOptimizerV2Endpoint>
     <eu.supersede.if.esb.resource_._GooglePlayMonitorEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._GooglePlayMonitorEndpoint>
     <eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>capp/EnterpriseServiceBus</eu.supersede.if.esb.resource_._ReplanOptimizerEndpoint>
     <eu.supersede.if.api_._SupersedeGooglePlayMonitor>capp/EnterpriseServiceBus</eu.supersede.if.api_._SupersedeGooglePlayMonitor>
@@ -62,6 +68,12 @@
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeConfigurationFileHTMLMonitor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeDMGame</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
@@ -69,6 +81,12 @@
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeDMOptimizer</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeDiskMonitor</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
@@ -87,6 +105,12 @@
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeGooglePlayMonitor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeHttpMonitor</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
@@ -128,6 +152,12 @@
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.api</groupId>
+      <artifactId>SupersedeReplanOptimizerV2</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.api</groupId>
       <artifactId>SupersedeTwitterMonitor</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
@@ -164,6 +194,12 @@
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ConfigurationFileHTMLMonitorEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>DMGameAlertEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
@@ -171,6 +207,12 @@
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>DMOptimizerEndpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>DiskMonitorEndpoint</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>
@@ -242,6 +284,12 @@
     </dependency>
     <dependency>
       <groupId>eu.supersede.if.esb.resource</groupId>
+      <artifactId>ReplanOptimizerV2Endpoint</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.esb.resource</groupId>
       <artifactId>SupersedeAuthentication</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
@@ -257,12 +305,6 @@
       <artifactId>sendErrorMessage</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>eu.supersede.if.api</groupId>
-      <artifactId>SupersedeHttpMonitor</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
     </dependency>
   </dependencies>
   <repositories>

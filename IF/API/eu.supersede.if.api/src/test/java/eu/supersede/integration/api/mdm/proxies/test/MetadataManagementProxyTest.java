@@ -22,6 +22,7 @@ package eu.supersede.integration.api.mdm.proxies.test;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -33,10 +34,10 @@ import eu.supersede.integration.api.mdm.types.Release;
 public class MetadataManagementProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private MetadataManagementProxy<?, ?> proxy;
+	private static MetadataManagementProxy<?, ?> proxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new MetadataManagementProxy<Object, Object>();
 	}
 

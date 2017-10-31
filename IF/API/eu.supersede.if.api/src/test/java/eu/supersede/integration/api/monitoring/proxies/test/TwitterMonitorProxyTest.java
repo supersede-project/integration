@@ -24,6 +24,7 @@ import java.net.URL;
 import java.util.Arrays;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -33,10 +34,10 @@ import eu.supersede.integration.api.monitoring.monitors.proxies.TwitterMonitorPr
 public class TwitterMonitorProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private TwitterMonitorProxy<?, ?> proxy;
+	private static TwitterMonitorProxy<?, ?> proxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new TwitterMonitorProxy<Object, Object>();
 	}
 

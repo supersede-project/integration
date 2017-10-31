@@ -31,5 +31,4 @@ public class Skill extends ReplanBaseObject{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }

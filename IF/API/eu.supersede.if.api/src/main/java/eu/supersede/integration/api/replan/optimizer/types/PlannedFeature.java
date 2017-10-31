@@ -22,8 +22,10 @@ package eu.supersede.integration.api.replan.optimizer.types;
 public class PlannedFeature {
 	private Double beginHour;
 	private Double endHour;
+	private Boolean frozen;
 	private Resource resource;
 	private Feature feature;
+	
 	public Double getBeginHour() {
 		return beginHour;
 	}
@@ -35,6 +37,12 @@ public class PlannedFeature {
 	}
 	public void setEndHour(Double endHour) {
 		this.endHour = endHour;
+	}
+	public Boolean getFrozen() {
+		return frozen;
+	}
+	public void setFrozen(Boolean frozen) {
+		this.frozen = frozen;
 	}
 	public Resource getResource() {
 		return resource;

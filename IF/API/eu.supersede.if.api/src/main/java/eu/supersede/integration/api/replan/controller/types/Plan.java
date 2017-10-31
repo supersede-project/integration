@@ -39,6 +39,8 @@ public class Plan extends ReplanIdentifiableObject{
 	@JsonProperty ("num_jobs")
 	private Integer numberJobs;
 	private List<Job> jobs;
+	@JsonProperty ("resource_usage")
+	private List<Resource> resourceUsage;
 	
 	public Plan()
 	{
@@ -79,6 +81,15 @@ public class Plan extends ReplanIdentifiableObject{
 	}
 	public void setJobs(List<Job> jobs) {
 		this.jobs = jobs;
+	}
+	
+	public List<Resource> getResourceUsage() {
+		if (resourceUsage == null)
+			resourceUsage = new ArrayList<>();
+		return resourceUsage;
+	}
+	public void setResourceUsage(List<Resource> resourceUsage) {
+		this.resourceUsage = resourceUsage;
 	}
 
 }

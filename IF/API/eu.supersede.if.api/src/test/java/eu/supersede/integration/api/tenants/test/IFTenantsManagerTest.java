@@ -21,7 +21,7 @@ package eu.supersede.integration.api.tenants.test;
 
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
@@ -29,10 +29,10 @@ import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
 import eu.supersede.integration.api.tenants.IFTenantsManager;
 
 public class IFTenantsManagerTest {
-	IFTenantsManager tm;
+	static IFTenantsManager tm;
 	
-	@Before
-    public void setup() throws Exception {
+	@BeforeClass
+    public static void setup() throws Exception {
 		// Set Identity Server user/password as Java launcher properties:
 		// -Dis.admin.user=
 		// -Dis.admin.passwd=

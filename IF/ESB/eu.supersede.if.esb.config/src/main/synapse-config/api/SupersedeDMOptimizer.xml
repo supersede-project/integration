@@ -17,4 +17,38 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="GET" protocol="http" uri-template="/adaptation/configuration">
+    <inSequence>
+      <log level="full">
+        <property name="DM Optimizer" value="GET adapatation configuration message forwarded to DM Optimize endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/DMOptimizerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/adaptation/configuration">
+    <inSequence>
+      <log level="full">
+        <property name="DM Optimizer" value="PUT adapatation configuration message forwarded to DM Optimize endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/DMOptimizerEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>

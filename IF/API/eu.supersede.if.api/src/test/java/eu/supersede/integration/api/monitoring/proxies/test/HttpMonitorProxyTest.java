@@ -21,21 +21,24 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.Method;
 import eu.supersede.integration.api.monitoring.monitors.proxies.HttpMonitorProxy;
 
 public class HttpMonitorProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
-	private HttpMonitorProxy<?, ?> proxy;
+	private static HttpMonitorProxy<?, ?> proxy;
 
-	@Before
-	public void setup() throws Exception {
+	@BeforeClass
+	public static void setup() throws Exception {
 		proxy = new HttpMonitorProxy<Object, Object>();
 	}
 
@@ -49,23 +52,45 @@ public class HttpMonitorProxyTest {
 	}
 	
 	@Test
+	public void testCreateAndDeleteMonitorConfigurationMultipart() throws Exception {
+		HttpMonitorConfiguration conf = createMonitorConfiguration();
+		Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
+		HttpMonitorConfiguration result = proxy.createMonitorConfiguration(conf, file );
+		Assert.notNull(result);
+		Assert.isTrue(result.getId()>0);
+		proxy.deleteMonitorConfiguration(conf);
+	}
+	
+	@Test
 	public void testUpdateMonitorConfiguration() throws Exception {
 		HttpMonitorConfiguration conf = createMonitorConfiguration();
 		HttpMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
 		Assert.notNull(result);
-		result.setTimeSlot(60);
+		result.setTimeSlot(6000);
 		result = proxy.updateMonitorConfiguration(result);
 		Assert.notNull(result);
-		Assert.isTrue(result.getTimeSlot() == 60);
+		Assert.isTrue(result.getTimeSlot() == 6000);
+	}
+	
+	@Test
+	public void testUpdateMonitorConfigurationMultipart() throws Exception {
+		HttpMonitorConfiguration conf = createMonitorConfiguration();
+		Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
+		HttpMonitorConfiguration result = proxy.createMonitorConfiguration(conf, file);
+		Assert.notNull(result);
+		result.setTimeSlot(6000);
+		result = proxy.updateMonitorConfiguration(result);
+		Assert.notNull(result);
+		Assert.isTrue(result.getTimeSlot() == 6000);
 	}
 
 	private HttpMonitorConfiguration createMonitorConfiguration() throws MalformedURLException {
 		HttpMonitorConfiguration conf = new HttpMonitorConfiguration();
 		conf.setToolName("ApacheHttp");
-		conf.setTimeSlot(30);
-		conf.setKafkaEndpoint(new URL("http://localhost:9092"));
+		conf.setTimeSlot(3000);
 		conf.setKafkaTopic("http");
 		conf.setUrl("http://lab-supersede.atos-sports.tv:8000/handshake_test.php");
+		conf.setMethod(Method.GET);
 		return conf;
 	}
 

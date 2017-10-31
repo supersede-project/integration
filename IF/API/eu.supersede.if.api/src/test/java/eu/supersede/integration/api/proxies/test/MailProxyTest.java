@@ -19,7 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.proxies.test;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,17 +32,18 @@ import eu.supersede.integration.api.security.types.AuthorizationToken;
 
 public class MailProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(MailProxyTest.class);
-	private IFAuthenticationManager am;
-	private AuthorizationToken token;
+	private static IFAuthenticationManager am;
+	private static AuthorizationToken token;
 	
-    @Before
-    public void setup() throws Exception {
+    @BeforeClass
+    public static void setup() throws Exception {
     	String admin = System.getProperty("is.admin.user");
 		String password = System.getProperty("is.admin.passwd");
         am = new IFAuthenticationManager(admin, password);
         token = am.getAuthorizationToken(admin, password, "");
     }
 
+    @Ignore
     @Test
     public void testSendEmail() throws Exception{
     	Email email = new Email();

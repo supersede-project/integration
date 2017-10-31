@@ -61,7 +61,6 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(adaptationDecisionActionIds, "Provide valid adaptationDecisionActionIds");
 		Assert.notEmpty(adaptationDecisionActionIds, "Provide not empty adaptationDecisionActionIds");
-		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
 		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/featureConfiguration/" + featureConfigurationId + "/system/" + system + "?";
 //		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
 		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
@@ -80,7 +79,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActionsForFC/featureConfiguration/" + featureConfigurationId + "/system/" + system;
 		log.debug("Invoking enactAdaptationDecisionActionsForFC (system: " + system
 				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
-		return postJSONString("", new URI(uriString), HttpStatus.OK);
+		return postJSONString("{}", new URI(uriString), HttpStatus.OK);
 	}
 
 	@Override
