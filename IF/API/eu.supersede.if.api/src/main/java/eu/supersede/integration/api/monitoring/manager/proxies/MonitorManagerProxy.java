@@ -28,6 +28,7 @@ import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.monitoring.manager.types.AppStoreMonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.GooglePlayMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorType;
@@ -82,6 +83,8 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 			return MonitorType.GooglePlay.toString();
 		}else if (conf instanceof AppStoreMonitorConfiguration){
 			return MonitorType.AppStore.toString();
+		}else if (conf instanceof HttpMonitorConfiguration){
+			return MonitorType.HttpMonitor.toString();
 		}else{
 			throw new Exception ("Type " + conf.getClass() + " is not a valid Monitor configuration");
 		}
