@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MonitorConfiguration {
-	@JsonProperty (value="SocialNetworks")
+public abstract class MonitorConfiguration {
 	private MonitorSpecificConfiguration monitorSpecificConfiguration;
 	public MonitorSpecificConfiguration getMonitorSpecificConfiguration() {
 		return monitorSpecificConfiguration;
