@@ -1,72 +1,73 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A.
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.List;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
-import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 
-//@Serialize(UserGroupSerializationService.class)
-public class UserGroup extends OrchestratorItem<UserGroup>{
+public class UserGroup {
+    private long id;
 
-	@Id
-	@DbAttribute("user_groups_id")
-	private Integer id;
-	
-	@NotNull
-	private String name;
-	
-	@DbIgnore
-	private List<User> users;
-	
-	@Override
-	public Integer getId() {
-		return id;
-	}
+    private String name;
 
-	@Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    private List<User> users;
 
-	public String getName() {
-		return name;
-	}
+    private boolean active;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @JsonIgnore
+    private Application application;
 
-	public List<User> getUsers() {
-		if(users == null)
-			users = new ArrayList<>();
-		
-		return users;
-	}
+    public UserGroup() {
+    }
 
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
+    public UserGroup(String name, List<User> users, Application application) {
+        this.name = name;
+        this.users = users;
+        this.application = application;
+    }
+
+    public boolean containsUserWithUserIdentification(String userIdentification) {
+        return this.getUsers() != null && this.getUsers().stream().filter(user -> user.getUserIdentification().equals(userIdentification)).count() > 0;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

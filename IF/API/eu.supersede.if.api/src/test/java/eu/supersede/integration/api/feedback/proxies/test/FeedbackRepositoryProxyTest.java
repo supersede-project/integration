@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,7 +61,7 @@ public class FeedbackRepositoryProxyTest {
     @BeforeClass
     public static void setup() throws Exception {
         proxy = new FeedbackRepositoryProxy<Object, Object>();
-        String user = "api_user";
+        String user = "admin";
     	String password = "password";
     	token = proxy.authenticate(user, password);
     }
@@ -327,13 +328,14 @@ public class FeedbackRepositoryProxyTest {
     	Status result = proxy.getGeneralStatusOfFeedbackInApplication (feedbackId, applicationId, token);
     	Assert.notNull(result);
     }
-    			
+    	
     @Test
     public void testGetUserSpecificStatusOfFeedbackInApplication() throws Exception{
     	Status result = proxy.getUserSpecificStatusOfFeedbackInApplication (feedbackId,  applicationId,  userId, token);
     	Assert.notNull(result);
     }
     
+    @Ignore
     @Test
     public void testListAllUserSpecificStatusOfFeedbackInApplication()throws Exception{
     	List<Status> result = proxy.listAllUserSpecificStatusOfFeedbackInApplication (applicationId,  userId, token);
@@ -341,6 +343,7 @@ public class FeedbackRepositoryProxyTest {
     	Assert.isTrue(!result.isEmpty());
     }
     
+    @Ignore
     @Test
     public void testDeleteFeedbackStatusInApplication () throws Exception{
     	List<Status> result = proxy.listAllUserSpecificStatusOfFeedbackInApplication (applicationId,  userId, token);

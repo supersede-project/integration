@@ -25,36 +25,46 @@ import java.util.Random;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
-import eu.supersede.integration.api.feedback.orchestrator.types.ConfigurationType;
-import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackMechanism;
-import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackParameter;
+import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
+import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
 import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
+import eu.supersede.integration.api.feedback.orchestrator.types.TriggerType;
 import eu.supersede.integration.api.feedback.orchestrator.types.User;
 import eu.supersede.integration.api.feedback.orchestrator.types.UserGroup;
 import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
 
 public class FeedbackOrchestratorProxyTest {
-//	private static final Logger log = LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
+	private static final Logger log = LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
 	private static FeedbackOrchestratorProxy<?, ?> proxy;
-	private static String token;
-	private Integer applicationId = 3;
-	private Integer configurationId = 4;
-	private Integer generalConfigurationId = 6;
-	private Integer mechanismId = 5;
-	private Integer parameterId = 40;
-	private Integer userId = 1;
-	private Integer userGroupId = 1;
+	private static long applicationId = 8;
+	private static long configurationId = 9;
+	private static long generalConfigurationId = 8;
+	private static long mechanismId = 5;
+	private static long parameterId = 47;
+	private static long userId = 1;
+	private static long userGroupId = 1;
 	
     @BeforeClass
     public static void setup() throws Exception {
-        proxy = new FeedbackOrchestratorProxy<Object, Object>();
-        String user = "api_user";
-    	String password = "password";
-    	token = proxy.authenticate(user, password);
+    	String user = "superadmin";
+     	String password = "password";
+        proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
+        
+        Application app = createApplication();
+    	Application result = proxy.createApplication(app);
+    	applicationId = result.getId();
+    	generalConfigurationId = result.getGeneralConfiguration().getId();
+    	configurationId = result.getConfigurations().get(0).getId();
+    	parameterId = result.getGeneralConfiguration().getParameters().get(0).getId();
+    	
+    	log.info("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + applicationId + ", generalConfigurationId: " + 
+    			generalConfigurationId + ", configurationId: " + configurationId + ", parameterId: " + parameterId + ")");
     }
 
     @Test
@@ -73,35 +83,37 @@ public class FeedbackOrchestratorProxyTest {
     @Test
     public void testCreateApplication() throws Exception{
     	Application app = createApplication();
-    	Application result = proxy.createApplication(app, token);
+    	Application result = proxy.createApplication(app);
     	Assert.notNull(result);
     }
     
-    private Application createApplication() {
+    private static Application createApplication() {
     	Application app = new Application ();
     	app.setName("Test Website " + new Random().nextInt(1000));
     	app.setState(1);
     	
-    	List<FeedbackParameter> fps = new ArrayList<>();
-    	fps.add(createFeedbackParameter("reviewActive", Integer.valueOf(1)));
-    	fps.add(createFeedbackParameter("mainColor", "#00ff00"));
+    	List<Parameter> fps = new ArrayList<>();
+    	fps.add(createParameter("reviewActive", "1"));
+    	fps.add(createParameter("mainColor", "#00ff00"));
     	
     	app.setGeneralConfiguration(createGeneralConfiguration(fps));
-    	app.getConfigurations().add(createConfiguration (ConfigurationType.PUSH, createGeneralConfiguration(fps), new ArrayList<FeedbackMechanism>()));
+    	app.setConfigurations(new ArrayList<Configuration>());
+    	app.getConfigurations().add(createConfiguration (
+    		TriggerType.PUSH, createGeneralConfiguration(fps), new ArrayList<Mechanism>()));
 		return app;
 	}
     
-    private GeneralConfiguration createGeneralConfiguration (List<FeedbackParameter> parameters){
+    private static GeneralConfiguration createGeneralConfiguration (List<Parameter> parameters){
     	GeneralConfiguration gc = new GeneralConfiguration();
     	gc.setParameters(parameters);
     	return gc;
     }
     
-    private Configuration createConfiguration (ConfigurationType type, GeneralConfiguration gc, List<FeedbackMechanism> mechanisms){
+    private static Configuration createConfiguration (TriggerType type, GeneralConfiguration gc, List<Mechanism> mechanisms){
     	Configuration conf = new Configuration ();
     	conf.setType(type);
     	conf.setGeneralConfiguration(gc);
-    	conf.getFeedbackMechanisms().addAll(mechanisms);
+    	conf.getMechanisms().addAll(mechanisms);
     	return conf;
     }
 
@@ -129,17 +141,16 @@ public class FeedbackOrchestratorProxyTest {
     public void testUpdateConfigurationInApplication() throws Exception{
     	Configuration configuration = new Configuration();
     	configuration.setId(4);
-    	FeedbackMechanism mechanism = new FeedbackMechanism();
+    	Mechanism mechanism = new Mechanism();
     	mechanism.setId(5);
     	mechanism.setActive(false);
-    	mechanism.setCanBeActivated(true);
-    	FeedbackParameter parameter = new FeedbackParameter();
+    	Parameter parameter = new Parameter();
     	parameter.setId(44);
     	parameter.setKey("title");
     	parameter.setValue("Enter your rating here");
     	mechanism.getParameters().add(parameter);
-    	configuration.getFeedbackMechanisms().add(mechanism);
-    	Configuration result = proxy.updateConfigurationInApplication(configuration, applicationId, token);
+    	configuration.getMechanisms().add(mechanism);
+    	Configuration result = proxy.updateConfigurationInApplication(configuration, applicationId);
     	Assert.notNull(result);
     }
     
@@ -147,62 +158,59 @@ public class FeedbackOrchestratorProxyTest {
     public void testCreateConfigurationInApplication() throws Exception{
     	Configuration conf = createConfiguration();
     	
-    	Configuration result = proxy.createConfigurationInApplication(conf, applicationId, token);
+    	Configuration result = proxy.createConfigurationInApplication(conf, applicationId);
     	Assert.notNull(result);
     }
 
 	private Configuration createConfiguration() {
 		Configuration conf = new Configuration();
-    	conf.setType(ConfigurationType.PULL);
-    	conf.setActive(true);
+    	conf.setType(TriggerType.PULL);
     	GeneralConfiguration genConf = new GeneralConfiguration();
+    	genConf.setParameters(new ArrayList<Parameter>());
     	
-    	FeedbackParameter p1 = new FeedbackParameter();
+    	Parameter p1 = new Parameter();
     	p1.setKey("reviewActive");
-    	p1.setValue(0);
+    	p1.setValue("0");
     	genConf.getParameters().add(p1);
     	
-    	FeedbackParameter p2 = new FeedbackParameter();
+    	Parameter p2 = new Parameter();
     	p2.setKey("likelihood");
-    	p2.setValue(0.2);
+    	p2.setValue("0.2");
     	genConf.getParameters().add(p2);
     	
-    	FeedbackParameter p3 = new FeedbackParameter();
+    	Parameter p3 = new Parameter();
     	p3.setKey("askOnAppStartup");
-    	p3.setValue(0);
+    	p3.setValue("0");
     	genConf.getParameters().add(p3);
     	
     	conf.setGeneralConfiguration(genConf);
     	
-    	FeedbackMechanism mechanism = new FeedbackMechanism();
-    	mechanism.setType("RATING_TYPE");
+    	Mechanism mechanism = new Mechanism();
     	mechanism.setActive(true);
     	mechanism.setOrder(1);
-    	mechanism.setCanBeActivated(false);
+    	mechanism.setParameters(new ArrayList<Parameter>());
     	
-    	FeedbackParameter p4 = new FeedbackParameter();
+    	Parameter p4 = new Parameter();
     	p4.setKey("title");
     	p4.setValue("Rate your user experience");
     	mechanism.getParameters().add(p4);
     	
-    	FeedbackParameter p5 = new FeedbackParameter();
+    	Parameter p5 = new Parameter();
     	p5.setKey("ratingIcon");
     	p5.setValue("star");
     	mechanism.getParameters().add(p5);
     	
-    	FeedbackParameter p6 = new FeedbackParameter();
+    	Parameter p6 = new Parameter();
     	p6.setKey("maxRating");
-    	p6.setValue(5);
+    	p6.setValue("5");
     	mechanism.getParameters().add(p6);
     	
-    	FeedbackParameter p7 = new FeedbackParameter();
+    	Parameter p7 = new Parameter();
     	p7.setKey("defaultRating");
-    	p7.setValue(2);
-    	p7.setEditableByUser(false);
-    	p7.setDefaultValue(0);
+    	p7.setValue("2");
     	mechanism.getParameters().add(p7);
     	
-    	conf.getFeedbackMechanisms().add(mechanism);
+    	conf.getMechanisms().add(mechanism);
 		return conf;
 	}
     
@@ -224,7 +232,7 @@ public class FeedbackOrchestratorProxyTest {
     public void testCreateConfigurationInApplicationForUserGroup() throws Exception{
     	Configuration conf = createConfiguration();
     	
-    	Configuration result = proxy.createConfigurationInApplicationForUserGroup(conf, applicationId, userGroupId, token);
+    	Configuration result = proxy.createConfigurationInApplicationForUserGroup(conf, applicationId, userGroupId);
     	Assert.notNull(result);
     }
     
@@ -256,7 +264,7 @@ public class FeedbackOrchestratorProxyTest {
     @Test
     public void testUpdateGeneralConfigurationInApplication() throws Exception{
     	GeneralConfiguration generalConfiguration = updateGeneralConfiguration();
-		GeneralConfiguration result = proxy.updateGeneralConfigurationInApplication(generalConfiguration, applicationId, token);
+		GeneralConfiguration result = proxy.updateGeneralConfigurationInApplication(generalConfiguration, applicationId);
     	Assert.notNull(result);
     }
     
@@ -264,12 +272,12 @@ public class FeedbackOrchestratorProxyTest {
     	GeneralConfiguration gc = new GeneralConfiguration();
     	gc.setId(generalConfigurationId);
     	
-    	List<FeedbackParameter> parameters = new ArrayList<>();
+    	List<Parameter> parameters = new ArrayList<>();
     	
-    	FeedbackParameter p1 = new FeedbackParameter();
+    	Parameter p1 = new Parameter();
     	p1.setId(62);
     	p1.setKey("reviewActive");
-    	p1.setValue(new Integer (1));
+    	p1.setValue("1");
     	
     	parameters.add(p1);
     	
@@ -278,53 +286,47 @@ public class FeedbackOrchestratorProxyTest {
     }
     
     @Test
-    public void testListAllFeedbackMechanisms() throws Exception{
-    	List<FeedbackMechanism> result = proxy.listAllFeedbackMechanisms();
+    public void testListAllMechanisms() throws Exception{
+    	List<Mechanism> result = proxy.listAllMechanisms();
     	Assert.notNull(result);
     	Assert.isTrue(!result.isEmpty());
     }
     
     @Test
-    public void testGetFeedbackMechanism() throws Exception{
-    	FeedbackMechanism result = proxy.getFeedbackMechanism(mechanismId);
+    public void testGetMechanism() throws Exception{
+    	Mechanism result = proxy.getMechanism(mechanismId);
     	Assert.notNull(result);
     }
     
     @Test
     public void testListAllFeedbackMechanismsInConfiguration() throws Exception{
-    	List<FeedbackMechanism> result = proxy.listAllFeedbackMechanismsInConfiguration(configurationId);
+    	List<Mechanism> result = proxy.listAllMechanismsInConfiguration(configurationId);
     	Assert.notNull(result);
     	Assert.isTrue(!result.isEmpty());
     }
     
     @Test
     public void testCreateFeedbackMechanismInConfigurationInApplication() throws Exception{
-    	FeedbackMechanism fm = createFeedbackMechanism();
-    	FeedbackMechanism result = proxy.createFeedbackMechanismInConfigurationInApplication(fm, configurationId, applicationId, token);
+    	Mechanism fm = createFeedbackMechanism();
+    	Mechanism result = proxy.createMechanismInConfigurationInApplication(fm, configurationId, applicationId);
     	Assert.notNull(result);
     }
     
-    private FeedbackMechanism createFeedbackMechanism(){
-    	FeedbackMechanism fm = new FeedbackMechanism();
-    	fm.setType("AUDIO_TYPE");
+    private Mechanism createFeedbackMechanism(){
+    	Mechanism fm = new Mechanism();
     	fm.setActive(true);
     	fm.setOrder(2);
-    	fm.setCanBeActivated(false);
-    	List<FeedbackParameter> parameters = new ArrayList<>();
+    	List<Parameter> parameters = new ArrayList<>();
     	
-    	FeedbackParameter p1 = new FeedbackParameter();
+    	Parameter p1 = new Parameter();
     	p1.setKey("maxTime");
-    	p1.setValue(new Double (10.0));
-    	p1.setDefaultValue(new Double (30.0));
-    	p1.setEditableByUser(false);
+    	p1.setValue("10.0");
     	p1.setLanguage("en");
     	parameters.add(p1);
     	
-    	FeedbackParameter p2 = new FeedbackParameter();
+    	Parameter p2 = new Parameter();
     	p2.setKey("maxSizeMb");
-    	p2.setValue(new Double (20.0));
-    	p2.setDefaultValue(new Double (30.0));
-    	p2.setEditableByUser(false);
+    	p2.setValue("20.0");
     	p2.setLanguage("en");
     	parameters.add(p2);
     	
@@ -335,76 +337,76 @@ public class FeedbackOrchestratorProxyTest {
     
     @Test
     public void testUpdateFeedbackMechanismInConfigurationInApplication() throws Exception{
-    	FeedbackMechanism fm = createFeedbackMechanism();
+    	Mechanism fm = createFeedbackMechanism();
     	fm.setId(5);
     	fm.setActive(true);
     	fm.getParameters().get(0).setId(43);
-    	fm.getParameters().get(0).setValue(Double.valueOf(250.0));
+    	fm.getParameters().get(0).setValue("250.0");
     	fm.getParameters().remove(1);
-    	FeedbackMechanism result = proxy.updateFeedbackMechanismInConfigurationInApplication(fm, configurationId, applicationId, token);
+    	Mechanism result = proxy.updateMechanismInConfigurationInApplication(fm, configurationId, applicationId);
     	Assert.notNull(result);
     }
     
     @Test
-    public void testListAllFeedbackParameters() throws Exception{
-    	List<FeedbackParameter> result = proxy.listAllFeedbackParameters();
+    public void testListAllParameters() throws Exception{
+    	List<Parameter> result = proxy.listAllParameters();
     	Assert.notNull(result);
     	Assert.isTrue(!result.isEmpty());
     }
     
     @Test
-    public void testGetFeedbackParameter() throws Exception{
-    	FeedbackParameter result = proxy.getFeedbackParameter(parameterId);
+    public void testGetParameter() throws Exception{
+    	Parameter result = proxy.getParameter(parameterId);
     	Assert.notNull(result);
     }
     
     @Test
-    public void testListAllFeedbackParametersInFeedbackMechanism() throws Exception{
-    	List<FeedbackParameter> result = proxy.listAllFeedbackParametersInFeedbackMechanism(mechanismId);
+    public void testListAllParametersInFeedbackMechanism() throws Exception{
+    	List<Parameter> result = proxy.listAllParametersInMechanism(mechanismId);
     	Assert.notNull(result);
     	Assert.isTrue(!result.isEmpty());
     }
     
     @Test
-    public void testListAllFeedbackParametersInGeneralConfiguration() throws Exception{
-    	List<FeedbackParameter> result = proxy.listAllFeedbackParametersInGeneralConfiguration(generalConfigurationId);
+    public void testListAllParametersInGeneralConfiguration() throws Exception{
+    	List<Parameter> result = proxy.listAllParametersInGeneralConfiguration(generalConfigurationId);
     	Assert.notNull(result);
     	Assert.isTrue(!result.isEmpty());
     }
     
     @Test
-    public void testCreateFeedbackParameterForGeneralConfiguration() throws Exception{
-    	FeedbackParameter fp = createFeedbackParameter("test", "test");
-    	FeedbackParameter result = proxy.createFeedbackParameterInGeneralConfigurationInApplication(fp, generalConfigurationId, applicationId, token);
+    public void testCreateParameterForGeneralConfiguration() throws Exception{
+    	Parameter fp = createParameter("test", "test");
+    	Parameter result = proxy.createParameterInGeneralConfigurationInApplication(fp, generalConfigurationId, applicationId);
     	Assert.notNull(result);
     }
     
-    private FeedbackParameter createFeedbackParameter(String key, Object value) {
-    	FeedbackParameter fp = new FeedbackParameter();
+    private static Parameter createParameter(String key, String value) {
+    	Parameter fp = new Parameter();
     	fp.setKey(key);
     	fp.setValue(value);
     	return fp;
 	}
 
 	@Test
-    public void testCreateFeedbackParameterInFeedbackMechanismInApplication() throws Exception{
-		FeedbackParameter fp = createFeedbackParameter("test", "test");
-    	FeedbackParameter result = proxy.createFeedbackParameterInFeedbackMechanismInApplication(fp, mechanismId, applicationId, token);
+    public void testCreateParameterInFeedbackMechanismInApplication() throws Exception{
+		Parameter fp = createParameter("test", "test");
+    	Parameter result = proxy.createParameterInMechanismInApplication(fp, mechanismId, applicationId);
     	Assert.notNull(result);
     }
     
     @Test
-    public void testUpdateFeedbackParameter() throws Exception{
-    	FeedbackParameter fp = createFeedbackParameter("test", "test");
+    public void testUpdateParameter() throws Exception{
+    	Parameter fp = createParameter("test", "test");
     	fp.setId(40);
-    	fp.setValue(Double.valueOf(100.0));
-    	FeedbackParameter result = proxy.updateFeedbackParameterInApplication(fp, applicationId, token);
+    	fp.setValue("100.0");
+    	Parameter result = proxy.updateParameterInApplication(fp, applicationId);
     	Assert.notNull(result);
     }
     
     @Test
     public void testAuthenticate() throws Exception{
-    	String user = "api_user";
+    	String user = "admin";
     	String password = "password";
     	String token = proxy.authenticate(user, password);
     	Assert.notNull(token);
@@ -421,8 +423,7 @@ public class FeedbackOrchestratorProxyTest {
     public void testLUpdateUser() throws Exception{
     	User user = new User();
     	user.setId(1);
-    	user.setGroupId(1);
-    	User result = proxy.updateUser(user, token);
+    	User result = proxy.updateUser(user);
     	Assert.notNull(result);
     }
 
@@ -446,7 +447,7 @@ public class FeedbackOrchestratorProxyTest {
     	User u1 = new User();
     	u1.setName("u_test1");
     	group.getUsers().add (u1);
-    	UserGroup result = proxy.createUserGroup(group, token);
+    	UserGroup result = proxy.createUserGroup(group);
     	Assert.notNull(result);
     }
 }
