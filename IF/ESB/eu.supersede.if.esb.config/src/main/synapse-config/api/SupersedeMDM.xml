@@ -51,4 +51,38 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="POST" protocol="http" uri-template="/classify/feedback">
+    <inSequence>
+      <log level="full">
+        <property name="Metadata Management System" value="Real-time feedback classifiation request forwarded to MDM endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MDMEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/files">
+    <inSequence>
+      <log level="full">
+        <property name="Metadata Management System" value="Send files request forwarded to MDM endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MDMEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>
