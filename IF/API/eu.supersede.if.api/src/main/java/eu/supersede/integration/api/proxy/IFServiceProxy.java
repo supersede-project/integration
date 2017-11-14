@@ -701,6 +701,19 @@ public abstract class IFServiceProxy<T, S> {
 		                  method, requestEntity, returnType);
 		return response.getBody();
 	}
+	
+	public boolean sendMultipartFormDataMessage(URI uri, LinkedMultiValueMap<String, Object> parts, HttpMethod method, HttpStatus expectedStatus) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		
+		HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
+		          new HttpEntity<LinkedMultiValueMap<String, Object>>(parts, headers);
+		
+		ResponseEntity<String> response =
+				messageClient.exchange(uri, 
+		                  method, requestEntity, String.class);
+		return response.getStatusCode().equals(expectedStatus);
+	}
 
 	public <T> String convertToJSON(T object) throws JsonProcessingException {
 		return messageClient.convertToJSON(object);
