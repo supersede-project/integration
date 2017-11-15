@@ -31,6 +31,7 @@ import org.springframework.util.Assert;
 import eu.supersede.integration.api.mdm.proxies.MetadataManagementProxy;
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
 import eu.supersede.integration.api.mdm.types.Feedback;
+import eu.supersede.integration.api.mdm.types.FeedbackClassification;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
 import eu.supersede.integration.api.mdm.types.Release;
 
@@ -88,8 +89,8 @@ public class MetadataManagementProxyTest {
 	@Test
 	public void testRealtimeFeedbackClassification() throws Exception{
 		Feedback feedback = new Feedback("hello, I don't like this");
-		boolean result = proxy.getRealtimeFeedbackClassification(feedback);
-		Assert.isTrue(result);
+		FeedbackClassification result = proxy.getRealtimeFeedbackClassification(feedback);
+		Assert.notNull(result);
 	}
 	
 }

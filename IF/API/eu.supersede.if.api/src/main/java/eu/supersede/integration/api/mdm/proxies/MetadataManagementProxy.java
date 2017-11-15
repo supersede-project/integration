@@ -39,6 +39,7 @@ import org.springframework.util.LinkedMultiValueMap;
 
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
 import eu.supersede.integration.api.mdm.types.Feedback;
+import eu.supersede.integration.api.mdm.types.FeedbackClassification;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
 import eu.supersede.integration.api.mdm.types.Release;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
@@ -74,12 +75,12 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 	}
 
 	@Override
-	public boolean getRealtimeFeedbackClassification(Feedback feedback) throws Exception {
+	public FeedbackClassification getRealtimeFeedbackClassification(Feedback feedback) throws Exception {
 		Assert.notNull(feedback, "Provide a valid feedback");
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "classify/feedback");
 		log.debug("Sending message getRealtimeFeedbackClassification for feedback: " + feedback +
 				" to MetadataManagement at uri " + uri);
-		return insertJSONObject(feedback, uri,  HttpStatus.OK);
+		return insertJSONObjectAndReturnAnotherType(feedback, FeedbackClassification.class, uri,  HttpStatus.OK);
 	}
 
 	@Override
