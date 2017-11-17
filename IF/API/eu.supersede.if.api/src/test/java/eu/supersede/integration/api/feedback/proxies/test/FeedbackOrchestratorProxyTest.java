@@ -52,7 +52,7 @@ public class FeedbackOrchestratorProxyTest {
 	
     @BeforeClass
     public static void setup() throws Exception {
-    	String user = "superadmin";
+    	String user = "admin";
      	String password = "password";
         proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
         
@@ -406,7 +406,7 @@ public class FeedbackOrchestratorProxyTest {
     
     @Test
     public void testAuthenticate() throws Exception{
-    	String user = "admin";
+    	String user = "superadmin";
     	String password = "password";
     	String token = proxy.authenticate(user, password);
     	Assert.notNull(token);
