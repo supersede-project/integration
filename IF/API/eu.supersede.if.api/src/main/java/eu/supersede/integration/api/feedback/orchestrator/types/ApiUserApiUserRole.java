@@ -7,7 +7,7 @@ public class ApiUserApiUserRole {
 
     private long id;
 
-    private ApiUser apiUser;
+//    private ApiUser apiUser;
 
     private ApiUserRole apiUserRole;
 
@@ -15,7 +15,7 @@ public class ApiUserApiUserRole {
     }
 
     public ApiUserApiUserRole(ApiUser apiUser, ApiUserRole apiUserRole) {
-        this.apiUser = apiUser;
+        this.id = apiUser.getId();
         this.apiUserRole = apiUserRole;
     }
 
@@ -27,13 +27,13 @@ public class ApiUserApiUserRole {
         this.id = id;
     }
 
-    public ApiUser getApiUser() {
-        return apiUser;
-    }
-
-    public void setApiUser(ApiUser apiUser) {
-        this.apiUser = apiUser;
-    }
+//    public ApiUser getApiUser() {
+//        return apiUser;
+//    }
+//
+//    public void setApiUser(ApiUser apiUser) {
+//        this.apiUser = apiUser;
+//    }
 
     public ApiUserRole getApiUserRole() {
         return apiUserRole;

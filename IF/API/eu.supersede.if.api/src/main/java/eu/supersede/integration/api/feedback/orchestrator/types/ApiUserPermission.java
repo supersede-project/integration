@@ -9,10 +9,10 @@ import javax.persistence.*;
 public class ApiUserPermission {
     private long id;
 
-    @JsonIgnore
+//    @JsonIgnore
     private ApiUser apiUser;
 
-    @JsonIgnore
+//    @JsonIgnore
     private Application application;
 
     private boolean hasPermission;

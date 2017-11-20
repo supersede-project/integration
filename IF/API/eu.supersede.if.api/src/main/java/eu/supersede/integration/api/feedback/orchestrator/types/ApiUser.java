@@ -2,6 +2,8 @@ package eu.supersede.integration.api.feedback.orchestrator.types;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,15 +12,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiUser implements UserDetails {
 
     
     private long id;
     private String name;
-    @JsonIgnore
     private String password;
 
+    @JsonIgnore
     private List<ApiUserApiUserRole> apiUserApiUserRoles;
 
     private List<ApiUserPermission> apiUserPermissions;
@@ -33,6 +35,8 @@ public class ApiUser implements UserDetails {
     private Boolean credentialsNonExpired = true;
     
     private Boolean enabled = true;
+    
+    private String username;
 
     public ApiUser() {
     }
@@ -81,7 +85,7 @@ public class ApiUser implements UserDetails {
         if(this.apiUserApiUserRoles == null) {
             return null;
         }
-        List<ApiUserRole> apiUserRoles = new ArrayList<>();
+        List<GrantedAuthority> apiUserRoles = new ArrayList<>();
         for(ApiUserApiUserRole apiUserApiUserRole : this.apiUserApiUserRoles) {
             apiUserRoles.add(apiUserApiUserRole.getApiUserRole());
         }
@@ -101,11 +105,6 @@ public class ApiUser implements UserDetails {
 
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.name;
     }
 
     @Override
@@ -178,5 +177,13 @@ public class ApiUser implements UserDetails {
 
     public void setApiUserPermissions(List<ApiUserPermission> apiUserPermissions) {
         this.apiUserPermissions = apiUserPermissions;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
