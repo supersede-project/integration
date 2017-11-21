@@ -723,6 +723,20 @@ public abstract class IFServiceProxy<T, S> {
 		return response.getBody();
 	}
 	
+	public <T> T sendMultipartFormDataMessage(URI uri, Class<T> returnType, LinkedMultiValueMap<String, Object> parts, HttpMethod method, String token) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", token);
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		
+		HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
+		          new HttpEntity<LinkedMultiValueMap<String, Object>>(parts, headers);
+		
+		ResponseEntity<T> response =
+				messageClient.exchange(uri, 
+		                  method, requestEntity, returnType);
+		return response.getBody();
+	}
+	
 	public boolean sendMultipartFormDataMessage(URI uri, LinkedMultiValueMap<String, Object> parts, HttpMethod method, HttpStatus expectedStatus) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);

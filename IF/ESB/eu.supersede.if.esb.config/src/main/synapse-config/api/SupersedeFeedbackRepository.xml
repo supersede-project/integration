@@ -51,6 +51,23 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications/{id_app}/feedbacks">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Repository" value="Create feedback for application by Id message forwarded to Feedback Repository endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackRepositoryEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
   <resource methods="DELETE" protocol="http" uri-template="/{language}/applications/{id_app}/feedbacks/{id_feedback}">
     <inSequence>
       <log level="full">
