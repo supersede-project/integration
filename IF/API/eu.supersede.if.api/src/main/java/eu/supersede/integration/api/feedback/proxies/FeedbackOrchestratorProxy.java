@@ -649,14 +649,15 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public User createUser(User user, long idApplication) throws Exception {
+	public void createUser(User user, long idApplication) throws Exception {
 		Assert.notNull(user, "Provide a valid user");
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication + "/users");
 		log.debug("Sending message createUser with user: " + user 
 				+ " and idApplication: " + idApplication
 				+ " to FeedbackOrchestrator at uri " + uri);
-		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);
+		if (!insertJSONObject(user, uri, HttpStatus.CREATED, token))
+			throw new IFException("There was a problem creating an user : " + user + " in idApplication: " + idApplication);
 	}
 	
 	@Override
@@ -721,14 +722,15 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public UserGroup createUserGroup(UserGroup userGroup, long idApplication) throws Exception {
+	public void createUserGroup(UserGroup userGroup, long idApplication) throws Exception {
 		Assert.notNull(userGroup, "Provide a valid userGroup");
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication + "/user_groups");
 		log.debug("Sending message createUserGroup with userGroup: " + userGroup 
 				+ " and idApplication: " + idApplication
 				+ " to FeedbackOrchestrator at uri " + uri);
-		return updateAndReturnJSONObject(userGroup, uri, HttpStatus.OK, token);
+		if (!insertJSONObject(userGroup, uri, HttpStatus.CREATED, token))
+			throw new IFException("There was a problem creating a user group: " + userGroup + " in idApplication: " + idApplication);
 	}
 	
 	@Override
