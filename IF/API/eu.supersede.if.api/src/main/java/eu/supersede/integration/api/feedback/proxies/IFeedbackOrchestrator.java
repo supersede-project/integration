@@ -109,7 +109,7 @@ public interface IFeedbackOrchestrator {
 	
 	//Users
 	List<User> getUsers(long idApplication) throws Exception;
-	User createUser (User user, long idApplication) throws Exception;
+	void createUser (User user, long idApplication) throws Exception;
 	User updateUser (User user, long idApplication) throws Exception;
 	User getUser (long idApplication, long idUser) throws Exception;
 	void deleteUser (long idApplication, long idUser) throws Exception;
@@ -117,7 +117,7 @@ public interface IFeedbackOrchestrator {
 	
 	//Groups
 	List<UserGroup> getUserGroups(long idApplication) throws Exception;
-	UserGroup createUserGroup (UserGroup userGroup, long idApplication) throws Exception;
+	void createUserGroup (UserGroup userGroup, long idApplication) throws Exception;
 	UserGroup updateUserGroup (UserGroup userGroup, long idApplication) throws Exception;
 	UserGroup getUserGroup (long idApplication, long idUserGroup) throws Exception;
 	void deleteUserGroup (long idApplication, long idUserGroup) throws Exception;

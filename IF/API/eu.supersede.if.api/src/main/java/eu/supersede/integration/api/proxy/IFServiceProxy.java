@@ -308,6 +308,27 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public <T> boolean insertJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			Assert.notNull(token, "Provide a valid token");
+			ResponseEntity<String> response = 
+					messageClient.postJsonMessage(object, uri, object.getClass(), token);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+				result = true;
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return false;
+		}
+	}
+	
 	public boolean insertJSONObject(String json, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
 		boolean result = false;
 		try {

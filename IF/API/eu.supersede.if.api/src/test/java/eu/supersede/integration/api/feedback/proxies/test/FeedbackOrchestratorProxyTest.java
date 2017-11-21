@@ -282,6 +282,178 @@ public class FeedbackOrchestratorProxyTest {
 		
 	}
 	
+	// General Configurations of configuration
+	
+	@Test
+	public void testGetGeneralConfigurationsOfConfiguration() throws Exception {
+		GeneralConfiguration result = proxy.getGeneralConfigurationOfConfiguration(idApplication, idConfiguration);
+		Assert.notNull(result);
+	}
+
+	@Test
+	public void testGetGeneralConfigurationsOfConfigurationById() throws Exception {
+		GeneralConfiguration result = proxy.getGeneralConfigurationOfConfiguration(idApplication, idConfiguration,
+				idGeneralConfiguration);
+		Assert.notNull(result);
+	}
+	
+	@Test
+	public void testCreateUpdateDeleteGeneralConfigurationOfConfiguration() throws Exception {
+		//Create
+		List<Parameter> parameters = createParameters();
+		GeneralConfiguration genConf = createGeneralConfiguration(parameters);
+		GeneralConfiguration result = proxy.createGeneralConfigurationOfConfiguration(genConf, idApplication, idConfiguration);
+		Assert.notNull(result);
+		
+		//Update
+		result.setName(result.getName()+ "Modified");
+		result = proxy.updateGeneralConfigurationOfConfiguration(result, idApplication, idConfiguration);
+		Assert.isTrue(result.getName().contains("Modified"));
+		
+		//Delete
+		proxy.deleteGeneralConfigurationsOfConfiguration(idApplication, result.getId(), idConfiguration);
+	}
+	
+	// Mechanism of configurations
+	@Test
+	public void testGetMechanismsOfConfiguration() throws Exception {
+		idApplication = 8;
+		idConfiguration = 9;
+		List<Mechanism> result = proxy.getMechanismsOfConfiguration(idApplication, idConfiguration);
+		Assert.notNull(result);
+		Assert.isTrue(!result.isEmpty());
+	}
+
+	@Test
+	public void testGetMechanismOfConfiguration() throws Exception {
+		idApplication = 8;
+		idConfiguration = 9;
+		idMechanism = 29;
+		Mechanism result = proxy.getMechanismOfConfiguration(idApplication, idConfiguration, idMechanism);
+		Assert.notNull(result);
+	}
+
+	@Test
+	public void testCreateMechanismOfConfiguration() throws Exception {
+		Mechanism fm = createFeedbackMechanism(MechanismType.AUDIO_TYPE);
+		Mechanism result = proxy.createMechanismOfConfiguration(fm, idApplication, idConfiguration);
+		Assert.notNull(result);
+	}
+
+	
+	// Mechanism
+	@Test
+	public void testGetMechanismsOfApplication() throws Exception {
+		idApplication = 8;
+		List<Mechanism> result = proxy.getMechanismsOfApplication(idApplication);
+		Assert.notNull(result);
+		Assert.isTrue(!result.isEmpty());
+	}
+
+	@Test
+	public void testGetMechanismOfApplication() throws Exception {
+		idApplication = 8;
+		idMechanism = 28;
+		Mechanism result = proxy.getMechanismOfApplication(idApplication, idMechanism);
+		Assert.notNull(result);
+	}
+	
+	@Test
+	public void testCreateUpdateDeleteMechanismOfApplication() throws Exception {
+		//Create
+		Mechanism fm = createFeedbackMechanism(MechanismType.INFO_TYPE);
+		Mechanism result = proxy.createMechanismOfApplication(fm, idApplication);
+		Assert.notNull(result);
+		
+		//Update
+		result.setType(MechanismType.SCREENSHOT_TYPE);
+		result = proxy.updateMechanismOfApplication(result, idApplication);
+		Assert.isTrue(result.getType() == MechanismType.SCREENSHOT_TYPE);
+		
+		//Delete
+		proxy.deleteMechanismOfApplication(idApplication, result.getId());
+	}
+	
+	// Configuration of mechanism
+	
+	@Test
+	public void testGetMechanismParameters() throws Exception {
+		idApplication = 8;
+		idMechanism = 28;
+		List<Parameter> result = proxy.getMechanismParameters(idApplication, idMechanism);
+		Assert.notNull(result);
+		Assert.isTrue(!result.isEmpty());
+	}
+	
+	// Parameters
+	@Test
+	public void testGetParameters() throws Exception {
+		List<Parameter> result = proxy.getParameters();
+		Assert.notNull(result);
+		Assert.isTrue(!result.isEmpty());
+	}
+
+	@Test
+	public void testGetParameter() throws Exception {
+		Parameter result = proxy.getParameter(idParameter);
+		Assert.notNull(result);
+	}
+	
+	@Test
+	public void testCreateUpdateDeleteParameters() throws Exception {
+		//Create
+		List<Parameter> parameters = createParameters();
+		Parameter result = proxy.createParameter(parameters.get(0));
+		Assert.notNull(result);
+		
+		//Update
+		result.setValue(result.getValue() + "Modified");;
+		result = proxy.updateParameter(result);
+		Assert.isTrue(result.getValue().contains("Modified"));
+		
+		//Delete
+		proxy.deleteParameter(result.getId());
+	}
+	
+	// Users
+	@Test
+	public void testGetUsers() throws Exception {
+		List<User> result = proxy.getUsers(idApplication);
+		Assert.notNull(result);
+		Assert.isTrue(!result.isEmpty());
+	}
+
+	@Test
+	public void testCreateUser() throws Exception {
+		Application application = proxy.getApplicationWithConfiguration(idApplication);
+		UserGroup userGroup = new UserGroup ("grouptest", new ArrayList<>(), application);
+		User user = new User("usertest", "usertest", application, userGroup);
+		proxy.createUserGroup(userGroup, idApplication);
+		proxy.createUser(user, idApplication);
+	}
+	
+	// User groups
+	
+	@Test
+	public void testGetUserGroups() throws Exception {
+		List<UserGroup> result = proxy.getUserGroups(idApplication);
+		Assert.notNull(result);
+		Assert.isTrue(!result.isEmpty());
+	}
+
+	@Test
+	public void testGetUserGroup() throws Exception {
+		UserGroup result = proxy.getUserGroup(idApplication, idUserGroup);
+		Assert.notNull(result);
+	}
+
+	@Test
+	public void testCreateUserGroup() throws Exception {
+		Application application = proxy.getApplicationWithConfiguration(idApplication);
+		UserGroup userGroup = new UserGroup ("grouptest", new ArrayList<>(), application);
+		proxy.createUserGroup(userGroup, idApplication);
+	}
+	
 	//Private methods
 	
 	private List<Mechanism> createMechanisms(List<Parameter> parameters) {
@@ -380,184 +552,10 @@ public class FeedbackOrchestratorProxyTest {
 		return conf;
 	}
 
-	@Test
-	public void testGetMechanismParameters() throws Exception {
-		idApplication = 8;
-		idMechanism = 28;
-		List<Parameter> result = proxy.getMechanismParameters(idApplication, idMechanism);
-		Assert.notNull(result);
-		Assert.isTrue(!result.isEmpty());
-	}
 
-	@Test
-	public void testUpdateConfigurationInApplication() throws Exception {
-		Configuration configuration = new Configuration();
-		configuration.setId(4);
-		Mechanism mechanism = new Mechanism();
-		mechanism.setId(5);
-		mechanism.setActive(false);
-		Parameter parameter = new Parameter();
-		parameter.setId(44);
-		parameter.setKey("title");
-		parameter.setValue("Enter your rating here");
-		mechanism.getParameters().add(parameter);
-		configuration.getMechanisms().add(mechanism);
-		Configuration result = proxy.updateConfiguration(configuration, idApplication);
-		Assert.notNull(result);
-	}
-
-
-
-	private Configuration createConfiguration() {
-		Configuration conf = new Configuration();
-		conf.setType(TriggerType.PULL);
-		GeneralConfiguration genConf = new GeneralConfiguration();
-		genConf.setParameters(new ArrayList<Parameter>());
-
-		Parameter p1 = new Parameter();
-		p1.setKey("reviewActive");
-		p1.setValue("0");
-		genConf.getParameters().add(p1);
-
-		Parameter p2 = new Parameter();
-		p2.setKey("likelihood");
-		p2.setValue("0.2");
-		genConf.getParameters().add(p2);
-
-		Parameter p3 = new Parameter();
-		p3.setKey("askOnAppStartup");
-		p3.setValue("0");
-		genConf.getParameters().add(p3);
-
-		conf.setGeneralConfiguration(genConf);
-
-		Mechanism mechanism = new Mechanism();
-		mechanism.setActive(true);
-		mechanism.setOrder(1);
-		mechanism.setParameters(new ArrayList<Parameter>());
-
-		Parameter p4 = new Parameter();
-		p4.setKey("title");
-		p4.setValue("Rate your user experience");
-		mechanism.getParameters().add(p4);
-
-		Parameter p5 = new Parameter();
-		p5.setKey("ratingIcon");
-		p5.setValue("star");
-		mechanism.getParameters().add(p5);
-
-		Parameter p6 = new Parameter();
-		p6.setKey("maxRating");
-		p6.setValue("5");
-		mechanism.getParameters().add(p6);
-
-		Parameter p7 = new Parameter();
-		p7.setKey("defaultRating");
-		p7.setValue("2");
-		mechanism.getParameters().add(p7);
-
-		conf.getMechanisms().add(mechanism);
-		return conf;
-	}
-
-	@Test
-	public void testCreateConfiguration() throws Exception {
-		Configuration conf = createConfiguration();
-
-		Configuration result = proxy.createConfiguration(conf, idApplication);
-		Assert.notNull(result);
-	}
-
-	// @Test
-	// public void testListAllGeneralConfigurations() throws Exception{
-	// List<GeneralConfiguration> result = proxy.listAllGeneralConfigurations();
-	// Assert.notNull(result);
-	// Assert.isTrue(!result.isEmpty());
-	// }
-
-	
-
-	@Test
-	public void testGetGeneralConfigurationsOfConfiguration() throws Exception {
-		GeneralConfiguration result = proxy.getGeneralConfigurationOfConfiguration(idApplication, idConfiguration);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testGetGeneralConfigurationsOfConfigurationById() throws Exception {
-		GeneralConfiguration result = proxy.getGeneralConfigurationOfConfiguration(idApplication, idConfiguration,
-				idGeneralConfiguration);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testUpdateGeneralConfigurationOfApplication() throws Exception {
-		GeneralConfiguration generalConfiguration = updateGeneralConfiguration();
-		GeneralConfiguration result = proxy.updateGeneralConfigurationOfApplication(generalConfiguration,
-				idApplication);
-		Assert.notNull(result);
-	}
-
-	private GeneralConfiguration updateGeneralConfiguration() {
-		GeneralConfiguration gc = new GeneralConfiguration();
-		gc.setId(idGeneralConfiguration);
-
-		List<Parameter> parameters = new ArrayList<>();
-
-		Parameter p1 = new Parameter();
-		p1.setId(62);
-		p1.setKey("reviewActive");
-		p1.setValue("1");
-
-		parameters.add(p1);
-
-		gc.setParameters(parameters);
-		return gc;
-	}
-
-	@Test
-	public void testGetMechanismsOfApplication() throws Exception {
-		idApplication = 8;
-		List<Mechanism> result = proxy.getMechanismsOfApplication(idApplication);
-		Assert.notNull(result);
-		Assert.isTrue(!result.isEmpty());
-	}
-
-	@Test
-	public void testGetMechanismOfApplication() throws Exception {
-		idApplication = 8;
-		idMechanism = 28;
-		Mechanism result = proxy.getMechanismOfApplication(idApplication, idMechanism);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testGetMechanismsOfConfiguration() throws Exception {
-		idApplication = 8;
-		idConfiguration = 9;
-		List<Mechanism> result = proxy.getMechanismsOfConfiguration(idApplication, idConfiguration);
-		Assert.notNull(result);
-		Assert.isTrue(!result.isEmpty());
-	}
-
-	@Test
-	public void testGetMechanismOfConfiguration() throws Exception {
-		idApplication = 8;
-		idConfiguration = 9;
-		idMechanism = 29;
-		Mechanism result = proxy.getMechanismOfConfiguration(idApplication, idConfiguration, idMechanism);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testCreateMechanismOfConfiguration() throws Exception {
-		Mechanism fm = createFeedbackMechanism();
-		Mechanism result = proxy.createMechanismOfConfiguration(fm, idApplication, idConfiguration);
-		Assert.notNull(result);
-	}
-
-	private Mechanism createFeedbackMechanism() {
+	private Mechanism createFeedbackMechanism(MechanismType type) {
 		Mechanism fm = new Mechanism();
+		fm.setType(type);
 		fm.setActive(true);
 		fm.setOrder(2);
 		List<Parameter> parameters = new ArrayList<>();
@@ -579,37 +577,6 @@ public class FeedbackOrchestratorProxyTest {
 		return fm;
 	}
 
-	@Test
-	public void testUpdateMechanismOfConfiguration() throws Exception {
-		Mechanism fm = createFeedbackMechanism();
-		fm.setId(5);
-		fm.setActive(true);
-		fm.getParameters().get(0).setId(43);
-		fm.getParameters().get(0).setValue("250.0");
-		fm.getParameters().remove(1);
-		Mechanism result = proxy.updateMechanismOfConfiguration(fm, idApplication, idConfiguration);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testGetParameters() throws Exception {
-		List<Parameter> result = proxy.getParameters();
-		Assert.notNull(result);
-		Assert.isTrue(!result.isEmpty());
-	}
-
-	@Test
-	public void testGetParameter() throws Exception {
-		Parameter result = proxy.getParameter(idParameter);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testGetParametersInFeedbackMechanism() throws Exception {
-		List<Parameter> result = proxy.getMechanismParameters(idApplication, idMechanism);
-		Assert.notNull(result);
-		Assert.isTrue(!result.isEmpty());
-	}
 
 	private static Parameter createParameter(String key, String value) {
 		Parameter fp = new Parameter();
@@ -618,42 +585,4 @@ public class FeedbackOrchestratorProxyTest {
 		return fp;
 	}
 
-	@Test
-	public void testGetUsers() throws Exception {
-		List<User> result = proxy.getUsers(idApplication);
-		Assert.notNull(result);
-		Assert.isTrue(!result.isEmpty());
-	}
-
-	@Test
-	public void testUpdateUser() throws Exception {
-		User user = new User();
-		user.setId(1);
-		User result = proxy.updateUser(user, idApplication);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testGetUserGroups() throws Exception {
-		List<UserGroup> result = proxy.getUserGroups(idApplication);
-		Assert.notNull(result);
-		Assert.isTrue(!result.isEmpty());
-	}
-
-	@Test
-	public void testGetUserGroup() throws Exception {
-		UserGroup result = proxy.getUserGroup(idApplication, idUserGroup);
-		Assert.notNull(result);
-	}
-
-	@Test
-	public void testCreateUserGroup() throws Exception {
-		UserGroup group = new UserGroup();
-		group.setName("Supersede Test Group");
-		User u1 = new User();
-		u1.setName("u_test1");
-		group.getUsers().add(u1);
-		UserGroup result = proxy.createUserGroup(group, idApplication);
-		Assert.notNull(result);
-	}
 }
