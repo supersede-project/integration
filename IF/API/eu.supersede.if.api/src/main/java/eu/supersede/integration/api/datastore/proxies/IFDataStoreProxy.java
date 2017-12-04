@@ -20,14 +20,7 @@
 package eu.supersede.integration.api.datastore.proxies;
 
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +43,7 @@ public class IFDataStoreProxy<T, S> extends IFServiceProxy<T, S> implements IFDa
 	@Override
 	public List<SupersedePlatform> getSupersedePlatforms(AuthorizationToken authenticationToken)
 			throws Exception {
+		
 		Assert.notNull(authenticationToken, "Provide a valid authentication token");
 		Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
 		Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
@@ -101,14 +95,36 @@ public class IFDataStoreProxy<T, S> extends IFServiceProxy<T, S> implements IFDa
 			//Encrypt platform mb_password
 			platform.setMb_password(PasswordCrypt.encryptPassword(platform.getMb_password(), SUPERSEDE_IF_DS_KEY));
 			
-			URI uri = new URI(SUPERSEDE_IF_DS_ENDPOINT + "mb/accounts/" + platform.getPlatform() + "/"
-					+ platform.getMb_user() + "/" + platform.getMb_password());
+			URI uri = new URI(SUPERSEDE_IF_DS_ENDPOINT + "mb/accounts?" + 
+					"platform=" + platform.getPlatform() + "&" + 
+					"user=" + platform.getMb_user() + "&" + 
+					"password=" + platform.getMb_password() + "&" + 
+					"mb_url=" + platform.getMb_url());
 
 			log.debug("Sending message insertSupersedePlatform with platformId: " + platform.getPlatform()
 					+ " ,mb_user: " + platform.getMb_user() + " ,mb_password: " + platform.getMb_password()
+					+ " ,mb_url: " + platform.getMb_url()
 					+ " to IFDataStore at uri " + uri);
 			
 			return insertJSONObject("{}", uri, HttpStatus.ACCEPTED, authenticationToken.getAccessToken());
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean deleteSupersedePlatform(String platformId, AuthorizationToken authenticationToken) throws Exception {
+		try {
+			Assert.notNull(platformId, "PlatformId id cannot be unasigned");
+			Assert.notNull(authenticationToken, "Provide a valid authentication token");
+			Assert.notNull(authenticationToken.getAccessToken(), "Provide a valid authentication token");
+			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), "Provide a valid authentication token");
+			URI uri = new URI(SUPERSEDE_IF_DS_ENDPOINT + "mb/accounts/" + platformId);
+
+			log.debug("Sending message deleteSupersedePlatform with platformId: " + platformId + " to IFDataStore at uri "
+					+ uri);
+			return deleteUriResource(uri, HttpStatus.ACCEPTED, authenticationToken.getAccessToken()); 
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return false;

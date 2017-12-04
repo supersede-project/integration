@@ -25,10 +25,12 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class IntegrationProperty {
 	private static final Logger log = LoggerFactory.getLogger(IntegrationProperty.class);
 	public static Properties prop = new Properties();
 	public static String propFileName = "if.development.properties";
+	
 	static{
 		//Read configuration from environment
 		if (System.getProperty("supersede.if.properties")!=null){
@@ -49,6 +51,7 @@ public class IntegrationProperty {
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		} 
+		
 	}
 	
 	public static String getProperty(String key){

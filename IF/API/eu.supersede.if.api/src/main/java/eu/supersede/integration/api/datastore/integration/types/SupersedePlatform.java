@@ -4,6 +4,8 @@ public class SupersedePlatform {
 	String platform;
 	String mb_user;
 	String mb_password;
+	String mb_url;
+	
 	public String getPlatform() {
 		return platform;
 	}
@@ -23,11 +25,18 @@ public class SupersedePlatform {
 		this.mb_password = mb_password;
 	}
 	
+	public String getMb_url() {
+		return mb_url;
+	}
+	public void setMb_url(String mb_url) {
+		this.mb_url = mb_url;
+	}
 	@Override
 	public String toString(){
 		return "SupersedePlatform[" 
 				+ "platform: " + platform 
 				+ ", mb_user: " + mb_user 
-				+ ", mb_password: " + mb_password + "]";
+				+ ", mb_password: " + mb_password
+				+ ", mb_url: " + mb_url + "]";
 	}
 }

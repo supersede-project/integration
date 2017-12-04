@@ -14,4 +14,6 @@ public interface IFDataStore {
 	
 	public boolean insertSupersedePlatform(SupersedePlatform platform, AuthorizationToken authenticationToken)
 			throws Exception;
+	
+	boolean deleteSupersedePlatform(String platformId, AuthorizationToken authenticationToken) throws Exception;
 }

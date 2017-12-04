@@ -38,18 +38,19 @@
     <outSequence/>
     <faultSequence/>
   </resource>
-  <resource methods="POST" protocol="http" uri-template="/mb/accounts/{id_platform}/{user}/{password}">
+  <resource methods="POST" protocol="http" uri-template="/mb/accounts?*">
     <inSequence>
-      <property expression="get-property('uri.var.id_platform')"
-        name="id_platform" scope="default" type="STRING"/>
-      <property expression="get-property('uri.var.user')" name="user"
+      <property expression="$url:platform" name="id_platform"
         scope="default" type="STRING"/>
-      <property expression="get-property('uri.var.password')"
-        name="password" scope="default" type="STRING"/>
+      <property expression="$url:user" name="user" scope="default" type="STRING"/>
+      <property expression="$url:password" name="password"
+        scope="default" type="STRING"/>
+      <property expression="$url:mb_url" name="mb_url" scope="default" type="STRING"/>
       <log level="full">
         <property expression="$ctx:id_platform" name="id_platform"/>
         <property expression="$ctx:user" name="user"/>
         <property expression="$ctx:password" name="password"/>
+        <property expression="$ctx:mb_url" name="mb_url"/>
       </log>
       <sequence key="conf:/SupersedeDS_Integration_InsertAccount_Request_DSSSequence.xml"/>
       <call>

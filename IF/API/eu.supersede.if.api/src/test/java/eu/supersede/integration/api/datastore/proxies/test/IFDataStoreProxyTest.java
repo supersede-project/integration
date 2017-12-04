@@ -57,20 +57,34 @@ public class IFDataStoreProxyTest {
     }
     
     @Test
-    public void testGetSupersedePlatform() throws Exception{
-    	String platformId = "test";
+    public void testCreateGetDeleteSupersedePlatform() throws Exception{
+    	SupersedePlatform platform = testInsertSupersedePlatform();
+    	platform = testGetSupersedePlatform(platform.getPlatform());
+    	testDeleteSupersedePlatform(platform.getPlatform());
+    }
+    
+    private SupersedePlatform testGetSupersedePlatform(String platformId) throws Exception{
     	SupersedePlatform platform = proxy.getSupersedePlatform(platformId, token);
     	Assert.notNull(platform);
     	log.debug("Platform: " + platform);
+    	return platform;
     }
     
-    @Test
-    public void testInsertSupersedePlatform() throws Exception{
+    
+    private SupersedePlatform testInsertSupersedePlatform() throws Exception{
     	SupersedePlatform platform = new SupersedePlatform();
     	platform.setPlatform("test");
     	platform.setMb_User("supersede");
     	platform.setMb_password("password_test");
+    	platform.setMb_url("test.supersede.eu:5676");
     	Boolean result = proxy.insertSupersedePlatform(platform, token);
+    	Assert.isTrue (result);
+    	return platform;
+    }
+    
+    
+    private void testDeleteSupersedePlatform(String platformId) throws Exception{
+    	Boolean result = proxy.deleteSupersedePlatform(platformId, token);
     	Assert.isTrue (result);
     }
     

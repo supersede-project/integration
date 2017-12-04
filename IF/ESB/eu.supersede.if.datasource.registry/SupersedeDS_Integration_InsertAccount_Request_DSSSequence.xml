@@ -8,12 +8,14 @@
         <xs:platform xmlns:xs="http://schema.supersede.eu">$1</xs:platform>
         <xs:mb_user xmlns:xs="http://schema.supersede.eu">$2</xs:mb_user>
         <xs:mb_password xmlns:xs="http://schema.supersede.eu">$3</xs:mb_password>
+        <xs:mb_url xmlns:xs="http://schema.supersede.eu">$4</xs:mb_url>
       </p:insert_mb_accounts_operation>
     </format>
     <args>
       <arg evaluator="xml" expression="$ctx:id_platform"/>
       <arg evaluator="xml" expression="$ctx:user"/>
       <arg evaluator="xml" expression="$ctx:password"/>
+      <arg evaluator="xml" expression="$ctx:mb_url"/>
     </args>
   </payloadFactory>
 </sequence>
