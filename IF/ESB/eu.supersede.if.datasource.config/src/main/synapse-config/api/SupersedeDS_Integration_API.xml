@@ -65,4 +65,25 @@
     <outSequence/>
     <faultSequence/>
   </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/mb/accounts/{id_platform}">
+    <inSequence>
+      <property expression="get-property('uri.var.id_platform')"
+        name="id_platform" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:id_platform" name="id_platform"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_Integration_DeleteAccount_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeIntegrationDataStore"/>
+        </endpoint>
+      </call>
+      <log level="full"/>
+      <sequence key="conf:/SupersedeDS_Integration_DeleteAccount_Response_DSSSequence.xml"/>
+      <log level="full"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
 </api>
