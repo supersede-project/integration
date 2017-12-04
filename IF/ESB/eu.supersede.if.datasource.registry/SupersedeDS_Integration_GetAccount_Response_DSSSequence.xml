@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="SupersedeDS_Integration_GetAccount_Response_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <!-- Remove namespace. Otherwise fn:count() does not work -->
+  <payloadFactory media-type="xml">
+    <format>
+      <mb_accountsCollection xmlns="">
+                $1
+      </mb_accountsCollection>
+    </format>
+    <args>
+      <arg evaluator="json" expression="$..mb_accountsCollection"/>
+    </args>
+  </payloadFactory>
+  <property expression="fn:count(//mb_accounts)" name="itemCount"
+    scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+  <log level="full">
+    <property expression="fn:number(get-property('itemCount'))"
+      name="number accounts" xmlns:ns="http://org.apache.synapse/xsd"/>
+  </log>
+  <!-- If account not found, we return a empty JSON object {}, but not an empty collection [] -->
+  <filter xmlns:ns="http://org.apache.synapse/xsd" xpath="fn:number(get-property('itemCount')) = fn:number(0)">
+    <then>
+      <log>
+        <property name="Account" value="Account not found"/>
+      </log>
+      <payloadFactory media-type="json">
+        <format>{}</format>
+        <args/>
+      </payloadFactory>
+    </then>
+    <else>
+      <log>
+        <property name="Account" value="Account found"/>
+      </log>
+      <payloadFactory media-type="json">
+        <format>$1</format>
+        <args>
+          <arg evaluator="json" expression="$..mb_accounts[0]"/>
+        </args>
+      </payloadFactory>
+    </else>
+  </filter>
+  <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+</sequence>
