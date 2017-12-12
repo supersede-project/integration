@@ -92,6 +92,7 @@ public class FeedbackRepositoryProxyTest {
     }
     
     @Test
+    @Ignore
     public void testCreateFeedbackForApplication() throws Exception{
     	Feedback result = createFeedbackForApplication();
     	Assert.notNull(result);
