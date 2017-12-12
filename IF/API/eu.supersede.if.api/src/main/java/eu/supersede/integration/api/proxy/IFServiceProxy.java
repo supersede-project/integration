@@ -308,6 +308,27 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public <T> boolean insertJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		boolean result = false;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			Assert.notNull(token, "Provide a valid token");
+			ResponseEntity<String> response = 
+					messageClient.postJsonMessage(object, uri, object.getClass(), token);
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+				result = true;
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return false;
+		}
+	}
+	
 	public boolean insertJSONObject(String json, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
 		boolean result = false;
 		try {
@@ -700,6 +721,33 @@ public abstract class IFServiceProxy<T, S> {
 				messageClient.exchange(uri, 
 		                  method, requestEntity, returnType);
 		return response.getBody();
+	}
+	
+	public <T> T sendMultipartFormDataMessage(URI uri, Class<T> returnType, LinkedMultiValueMap<String, Object> parts, HttpMethod method, String token) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", token);
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		
+		HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
+		          new HttpEntity<LinkedMultiValueMap<String, Object>>(parts, headers);
+		
+		ResponseEntity<T> response =
+				messageClient.exchange(uri, 
+		                  method, requestEntity, returnType);
+		return response.getBody();
+	}
+	
+	public boolean sendMultipartFormDataMessage(URI uri, LinkedMultiValueMap<String, Object> parts, HttpMethod method, HttpStatus expectedStatus) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		
+		HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity =
+		          new HttpEntity<LinkedMultiValueMap<String, Object>>(parts, headers);
+		
+		ResponseEntity<String> response =
+				messageClient.exchange(uri, 
+		                  method, requestEntity, String.class);
+		return response.getStatusCode().equals(expectedStatus);
 	}
 
 	public <T> String convertToJSON(T object) throws JsonProcessingException {

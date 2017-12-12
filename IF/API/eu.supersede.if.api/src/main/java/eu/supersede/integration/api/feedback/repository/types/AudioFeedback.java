@@ -1,78 +1,132 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A.
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 package eu.supersede.integration.api.feedback.repository.types;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonInclude(Include.NON_NULL)
-public class AudioFeedback extends FileFeedback
-{
-	@DbAttribute("feedback_id")
-	private transient Integer feedbackId;
-	
-	private int duration;
-	
-	@DbAttribute("mechanism_id")
-	private long mechanismId;
+import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
 
-	public AudioFeedback(Integer id, Integer feedbackId, String path, int size, String name, int duration,
-			long mechanismId, String part, String fileExtension) {
-		super();
-		this.id = id;
-		this.feedbackId = feedbackId;
-		this.path = path;
-		this.size = size;
-		this.name = name;
-		this.duration = duration;
-		this.mechanismId = mechanismId;
-		this.part = part;
-		this.fileExtension = fileExtension;
-	}
-	
-	public AudioFeedback(){
-	}
+import javax.persistence.*;
 
-	public Integer getFeedbackId() {
-		return feedbackId;
-	}
 
-	public void setFeedbackId(Integer feedbackId) {
-		this.feedbackId = feedbackId;
-	}
 
-	public int getDuration() {
-		return duration;
-	}
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AudioFeedback implements FileFeedback, MechanismFeedback {
 
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
+    protected long id;
 
-	public long getMechanismId() {
-		return mechanismId;
-	}
+    @JsonIgnore
+    private Feedback feedback;
+    private long mechanismId;
+    private int duration;
+    private String path;
+    private  int size;
+    private String part;
+    private String fileExtension;
 
-	public void setMechanismId(long mechanismId) {
-		this.mechanismId = mechanismId;
-	}	
+    @JsonIgnore
+    private Mechanism mechanism;
+
+    @Override
+    public String toString() {
+        return String.format(
+                "AudioFeedback[id=%d, feedbackId='%d']",
+                id, feedback.getId());
+    }
+
+    public AudioFeedback() {
+    }
+
+    public AudioFeedback(Feedback feedback, long mechanismId, int duration) {
+        this.feedback = feedback;
+        this.mechanismId = mechanismId;
+        this.duration = duration;
+    }
+
+    public AudioFeedback(String path, int size, String part, String fileExtension, Feedback feedback, long mechanismId, int duration) {
+        this.path = path;
+        this.size = size;
+        this.part = part;
+        this.fileExtension = fileExtension;
+        this.feedback = feedback;
+        this.mechanismId = mechanismId;
+        this.duration = duration;
+    }
+
+    public Feedback getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(Feedback feedback) {
+        this.feedback = feedback;
+    }
+
+    public long getMechanismId() {
+        return mechanismId;
+    }
+
+    public void setMechanismId(long mechanismId) {
+        this.mechanismId = mechanismId;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    @Override
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    @Override
+    public String getPart() {
+        return part;
+    }
+
+    public void setPart(String part) {
+        this.part = part;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
+    @Override
+    public Mechanism getMechanism() {
+        return mechanism;
+    }
+
+    @Override
+    public void setMechanism(Mechanism mechanism) {
+        this.mechanism = mechanism;
+    }
 }

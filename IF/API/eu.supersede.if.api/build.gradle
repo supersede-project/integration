@@ -55,7 +55,7 @@ allprojects {
 }
 
 group = 'eu.supersede.if'
-version = '0.3.0-SNAPSHOT'
+version = '0.4.0-SNAPSHOT'
 
 jar {
     baseName = 'eu.supersede.if.api'
@@ -87,6 +87,7 @@ dependencies {
     compile 'org.apache.axis2:axis2:1.6.1'
     compile 'org.apache.axis2:axis2-transport-http:1.6.1'
     compile 'org.apache.axis2:axis2-transport-local:1.6.1'
+    compile 'org.springframework.boot:spring-boot-starter-security'
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile('com.jayway.jsonpath:json-path')
     compile 'ca.juliusdavies:not-yet-commons-ssl:0.3.9' //Required for EasySSLProtocolSocketFactory class
@@ -128,6 +129,8 @@ dependencies {
 	compile(group: 'org.wso2.carbon', name: 'org.wso2.carbon.logging', version: '4.4.1')
 	compile(group: 'org.wso2.securevault', name: 'org.wso2.securevault', version: '1.0.0-wso2v2')
 
+	//Google Guava
+	compile 'com.google.guava:guava:21.0'
 }
 
 configurations.all {

@@ -27,6 +27,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import eu.supersede.integration.api.monitoring.manager.proxies.MonitorManagerProxy;
+import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.Method;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.TwitterMonitorConfiguration;
 import org.junit.Assert;
@@ -43,7 +45,7 @@ public class MonitorManagerProxyTest {
 
 	
 	@Test
-	public void testCreateUpdateAndDeleteMonitorConfiguration() throws Exception {
+	public void testCreateUpdateAndDeleteTwitterMonitorConfiguration() throws Exception {
 		TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
 		conf = proxy.createMonitorConfiguration(conf);
 		Assert.assertNotNull(conf);
@@ -61,6 +63,27 @@ public class MonitorManagerProxyTest {
 		twitterConf.setKeywordExpression("(olympics) AND (streaming)");
 		
 		return twitterConf;
+	}
+	
+	@Test
+	public void testCreateUpdateAndDeleteHttpMonitorConfiguration() throws Exception {
+		HttpMonitorConfiguration conf = createHttpMonitorConfiguration();
+		conf = proxy.createMonitorConfiguration(conf);
+		Assert.assertNotNull(conf);
+		conf.setTimeSlot(60);
+		proxy.updateMonitorConfiguration(conf);
+		proxy.deleteMonitorConfiguration(conf);
+	}
+
+	private HttpMonitorConfiguration createHttpMonitorConfiguration() throws MalformedURLException {
+		HttpMonitorConfiguration httpConf = new HttpMonitorConfiguration();
+		httpConf.setToolName("ApacheHttp");
+		httpConf.setTimeSlot(30000);
+		httpConf.setKafkaTopic("httpStress");
+		httpConf.setUrl("http://lab-supersede.atos-sports.tv:8000/handshake_test.php");
+		httpConf.setMethod(Method.GET);
+				
+		return httpConf;
 	}
 
 }

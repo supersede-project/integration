@@ -20,14 +20,26 @@
 package eu.supersede.integration.api.mdm.proxies;
 
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
+import org.springframework.util.LinkedMultiValueMap;
 
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
+import eu.supersede.integration.api.mdm.types.Feedback;
+import eu.supersede.integration.api.mdm.types.FeedbackClassification;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
 import eu.supersede.integration.api.mdm.types.Release;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
@@ -60,6 +72,42 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "eca_rule");
 		log.debug("Sending message getAllECARules to MetadataManagement at uri " + uri);
 		return getJSONObjectsListForType(ECA_Rule[].class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public FeedbackClassification getRealtimeFeedbackClassification(Feedback feedback) throws Exception {
+		Assert.notNull(feedback, "Provide a valid feedback");
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "classify/feedback");
+		log.debug("Sending message getRealtimeFeedbackClassification for feedback: " + feedback +
+				" to MetadataManagement at uri " + uri);
+		return insertJSONObjectAndReturnAnotherType(feedback, FeedbackClassification.class, uri,  HttpStatus.OK);
+	}
+
+	@Override
+	public boolean sendFile(Path filePath) throws Exception {
+		Assert.notNull(filePath, "Provide a valid filePath");
+		
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "files");
+		
+		LinkedMultiValueMap<String, Object> parts = 
+		          new LinkedMultiValueMap<String, Object>();
+		
+		Resource file = new ByteArrayResource(Files.readAllBytes(filePath)){
+            @Override
+            public String getFilename(){
+                return filePath.getFileName().toString();
+            }
+        };
+		
+		HttpHeaders xmlHeaders = new HttpHeaders();
+        xmlHeaders.setContentType(MediaType.TEXT_PLAIN);
+        HttpEntity<Resource> fileEntity = new HttpEntity<Resource>(file, xmlHeaders);
+		
+		parts.add("file", fileEntity);
+		
+		log.debug("Sending message sendFile with filePath: " + filePath
+				+ " to MetadataManagement at uri " + uri);
+		return sendMultipartFormDataMessage(uri, parts, HttpMethod.POST, HttpStatus.OK);
 	}
 	
 }

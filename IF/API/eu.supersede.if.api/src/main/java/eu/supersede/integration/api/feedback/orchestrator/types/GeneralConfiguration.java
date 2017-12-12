@@ -1,124 +1,137 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A.
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.uzh.ifi.feedback.library.rest.Service.IDbItem;
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.Unique;
-//import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
-//import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-//import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
-//import ch.uzh.ifi.feedback.library.rest.annotations.Serialize;
-//import ch.uzh.ifi.feedback.library.rest.validation.Id;
-//import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
-//import ch.uzh.ifi.feedback.library.rest.validation.Unique;
-//import ch.uzh.ifi.feedback.library.rest.validation.Validate;
-//import ch.uzh.ifi.feedback.orchestrator.model.FeedbackParameter;
-//import ch.uzh.ifi.feedback.orchestrator.model.GeneralConfiguration;
-//import ch.uzh.ifi.feedback.orchestrator.model.OrchestratorItem;
-import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
-//import ch.uzh.ifi.feedback.orchestrator.serialization.ApplicationSerializationService;
-//import ch.uzh.ifi.feedback.orchestrator.serialization.GeneralConfigurationSerializationService;
-//import ch.uzh.ifi.feedback.orchestrator.validation.GeneralConfigurationValidator;
-//
-//@Validate(GeneralConfigurationValidator.class)
-//@Serialize(GeneralConfigurationSerializationService.class)
-@JsonInclude(Include.NON_NULL)
-public class GeneralConfiguration extends OrchestratorItem<GeneralConfiguration>{
-	
-	@Id
-	@DbAttribute("general_configurations_id")
-	private Integer id;
-	@DbIgnore
-	private List<FeedbackParameter> parameters;
-	@Unique
-	private String name;
-	
-	public GeneralConfiguration()
-	{
-		parameters = new ArrayList<FeedbackParameter>();
-	}
-	
-	public List<FeedbackParameter> getParameters() {
-		if (parameters == null)
-			parameters = new ArrayList<>();
-		
-		return parameters;
-	}
-	public void setParameters(List<FeedbackParameter> parameters) {
-		this.parameters = parameters;
-	}
+import java.util.*;
 
-	public String getName() {
-		return name;
-	}
+public class GeneralConfiguration {
+    private long id;
+    private String name;
+    private Date createdAt;
+    private Date updatedAt;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-//	@Override
-//	public GeneralConfiguration Merge(GeneralConfiguration original) {
-//		for(FeedbackParameter param : original.getParameters())
-//		{
-//			try{
-//				List<FeedbackParameter> parameters = getParameters();
-//				Optional<FeedbackParameter> newParam = getParameters().stream().filter(p -> param.getId().equals(p.getId())).findFirst();
-//				
-//				if(!newParam.isPresent())
-//				{
-//					getParameters().add(param);
-//				}else{ 
-//					newParam.get().Merge(param);
-//				}
-//			} catch(NullPointerException e)
-//			{
-//				log.error(e.getMessage(), e);
-//			}
-//		
-//		}
-//		
-//		super.Merge(original);
-//		
-//		return this;
-//	}
-	
-	
-	@Override
-	public Integer getId() {
-		return id;
-	}
+    private List<Parameter> parameters;
 
-	@Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
+    protected void onUpdate() {
+        updatedAt = new Date();
+    }
+
+    @JsonIgnore
+    private Application application;
+
+    @JsonIgnore
+    private Configuration configuration;
+
+    public GeneralConfiguration() {
+    }
+
+    public GeneralConfiguration(String name, Date createdAt, Date updatedAt, List<Parameter> parameters, Application application, Configuration configuration) {
+        this.name = name;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.parameters = parameters;
+        this.application = application;
+        this.configuration = configuration;
+    }
+
+    public void filterByLanguage(String language, String fallbackLanguage) {
+        if(this.getParameters() == null) {
+            return;
+        }
+        for(Parameter parameter : this.getParameters()) {
+            parameter.filterByLanguage(language, fallbackLanguage);
+        }
+        this.setParameters(this.parametersByLanguage(language, fallbackLanguage));
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "GeneralConfiguration[id=%d, name='%s']",
+                id, name);
+    }
+
+    public List<Parameter> parametersByLanguage(String language, String fallbackLanguage) {
+        if(this.getParameters() == null) {
+            return null;
+        }
+        Map<String, Parameter> keyValuePairs = new HashMap<>();
+        for(Parameter parameter : this.getParameters()) {
+            if(parameter.getParameters() != null && parameter.getParameters().size() > 0) {
+                parameter.setParameters(parameter.parametersByLanguage(language, fallbackLanguage));
+            }
+
+            if(keyValuePairs.containsKey(parameter.getKey())) {
+                if(parameter.getLanguage().equals(language)) {
+                    keyValuePairs.put(parameter.getKey(), parameter);
+                } else if (!keyValuePairs.get(parameter.getKey()).getLanguage().equals(language) && parameter.getLanguage().equals(fallbackLanguage)) {
+                    keyValuePairs.put(parameter.getKey(), parameter);
+                }
+            } else if(parameter.getLanguage().equals(language) || parameter.getLanguage().equals(fallbackLanguage)) {
+                keyValuePairs.put(parameter.getKey(), parameter);
+            }
+        }
+        return new ArrayList<Parameter>(keyValuePairs.values());
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<Parameter> getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(List<Parameter> parameters) {
+        this.parameters = parameters;
+    }
+
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
+
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
 }
