@@ -24,9 +24,14 @@ import java.util.List;
 import eu.supersede.integration.api.adaptation.types.ModelSystem;
 
 public interface IAdapter {
-	boolean enactAdaptationDecisionActions (ModelSystem systemId, List<String> adaptationDecisionActionIds, String featureConfigurationId) throws Exception;
-	boolean enactAdaptationDecisionActionsForFC (ModelSystem system, String featureConfigurationId) throws Exception;
-	boolean enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds, String featureConfigurationAsString ) throws Exception;
-	boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString) throws Exception;
-}
+	boolean enactAdaptationDecisionActions(ModelSystem systemId, List<String> adaptationDecisionActionIds,
+			String featureConfigurationId) throws Exception;
 
+	boolean enactAdaptationDecisionActionsForFC(ModelSystem system, String featureConfigurationId) throws Exception;
+
+	boolean enactAdaptationDecisionActionsInFCasString(ModelSystem system, List<String> adaptationDecisionActionIds,
+			String featureConfigurationAsString, String featureConfigurationId) throws Exception;
+
+	boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString,
+			String featureConfigurationId) throws Exception;
+}

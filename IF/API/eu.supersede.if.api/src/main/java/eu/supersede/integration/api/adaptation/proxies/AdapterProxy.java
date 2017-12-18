@@ -84,12 +84,13 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 
 	@Override
 	public boolean enactAdaptationDecisionActionsInFCasString(ModelSystem system,
-			List<String> adaptationDecisionActionIds, String featureConfigurationAsString) throws Exception {
+			List<String> adaptationDecisionActionIds, String featureConfigurationAsString, String featureConfigurationId) throws Exception {
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(adaptationDecisionActionIds, "Provide valid adaptationDecisionActionIds");
 		Assert.notEmpty(adaptationDecisionActionIds, "Provide not empty adaptationDecisionActionIds");
 		Assert.notNull(featureConfigurationAsString, "Provide a valid featureConfigurationAsString");
 		Assert.isTrue(!featureConfigurationAsString.isEmpty(), "Provide a not empty featureConfigurationAsString content");
+		Assert.notNull(featureConfigurationId, "Provide valid featureConfigurationId");
 		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "adaptationDecisionActions/system/" + system;
 //		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, "adaptationDecisionActionIds");
 		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
@@ -99,11 +100,12 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		values.put("adaptationDecisionActionIds", adaptationDecisionActionIds);
 		String[] fc = {featureConfigurationAsString};
 		values.put("fc",  Arrays.asList(fc));
+		values.put("fc_id",  Arrays.asList(featureConfigurationId));
 		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);
 	}
 	
 	@Override
-	public boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString) throws Exception {
+	public boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString, String featureConfigurationId) throws Exception {
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(featureConfigurationAsString, "Provide a valid featureConfigurationAsString");
 		Assert.isTrue(!featureConfigurationAsString.isEmpty(), "Provide a not empty featureConfigurationAsString content");
@@ -112,6 +114,10 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		log.debug("Invoking enactAdaptationDecisionActions (system: " + system
 				+ ", featureConfigurationAsString: " + featureConfigurationAsString + ") in uri: " + uriString);
 		
-		return postXMLString(featureConfigurationAsString, new URI(uriString), HttpStatus.OK);
+		Map<String,List<String>> values = new HashMap<>();
+		String[] fc = {featureConfigurationAsString};
+		values.put("fc",  Arrays.asList(fc));
+		values.put("fc_id",  Arrays.asList(featureConfigurationId));
+		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);
 	}
 }
