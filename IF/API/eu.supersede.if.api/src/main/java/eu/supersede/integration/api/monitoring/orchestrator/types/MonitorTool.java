@@ -24,28 +24,15 @@ package eu.supersede.integration.api.monitoring.orchestrator.types;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
-import ch.uzh.ifi.feedback.library.rest.validation.Unique;
 import eu.supersede.integration.api.feedback.orchestrator.types.OrchestratorItem;
 
 //@Serialize(MonitorToolSerializationService.class)
 @JsonInclude(Include.NON_NULL)
 public class MonitorTool extends OrchestratorItem<MonitorTool>{
 
-	@Id
-	@DbAttribute("monitor_tool_id")
 	private Integer id;
-	
-	@Unique
-	@NotNull
 	private String name;
-	
-	@DbAttribute("monitor_type_id")
 	private Integer monitorTypeId;
-	
-	@DbAttribute("monitor_name")
 	private String monitorName;
 	
 	public String getMonitorName() {

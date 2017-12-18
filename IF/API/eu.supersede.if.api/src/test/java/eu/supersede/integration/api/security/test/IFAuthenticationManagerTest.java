@@ -292,21 +292,7 @@ public class IFAuthenticationManagerTest {
 	
 	@Test
 	public void getAuthorizationTokenTest() throws TenantMgtAdminServiceExceptionException, URISyntaxException, UserStoreException, MalformedURLException{
-		//Create user if it does not exist
-		if (am.getUser(testUserName)==null){
-			User user = createTestUser();
-	    	am.addUser(user, testUserPassword, requirePasswordChange);
-		}
-		
 		AuthorizationToken token = am.getAuthorizationToken(testUserName, testUserPassword, "atos");
-		Assert.notNull(token);
-		Assert.notNull(token.getAccessToken());
-		Assert.isTrue(!token.getAccessToken().isEmpty());
-	}
-	
-	@Ignore @Test
-	public void getAuthorizationTokenTest2() throws TenantMgtAdminServiceExceptionException, URISyntaxException, UserStoreException, MalformedURLException{
-		AuthorizationToken token = am.getAuthorizationToken("wp_admin", "12345", "atos");
 		Assert.notNull(token);
 		Assert.notNull(token.getAccessToken());
 		Assert.isTrue(!token.getAccessToken().isEmpty());

@@ -24,48 +24,22 @@ package eu.supersede.integration.api.monitoring.orchestrator.types;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 import eu.supersede.integration.api.feedback.orchestrator.types.OrchestratorItem;
 
 //@Serialize(MonitorConfigurationSerializationService.class)
 @JsonInclude(Include.NON_NULL)
 public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration> {
 
-	@Id
-	@DbAttribute("monitor_configuration_id")
 	private Integer id;
-	
-	@DbAttribute("monitor_tool_id")
 	private Integer monitorToolId;
-	
-	@NotNull
-	@DbAttribute("config_sender")
 	private String configSender;
-	@NotNull
-	@DbAttribute("timestamp")
 	private String timeStamp;
-	@NotNull
-	@DbAttribute("time_slot")
 	private String timeSlot;
-	@NotNull
-	@DbAttribute("kafka_endpoint")
 	private String kafkaEndpoint;
-	@NotNull
-	@DbAttribute("kafka_topic")
 	private String kafkaTopic;
-	@NotNull
 	private String state;
-	
-	@DbAttribute("keyword_expression")
 	private String keywordExpression;
-	
-	//private List<String> accounts;
-	
-	@DbAttribute("package_name")
 	private String packageName;
-	@DbAttribute("app_id")
 	private String appId;
 	
 	public String getPackageName() {

@@ -88,7 +88,9 @@ public class IdentityManagerClientTest {
     	String credential = "test";
     	
     	//Remove user if exist
-    	usm.deleteUser(userName);
+    	try{
+    		usm.deleteUser(userName);
+    	}catch (Exception ignored){}
     	
     	//Claims are use to add user metadata
     	Map<String, String> claims = new HashMap<String, String>();
