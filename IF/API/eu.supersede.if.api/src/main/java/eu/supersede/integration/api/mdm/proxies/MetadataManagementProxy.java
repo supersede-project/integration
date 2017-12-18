@@ -43,10 +43,13 @@ import eu.supersede.integration.api.mdm.types.FeedbackClassification;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
 import eu.supersede.integration.api.mdm.types.Release;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.exception.IFException;
+import eu.supersede.integration.federation.SupersedeFederation;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implements IMetadataManagement {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private final SupersedeFederation federation = new SupersedeFederation();
 
 	private final static String SUPERSEDE_MDM_ENDPOINT = IntegrationProperty
 			.getProperty("metadata.management.endpoint");
@@ -54,6 +57,10 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 	@Override
 	public KafkaTopic registerRelease (Release release) throws Exception {
 		Assert.notNull(release, "Provide a valid release");
+		//Inject Supersede platform
+		String platform = federation.getLocalFederatedSupersedePlatform().getPlatform();
+		if (platform == null) throw new IFException("Local federation not availagle");
+		release.setPlatform(platform);
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
 		log.debug("Sending message registerRelease with release: " + release +
 				" to MetadataManagement at uri " + uri);
