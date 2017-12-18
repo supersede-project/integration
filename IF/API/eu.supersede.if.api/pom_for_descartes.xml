@@ -381,8 +381,9 @@
 							<value>$2pRSid#</value>
 						</property>
 					</systemProperties>
-					<!--<includes> <include>**/FeedbackRepositoryProxyTest.java</include> 
-						</includes> -->
+					<!-- <includes> 
+						<include>**/ReplanControllerProxyTest.java</include> 
+					</includes>-->
 				</configuration>
 			</plugin>
 			<plugin>
@@ -391,6 +392,13 @@
 				<version>1.2.0</version>
 				<configuration>
 					<mutationEngine>descartes</mutationEngine>
+					<targetTests>
+						<!-- <param>eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest</param> -->
+						<param>*ReplanControllerProxyTest</param>
+					</targetTests>
+				    <excludedClasses>
+				    	<param>eu.supersede.integration.api.monitoring.*</param>
+				    </excludedClasses>
 					<mutators>
 						<mutator>void</mutator>
 						<mutator>null</mutator>

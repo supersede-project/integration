@@ -125,6 +125,13 @@ public class ModelRepositoryProxyTest {
 	}
 	
 	@Test
+	public void testGetAllFCModels() throws Exception {
+		List<IModel> result = proxy.getModelInstances(ModelType.FeatureConfiguration, ModelSystem.Atos_HSK, null);
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
 	public void testGetAllBaseModels() throws Exception {
 		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, null, null);
 		Assert.notNull(result);
