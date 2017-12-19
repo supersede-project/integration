@@ -17,7 +17,7 @@ public abstract class TopicMessageAgent implements iTopicMessageAgent {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	protected SubscriptionTopic subscriptionTopic;
 	protected String initialContextFactory = "org.wso2.andes.jndi." + "PropertiesFileInitialContextFactory";
-	protected String connectionString = IntegrationProperty.getProperty("message.broker.connection");
+	protected String connectionString = IntegrationProperty.getMBConnection();
 	protected Properties properties;
 	protected InitialContext ctx;
 	protected TopicConnection topicConnection;
