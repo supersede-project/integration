@@ -92,13 +92,13 @@ public class PasswordCrypt {
 		return OriginalPassword;
 	}
 
-	public static void main(String args[]) throws Exception {
-		String key = generateKey();
-		System.out.println("key:" + key);
-		String password = "password";
-		String encryptedPassword = testEncriptPassword(password, key);
-		String plainPassword = testDecryptPassword(encryptedPassword, key);
-	}
+//	public static void main(String args[]) throws Exception {
+//		String key = generateKey();
+//		System.out.println("key:" + key);
+//		String password = "password";
+//		String encryptedPassword = testEncriptPassword(password, key);
+//		String plainPassword = testDecryptPassword(encryptedPassword, key);
+//	}
 
 	private static String testEncriptPassword(String password, String key) throws Exception {
 		System.out.println("****************  Plain Password  ****************");

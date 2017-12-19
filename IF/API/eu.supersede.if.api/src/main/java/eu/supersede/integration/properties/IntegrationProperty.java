@@ -41,6 +41,7 @@ public class IntegrationProperty {
 	
 	static{
 		//Read configuration from environment
+		log.info("Initializing IF configuration");
 		if (System.getProperty("supersede.if.properties")!=null){
 			propFileName = System.getProperty("supersede.if.properties");
 			System.out.println("Setting IF configuration to: " + propFileName);
@@ -59,12 +60,6 @@ public class IntegrationProperty {
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		} 
-		
-		federation = new SupersedeFederation();
-		localPlatform = federation.getLocalFederatedSupersedePlatform();
-		federatedPlatforms = federation.getFederatedSupersedePlatforms();
-		
-		mb_connection = computeMBConnection();
 	}
 	
 	public static String getProperty(String key){
@@ -77,21 +72,37 @@ public class IntegrationProperty {
 	
 	private static String computeMBConnection (){
 		String mb_connection = IntegrationProperty.getProperty("message.broker.connection");
-		mb_connection = mb_connection.replaceFirst("<mb_user>", localPlatform.getMb_user());
-		mb_connection = mb_connection.replaceFirst("<mb_password>", localPlatform.getMb_password().replace("$", "\\$"));
-		mb_connection = mb_connection.replaceFirst("<mb_url>", localPlatform.getMb_url());
+		mb_connection = mb_connection.replaceFirst("<mb_user>", getLocalPlatform().getMb_user());
+		mb_connection = mb_connection.replaceFirst("<mb_password>", getLocalPlatform().getMb_password().replace("$", "\\$"));
+		mb_connection = mb_connection.replaceFirst("<mb_url>", getLocalPlatform().getMb_url());
 		return mb_connection;
 	}
 	
 	public static String getMBConnection (){
+		if (mb_connection == null){
+			mb_connection = computeMBConnection();
+		}
 		return mb_connection;
 	}
 	
 	public static SupersedePlatform getLocalPlatform(){
+		if (localPlatform == null){
+			localPlatform = getFederation().getLocalFederatedSupersedePlatform();
+		}
 		return localPlatform;
 	}
 	
+	private static SupersedeFederation getFederation() {
+		if (federation == null){
+			federation = new SupersedeFederation();
+		}
+		return federation;
+	}
+
 	public static  List<SupersedePlatform> getFederatedPlatforms(){
+		if (federatedPlatforms == null){
+			federatedPlatforms = federation.getFederatedSupersedePlatforms();
+		}
 		return federatedPlatforms;
 	}
 
