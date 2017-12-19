@@ -27,10 +27,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorConfiguration;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorTool;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorType;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.exception.IFException;
 //import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
 
@@ -38,12 +40,25 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT = IntegrationProperty
 			.getProperty("monitoring.orchestrator.endpoint");
+	
+	private String token;
+
+	public MonitoringOrchestratorProxy(String user, String password) throws Exception {
+		this(user, password, "en");
+	}
+
+	public MonitoringOrchestratorProxy(String user, String password, String language) throws Exception {
+		FeedbackOrchestratorProxy<?, ?> foProxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
+		this.token = foProxy.authenticate(user, password);
+		if (token == null)
+			throw new IFException("Failed authentication in Orchestrator");
+	}
 
 	@Override
 	public List<MonitorType> listAllMonitorTypes() throws Exception {
 		URI uri = new URI(SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT + "MonitorTypes");
 		log.debug("Sending message listAllMonitorTypes to MonitoringOrchestrator at uri " + uri);
-		return getJSONObjectsListForType(MonitorType[].class, uri, HttpStatus.OK);
+		return getJSONObjectsListForType(MonitorType[].class, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -51,7 +66,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		Assert.notNull(monitorType, "Provide a valid monitor type");
 		URI uri = new URI(SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT + "MonitorTypes");
 		log.debug("Sending message createMonitorType with monitorType: " + monitorType + " to MonitoringOrchestrator at uri " + uri);
-		return insertandReturnJSONObject(monitorType, uri, HttpStatus.CREATED);
+		return insertandReturnJSONObject(monitorType, uri, HttpStatus.CREATED, token);
 	}
 
 	@Override
@@ -59,7 +74,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		Assert.notNull(monitorTypeName, "Provide a valid monitor type name");
 		URI uri = new URI(SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT + "MonitorTypes/" + monitorTypeName);
 		log.debug("Sending message getMonitorType with monitorTypeName: " + monitorTypeName + " to MonitoringOrchestrator at uri " + uri);
-		return getJSONObjectForType(MonitorType.class, uri, HttpStatus.OK);
+		return getJSONObjectForType(MonitorType.class, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -67,7 +82,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		Assert.notNull(monitorType.getName(), "Provide a valid monitor type name");
 		URI uri = new URI(SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT + "MonitorTypes/" + monitorType.getName());
 		log.debug("Sending message deleteMonitorType with monitorType: " + monitorType + " to MonitoringOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK);
+		deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -79,7 +94,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		log.debug("Sending message createMonitorToolForMonitorType with monitorTool: " + monitorTool 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		return insertandReturnJSONObject(monitorTool, uri, HttpStatus.CREATED);
+		return insertandReturnJSONObject(monitorTool, uri, HttpStatus.CREATED, token);
 	}
 
 	@Override
@@ -91,7 +106,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		log.debug("Sending message getMonitorToolForMonitorType with monitorToolName: " + monitorToolName 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		return getJSONObjectForType(MonitorTool.class, uri, HttpStatus.OK);
+		return getJSONObjectForType(MonitorTool.class, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -103,7 +118,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		log.debug("Sending message deleteMonitorToolForMonitorType with monitorTool: " + monitorTool 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK);
+		deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -119,7 +134,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 				+ ", with monitorToolName: " + monitorToolName 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		return insertandReturnJSONObject(monitorConfiguration, uri, HttpStatus.CREATED);
+		return insertandReturnJSONObject(monitorConfiguration, uri, HttpStatus.CREATED, token);
 	}
 
 	@Override
@@ -134,7 +149,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 				+ ", with monitorToolName: " + monitorToolName 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		return getJSONObjectForType(MonitorConfiguration.class, uri, HttpStatus.OK);
+		return getJSONObjectForType(MonitorConfiguration.class, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -150,7 +165,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 				+ ", with monitorToolName: " + monitorToolName 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		return updateAndReturnJSONObject(monitorConfiguration, uri, HttpStatus.OK);
+		return updateAndReturnJSONObject(monitorConfiguration, uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -165,6 +180,6 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 				+ ", with monitorToolName: " + monitorToolName 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK);
+		deleteUriResource(uri, HttpStatus.OK, token);
 	}
 }

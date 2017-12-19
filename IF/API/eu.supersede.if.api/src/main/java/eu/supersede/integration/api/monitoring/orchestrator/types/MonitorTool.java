@@ -21,32 +21,22 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.orchestrator.types;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
-import ch.uzh.ifi.feedback.library.rest.validation.Unique;
 import eu.supersede.integration.api.feedback.orchestrator.types.OrchestratorItem;
 
 //@Serialize(MonitorToolSerializationService.class)
 @JsonInclude(Include.NON_NULL)
 public class MonitorTool extends OrchestratorItem<MonitorTool>{
 
-	@Id
-	@DbAttribute("monitor_tool_id")
 	private Integer id;
-	
-	@Unique
-	@NotNull
 	private String name;
-	
-	@DbAttribute("monitor_type_id")
 	private Integer monitorTypeId;
-	
-	@DbAttribute("monitor_name")
 	private String monitorName;
+	List<MonitorConfiguration> monitorConfigurations;
 	
 	public String getMonitorName() {
 		return monitorName;
@@ -80,6 +70,14 @@ public class MonitorTool extends OrchestratorItem<MonitorTool>{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<MonitorConfiguration> getMonitorConfigurations() {
+		return monitorConfigurations;
+	}
+
+	public void setMonitorConfigurations(List<MonitorConfiguration> monitorConfigurations) {
+		this.monitorConfigurations = monitorConfigurations;
 	}
 
 }

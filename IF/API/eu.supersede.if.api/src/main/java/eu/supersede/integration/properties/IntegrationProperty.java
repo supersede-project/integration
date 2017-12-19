@@ -20,15 +20,25 @@
 package eu.supersede.integration.properties;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
+import eu.supersede.integration.federation.SupersedeFederation;
+
+
 public class IntegrationProperty {
 	private static final Logger log = LoggerFactory.getLogger(IntegrationProperty.class);
-	public static Properties prop = new Properties();
-	public static String propFileName = "if.development.properties";
+	private static Properties prop = new Properties();
+	private static String propFileName = "if.development.properties";
+	private static SupersedeFederation federation;
+	private static SupersedePlatform localPlatform;
+	private static List<SupersedePlatform> federatedPlatforms;
+	private static String mb_connection;
+	
 	static{
 		//Read configuration from environment
 		if (System.getProperty("supersede.if.properties")!=null){
@@ -49,6 +59,12 @@ public class IntegrationProperty {
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		} 
+		
+		federation = new SupersedeFederation();
+		localPlatform = federation.getLocalFederatedSupersedePlatform();
+		federatedPlatforms = federation.getFederatedSupersedePlatforms();
+		
+		mb_connection = computeMBConnection();
 	}
 	
 	public static String getProperty(String key){
@@ -57,6 +73,26 @@ public class IntegrationProperty {
 		}else{
 			throw new RuntimeException("Property '" + key + "' not found exception");
 		}
+	}
+	
+	private static String computeMBConnection (){
+		String mb_connection = IntegrationProperty.getProperty("message.broker.connection");
+		mb_connection = mb_connection.replaceFirst("<mb_user>", localPlatform.getMb_user());
+		mb_connection = mb_connection.replaceFirst("<mb_password>", localPlatform.getMb_password().replace("$", "\\$"));
+		mb_connection = mb_connection.replaceFirst("<mb_url>", localPlatform.getMb_url());
+		return mb_connection;
+	}
+	
+	public static String getMBConnection (){
+		return mb_connection;
+	}
+	
+	public static SupersedePlatform getLocalPlatform(){
+		return localPlatform;
+	}
+	
+	public static  List<SupersedePlatform> getFederatedPlatforms(){
+		return federatedPlatforms;
 	}
 
 }

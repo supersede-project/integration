@@ -20,12 +20,15 @@
 package eu.supersede.integration.api.monitoring.proxies.test;
 
 import java.util.List;
+import java.util.UUID;
 
+import org.joda.time.field.UnsupportedDurationField;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
 import eu.supersede.integration.api.monitoring.orchestrator.proxies.MonitoringOrchestratorProxy;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorConfiguration;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorTool;
@@ -38,7 +41,9 @@ public class MonitoringOrchestratorProxyTest {
 
 	@BeforeClass
 	public static void setup() throws Exception {
-		proxy = new MonitoringOrchestratorProxy<Object, Object>();
+		String user = "superadmin";
+		String password = "password";
+		proxy = new MonitoringOrchestratorProxy<Object, Object>(user, password);
 	}
 
 	@Test
@@ -62,7 +67,7 @@ public class MonitoringOrchestratorProxyTest {
 	}
 
 	private MonitorType createMonitorType() throws Exception {
-		String monitorTypeName = "MonitorTypeTest";
+		String monitorTypeName = UUID.randomUUID().toString() ;
 		//Remote monitor if exist
 		try{
 			MonitorType mt = proxy.getMonitorType(monitorTypeName);
@@ -97,7 +102,7 @@ public class MonitoringOrchestratorProxyTest {
 	private MonitorTool createMonitorTool(MonitorType monitorType) throws Exception {
 		
 		//Remote monitor if exist
-		String monitorToolName = "TwitterAPITest";
+		String monitorToolName = UUID.randomUUID().toString() ;
 		try{
 			MonitorTool mt = proxy.getMonitorToolForMonitorType(monitorToolName, monitorType.getName());
 			if (mt != null){
@@ -116,8 +121,8 @@ public class MonitoringOrchestratorProxyTest {
 		return monitorTool;
 	}
 
-	@Ignore
-	@Test
+
+	@Ignore @Test
 	public void testCreateGetUpdateDeleteMonitorConfiguration() throws Exception {
 		
 		MonitorType monitorType = createMonitorType();

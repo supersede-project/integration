@@ -2,4 +2,7 @@
     <artifact name="SupersedeDS_FE_API" groupId="eu.supersede.if.datasource.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/SupersedeDS_FE_API.xml</file>
     </artifact>
+    <artifact name="SupersedeDS_Integration_API" groupId="eu.supersede.if.datasource.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/SupersedeDS_Integration_API.xml</file>
+    </artifact>
 </artifacts>

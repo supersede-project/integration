@@ -92,9 +92,8 @@ public class IdentityManagerClientTest {
     	//Remove user if exist
     	try{
     		usm.deleteUser(userName);
-    	}catch (Exception ignored){
-    		//Exception thrown when trying to delete a non-existing user - ignore
-    	}
+
+    	}catch (Exception ignored){}
     	
     	//Claims are use to add user metadata
     	Map<String, String> claims = new HashMap<String, String>();
