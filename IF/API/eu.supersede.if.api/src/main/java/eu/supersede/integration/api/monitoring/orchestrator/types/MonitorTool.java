@@ -21,6 +21,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.orchestrator.types;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -34,6 +36,7 @@ public class MonitorTool extends OrchestratorItem<MonitorTool>{
 	private String name;
 	private Integer monitorTypeId;
 	private String monitorName;
+	List<MonitorConfiguration> monitorConfigurations;
 	
 	public String getMonitorName() {
 		return monitorName;
@@ -67,6 +70,14 @@ public class MonitorTool extends OrchestratorItem<MonitorTool>{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<MonitorConfiguration> getMonitorConfigurations() {
+		return monitorConfigurations;
+	}
+
+	public void setMonitorConfigurations(List<MonitorConfiguration> monitorConfigurations) {
+		this.monitorConfigurations = monitorConfigurations;
 	}
 
 }

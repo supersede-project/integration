@@ -101,7 +101,7 @@ public class MonitoringOrchestratorProxyTest {
 	private MonitorTool createMonitorTool(MonitorType monitorType) throws Exception {
 		
 		//Remote monitor if exist
-		String monitorToolName = "TwitterAPITest";
+		String monitorToolName = UUID.randomUUID().toString() ;
 		try{
 			MonitorTool mt = proxy.getMonitorToolForMonitorType(monitorToolName, monitorType.getName());
 			if (mt != null){
@@ -120,7 +120,7 @@ public class MonitoringOrchestratorProxyTest {
 		return monitorTool;
 	}
 
-	@Test
+	@Ignore @Test
 	public void testCreateGetUpdateDeleteMonitorConfiguration() throws Exception {
 		
 		MonitorType monitorType = createMonitorType();

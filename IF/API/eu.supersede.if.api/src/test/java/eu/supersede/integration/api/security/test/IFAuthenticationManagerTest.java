@@ -290,7 +290,7 @@ public class IFAuthenticationManagerTest {
 		am.deleteRole(role);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void getAuthorizationTokenTest() throws TenantMgtAdminServiceExceptionException, URISyntaxException, UserStoreException, MalformedURLException{
 		AuthorizationToken token = am.getAuthorizationToken(testUserName, testUserPassword, "atos");
 		Assert.notNull(token);
