@@ -143,10 +143,10 @@ public class FrontendAuthentication <T, S> extends IFServiceProxy<T, S> implemen
 //		return (ResponseEntity<T>) messageClient.exchange(request, clazz);
 //	}
 	
-	public static void main (String[] args) throws Exception{
-		FrontendAuthentication<String, String> fea = new FrontendAuthentication<>();
-		FrontendSession frontEndSession = fea.login("wp_admin", "9jqUuNrZ", "atos");
-		String requirement = "{\"name\":\"ciao\",\"description\":\"descrizione\"}";
-		fea.addRequirement(requirement, frontEndSession);
-	}
+//	public static void main (String[] args) throws Exception{
+//		FrontendAuthentication<String, String> fea = new FrontendAuthentication<>();
+//		FrontendSession frontEndSession = fea.login("wp_admin", "9jqUuNrZ", "atos");
+//		String requirement = "{\"name\":\"ciao\",\"description\":\"descrizione\"}";
+//		fea.addRequirement(requirement, frontEndSession);
+//	}
 }
