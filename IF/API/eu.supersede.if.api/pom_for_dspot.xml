@@ -331,16 +331,20 @@
 		        <artifactId>maven-surefire-plugin</artifactId>
 		        <version>2.20</version>
 		        <configuration>
-		          <!-- <systemProperties>
-		            <property>
-		              <name>is.admin.user</name>
-		              <value>admin@atos.supersede.eu</value>
-		            </property>
-		            <property>
-		              <name>is.admin.passwd</name>
-		              <value>rtgWCyrc</value>
-		            </property>
-          		  </systemProperties> -->
+		          <systemProperties>
+				<property>
+					<name>supersede.if.properties</name>
+					<value>if.development.properties</value>
+				</property>
+				<property>
+					<name>is.admin.user</name>
+					<value>admin</value>
+				</property>
+				<property>
+					<name>is.admin.passwd</name>
+					<value>$2pRSid#</value>
+				</property>
+			  </systemProperties>
 		          <includes>
 		            <include>**/ReplanControllerProxyTest.java</include>
 		          </includes>
