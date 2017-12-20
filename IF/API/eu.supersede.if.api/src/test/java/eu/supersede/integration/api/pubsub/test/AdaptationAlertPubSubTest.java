@@ -21,15 +21,12 @@ import eu.supersede.integration.api.pubsub.adaptation.AdaptationPublisher;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationPublisher;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
-import eu.supersede.integration.api.pubsub.evolution.EvolutionAlertMessageListener;
-import eu.supersede.integration.api.pubsub.evolution.EvolutionPublisher;
-import eu.supersede.integration.api.pubsub.evolution.EvolutionSubscriber;
-import eu.supersede.integration.api.pubsub.evolution.iEvolutionPublisher;
-import eu.supersede.integration.api.pubsub.evolution.iEvolutionSubscriber;
+import eu.supersede.integration.federation.SupersedeFederation;
 
 public class AdaptationAlertPubSubTest implements Runnable{
 	private boolean messageReceived = false;
 	private boolean subscriptionDone = false;
+	private static  SupersedeFederation federation = new SupersedeFederation();
 	
 	@Before
     public void setup() throws Exception {
@@ -51,7 +48,7 @@ public class AdaptationAlertPubSubTest implements Runnable{
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			publisher = new AdaptationPublisher(true);
+			publisher = new AdaptationPublisher(true, federation.getLocalFederatedSupersedePlatform().getPlatform());
 			Alert alert = createAlert();
 			publisher.publishAdaptationAlertMesssage(alert);
 			try {
