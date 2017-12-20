@@ -9,22 +9,31 @@
   <name>eu.supersede.if.datasource.composite</name>
   <description>eu.supersede.if.datasource.composite</description>
   <properties>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetNotification_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetNotification_Request_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Request_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsersLazy_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsersLazy_Request_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllProfiles_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllProfiles_Response_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Response_DSSSequence>
-    <eu.supersede.if.datasource.api_._SupersedeDS_FE_API>capp/EnterpriseServiceBus</eu.supersede.if.datasource.api_._SupersedeDS_FE_API>
-    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Request_DSSSequence>
     <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllProfiles_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllProfiles_Request_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsersLazy_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsersLazy_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_DeleteAccount_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_DeleteAccount_Response_DSSSequence>
     <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUserLazy_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUserLazy_Request_DSSSequence>
     <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetNotification_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetNotification_Response_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Response_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetProfile_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetProfile_Request_DSSSequence>
-    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Response_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Response_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAccount_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAccount_Response_DSSSequence>
     <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetProfile_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetProfile_Response_DSSSequence>
+    <eu.supersede.if.datasource.api_._SupersedeDS_FE_API>capp/EnterpriseServiceBus</eu.supersede.if.datasource.api_._SupersedeDS_FE_API>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_InsertAccount_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_InsertAccount_Response_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_DeleteAccount_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_DeleteAccount_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAllAccounts_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAllAccounts_Response_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetUser_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Response_DSSSequence>
+    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,lib/registry/handlers=jar,service/rule=aar,lib/registry/filter=jar,synapse/message-store=xml,event/stream=json,service/meta=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,synapse/api=xml,wso2/gadget=dar,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetNotification_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetNotification_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllUsers_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetProfile_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetProfile_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllProfiles_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllProfiles_Response_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_InsertAccount_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_InsertAccount_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAccount_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAccount_Request_DSSSequence>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAllAccounts_Request_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_Integration_GetAllAccounts_Request_DSSSequence>
+    <eu.supersede.if.datasource.api_._SupersedeDS_Integration_API>capp/EnterpriseServiceBus</eu.supersede.if.datasource.api_._SupersedeDS_Integration_API>
+    <eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Response_DSSSequence>capp/EnterpriseServiceBus</eu.supersede.if.datasource.resource_._SupersedeDS_FE_GetAllNotifications_Response_DSSSequence>
   </properties>
   <dependencies>
     <dependency>
@@ -114,6 +123,60 @@
     <dependency>
       <groupId>eu.supersede.if.datasource.resource</groupId>
       <artifactId>SupersedeDS_FE_GetUser_Response_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.api</groupId>
+      <artifactId>SupersedeDS_Integration_API</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_GetAllAccounts_Request_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_GetAllAccounts_Response_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_GetAccount_Request_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_GetAccount_Response_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_InsertAccount_Request_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_InsertAccount_Response_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_DeleteAccount_Request_DSSSequence</artifactId>
+      <version>1.0.0</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>eu.supersede.if.datasource.resource</groupId>
+      <artifactId>SupersedeDS_Integration_DeleteAccount_Response_DSSSequence</artifactId>
       <version>1.0.0</version>
       <type>zip</type>
     </dependency>

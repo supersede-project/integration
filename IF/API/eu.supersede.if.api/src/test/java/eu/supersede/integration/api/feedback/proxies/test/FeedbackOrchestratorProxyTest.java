@@ -129,7 +129,7 @@ public class FeedbackOrchestratorProxyTest {
 	
 	// API User permission
 	
-	@Test
+	@Ignore @Test
 	public void testGetAPIUserPermissions() throws Exception {
 		List<ApiUserPermission> result = proxy.getApiUserPermissions(idUser);
 		Assert.notNull(result);
@@ -208,7 +208,7 @@ public class FeedbackOrchestratorProxyTest {
 		proxy.deleteApplication(result.getId());
 	}
 
-	@Test
+	@Ignore @Test
 	public void testImportApplication() throws Exception {
 		// Import
 		Application app = createApplication();
@@ -297,7 +297,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.notNull(result);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testCreateUpdateDeleteGeneralConfigurationOfConfiguration() throws Exception {
 		//Create
 		List<Parameter> parameters = createParameters();
@@ -333,7 +333,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.notNull(result);
 	}
 
-	@Test
+	@Ignore @Test
 	public void testCreateMechanismOfConfiguration() throws Exception {
 		Mechanism fm = createFeedbackMechanism(MechanismType.AUDIO_TYPE);
 		Mechanism result = proxy.createMechanismOfConfiguration(fm, idApplication, idConfiguration);
@@ -358,7 +358,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.notNull(result);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testCreateUpdateDeleteMechanismOfApplication() throws Exception {
 		//Create
 		Mechanism fm = createFeedbackMechanism(MechanismType.INFO_TYPE);
@@ -376,7 +376,7 @@ public class FeedbackOrchestratorProxyTest {
 	
 	// Configuration of mechanism
 	
-	@Test
+	@Ignore @Test
 	public void testGetMechanismParameters() throws Exception {
 		idApplication = 8;
 		idMechanism = 28;
@@ -399,7 +399,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.notNull(result);
 	}
 	
-	@Test
+	@Ignore @Test
 	public void testCreateUpdateDeleteParameters() throws Exception {
 		//Create
 		List<Parameter> parameters = createParameters();
@@ -441,7 +441,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.isTrue(!result.isEmpty());
 	}
 
-	@Test
+	@Ignore @Test
 	public void testGetUserGroup() throws Exception {
 		UserGroup result = proxy.getUserGroup(idApplication, idUserGroup);
 		Assert.notNull(result);

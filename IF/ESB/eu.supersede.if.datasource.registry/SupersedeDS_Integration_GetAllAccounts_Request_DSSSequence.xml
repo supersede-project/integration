@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence
+  name="SupersedeDS_Integration_GetAllAccounts_Request_DSSSequence"
+  onError="conf:/sendErrorMessage.xml" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+  <payloadFactory media-type="xml">
+    <format>
+      <p:select_all_mb_accounts_operation xmlns:p="http://schema.supersede.eu"/>
+    </format>
+    <args/>
+  </payloadFactory>
+</sequence>

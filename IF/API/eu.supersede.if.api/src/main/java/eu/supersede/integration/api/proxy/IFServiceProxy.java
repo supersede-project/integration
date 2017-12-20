@@ -41,8 +41,12 @@ import org.springframework.web.client.HttpServerErrorException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
+import eu.supersede.integration.api.datastore.proxies.IFDataStoreProxy;
 import eu.supersede.integration.api.fe.FrontendSession;
+import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.properties.IntegrationProperty;
 import eu.supersede.integration.rest.client.IFMessageClient;
 
 public abstract class IFServiceProxy<T, S> {
