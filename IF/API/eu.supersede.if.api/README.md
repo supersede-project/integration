@@ -1,6 +1,5 @@
 <link rel="shortcut icon" type="../../../images/png" href="../../../images/favicon.png">
 # Integration Framework (IF) Client API
-
 This library provides a number of proxies for dispatching messages to backend components of the SUPERSEDE platform instance deployed in the [Supersede Integration Server](http://supersede.es.atos.net:8080/).
 
 See deliverable D5.5 in [Supersede Portal](https://www.supersede.eu/) for more details about this framework, including its functional description, its architecture and its components.
@@ -263,6 +262,7 @@ When components within each SUPERSEDE platform register data format releases int
 Similarly, when the Data Analysis component of the Big Data platform send alerts to a SUPERSEDE platform, it must communicate that identifier of the target platform the alert will be sent to.
 From release 0.4.0, IF API client manages internally first communication scenarios, feeding them with the SUPERSEDE platform identifier.
 
+<<<<<<< HEAD
 To use this utility, the Java VM where the using component is executed must be launched with the following system properties:
 ```
 -Dsupersede.if.properties=if.development.properties #Use the IF configuration for your SUPERSEDE environment: development|platform|senercon
@@ -270,6 +270,8 @@ To use this utility, the Java VM where the using component is executed must be l
 -Dis.admin.passwd=<password>
 ```
 
+=======
+>>>>>>> e709db7cb8b23fc575cba61c9c2ef5fea690939c
 Other usage scenarios:
 - Retrieve the list of federated SUPERSEDE platforms:
 Any component, in particular, SUPERSEDE Big Data Analysis component, can retrieve the current list of federated platforms using the following IF API code:
