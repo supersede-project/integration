@@ -58,10 +58,22 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 		topicSession = null;
 	}
 
+	public TopicSubscriber(SubscriptionTopic subscriptionTopic,  String platform) throws NamingException {
+		super(subscriptionTopic, platform);
+	}
+	
 	public TopicSubscriber(SubscriptionTopic subscriptionTopic) throws NamingException {
 		super(subscriptionTopic);
 	}
 
+	public TopicSubscriber(SubscriptionTopic subscriptionTopic, boolean openConnection,  String platform)
+			throws NamingException, JMSException {
+		super(subscriptionTopic, platform);
+		if (openConnection)
+			openTopicConnection();
+
+	}
+	
 	public TopicSubscriber(SubscriptionTopic subscriptionTopic, boolean openConnection)
 			throws NamingException, JMSException {
 		super(subscriptionTopic);

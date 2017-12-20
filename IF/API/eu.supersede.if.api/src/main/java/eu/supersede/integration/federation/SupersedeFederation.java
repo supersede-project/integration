@@ -39,5 +39,17 @@ public class SupersedeFederation {
 	public List<SupersedePlatform> getFederatedSupersedePlatforms(){
 		return federatedPlatforms;
 	}
+
+	public SupersedePlatform getFederatedSupersedePlatform(String identifier) {
+		SupersedePlatform platform = null;
+		for (SupersedePlatform p: getFederatedSupersedePlatforms()){
+			if (p.getPlatform().equals(identifier)){
+				platform = p;
+				break;
+			}
+		}
+		
+		return platform;
+	}
 	
 }
