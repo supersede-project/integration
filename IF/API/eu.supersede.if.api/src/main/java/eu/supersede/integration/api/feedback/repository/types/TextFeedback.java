@@ -8,8 +8,6 @@ import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
 public class TextFeedback implements MechanismFeedback {
     private long id;
 
-    @JsonIgnore
-    private Feedback feedback;
     private String text;
     private long mechanismId;
 
@@ -20,8 +18,7 @@ public class TextFeedback implements MechanismFeedback {
 
     }
 
-    public TextFeedback(Feedback feedback, String text, long mechanismId) {
-        this.feedback = feedback;
+    public TextFeedback(String text, long mechanismId) {
         this.text = text;
         this.mechanismId = mechanismId;
     }
@@ -29,8 +26,8 @@ public class TextFeedback implements MechanismFeedback {
     @Override
     public String toString() {
         return String.format(
-                "TextFeedback[id=%d, feedbackId='%d', text='%s', mechanismId='%d']",
-                id, feedback.getId(), text, mechanismId);
+                "TextFeedback[id=%d, text='%s', mechanismId='%d']",
+                id, text, mechanismId);
     }
 
     public long getId() {
@@ -39,14 +36,6 @@ public class TextFeedback implements MechanismFeedback {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Feedback getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(Feedback feedback) {
-        this.feedback = feedback;
     }
 
     public String getText() {

@@ -40,6 +40,7 @@ import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -341,10 +342,16 @@ public class IFMessageClient {
 	}
 
 	public <T> ResponseEntity<T> exchange(URI uri, HttpMethod method,
-			HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity, Class<T> clazz) {
+			HttpEntity<MultiValueMap<String, Object>> requestEntity, Class<T> clazz) {
 		return restTemplate.exchange(uri, 
                 method, requestEntity, clazz);
 	}
+	
+//	public <T> ResponseEntity<T> exchange2(URI uri, HttpMethod method,
+//			HttpEntity<MultiValueMap<String, MultipartFile>> requestEntity, Class<T> clazz) {
+//		return restTemplate.exchange(uri, 
+//                method, requestEntity, clazz);
+//	}
 	
 	public <T> ResponseEntity<T> exchange(RequestEntity<T> request, Class<T> clazz) {
 		return restTemplate.exchange(request, clazz);
