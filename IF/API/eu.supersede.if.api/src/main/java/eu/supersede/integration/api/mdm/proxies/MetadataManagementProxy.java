@@ -38,6 +38,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.LinkedMultiValueMap;
 
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
+import eu.supersede.integration.api.mdm.types.Event;
 import eu.supersede.integration.api.mdm.types.Feedback;
 import eu.supersede.integration.api.mdm.types.FeedbackClassification;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
@@ -115,6 +116,37 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 		log.debug("Sending message sendFile with filePath: " + filePath
 				+ " to MetadataManagement at uri " + uri);
 		return sendMultipartFormDataMessage(uri, parts, HttpMethod.POST, HttpStatus.OK);
+	}
+
+	@Override
+	public ECA_Rule getECARule(String id) throws Exception {
+		Assert.notNull(id, "Provide a valid ECARule id");
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "eca_rule/" + id);
+		log.debug("Sending message getECARule to MetadataManagement at uri " + uri);
+		return getJSONObjectForType(ECA_Rule.class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public List<Event> getAllEvents() throws Exception {
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "event");
+		log.debug("Sending message getAllEvents to MetadataManagement at uri " + uri);
+		return getJSONObjectsListForType(Event[].class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public Event getEvent(String id) throws Exception {
+		Assert.notNull(id, "Provide a valid Event id");
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "event/" + id);
+		log.debug("Sending message getEvent to MetadataManagement at uri " + uri);
+		return getJSONObjectForType(Event.class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public KafkaTopic createEvent(Event event) throws Exception {
+		Assert.notNull(event, "Provide a valid Event");
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "event");
+		log.debug("Sending message createEvent to MetadataManagement at uri " + uri);
+		return insertJSONObjectAndReturnAnotherType(event, KafkaTopic.class, uri,  HttpStatus.OK);
 	}
 	
 }
