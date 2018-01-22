@@ -2,12 +2,12 @@ package eu.supersede.integration.api.adaptation.types;
 
 public class ActionOnAttribute {
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return this.id;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String id) {
+		this.id = id;
 	}
 
 	public AttributeAction getTypeaction() {
@@ -27,18 +27,18 @@ public class ActionOnAttribute {
 	}
 
 
-	String					ID;
+	String					id;
 	AttributeAction			typeaction;
 	double 					value;
 	
 	public ActionOnAttribute() {}
 
 	public ActionOnAttribute(
-			String 			iD, 
+			String 			id, 
 			AttributeAction typeaction, 
 			double 			value) {
 		super();
-		ID = iD;
+		this.id = id;
 		this.typeaction = typeaction;
 		this.value = value;
 	}

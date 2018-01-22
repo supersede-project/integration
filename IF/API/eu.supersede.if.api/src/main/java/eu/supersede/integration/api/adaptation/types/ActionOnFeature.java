@@ -2,11 +2,11 @@ package eu.supersede.integration.api.adaptation.types;
 
 public class ActionOnFeature {
 
-	public String getID() {
-		return ID;
+	public String getId() {
+		return this.id;
 	}
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String id) {
+		this.id = id;
 	}
 	public FeatureAction getTypeaction() {
 		return typeaction;
@@ -15,16 +15,16 @@ public class ActionOnFeature {
 		this.typeaction = typeaction;
 	}
 	
-	String					ID;
+	String					id;
 	FeatureAction			typeaction;
 	
 	public ActionOnFeature(){}
 	
 	public ActionOnFeature(
-			String 			iD, 
+			String 			id, 
 			FeatureAction 	typeaction) {
 		super();
-		ID = iD;
+		this.id = id;
 		this.typeaction = typeaction;
 	}
 	

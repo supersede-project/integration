@@ -1,12 +1,13 @@
 package eu.supersede.integration.api.mdm.types;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Event {
+public class Event implements Serializable{
 
     private String eventID;
     private String jsonInstances;
