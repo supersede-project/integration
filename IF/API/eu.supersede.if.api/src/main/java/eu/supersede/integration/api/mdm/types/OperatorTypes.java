@@ -1,9 +1,11 @@
 package eu.supersede.integration.api.mdm.types;
 
+import java.io.Serializable;
+
 /**
  * Created by snadal on 20/01/17.
  */
-public enum OperatorTypes {
+public enum OperatorTypes implements Serializable{
     VALUE("Value"),
     FEEDBACK_CLASSIFIER_LABEL("Feedback Classifier Label"),
     FEEDBACK_CLASSIFIER_ACCURACY("Feedback Classifier Accuracy"),

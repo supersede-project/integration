@@ -1,9 +1,11 @@
 package eu.supersede.integration.api.mdm.types;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Condition {
+public class Condition implements Serializable{
 	private String predicate;
 	private String attribute;
 	private String value;

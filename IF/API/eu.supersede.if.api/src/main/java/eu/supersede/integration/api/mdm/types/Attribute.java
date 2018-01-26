@@ -1,6 +1,8 @@
 package eu.supersede.integration.api.mdm.types;
 
-public class Attribute {
+import java.io.Serializable;
+
+public class Attribute implements Serializable{
 	private String iri;
 	private String name;
 	public String getIri() {
