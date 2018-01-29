@@ -454,6 +454,42 @@ public class FeedbackOrchestratorProxyTest {
 		proxy.createUserGroup(userGroup, idApplication);
 	}
 	
+	//Parameter reorder/switch
+	@Test
+	public void testSwitchOrderOfParametersOfMechanism() throws Exception {
+		List<Parameter> result = proxy.switchOrderOfParametersOfMechanism(8, 28, 45, 46);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testReorderParameterOfMechanism() throws Exception {
+		List<Parameter> result = proxy.reorderParameterOfMechanism(8, 28, 45, 1);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testSwitchOrderOfParametersOfGeneralConfiguration() throws Exception {
+		List<Parameter> result = proxy.switchOrderOfParametersOfGeneralConfiguration(8, 8, 40, 41);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testReorderParameterOfGeneralConfiguration() throws Exception {
+		List<Parameter> result = proxy.reorderParameterOfGeneralConfiguration(8, 8, 40, 1);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testSwitchOrderOfParametersOfParameter() throws Exception {
+		List<Parameter> result = proxy.switchOrderOfParametersOfParameter(8, 77, 78, 79);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testReorderParameterOfParameter() throws Exception {
+		List<Parameter> result = proxy.reorderParameterOfParameter(8, 77, 78, 1);
+		Assert.notEmpty(result);
+	}
 	//Private methods
 	
 	private List<Mechanism> createMechanisms(List<Parameter> parameters) {

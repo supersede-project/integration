@@ -122,5 +122,13 @@ public interface IFeedbackOrchestrator {
 	UserGroup getUserGroup (long idApplication, long idUserGroup) throws Exception;
 	void deleteUserGroup (long idApplication, long idUserGroup) throws Exception;
 	UserGroup updateUserGroup (UserGroup user, long idApplication, long idUserGroup) throws Exception;
-		
+	
+	//Parameter reordering/switching
+	List<Parameter> switchOrderOfParametersOfMechanism(long idApplication, long idMechanism, long idParam1, long idParam2) throws Exception;
+	List<Parameter> reorderParameterOfMechanism(long idApplication, long idMechanism, long idParam, long order) throws Exception;
+	List<Parameter> switchOrderOfParametersOfGeneralConfiguration(long idApplication, long idGeneralConfiguration, long idParam1, long idParam2) throws Exception;
+	List<Parameter> reorderParameterOfGeneralConfiguration(long idApplication, long idGeneralConfiguration, long idParam, long order) throws Exception;
+	List<Parameter> switchOrderOfParametersOfParameter(long idApplication, long idParam, long idParam1, long idParam2) throws Exception;
+	List<Parameter> reorderParameterOfParameter(long idApplication, long idParam1, long idParam2, long order) throws Exception;
+
 }

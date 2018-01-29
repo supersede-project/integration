@@ -20,6 +20,7 @@
 package eu.supersede.integration.api.feedback.proxies;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -781,6 +782,114 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 				+ " and userGroup: " + userGroup 
 				+ " to FeedbackOrchestrator at uri " + uri);
 		return updateAndReturnJSONObject(userGroup, uri, HttpStatus.OK, token);
+	}
+
+	@Override
+	public List<Parameter> switchOrderOfParametersOfMechanism(long idApplication, long idMechanism, long idParam1,
+			long idParam2) throws Exception {
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idMechanism, "Provide a valid idMechanism");
+		Assert.notNull(idParam1, "Provide a valid idParam1");
+		Assert.notNull(idParam2, "Provide a valid idParam2");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
+				+ "/mechanisms/" + idMechanism + "/parameters/" + idParam1 + "/switchOrder/" + idParam2);
+		log.debug("Sending message switchOrderOfParametersOfMechanism with idApplication: " + idApplication 
+				+ " and idMechanism: " + idMechanism 
+				+ " and idParam1: " + idParam1 
+				+ " and idParam2: " + idParam2 
+				+ " to FeedbackOrchestrator at uri " + uri);
+		
+		return updateJSONObjectAndReturnAnotherType("{}", new ArrayList<Parameter>().getClass(), uri, HttpStatus.OK, token);
+	}
+
+	@Override
+	public List<Parameter> reorderParameterOfMechanism(long idApplication, long idMechanism, long idParam, long order)
+			throws Exception {
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idMechanism, "Provide a valid idMechanism");
+		Assert.notNull(idParam, "Provide a valid idParam");
+		Assert.notNull(order, "Provide a valid order");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
+				+ "/mechanisms/" + idMechanism + "/parameters/" + idParam + "/reorder/" + order);
+		log.debug("Sending message reorderParameterOfMechanism with idApplication: " + idApplication 
+				+ " and idMechanism: " + idMechanism 
+				+ " and idParam1: " + idParam 
+				+ " and order: " + order 
+				+ " to FeedbackOrchestrator at uri " + uri);
+		
+		return updateJSONObjectAndReturnAnotherType("{}", new ArrayList<Parameter>().getClass(), uri, HttpStatus.OK, token);
+	}
+
+	@Override
+	public List<Parameter> switchOrderOfParametersOfGeneralConfiguration(long idApplication,
+			long idGeneralConfiguration, long idParam1, long idParam2) throws Exception {
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idGeneralConfiguration, "Provide a valid idGeneralConfiguration");
+		Assert.notNull(idParam1, "Provide a valid idParam1");
+		Assert.notNull(idParam2, "Provide a valid idParam2");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
+				+ "/general_configuration/" + idGeneralConfiguration + "/parameters/" + idParam1 + "/switchOrder/" + idParam2);
+		log.debug("Sending message switchOrderOfParametersOfGeneralConfiguration with idApplication: " + idApplication 
+				+ " and idMechanism: " + idGeneralConfiguration 
+				+ " and idParam1: " + idParam1 
+				+ " and idParam2: " + idParam2 
+				+ " to FeedbackOrchestrator at uri " + uri);
+		
+		return updateJSONObjectAndReturnAnotherType("{}", new ArrayList<Parameter>().getClass(), uri, HttpStatus.OK, token);	}
+
+	@Override
+	public List<Parameter> reorderParameterOfGeneralConfiguration(long idApplication, long idGeneralConfiguration,
+			long idParam, long order) throws Exception {
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idGeneralConfiguration, "Provide a valid idGeneralConfiguration");
+		Assert.notNull(idParam, "Provide a valid idParam");
+		Assert.notNull(order, "Provide a valid order");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
+				+ "/general_configuration/" + idGeneralConfiguration + "/parameters/" + idParam + "/reorder/" + order);
+		log.debug("Sending message reorderParameterOfGeneralConfiguration with idApplication: " + idApplication 
+				+ " and idGeneralConfiguration: " + idGeneralConfiguration 
+				+ " and idParam1: " + idParam 
+				+ " and order: " + order 
+				+ " to FeedbackOrchestrator at uri " + uri);
+		
+		return updateJSONObjectAndReturnAnotherType("{}", new ArrayList<Parameter>().getClass(), uri, HttpStatus.OK, token);
+	}
+
+	@Override
+	public List<Parameter> switchOrderOfParametersOfParameter(long idApplication, long idParam, long idParam1,
+			long idParam2) throws Exception {
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idParam, "Provide a valid idParam");
+		Assert.notNull(idParam1, "Provide a valid idParam1");
+		Assert.notNull(idParam2, "Provide a valid idParam2");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
+				+ "/parameter/" + idParam + "/parameters/" + idParam1 + "/switchOrder/" + idParam2);
+		log.debug("Sending message switchOrderOfParametersOfParameter with idApplication: " + idApplication 
+				+ " and idMechanism: " + idParam 
+				+ " and idParam1: " + idParam1 
+				+ " and idParam2: " + idParam2 
+				+ " to FeedbackOrchestrator at uri " + uri);
+		
+		return updateJSONObjectAndReturnAnotherType("{}", new ArrayList<Parameter>().getClass(), uri, HttpStatus.OK, token);
+	}
+
+	@Override
+	public List<Parameter> reorderParameterOfParameter(long idApplication, long idParam1, long idParam2, long order)
+			throws Exception {
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idParam1, "Provide a valid idParam1");
+		Assert.notNull(idParam2, "Provide a valid idPara2m");
+		Assert.notNull(order, "Provide a valid order");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
+				+ "/parameter/" + idParam1 + "/parameters/" + idParam2 + "/reorder/" + order);
+		log.debug("Sending message reorderParameterOfParameter with idApplication: " + idApplication 
+				+ " and idParam1: " + idParam1 
+				+ " and idParam2: " + idParam2
+				+ " and order: " + order 
+				+ " to FeedbackOrchestrator at uri " + uri);
+		
+		return updateJSONObjectAndReturnAnotherType("{}", new ArrayList<Parameter>().getClass(), uri, HttpStatus.OK, token);
+
 	}
 	
 }

@@ -1106,4 +1106,106 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/mechanisms/{mechan_id}/parameters/{param1_id}/switchOrder/{param2_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Switch parameter order for mechanism message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/mechanisms/{mechan_id}/parameters/{param_id}/reorder/{order_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Update parameter order for mechanism message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/general_configuration/{conf_id}/parameters/{param1_id}/switchOrder/{param2_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Switch parameter order for general configuration message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/general_configuration/{conf_id}/parameters/{param_id}/reorder/{order_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Update parameter order for general configuration message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/parameter/{param_id}/parameters/{param1_id}/switchOrder/{param2_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Switch parameter order for parameters message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/{language}/applications/{app_id}/parameter/{param1_id}/parameters/{param2_id}/reorder/{order_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Update parameter order for parameters message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>

@@ -470,6 +470,27 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public <T,S> S updateJSONObjectAndReturnAnotherType(T object, Class<S> returnedType, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		S result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<S> response = 
+					messageClient.putJsonMessage(object, uri, returnedType, token);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully updated JSON object " + object);
+			} else {
+				log.info("There was a problem updating JSON object " + result + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw e;
+		}
+	}
+	
 	public <T,S> S updateJSONObjectAndReturnAnotherType(T object, Class<S> returnedType, URI uri, HttpStatus expectedStatus) throws Exception {
 		S result = null;
 		try {
