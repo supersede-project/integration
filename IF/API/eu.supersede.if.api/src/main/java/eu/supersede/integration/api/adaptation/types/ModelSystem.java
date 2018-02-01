@@ -14,6 +14,9 @@ public enum ModelSystem {
 	AtosFG ("AtosFG"),
 	SiemensFG ("SiemensFG"),
 	SenerconFG ("SenerconFG"),
+	SenerconFGcat ("SenerconFGcat"),
+	SiemensFGcat ("SiemensFGcat"),
+	AtosFGcat ("AtosFGcat"),
 	Health ("Health");
 	
 	String id;
