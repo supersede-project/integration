@@ -37,6 +37,7 @@ import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.util.LinkedMultiValueMap;
 
+import eu.supersede.integration.api.mdm.types.CER_Rule;
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
 import eu.supersede.integration.api.mdm.types.Event;
 import eu.supersede.integration.api.mdm.types.Feedback;
@@ -149,4 +150,18 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 		return insertJSONObjectAndReturnAnotherType(event, KafkaTopic.class, uri,  HttpStatus.OK);
 	}
 	
+	@Override
+	public List<CER_Rule> getAllCERRules() throws Exception {
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "cer_rule");
+		log.debug("Sending message getAllCERRules to MetadataManagement at uri " + uri);
+		return getJSONObjectsListForType(CER_Rule[].class, uri, HttpStatus.OK);
+	}
+
+	@Override
+	public CER_Rule getCERRule(String id) throws Exception {
+		Assert.notNull(id, "Provide a valid CERRule id");
+		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "cer_rule/" + id);
+		log.debug("Sending message getCERRule to MetadataManagement at uri " + uri);
+		return getJSONObjectForType(CER_Rule.class, uri, HttpStatus.OK);
+	}
 }

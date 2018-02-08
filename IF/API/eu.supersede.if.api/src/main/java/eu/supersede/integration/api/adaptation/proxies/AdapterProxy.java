@@ -120,4 +120,15 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 		values.put("fc_id",  Arrays.asList(featureConfigurationId));
 		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);
 	}
+
+	@Override
+	public boolean enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws Exception {
+		Assert.notNull(system, "Provide a valid system");
+		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
+		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "enactFC/featureConfiguration/" + featureConfigurationId + "/system/" + system;
+		log.debug("Invoking enactFeatureConfiguration (system: " + system
+				+ ", featureConfigurationId: " + featureConfigurationId + ") in uri: " + uriString);
+		return postJSONString("{}", new URI(uriString), HttpStatus.OK);
+
+	}
 }

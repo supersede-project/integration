@@ -29,6 +29,7 @@ import org.junit.Test;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.mdm.proxies.MetadataManagementProxy;
+import eu.supersede.integration.api.mdm.types.CER_Rule;
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
 import eu.supersede.integration.api.mdm.types.Event;
 import eu.supersede.integration.api.mdm.types.Feedback;
@@ -81,6 +82,23 @@ public class MetadataManagementProxyTest {
 		Assert.notEmpty(rules);
 		
 		ECA_Rule result = proxy.getECARule(rules.get(0).getEca_ruleID()); 
+		Assert.notNull(result);
+	}
+	
+	@Test
+	public void testGelAllCERRules() throws Exception {
+		List<CER_Rule> result = proxy.getAllCERRules();
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
+	
+	@Test
+	public void testGetCERRule() throws Exception {
+		List<CER_Rule> rules = proxy.getAllCERRules();
+		Assert.notNull(rules);
+		Assert.notEmpty(rules);
+		
+		CER_Rule result = proxy.getCERRule(rules.get(0).getCer_ruleID()); 
 		Assert.notNull(result);
 	}
 	

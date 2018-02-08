@@ -34,4 +34,6 @@ public interface IAdapter {
 
 	boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString,
 			String featureConfigurationId) throws Exception;
+	
+	boolean enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws Exception;
 }

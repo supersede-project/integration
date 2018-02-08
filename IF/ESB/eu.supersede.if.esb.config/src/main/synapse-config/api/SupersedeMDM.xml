@@ -68,6 +68,40 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="GET" protocol="http" uri-template="/cer_rule">
+    <inSequence>
+      <log level="full">
+        <property name="Metadata Management System" value="Get all CER rules message forwarded to MDM endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MDMEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/cer_rule/{id_cer}">
+    <inSequence>
+      <log level="full">
+        <property name="Metadata Management System" value="Get an CER rule by Id message forwarded to MDM endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/MDMEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
   <resource methods="GET" protocol="http" uri-template="/event">
     <inSequence>
       <log level="full">

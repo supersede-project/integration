@@ -21,12 +21,14 @@ package eu.supersede.integration.api.monitoring.proxies.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.Instruction;
 import eu.supersede.integration.api.monitoring.monitors.proxies.DiskMonitorProxy;
 
 public class DiskMonitorProxyTest {
@@ -68,8 +70,9 @@ public class DiskMonitorProxyTest {
 		conf.setKafkaTopic("disk");
 		conf.setUser("supersede");
 		conf.setHost("tools.supersede.atos-sports.tv");
-		conf.setInstruction("snmpdf -v2c -c supersede.ovp prt.tbs");
-		conf.setLabel("test-instruction");
+		conf.setInstructions(new ArrayList<Instruction>(){{
+			add (new Instruction("test-instruction", "snmpdf -v2c -c supersede.ovp prt.tbs"));
+		}});
 		return conf;
 	}
 
