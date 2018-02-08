@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ActionParameter implements Serializable{
 	private String attribute;
-	private CER_Event event;
+	private Event event;
 	
 	public String getAttribute() {
 		return attribute;
@@ -12,10 +12,10 @@ public class ActionParameter implements Serializable{
 	public void setAttribute(String attribute) {
 		this.attribute = attribute;
 	}
-	public CER_Event getEvent() {
+	public Event getEvent() {
 		return event;
 	}
-	public void setEvent(CER_Event event) {
+	public void setEvent(Event event) {
 		this.event = event;
 	}
 }

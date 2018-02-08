@@ -6,7 +6,7 @@ public class Filter implements Serializable{
 	private String comparator;
 	private String leftOperand;
 	private String rightOperand;
-	private CER_Event event;
+	private Event event;
 	
 	public String getComparator() {
 		return comparator;
@@ -26,10 +26,10 @@ public class Filter implements Serializable{
 	public void setRightOperand(String rightOperand) {
 		this.rightOperand = rightOperand;
 	}
-	public CER_Event getEvent() {
+	public Event getEvent() {
 		return event;
 	}
-	public void setEvent(CER_Event event) {
+	public void setEvent(Event event) {
 		this.event = event;
 	}
 }

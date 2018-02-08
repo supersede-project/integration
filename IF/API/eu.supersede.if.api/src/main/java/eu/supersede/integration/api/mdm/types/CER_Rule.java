@@ -21,7 +21,7 @@ public class CER_Rule implements Serializable{
     private String ruleName;
     
     @JsonProperty ("pattern")
-    private List<CER_Event> patterns;
+    private List<Event> patterns;
     private List<Filter> filters;
     private List<ActionParameter> actionParameters;
     
@@ -67,14 +67,14 @@ public class CER_Rule implements Serializable{
         this.actionType = actionType;
     }
 
-	public List<CER_Event> getPatterns() {
+	public List<Event> getPatterns() {
 		if (this.patterns == null){
 			this.patterns = new ArrayList<>();
 		}
 		return patterns;
 	}
 
-	public void setPatterns(List<CER_Event> patterns) {
+	public void setPatterns(List<Event> patterns) {
 		this.patterns = patterns;
 	}
 

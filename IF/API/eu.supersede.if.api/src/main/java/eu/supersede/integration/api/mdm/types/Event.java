@@ -12,6 +12,8 @@ public class Event implements Serializable{
     private String eventID;
     private String jsonInstances;
     private String kafkaTopic;
+    private String dispatch;
+    private String dispatcherStrategy;
     private String dispatcherPath;
     private String event;
     private String platform;
@@ -36,6 +38,18 @@ public class Event implements Serializable{
 	}
 	public void setKafkaTopic(String kafkaTopic) {
 		this.kafkaTopic = kafkaTopic;
+	}
+	public String getDispatch() {
+		return dispatch;
+	}
+	public void setDispatch(String dispatch) {
+		this.dispatch = dispatch;
+	}
+	public String getDispatcherStrategy() {
+		return dispatcherStrategy;
+	}
+	public void setDispatcherStrategy(String dispatcherStrategy) {
+		this.dispatcherStrategy = dispatcherStrategy;
 	}
 	public String getDispatcherPath() {
 		return dispatcherPath;
