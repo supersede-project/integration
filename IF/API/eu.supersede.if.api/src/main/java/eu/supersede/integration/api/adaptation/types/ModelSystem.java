@@ -1,27 +1,30 @@
 package eu.supersede.integration.api.adaptation.types;
 
 public enum ModelSystem {
-	Supersede ("Supersede"),
-	MonitoringReconfiguration ("MonitoringReconfiguration"),
-	FeedbackGatheringReconfiguration ("FeedbackGatheringReconfiguration"),
-	Siemens ("Siemens"),
-	Atos ("Atos"),
-	Atos_HSK ("Atos_HSK"),
-	Senercon ("Senercon"),
-	AtosMonitoring ("AtosMonitoring"),
-	SiemensMonitoring ("SiemensMonitoring"),
-	SenerconMonitoring ("SenerconMonitoring"),
-	AtosFG ("AtosFG"),
-	SiemensFG ("SiemensFG"),
-	SenerconFG ("SenerconFG"),
-	SenerconFGcat ("SenerconFGcat"),
-	SiemensFGcat ("SiemensFGcat"),
-	AtosFGcat ("AtosFGcat"),
-	Health ("Health");
+	Supersede ("Supersede", Tenant.SUPERSEDE),
+	MonitoringReconfiguration ("MonitoringReconfiguration", Tenant.SUPERSEDE),
+	FeedbackGatheringReconfiguration ("FeedbackGatheringReconfiguration", Tenant.SUPERSEDE),
+	Siemens ("Siemens", Tenant.SIEMENS),
+	Atos ("Atos", Tenant.ATOS),
+	Atos_HSK ("Atos_HSK", Tenant.ATOS),
+	Senercon ("Senercon", Tenant.SENERCON),
+	AtosMonitoring ("AtosMonitoring", Tenant.ATOS),
+	SiemensMonitoring ("SiemensMonitoring", Tenant.SIEMENS),
+	SenerconMonitoring ("SenerconMonitoring", Tenant.SENERCON),
+	AtosFG ("AtosFG", Tenant.ATOS),
+	SiemensFG ("SiemensFG", Tenant.SIEMENS),
+	SenerconFG ("SenerconFG", Tenant.SENERCON),
+	SenerconFGcat ("SenerconFGcat", Tenant.SENERCON),
+	SiemensFGcat ("SiemensFGcat", Tenant.SIEMENS),
+	AtosFGcat ("AtosFGcat", Tenant.ATOS),
+	Health ("Health", Tenant.SUPERSEDE);
 	
 	String id;
-	ModelSystem(String id){
+	Tenant tenant;
+	
+	ModelSystem(String id, Tenant tenant){
 		this.id = id;
+		this.tenant = tenant;
 	}
 	
 	@Override
@@ -31,5 +34,9 @@ public enum ModelSystem {
 	
 	public String getId(){
 		return id;
+	}
+	
+	public Tenant getTenant(){
+		return tenant;
 	}
 }
