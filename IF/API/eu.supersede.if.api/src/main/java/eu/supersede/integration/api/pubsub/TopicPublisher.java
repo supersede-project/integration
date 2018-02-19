@@ -31,12 +31,12 @@ public class TopicPublisher extends TopicMessageAgent implements iTopicPublisher
 //		}
 //	}
 
-	public TopicPublisher(SubscriptionTopic subscriptionTopic) throws NamingException {
-		super (subscriptionTopic);
+	public TopicPublisher(SubscriptionTopic subscriptionTopic, String platform) throws NamingException {
+		super (subscriptionTopic, platform);
 	}
 	
-	public TopicPublisher(SubscriptionTopic subscriptionTopic, boolean openConnection) throws NamingException, JMSException {
-		super (subscriptionTopic);
+	public TopicPublisher(SubscriptionTopic subscriptionTopic, boolean openConnection, String platform) throws NamingException, JMSException {
+		super (subscriptionTopic, platform);
 		if (openConnection)
 			openTopicConnection();
 	}

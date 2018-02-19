@@ -20,12 +20,12 @@ import eu.supersede.integration.api.pubsub.TopicPublisher;
 public class EvolutionPublisher extends TopicPublisher implements iEvolutionPublisher{
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
-	public EvolutionPublisher() throws NamingException {
-		super (SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);
+	public EvolutionPublisher(String platform) throws NamingException {
+		super (SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC, platform);
 	}
 	
-	public EvolutionPublisher(boolean openConnection) throws NamingException, JMSException {
-		super (SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);
+	public EvolutionPublisher(boolean openConnection, String platform) throws NamingException, JMSException {
+		super (SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC, platform);
 		if (openConnection)
 			openTopicConnection();
 	}

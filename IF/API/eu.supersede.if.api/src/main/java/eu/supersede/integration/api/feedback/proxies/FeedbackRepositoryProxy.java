@@ -29,7 +29,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -37,12 +36,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import eu.supersede.integration.api.feedback.repository.types.Feedback;
-import eu.supersede.integration.api.feedback.repository.types.Status;
-import eu.supersede.integration.api.feedback.repository.types.StatusOption;
-import eu.supersede.integration.api.feedback.types.ApiUser;
-import eu.supersede.integration.api.feedback.types.ApiUserPermission;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
 import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.properties.IntegrationProperty;
@@ -171,27 +167,57 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 		Assert.notNull(audiosPaths, "Provide valid audios");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks");
 		
-		LinkedMultiValueMap<String, Object> parts = 
-		          new LinkedMultiValueMap<String, Object>();
+		MultiValueMap<String, Object> multipartRequest = 
+		          new LinkedMultiValueMap<>();
 		
-		HttpHeaders xmlHeaders = new HttpHeaders();
-        xmlHeaders.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<String> jsonEntity = new HttpEntity<String>(convertToJSON (feedback), xmlHeaders);
-		
-		parts.add("json", jsonEntity);
-		
-//		parts.add("json", convertToJSON (feedback));
-		
-		for (String key: attachmentsPaths.keySet()){
-			parts.add(key, new ByteArrayResource(Files.readAllBytes(attachmentsPaths.get(key))));
+		HttpHeaders jsonHeaders = new HttpHeaders();
+		jsonHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<ByteArrayResource> jsonPart = new HttpEntity<ByteArrayResource>(
+				new ByteArrayResource(convertToJSON(feedback).getBytes()){
+					@Override
+					public String getFilename() {
+						return "";
+					}
+				}, jsonHeaders);	
+        multipartRequest.add("json", jsonPart);
+				
+		for (String key: attachmentsPaths.keySet()){			
+			HttpHeaders attachmentHeader = new HttpHeaders();
+			attachmentHeader.setContentType(MediaType.TEXT_PLAIN);
+			HttpEntity<ByteArrayResource> attachmentPart = new HttpEntity<ByteArrayResource>(
+					new ByteArrayResource(Files.readAllBytes(attachmentsPaths.get(key))){
+						@Override
+						public String getFilename() {
+							return "";
+						}
+					}, attachmentHeader);				
+			multipartRequest.add(key, attachmentPart);
 		}
 	
 		for (String key: screenshotsPaths.keySet()){
-			parts.add(key, new ByteArrayResource(Files.readAllBytes(screenshotsPaths.get(key))));
+			HttpHeaders screenshotHeader = new HttpHeaders();
+			screenshotHeader.setContentType(MediaType.IMAGE_PNG);
+			HttpEntity<ByteArrayResource> screenshotPart = new HttpEntity<ByteArrayResource>(
+					new ByteArrayResource(Files.readAllBytes(screenshotsPaths.get(key))){
+						@Override
+						public String getFilename() {
+							return "";
+						}
+					}, screenshotHeader);				
+			multipartRequest.add(key, screenshotPart);
 		}
 		
 		for (String key: audiosPaths.keySet()){
-			parts.add(key, new ByteArrayResource(Files.readAllBytes(audiosPaths.get(key))));
+			HttpHeaders audioHeader = new HttpHeaders();
+			audioHeader.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			HttpEntity<ByteArrayResource> audioPart = new HttpEntity<ByteArrayResource>(
+					new ByteArrayResource(Files.readAllBytes(audiosPaths.get(key))){
+						@Override
+						public String getFilename() {
+							return "";
+						}
+					}, audioHeader);
+			multipartRequest.add(key, audioPart);
 		}
 		
 		log.debug("Sending message createFeedbackForApplication with feedback: " + feedback
@@ -201,7 +227,7 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 				+ " with idApplication: " + idApplication
 				+ " with token: " + token
 				+ " to FeedbackRepository at uri " + uri);
-		return sendMultipartFormDataMessage(uri, Feedback.class, parts, HttpMethod.POST, token);
+		return sendMultipartFormDataMessage(uri, Feedback.class, multipartRequest, HttpMethod.POST, token);
 	}
 	
 	public void deleteFeedback(Integer idApplication, Integer idFeedback) throws Exception{

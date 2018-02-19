@@ -11,7 +11,6 @@ import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
 public class AttachmentFeedback implements FileFeedback, MechanismFeedback {
 
     protected long id;
-    private Feedback feedback;
     private long mechanismId;
     private String path;
     private int size;
@@ -25,38 +24,27 @@ public class AttachmentFeedback implements FileFeedback, MechanismFeedback {
     public String toString() {
         return String.format(
                 "AttachmentFeedback[id=%d, feedbackId='%d', mechanismId='%d', path='%s']",
-                id, feedback.getId(), mechanismId, path);
+                id, mechanismId, path);
     }
 
     public AttachmentFeedback() {
     }
 
-    public AttachmentFeedback(Feedback feedback, long mechanismId) {
-        this.feedback = feedback;
+    public AttachmentFeedback(long mechanismId) {
         this.mechanismId = mechanismId;
     }
 
-    public AttachmentFeedback(String part, Feedback feedback, long mechanismId) {
+    public AttachmentFeedback(String part, long mechanismId) {
         this.part = part;
-        this.feedback = feedback;
         this.mechanismId = mechanismId;
     }
 
-    public AttachmentFeedback(String path, int size, String part, String fileExtension, Feedback feedback, long mechanismId) {
+    public AttachmentFeedback(String path, int size, String part, String fileExtension, long mechanismId) {
         this.path = path;
         this.size = size;
         this.part = part;
         this.fileExtension = fileExtension;
-        this.feedback = feedback;
         this.mechanismId = mechanismId;
-    }
-
-    public Feedback getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(Feedback feedback) {
-        this.feedback = feedback;
     }
 
     public long getMechanismId() {

@@ -1,12 +1,16 @@
 package eu.supersede.integration.api.mdm.types;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by snadal on 26/01/17.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ECA_Rule {
+public class ECA_Rule implements Serializable{
 
     private String eca_ruleID;
     private String graph;
@@ -19,6 +23,9 @@ public class ECA_Rule {
     private int windowTime;
     private int windowSize;
     private ActionTypes action;
+    private List<Condition> conditions;
+    private Event event;
+    private List<String> alertParameters;
 
     public String getEca_ruleID() {
         return eca_ruleID;
@@ -107,4 +114,36 @@ public class ECA_Rule {
     public void setAction(ActionTypes action) {
         this.action = action;
     }
+
+	public List<Condition> getConditions() {
+		if (this.conditions == null){
+			this.conditions = new ArrayList<>();
+		}
+		return conditions;
+	}
+
+	public void setConditions(List<Condition> conditions) {
+		this.conditions = conditions;
+	}
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public List<String> getAlertParameters() {
+		if (this.alertParameters == null){
+			this.alertParameters = new ArrayList<>();
+		}
+		return alertParameters;
+	}
+
+	public void setAlertParameters(List<String> alertParameters) {
+		this.alertParameters = alertParameters;
+	}
+	
+	
 }

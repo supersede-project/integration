@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,46 +80,46 @@ public class AdapterProxyTest {
 		Assert.isTrue(result);
 	}
 	
-//	@Test
-//	public void testEnactSelectedAdaptationDecisionsInFCGivenByString() throws Exception {
-//		ModelSystem system = ModelSystem.Atos_HSK;
-//		
-//		//Upload new enacted FC
-//		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
-//		
-////		//Create adaptation in dashboard
-//		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
-//		adaptation = adaptationProxy.addAdaptation(adaptation);
-//		Assert.notNull(adaptation); 
-//
-//		
-//		List<String> adaptationDecisionActionIds = new ArrayList<>();
-//		adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
-//		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-//		Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
-//		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-//		Boolean result = proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds, featureConfigurationAsString);
-//		Assert.isTrue(result);
-//	}
+	@Test
+	public void testEnactSelectedAdaptationDecisionsInFCGivenByString() throws Exception {
+		ModelSystem system = ModelSystem.Atos_HSK;
+		
+		//Upload new enacted FC
+		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+		
+//		//Create adaptation in dashboard
+		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
+		adaptation = adaptationProxy.addAdaptation(adaptation);
+		Assert.notNull(adaptation); 
+
+		
+		List<String> adaptationDecisionActionIds = new ArrayList<>();
+		adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
+		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
+		Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+		Boolean result = proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds, featureConfigurationAsString, featureConfigurationId);
+		Assert.isTrue(result);
+	}
 	
-//	@Test
-//	public void testEnactFCGivenByString() throws Exception {
-//		ModelSystem system = ModelSystem.Atos_HSK;
-//		
-//		//Upload new enacted FC
-//		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
-//		
-////		//Create adaptation in dashboard
-//		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
-//		adaptation = adaptationProxy.addAdaptation(adaptation);
-//		Assert.notNull(adaptation); 
-//
-//		
-//		Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
-//		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-//		Boolean result = proxy.enactAdaptationFCasString(system, featureConfigurationAsString);
-//		Assert.isTrue(result);
-//	}
+	@Test
+	public void testEnactFCGivenByString() throws Exception {
+		ModelSystem system = ModelSystem.Atos_HSK;
+		
+		//Upload new enacted FC
+		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+		
+//		//Create adaptation in dashboard
+		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
+		adaptation = adaptationProxy.addAdaptation(adaptation);
+		Assert.notNull(adaptation); 
+
+		
+		Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
+		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
+		Boolean result = proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
+		Assert.isTrue(result);
+	}
 	
 	@Test
 	public void testEnactAdaptationDecisionActionsForFC() throws Exception {

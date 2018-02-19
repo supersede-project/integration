@@ -6,17 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
 
-import javax.persistence.*;
-
-
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AudioFeedback implements FileFeedback, MechanismFeedback {
 
     protected long id;
 
-    @JsonIgnore
-    private Feedback feedback;
     private long mechanismId;
     private int duration;
     private String path;
@@ -30,15 +25,13 @@ public class AudioFeedback implements FileFeedback, MechanismFeedback {
     @Override
     public String toString() {
         return String.format(
-                "AudioFeedback[id=%d, feedbackId='%d']",
-                id, feedback.getId());
+                "AudioFeedback[id=%d]", id);
     }
 
     public AudioFeedback() {
     }
 
-    public AudioFeedback(Feedback feedback, long mechanismId, int duration) {
-        this.feedback = feedback;
+    public AudioFeedback(long mechanismId, int duration) {
         this.mechanismId = mechanismId;
         this.duration = duration;
     }
@@ -48,17 +41,8 @@ public class AudioFeedback implements FileFeedback, MechanismFeedback {
         this.size = size;
         this.part = part;
         this.fileExtension = fileExtension;
-        this.feedback = feedback;
         this.mechanismId = mechanismId;
         this.duration = duration;
-    }
-
-    public Feedback getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(Feedback feedback) {
-        this.feedback = feedback;
     }
 
     public long getMechanismId() {

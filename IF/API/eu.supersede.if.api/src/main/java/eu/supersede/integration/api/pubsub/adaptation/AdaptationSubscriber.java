@@ -9,16 +9,26 @@ import eu.supersede.integration.api.pubsub.TopicSubscriber;
 
 public class AdaptationSubscriber extends TopicSubscriber implements iAdaptationSubscriber {
 
+	public AdaptationSubscriber(String platform) throws NamingException {
+		super(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC, platform);
+	}
+	
 	public AdaptationSubscriber() throws NamingException {
 		super(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC);
 	}
 
+	public AdaptationSubscriber(boolean openConnection, String platform)
+			throws NamingException, JMSException {
+		super(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC, platform);
+		if (openConnection)
+			openTopicConnection();
+	}
+	
 	public AdaptationSubscriber(boolean openConnection)
 			throws NamingException, JMSException {
 		super(SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC);
 		if (openConnection)
 			openTopicConnection();
-
 	}
 
 	@Override
