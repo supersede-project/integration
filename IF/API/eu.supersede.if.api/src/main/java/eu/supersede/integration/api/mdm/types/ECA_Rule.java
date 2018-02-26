@@ -26,6 +26,7 @@ public class ECA_Rule implements Serializable{
     private List<Condition> conditions;
     private Event event;
     private List<String> alertParameters;
+    private List<Parameter> parameters;
 
     public String getEca_ruleID() {
         return eca_ruleID;
@@ -143,6 +144,17 @@ public class ECA_Rule implements Serializable{
 
 	public void setAlertParameters(List<String> alertParameters) {
 		this.alertParameters = alertParameters;
+	}
+	
+	public List<Parameter> getParameters() {
+		if (this.parameters == null){
+			this.parameters = new ArrayList<>();
+		}
+		return parameters;
+	}
+
+	public void setParameters(List<Parameter> parameters) {
+		this.parameters = parameters;
 	}
 	
 	
