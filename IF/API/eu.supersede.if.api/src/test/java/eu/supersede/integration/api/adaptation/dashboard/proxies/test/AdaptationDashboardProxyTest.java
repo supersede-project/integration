@@ -20,17 +20,17 @@ public class AdaptationDashboardProxyTest {
 	
 	@BeforeClass
 	public static void setup() throws Exception{
-		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "senercon");
 		
-		List<Adaptation> adaptations = proxy.getAllAdaptations();
-		Assert.notEmpty(adaptations);
-		adaptationId = adaptations.get(0).getFc_id();
-		Assert.notNull(adaptationId);
-		
-		List<Enactment> enactments = proxy.getAllEnactments();
-		Assert.notEmpty(enactments);
-		enactmentId = enactments.get(0).getFc_id();
-		Assert.notNull(enactmentId);
+//		List<Adaptation> adaptations = proxy.getAllAdaptations();
+//		Assert.notEmpty(adaptations);
+//		adaptationId = adaptations.get(0).getFc_id();
+//		Assert.notNull(adaptationId);
+//		
+//		List<Enactment> enactments = proxy.getAllEnactments();
+//		Assert.notEmpty(enactments);
+//		enactmentId = enactments.get(0).getFc_id();
+//		Assert.notNull(enactmentId);
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testAddAdaptation() throws Exception {
-		Adaptation adaptation = createAdaptation("1");
+		Adaptation adaptation = createAdaptation("905");
 		adaptation = proxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation); 
 		
@@ -58,8 +58,8 @@ public class AdaptationDashboardProxyTest {
 		Adaptation adaptation = new Adaptation();
 		adaptation.setFc_id(fc_id);
 		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
-		adaptation.setModel_system(ModelSystem.Siemens);
-		adaptation.setName("AtosSmart_HSK_DualVM_MediumHigh");
+		adaptation.setModel_system(ModelSystem.AtosMonitoring);
+		adaptation.setName("Medium load configuration for HSK service");
 		adaptation.setRank(1.0);
 		adaptation.getActions().add(createAction());
 		return adaptation;
