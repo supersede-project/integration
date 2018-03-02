@@ -12,7 +12,8 @@ public enum OperatorTypes implements Serializable{
     OVERALL_SENTIMENT("Overall Sentiment"),
     POSITIVE_SENTIMENT("Positive Sentiment"),
     NEGATIVE_SENTIMENT("Negative Sentiment"),
-    FEATURE_EXTRACTION("Extract Features (Topics)");
+    FEATURE_EXTRACTION("Extract Features (Topics)"),
+    AVERAGE_DISK_CONSUMPTION("Average feedback disk consumption today");
 
     private String element;
 
