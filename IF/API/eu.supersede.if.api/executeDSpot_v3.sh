@@ -2,14 +2,25 @@
 RESULTS_DIR=/home/yosu/Projects/STAMP/Git/dspot-usecases-output/atos/supersede
 DSPOT_JAR_NAME=dspot-1.0.6-SNAPSHOT-jar-with-dependencies.jar
 DSPOT_JAR=/home/yosu/Projects/STAMP/Git/dspot/dspot/target/$DSPOT_JAR_NAME
+
+#Selectors: JacocoCoverageSelector, CloverCoverageSelector
+DSPOT_SELECTOR=JacocoCoverageSelector
+DSPOT_AMPLIFIERS=MethodAdd:StatementAdd:TestDataMutator
+DSPOT_ITERACTIONS=3
+TARGET_TEST=eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest
+
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s JacocoCoverageSelector"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s CloverCoverageSelector --verbose"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s PitMutantScoreSelector --verbose"
-DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd --verbose"
+
+DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
+
+echo "DSpot configuration: " + $DSPOT_OPTS
+
 DSPOT_PROPERTIES="./dspot2.properties"
 
 date=`date '+%Y-%m-%d_%H:%M:%S'`
-RESULTS_DIR=$RESULTS_DIR/`date '+%Y-%m-%d_%H:%M:%S'`
+RESULTS_DIR=$RESULTS_DIR/$DSPOT_SELECTOR/$DSPOT_AMPLIFIERS/`date '+%Y-%m-%d_%H:%M:%S'`
 mkdir -p $RESULTS_DIR
 filename=$RESULTS_DIR/dspot_if_$date.txt
 
