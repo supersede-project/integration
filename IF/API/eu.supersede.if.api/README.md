@@ -1,10 +1,10 @@
 <link rel="shortcut icon" type="../../../images/png" href="../../../images/favicon.png">
-# [![SUPERSEDE](../../../images/SUPERSEDE-logo.png)](https://www.supersede.eu/) project: Integration Framework (IF) Client API
+# Integration Framework (IF) Client API
 This library provides a number of proxies for dispatching messages to backend components of the SUPERSEDE platform instance deployed in the [Supersede Integration Server](http://supersede.es.atos.net:8080/).
 
 See deliverable D5.5 in [Supersede Portal](https://www.supersede.eu/) for more details about this framework, including its functional description, its architecture and its components.
 
-##IF Client API Usage
+## IF Client API Usage
 In order to use IF client dependency, configure your IDE project using Gradle to use IF Client and other SUPERSEDE component dependencies, which are resolved through the SUPERSEDE Artifactory Repository
 
 ### Gradle Configuration
@@ -256,8 +256,76 @@ catch (Exception e) {
 }
 ```
 
+### SUPERSEDE Platform Federation
+IF API provides support for the Federation of SUPERSEDE Platforms. Several SUPERSEDE platforms can coexist with the unique SUPERSEDE Big Data platform.
+When components within each SUPERSEDE platform register data format releases into the Metadata Management System of the Big Data platform, the must provide a unique platform identifier.
+Similarly, when the Data Analysis component of the Big Data platform send alerts to a SUPERSEDE platform, it must communicate that identifier of the target platform the alert will be sent to.
+From release 0.4.0, IF API client manages internally first communication scenarios, feeding them with the SUPERSEDE platform identifier.
+
+To use this utility, the Java VM where the using component is executed must be launched with the following system properties:
+```
+-Dsupersede.if.properties=if.development.properties #Use the IF configuration for your SUPERSEDE environment: development|platform|senercon
+-Dis.admin.user=<user> #Ask SUPERSEDE administrator for this IS account
+-Dis.admin.passwd=<password>
+```
+
+Other usage scenarios:
+- Retrieve the list of federated SUPERSEDE platforms:
+Any component, in particular, SUPERSEDE Big Data Analysis component, can retrieve the current list of federated platforms using the following IF API code:
+
+```
+import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
+import eu.supersede.integration.federation.SupersedeFederation;
+...
+SupersedeFederation federation = new SupersedeFederation();
+List<SupersedePlatform> platforms = federation.getFederatedSupersedePlatforms();
+```
+
+- Sent alerts to a concrete federated platform:
+Any component, in particular, SUPERSEDE Big Data Analysis component, can send an alert to a concrete federated platform using the following IF API code:
+
+```
+import eu.supersede.integration.api.pubsub.adaptation.AdaptationPublisher;
+import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
+import eu.supersede.integration.api.pubsub.adaptation.iAdaptationPublisher;
+import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
+import eu.supersede.integration.federation.SupersedeFederation;
+
+private static  SupersedeFederation federation = new SupersedeFederation();
+//Get list of federated platforms
+List<SupersedePlatform> platforms = federation.getFederatedSupersedePlatforms();
+
+//Select a concrete platform to sent message to
+SupersedePlatform platform = platforms.get(0);
+
+//Instantiate Publisher (iAdaptationPublisher or iEvolutionPublisher) for a that target platform
+iAdaptationPublisher publisher = new AdaptationPublisher(true, platform.getPlatform());
+
+//Subscribers can be instantiated by default, therefore listening alerts sent to local platform 
+// or to specific target 
+
+iAdaptationSubscriber subscriber = new AdaptationSubscriber();
+
+//or
+
+iAdaptationSubscriber subscriber = new AdaptationSubscriber(platform.getPlatform());
+
+```
+
+- Get local federated platform (e.g. the one current component belongs to):
+A component that is not using IF API client to register a data format releases into the Metadata Management System of the Big Data platform needs to retrieve its platform identifier and supply it as part of the new release registration API. Using the IF API client following code, it can get its identifier:
+
+```
+import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
+import eu.supersede.integration.federation.SupersedeFederation;
+...
+SupersedeFederation federation = new SupersedeFederation();
+SupersedePlatform localPlatform = federation.getLocalFederatedSupersedePlatform();
+String identifier = localPlatform.getPlatform();
+```
+
 SUPERSEDE Integration Framework is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Main contact: Jesús Gorroñogoitia <jesus.gorronogoitia@atos.net>
 
-<center>![Project funded by the European Union](../../../images/european.union.logo.png)</center>
+

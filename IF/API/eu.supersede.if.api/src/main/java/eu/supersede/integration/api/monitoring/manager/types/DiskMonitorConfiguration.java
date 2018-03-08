@@ -1,5 +1,8 @@
 package eu.supersede.integration.api.monitoring.manager.types;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -10,8 +13,7 @@ public class DiskMonitorConfiguration extends MonitorSpecificConfiguration{
 	
 	String user;
 	String host;
-	String instruction;
-	String label;
+	List<Instruction> instructions;
 	
 	public String getUser() {
 		return user;
@@ -25,16 +27,12 @@ public class DiskMonitorConfiguration extends MonitorSpecificConfiguration{
 	public void setHost(String host) {
 		this.host = host;
 	}
-	public String getInstruction() {
-		return instruction;
+	public List<Instruction> getInstructions() {
+		if (this.instructions == null)
+			this.instructions = new ArrayList<>();
+		return instructions;
 	}
-	public void setInstruction(String instruction) {
-		this.instruction = instruction;
-	}
-	public String getLabel() {
-		return label;
-	}
-	public void setLabel(String label) {
-		this.label = label;
+	public void setInstructions(List<Instruction> instructions) {
+		this.instructions = instructions;
 	}
 }

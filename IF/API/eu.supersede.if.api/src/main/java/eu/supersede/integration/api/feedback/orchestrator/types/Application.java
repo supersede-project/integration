@@ -1,133 +1,233 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A.
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
-import ch.uzh.ifi.feedback.library.rest.validation.Unique;
-import eu.supersede.integration.api.json.CustomJsonTimestampDeserializer;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Application {
 
-//@Validate(ApplicationValidator.class)
-//@Serialize(ApplicationSerializationService.class)
-@JsonInclude(Include.NON_NULL)
-public class Application extends OrchestratorItem<Application> {
-	
-	@Id
-	@DbAttribute("applications1_id")
-	private Integer id;
-	@NotNull
-	@Unique
-	private String name;
-	private Integer state;
-	@DbIgnore
-	private GeneralConfiguration generalConfiguration;
-	@DbIgnore
-	private List<Configuration> configurations;
-	
-	@DbAttribute("general_configurations_id")
-	private transient Integer generalConfigurationId;
-	
-	public Application()
-	{
-		configurations = new ArrayList<>();
-	}
-	
-	@Override
-	public Integer getId() {
-		return id;
-	}
-	
-	@Override
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Integer getState() {
-		return state;
-	}
-	public void setState(Integer state) {
-		this.state = state;
-	}
+    private long id;
 
-	public List<Configuration> getConfigurations() {
-		if (configurations == null)
-			return new ArrayList<>();
-		
-		return configurations;
-	}
+    private String name;
+    private int state;
+    private Date createdAt;
+    private Date updatedAt;
 
-	public GeneralConfiguration getGeneralConfiguration() {
-		return generalConfiguration;
-	}
+    private GeneralConfiguration generalConfiguration;
 
-	public void setGeneralConfiguration(GeneralConfiguration generalConfiguration) {
-		this.generalConfiguration = generalConfiguration;
-	}
+    private List<Configuration> configurations;
 
-	public Integer getGeneralConfigurationId() {
-		return generalConfigurationId;
-	}
+    private List<User> users;
 
-	public void setGeneralConfigurationId(Integer generalConfigurationId) {
-		this.generalConfigurationId = generalConfigurationId;
-	}
-	
-//	@Override
-//	public Application Merge(Application original) {
-//		
-//		if(generalConfiguration != null){
-//			generalConfiguration.Merge(original.getGeneralConfiguration());
-//		}else{
-//			generalConfiguration = original.getGeneralConfiguration();
-//		}
-//		
-//		for(Configuration config : original.getConfigurations())
-//		{
-//			Optional<Configuration> newConfig = getConfigurations().stream().filter(p -> p.getId().equals(config.getId())).findFirst();
-//			if(!newConfig.isPresent())
-//			{
-//				configurations.add(config);
-//			}else{ 
-//				newConfig.get().Merge(config);
-//			}
-//		}
-//		
-//		super.Merge(original);
-//		
-//		return this;
-//	}
+    private List<UserGroup> userGroups;
+
+    private List<ApiUserPermission> apiUserPermissions;
+
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
+    
+    protected void onUpdate() {
+        updatedAt = new Date();
+    }
+
+    public Application() {
+    }
+
+    public Application(String name, int state, Date createdAt, Date updatedAt, List<Configuration> configurations) {
+        this.name = name;
+        this.state = state;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.configurations = configurations;
+    }
+
+    public Application(String name, int state, Date createdAt, Date updatedAt, GeneralConfiguration generalConfiguration, List<Configuration> configurations) {
+        this.name = name;
+        this.state = state;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.generalConfiguration = generalConfiguration;
+        this.configurations = configurations;
+    }
+
+    public Application(String name, int state, Date createdAt, Date updatedAt, GeneralConfiguration generalConfiguration, List<Configuration> configurations, List<User> users) {
+        this.name = name;
+        this.state = state;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.generalConfiguration = generalConfiguration;
+        this.configurations = configurations;
+        this.users = users;
+    }
+
+    public Application(String name, int state, Date createdAt, Date updatedAt, GeneralConfiguration generalConfiguration, List<Configuration> configurations, List<User> users, List<UserGroup> userGroups) {
+        this.name = name;
+        this.state = state;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.generalConfiguration = generalConfiguration;
+        this.configurations = configurations;
+        this.users = users;
+        this.userGroups = userGroups;
+    }
+
+    public Application(String name, int state, Date createdAt, Date updatedAt, GeneralConfiguration generalConfiguration, List<Configuration> configurations, List<User> users, List<UserGroup> userGroups, List<ApiUserPermission> apiUserPermissions) {
+        this.name = name;
+        this.state = state;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.generalConfiguration = generalConfiguration;
+        this.configurations = configurations;
+        this.users = users;
+        this.userGroups = userGroups;
+        this.apiUserPermissions = apiUserPermissions;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Application[id=%d, name='%s', state='%d', generalConfiguration='%s', configurations='%s']",
+                id, name, state,  this.generalConfiguration != null ? this.generalConfiguration : "null", this.configurations != null ? this.configurations.stream().map(Object::toString)
+                        .collect(Collectors.joining(", ")): "null");
+    }
+
+    public void filterByLanguage(String language, String fallbackLanguage) {
+        for(Configuration configuration: this.configurations) {
+            configuration.filterByLanguage(language, fallbackLanguage);
+        }
+        if(this.generalConfiguration != null) {
+            generalConfiguration.setParameters(generalConfiguration.parametersByLanguage(language, fallbackLanguage));
+        }
+    }
+
+    /**
+     * Filters the applications's configurations for a user that is not yet known by the orchestrator. That means the
+     * user gets the push configuration that is not user group specific and the default pull configurations.
+     *
+     * @return Application
+     */
+    public Application filterForAnonymousUser() {
+        this.configurations = this.configurations.stream().filter(configuration ->
+                configuration.isPushDefault() || configuration.isPullDefault()
+        ).collect(Collectors.toList());
+        return this;
+    }
+
+    /**
+     * Filters the applications's configurations for a certain user identification. That means the user gets the
+     * user group push configuration if any and the pull configurations his group is assigned to.
+     * If no configuration is assigned to his group, he does not get any configuration at all.
+     *
+     * @param userIdentification which is the user ID that is passed to the client side component and stored alongside
+     *                           the feedback the user submitted.
+     * @return Application
+     */
+    public Application filterByUserIdentification(String userIdentification) {
+        this.configurations = this.configurations.stream().filter(configuration ->
+                configuration.containsUserWithUserIdentification(userIdentification)
+        ).collect(Collectors.toList());
+        return this;
+    }
+
+    /**
+     * Filters the applications's configurations for a certain user group. That means the users get the
+     * user group push configuration if any (or the default push) and the pull configurations their group is assigned to.
+     * If no pull configuration is assigned to their group, they do not get any pull configuration at all.
+     *
+     * @param userGroupId id of the user group
+     * @return Application
+     */
+    public Application filterByUserGroupId(long userGroupId) {
+        this.configurations = this.configurations.stream().filter(configuration ->
+                configuration.containsUserGroupWithId(userGroupId)
+        ).collect(Collectors.toList());
+        return this;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<Configuration> getConfigurations() {
+        return configurations;
+    }
+
+    public void setConfigurations(List<Configuration> configurations) {
+        this.configurations = configurations;
+    }
+
+    public GeneralConfiguration getGeneralConfiguration() {
+        return generalConfiguration;
+    }
+
+    public void setGeneralConfiguration(GeneralConfiguration generalConfiguration) {
+        this.generalConfiguration = generalConfiguration;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<UserGroup> getUserGroups() {
+        return userGroups;
+    }
+
+    public void setUserGroups(List<UserGroup> userGroups) {
+        this.userGroups = userGroups;
+    }
+
+    public List<ApiUserPermission> getApiUserPermissions() {
+        return apiUserPermissions;
+    }
+
+    public void setApiUserPermissions(List<ApiUserPermission> apiUserPermissions) {
+        this.apiUserPermissions = apiUserPermissions;
+    }
 }

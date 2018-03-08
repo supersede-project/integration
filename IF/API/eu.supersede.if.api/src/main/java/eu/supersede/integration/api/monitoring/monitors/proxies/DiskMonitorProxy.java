@@ -102,9 +102,7 @@ class DiskMonitorConfigurationRequest implements MonitorConfigurationRequest {
 				+ "\"kafkaTopic\":\"" + diskMonitoringConfiguration.getKafkaTopic() + "\","
 				+ "\"user\":\"" + diskMonitoringConfiguration.getUser() + "\","
 				+ "\"host\":\"" + diskMonitoringConfiguration.getHost() + "\","
-				+ "\"instruction\":\"" + diskMonitoringConfiguration.getInstruction() + "\","
-				+ "\"label\":\"" + diskMonitoringConfiguration.getLabel() + "}}"; 
-				
+				+ "\"instructions\":\"" + diskMonitoringConfiguration.getInstructions() + "}}";				
 	}
 	
 	private String asCommaSeparateList (List<String> list){

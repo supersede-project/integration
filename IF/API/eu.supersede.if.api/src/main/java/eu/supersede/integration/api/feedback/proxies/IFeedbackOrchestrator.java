@@ -21,94 +21,114 @@ package eu.supersede.integration.api.feedback.proxies;
 
 import java.util.List;
 
+import eu.supersede.integration.api.feedback.orchestrator.types.ApiUser;
+import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserPermission;
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
-import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackMechanism;
-import eu.supersede.integration.api.feedback.orchestrator.types.FeedbackParameter;
+import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
+import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
 import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
 import eu.supersede.integration.api.feedback.orchestrator.types.User;
 import eu.supersede.integration.api.feedback.orchestrator.types.UserGroup;
 
 public interface IFeedbackOrchestrator {
-	//Applications
-	List<Application> listAllApplications() throws Exception;
-
-	Application getApplication(Integer idApplication) throws Exception;
-
-	Application createApplication(Application app, String token) throws Exception;
-
-	// public Application updateApplication(Application app) throws Exception;
-	
-	// Configurations
-	List<Configuration> listAllConfigurations() throws Exception;
-
-	Configuration getConfiguration(Integer idConfiguration) throws Exception;
-
-	List<Configuration> listConfigurationsInApplication(Integer idApplication) throws Exception;
-	
-	Configuration updateConfigurationInApplication(Configuration configuration, Integer idApplication, String token) throws Exception;
-	
-	Configuration createConfigurationInApplication(Configuration configuration, Integer idApplication, String token) throws Exception;
-	
-	List<Configuration> listConfigurationsInApplicationForUserGroup(Integer idApplication, Integer idUserGroup) throws Exception;
-	
-	List<Configuration> listConfigurationsInApplicationForUser(Integer idApplication, Integer idUser) throws Exception;
-	
-	Configuration createConfigurationInApplicationForUserGroup(Configuration configuration, Integer idApplication, Integer idUserGroup, String token) throws Exception;
-
-	// General Configurations
-//	public List<GeneralConfiguration> listAllGeneralConfigurations() throws Exception;
-
-	GeneralConfiguration getGeneralConfiguration(Integer idGeneralConfiguration) throws Exception;
-
-	GeneralConfiguration getGeneralConfigurationInApplication(Integer idApplication) throws Exception;
-	
-	GeneralConfiguration getGeneralConfigurationInConfiguration(Integer idConfiguration) throws Exception;
-
-	GeneralConfiguration updateGeneralConfigurationInApplication(GeneralConfiguration generalConfiguration, Integer idApplication, String token)
-			throws Exception;
-	
-	//Mechanisms
-	List<FeedbackMechanism> listAllFeedbackMechanisms() throws Exception;
-
-	FeedbackMechanism getFeedbackMechanism(Integer idMechanism) throws Exception;
-
-	List<FeedbackMechanism> listAllFeedbackMechanismsInConfiguration(Integer idConfiguration) throws Exception;
-
-	FeedbackMechanism createFeedbackMechanismInConfigurationInApplication(
-			FeedbackMechanism feedbackMechanism, Integer idConfiguration, Integer idApplication, String token) throws Exception;
-
-	FeedbackMechanism updateFeedbackMechanismInConfigurationInApplication(
-			FeedbackMechanism feedbackMechanism, Integer idConfiguration, Integer idApplication, String token) throws Exception;
-
-	//Parameters
-	List<FeedbackParameter> listAllFeedbackParameters() throws Exception;
-
-	FeedbackParameter getFeedbackParameter(Integer idParameter) throws Exception;
-
-	List<FeedbackParameter> listAllFeedbackParametersInFeedbackMechanism(Integer idMechanism) throws Exception;
-
-	List<FeedbackParameter> listAllFeedbackParametersInGeneralConfiguration(Integer idGeneralConfiguration) throws Exception;
-
-	FeedbackParameter createFeedbackParameterInGeneralConfigurationInApplication(
-			FeedbackParameter feedbackParameter, Integer idGeneralConfiguration, Integer idApplication, String token) throws Exception;
-
-	FeedbackParameter createFeedbackParameterInFeedbackMechanismInApplication(
-			FeedbackParameter feedbackParameter, Integer idMechanism, Integer idApplication, String token) throws Exception;
-
-	FeedbackParameter updateFeedbackParameterInApplication(FeedbackParameter feedbackParameter, Integer idApplication, String token) throws Exception;
-
 	//Authentication
 	String authenticate(String user, String password) throws Exception;
 	
-	//Users and Groups
-	List<User> listAllUsers() throws Exception;
+	//API User
+	List<ApiUser> getApiUsers () throws Exception;
+	ApiUser createApiUser (ApiUser user) throws Exception;
+	ApiUser updateApiUser (ApiUser user) throws Exception;
+	ApiUser getApiUser (long idUser) throws Exception;
+	void deleteApiUser (long idUser) throws Exception;
 	
-	User updateUser (User user, String token) throws Exception;
+	//API User Permissions
+	List<ApiUserPermission> getApiUserPermissions (long idUser) throws Exception;
+	ApiUserPermission createApiUserPermission (ApiUserPermission permission, long idUser) throws Exception;
+	ApiUserPermission updateApiUserPermission (ApiUserPermission permission, long idUser) throws Exception;
+	ApiUserPermission getApiUserPermission (long idUser, long idUserPermission) throws Exception;
+	void deleteApiUserPermission (long idUser, long idUserPermission) throws Exception;
 	
-	List<UserGroup> listAllUserGroups() throws Exception;
+	//Applications
+	List<Application> getApplications() throws Exception;
+	Application createApplication(Application app) throws Exception;
+	Application updateApplication(Application app) throws Exception;
+	Application importApplication(Application app) throws Exception;
+	void deleteApplication(long idApplication) throws Exception;
+	Application getApplicationWithConfiguration(long idApplication) throws Exception;
+	Application getApplicationWithConfigurationForAllLanguages(long idApplication) throws Exception;
+	Application getApplicationForUser(long idApplication, long idUser) throws Exception;
+	Application getApplicationForUserGroup(long idApplication, long idGroup) throws Exception;
+	List<Application> searchApplicationsByName(String name) throws Exception;
 	
-	UserGroup getUserGroup (Integer idGroup) throws Exception;
+	// General Configurations
+	GeneralConfiguration getGeneralConfigurationOfApplication(long idApplication) throws Exception;
+	GeneralConfiguration createGeneralConfigurationOfApplication(GeneralConfiguration generalConfiguration, long idApplication) throws Exception;
+	GeneralConfiguration updateGeneralConfigurationOfApplication(GeneralConfiguration generalConfiguration, long idApplication)
+			throws Exception;
+	GeneralConfiguration getGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration) throws Exception;
+	void deleteGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration) throws Exception;
 	
-	UserGroup createUserGroup(UserGroup group, String token) throws Exception;
+	// Configurations
+	List<Configuration> getConfigurations(long idApplication) throws Exception;
+	Configuration createConfiguration(Configuration configuration, long idApplication) throws Exception;
+	Configuration updateConfiguration(Configuration configuration, long idApplication) throws Exception;
+	Configuration getConfiguration(long idApplication, long idConfiguration) throws Exception;
+	void deleteConfiguration(long idApplication, long idConfiguration) throws Exception;
+	
+	// General Configuration of Configurations
+	GeneralConfiguration getGeneralConfigurationOfConfiguration(long idApplication, long idConfiguration) throws Exception;
+	GeneralConfiguration createGeneralConfigurationOfConfiguration(GeneralConfiguration generalConfiguration, long idApplication, long idConfiguration) throws Exception;
+	GeneralConfiguration updateGeneralConfigurationOfConfiguration(GeneralConfiguration generalConfiguration, long idApplication, long idConfiguration) throws Exception;
+	GeneralConfiguration getGeneralConfigurationOfConfiguration(long idApplication, long idConfiguration, long idGeneralConfiguration) throws Exception;
+	void deleteGeneralConfigurationsOfConfiguration(long idApplication, long idConfiguration, long idGeneralConfiguration) throws Exception;
+	
+	//Configuration Mechanisms
+	List<Mechanism> getMechanismsOfConfiguration(long idApplication, long idConfiguration) throws Exception;
+	Mechanism createMechanismOfConfiguration(Mechanism Mechanism, long idApplication, long idConfiguration) throws Exception;
+	Mechanism updateMechanismOfConfiguration(Mechanism Mechanism, long idApplication, long idConfiguration) throws Exception;
+	Mechanism getMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism) throws Exception;
+	void deleteMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism) throws Exception;
+	
+	//Application Mechanisms
+	List<Mechanism> getMechanismsOfApplication(long idApplication) throws Exception;
+	Mechanism createMechanismOfApplication(Mechanism Mechanism, long idApplication) throws Exception;
+	Mechanism updateMechanismOfApplication(Mechanism Mechanism, long idApplication) throws Exception;
+	Mechanism getMechanismOfApplication(long idApplication, long idMechanism) throws Exception;
+	void deleteMechanismOfApplication(long idApplication, long idMechanism) throws Exception;
+	
+	//Mechanism parameter
+	List<Parameter> getMechanismParameters(long idApplication, long idMechanism) throws Exception;
+
+	//Parameters
+	List<Parameter> getParameters() throws Exception;
+	Parameter createParameter(Parameter Parameter) throws Exception;
+	Parameter updateParameter(Parameter Parameter) throws Exception;
+	Parameter getParameter(long idParameter) throws Exception;
+	void deleteParameter(long idParameter) throws Exception;
+	
+	//Users
+	List<User> getUsers(long idApplication) throws Exception;
+	void createUser (User user, long idApplication) throws Exception;
+	User updateUser (User user, long idApplication) throws Exception;
+	User getUser (long idApplication, long idUser) throws Exception;
+	void deleteUser (long idApplication, long idUser) throws Exception;
+	User updateUser (User user, long idApplication, long idUser) throws Exception;
+	
+	//Groups
+	List<UserGroup> getUserGroups(long idApplication) throws Exception;
+	void createUserGroup (UserGroup userGroup, long idApplication) throws Exception;
+	UserGroup updateUserGroup (UserGroup userGroup, long idApplication) throws Exception;
+	UserGroup getUserGroup (long idApplication, long idUserGroup) throws Exception;
+	void deleteUserGroup (long idApplication, long idUserGroup) throws Exception;
+	UserGroup updateUserGroup (UserGroup user, long idApplication, long idUserGroup) throws Exception;
+	
+	//Parameter reordering/switching
+	List<Parameter> switchOrderOfParametersOfMechanism(long idApplication, long idMechanism, long idParam1, long idParam2) throws Exception;
+	List<Parameter> reorderParameterOfMechanism(long idApplication, long idMechanism, long idParam, long order) throws Exception;
+	List<Parameter> switchOrderOfParametersOfGeneralConfiguration(long idApplication, long idGeneralConfiguration, long idParam1, long idParam2) throws Exception;
+	List<Parameter> reorderParameterOfGeneralConfiguration(long idApplication, long idGeneralConfiguration, long idParam, long order) throws Exception;
+	List<Parameter> switchOrderOfParametersOfParameter(long idApplication, long idParam, long idParam1, long idParam2) throws Exception;
+	List<Parameter> reorderParameterOfParameter(long idApplication, long idParam1, long idParam2, long order) throws Exception;
+
 }

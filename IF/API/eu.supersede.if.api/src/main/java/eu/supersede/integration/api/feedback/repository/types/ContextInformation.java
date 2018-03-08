@@ -19,44 +19,57 @@
  *******************************************************************************/
 package eu.supersede.integration.api.feedback.repository.types;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.annotations.DbIgnore;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
 import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
 
 @JsonInclude(Include.NON_NULL)
 public class ContextInformation {
 
-	@Id
+	
 	private long id;	
 
 	private String resolution;
 	
-	@DbAttribute("user_agent")
 	private String userAgent;
 	
-	@DbAttribute("android_version")	
 	private String androidVersion;
 
-	@DbAttribute("local_time")
 	private Date localTime;
 	
-	@DbAttribute("time_zone")
 	private String timeZone;
 	
-	@DbAttribute("device_pixel_ratio")
 	private Float devicePixelRatio;
 	
 	private String country;
 	
 	private String region;
+		
+    private String url;
+    
+    private String metaData;
+    
+    public ContextInformation() {
+    }
+	
+    public ContextInformation(String resolution, String userAgent, 
+    		String androidVersion, Date date, String timeZone, Float devicePixelRatio, 
+    		String country, String region, String url, String metaData) {
+        this.resolution = resolution;
+        this.userAgent = userAgent;
+        this.androidVersion = androidVersion;
+        this.localTime = date;
+        this.timeZone = timeZone;
+        this.devicePixelRatio = devicePixelRatio;
+        this.country = country;
+        this.region = region;
+        this.url = url;
+        this.metaData = metaData;
+    }
 
 	public long getId() {
 		return id;
@@ -129,5 +142,21 @@ public class ContextInformation {
 
 	public void setRegion(String region) {
 		this.region = region;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getMetaData() {
+		return metaData;
+	}
+
+	public void setMetaData(String metaData) {
+		this.metaData = metaData;
 	}
 }

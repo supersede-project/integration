@@ -17,13 +17,24 @@ public abstract class TopicMessageAgent implements iTopicMessageAgent {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	protected SubscriptionTopic subscriptionTopic;
 	protected String initialContextFactory = "org.wso2.andes.jndi." + "PropertiesFileInitialContextFactory";
-	protected String connectionString = IntegrationProperty.getProperty("message.broker.connection");
+	protected String connectionString;
 	protected Properties properties;
 	protected InitialContext ctx;
 	protected TopicConnection topicConnection;
 	
+	protected TopicMessageAgent(SubscriptionTopic subscriptionTopic, String platform) throws NamingException{
+		this.subscriptionTopic = subscriptionTopic;
+		connectionString = IntegrationProperty.getMBConnection(platform);
+		properties = new Properties();
+		properties.put("java.naming.factory.initial", initialContextFactory);
+		properties.put("connectionfactory.QueueConnectionFactory", connectionString);
+		properties.put("topic." + subscriptionTopic.getTopic(), subscriptionTopic.getTopic());
+		ctx = new InitialContext(properties);
+	}
+	
 	protected TopicMessageAgent(SubscriptionTopic subscriptionTopic) throws NamingException{
 		this.subscriptionTopic = subscriptionTopic;
+		connectionString = IntegrationProperty.getMBConnection();
 		properties = new Properties();
 		properties.put("java.naming.factory.initial", initialContextFactory);
 		properties.put("connectionfactory.QueueConnectionFactory", connectionString);

@@ -19,9 +19,14 @@
  *******************************************************************************/
 package eu.supersede.integration.api.mdm.proxies;
 
+import java.nio.file.Path;
 import java.util.List;
 
+import eu.supersede.integration.api.mdm.types.CER_Rule;
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
+import eu.supersede.integration.api.mdm.types.Event;
+import eu.supersede.integration.api.mdm.types.Feedback;
+import eu.supersede.integration.api.mdm.types.FeedbackClassification;
 import eu.supersede.integration.api.mdm.types.KafkaTopic;
 import eu.supersede.integration.api.mdm.types.Release;
 
@@ -29,4 +34,12 @@ public interface IMetadataManagement {
 	KafkaTopic registerRelease (Release release) throws Exception;
 	List<Release> getAllReleases () throws Exception;
 	List<ECA_Rule> getAllECARules () throws Exception;
+	ECA_Rule getECARule (String id) throws Exception;
+	List<Event> getAllEvents () throws Exception;
+	Event getEvent (String id) throws Exception;
+	KafkaTopic createEvent (Event event) throws Exception;
+	FeedbackClassification getRealtimeFeedbackClassification (Feedback feedback) throws Exception;
+	boolean sendFile (Path filePath) throws Exception;
+	List<CER_Rule> getAllCERRules () throws Exception;
+	CER_Rule getCERRule (String id) throws Exception;
 }

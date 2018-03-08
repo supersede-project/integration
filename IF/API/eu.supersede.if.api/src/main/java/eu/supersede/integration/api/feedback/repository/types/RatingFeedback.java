@@ -1,83 +1,88 @@
-/*******************************************************************************
- * Copyright (c) 2016 ATOS Spain S.A.
- * All rights reserved. Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * Contributors:
- *     Yosu Gorroñogoitia (ATOS) - main development
- *
- * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
- *******************************************************************************/
 package eu.supersede.integration.api.feedback.repository.types;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
-import ch.uzh.ifi.feedback.library.rest.validation.Id;
-import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@JsonInclude(Include.NON_NULL)
-public class RatingFeedback {
+import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
 
-	@Id
-	private Integer id;
-	private String title;
-	@NotNull
-	private int rating;
+public class RatingFeedback implements MechanismFeedback {
 
-	@DbAttribute("feedback_id")
-	private transient Integer feedbackId;
+    private long id;
 
-	@DbAttribute("mechanism_id")
-	private Integer mechanismId;
+    @JsonIgnore
+    private Feedback feedback;
 
-	public String getTitle() {
-		return title;
-	}
+    private String title;
+    private int rating;
+    private long mechanismId;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    @JsonIgnore
+    private Mechanism mechanism;
 
-	public int getRating() {
-		return rating;
-	}
+    @Override
+    public String toString() {
+        return String.format(
+                "RatingFeedback[id=%d]",
+                id);
+    }
 
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
+    public RatingFeedback() {
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public RatingFeedback(Feedback feedback, String title, int rating, long mechanismId) {
+        this.feedback = feedback;
+        this.title = title;
+        this.rating = rating;
+        this.mechanismId = mechanismId;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public Integer getFeedbackId() {
-		return feedbackId;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setFeedbackId(Integer feedbackId) {
-		this.feedbackId = feedbackId;
-	}
+    public Feedback getFeedback() {
+        return feedback;
+    }
 
-	public Integer getMechanismId() {
-		return mechanismId;
-	}
+    public void setFeedback(Feedback feedback) {
+        this.feedback = feedback;
+    }
 
-	public void setMechanismId(Integer mechanismId) {
-		this.mechanismId = mechanismId;
-	}
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public long getMechanismId() {
+        return mechanismId;
+    }
+
+    public void setMechanismId(long mechanismId) {
+        this.mechanismId = mechanismId;
+    }
+
+    @Override
+    public Mechanism getMechanism() {
+        return mechanism;
+    }
+
+    @Override
+    public void setMechanism(Mechanism mechanism) {
+        this.mechanism = mechanism;
+    }
 }

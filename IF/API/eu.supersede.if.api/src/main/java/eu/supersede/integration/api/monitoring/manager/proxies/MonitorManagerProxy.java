@@ -28,11 +28,16 @@ import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.monitoring.manager.types.AppStoreMonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.GooglePlayMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.MarketPlaceMonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.MonitorType;
+import eu.supersede.integration.api.monitoring.manager.types.QoSMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.SocialNetworkMonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.TwitterMonitorConfiguration;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> extends IFServiceProxy<T, S> implements IMonitorManager {
@@ -43,8 +48,8 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 	@Override
 	public <T extends MonitorSpecificConfiguration> T createMonitorConfiguration(T conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		MonitorConfiguration monitorConf = new MonitorConfiguration();
-		monitorConf.setMonitorSpecificConfiguration(conf);
+		MonitorConfiguration monitorConf = factoryCreateMonitorConfiguration(conf);
+		
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/");
 		log.debug("Sending message createMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
 		String id = insertJSONObjectAndReturnValueForJsonLabel (monitorConf, uri, HttpStatus.CREATED, "id");
@@ -52,14 +57,26 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 		return conf;
 	}
 
+	private <T extends MonitorSpecificConfiguration> MonitorConfiguration factoryCreateMonitorConfiguration(T conf) throws IFException {
+		MonitorConfiguration monitorConf = null;
+		if (conf instanceof TwitterMonitorConfiguration)
+			monitorConf = new SocialNetworkMonitorConfiguration();
+		else if (conf instanceof AppStoreMonitorConfiguration || conf instanceof GooglePlayMonitorConfiguration)
+			monitorConf = new MarketPlaceMonitorConfiguration();
+		else if (conf instanceof HttpMonitorConfiguration)
+			monitorConf = new QoSMonitorConfiguration();
+		else
+			throw new IFException("The following MonitorSpecificConfiguration is not supported: " + conf.getClass());
+		monitorConf.setMonitorSpecificConfiguration(conf); 
+		return monitorConf;
+	}
 
 	@Override
 	public <T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
-		MonitorConfiguration monitorConf = new MonitorConfiguration();
-		monitorConf.setMonitorSpecificConfiguration(conf);
+		MonitorConfiguration monitorConf = factoryCreateMonitorConfiguration(conf);
 		log.debug("Sending message updateMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
 		updateJSONObject(monitorConf, uri, HttpStatus.OK);
 	}
@@ -82,6 +99,8 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 			return MonitorType.GooglePlay.toString();
 		}else if (conf instanceof AppStoreMonitorConfiguration){
 			return MonitorType.AppStore.toString();
+		}else if (conf instanceof HttpMonitorConfiguration){
+			return MonitorType.HttpMonitor.toString();
 		}else{
 			throw new Exception ("Type " + conf.getClass() + " is not a valid Monitor configuration");
 		}

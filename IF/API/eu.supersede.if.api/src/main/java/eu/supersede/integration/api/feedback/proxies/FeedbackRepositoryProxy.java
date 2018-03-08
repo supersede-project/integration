@@ -29,23 +29,40 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import eu.supersede.integration.api.feedback.repository.types.Feedback;
-import eu.supersede.integration.api.feedback.repository.types.Status;
-import eu.supersede.integration.api.feedback.repository.types.StatusOption;
-import eu.supersede.integration.api.feedback.types.ApiUser;
-import eu.supersede.integration.api.feedback.types.ApiUserPermission;
 import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.properties.IntegrationProperty;
 
 public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implements IFeedbackRepository {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final static String SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT = 
 			IntegrationProperty.getProperty("feedback.repository.endpoint");
+	private String token;
+	private String language = "en";
+	
+	public FeedbackRepositoryProxy(String user, String password) throws Exception {
+		this(user, password, "en");
+	}
+
+	public FeedbackRepositoryProxy(String user, String password, String language) throws Exception {
+		this.token = authenticate(user, password);
+		if (token == null)
+			throw new IFException("Failed authentication in Orchestrator");
+		this.language = language;
+	}
+
+	// Authentication
+
 
 	@Override
 	public String authenticate (String user, String password) throws Exception{
@@ -59,26 +76,45 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 				+ " with password: " + (password != null? "not null":"null")
 				+ " with password: " + (password != null && !password.isEmpty()? "not empty":"empty")
 				+ " to FeedbackRepository at uri " + uri);
-		return postJSONObjectAndReturnValueForJsonLabel(accountJson.toString(), uri, HttpStatus.CREATED, "token");
+		return postJSONObjectAndReturnValueForJsonLabel(accountJson.toString(), uri, HttpStatus.OK, "token");
 	}
 	
 	@Override
-	public List<Feedback> listAllFeedbacksForApplication(Integer idApplication, String token) throws Exception {
+	public List<Feedback> getFeedbacksForApplication(Integer idApplication) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid application id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/feedbacks");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks");
 		log.debug("Sending message listAllFeedbacksForApplication with idApplication: " + idApplication
-				+ " with token: " + token
 				+ " to FeedbackRepository at uri " + uri);
 		return getJSONObjectsListForType(Feedback[].class, uri, HttpStatus.OK, token);
 	}
 	
 	@Override
-	public Feedback getFeedbackForApplication(Integer idFeedback, Integer idApplication, String token) throws Exception {
+	public List<Feedback> getFeedbacksForApplicationWithOrchestratorConfiguration(Integer idApplication) throws Exception {
+		Assert.notNull(idApplication, "Provide a valid application id");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks/full");
+		log.debug("Sending message listAllFeedbacksForApplication with idApplication: " + idApplication
+				+ " to FeedbackRepository at uri " + uri);
+		return getJSONObjectsListForType(Feedback[].class, uri, HttpStatus.OK, token);
+	}
+	
+	@Override
+	public List<Feedback> getFeedbacksForApplicationByUser(Integer idApplication, String idUser) throws Exception {
+		Assert.notNull(idApplication, "Provide a valid application id");
+		Assert.notNull(idUser, "Provide a valid idUser");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + 
+				language + "/applications/" + idApplication + "/feedbacks/user_identification/" + idUser);
+		log.debug("Sending message listAllFeedbacksForApplication with idApplication: " + idApplication
+				+ " with idUser: " + idUser
+				+ " to FeedbackRepository at uri " + uri);
+		return getJSONObjectsListForType(Feedback[].class, uri, HttpStatus.OK, token);
+	}
+	
+	@Override
+	public Feedback getFeedbackForApplication(Integer idFeedback, Integer idApplication) throws Exception {
 		Assert.notNull(idFeedback, "Provide a valid feedback id");
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/feedbacks/" + idFeedback);
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks/" + idFeedback);
 		log.debug("Sending message getFeedbackForApplication with idApplication: " + idApplication
 				+ " with token: " + token
 				+ " to FeedbackRepository at uri " + uri);
@@ -86,36 +122,35 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 	}
 	
 	@Override
-	public byte[] downloadAttachement(String attachmentName, String token) throws Exception {
+	public byte[] downloadAttachment(String attachmentName, Integer idApplication) throws Exception {
 		Assert.notNull(attachmentName, "Provide a valid attachment name");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "attachments/" + attachmentName);
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks/attachments/" + attachmentName);
 		log.debug("Sending message downloadAttachement with attachmentName: " + attachmentName
-				+ " with token: " + token
+				+ " with idApplication: " + idApplication
 				+ " to FeedbackRepository at uri " + uri);
 		return getObjectAsInputStream(uri, HttpStatus.OK, token);
 	}
 
 	@Override
-	public byte[] downloadScreenshot(String screenshotName, String token, boolean base64) throws Exception {
+	public byte[] downloadScreenshot(String screenshotName, Integer idApplication) throws Exception {
 		Assert.notNull(screenshotName, "Provide a valid screenshot name");
-		Assert.notNull(token, "Provide a valid token");
-		String suri = SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "screenshots/" + screenshotName;
-		if (base64) suri += "/base64";
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		String suri = SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks/screenshots/" + screenshotName;
 		URI uri = new URI(suri);
 		log.debug("Sending message downloadScreenshot with screenshotName: " + screenshotName
-				+ " with token: " + token
+				+ " with idApplication: " + idApplication
 				+ " to FeedbackRepository at uri " + uri);
 		return getObjectAsInputStream(uri, HttpStatus.OK, token);
 	}
 
 	@Override
-	public byte[] downloadAudio(String audioName, String token) throws Exception {
+	public byte[] downloadAudio(String audioName, Integer idApplication) throws Exception {
 		Assert.notNull(audioName, "Provide a valid audio name");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "audios/" + audioName);
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks/audios/" + audioName);
 		log.debug("Sending message downloadAudio with audioName: " + audioName
-				+ " with token: " + token
+				+ " with idApplication: " + idApplication
 				+ " to FeedbackRepository at uri " + uri);
 		return getObjectAsInputStream(uri, HttpStatus.OK, token);
 	}
@@ -123,30 +158,66 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 	@Override
 	public Feedback createFeedbackForApplication(Feedback feedback, 
 			Map<String, Path> attachmentsPaths, Map<String, Path> screenshotsPaths, 
-			Map<String, Path> audiosPaths, Integer idApplication, String token) throws Exception {
+			Map<String, Path> audiosPaths, Integer idApplication) throws Exception {
 		Assert.notNull(feedback, "Provide a valid feedback");
 		Assert.notNull(idApplication, "Provide a valid application id");
 		Assert.notNull(token, "Provide a valid token");
 		Assert.notNull(attachmentsPaths, "Provide valid attachments");
 		Assert.notNull(screenshotsPaths, "Provide valid screenshots");
 		Assert.notNull(audiosPaths, "Provide valid audios");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/feedbacks");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + "/applications/" + idApplication + "/feedbacks");
 		
-		LinkedMultiValueMap<String, Object> parts = 
-		          new LinkedMultiValueMap<String, Object>();
+		MultiValueMap<String, Object> multipartRequest = 
+		          new LinkedMultiValueMap<>();
 		
-		parts.add("json", convertToJSON (feedback));
-		
-		for (String key: attachmentsPaths.keySet()){
-			parts.add(key, new ByteArrayResource(Files.readAllBytes(attachmentsPaths.get(key))));
+		HttpHeaders jsonHeaders = new HttpHeaders();
+		jsonHeaders.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<ByteArrayResource> jsonPart = new HttpEntity<ByteArrayResource>(
+				new ByteArrayResource(convertToJSON(feedback).getBytes()){
+					@Override
+					public String getFilename() {
+						return "";
+					}
+				}, jsonHeaders);	
+        multipartRequest.add("json", jsonPart);
+				
+		for (String key: attachmentsPaths.keySet()){			
+			HttpHeaders attachmentHeader = new HttpHeaders();
+			attachmentHeader.setContentType(MediaType.TEXT_PLAIN);
+			HttpEntity<ByteArrayResource> attachmentPart = new HttpEntity<ByteArrayResource>(
+					new ByteArrayResource(Files.readAllBytes(attachmentsPaths.get(key))){
+						@Override
+						public String getFilename() {
+							return "";
+						}
+					}, attachmentHeader);				
+			multipartRequest.add(key, attachmentPart);
 		}
 	
 		for (String key: screenshotsPaths.keySet()){
-			parts.add(key, new ByteArrayResource(Files.readAllBytes(screenshotsPaths.get(key))));
+			HttpHeaders screenshotHeader = new HttpHeaders();
+			screenshotHeader.setContentType(MediaType.IMAGE_PNG);
+			HttpEntity<ByteArrayResource> screenshotPart = new HttpEntity<ByteArrayResource>(
+					new ByteArrayResource(Files.readAllBytes(screenshotsPaths.get(key))){
+						@Override
+						public String getFilename() {
+							return "";
+						}
+					}, screenshotHeader);				
+			multipartRequest.add(key, screenshotPart);
 		}
 		
 		for (String key: audiosPaths.keySet()){
-			parts.add(key, new ByteArrayResource(Files.readAllBytes(audiosPaths.get(key))));
+			HttpHeaders audioHeader = new HttpHeaders();
+			audioHeader.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			HttpEntity<ByteArrayResource> audioPart = new HttpEntity<ByteArrayResource>(
+					new ByteArrayResource(Files.readAllBytes(audiosPaths.get(key))){
+						@Override
+						public String getFilename() {
+							return "";
+						}
+					}, audioHeader);
+			multipartRequest.add(key, audioPart);
 		}
 		
 		log.debug("Sending message createFeedbackForApplication with feedback: " + feedback
@@ -156,196 +227,17 @@ public class FeedbackRepositoryProxy <T,S> extends IFServiceProxy<T,S> implement
 				+ " with idApplication: " + idApplication
 				+ " with token: " + token
 				+ " to FeedbackRepository at uri " + uri);
-		return sendMultipartFormDataMessage(uri, Feedback.class, parts, HttpMethod.POST);
+		return sendMultipartFormDataMessage(uri, Feedback.class, multipartRequest, HttpMethod.POST, token);
 	}
-
-	@Override
-	public List<ApiUser> listAllAPIUsers() throws Exception {
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users");
-		log.debug("Sending message listAllAPIUsers to FeedbackRepository at uri " + uri);
-		return getJSONObjectsListForType(ApiUser[].class, uri, HttpStatus.OK);
-	}
-
-	@Override
-	public ApiUser createAPIUser(ApiUser user) throws Exception {
-		Assert.notNull(user, "Provide a valid user");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users");
-		log.debug("Sending message createAPIUser with user: " + user
+	
+	public void deleteFeedback(Integer idApplication, Integer idFeedback) throws Exception{
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idFeedback, "Provide a valid idFeedback");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language 
+				+ "/applications/" + idApplication + "/feedbacks/" + idFeedback);
+		log.debug("Sending message deleteFeedback with idApplication: " + idApplication 
+				+ " and idFeedback: " + idFeedback
 				+ " to FeedbackRepository at uri " + uri);
-		return insertandReturnJSONObject(user, uri, HttpStatus.CREATED);
-	}
-
-	@Override
-	public ApiUser updateAPIUser(ApiUser user, String token) throws Exception {
-		Assert.notNull(user, "Provide a valid user");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users");
-		log.debug("Sending message updateAPIUser with user: " + user
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);
-	}
-
-	@Override
-	public ApiUser getAPIUser(Integer userId) throws Exception {
-		Assert.notNull(userId, "Provide a valid api user id");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users/" + userId);
-		log.debug("Sending message getAPIUser with userId: " + userId
-				+ " to FeedbackRepository at uri " + uri);
-		return getJSONObjectForType(ApiUser.class, uri, HttpStatus.OK);
-	}
-
-	@Override
-	public void deleteAPIUser(Integer userId, String token) throws Exception {
-		Assert.notNull(userId, "Provide a valid api user id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users/" + userId);
-		log.debug("Sending message deleteAPIUser with userId: " + userId
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);		
-	}
-
-	@Override
-	public List<ApiUserPermission> listApplicationPermissionsOfApiUser(Integer userId) throws Exception {
-		Assert.notNull(userId, "Provide a valid api user id");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users/" + userId + "/permissions");
-		log.debug("Sending message listApplicationPermissionsOfApiUser with userId: " + userId
-				+ " to FeedbackRepository at uri " + uri);
-		return getJSONObjectsListForType(ApiUserPermission[].class, uri, HttpStatus.OK);
-	}
-
-	@Override
-	public ApiUserPermission createApplicationPermissionOfApiUser(ApiUserPermission permission, Integer userId, String token)
-			throws Exception {
-		Assert.notNull(permission, "Provide a valid user permission");
-		Assert.notNull(userId, "Provide a valid api user id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users/" + userId + "/permissions");
-		log.debug("Sending message createApplicationPermissionOfApiUser with permission: " + permission
-				+ " with userId: " + userId
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return insertandReturnJSONObject(permission, uri, HttpStatus.CREATED, token);
-	}
-
-	@Override
-	public void deleteApplicationPermissionsOfApiUser(Integer permissionId, String token) throws Exception {
-		Assert.notNull(permissionId, "Provide a valid api user permission id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/api_users/permissions/" + permissionId);
-		log.debug("Sending message deleteApplicationPermissionsOfApiUser with permissionId: " + permissionId
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);	
-	}
-
-	@Override
-	public Status getGeneralStatusOfFeedbackInApplication(Integer idFeedback, Integer idApplication, String token) throws Exception {
-		Assert.notNull(idFeedback, "Provide a valid feedback id");
-		Assert.notNull(idApplication, "Provide a valid application id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/feedbacks/" + idFeedback + "/status");
-		log.debug("Sending message getGeneralStatusOfFeedbackInApplication with idFeedback: " + idFeedback
-				+ " with idApplication: " + idApplication
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return getJSONObjectForType(Status.class, uri, HttpStatus.OK, token);
-	}
-
-	@Override
-	public Status getUserSpecificStatusOfFeedbackInApplication(Integer idFeedback, Integer idApplication, Integer idUser, String token)
-			throws Exception {
-		Assert.notNull(idFeedback, "Provide a valid feedback id");
-		Assert.notNull(idApplication, "Provide a valid application id");
-		Assert.notNull(idUser, "Provide a valid user id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/feedbacks/" + idFeedback + "/api_users/" + idUser + "/status");
-		log.debug("Sending message getUserSpecificStatusOfFeedbackInApplication with idFeedback: " + idFeedback
-				+ " with idApplication: " + idApplication
-				+ " with idUser: " + idUser
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return getJSONObjectForType(Status.class, uri, HttpStatus.OK, token);
-	}
-
-	@Override
-	public List<Status> listAllUserSpecificStatusOfFeedbackInApplication(Integer idApplication, Integer idUser, String token)
-			throws Exception {
-		Assert.notNull(idUser, "Provide a valid user id");
-		Assert.notNull(idApplication, "Provide a valid application id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/api_users/" + idUser + "/states");
-		log.debug("Sending message listAllUserSpecificStatusOfFeedbackInApplication with idApplication: " + idApplication
-				+ " with idUser: " + idUser
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return getJSONObjectsListForType(Status[].class, uri, HttpStatus.OK, token);
-	}
-
-	@Override
-	public void deleteFeedbackStatusInApplication(Integer idApplication, Integer idStatus, String token) throws Exception {
-		Assert.notNull(idApplication, "Provide a valid application id");
-		Assert.notNull(idStatus, "Provide a valid status id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/states/" + idStatus);
-		log.debug("Sending message deleteFeedbackStatusInApplication with idApplication: " + idApplication
-				+ " with idStatus: " + idStatus
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);	
-	}
-
-	@Override
-	public Status updateFeedbackStatusInApplication(Status status, Integer idApplication, String token) throws Exception {
-		Assert.notNull(status, "Provide a valid status");
-		Assert.notNull(idApplication, "Provide a valid application id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/applications/" + idApplication + "/states");
-		log.debug("Sending message updateFeedbackStatusInApplication with status: " + status
-				+ " with idApplication: " + idApplication
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return updateAndReturnJSONObject(status, uri, HttpStatus.OK, token);
-	}
-
-	@Override
-	public List<StatusOption> listAllStatusOptions() throws Exception {
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/status_options");
-		log.debug("Sending message listAllStatusOptions to FeedbackRepository at uri " + uri);
-		return getJSONObjectsListForType(StatusOption[].class, uri, HttpStatus.OK);
-	}
-
-	@Override
-	public StatusOption createStatusOption(StatusOption statusOption, String token) throws Exception {
-		Assert.notNull(statusOption, "Provide a valid status option");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/status_options");
-		log.debug("Sending message createStatusOption with statusOption: " + statusOption
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return insertandReturnJSONObject(statusOption, uri, HttpStatus.CREATED, token);
-	}
-
-	@Override
-	public StatusOption updateStatusOption(StatusOption statusOption, String token) throws Exception {
-		Assert.notNull(statusOption, "Provide a valid status option");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/status_options");
-		log.debug("Sending message updateStatusOption with statusOption: " + statusOption
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		return updateAndReturnJSONObject(statusOption, uri, HttpStatus.OK, token);
-	}
-
-	@Override
-	public void deleteStatusOption(Integer idStatusOption, String token) throws Exception {
-		Assert.notNull(idStatusOption, "Provide a valid status option id");
-		Assert.notNull(token, "Provide a valid token");
-		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + "en/status_options/" + idStatusOption);
-		log.debug("Sending message deleteStatusOption with idStatusOption: " + idStatusOption
-				+ " with token: " + token
-				+ " to FeedbackRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);	
+		deleteUriResource(uri, HttpStatus.OK, token);
 	}
 }

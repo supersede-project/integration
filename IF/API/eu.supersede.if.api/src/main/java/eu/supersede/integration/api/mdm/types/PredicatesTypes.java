@@ -1,8 +1,11 @@
 package eu.supersede.integration.api.mdm.types;
+
+import java.io.Serializable;
+
 /**
  * Created by snadal on 20/01/17.
  */
-public enum PredicatesTypes {
+public enum PredicatesTypes implements Serializable{
     GT(">"),
     EQ("="),
     LT("<"),

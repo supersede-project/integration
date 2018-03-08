@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/supersede/integration" name="SupersedeDS_Integration_API" xmlns="http://ws.apache.org/ns/synapse">
+  <resource methods="GET" protocol="http" uri-template="/mb/accounts">
+    <inSequence>
+      <log level="full"/>
+      <sequence key="conf:/SupersedeDS_Integration_GetAllAccounts_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeIntegrationDataStore"/>
+        </endpoint>
+      </call>
+      <log level="full"/>
+      <sequence key="conf:/SupersedeDS_Integration_GetAllAccounts_Response_DSSSequence.xml"/>
+      <log level="full"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="GET" protocol="http" uri-template="/mb/accounts/{id_platform}">
+    <inSequence>
+      <property expression="get-property('uri.var.id_platform')"
+        name="id_platform" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:id_platform" name="id_platform"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_Integration_GetAccount_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeIntegrationDataStore"/>
+        </endpoint>
+      </call>
+      <log level="full"/>
+      <sequence key="conf:/SupersedeDS_Integration_GetAccount_Response_DSSSequence.xml"/>
+      <log level="full"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="POST" protocol="http" uri-template="/mb/accounts?*">
+    <inSequence>
+      <property expression="$url:platform" name="id_platform"
+        scope="default" type="STRING"/>
+      <property expression="$url:user" name="user" scope="default" type="STRING"/>
+      <property expression="$url:password" name="password"
+        scope="default" type="STRING"/>
+      <property expression="$url:mb_url" name="mb_url" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:id_platform" name="id_platform"/>
+        <property expression="$ctx:user" name="user"/>
+        <property expression="$ctx:password" name="password"/>
+        <property expression="$ctx:mb_url" name="mb_url"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_Integration_InsertAccount_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeIntegrationDataStore"/>
+        </endpoint>
+      </call>
+      <log level="full"/>
+      <sequence key="conf:/SupersedeDS_Integration_InsertAccount_Response_DSSSequence.xml"/>
+      <log level="full"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/mb/accounts/{id_platform}">
+    <inSequence>
+      <property expression="get-property('uri.var.id_platform')"
+        name="id_platform" scope="default" type="STRING"/>
+      <log level="full">
+        <property expression="$ctx:id_platform" name="id_platform"/>
+      </log>
+      <sequence key="conf:/SupersedeDS_Integration_DeleteAccount_Request_DSSSequence.xml"/>
+      <call>
+        <endpoint>
+          <address format="soap12" trace="disable" uri="http://localhost:9766/services/SupersedeIntegrationDataStore"/>
+        </endpoint>
+      </call>
+      <log level="full"/>
+      <sequence key="conf:/SupersedeDS_Integration_DeleteAccount_Response_DSSSequence.xml"/>
+      <log level="full"/>
+      <respond/>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+  </resource>
+</api>

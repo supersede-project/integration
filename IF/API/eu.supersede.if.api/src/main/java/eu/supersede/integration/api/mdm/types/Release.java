@@ -12,6 +12,7 @@ public class Release {
 	String graph;
 	boolean dispatch;
 	String dispatcherPath;
+	String platform;
 	
 	public String getKafkaTopic() {
 		return kafkaTopic;
@@ -60,6 +61,12 @@ public class Release {
 	}
 	public void setDispatcherPath(String dispatcherPath) {
 		this.dispatcherPath = dispatcherPath;
+	}
+	public String getPlatform() {
+		return platform;
+	}
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 	
 }
