@@ -15,7 +15,7 @@ TARGET_TEST=eu.supersede.integration.api.replan.controller.proxies.test.ReplanCo
 
 DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
 
-echo "DSpot configuration: " + $DSPOT_OPTS
+echo "DSpot configuration: " $DSPOT_OPTS
 
 DSPOT_PROPERTIES="./dspot2.properties"
 
