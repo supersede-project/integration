@@ -19,14 +19,31 @@
  *******************************************************************************/
 package eu.supersede.integration.api.dm.proxies.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jms.JMSException;
+import javax.naming.NamingException;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.adaptation.types.Condition;
+import eu.supersede.integration.api.adaptation.types.DataID;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.Operator;
 import eu.supersede.integration.api.dm.proxies.DMOptimizerProxy;
 import eu.supersede.integration.api.dm.types.FeatureConfiguration;
+import eu.supersede.integration.api.pubsub.adaptation.AdaptationPublisher;
+import eu.supersede.integration.api.pubsub.adaptation.iAdaptationPublisher;
+import eu.supersede.integration.federation.SupersedeFederation;
 
 public class DMOptimizerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(DMOptimizerProxyTest.class);
@@ -37,18 +54,63 @@ public class DMOptimizerProxyTest {
 		proxy = new DMOptimizerProxy<Object, Object>();
 	}
 
+	private boolean subscriptionDone = false;
+	private static  SupersedeFederation federation = new SupersedeFederation();
+
+	private void runPublisher() throws NamingException, JsonProcessingException {
+		iAdaptationPublisher publisher = null;
+		try {
+			publisher = new AdaptationPublisher(true, federation.getLocalFederatedSupersedePlatform().getPlatform());
+			Alert alert = createAlert();
+			publisher.publishAdaptationAlertMesssage(alert);
+		} catch (JMSException e) {
+			e.printStackTrace();
+		} finally {
+			if (publisher != null){
+				try {
+					publisher.closeTopicConnection();
+				} catch (JMSException e) {
+					throw new RuntimeException("Error in closing topic connection", e);
+				}
+			}
+		}
+	}
+	
+	private Alert createAlert() {
+		Alert alert = new Alert();
+		
+		alert.setId("id1");
+		alert.setApplicationId("appId1");
+		alert.setTimestamp(1481717773760L);
+		alert.setTenant(ModelSystem.Atos_HSK);
+		
+		List<Condition> conditions = new ArrayList<Condition>();
+		DataID dataId = new DataID();
+		dataId.setNameComponent("HSK");
+		dataId.setNameQualityMonitored("response_time");
+		conditions.add (new Condition(dataId, Operator.GEq, 10.0));
+		alert.setConditions(conditions);
+		
+		return alert;
+	}
+
+	
+//	@Test
+//	public void testOptimize() throws Exception {
+//		String system = "Atos_HSK";
+//		String featureModelURI = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
+//		String featureConfigurationURI = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
+//		String alertAttribute = "response_time";
+//		String alertThresholdValue = "10";
+//		boolean multiObjective = false;
+//		FeatureConfiguration result = proxy.optimize(system, featureModelURI, featureConfigurationURI, alertAttribute,
+//				alertThresholdValue, multiObjective);
+//		Assert.notNull(result);
+//	}
 	
 	@Test
 	public void testOptimize() throws Exception {
-		String system = "Atos_HSK";
-		String featureModelURI = "input/atos_hsk/SmartPlatformFM_HSK.yafm";
-		String featureConfigurationURI = "input/atos_hsk/SmartPlatformFC_HSK_LowLoad.yafc";
-		String alertAttribute = "response_time";
-		String alertThresholdValue = "10";
-		boolean multiObjective = false;
-		FeatureConfiguration result = proxy.optimize(system, featureModelURI, featureConfigurationURI, alertAttribute,
-				alertThresholdValue, multiObjective);
-		Assert.notNull(result);
+		runPublisher();
 	}
 
 }

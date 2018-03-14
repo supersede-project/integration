@@ -25,6 +25,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -42,6 +43,7 @@ public class HttpMonitorProxyTest {
 		proxy = new HttpMonitorProxy<Object, Object>();
 	}
 
+	@Ignore
 	@Test
 	public void testCreateAndDeleteMonitorConfiguration() throws Exception {
 		HttpMonitorConfiguration conf = createMonitorConfiguration();
@@ -61,6 +63,7 @@ public class HttpMonitorProxyTest {
 		proxy.deleteMonitorConfiguration(conf);
 	}
 	
+	@Ignore
 	@Test
 	public void testUpdateMonitorConfiguration() throws Exception {
 		HttpMonitorConfiguration conf = createMonitorConfiguration();

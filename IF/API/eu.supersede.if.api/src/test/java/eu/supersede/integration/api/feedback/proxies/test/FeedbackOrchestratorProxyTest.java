@@ -109,6 +109,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.notNull(result);
 	}
 
+	@Ignore
 	@Test
 	public void testCreateUpdateDeleteAPIUser() throws Exception {
 		// Create

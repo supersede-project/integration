@@ -65,6 +65,7 @@ public class MonitorManagerProxyTest {
 		return twitterConf;
 	}
 	
+	@Ignore
 	@Test
 	public void testCreateUpdateAndDeleteHttpMonitorConfiguration() throws Exception {
 		HttpMonitorConfiguration conf = createHttpMonitorConfiguration();
