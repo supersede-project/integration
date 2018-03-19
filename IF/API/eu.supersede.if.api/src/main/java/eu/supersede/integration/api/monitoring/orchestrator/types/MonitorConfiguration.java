@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import eu.supersede.integration.api.feedback.orchestrator.types.OrchestratorItem;
+import eu.supersede.integration.api.monitoring.manager.types.Method;
 
 //@Serialize(MonitorConfigurationSerializationService.class)
 @JsonInclude(Include.NON_NULL)
@@ -41,6 +42,8 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 	private String keywordExpression;
 	private String packageName;
 	private String appId;
+	private String url;
+	private Method method;
 	
 	public String getPackageName() {
 		return packageName;
@@ -138,6 +141,22 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 
 	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public Method getMethod() {
+		return method;
+	}
+
+	public void setMethod(Method method) {
+		this.method = method;
 	}
 
 }

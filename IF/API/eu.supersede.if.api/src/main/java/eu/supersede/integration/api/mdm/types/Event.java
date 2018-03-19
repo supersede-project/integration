@@ -19,7 +19,8 @@ public class Event implements Serializable{
     private String platform;
     private String graph;
     List<Attribute> attributes;
-    
+    private String tenant;
+    private String type;
     
 	public String getEventID() {
 		return eventID;
@@ -82,5 +83,17 @@ public class Event implements Serializable{
 	}
 	public void setAttributes(List<Attribute> attributes) {
 		this.attributes = attributes;
+	}
+	public String getTenant() {
+		return tenant;
+	}
+	public void setTenant(String tenant) {
+		this.tenant = tenant;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 }
