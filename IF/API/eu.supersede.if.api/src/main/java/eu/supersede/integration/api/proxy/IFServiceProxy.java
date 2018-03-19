@@ -288,6 +288,28 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
+	public <T,S> S insertJSONObjectAndReturnAnotherType(T object, Class<S> returnedType, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		S result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<S> response = 
+					messageClient.postJsonMessage(object, uri, returnedType, token);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+				log.info("Result obtained: " + result);
+			} else {
+				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw e;
+		}
+	}
+	
 	public <T> boolean insertJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
 		boolean result = false;
 		try {
