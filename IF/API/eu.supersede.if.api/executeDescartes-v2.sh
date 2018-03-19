@@ -11,14 +11,13 @@ echo "Starting Descartes: reporting in file" + $filename
 echo "Started Descartes: `date`" > $filename
 echo "Descartes pom file: " $POM_FILE >> $filename
 
-#nohup mvn -f $POM_FILE test org.pitest:pitest-maven:mutationCoverage | tee -a $filename &
+#clean and build project. 
+mvn clean package -DskipTests
+
+#Execute Descartes
 mvn -f $POM_FILE test org.pitest:pitest-maven:mutationCoverage | tee -a $filename &
 pid_descartes=$!
 
-#pid1=`ps -ef | awk '$NF~"maven" {print $2}'`
-#pid2=`ps -ef | awk '$NF~"surefire" {print $2}'`
-#echo $pid1","$pid2 > descartes.pid
-#echo "Process pid captured"
 echo "Capturing statistics for descartes process with pid " $pid_descartes
 stats=$RESULTS_DIR/descartes_if_stats_$date.txt
 echo "Storing statistics in " $stats
@@ -33,7 +32,6 @@ kill $pid_stats
 echo "Ended Descartes: `date`" >> $filename
 
 #Move results to RESULTS_DIR
-#Kill Descartes process once finish to proceed (BUG: Descartes process does not exit after finished)
 report_date=`date '+%Y%m%d%H'`
 echo mv $DESCARTES_RESULTS_DIRECTORY/$report_date* $RESULTS_DIR
 mv $DESCARTES_RESULTS_DIRECTORY/$report_date* $RESULTS_DIR

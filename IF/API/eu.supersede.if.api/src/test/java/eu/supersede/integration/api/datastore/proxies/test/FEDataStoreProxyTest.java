@@ -35,8 +35,6 @@ import eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
-
-@Ignore
 public class FEDataStoreProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(FEDataStoreProxyTest.class);
 	private static FEDataStoreProxy<Object, Object> proxy;
