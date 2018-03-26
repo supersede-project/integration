@@ -141,6 +141,7 @@ public class MetadataManagementProxyTest {
 		Assert.notNull(result);
 	}
 	
+	@Ignore
 	@Test
 	public void createEvent() throws Exception {
 		Event event = new Event();
