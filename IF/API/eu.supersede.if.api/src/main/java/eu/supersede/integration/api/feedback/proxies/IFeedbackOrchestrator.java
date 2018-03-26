@@ -26,6 +26,7 @@ import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserPermissio
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
 import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
+import eu.supersede.integration.api.feedback.orchestrator.types.Message;
 import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
 import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
 import eu.supersede.integration.api.feedback.orchestrator.types.User;
@@ -75,6 +76,8 @@ public interface IFeedbackOrchestrator {
 	Configuration updateConfiguration(Configuration configuration, long idApplication) throws Exception;
 	Configuration getConfiguration(long idApplication, long idConfiguration) throws Exception;
 	void deleteConfiguration(long idApplication, long idConfiguration) throws Exception;
+	
+	Configuration createPullConfigurationForUserInfo(Message message, long idApplication, long idUser) throws Exception;
 	
 	// General Configuration of Configurations
 	GeneralConfiguration getGeneralConfigurationOfConfiguration(long idApplication, long idConfiguration) throws Exception;

@@ -37,6 +37,7 @@ import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
 import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
 import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
+import eu.supersede.integration.api.feedback.orchestrator.types.Message;
 import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
 import eu.supersede.integration.api.feedback.orchestrator.types.User;
 import eu.supersede.integration.api.feedback.orchestrator.types.UserGroup;
@@ -382,6 +383,19 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 				+ idConfiguration + " to FeedbackOrchestrator at uri " + uri);
 		deleteUriResource(uri, HttpStatus.OK, token);
 	}
+	
+	@Override
+	public Configuration createPullConfigurationForUserInfo(Message message, long idApplication, long idUser) throws Exception {
+		Assert.notNull(message, "Provide a valid message");
+		Assert.notNull(idApplication, "Provide a valid idApplication");
+		Assert.notNull(idUser, "Provide a valid idUser");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
+				+ "/configurations/" + idUser + "/info");
+		log.debug("Sending message createPullConfigurationForUserInfo with idApplication: " + idApplication + " and idUser: "
+				+ idUser + " to FeedbackOrchestrator at uri " + uri);
+		return insertJSONObjectAndReturnAnotherType (message, Configuration.class, uri, HttpStatus.CREATED, token);
+	}
+
 
 	// General Configuration of Configurations
 	@Override
@@ -449,7 +463,8 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 				+ " to FeedbackOrchestrator at uri " + uri);
 		deleteUriResource(uri, HttpStatus.OK, token);
 	}
-
+	
+	
 	// Configuration Mechanisms
 	
 	@Override
