@@ -127,23 +127,23 @@ public class ReplanControllerProxyTest {
     	Assert.notNull(plan);
     }
     
-    @Test
-    public void testGetPlanOfReleaseByIdOfTenantById() throws Exception{
-    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
-    	Assert.notEmpty(releases);
-    	
-    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos");
-    	Assert.notNull(plan);
-    }
+//    @Test
+//    public void testGetPlanOfReleaseByIdOfTenantById() throws Exception{
+//    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
+//    	Assert.notEmpty(releases);
+//    	
+//    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos");
+//    	Assert.notNull(plan);
+//    }
     
-    @Test
-    public void testGetPlanOfReleaseByIdOfTenantByIdForcingNew() throws Exception{
-    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
-    	Assert.notEmpty(releases);
-    	
-    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos", true);
-    	Assert.notNull(plan);
-    }
+//    @Test
+//    public void testGetPlanOfReleaseByIdOfTenantByIdForcingNew() throws Exception{
+//    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
+//    	Assert.notEmpty(releases);
+//    	
+//    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos", true);
+//    	Assert.notNull(plan);
+//    }
     
     @Test
     public void testGetSkillsOfProjectById() throws Exception{

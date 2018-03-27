@@ -5,6 +5,8 @@ POM_FILE=pom_for_descartes.xml
 date=`date '+%Y-%m-%d_%H:%M:%S'`
 RESULTS_DIR=$DESCARTES_RESULTS_DIRECTORY/`date '+%Y-%m-%d_%H:%M:%S'`
 mkdir -p $RESULTS_DIR
+#copy Descartes configuration
+cp $POM_FILE $RESULTS_DIR
 filename=$RESULTS_DIR/descartes_if_$date.txt
 
 echo "Starting Descartes: reporting in file" + $filename
@@ -17,13 +19,13 @@ mvn clean package -DskipTests
 #Execute Descartes
 mvn -f $POM_FILE test org.pitest:pitest-maven:mutationCoverage | tee -a $filename &
 pid_descartes=$!
+((pid_descartes--)) #Decremented to capture mvn command pid, otherwise it captures tee command pid
 
 echo "Capturing statistics for descartes process with pid " $pid_descartes
 stats=$RESULTS_DIR/descartes_if_stats_$date.txt
 echo "Storing statistics in " $stats
-#nohup ./record_descartes_stats.sh >> $stats &
 
-./record_descartes_stats_repeat.sh $pid_descartes 180 $stats &
+./record_stats_repeat.sh $pid_descartes 15 $stats &
 pid_stats=$!
 
 wait $pid_descartes
