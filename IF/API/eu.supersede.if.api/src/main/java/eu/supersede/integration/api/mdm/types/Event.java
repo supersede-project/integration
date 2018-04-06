@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import eu.supersede.integration.api.adaptation.types.Tenant;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Event implements Serializable{
 
@@ -19,7 +21,7 @@ public class Event implements Serializable{
     private String platform;
     private String graph;
     List<Attribute> attributes;
-    private String tenant;
+    private Tenant tenant;
     private String type;
     
 	public String getEventID() {
@@ -84,10 +86,10 @@ public class Event implements Serializable{
 	public void setAttributes(List<Attribute> attributes) {
 		this.attributes = attributes;
 	}
-	public String getTenant() {
+	public Tenant getTenant() {
 		return tenant;
 	}
-	public void setTenant(String tenant) {
+	public void setTenant(Tenant tenant) {
 		this.tenant = tenant;
 	}
 	public String getType() {
