@@ -237,7 +237,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 				+ " with projectId: " + projectId
 				+ " to ReplanController at uri " + uri);
 		
-		return insertJSONObject(release, uri, HttpStatus.ACCEPTED);
+		return insertJSONObject(release, uri, HttpStatus.OK);
 	}
 	
 	@Override

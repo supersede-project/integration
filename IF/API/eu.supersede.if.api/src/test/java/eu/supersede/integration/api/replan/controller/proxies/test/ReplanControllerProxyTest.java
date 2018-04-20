@@ -19,11 +19,13 @@
  *******************************************************************************/
 package eu.supersede.integration.api.replan.controller.proxies.test;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -53,11 +55,75 @@ import eu.supersede.integration.api.replan.controller.types.SoftDependencyType;
 public class ReplanControllerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
 	private static IReplanController proxy;
-	private int projectId = 1;
+	private static int projectId;
+	private static int skillId;
+	private static int resourceId;
+	private static int featureId;
+	private static int releaseId;
 	
     @BeforeClass
     public static void setup() throws Exception {
         proxy = new ReplanControllerProxy();
+        //Create test project
+        Project project = createProject();
+    	project = proxy.createProject(project);
+    	Assert.notNull(project);
+    	Assert.notNull(project.getId());
+    	projectId = project.getId();
+    	
+        //Create skills
+    	Skill skill = new Skill();
+    	skill.setName("Atos test: Swift");
+    	skill.setDescription("Atos test: Swift development of iOS");
+    	
+    	//Create Resource
+    	Resource resource = new Resource();
+    	resource.setName("Atos test: Swift Developer");
+    	resource.setDescription("Atos test: Swift developer with experience on iOS 10");
+    	resource.setAvailability(80.0);
+    	
+    	resource = proxy.addResourceOfProjectById(resource, projectId);
+    	Assert.notNull(resource);
+    	Assert.notNull(resource.getId());
+    	resourceId = resource.getId();
+    	
+    	//Create feature
+    	Feature feature = createFeature();
+    	feature = proxy.createFeatureOfProjectById(feature, projectId);
+    	Assert.notNull(feature);
+    	Assert.notNull(feature.getId());
+    	featureId = feature.getId();
+    	
+    	//Create Release
+    	Release release = createRelease();
+    	boolean result = proxy.addReleaseOfProjectById(release, projectId);
+    	Assert.isTrue(result);
+    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
+    	Assert.notEmpty(releases);
+    	Assert.notNull(releases.get(0).getId());
+    	releaseId = releases.get(0).getId();
+    	
+    	skill = proxy.addSkillOfProjectById(skill, projectId);
+    	Assert.notNull(skill);
+    	skillId = skill.getId();
+    }
+    
+    @AfterClass
+    public static void cleanup() throws Exception {
+    	//Clean test project skill
+    	Assert.isTrue(proxy.deleteSkillByIdOfProjectById(skillId, projectId));
+    	
+    	//Clean test project feature
+    	Assert.isTrue(proxy.deleteFeatureByIdOfProjectById(featureId, projectId));
+    	
+    	//Clean test project resource
+    	Assert.isTrue(proxy.deleteResourceByIdOfProjectById(resourceId, projectId));
+    	
+    	//Clean test project release
+    	Assert.isTrue(proxy.deleteReleaseByIdOfProjectById(releaseId, projectId));
+    	
+        //Clean test project
+    	Assert.isTrue(proxy.deleteProjectById(projectId));
     }
 
     @Test
@@ -168,10 +234,10 @@ public class ReplanControllerProxyTest {
     	Assert.isTrue(proxy.deleteProjectById(project.getId()));
     }
     
-    private Project createProject() {
+    private static Project createProject() {
 		Project project = new Project();
-		project.setName("Project Test");
-		project.setDescription("Project Test Description");
+		project.setName("Atos Project Test");
+		project.setDescription("Atos Project Test Description");
 		project.setEffortUnit("hour");
 		project.setHoursPerEffortUnit(1.0);
 		project.setHoursPerWeekFullTimeResource(40.0);
@@ -192,36 +258,65 @@ public class ReplanControllerProxyTest {
     	Assert.isTrue(proxy.deleteProjectById(project.getId()));
     }
     
-	private Feature createFeature() {
+	private static Feature createFeature() {
 		Feature feature = new Feature();
 		feature.setCode(111);
-		feature.setName("Fix auto upload");
+		feature.setName("Atos Test Feature: Fix auto upload");
 		feature.setDescription("Bla, bla, bla es mucho decir");
 		feature.setEffort(4.0);
 		feature.setDeadline(Calendar.getInstance().getTime());
 		feature.setPriority(5);
 		return feature;
 	}
+	
+	private static Release createRelease() {
+		Release release = new Release();
+		release.setName("Atos test release name");
+		release.setDescription("Atos test release description");
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DATE, 1);
+		release.setDeadline(c.getTime());
+		release.setStartsAt(Calendar.getInstance().getTime());
+	
+		return release;
+	}
 
+	// TODO: create, modify, delete
 	@Test
     public void testUpdateProject() throws Exception{
-    	Project project = proxy.getProjectById(projectId);
+		Project project = createProject();
+    	project = proxy.createProject(project);
     	Assert.notNull(project);
+    	Assert.notNull(project.getId());
     	project.setDescription(project.getDescription() + " modified by test");
     	project = proxy.updateProject(project);
     	Assert.notNull(project);
+    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
     }
     
-    @Test
+    @Ignore @Test
     public void testUpdateFeatureOfProjectById() throws Exception{
-    	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
+    	Project project = createProject();
+    	project = proxy.createProject(project);
+    	Assert.notNull(project);
+    	Assert.notNull(project.getId());
+    	
+    	Feature feature = createFeature();
+    	feature = proxy.createFeatureOfProjectById(feature, project.getId());
+    	Assert.notNull(feature);
+    	Assert.notNull(feature.getId());
+    	
+    	List<Feature> features = proxy.getFeaturesOfProjectById(project.getId());
     	Assert.notEmpty(features);
     	
-    	Feature feature = proxy.getFeatureByIdOfProjectById(features.get(0).getId(), projectId);
+    	feature = proxy.getFeatureByIdOfProjectById(features.get(0).getId(), project.getId());
     	Assert.notNull(feature);
     	feature.setDescription(feature.getDescription() + " modified by test");
     	proxy.updateFeatureOfProjectById(feature, projectId);
     	Assert.notNull(feature);
+    	
+    	Assert.isTrue(proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
+    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
     }
     
     @Test
@@ -230,7 +325,11 @@ public class ReplanControllerProxyTest {
     	Assert.notNull(releases);
     	Assert.notEmpty(releases);
     	Release release = releases.get(0);
+    	String originalDescription = release.getDescription();
     	release.setDescription(release.getDescription() + " modified by test");
+    	release = proxy.updateReleaseOfProjectById(release, projectId);
+    	Assert.notNull(release);
+    	release.setDescription (originalDescription);
     	release = proxy.updateReleaseOfProjectById(release, projectId);
     	Assert.notNull(release);
     }
@@ -241,7 +340,11 @@ public class ReplanControllerProxyTest {
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
     	Skill skill = skills.get(0);
+    	String originalDescription = skill.getDescription();
     	skill.setDescription(skill.getDescription() + " modified by test");
+    	skill = proxy.updateSkillOfProjectById(skill, projectId);
+    	Assert.notNull(skill);
+    	skill.setDescription(originalDescription);
     	skill = proxy.updateSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
     }
@@ -252,13 +355,17 @@ public class ReplanControllerProxyTest {
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
     	Resource resource = resources.get(0);
+    	String originalDescription = resource.getDescription();
     	resource.setDescription(resource.getDescription() + " modified by test");
+    	resource = proxy.updateResourceOfProjectById(resource, projectId);
+    	Assert.notNull(resource);
+    	resource.setDescription(originalDescription);
     	resource = proxy.updateResourceOfProjectById(resource, projectId);
     	Assert.notNull(resource);
     }
     
     @Test
-    public void testAddSkillsOfFeatureByIdOfProjectById() throws Exception{
+    public void testAddDeleteSkillsOfFeatureByIdOfProjectById() throws Exception{
     	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
@@ -268,18 +375,23 @@ public class ReplanControllerProxyTest {
     	
     	Feature feature = proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), projectId);
     	Assert.notNull(feature);
+    	
+    	feature = proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), projectId);
+    	Assert.notNull(feature);
     }
     
     @Test
-    public void testAddDependenciesOfFeatureByIdOfProjectById() throws Exception{
+    public void testAddDeleteDependenciesOfFeatureByIdOfProjectById() throws Exception{
     	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
-    	Assert.isTrue (features.size()>2);
     	
     	List<Feature> dependencies = new ArrayList<>();
     	dependencies.add(features.get(0));
-    	Feature feature = proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), projectId);
+    	Feature feature = proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), projectId);
+    	Assert.notNull(feature);
+    	
+    	feature = proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), projectId);
     	Assert.notNull(feature);
     }
     
@@ -298,7 +410,7 @@ public class ReplanControllerProxyTest {
 //    }
     
     @Test
-    public void testAddResourcesOfReleaseByIdOfProjectById() throws Exception{
+    public void testAddDeleteResourcesOfReleaseByIdOfProjectById() throws Exception{
     	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
     	Assert.notNull(resources);
     	Assert.notEmpty(resources);
@@ -311,10 +423,13 @@ public class ReplanControllerProxyTest {
     	resourcesToAdd.add(resources.get(0));
     	Release release = proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), projectId);
     	Assert.notNull(release);
+    	
+    	release = proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), projectId);
+    	Assert.notNull(release);
     }
     
     @Test
-    public void testAddFeaturesOfReleaseByIdOfProjectById() throws Exception{
+    public void testAddDeleteFeaturesOfReleaseByIdOfProjectById() throws Exception{
     	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
@@ -327,31 +442,40 @@ public class ReplanControllerProxyTest {
     	featuresToAdd.add(features.get(0));
     	boolean result = proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId);
     	Assert.isTrue(result);
+    	
+    	result = proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId);
+    	Assert.isTrue(result);
     }
     
     @Test
-    public void testAddSkillOfProjectById() throws Exception{
+    public void testAddDeleteSkillOfProjectById() throws Exception{
     	Skill skill = new Skill();
-    	skill.setName("Swift");
-    	skill.setDescription("Swift development of iOS");
+    	skill.setName("Atos test: Swift");
+    	skill.setDescription("Atos Test: Swift development of iOS");
     	
     	skill = proxy.addSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
+    	
+    	boolean result = proxy.deleteSkillByIdOfProjectById(skill.getId(), projectId);
+    	Assert.isTrue(result);
     }
     
     @Test
-    public void testAddResourceOfProjectById() throws Exception{
+    public void testAddDeleteResourceOfProjectById() throws Exception{
     	Resource resource = new Resource();
-    	resource.setName("Swift Developer");
-    	resource.setDescription("Swift developer with experience on iOS 10");
+    	resource.setName("Atos test: Swift Developer");
+    	resource.setDescription("Atos Test: Swift developer with experience on iOS 10");
     	resource.setAvailability(80.0);
     	
     	resource = proxy.addResourceOfProjectById(resource, projectId);
     	Assert.notNull(resource);
+    	
+    	boolean result = proxy.deleteResourceByIdOfProjectById(resource.getId(), projectId);
+    	Assert.isTrue(result);
     }
     
     @Test
-    public void testAddSkillsOfResourceByIdOfProjectById() throws Exception{
+    public void testAddDeleteSkillsOfResourceByIdOfProjectById() throws Exception{
     	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
     	Assert.notEmpty(skills);
@@ -363,6 +487,9 @@ public class ReplanControllerProxyTest {
     	List<Skill> skillsToAdd = new ArrayList<>();
     	skillsToAdd.add(skills.get(0));
     	Resource resource = proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), projectId);
+    	Assert.notNull(resource);
+    	
+    	resource = proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), projectId);
     	Assert.notNull(resource);
     }
     
@@ -391,16 +518,15 @@ public class ReplanControllerProxyTest {
     	List<Feature> features = proxy.getFeaturesOfProjectById(projectId);
     	Assert.notNull(features);
     	Assert.notEmpty(features);
-    	Assert.isTrue(features.size()>=2);
     	
     	List<Feature> dependenciesToAdd = new ArrayList<>();
-    	dependenciesToAdd.add(features.get(1));
+    	dependenciesToAdd.add(features.get(0));
     	
     	Feature feature = proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), projectId);
     	Assert.notNull(feature);
     	
     	List<Feature> dependenciesToDelete = new ArrayList<>();
-    	dependenciesToDelete.add(features.get(1));
+    	dependenciesToDelete.add(features.get(0));
     	
     	feature = proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), projectId);
     	Assert.notNull(feature);
@@ -480,23 +606,23 @@ public class ReplanControllerProxyTest {
     	Assert.isTrue(featuresOfRelease.size() == numberOfFeaturesOfRelease - 1);
     }
     
-    @Test
-    public void testCancelLastPlanOfReleaseByIdOfProjectById() throws Exception{
-    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
-    	Assert.notEmpty(releases);
-    	
-    	Plan plan = proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
-    	Assert.notNull(plan);
-    	
-    	Boolean result = proxy.cancelLastPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
-    	Assert.isTrue(result);
-    }
+//    @Test
+//    public void testCancelLastPlanOfReleaseByIdOfProjectById() throws Exception{
+//    	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
+//    	Assert.notEmpty(releases);
+//    	
+//    	Plan plan = proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
+//    	Assert.notNull(plan);
+//    	
+//    	Boolean result = proxy.cancelLastPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
+//    	Assert.isTrue(result);
+//    }
     
     @Test
     public void testDeleteSkillOfProjectById() throws Exception{
     	Skill skill = new Skill();
-    	skill.setName("Swift");
-    	skill.setDescription("Swift development of iOS");
+    	skill.setName("Atos test: Swift");
+    	skill.setDescription("Atos test: Swift development of iOS");
     	
     	skill = proxy.addSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
@@ -508,8 +634,8 @@ public class ReplanControllerProxyTest {
     @Test
     public void tesDeleteResourceOfProjectById() throws Exception{
     	Resource resource = new Resource();
-    	resource.setName("Swift Developer");
-    	resource.setDescription("Swift developer with experience on iOS 10");
+    	resource.setName("Atos test: Swift Developer");
+    	resource.setDescription("Atos test: Swift developer with experience on iOS 10");
     	resource.setAvailability(80.0);
     	
     	resource = proxy.addResourceOfProjectById(resource, projectId);
@@ -544,6 +670,7 @@ public class ReplanControllerProxyTest {
     	Assert.isTrue(resource.getSkills().size() == numberOfSkills - 1);
     }
     
+
 //    @Ignore
 //    @Test
 //    public void testAddFeaturesToProjectById() throws Exception{
@@ -614,5 +741,6 @@ public class ReplanControllerProxyTest {
 //    	
 //		proxy.addFeaturesToProjectById(payload, projectId);
 //    }
+
 }
 
