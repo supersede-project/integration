@@ -61,4 +61,20 @@
         <appender-ref ref="FILE" />
     </logger>
     
+    <logger name="eu.supersede.integration" level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="RSYSLOG" />
+        <appender-ref ref="FILE" />
+    </logger>
+    
+    <logger name="twitter4j.TwitterStreamImpl" level="ERROR">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="RSYSLOG" />
+        <appender-ref ref="FILE" />
+    </logger>
+    
+    <logger name="monitoring.tools.JSchTool" level="FATAL">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    
 </configuration>
