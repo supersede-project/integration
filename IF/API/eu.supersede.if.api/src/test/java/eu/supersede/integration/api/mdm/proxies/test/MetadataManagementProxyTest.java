@@ -29,6 +29,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.adaptation.types.Tenant;
 import eu.supersede.integration.api.mdm.proxies.MetadataManagementProxy;
 import eu.supersede.integration.api.mdm.types.CER_Rule;
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
@@ -141,6 +142,7 @@ public class MetadataManagementProxyTest {
 		Assert.notNull(result);
 	}
 	
+
 //	@Ignore
 //	@Test
 //	public void createEvent() throws Exception {
@@ -152,4 +154,5 @@ public class MetadataManagementProxyTest {
 //		KafkaTopic result = proxy.createEvent(event);
 //		Assert.notNull(result);
 //	}
+
 }

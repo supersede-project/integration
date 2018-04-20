@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -33,6 +34,11 @@ public class Release extends ReplanBaseObject{
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
 	@JsonSerialize(using = CustomJsonDateSerializer.class)
 	private Date deadline;
+	
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
+	@JsonProperty ("starts_at")
+	private Date startsAt;
 	
 	private List<Resource> resources;
 	
@@ -48,6 +54,14 @@ public class Release extends ReplanBaseObject{
 		this.deadline = deadline;
 	}
 	
+	public Date getStartsAt() {
+		return startsAt;
+	}
+
+	public void setStartsAt(Date startsAt) {
+		this.startsAt = startsAt;
+	}
+
 	public List<Resource> getResources() {
 		if (resources == null)
 			resources = new ArrayList<>();
