@@ -8,8 +8,9 @@ import java.io.Serializable;
 public enum ActionTypes implements Serializable{
     ALERT_EVOLUTION("Software Evolution Alert"),
     ALERT_DYNAMIC_ADAPTATION("Dynamic Adaptation Alert"),
-	ALERT_MONITOR_RECONFIGURATION("Monitors Reconfiguration Alert"),
-	ALERT_FEEDBACK_RECONFIGURATION("Feedback Reconfiguration Alert");
+    ALERT_MONITOR_DETERMINISTIC_RECONFIGURATION("Monitors Deterministic Reconfiguration Alert"),
+    ALERT_MONITOR_NON_DETERMINISTIC_RECONFIGURATION("Monitors Non-deterministic Reconfiguration Alert"),
+    ALERT_FEEDBACK_RECONFIGURATION("Feedback Reconfiguration Alert");
 
     private String element;
 

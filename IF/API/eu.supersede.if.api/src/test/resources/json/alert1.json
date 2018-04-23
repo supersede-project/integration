@@ -1,0 +1,48 @@
+{
+	"id": "3a3ec253-95cb-470a-8fe1-8363beb96b4a",
+	"applicationId": "Senercon Energy Management",
+	"timestamp": 1523477656657,
+	"tenant": "senercon",
+	"conditions": [
+		{
+			"idMonitoredData": "UNSPECIFIED",
+			"operator": "EQ",
+			"value": 1.0
+		}
+	],
+	"requests": [
+		{
+			"id": "89218b1d-7583-448e-8ba2-922e88ac4a07",
+			"classification": "BugFixRequest",
+			"accuracy": 100.0,
+			"description": "[DiagramFeedback, DiagramAction, Diagram, Navigation, Mobility, Tooltip, Visualization, Selection, Splitting] -  Hallo,im Diagramm Mobilität wird beim umstellen von Liter auf kWh trotzdem Liter angezeigt!",
+			"positiveSentiment": 0,
+			"negativeSentiment": 0,
+			"overallSentiment": 0,
+			"feedbackIDs": [],
+			"features": []
+		},
+		{
+			"id": "7d17e402-a3fe-4c9b-80aa-013392f5dfb7",
+			"classification": "BugFixRequest",
+			"accuracy": 100.0,
+			"description": "[LogIn] -  Nach dem Login geht es leider nicht weiter!",
+			"positiveSentiment": 0,
+			"negativeSentiment": 0,
+			"overallSentiment": 0,
+			"feedbackIDs": [],
+			"features": []
+		},
+		{
+			"id": "5d676362-4a6b-4f5d-bafc-6b1c8afe1975",
+			"classification": "BugFixRequest",
+			"accuracy": 100.0,
+			"description": "[DataAction, Restore, Delete, Edit, Data, Add, ClickMonitorData, Enter, Lose, Create] -  ES wird aus den Daten keine Grafik erzeugt.",
+			"positiveSentiment": 0,
+			"negativeSentiment": 0,
+			"overallSentiment": 0,
+			"feedbackIDs": [],
+			"features": []
+		}
+	]
+}
