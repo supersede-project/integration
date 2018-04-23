@@ -70,29 +70,29 @@ public class MetadataManagementProxyTest {
 		Assert.notEmpty(result);
 	}
 	
-	@Test
-	public void testGelAllECARules() throws Exception {
-		List<ECA_Rule> result = proxy.getAllECARules();
-		Assert.notNull(result);
-		Assert.notEmpty(result);
-	}
-	
-	@Test
-	public void testGetECARule() throws Exception {
-		List<ECA_Rule> rules = proxy.getAllECARules();
-		Assert.notNull(rules);
-		Assert.notEmpty(rules);
-		
-		ECA_Rule result = proxy.getECARule(rules.get(0).getEca_ruleID()); 
-		Assert.notNull(result);
-	}
-	
-	@Test
-	public void testGelAllCERRules() throws Exception {
-		List<CER_Rule> result = proxy.getAllCERRules();
-		Assert.notNull(result);
+//	@Test
+//	public void testGelAllECARules() throws Exception {
+//		List<ECA_Rule> result = proxy.getAllECARules();
+//		Assert.notNull(result);
 //		Assert.notEmpty(result);
-	}
+//	}
+	
+//	@Test
+//	public void testGetECARule() throws Exception {
+//		List<ECA_Rule> rules = proxy.getAllECARules();
+//		Assert.notNull(rules);
+//		Assert.notEmpty(rules);
+//		
+//		ECA_Rule result = proxy.getECARule(rules.get(0).getEca_ruleID()); 
+//		Assert.notNull(result);
+//	}
+	
+//	@Test
+//	public void testGelAllCERRules() throws Exception {
+//		List<CER_Rule> result = proxy.getAllCERRules();
+//		Assert.notNull(result);
+//		Assert.notEmpty(result);
+//	}
 	
 //	@Ignore
 //	@Test
@@ -105,22 +105,22 @@ public class MetadataManagementProxyTest {
 //		Assert.notNull(result);
 //	}
 	
-	@Test
-	public void testGelAllEvents() throws Exception {
-		List<Event> result = proxy.getAllEvents();
-		Assert.notNull(result);
-		Assert.notEmpty(result);
-	}
+//	@Test
+//	public void testGelAllEvents() throws Exception {
+//		List<Event> result = proxy.getAllEvents();
+//		Assert.notNull(result);
+//		Assert.notEmpty(result);
+//	}
 	
-	@Test
-	public void testGetEvent() throws Exception {
-		List<Event> events = proxy.getAllEvents();
-		Assert.notNull(events);
-		Assert.notEmpty(events);
-		
-		Event result = proxy.getEvent(events.get(0).getEventID()); 
-		Assert.notNull(result);
-	}
+//	@Test
+//	public void testGetEvent() throws Exception {
+//		List<Event> events = proxy.getAllEvents();
+//		Assert.notNull(events);
+//		Assert.notEmpty(events);
+//		
+//		Event result = proxy.getEvent(events.get(0).getEventID()); 
+//		Assert.notNull(result);
+//	}
 	
 	@Test
 	public void testJsonInstances(){
@@ -142,15 +142,17 @@ public class MetadataManagementProxyTest {
 		Assert.notNull(result);
 	}
 	
-	@Test
-	public void createEvent() throws Exception {
-		Event event = new Event();
-		event.setEvent("TwitterMonitor");
-		String jsonInstances = "{\"SocialNetworksMonitoredData\":{\"idOutput\":\"12345\",\"confId\":\"67890\",\"searchTimeStamp\":\"2016-07-19 17:23:00.000\",\"numDataItems\":1,\"DataItems\":[{\"idItem\":\"6253282\",\"timeStamp\":\"2016-05-25 20:03\",\"message\":\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\",\"author\":\"@SnoopDogg\",\"link\":\"https://twitter.com/SnoopDogg/status/734894106967703552\"}]}}";
-		event.setJsonInstances(jsonInstances);
-		event.setPlatform("development");
-		event.setTenant(Tenant.SENERCON);
-		KafkaTopic result = proxy.createEvent(event);
-		Assert.notNull(result);
-	}
+
+//	@Ignore
+//	@Test
+//	public void createEvent() throws Exception {
+//		Event event = new Event();
+//		event.setEvent("TwitterMonitor");
+//		String jsonInstances = "{\"SocialNetworksMonitoredData\":{\"idOutput\":\"12345\",\"confId\":\"67890\",\"searchTimeStamp\":\"2016-07-19 17:23:00.000\",\"numDataItems\":1,\"DataItems\":[{\"idItem\":\"6253282\",\"timeStamp\":\"2016-05-25 20:03\",\"message\":\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\",\"author\":\"@SnoopDogg\",\"link\":\"https://twitter.com/SnoopDogg/status/734894106967703552\"}]}}";
+//		event.setJsonInstances(jsonInstances);
+//		event.setPlatform("senercon");
+//		KafkaTopic result = proxy.createEvent(event);
+//		Assert.notNull(result);
+//	}
+
 }

@@ -20,17 +20,19 @@ public class AdaptationDashboardProxyTest {
 	
 	@BeforeClass
 	public static void setup() throws Exception{
-		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "senercon");
+		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		
 		List<Adaptation> adaptations = proxy.getAllAdaptations();
 		Assert.notEmpty(adaptations);
 		adaptationId = adaptations.get(0).getFc_id();
 		Assert.notNull(adaptationId);
+
 //		
 //		List<Enactment> enactments = proxy.getAllEnactments();
 //		Assert.notEmpty(enactments);
 //		enactmentId = enactments.get(0).getFc_id();
 //		Assert.notNull(enactmentId);
+
 	}
 
 	@Test

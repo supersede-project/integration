@@ -195,21 +195,19 @@ public class ReplanControllerProxyTest {
     
 //    @Test
 //    public void testGetPlanOfReleaseByIdOfTenantById() throws Exception{
-//    	
-//    	
-//    	List<Release> releases = proxy.getReleasesOfProjectById("senercon");
+//    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
 //    	Assert.notEmpty(releases);
 //    	
-//    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "senercon");
+//    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos");
 //    	Assert.notNull(plan);
 //    }
     
 //    @Test
 //    public void testGetPlanOfReleaseByIdOfTenantByIdForcingNew() throws Exception{
-//    	List<Release> releases = proxy.getReleasesOfProjectById("senercon");
+//    	List<Release> releases = proxy.getReleasesOfProjectById("atos");
 //    	Assert.notEmpty(releases);
 //    	
-//    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "senercon", true);
+//    	Plan plan = proxy.getPlanOfReleaseByIdOfTenantById(releases.get(0).getId(), "atos", true);
 //    	Assert.notNull(plan);
 //    }
     
@@ -672,6 +670,7 @@ public class ReplanControllerProxyTest {
     	Assert.isTrue(resource.getSkills().size() == numberOfSkills - 1);
     }
     
+
 //    @Ignore
 //    @Test
 //    public void testAddFeaturesToProjectById() throws Exception{
@@ -742,5 +741,6 @@ public class ReplanControllerProxyTest {
 //    	
 //		proxy.addFeaturesToProjectById(payload, projectId);
 //    }
+
 }
 
