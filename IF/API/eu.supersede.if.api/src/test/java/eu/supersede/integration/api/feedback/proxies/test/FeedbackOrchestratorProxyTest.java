@@ -53,6 +53,7 @@ public class FeedbackOrchestratorProxyTest {
 	private static FeedbackOrchestratorProxy<?, ?> proxy;
 	private static long idApplicationBackup;
 	private static long idApplication = 8;
+	private static long idApplication_loaded;
 	private static long idConfiguration = 9;
 	private static long idGeneralConfiguration = 8;
 	private static long idMechanism = 5;
@@ -69,6 +70,7 @@ public class FeedbackOrchestratorProxyTest {
 		Application app = createApplication();
 		Application result = proxy.createApplication(app);
 		idApplication = result.getId();
+		idApplication_loaded = idApplication;
 		idApplicationBackup = idApplication;
 		idGeneralConfiguration = result.getGeneralConfiguration().getId();
 		idConfiguration = result.getConfigurations().get(0).getId();
@@ -176,7 +178,7 @@ public class FeedbackOrchestratorProxyTest {
 
 	@Test
 	public void testGetApplicationForUser() throws Exception {
-		Application result = proxy.getApplicationForUser(idApplication, idUser);
+		Application result = proxy.getApplicationForUser(idApplication_loaded, idUser);
 		Assert.notNull(result);
 	}
 
