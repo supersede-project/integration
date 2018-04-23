@@ -466,7 +466,7 @@
 				</configuration>
 				<dependencies>
 					<dependency>
-						<groupId>fr.inria.stamp</groupId>
+						<groupId>eu.stamp-project</groupId>
 						<artifactId>descartes</artifactId>
 						<version>0.2-SNAPSHOT</version>
 					</dependency>
