@@ -343,6 +343,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+		      <groupId>org.mockejb</groupId>
+		      <artifactId>mockejb</artifactId>
+		      <version>0.6-beta2</version>
+		      <scope>test</scope>
+		      <exclusions>
+			<exclusion>
+			  <artifactId>slf4j-log4j12</artifactId>
+			  <groupId>org.slf4j</groupId>
+			</exclusion>
+		      </exclusions>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
