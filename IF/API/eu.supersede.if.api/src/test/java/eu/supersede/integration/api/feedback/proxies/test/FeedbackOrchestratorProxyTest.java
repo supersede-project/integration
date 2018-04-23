@@ -40,6 +40,7 @@ import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
 import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
 import eu.supersede.integration.api.feedback.orchestrator.types.MechanismType;
+import eu.supersede.integration.api.feedback.orchestrator.types.Message;
 import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
 import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
 import eu.supersede.integration.api.feedback.orchestrator.types.TriggerType;
@@ -281,6 +282,14 @@ public class FeedbackOrchestratorProxyTest {
 		//Delete
 		proxy.deleteConfiguration(idApplication, result.getId());
 		
+	}
+	
+	@Test
+	public void testCreatePullConfigurationForUserInfo() throws Exception {
+		Message message = 
+				new Message("Hey user " + idUser + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday.");
+		Configuration result = proxy.createPullConfigurationForUserInfo(message, idApplication, idUser);
+		Assert.notNull(result);
 	}
 	
 	// General Configurations of configuration

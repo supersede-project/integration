@@ -61,6 +61,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object(s) in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -78,6 +79,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object(s) in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -95,6 +97,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object(s) in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -112,6 +115,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return (List<T>) Arrays.asList(objects);
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object(s) in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -129,6 +133,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return object;
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object(s) in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -146,6 +151,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return object;
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -163,6 +169,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return object;
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -180,6 +187,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return object;
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -197,6 +205,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return object;
 		} catch (Exception e) {
+			log.info("There was a problem getting JSON object in uri: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -213,11 +222,12 @@ public abstract class IFServiceProxy<T, S> {
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -234,11 +244,12 @@ public abstract class IFServiceProxy<T, S> {
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -256,11 +267,12 @@ public abstract class IFServiceProxy<T, S> {
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -278,11 +290,35 @@ public abstract class IFServiceProxy<T, S> {
 				log.info("Successfully inserted JSON object " + object);
 				log.info("Result obtained: " + result);
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
+			log.error(e.getMessage(), e);
+			throw e;
+		}
+	}
+	
+	public <T,S> S insertJSONObjectAndReturnAnotherType(T object, Class<S> returnedType, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		S result = null;
+		try {
+			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
+			Assert.notNull(uri, "Provide a valid uri");
+			ResponseEntity<S> response = 
+					messageClient.postJsonMessage(object, uri, returnedType, token);
+			result = response.getBody();
+			if (response.getStatusCode().equals(expectedStatus)) {
+				log.info("Successfully inserted JSON object " + object);
+				log.info("Result obtained: " + result);
+			} else {
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
+				result = null;
+			}
+			return result;
+		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -299,10 +335,11 @@ public abstract class IFServiceProxy<T, S> {
 				log.info("Successfully inserted JSON object " + object);
 				result = true;
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			return false;
 		}
@@ -320,10 +357,11 @@ public abstract class IFServiceProxy<T, S> {
 				log.info("Successfully inserted JSON object " + object);
 				result = true;
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			}
 			return result;
 		} catch (Exception e) {
+			
 			log.error(e.getMessage(), e);
 			return false;
 		}
@@ -340,10 +378,11 @@ public abstract class IFServiceProxy<T, S> {
 				log.info("Successfully inserted JSON object " + json);
 				result = true;
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + json + " in URI: " + uri);
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + json + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			return false;
 		}
@@ -363,10 +402,11 @@ public abstract class IFServiceProxy<T, S> {
 				JSONObject json = new JSONObject(response.getBody());
 				result = json.get(label).toString();
 			} else {
-				log.info("There was a problem inserting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -390,6 +430,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem posting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -410,13 +451,14 @@ public abstract class IFServiceProxy<T, S> {
 					log.info(message);
 				}
 			} else {
-				log.info("There was a problem posting JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem posting JSON object " + object + " in URI: " + uri);
 				if (message != null){
 					log.info(message);
 				}
 			}
 			return result;
 		} catch (HttpClientErrorException|HttpServerErrorException e) {
+			log.info("There was a problem posting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			JSONObject json = new JSONObject(e.getResponseBodyAsString());
 			String message = json.getString("message");
@@ -439,11 +481,12 @@ public abstract class IFServiceProxy<T, S> {
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully updated JSON object " + object);
 			} else {
-				log.info("There was a problem updating JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -460,11 +503,12 @@ public abstract class IFServiceProxy<T, S> {
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully updated JSON object " + object);
 			} else {
-				log.info("There was a problem updating JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -481,11 +525,12 @@ public abstract class IFServiceProxy<T, S> {
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully updated JSON object " + object);
 			} else {
-				log.info("There was a problem updating JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -502,11 +547,12 @@ public abstract class IFServiceProxy<T, S> {
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully updated JSON object " + object);
 			} else {
-				log.info("There was a problem updating JSON object " + result + " in URI: " + uri);
+				log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 				result = null;
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -525,6 +571,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			
 		} catch (Exception e) {
+			log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -546,6 +593,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + jsonInput + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			throw e;
 		}
@@ -566,6 +614,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting JSON object " + jsonInput + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			return false;
 		}
@@ -586,6 +635,7 @@ public abstract class IFServiceProxy<T, S> {
 			}
 			return result;
 		} catch (Exception e) {
+			log.info("There was a problem inserting XML object " + xmlInput + " in URI: " + uri);
 			log.error(e.getMessage(), e);
 			return false;
 		}

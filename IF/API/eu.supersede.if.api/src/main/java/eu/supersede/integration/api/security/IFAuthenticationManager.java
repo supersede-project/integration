@@ -311,6 +311,7 @@ public class IFAuthenticationManager {
 		System.out.println ("getAuthorizationToken.TOKEN_SERVICE_ENDPOINT:" + TOKEN_SERVICE_ENDPOINT);
 		System.out.println ("getAuthorizationToken.base64AuthorizationPair:" + base64AuthorizationPair);
 		System.out.println ("getAuthorizationToken.userName+tenantDomain:" + userName+tenantDomain);
+		System.out.println ("getAuthorizationToken.password:" + credential);
 		
 		AuthorizationToken token = restTemplate.exchange(request, AuthorizationToken.class).getBody();
 		if (token != null){

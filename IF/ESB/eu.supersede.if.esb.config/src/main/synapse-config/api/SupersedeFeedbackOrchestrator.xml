@@ -545,6 +545,23 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="POST" protocol="http" uri-template="/{language}/applications/{app_id}/configurations/{user_id}/info">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Create pull configuration for user info message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
   <resource methods="GET" protocol="http" uri-template="/{language}/applications/{app_id}/configurations/{conf_id}/general_configuration">
     <inSequence>
       <log level="full">
