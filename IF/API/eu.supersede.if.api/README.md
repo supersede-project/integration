@@ -46,7 +46,7 @@ And add them within the repositories block:
 ```
 Next, declare the IF Client dependencies in the dependencies block, adding the following line:
 ```sh
-    compile("eu.supersede.if:eu.supersede.if.api:0.3.0-SNAPSHOT"){changing = true} 
+    compile("eu.supersede.if:eu.supersede.if.api:0.4.0-SNAPSHOT"){changing = true} 
     compile (group: 'eu.supersede.feedback_gathering', name: 'feedback_library', version: '0.0.1-SNAPSHOT')
     compile(group: 'org.wso2.andes.wso2', name: 'andes-client', version: '3.1.1')
     compile(group: 'org.apache.geronimo.specs.wso2', name: 'geronimo-jms_1.1_spec', version: '1.1.0.wso2v1')
@@ -122,7 +122,7 @@ Then, add to pom.xml the IF dependencies
      <dependency>
     	<groupId>eu.supersede.if</groupId>
     	<artifactId>eu.supersede.if.api</artifactId>
-    	<version>0.3.0-SNAPSHOT</version>
+    	<version>0.4.0-SNAPSHOT</version>
 	<exclusions>
               <exclusion>
                 <groupId>org.slf4j</groupId>

@@ -77,7 +77,7 @@ public class IFDataStoreProxyTest {
 		Boolean result = proxy.insertSupersedePlatform(platform, token);
 		Assert.isTrue(result);
 		platform = 
-				createPlatform("platform", "admin", "$up3r$3d3", "platform.supersede.eu:5676");
+				createPlatform("production", "admin", "$up3r$3d3", "platform.supersede.eu:5676");
 		result = proxy.insertSupersedePlatform(platform, token);
 		Assert.isTrue(result);
 		platform = 

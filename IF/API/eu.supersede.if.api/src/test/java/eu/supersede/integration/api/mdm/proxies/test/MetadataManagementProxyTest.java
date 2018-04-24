@@ -28,6 +28,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
+import eu.supersede.integration.api.adaptation.types.Tenant;
 import eu.supersede.integration.api.mdm.proxies.MetadataManagementProxy;
 import eu.supersede.integration.api.mdm.types.CER_Rule;
 import eu.supersede.integration.api.mdm.types.ECA_Rule;
@@ -145,7 +146,8 @@ public class MetadataManagementProxyTest {
 		event.setEvent("TwitterMonitor");
 		String jsonInstances = "{\"SocialNetworksMonitoredData\":{\"idOutput\":\"12345\",\"confId\":\"67890\",\"searchTimeStamp\":\"2016-07-19 17:23:00.000\",\"numDataItems\":1,\"DataItems\":[{\"idItem\":\"6253282\",\"timeStamp\":\"2016-05-25 20:03\",\"message\":\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\",\"author\":\"@SnoopDogg\",\"link\":\"https://twitter.com/SnoopDogg/status/734894106967703552\"}]}}";
 		event.setJsonInstances(jsonInstances);
-		event.setPlatform("senercon");
+		event.setPlatform("development");
+		event.setTenant(Tenant.SENERCON);
 		KafkaTopic result = proxy.createEvent(event);
 		Assert.notNull(result);
 	}

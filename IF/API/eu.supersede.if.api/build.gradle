@@ -121,6 +121,9 @@ dependencies {
 
 	//Google Guava
 	compile 'com.google.guava:guava:21.0'
+	
+	//MockEJB
+	testCompile("org.mockejb:mockejb:0.6-beta2")
 }
 
 configurations.all {
