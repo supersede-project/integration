@@ -1,7 +1,7 @@
 #Configuration
-RESULTS_DIR=/home/yosu/Projects/STAMP/Git/dspot-usecases-output/atos/supersede
-DSPOT_JAR_NAME=dspot-1.0.7-SNAPSHOT-jar-with-dependencies.jar
-DSPOT_JAR=/home/yosu/Projects/STAMP/Git/dspot/dspot/target/$DSPOT_JAR_NAME
+RESULTS_DIR=/home/stamp/Git/dspot-usecases-output/atos/supersede
+DSPOT_JAR_NAME=dspot-1.1.1-SNAPSHOT-jar-with-dependencies.jar
+DSPOT_JAR=/home/stamp/Git/dspot/dspot/target/$DSPOT_JAR_NAME
 DSPOT_OUT=./dspot-out
 
 #Selectors: JacocoCoverageSelector, CloverCoverageSelector
@@ -30,7 +30,7 @@ echo "Started DSpot: `date`" > $filename
 echo "DSpot CMI configuration: " $DSPOT_OPTS >> $filename
 echo "DSpot properties file: " $DSPOT_PROPERTIES >> $filename
 
-nohup java -jar $DSPOT_JAR -p $DSPOT_PROPERTIES $DSPOT_OPTS | tee -a $filename &
+nohup java -jar $DSPOT_JAR -p $DSPOT_PROPERTIES $DSPOT_OPTS |& tee -a $filename &
 pid_dpot=$!
 ((pid_dpot--)) #Decremented to capture mvn command pid, otherwise it captures tee command pid
 
