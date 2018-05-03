@@ -54,7 +54,7 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		URI uri = new URI(endpoint + "configuration");
 		log.debug("Sending message createMonitorConfiguration with conf: " + conf + " to Monitor at uri " + uri);
-		S response = insertJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.OK);
+		S response = insertJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.CREATED);
 		if (response != null && response.getResult() != null && response.getResult().getIdConf() != null) {
 			log.debug ("Obtained response: " + response.getResult());
 			conf.setId(response.getResult().getIdConf());
