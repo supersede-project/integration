@@ -22,6 +22,7 @@ package eu.supersede.integration.api.monitoring.monitors.proxies;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,7 +55,8 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		URI uri = new URI(endpoint + "configuration");
 		log.debug("Sending message createMonitorConfiguration with conf: " + conf + " to Monitor at uri " + uri);
-		S response = insertJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.CREATED);
+		S response = insertJSONObjectAndReturnAnotherType(conf, responseType, uri, 
+				new ArrayList<HttpStatus>(){{add(HttpStatus.CREATED); add(HttpStatus.OK);}});
 		if (response != null && response.getResult() != null && response.getResult().getIdConf() != null) {
 			log.debug ("Obtained response: " + response.getResult());
 			conf.setId(response.getResult().getIdConf());

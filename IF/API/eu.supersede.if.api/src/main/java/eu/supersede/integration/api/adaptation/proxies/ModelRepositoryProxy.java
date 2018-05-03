@@ -21,6 +21,7 @@ package eu.supersede.integration.api.adaptation.proxies;
 
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -51,7 +52,7 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 		Assert.notNull(metadata, "Provide a valid model metadata");
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType);
 		log.debug("Sending message createModelInstances with metadata: " + metadata + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
-		return (IModel[]) insertJSONObjectAndReturnAnotherType(metadata, modelType.getTypeArrayClass(), uri, HttpStatus.CREATED);
+		return (IModel[]) insertJSONObjectAndReturnAnotherType(metadata, modelType.getTypeArrayClass(), uri, new ArrayList<HttpStatus>(){{add(HttpStatus.CREATED);}});
 	}
 
 	@Override
