@@ -44,7 +44,16 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 	private String appId;
 	private String url;
 	private Method method;
+	private Integer monitorManagerId;
 	
+	public Integer getMonitorManagerId() {
+		return monitorManagerId;
+	}
+
+	public void setMonitorManagerId(Integer monitorManagerId) {
+		this.monitorManagerId = monitorManagerId;
+	}
+
 	public String getPackageName() {
 		return packageName;
 	}
