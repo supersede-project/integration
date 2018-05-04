@@ -45,7 +45,7 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 	private String url;
 	private Method method;
 	private Integer monitorManagerId;
-	
+
 	public Integer getMonitorManagerId() {
 		return monitorManagerId;
 	}
@@ -61,7 +61,7 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 	public void setPackageName(String packageName) {
 		this.packageName = packageName;
 	}
-	
+
 	public String getAppId() {
 		return appId;
 	}
@@ -69,7 +69,7 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 	public void setAppId(String appId) {
 		this.appId = appId;
 	}
-	
+
 	public String getKeywordExpression() {
 		return keywordExpression;
 	}
@@ -78,14 +78,13 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 		this.keywordExpression = keywordExpression;
 	}
 
-	/*public List<String> getAccounts() {
-		return accounts;
-	}
+	/*
+	 * public List<String> getAccounts() { return accounts; }
+	 * 
+	 * public void setAccounts(List<String> accounts) { this.accounts =
+	 * accounts; }
+	 */
 
-	public void setAccounts(List<String> accounts) {
-		this.accounts = accounts;
-	}*/
-	
 	public String getTimeSlot() {
 		return timeSlot;
 	}
@@ -135,7 +134,7 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getConfigSender() {
 		return configSender;
 	}
@@ -166,6 +165,16 @@ public class MonitorConfiguration extends OrchestratorItem<MonitorConfiguration>
 
 	public void setMethod(Method method) {
 		this.method = method;
+	}
+
+	@Override
+	public String toString() {
+		return "MonitorConfiguration[id=" + getId() + ", monitorToolId=" + getMonitorToolId() + ", configSender="
+				+ getConfigSender() + ", " + "timeStamp=" + getTimeStamp() + ", timeSlot=" + getTimeSlot()
+				+ ", kafkaEndpoint=" + getKafkaEndpoint() + ", kafkaTopic=" + getKafkaTopic() + ", state=" + getState()
+				+ ", keywordExpression=" + getKeywordExpression() + ", " + "packageName=" + getPackageName()
+				+ ", appId=" + getAppId() + ", url=" + getUrl() + ", method=" + getMethod() + ", monitorManagerId="
+				+ getMonitorManagerId() + "]";
 	}
 
 }
