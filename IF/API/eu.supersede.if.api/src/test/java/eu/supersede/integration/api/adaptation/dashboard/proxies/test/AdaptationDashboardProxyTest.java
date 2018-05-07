@@ -58,7 +58,7 @@ public class AdaptationDashboardProxyTest {
 		Adaptation adaptation = new Adaptation();
 		adaptation.setFc_id(fc_id);
 		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
-		adaptation.setModel_system(ModelSystem.AtosMonitoring);
+		adaptation.setModel_system(ModelSystem.Atos_HSK);
 		adaptation.setName("Medium load configuration for HSK service");
 		adaptation.setRank(1.0);
 		adaptation.getActions().add(createAction());
