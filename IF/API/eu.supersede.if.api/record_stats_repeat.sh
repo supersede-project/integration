@@ -1,10 +1,10 @@
-echo 'capturing statistics for pid: ' $1 every $2 seconds 'in file ' $3 
+echo 'capturing statistics for pid: ' $1 every $3 seconds 'in file ' $4 renewing statistics every $2 seconds
 while true 
 do
-echo 'Collecting statistics for pid: ' $1 every $2 seconds >> $3
-./record_stats.sh $1 $3 &
+echo 'Collecting statistics for pid: ' $1 every $3 seconds >> $4
+./record_stats.sh $1 $3 $4 &
 pid=$!
 sleep $2
-kill $pid
+kill -- $pid
 done
 

@@ -1,14 +1,15 @@
 #Configuration
 RESULTS_DIR=/home/stamp/Git/dspot-usecases-output/atos/supersede
-DSPOT_JAR_NAME=dspot-1.1.1-SNAPSHOT-jar-with-dependencies.jar
+DSPOT_JAR_NAME=dspot-1.1.0-jar-with-dependencies.jar
 DSPOT_JAR=/home/stamp/Git/dspot/dspot/target/$DSPOT_JAR_NAME
 DSPOT_OUT=./dspot-out
+mkdir -p $DSPOT_OUT
 
 #Selectors: JacocoCoverageSelector, CloverCoverageSelector
 DSPOT_SELECTOR=JacocoCoverageSelector
 DSPOT_AMPLIFIERS=MethodAdd:StatementAdd:TestDataMutator
 DSPOT_ITERACTIONS=3
-TARGET_TEST=eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest
+TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.*
 
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s JacocoCoverageSelector"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s CloverCoverageSelector --verbose"
@@ -18,11 +19,13 @@ DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT
 
 echo "DSpot configuration: " $DSPOT_OPTS
 
-DSPOT_PROPERTIES="./dspot2.properties"
+DSPOT_PROPERTIES="./dspot.properties"
 
 date=`date '+%Y-%m-%d_%H:%M:%S'`
 RESULTS_DIR=$RESULTS_DIR/$DSPOT_SELECTOR/$DSPOT_AMPLIFIERS/`date '+%Y-%m-%d_%H:%M:%S'`
 mkdir -p $RESULTS_DIR
+#copy dspot.properties configuration
+cp $DSPOT_PROPERTIES $RESULTS_DIR
 filename=$RESULTS_DIR/dspot_if_$date.txt
 
 echo "Starting DSpot: reporting in file" + $filename
@@ -38,11 +41,11 @@ echo "Capturing statistics for Dspot process with pid " $pid_dpot
 stats=$RESULTS_DIR/dspot_if_stats_$date.txt
 echo "Storing statistics in " $stats
 
-./record_stats_repeat.sh $pid_dpot 180 $stats &
+./record_stats_repeat.sh $pid_dpot 180 30 $stats &
 pid_stats=$!
 
 wait $pid_dpot
-kill $pid_stats
+kill -- $pid_stats
 
 #copy DSpot results
 cp -r $DSPOT_OUT $RESULTS_DIR

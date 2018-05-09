@@ -1,6 +1,6 @@
-echo 'capturing statistics for pid: ' $1 ' in file ' $2
+echo 'capturing statistics for pid: ' $1 ' in file ' $3
 pids=`pgrep -P $1`
-echo 'subprocesses: ' $pids >> $2
+echo 'subprocesses: ' $pids >> $3
 
 pids_array=()
 while IFS= read -r line; do
@@ -14,4 +14,4 @@ do
 new_pids=$new_pids','$pid
 done
 
-pidstat -h -r -u -p $new_pids 10 >> $2
+pidstat -h -r -u -p $new_pids $2 >> $3
