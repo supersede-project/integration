@@ -105,12 +105,12 @@ public class MetadataManagementProxyTest {
 //		Assert.notNull(result);
 //	}
 	
-//	@Test
-//	public void testGelAllEvents() throws Exception {
-//		List<Event> result = proxy.getAllEvents();
-//		Assert.notNull(result);
-//		Assert.notEmpty(result);
-//	}
+	@Test
+	public void testGelAllEvents() throws Exception {
+		List<Event> result = proxy.getAllEvents();
+		Assert.notNull(result);
+		Assert.notEmpty(result);
+	}
 	
 //	@Test
 //	public void testGetEvent() throws Exception {

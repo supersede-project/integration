@@ -20,7 +20,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@BeforeClass
 	public static void setup() throws Exception{
-		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "senercon");
 		
 		List<Adaptation> adaptations = proxy.getAllAdaptations();
 		Assert.notEmpty(adaptations);
