@@ -406,38 +406,37 @@
 				<configuration>
 					<mutationEngine>descartes</mutationEngine>
 					<targetTests>
+						<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>
+						<param>eu.supersede.integration.api.adaptation.proxies.test.*</param>
+						<param>eu.supersede.integration.api.analysis.proxies.test.*</param>
 						<param>eu.supersede.integration.api.replan.controller.proxies.test.*</param>
-						<!--<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.analysis.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.adaptation.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.analysis.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.datastore.proxies.test.IFDataStoreProxyTest.java</param>-->
-						<!--<param>eu.supersede.integration.api.dm.proxies.test.DecisionMakingSystemProxyTest.java</param>-->
-						<!--<param>eu.supersede.integration.api.fe.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.feedback.proxies.test.*</param>-->
-						<param>eu.supersede.integration.api.feedback.proxies.test.FeedbackRepositoryProxyTest</param>
-						<!--<param>eu.supersede.integration.api.monitoring.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.security.test.*</param>-->
+						<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param>
+						<!--<param>eu.supersede.integration.api.datastore.proxies.test.*</param>-->
+						<param>eu.supersede.integration.api.dm.proxies.test.DecisionMakingSystemProxyTest*</param>
+						<param>eu.supersede.integration.api.fe.test.*</param>
+						<param>eu.supersede.integration.api.feedback.proxies.test.*</param>
+						<param>eu.supersede.integration.api.monitoring.proxies.test.*</param>
+						<param>eu.supersede.integration.api.mdm.test.*</param>
+						<param>eu.supersede.integration.api.monitoring.test.*</param>
+						<!--<param>eu.supersede.integration.api.pubsub.test.*</param>-->
+						<param>eu.supersede.integration.api.replan.controller.proxies.test.*</param>
+						<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param>
+						<param>eu.supersede.integration.api.security.test.*</param>
 						<!--<param>eu.supersede.integration.federation.test.*</param>-->
 					</targetTests>
-					<excludedTests>
-						<!--<param>eu.supersede.integration.federation.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.replan.controller.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.analysis.proxies.test.*</param>-->
-						<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>
+					<excludeClasses>
+						<!--<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>-->
 						<!--<param>eu.supersede.integration.api.adaptation.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.analysis.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.datastore.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.dm.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.fe.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.feedback.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.monitoring.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.security.test.*</param>-->
-						<!--<param>eu.supersede.integration.federation.test.*</param>-->
-					</excludedTests>
-					<reportsDirectory>/home/yosu/Projects/STAMP/Git/descartes-usecases-output/atos/supersede</reportsDirectory>
+						<param>eu.supersede.integration.federation.test.IFSupersedeFederationTest</param>
+						<param>eu.supersede.integration.api.datastore.proxies.test.FEDataStoreProxyTest</param>
+						<param>eu.supersede.integration.api.datastore.proxies.test.IFDataStoreProxyTest</param>
+						<!--<param>eu.supersede.integration.api.dm.proxies.test.DMOptimizerProxyTest</param>-->
+						<param>eu.supersede.integration.api.pubsub.test.AdaptationAlertPubSubTest</param>
+						<param>eu.supersede.integration.api.pubsub.test.AlertPubSubTest</param>
+						<param>eu.supersede.integration.api.pubsub.test.EvolutionAlertPubSubTest</param>
+						<param>eu.supersede.integration.api.pubsub.test.PubSubTest</param>
+					</excludeClasses>
+					<reportsDirectory>/home/stamp/Git/descartes-usecases-output/atos/supersede</reportsDirectory>
 					<siteReportName>Descartes report on Atos Supersede IF UC</siteReportName>
 					<outputFormats><value>HTML</value><value>JSON</value></outputFormats>
 					<mutators>

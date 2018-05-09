@@ -14,4 +14,4 @@ do
 new_pids=$new_pids','$pid
 done
 
-pidstat -h -r -u -v -p $new_pids 5 >> $2
+pidstat -h -r -u -p $new_pids 10 >> $2
