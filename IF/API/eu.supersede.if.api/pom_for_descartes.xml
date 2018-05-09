@@ -425,16 +425,16 @@
 						<!--<param>eu.supersede.integration.federation.test.*</param>-->
 					</targetTests>
 					<excludeClasses>
-						<!--<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>-->
-						<!--<param>eu.supersede.integration.api.adaptation.proxies.test.*</param>-->
+						<!--<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>
+						<param>eu.supersede.integration.api.adaptation.proxies.test.*</param>
 						<param>eu.supersede.integration.federation.test.IFSupersedeFederationTest</param>
 						<param>eu.supersede.integration.api.datastore.proxies.test.FEDataStoreProxyTest</param>
 						<param>eu.supersede.integration.api.datastore.proxies.test.IFDataStoreProxyTest</param>
-						<!--<param>eu.supersede.integration.api.dm.proxies.test.DMOptimizerProxyTest</param>-->
+						<param>eu.supersede.integration.api.dm.proxies.test.DMOptimizerProxyTest</param>
 						<param>eu.supersede.integration.api.pubsub.test.AdaptationAlertPubSubTest</param>
 						<param>eu.supersede.integration.api.pubsub.test.AlertPubSubTest</param>
 						<param>eu.supersede.integration.api.pubsub.test.EvolutionAlertPubSubTest</param>
-						<param>eu.supersede.integration.api.pubsub.test.PubSubTest</param>
+						<param>eu.supersede.integration.api.pubsub.test.PubSubTest</param>-->
 					</excludeClasses>
 					<reportsDirectory>/home/stamp/Git/descartes-usecases-output/atos/supersede</reportsDirectory>
 					<siteReportName>Descartes report on Atos Supersede IF UC</siteReportName>

@@ -9,13 +9,14 @@ mkdir -p $DSPOT_OUT
 DSPOT_SELECTOR=JacocoCoverageSelector
 DSPOT_AMPLIFIERS=MethodAdd:StatementAdd:TestDataMutator
 DSPOT_ITERACTIONS=3
-TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.*
+#TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.*
 
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s JacocoCoverageSelector"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s CloverCoverageSelector --verbose"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s PitMutantScoreSelector --verbose"
 
-DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
+#DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
+DSPOT_OPTS="-i $DSPOT_ITERACTIONS -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
 
 echo "DSpot configuration: " $DSPOT_OPTS
 
