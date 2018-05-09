@@ -20,6 +20,7 @@
 package eu.supersede.integration.api.replan.optimizer_v2.proxies;
 
 import java.net.URI;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class ReplanOptimizerProxy <T,S> extends IFServiceProxy<T,S> implements I
 	public PlanningSolution optimizePlan (NextReleaseProblem nrProblem) throws Exception{
 		URI uri = new URI(SUPERSEDE_REPLAN_OPTIMIZER_V2_ENDPOINT + "replan");		
 		log.debug("Sending message optimizePlan with nrProblem: " + nrProblem + " to ReplanOptimizer v2 at uri " + uri);
-		return insertJSONObjectAndReturnAnotherType(nrProblem, PlanningSolution.class, uri, HttpStatus.OK);
+		return insertJSONObjectAndReturnAnotherType(nrProblem, PlanningSolution.class, uri, new ArrayList<HttpStatus>(){{add(HttpStatus.OK);}});
 	}
 
 }
