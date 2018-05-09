@@ -43,8 +43,14 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testGetAdaptation() throws Exception {
-		Adaptation adaptation = proxy.getAdaptation(adaptationId);
+		Adaptation adaptation = createAdaptation("905");
+		adaptation = proxy.addAdaptation(adaptation);
+		Assert.notNull(adaptation); 
+		
+		adaptation = proxy.getAdaptation(adaptation.getFc_id());
 		Assert.notNull(adaptation);
+		
+		proxy.deleteAdaptation(adaptation.getFc_id());
 	}
 	
 	@Test
@@ -91,7 +97,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testAddEnactment() throws Exception {
-		Adaptation adaptation = createAdaptation("2");
+		Adaptation adaptation = createAdaptation("905");
 		adaptation = proxy.addAdaptation(adaptation);
 		
 		Enactment enactment = createEnactment(adaptation.getFc_id());
