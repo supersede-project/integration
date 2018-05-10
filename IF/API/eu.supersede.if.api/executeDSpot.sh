@@ -1,22 +1,22 @@
 #Configuration
 RESULTS_DIR=/home/stamp/Git/dspot-usecases-output/atos/supersede
-DSPOT_JAR_NAME=dspot-1.1.0-jar-with-dependencies.jar
+DSPOT_JAR_NAME=dspot-1.1.1-SNAPSHOT-jar-with-dependencies.jar
 DSPOT_JAR=/home/stamp/Git/dspot/dspot/target/$DSPOT_JAR_NAME
 DSPOT_OUT=./dspot-out
 mkdir -p $DSPOT_OUT
+rm -rf $DSPOT_OUT/*
 
 #Selectors: JacocoCoverageSelector, CloverCoverageSelector
-DSPOT_SELECTOR=JacocoCoverageSelector
+DSPOT_SELECTOR=CloverCoverageSelector
 DSPOT_AMPLIFIERS=MethodAdd:StatementAdd:TestDataMutator
 DSPOT_ITERACTIONS=3
-#TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.*
+TARGET_TEST=eu.supersede.integration.api.analysis.proxies.test.*
 
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s JacocoCoverageSelector"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s CloverCoverageSelector --verbose"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s PitMutantScoreSelector --verbose"
 
-#DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
-DSPOT_OPTS="-i $DSPOT_ITERACTIONS -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
+DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
 
 echo "DSpot configuration: " $DSPOT_OPTS
 
@@ -33,6 +33,11 @@ echo "Starting DSpot: reporting in file" + $filename
 echo "Started DSpot: `date`" > $filename
 echo "DSpot CMI configuration: " $DSPOT_OPTS >> $filename
 echo "DSpot properties file: " $DSPOT_PROPERTIES >> $filename
+
+#clean and build project. 
+mvn clean package -DskipTests
+
+#Execute DSpot
 
 nohup java -jar $DSPOT_JAR -p $DSPOT_PROPERTIES $DSPOT_OPTS |& tee -a $filename &
 pid_dpot=$!
