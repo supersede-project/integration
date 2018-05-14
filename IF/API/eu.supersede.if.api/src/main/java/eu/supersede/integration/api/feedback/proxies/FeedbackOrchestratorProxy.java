@@ -907,4 +907,36 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 
 	}
 	
+	//Mechanism parameter
+	@Override
+	public Parameter createParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception{
+		Assert.notNull(parameter, "Provide a valid parameter");
+		Assert.notNull(mechanismId, "Provide a valid mechanismId");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/mechanisms/" + mechanismId + "/parameters");
+		log.debug("Sending message createParameterInMechanism with parameter: " + parameter 
+				+ " and mechanismId: " + mechanismId
+				+ " to FeedbackOrchestrator at uri " + uri);
+		return insertandReturnJSONObject(parameter, uri, HttpStatus.CREATED, token);
+	}
+	
+	@Override
+	public Parameter updateParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception{
+		Assert.notNull(parameter, "Provide a valid parameter");
+		Assert.notNull(parameter.getId(), "Provide a valid parameter with not null id");
+		Assert.notNull(mechanismId, "Provide a valid mechanismId");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/mechanisms/" + mechanismId + "/parameters/" + parameter.getId());
+		log.debug("Sending message updateParameterInMechanism with parameter: " + parameter 
+				+ " and mechanismId: " + mechanismId
+				+ " to FeedbackOrchestrator at uri " + uri);
+		return updateAndReturnJSONObject(parameter, uri, HttpStatus.OK, token);
+	}
+	
+	@Override
+	public void deleteParameterInMechanism (long parameterId, Integer mechanismId) throws Exception{
+		Assert.notNull(parameterId, "Provide a valid idParameter");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/mechanisms/" + mechanismId + "/parameters/" + parameterId);
+		log.debug("Sending message deleteParameterInMechanism with parameterId: " + parameterId
+				+ " to FeedbackOrchestrator at uri " + uri);
+		deleteUriResource(uri, HttpStatus.OK, token);
+	}
 }

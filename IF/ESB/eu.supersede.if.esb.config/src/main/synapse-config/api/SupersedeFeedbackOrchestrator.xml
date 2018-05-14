@@ -1225,4 +1225,55 @@
       <send/>
     </faultSequence>
   </resource>
+  <resource methods="POST" protocol="http" uri-template="/{language}/mechanisms/{mechanism_id}/parameters">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Add parameter for mechanism by Id message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="PUT" protocol="http" uri-template="/{language}/mechanisms/{mechanism_id}/parameters/{parameter_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Update parameter by Id for mechanism by Id message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
+  <resource methods="DELETE" protocol="http" uri-template="/{language}/mechanisms/{mechanism_id}/parameters/{parameter_id}">
+    <inSequence>
+      <log level="full">
+        <property name="Feedback Orchestrator" value="Delete parameter by Id for mechanism by Id message forwarded to Feedback Orchestrator endpoint"/>
+      </log>
+      <property name="endpoint" scope="default" type="STRING" value="gov:/repository/endpoint/FeedbackOrchestratorEndpoint.xml"/>
+      <send>
+        <endpoint key-expression="$ctx:endpoint"/>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send/>
+    </outSequence>
+    <faultSequence>
+      <send/>
+    </faultSequence>
+  </resource>
 </api>
