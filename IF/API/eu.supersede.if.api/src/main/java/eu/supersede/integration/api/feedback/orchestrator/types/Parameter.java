@@ -22,6 +22,7 @@ public class Parameter {
     private Date createdAt;
     private Date updatedAt;
     private String language;
+    private Integer order;
 
     @JsonIgnore
      private Parameter parentParameter;
@@ -241,6 +242,14 @@ public class Parameter {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+    
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 }
 

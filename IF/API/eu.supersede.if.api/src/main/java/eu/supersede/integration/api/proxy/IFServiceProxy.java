@@ -278,7 +278,7 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
-	public <T,S> S insertJSONObjectAndReturnAnotherType(T object, Class<S> returnedType, URI uri, HttpStatus expectedStatus) throws Exception {
+	public <T,S> S insertJSONObjectAndReturnAnotherType(T object, Class<S> returnedType, URI uri, List<HttpStatus> expectedStatus) throws Exception {
 		S result = null;
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
@@ -286,7 +286,7 @@ public abstract class IFServiceProxy<T, S> {
 			ResponseEntity<S> response = 
 					messageClient.postJsonMessage(object, uri, returnedType);
 			result = response.getBody();
-			if (response.getStatusCode().equals(expectedStatus)) {
+			if (expectedStatus.contains(response.getStatusCode())) {
 				log.info("Successfully inserted JSON object " + object);
 				log.info("Result obtained: " + result);
 			} else {

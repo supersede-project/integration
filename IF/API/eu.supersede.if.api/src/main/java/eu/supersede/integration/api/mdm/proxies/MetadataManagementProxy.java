@@ -23,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -66,7 +67,7 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "release");
 		log.debug("Sending message registerRelease with release: " + release +
 				" to MetadataManagement at uri " + uri);
-		return insertJSONObjectAndReturnAnotherType(release, KafkaTopic.class, uri,  HttpStatus.OK);
+		return insertJSONObjectAndReturnAnotherType(release, KafkaTopic.class, uri,  new ArrayList<HttpStatus>(){{add(HttpStatus.OK);}});
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "classify/feedback");
 		log.debug("Sending message getRealtimeFeedbackClassification for feedback: " + feedback +
 				" to MetadataManagement at uri " + uri);
-		return insertJSONObjectAndReturnAnotherType(feedback, FeedbackClassification.class, uri,  HttpStatus.OK);
+		return insertJSONObjectAndReturnAnotherType(feedback, FeedbackClassification.class, uri,  new ArrayList<HttpStatus>(){{add(HttpStatus.OK);}});
 	}
 
 	@Override
@@ -147,7 +148,7 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 		Assert.notNull(event, "Provide a valid Event");
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "event");
 		log.debug("Sending message createEvent to MetadataManagement at uri " + uri);
-		return insertJSONObjectAndReturnAnotherType(event, KafkaTopic.class, uri,  HttpStatus.OK);
+		return insertJSONObjectAndReturnAnotherType(event, KafkaTopic.class, uri,  new ArrayList<HttpStatus>(){{add(HttpStatus.OK);}});
 	}
 	
 	@Override

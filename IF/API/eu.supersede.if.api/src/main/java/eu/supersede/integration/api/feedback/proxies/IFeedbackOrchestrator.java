@@ -134,4 +134,8 @@ public interface IFeedbackOrchestrator {
 	List<Parameter> switchOrderOfParametersOfParameter(long idApplication, long idParam, long idParam1, long idParam2) throws Exception;
 	List<Parameter> reorderParameterOfParameter(long idApplication, long idParam1, long idParam2, long order) throws Exception;
 
+	//Mechanism parameter
+	Parameter createParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception;
+	Parameter updateParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception;
+	void deleteParameterInMechanism (long parameterId, Integer mechanismId) throws Exception;
 }

@@ -88,7 +88,8 @@ public class HttpMonitorProxyTest {
 		HttpMonitorConfiguration conf = new HttpMonitorConfiguration();
 		conf.setToolName("ApacheHttp");
 		conf.setTimeSlot(3000);
-		conf.setKafkaTopic("http");
+		conf.setKafkaTopic("HttpTopic");
+		conf.setKafkaEndpoint(new URL("http://localhost:9092"));
 		conf.setUrl("http://lab-supersede.atos-sports.tv:8000/handshake_test.php");
 		conf.setMethod(Method.GET);
 		return conf;

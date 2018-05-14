@@ -61,23 +61,48 @@ public class FeedbackOrchestratorProxyTest {
 	private static long idUserGroup = 1;
 
 	@BeforeClass
+//	//Development
 	public static void setup() throws Exception {
+		//Development
 		String user = "superadmin";
 		String password = "password";
+		
 		proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
 
-		Application app = createApplication();
-		Application result = proxy.createApplication(app);
-		idApplication = result.getId();
-		idApplicationBackup = idApplication;
-		idGeneralConfiguration = result.getGeneralConfiguration().getId();
-		idConfiguration = result.getConfigurations().get(0).getId();
-		idParameter = result.getGeneralConfiguration().getParameters().get(0).getId();
-
-		log.info("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + idApplication
-				+ ", generalConfigurationId: " + idGeneralConfiguration + ", configurationId: " + idConfiguration
-				+ ", parameterId: " + idParameter + ")");
+//		Application app = createApplication();
+//		Application result = proxy.createApplication(app);
+//		idApplication = result.getId();
+//		idApplicationBackup = idApplication;
+//		idGeneralConfiguration = result.getGeneralConfiguration().getId();
+//		idConfiguration = result.getConfigurations().get(0).getId();
+//		idParameter = result.getGeneralConfiguration().getParameters().get(0).getId();
+//
+//		log.info("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + idApplication
+//				+ ", generalConfigurationId: " + idGeneralConfiguration + ", configurationId: " + idConfiguration
+//				+ ", parameterId: " + idParameter + ")");
 	}
+	
+//	@BeforeClass
+	//Production
+//	public static void setup() throws Exception {
+//		//Development
+//		String user = "orchestrator";
+//		String password = "ZDUF?BS4%6w#@?7r";
+//		
+//		proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
+//
+//		Application app = createApplication();
+//		Application result = proxy.createApplication(app);
+//		idApplication = result.getId();
+//		idApplicationBackup = idApplication;
+//		idGeneralConfiguration = result.getGeneralConfiguration().getId();
+//		idConfiguration = result.getConfigurations().get(0).getId();
+//		idParameter = result.getGeneralConfiguration().getParameters().get(0).getId();
+//
+//		log.info("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + idApplication
+//				+ ", generalConfigurationId: " + idGeneralConfiguration + ", configurationId: " + idConfiguration
+//				+ ", parameterId: " + idParameter + ")");
+//	}
 	
 	@AfterClass
 	public static void dispose() throws Exception {
@@ -408,7 +433,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.notNull(result);
 	}
 	
-	@Ignore @Test
+	@Test
 	public void testCreateUpdateDeleteParameters() throws Exception {
 		//Create
 		List<Parameter> parameters = createParameters();
@@ -466,7 +491,7 @@ public class FeedbackOrchestratorProxyTest {
 	//Parameter reorder/switch
 	@Test
 	public void testSwitchOrderOfParametersOfMechanism() throws Exception {
-		List<Parameter> result = proxy.switchOrderOfParametersOfMechanism(8, 28, 45, 46);
+		List<Parameter> result = proxy.switchOrderOfParametersOfMechanism(14, 80, 403, 993);
 		Assert.notEmpty(result);
 	}
 	
@@ -490,15 +515,36 @@ public class FeedbackOrchestratorProxyTest {
 	
 	@Test
 	public void testSwitchOrderOfParametersOfParameter() throws Exception {
-		List<Parameter> result = proxy.switchOrderOfParametersOfParameter(8, 77, 78, 79);
+		List<Parameter> result = proxy.switchOrderOfParametersOfParameter(14, 80, 403, 993);
 		Assert.notEmpty(result);
 	}
 	
 	@Test
 	public void testReorderParameterOfParameter() throws Exception {
-		List<Parameter> result = proxy.reorderParameterOfParameter(8, 77, 78, 1);
+		List<Parameter> result = proxy.reorderParameterOfParameter(20, 513, 514, 1);
 		Assert.notEmpty(result);
 	}
+	
+	@Test
+	public void testCreateUpdateDeleteParameterInMechanism() throws Exception {
+		Integer mechanismId = 1;
+		
+		Parameter parameter = createParameter("test", "test");
+		parameter.setLanguage("en");
+		parameter.setCreatedAt(Calendar.getInstance().getTime());
+		parameter.setOrder(1);
+		
+		parameter = proxy.createParameterInMechanism(parameter, mechanismId);
+		Assert.notNull(parameter.getId());
+		
+		parameter.setValue(parameter.getValue() + "modified");
+		parameter = proxy.updateParameterInMechanism(parameter, mechanismId);
+		Assert.isTrue(parameter.getValue().contains("modified"));
+		
+		proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+	
+	}
+	
 	//Private methods
 	
 	private List<Mechanism> createMechanisms(List<Parameter> parameters) {
