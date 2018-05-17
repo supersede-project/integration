@@ -7,16 +7,17 @@ mkdir -p $DSPOT_OUT
 rm -rf $DSPOT_OUT/*
 
 #Selectors: JacocoCoverageSelector, CloverCoverageSelector
-DSPOT_SELECTOR=CloverCoverageSelector
+DSPOT_SELECTOR=JacocoCoverageSelector
 DSPOT_AMPLIFIERS=MethodAdd:StatementAdd:TestDataMutator
 DSPOT_ITERACTIONS=3
-TARGET_TEST=eu.supersede.integration.api.analysis.proxies.test.*
+DSPOT_TIMEOUT=120000
+TARGET_TEST=eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest
 
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s JacocoCoverageSelector"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s CloverCoverageSelector --verbose"
 #DSPOT_OPTS="-i 1 -t eu.supersede.integration.api.replan.controller.proxies.test.ReplanControllerProxyTest -a MethodAdd -s PitMutantScoreSelector --verbose"
 
-DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --verbose"
+DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --timeOut $DSPOT_TIMEOUT --verbose"
 
 echo "DSpot configuration: " $DSPOT_OPTS
 

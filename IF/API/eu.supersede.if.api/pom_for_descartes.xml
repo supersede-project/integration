@@ -406,10 +406,10 @@
 				<configuration>
 					<mutationEngine>descartes</mutationEngine>
 					<targetTests>
-						<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>
-						<param>eu.supersede.integration.api.adaptation.proxies.test.*</param>
-						<param>eu.supersede.integration.api.analysis.proxies.test.*</param>
-						<param>eu.supersede.integration.api.replan.controller.proxies.test.*</param>
+						<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param><!--Dspot failed-->
+						<param>eu.supersede.integration.api.adaptation.proxies.test.*</param><!--Dspot failed-->
+						<param>eu.supersede.integration.api.analysis.proxies.test.*</param><!--Dspot success-->
+						<param>eu.supersede.integration.api.replan.controller.proxies.test.*</param><!--Dspot failed-->
 						<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param>
 						<!--<param>eu.supersede.integration.api.datastore.proxies.test.*</param>-->
 						<param>eu.supersede.integration.api.dm.proxies.test.DecisionMakingSystemProxyTest*</param>
@@ -424,21 +424,27 @@
 						<param>eu.supersede.integration.api.security.test.*</param>
 						<!--<param>eu.supersede.integration.federation.test.*</param>-->
 					</targetTests>
-					<excludeClasses>
-						<!--<param>eu.supersede.integration.api.adaptation.dashboard.proxies.test.*</param>
-						<param>eu.supersede.integration.api.adaptation.proxies.test.*</param>
-						<param>eu.supersede.integration.federation.test.IFSupersedeFederationTest</param>
-						<param>eu.supersede.integration.api.datastore.proxies.test.FEDataStoreProxyTest</param>
-						<param>eu.supersede.integration.api.datastore.proxies.test.IFDataStoreProxyTest</param>
-						<param>eu.supersede.integration.api.dm.proxies.test.DMOptimizerProxyTest</param>
-						<param>eu.supersede.integration.api.pubsub.test.AdaptationAlertPubSubTest</param>
-						<param>eu.supersede.integration.api.pubsub.test.AlertPubSubTest</param>
-						<param>eu.supersede.integration.api.pubsub.test.EvolutionAlertPubSubTest</param>
-						<param>eu.supersede.integration.api.pubsub.test.PubSubTest</param>-->
-					</excludeClasses>
+					<excludedClasses>
+						<param>eu.supersede.integration.api.analysis.types.*</param>
+						<param>eu.supersede.integration.api.datastore.integration.types.*</param>
+						<param>eu.supersede.integration.api.datastore.proxies.*</param>
+						<param>eu.supersede.integration.api.datastore.util.*</param>
+						<param>eu.supersede.integration.api.feedback.types.*</param>
+						<param>eu.supersede.integration.api.mail.proxies.*</param>
+						<param>eu.supersede.integration.api.mail.types.*</param>
+						<param>eu.supersede.integration.api.mdm.proxies.*</param>
+						<param>eu.supersede.integration.api.mdm.types.*</param>
+						<param>eu.supersede.integration.api.pubsub.*</param>
+						<param>eu.supersede.integration.api.pubsub.adaptation.*</param>
+						<param>eu.supersede.integration.api.pubsub.evolution.*</param>
+						<param>eu.supersede.integration.api.security.*</param>
+						<param>eu.supersede.integration.api.security.types.*</param>
+						<param>eu.supersede.integration.api.tenants.*</param>
+						<param>eu.supersede.integration.federation.*</param>
+					</excludedClasses>
 					<reportsDirectory>/home/stamp/Git/descartes-usecases-output/atos/supersede</reportsDirectory>
 					<siteReportName>Descartes report on Atos Supersede IF UC</siteReportName>
-					<outputFormats><value>HTML</value><value>JSON</value></outputFormats>
+					<outputFormats><value>HTML</value><value>JSON</value><value>METHODS</value></outputFormats>
 					<mutators>
 						<mutator>void</mutator>
 						<mutator>null</mutator>
