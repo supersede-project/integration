@@ -65,6 +65,17 @@
 						</endpoint>
 					</call>
 				</case>
+				<case regex="review">
+					<property name="endpoint"
+						value="http://localhost:9766/services/SupersedeReviewDataStore"
+						scope="default" type="STRING" />
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
 				<default />
 			</switch>
 			<!-- <log level="full"> -->
@@ -136,7 +147,15 @@
 						</endpoint>
 					</call>
 				</case>
-				<default />
+				<case regex="review">
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
+				<default /> 
 			</switch>
 			<log level="full" />
 			<sequence key="conf:/SupersedeDS_FE_GetAllUsers_Response_DSSSequence.xml" />
@@ -199,6 +218,14 @@
 					<call>
 						<endpoint>
 							<address uri="http://localhost:9766/services/SupersedeQrapidsDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
+				<case regex="review">
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
 								trace="disable" format="soap12" />
 						</endpoint>
 					</call>
@@ -270,6 +297,14 @@
 						</endpoint>
 					</call>
 				</case>
+				<case regex="review">
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
 				<default />
 			</switch>
 			<log level="full" />
@@ -331,6 +366,14 @@
 					<call>
 						<endpoint>
 							<address uri="http://localhost:9766/services/SupersedeQrapidsDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
+				<case regex="review">
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
 								trace="disable" format="soap12" />
 						</endpoint>
 					</call>
@@ -404,6 +447,14 @@
 						</endpoint>
 					</call>
 				</case>
+				<case regex="review">
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
 				<default />
 			</switch>
 			<log level="full" />
@@ -466,6 +517,14 @@
 					<call>
 						<endpoint>
 							<address uri="http://localhost:9766/services/SupersedeQrapidsDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
+				<case regex="review">
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
 								trace="disable" format="soap12" />
 						</endpoint>
 					</call>
@@ -534,6 +593,14 @@
 					<call>
 						<endpoint>
 							<address uri="http://localhost:9766/services/SupersedeQrapidsDataStore"
+								trace="disable" format="soap12" />
+						</endpoint>
+					</call>
+				</case>
+				<case regex="review">
+					<call>
+						<endpoint>
+							<address uri="http://localhost:9766/services/SupersedeReviewDataStore"
 								trace="disable" format="soap12" />
 						</endpoint>
 					</call>
