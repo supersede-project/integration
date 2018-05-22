@@ -3,7 +3,7 @@ package eu.supersede.integration.api.adaptation.types;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Tenant {
-	ATOS ("atos"), SIEMENS("siemens"), SENERCON ("senercon"), FBK ("fbk"), SUPERSEDE ("supersede");
+	ATOS ("atos"), SIEMENS("siemens"), SENERCON ("senercon"), FBK ("fbk"), REVIEW ("review"), SUPERSEDE ("supersede");
 	private String id;
 	
 	Tenant(String id){
