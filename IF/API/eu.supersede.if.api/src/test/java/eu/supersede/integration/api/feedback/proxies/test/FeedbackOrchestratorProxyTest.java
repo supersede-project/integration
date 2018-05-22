@@ -60,12 +60,34 @@ public class FeedbackOrchestratorProxyTest {
 	private static long idUser = 1;
 	private static long idUserGroup = 1;
 
-	@BeforeClass
+//	@BeforeClass
 //	//Development
+//	public static void setup() throws Exception {
+//		//Development
+//		String user = "superadmin";
+//		String password = "password";
+//		
+//		proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
+
+//		Application app = createApplication();
+//		Application result = proxy.createApplication(app);
+//		idApplication = result.getId();
+//		idApplicationBackup = idApplication;
+//		idGeneralConfiguration = result.getGeneralConfiguration().getId();
+//		idConfiguration = result.getConfigurations().get(0).getId();
+//		idParameter = result.getGeneralConfiguration().getParameters().get(0).getId();
+//
+//		log.info("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + idApplication
+//				+ ", generalConfigurationId: " + idGeneralConfiguration + ", configurationId: " + idConfiguration
+//				+ ", parameterId: " + idParameter + ")");
+//	}
+	
+	@BeforeClass
+	//Production
 	public static void setup() throws Exception {
 		//Development
-		String user = "superadmin";
-		String password = "password";
+		String user = "orchestrator";
+		String password = "ZDUF?BS4%6w#@?7r";
 		
 		proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
 
@@ -82,32 +104,10 @@ public class FeedbackOrchestratorProxyTest {
 //				+ ", parameterId: " + idParameter + ")");
 	}
 	
-//	@BeforeClass
-	//Production
-//	public static void setup() throws Exception {
-//		//Development
-//		String user = "orchestrator";
-//		String password = "ZDUF?BS4%6w#@?7r";
-//		
-//		proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
-//
-//		Application app = createApplication();
-//		Application result = proxy.createApplication(app);
-//		idApplication = result.getId();
-//		idApplicationBackup = idApplication;
-//		idGeneralConfiguration = result.getGeneralConfiguration().getId();
-//		idConfiguration = result.getConfigurations().get(0).getId();
-//		idParameter = result.getGeneralConfiguration().getParameters().get(0).getId();
-//
-//		log.info("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + idApplication
-//				+ ", generalConfigurationId: " + idGeneralConfiguration + ", configurationId: " + idConfiguration
-//				+ ", parameterId: " + idParameter + ")");
-//	}
-	
 	@AfterClass
 	public static void dispose() throws Exception {
-		proxy.deleteApplication(idApplicationBackup);
-		log.info("Disposing created application: " + idApplicationBackup);
+//		proxy.deleteApplication(idApplicationBackup);
+//		log.info("Disposing created application: " + idApplicationBackup);
 	}
 
 	// Authentication
