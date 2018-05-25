@@ -56,9 +56,9 @@ public class TwitterMonitorProxy<T, S> extends MonitorProxy implements ITwitterM
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+	public boolean deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		deleteMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf));
+		return deleteMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf));
 	}
 
 }

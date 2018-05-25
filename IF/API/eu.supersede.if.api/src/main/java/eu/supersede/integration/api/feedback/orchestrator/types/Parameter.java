@@ -22,6 +22,7 @@ public class Parameter {
     private Date createdAt;
     private Date updatedAt;
     private String language;
+    private Integer order;
 
     @JsonIgnore
      private Parameter parentParameter;
@@ -79,8 +80,6 @@ public class Parameter {
         this.language = language;
         this.parentParameter = parentParameter;
         this.parameters = parameters;
-        this.generalConfiguration = generalConfiguration;
-        this.mechanism = mechanism;
     }
 
     public Parameter(String key, String value, Date createdAt, Date updatedAt, String language, Parameter parentParameter, List<Parameter> parameters) {
@@ -91,8 +90,6 @@ public class Parameter {
         this.language = language;
         this.parentParameter = parentParameter;
         this.parameters = parameters;
-        this.generalConfiguration = generalConfiguration;
-        this.mechanism = mechanism;
     }
 
     public Parameter(String key, String value, Date createdAt, Date updatedAt, String language, Parameter parentParameter, GeneralConfiguration generalConfiguration, Mechanism mechanism) {
@@ -241,6 +238,14 @@ public class Parameter {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+    
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 }
 

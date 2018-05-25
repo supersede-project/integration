@@ -26,5 +26,5 @@ public interface ITwitterMonitor {
 			throws Exception;
 	public TwitterMonitorConfiguration updateMonitorConfiguration(TwitterMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception;
+	public boolean deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception;
 }

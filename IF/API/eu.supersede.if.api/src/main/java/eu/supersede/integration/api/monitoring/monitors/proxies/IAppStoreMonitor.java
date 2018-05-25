@@ -26,5 +26,5 @@ public interface IAppStoreMonitor {
 			throws Exception;
 	public AppStoreMonitorConfiguration updateMonitorConfiguration(AppStoreMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception;
+	public boolean deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception;
 }

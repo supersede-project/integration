@@ -50,7 +50,7 @@ public class HttpMonitorProxyTest {
 		HttpMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
 		Assert.notNull(result);
 		Assert.isTrue(result.getId()>0);
-		proxy.deleteMonitorConfiguration(conf);
+		Assert.isTrue(proxy.deleteMonitorConfiguration(conf));
 	}
 	
 	@Test
@@ -60,7 +60,7 @@ public class HttpMonitorProxyTest {
 		HttpMonitorConfiguration result = proxy.createMonitorConfiguration(conf, file );
 		Assert.notNull(result);
 		Assert.isTrue(result.getId()>0);
-		proxy.deleteMonitorConfiguration(conf);
+		Assert.isTrue(proxy.deleteMonitorConfiguration(conf));
 	}
 	
 	@Ignore

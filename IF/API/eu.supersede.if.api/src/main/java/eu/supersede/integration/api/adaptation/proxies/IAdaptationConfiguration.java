@@ -23,6 +23,6 @@ import eu.supersede.integration.api.adaptation.types.AdaptationMode;
 
 public interface IAdaptationConfiguration {
 	 AdaptationMode getAdaptationConfigurationMode() throws Exception;
-	 void setAdaptationConfigurationMode(AdaptationMode mode) throws Exception;
+	 boolean setAdaptationConfigurationMode(AdaptationMode mode) throws Exception;
 }
 

@@ -65,9 +65,9 @@ public class HttpMonitorProxy<T, S> extends MonitorProxy implements IHttpMonitor
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception {
+	public boolean deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		deleteMonitorConfiguration(new HttpMonitorConfigurationRequest(conf));
+		return deleteMonitorConfiguration(new HttpMonitorConfigurationRequest(conf));
 	}
 	
 	@Override

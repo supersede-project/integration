@@ -30,8 +30,8 @@ public class AdaptationDashboardResetTest {
 		for (Adaptation adaptation: adaptations){
 			Enactment enactment = proxy.getEnactment(adaptation.getFc_id());
 			if (enactment!=null)
-				proxy.deleteEnactment(adaptation.getFc_id());
-			proxy.deleteAdaptation(adaptation.getFc_id());
+				Assert.isTrue(proxy.deleteEnactment(adaptation.getFc_id()));
+			Assert.isTrue(proxy.deleteAdaptation(adaptation.getFc_id()));
 		}
 		
 		//Create Atos adaptation

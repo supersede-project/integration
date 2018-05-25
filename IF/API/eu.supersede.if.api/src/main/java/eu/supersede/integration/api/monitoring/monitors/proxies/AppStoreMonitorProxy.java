@@ -50,8 +50,8 @@ public class AppStoreMonitorProxy<T, S> extends MonitorProxy implements IAppStor
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception {
-		deleteMonitorConfiguration(new AppStoreMonitorConfigurationRequest(conf));
+	public boolean deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception {
+		return deleteMonitorConfiguration(new AppStoreMonitorConfigurationRequest(conf));
 	}
 
 }

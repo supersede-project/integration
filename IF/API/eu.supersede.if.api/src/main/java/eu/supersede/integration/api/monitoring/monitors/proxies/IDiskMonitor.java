@@ -26,5 +26,5 @@ public interface IDiskMonitor {
 			throws Exception;
 	public DiskMonitorConfiguration updateMonitorConfiguration(DiskMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception;
+	public boolean deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception;
 }

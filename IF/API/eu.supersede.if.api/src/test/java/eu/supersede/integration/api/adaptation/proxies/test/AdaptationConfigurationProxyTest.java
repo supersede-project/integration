@@ -44,7 +44,7 @@ public class AdaptationConfigurationProxyTest {
 	
 	@Test
 	public void testSetAdaptationConfigurationMode() throws Exception {
-		proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
+		Assert.isTrue(proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED));
 	}
 	
 	@Test
