@@ -50,8 +50,8 @@ public class GooglePlayMonitorProxy<T, S> extends MonitorProxy implements IGoogl
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception {
-		deleteMonitorConfiguration(new GooglePlayMonitorConfigurationRequest(conf));
+	public boolean deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception {
+		return deleteMonitorConfiguration(new GooglePlayMonitorConfigurationRequest(conf));
 	}
 
 }

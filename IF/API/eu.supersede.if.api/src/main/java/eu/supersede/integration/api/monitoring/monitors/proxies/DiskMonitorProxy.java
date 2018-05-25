@@ -57,9 +57,9 @@ public class DiskMonitorProxy<T, S> extends MonitorProxy implements IDiskMonitor
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception {
+	public boolean deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		deleteMonitorConfiguration(new DiskMonitorConfigurationRequest(conf));
+		return deleteMonitorConfiguration(new DiskMonitorConfigurationRequest(conf));
 	}
 
 }

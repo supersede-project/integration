@@ -149,7 +149,7 @@ public class FeedbackRepositoryProxyTest {
 //		byte[] result = proxy.downloadAttachment(feedbackPath.substring(feedbackPath.lastIndexOf("/") + 1), applicationId);
     	String attachmentName = "57377_1508862074050.txt";
     	byte[] result = proxy.downloadAttachment(attachmentName, applicationId);
-    	Assert.notNull(result);
+    	Assert.isTrue(result.length > 0);
     	Path path = Paths.get("attachment.att");
         Files.write(path, result);
     }
@@ -165,7 +165,7 @@ public class FeedbackRepositoryProxyTest {
 //		byte[] result = proxy.downloadScreenshot(feedbackPath.substring(feedbackPath.lastIndexOf("/") + 1), applicationId);
     	String screenshotName = "21794_1508918809103.png";
     	byte[] result = proxy.downloadScreenshot(screenshotName, applicationId);
-    	Assert.notNull(result);
+    	Assert.isTrue(result.length > 0);
     	Path path = Paths.get("screenshot.png");
         Files.write(path, result);
     }
@@ -181,7 +181,7 @@ public class FeedbackRepositoryProxyTest {
 //		byte[] result = proxy.downloadAudio(feedbackPath.substring(feedbackPath.lastIndexOf("/") + 1), applicationId);
     	String audioName = "535533_1508250908348.mp3";
     	byte[] result = proxy.downloadAudio(audioName, applicationId);
-    	Assert.notNull(result);
+    	Assert.isTrue(result.length > 0);
     	Path path = Paths.get("audio.mp3");
         Files.write(path, result);
     }

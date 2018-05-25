@@ -83,7 +83,7 @@ public class FeedbackOrchestratorProxyTest {
 	
 	@AfterClass
 	public static void dispose() throws Exception {
-		proxy.deleteApplication(idApplicationBackup);
+		Assert.isTrue(proxy.deleteApplication(idApplicationBackup));
 		log.info("Disposing created application: " + idApplicationBackup);
 	}
 
@@ -209,7 +209,7 @@ public class FeedbackOrchestratorProxyTest {
 		
 		// Delete
 		log.debug("Removing application: " + result.getId());
-		proxy.deleteApplication(result.getId());
+		Assert.isTrue(proxy.deleteApplication(result.getId()));
 	}
 
 	@Ignore @Test
@@ -248,7 +248,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.isTrue(result.getName().contains("Modified"));
 		
 		//Delete
-		proxy.deleteGeneralConfigurationOfApplication(idApplication, result.getId());
+		Assert.isTrue(proxy.deleteGeneralConfigurationOfApplication(idApplication, result.getId()));
 	}
 	
 	// Configurations of Applications
@@ -282,7 +282,7 @@ public class FeedbackOrchestratorProxyTest {
 		Assert.isTrue(result.getName().contains("Modified"));
 		
 		//Delete
-		proxy.deleteConfiguration(idApplication, result.getId());
+		Assert.isTrue(proxy.deleteConfiguration(idApplication, result.getId()));
 		
 	}
 	
@@ -440,8 +440,8 @@ public class FeedbackOrchestratorProxyTest {
 		Application application = proxy.getApplicationWithConfiguration(idApplication);
 		UserGroup userGroup = new UserGroup ("grouptest", new ArrayList<>(), application);
 		User user = new User("usertest", "usertest", application, userGroup);
-		proxy.createUserGroup(userGroup, idApplication);
-		proxy.createUser(user, idApplication);
+		Assert.isTrue(proxy.createUserGroup(userGroup, idApplication));
+		Assert.isTrue(proxy.createUser(user, idApplication));
 	}
 	
 	// User groups
@@ -463,7 +463,7 @@ public class FeedbackOrchestratorProxyTest {
 	public void testCreateUserGroup() throws Exception {
 		Application application = proxy.getApplicationWithConfiguration(idApplication);
 		UserGroup userGroup = new UserGroup ("grouptest", new ArrayList<>(), application);
-		proxy.createUserGroup(userGroup, idApplication);
+		Assert.isTrue(proxy.createUserGroup(userGroup, idApplication));
 	}
 	
 	//Parameter reorder/switch
@@ -502,6 +502,27 @@ public class FeedbackOrchestratorProxyTest {
 		List<Parameter> result = proxy.reorderParameterOfParameter(8, 77, 78, 1);
 		Assert.notEmpty(result);
 	}
+	
+	@Test
+	public void testCreateUpdateDeleteParameterInMechanism() throws Exception {
+		Integer mechanismId = 1;
+		
+		Parameter parameter = createParameter("test", "test");
+		parameter.setLanguage("en");
+		parameter.setCreatedAt(Calendar.getInstance().getTime());
+		parameter.setOrder(1);
+		
+		parameter = proxy.createParameterInMechanism(parameter, mechanismId);
+		Assert.notNull(parameter.getId());
+		
+		parameter.setValue(parameter.getValue() + "modified");
+		parameter = proxy.updateParameterInMechanism(parameter, mechanismId);
+		Assert.isTrue(parameter.getValue().contains("modified"));
+		
+		proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+	
+	}
+	
 	//Private methods
 	
 	private List<Mechanism> createMechanisms(List<Parameter> parameters) {

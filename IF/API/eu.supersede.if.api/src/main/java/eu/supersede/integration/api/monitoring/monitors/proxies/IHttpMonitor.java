@@ -28,7 +28,7 @@ public interface IHttpMonitor {
 			throws Exception;
 	public HttpMonitorConfiguration updateMonitorConfiguration(HttpMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception;
+	public boolean deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception;
 	public HttpMonitorConfiguration createMonitorConfiguration(HttpMonitorConfiguration conf, Path file) throws Exception;
 	public HttpMonitorConfiguration updateMonitorConfiguration(HttpMonitorConfiguration conf, Path file) throws Exception;
 }

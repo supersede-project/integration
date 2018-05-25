@@ -63,7 +63,7 @@ public class MonitoringOrchestratorProxyTest {
 		result = proxy.getMonitorType(result.getName());
 		Assert.notNull(result);
 
-		proxy.deleteMonitorType(result);
+		Assert.isTrue(proxy.deleteMonitorType(result));
 	}
 
 	private MonitorType createMonitorType() throws Exception {
@@ -94,9 +94,9 @@ public class MonitoringOrchestratorProxyTest {
 		monitorTool = proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
 		Assert.notNull(monitorTool);
 
-		proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+		Assert.isTrue(proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName()));
 
-		proxy.deleteMonitorType(monitorType);
+		Assert.isTrue(proxy.deleteMonitorType(monitorType));
 	}
 
 	private MonitorTool createMonitorTool(MonitorType monitorType) throws Exception {
@@ -151,12 +151,12 @@ public class MonitoringOrchestratorProxyTest {
 					monitorConfigurationResult, monitorTool.getName(), monitorType.getName());
 		Assert.notNull(monitorConfigurationResult);
 
-		proxy.deleteMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(),
-				monitorType.getName());
+		Assert.isTrue(proxy.deleteMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(),
+				monitorType.getName()));
 
-		proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+		Assert.isTrue(proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName()));
 
-		proxy.deleteMonitorType(monitorType);
+		Assert.isTrue(proxy.deleteMonitorType(monitorType));
 	}
 
 }

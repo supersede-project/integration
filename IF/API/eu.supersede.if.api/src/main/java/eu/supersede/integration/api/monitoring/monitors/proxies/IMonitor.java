@@ -36,7 +36,7 @@ public interface IMonitor {
 			throws Exception;
 	public <T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse> T updateMonitorConfiguration(T conf, Class<S> responseType)
 			throws Exception;
-	public <T extends MonitorConfigurationRequest> void deleteMonitorConfiguration(T conf) throws Exception;
+	public <T extends MonitorConfigurationRequest> boolean deleteMonitorConfiguration(T conf) throws Exception;
 	
 	public <T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse> T sendMonitorConfigurationMultipart 
 	(T conf, Path file, Class<S> responseType, HttpMethod method) throws Exception;

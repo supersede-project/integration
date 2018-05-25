@@ -36,7 +36,7 @@ public interface IModelRepository {
 	IModel getModelInstance (ModelType modelType, String modelId) throws Exception;
 	List<IModel> getModelInstances (ModelType modelType, ModelSystem systemId, Status status) throws Exception;
 	<T extends GenericModel> List<IModel> getModelInstances (ModelType modelType, T metadata) throws Exception;
-	void deleteModelInstance (ModelType modelType, String modelId) throws Exception;
+	boolean deleteModelInstance (ModelType modelType, String modelId) throws Exception;
 	IModel getModelInstance(ITypedModelId modelId) throws Exception;
 	public IModel getModelInstance(ModelType modelType, ModelSystem system, String relativePath) throws Exception;
 }

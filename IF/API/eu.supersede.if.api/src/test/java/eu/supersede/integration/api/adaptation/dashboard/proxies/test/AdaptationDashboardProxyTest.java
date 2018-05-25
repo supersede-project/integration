@@ -50,7 +50,7 @@ public class AdaptationDashboardProxyTest {
 		adaptation = proxy.getAdaptation(adaptation.getFc_id());
 		Assert.notNull(adaptation);
 		
-		proxy.deleteAdaptation(adaptation.getFc_id());
+		Assert.isTrue(proxy.deleteAdaptation(adaptation.getFc_id()));
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class AdaptationDashboardProxyTest {
 		adaptation = proxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation); 
 		
-		proxy.deleteAdaptation(adaptation.getFc_id());
+		Assert.isTrue(proxy.deleteAdaptation(adaptation.getFc_id()));
 	}
 
 	private Adaptation createAdaptation(String fc_id) {
@@ -85,14 +85,16 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testGetAllEnactments() throws Exception {
-		List<Enactment> adaptations = proxy.getAllEnactments();
-		Assert.notNull(adaptations);
+		List<Enactment> enactments = proxy.getAllEnactments();
+		Assert.notNull(enactments);
 	}
 	
 	@Test
 	public void testGetEnactment() throws Exception {
-		Enactment enactment = proxy.getEnactment(enactmentId);
-//		Assert.notNull(enactment);
+		List<Enactment> enactments = proxy.getAllEnactments();
+		Assert.notNull(enactments);
+		Enactment enactment = proxy.getEnactment(enactments.get(0).getFc_id());
+		Assert.notNull(enactment);
 	}
 	
 	@Test
@@ -104,8 +106,8 @@ public class AdaptationDashboardProxyTest {
 		enactment = proxy.addEnactment(enactment);
 		Assert.notNull(enactment); 
 		
-		proxy.deleteEnactment(adaptation.getFc_id());
-		proxy.deleteAdaptation(adaptation.getFc_id());
+		Assert.isTrue(proxy.deleteEnactment(adaptation.getFc_id()));
+		Assert.isTrue(proxy.deleteAdaptation(adaptation.getFc_id()));
 	}
 
 	private Enactment createEnactment(String fc_id) {

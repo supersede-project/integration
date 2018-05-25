@@ -10,11 +10,11 @@ public interface IAdaptationDashboard {
 	List<Adaptation> getAllAdaptations () throws Exception;
 	Adaptation addAdaptation (Adaptation adaptation) throws Exception;
 	Adaptation getAdaptation (String id) throws Exception;
-	void deleteAdaptation (String id) throws Exception;
+	boolean deleteAdaptation (String id) throws Exception;
 	
 	//Enactments
 	List<Enactment> getAllEnactments () throws Exception;
 	Enactment addEnactment (Enactment adaptation) throws Exception;
 	Enactment getEnactment (String id) throws Exception;
-	void deleteEnactment (String id) throws Exception;
+	boolean deleteEnactment (String id) throws Exception;
 }

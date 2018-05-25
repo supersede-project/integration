@@ -26,5 +26,5 @@ public interface IGooglePlayMonitor {
 			throws Exception;
 	public GooglePlayMonitorConfiguration updateMonitorConfiguration(GooglePlayMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception;
+	public boolean deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception;
 }

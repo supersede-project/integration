@@ -558,7 +558,8 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
-	public <T> void updateJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+	public <T> boolean updateJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+		boolean result = true;
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
 			Assert.notNull(uri, "Provide a valid uri");
@@ -568,6 +569,7 @@ public abstract class IFServiceProxy<T, S> {
 				log.info("Successfully updated JSON object " + object);
 			} else {
 				log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
+				result = false;
 			}
 			
 		} catch (Exception e) {
@@ -575,6 +577,7 @@ public abstract class IFServiceProxy<T, S> {
 			log.error(e.getMessage(), e);
 			throw e;
 		}
+		return result;
 	}
 	
 	public <T> T postJSONStringForReturnType(Class<T> type, String jsonInput, URI uri, HttpStatus expectedStatus) throws Exception {

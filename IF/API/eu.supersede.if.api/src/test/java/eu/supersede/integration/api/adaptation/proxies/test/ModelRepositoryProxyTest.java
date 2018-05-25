@@ -79,7 +79,7 @@ public class ModelRepositoryProxyTest {
 		Assert.notNull(am);
 		
 		//Delete created model
-		proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId());
+		Assert.isTrue(proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId()));
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class ModelRepositoryProxyTest {
 		Assert.notNull(am);
 		
 		//Delete created model
-		proxy.deleteModelInstance(ModelType.BaseModel, am.getId());
+		Assert.isTrue(proxy.deleteModelInstance(ModelType.BaseModel, am.getId()));
 	}
 	
 	@Test
@@ -114,7 +114,7 @@ public class ModelRepositoryProxyTest {
 		Assert.notNull(am);
 		
 		//Delete created model
-		proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId());
+		Assert.isTrue(proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId()));
 	}
 	
 	@Test

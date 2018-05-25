@@ -55,11 +55,11 @@ import eu.supersede.integration.properties.IntegrationProperty;
 		}
 
 		@Override
-		public void deleteAdaptation(String id) throws Exception {
+		public boolean deleteAdaptation(String id) throws Exception {
 			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "adaptation/" + id);
 			log.debug("Sending message deleteAdaptation to Adaptation Dashboard at uri " + uri);
 			
-			deleteUriResource(uri, HttpStatus.OK, feSession);
+			return deleteUriResource(uri, HttpStatus.OK, feSession);
 		}
 		
 		@Override
@@ -87,10 +87,10 @@ import eu.supersede.integration.properties.IntegrationProperty;
 		}
 
 		@Override
-		public void deleteEnactment(String id) throws Exception {
+		public boolean deleteEnactment(String id) throws Exception {
 			URI uri = new URI (SUPERSEDE_ADAPTATION_DASHBOARD_ENDPOINT + "enactment/" + id);
 			log.debug("Sending message deleteEnactment to Adaptation Dashboard at uri " + uri);
 			
-			deleteUriResource(uri, HttpStatus.OK, feSession);
+			return deleteUriResource(uri, HttpStatus.OK, feSession);
 		}
 }

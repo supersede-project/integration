@@ -50,8 +50,8 @@ public class MonitorManagerProxyTest {
 		conf = proxy.createMonitorConfiguration(conf);
 		Assert.assertNotNull(conf);
 		conf.setTimeSlot(60);
-		proxy.updateMonitorConfiguration(conf);
-		proxy.deleteMonitorConfiguration(conf);
+		Assert.assertTrue(proxy.updateMonitorConfiguration(conf));
+		Assert.assertTrue(proxy.deleteMonitorConfiguration(conf));
 	}
 
 	private TwitterMonitorConfiguration createTwitterMonitorConfiguration() throws MalformedURLException {
@@ -72,8 +72,8 @@ public class MonitorManagerProxyTest {
 		conf = proxy.createMonitorConfiguration(conf);
 		Assert.assertNotNull(conf);
 		conf.setTimeSlot(60);
-		proxy.updateMonitorConfiguration(conf);
-		proxy.deleteMonitorConfiguration(conf);
+		Assert.assertTrue(proxy.updateMonitorConfiguration(conf));
+		Assert.assertTrue(proxy.deleteMonitorConfiguration(conf));
 	}
 
 	private HttpMonitorConfiguration createHttpMonitorConfiguration() throws MalformedURLException {

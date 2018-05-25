@@ -29,17 +29,17 @@ public interface IMonitoringOrchestrator {
 	List<MonitorType> listAllMonitorTypes() throws Exception;
 	MonitorType createMonitorType (MonitorType monitorType) throws Exception;
 	MonitorType getMonitorType (String monitorTypeName) throws Exception;
-	void deleteMonitorType (MonitorType monitorType) throws Exception;
+	boolean deleteMonitorType (MonitorType monitorType) throws Exception;
 	
 	//Monitor Tools
 	MonitorTool createMonitorToolForMonitorType (MonitorTool monitorTool, String monitorTypeName) throws Exception;
 	MonitorTool getMonitorToolForMonitorType (String monitorToolName, String monitorTypeName) throws Exception;
-	void deleteMonitorToolForMonitorType (MonitorTool monitorTool, String monitorTypeName) throws Exception;
+	boolean deleteMonitorToolForMonitorType (MonitorTool monitorTool, String monitorTypeName) throws Exception;
 	
 	//Monitor Configurations
 	MonitorConfiguration createMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, 
 			String monitorToolName, String monitorTypeName) throws Exception;
 	MonitorConfiguration getMonitorConfigurationForMonitorToolAndMonitorType (Integer configurationId, String monitorToolName, String monitorTypeName) throws Exception;
 	MonitorConfiguration updateMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, String monitorToolName, String monitorTypeName) throws Exception;
-	void deleteMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, String monitorToolName, String monitorTypeName) throws Exception;
+	boolean deleteMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, String monitorToolName, String monitorTypeName) throws Exception;
 }

@@ -78,11 +78,11 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 	}
 
 	@Override
-	public void deleteMonitorType(MonitorType monitorType) throws Exception {
+	public boolean deleteMonitorType(MonitorType monitorType) throws Exception {
 		Assert.notNull(monitorType.getName(), "Provide a valid monitor type name");
 		URI uri = new URI(SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT + "MonitorTypes/" + monitorType.getName());
 		log.debug("Sending message deleteMonitorType with monitorType: " + monitorType + " to MonitoringOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 	}
 
 	@Override
-	public void deleteMonitorToolForMonitorType(MonitorTool monitorTool, String monitorTypeName) throws Exception {
+	public boolean deleteMonitorToolForMonitorType(MonitorTool monitorTool, String monitorTypeName) throws Exception {
 		Assert.notNull(monitorTool.getName(), "Provide a valid monitor tool name");
 		Assert.notNull(monitorTypeName, "Provide a valid monitor type name");
 		URI uri = new URI(SUPERSEDE_MONITORING_ORCHESTRATOR_ENDPOINT + "MonitorTypes/" + monitorTypeName + "/Tools/"
@@ -118,7 +118,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 		log.debug("Sending message deleteMonitorToolForMonitorType with monitorTool: " + monitorTool 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 	}
 
 	@Override
-	public void deleteMonitorConfigurationForMonitorToolAndMonitorType(MonitorConfiguration monitorConfiguration,
+	public boolean deleteMonitorConfigurationForMonitorToolAndMonitorType(MonitorConfiguration monitorConfiguration,
 			String monitorToolName, String monitorTypeName) throws Exception {
 		Assert.notNull(monitorConfiguration.getId(), "Provide a valid monitor configuration id");
 		Assert.notNull(monitorToolName, "Provide a valid monitor tool name");
@@ -180,6 +180,6 @@ public class MonitoringOrchestratorProxy<T, S> extends IFServiceProxy<T, S> impl
 				+ ", with monitorToolName: " + monitorToolName 
 				+ ", with monitorTypeName: " + monitorTypeName 
 				+ " to MonitoringOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 }
