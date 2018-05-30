@@ -136,6 +136,27 @@ public class AdapterProxyTest {
 		Assert.isTrue(result);
 	}
 	
+	@Test
+	public void testEnactSimensBuildingFC() throws Exception {
+		String featureConfigurationId = "4233";
+		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_Buildings, featureConfigurationId);
+		Assert.isTrue(result);
+	}
+	
+	@Test
+	public void testEnactSimensGetMinMaxFC() throws Exception {
+		String featureConfigurationId = "4189";
+		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_GetMinMaxDates, featureConfigurationId);
+		Assert.isTrue(result);
+	}
+	
+	@Test
+	public void testEnactSimensTypesFC() throws Exception {
+		String featureConfigurationId = "4187";
+		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_Types, featureConfigurationId);
+		Assert.isTrue(result);
+	}
+	
 	private String uploadLatestComputedFC(String fcName) throws IOException, Exception {
 		String userdir = System.getProperty("user.dir");
 		
