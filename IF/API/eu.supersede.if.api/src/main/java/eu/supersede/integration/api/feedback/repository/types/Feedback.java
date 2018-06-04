@@ -2,6 +2,7 @@ package eu.supersede.integration.api.feedback.repository.types;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Feedback {
 
     private long id;
@@ -21,6 +22,7 @@ public class Feedback {
     private long applicationId;
     private long configurationId;
     private String language;
+    private FeedbackStatus feedbackStatus;
 
     private Application application;
 
@@ -206,4 +208,12 @@ public class Feedback {
     public void setApplication(Application application) {
         this.application = application;
     }
+
+	public FeedbackStatus getFeedbackStatus() {
+		return feedbackStatus;
+	}
+
+	public void setFeedbackStatus(FeedbackStatus feedbackStatus) {
+		this.feedbackStatus = feedbackStatus;
+	}
 }

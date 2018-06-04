@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -136,24 +137,43 @@ public class AdapterProxyTest {
 		Assert.isTrue(result);
 	}
 	
+	@Ignore
 	@Test
-	public void testEnactSimensBuildingFC() throws Exception {
+	public void testEnactSiemensBuildingFC() throws Exception {
 		String featureConfigurationId = "4233";
 		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_Buildings, featureConfigurationId);
 		Assert.isTrue(result);
 	}
 	
+	@Ignore
 	@Test
-	public void testEnactSimensGetMinMaxFC() throws Exception {
+	public void testEnactSiemensGetMinMaxFC() throws Exception {
 		String featureConfigurationId = "4189";
 		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_GetMinMaxDates, featureConfigurationId);
 		Assert.isTrue(result);
 	}
 	
+	@Ignore
 	@Test
-	public void testEnactSimensTypesFC() throws Exception {
+	public void testEnactSiemensTypesFC() throws Exception {
 		String featureConfigurationId = "4187";
 		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Siemens_Types, featureConfigurationId);
+		Assert.isTrue(result);
+	}
+	
+	@Ignore
+	@Test
+	public void testEnactMonitoringEnablingFC() throws Exception {
+		String featureConfigurationId = "4932";
+		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoringEnabling, featureConfigurationId);
+		Assert.isTrue(result);
+	}
+	
+	@Ignore
+	@Test
+	public void testEnactMonitoringTimeSlotFC() throws Exception {
+		String featureConfigurationId = "4934";
+		Boolean result = proxy.enactAdaptationDecisionActionsForFC(ModelSystem.AtosMonitoringTimeSlot, featureConfigurationId);
 		Assert.isTrue(result);
 	}
 	
