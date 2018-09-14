@@ -2,9 +2,9 @@
 DESCARTES_RESULTS_DIRECTORY=/home/stamp/Git/descartes-usecases-output/atos/supersede
 POM_FILE=pom_for_descartes.xml
 
-date=`date '+%Y-%m-%d_%H:%M:%S'`
+date=`date '+%Y-%m-%d_%H-%M-%S'`
 report_date=`date '+%Y%m%d%H'`
-RESULTS_DIR=$DESCARTES_RESULTS_DIRECTORY/`date '+%Y-%m-%d_%H:%M:%S'`
+RESULTS_DIR=$DESCARTES_RESULTS_DIRECTORY/`date '+%Y-%m-%d_%H-%M-%S'`
 mkdir -p $RESULTS_DIR
 #copy Descartes configuration
 cp $POM_FILE $RESULTS_DIR
