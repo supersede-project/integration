@@ -23,8 +23,8 @@ echo "executeDSpot.sh: DSpot configuration: " $DSPOT_OPTS
 
 DSPOT_PROPERTIES="./dspot.properties"
 
-date=`date '+%Y-%m-%d_%H:%M:%S'`
-RESULTS_DIR=$RESULTS_DIR/$DSPOT_SELECTOR/$DSPOT_AMPLIFIERS/`date '+%Y-%m-%d_%H:%M:%S'`
+date=`date '+%Y-%m-%d_%H-%M-%S'`
+RESULTS_DIR=$RESULTS_DIR/$DSPOT_SELECTOR/$DSPOT_AMPLIFIERS/`date '+%Y-%m-%d_%H-%M-%S'`
 mkdir -p $RESULTS_DIR
 #copy dspot.properties configuration
 cp $DSPOT_PROPERTIES $RESULTS_DIR

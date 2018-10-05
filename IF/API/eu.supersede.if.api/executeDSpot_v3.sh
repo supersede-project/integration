@@ -20,8 +20,8 @@ echo "DSpot configuration: " $DSPOT_OPTS
 
 DSPOT_PROPERTIES="./dspot2.properties"
 
-date=`date '+%Y-%m-%d_%H:%M:%S'`
-RESULTS_DIR=$RESULTS_DIR/$DSPOT_SELECTOR/$DSPOT_AMPLIFIERS/`date '+%Y-%m-%d_%H:%M:%S'`
+date=`date '+%Y-%m-%d_%H-%M-%S'`
+RESULTS_DIR=$RESULTS_DIR/$DSPOT_SELECTOR/$DSPOT_AMPLIFIERS/`date '+%Y-%m-%d_%H-%M-%S'`
 mkdir -p $RESULTS_DIR
 filename=$RESULTS_DIR/dspot_if_$date.txt
 
