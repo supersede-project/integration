@@ -28,6 +28,7 @@ import java.util.Random;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,7 @@ public class DataProviderProxyTest {
     }
 
     @Test
+    @Ignore
     public void testIngestMonitoringData() throws Exception{
     	List<MonitoringData> dataList = createMonitoringDataList();
 		String timeStamp = Calendar.getInstance().getTime().toString();
@@ -56,6 +58,7 @@ public class DataProviderProxyTest {
     }
     
     @Test
+    @Ignore
     public void testIngestJsonData() throws Exception{
     	JSONObject jsonData = createMonitoringDataListAsJson();
 		String topic = "atos";
@@ -63,6 +66,7 @@ public class DataProviderProxyTest {
     }
     
     @Test
+    @Ignore
     public void testIngestData() throws Exception{
     	JSONObject jsonData = createMonitoringDataListAsJson();
 		String topic = "atos";
@@ -70,6 +74,7 @@ public class DataProviderProxyTest {
     }
     
     @Test
+    @Ignore
     public void testIngestDataSequence() throws Exception{
     	JSONObject jsonData = createMonitoringDataListAsJson();
 		String topic = "atos";

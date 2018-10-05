@@ -24,6 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 
@@ -42,6 +43,7 @@ public class DiskMonitorProxyTest {
 	}
 
 	@Test
+	@Ignore
 	public void testCreateAndDeleteMonitorConfiguration() throws Exception {
 		DiskMonitorConfiguration conf = createMonitorConfiguration();
 		DiskMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
@@ -51,6 +53,7 @@ public class DiskMonitorProxyTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testUpdateMonitorConfiguration() throws Exception {
 		DiskMonitorConfiguration conf = createMonitorConfiguration();
 		DiskMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
