@@ -22,15 +22,15 @@ mvn -f $POM_FILE test org.pitest:pitest-maven:mutationCoverage |& tee -a $filena
 pid_descartes=$!
 ((pid_descartes--)) #Decremented to capture mvn command pid, otherwise it captures tee command pid
 
-echo "Capturing statistics for descartes process with pid " $pid_descartes
-stats=$RESULTS_DIR/descartes_if_stats_$date.txt
-echo "Storing statistics in " $stats
+#echo "Capturing statistics for descartes process with pid " $pid_descartes
+#stats=$RESULTS_DIR/descartes_if_stats_$date.txt
+#echo "Storing statistics in " $stats
 
-./record_stats_repeat.sh $pid_descartes 180 30 $stats &
-pid_stats=$!
+#./record_stats_repeat.sh $pid_descartes 180 30 $stats &
+#pid_stats=$!
 
 wait $pid_descartes
-kill -- $pid_stats
+#kill -- $pid_stats
 
 echo "Ended Descartes: `date`" >> $filename
 

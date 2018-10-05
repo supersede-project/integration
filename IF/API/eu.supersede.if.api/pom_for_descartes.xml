@@ -410,17 +410,14 @@
 						<param>eu.supersede.integration.api.adaptation.proxies.test.*</param><!--Dspot failed-->
 						<param>eu.supersede.integration.api.analysis.proxies.test.*</param><!--Dspot success-->
 						<param>eu.supersede.integration.api.replan.controller.proxies.test.*</param><!--Dspot failed-->
-						<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param>
+						<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param><!--Dspot success-->
 						<!--<param>eu.supersede.integration.api.datastore.proxies.test.*</param>-->
-						<param>eu.supersede.integration.api.dm.proxies.test.DecisionMakingSystemProxyTest*</param>
-						<param>eu.supersede.integration.api.fe.test.*</param>
-						<param>eu.supersede.integration.api.feedback.proxies.test.*</param>
-						<param>eu.supersede.integration.api.monitoring.proxies.test.*</param>
-						<param>eu.supersede.integration.api.mdm.test.*</param>
-						<param>eu.supersede.integration.api.monitoring.test.*</param>
+						<param>eu.supersede.integration.api.dm.proxies.test.DecisionMakingSystemProxyTest*</param><!--Dspot success-->
+						<param>eu.supersede.integration.api.fe.test.*</param><!--Dspot success-->
+						<param>eu.supersede.integration.api.feedback.proxies.test.*</param><!--Dspot failed-->
+						<param>eu.supersede.integration.api.monitoring.proxies.test.*</param><!--Dspot failed-->
+						<!--<param>eu.supersede.integration.api.mdm.proxies.test.*</param>--><!--Dspot failed-->
 						<!--<param>eu.supersede.integration.api.pubsub.test.*</param>-->
-						<param>eu.supersede.integration.api.replan.controller.proxies.test.*</param>
-						<param>eu.supersede.integration.api.replan.optimizer.proxies.test.*</param>
 						<param>eu.supersede.integration.api.security.test.*</param>
 						<!--<param>eu.supersede.integration.federation.test.*</param>-->
 					</targetTests>
@@ -437,7 +434,7 @@
 						<param>eu.supersede.integration.api.pubsub.*</param>
 						<param>eu.supersede.integration.api.pubsub.adaptation.*</param>
 						<param>eu.supersede.integration.api.pubsub.evolution.*</param>
-						<param>eu.supersede.integration.api.security.*</param>
+						<param>eu.supersede.integration.api.security.*</param>-->
 						<param>eu.supersede.integration.api.security.types.*</param>
 						<param>eu.supersede.integration.api.tenants.*</param>
 						<param>eu.supersede.integration.federation.*</param>
