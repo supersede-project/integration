@@ -3,7 +3,7 @@ set -e # Any subsequent(*) commands which fail will cause the shell script to ex
 
 #Configuration
 DATE=`date '+%Y%m%d%H%M'`
-RESULTS_DIR=/home/yosu/Projects/STAMP/Git/descartes-usecases-output/atos/supersede/modeladapter/mutation-score/baseline/pit/$DATE/
+RESULTS_DIR=/home/stamp/Git/descartes-usecases-output/atos/supersede/if/mutation-score/baseline/pit/$DATE/
 OUT=./target/pit-reports/$DATE/*
 LOG=$DATE"_pit.log"
 mkdir -p $RESULTS_DIR
