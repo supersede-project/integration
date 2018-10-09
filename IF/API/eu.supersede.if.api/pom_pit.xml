@@ -393,7 +393,13 @@
 	<configuration>
 	  <excludedTestClasses>
 	    <param>eu.supersede.integration.api.analysis.proxies.test.DataProviderProxyTest</param>
-	  </excludedTestClasses>		
+	  </excludedTestClasses>
+	  <jvmArgs>
+    	    <value>-Dis.admin.user=admin</value>
+    	    <value>-Dis.admin.passwd=$2pRSid#</value>
+	  </jvmArgs>		
+	  <threads>16</threads>
+	  <timeoutConstant>30000</timeoutConstant>:
 	</configuration>
       </plugin>
     </plugins>
