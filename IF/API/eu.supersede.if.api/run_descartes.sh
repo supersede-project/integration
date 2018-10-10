@@ -2,11 +2,11 @@
 set -e # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 
 #Cleanup
-mvn -f pom-for-stamp.xml clean package
+mvn clean package -DskipTests
 
 #Configuration
 DATE=`date '+%Y%m%d%H%M'`
-RESULTS_DIR=/home/yosu/Projects/STAMP/Git/descartes-usecases-output/atos/supersede/modeladapter/mutation-score/baseline/descartes/$DATE/
+RESULTS_DIR=/home/stamp/Git/descartes-usecases-output/atos/supersede/if/mutation-score/baseline/descartes/$DATE/
 OUT=./target/pit-reports/$DATE/*
 LOG=$DATE"_descartes.log"
 mkdir -p $RESULTS_DIR

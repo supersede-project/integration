@@ -393,6 +393,7 @@
 	<configuration>
 	  <excludedTestClasses>
 	    <param>eu.supersede.integration.api.analysis.proxies.test.DataProviderProxyTest</param>
+	    <param>eu.supersede.integration.api.datastore.proxies.test.IFDataStoreProxyTest</param>
 	  </excludedTestClasses>
 	  <jvmArgs>
     	    <value>-Dis.admin.user=admin</value>

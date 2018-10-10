@@ -10,7 +10,7 @@ mkdir -p $RESULTS_DIR
 
 #PIT Execution
 
-nohup time mvn -Dis.admin.user=admin -Dis.admin.passwd=$2pRSid# -f pom_pit.xml org.pitest:pitest-maven:mutationCoverage | tee -a $LOG &
+nohup time mvn -f pom_pit.xml org.pitest:pitest-maven:mutationCoverage | tee -a $LOG &
 pid=$!
 ((pid--)) #Decremented to capture mvn command pid, otherwise it captures tee command pid
 wait $pid

@@ -369,6 +369,7 @@
         <configuration>
 	  <excludes>
             <exclude>**/DataProviderProxyTest.java</exclude>
+            <exclude>**/IFDataStoreProxyTest.java</exclude>
           </excludes>
           <systemProperties>
             <property>
