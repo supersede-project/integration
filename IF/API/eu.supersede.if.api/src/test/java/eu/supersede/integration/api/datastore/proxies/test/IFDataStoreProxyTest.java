@@ -22,6 +22,7 @@ package eu.supersede.integration.api.datastore.proxies.test;
 import java.util.List;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,7 @@ public class IFDataStoreProxyTest {
 			log.debug("Platform: " + platform);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testCreateGetDeleteSupersedePlatform() throws Exception {
 		SupersedePlatform platform = testInsertSupersedePlatform();
 		platform = testGetSupersedePlatform(platform.getPlatform());
