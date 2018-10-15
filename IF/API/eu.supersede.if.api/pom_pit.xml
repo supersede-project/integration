@@ -369,21 +369,8 @@
         <configuration>
 	  <excludes>
             <exclude>**/DataProviderProxyTest.java</exclude>
+	    <exclude>**/IFDataStoreProxyTest.java</exclude>
           </excludes>
-          <systemProperties>
-            <property>
-              <name>supersede.if.properties</name>
-              <value>if.development.properties</value>
-            </property>
-            <property>
-              <name>is.admin.user</name>
-              <value>admin</value>
-            </property>
-            <property>
-              <name>is.admin.passwd</name>
-              <value>$2pRSid#</value>
-            </property>
-          </systemProperties>
         </configuration>
       </plugin>
       <plugin>
@@ -394,11 +381,7 @@
 	  <excludedTestClasses>
 	    <param>eu.supersede.integration.api.analysis.proxies.test.DataProviderProxyTest</param>
 	    <param>eu.supersede.integration.api.datastore.proxies.test.IFDataStoreProxyTest</param>
-	  </excludedTestClasses>
-	  <jvmArgs>
-    	    <value>-Dis.admin.user=admin</value>
-    	    <value>-Dis.admin.passwd=$2pRSid#</value>
-	  </jvmArgs>		
+	  </excludedTestClasses>		
 	  <threads>16</threads>
 	  <timeoutConstant>30000</timeoutConstant>:
 	</configuration>

@@ -35,6 +35,7 @@ import org.wso2.carbon.tenant.mgt.stub.TenantMgtAdminServiceExceptionException;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreException;
 
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
@@ -57,9 +58,12 @@ public class IFAuthenticationManagerTest {
 		// -Dis.admin.user=
 		// -Dis.admin.passwd=
 		// for each tenant organization, use its admin account
-		String admin = System.getProperty("is.admin.user");
-		String password = System.getProperty("is.admin.passwd");
-        am = new IFAuthenticationManager(admin, password);
+//		String admin = System.getProperty("is.admin.user");
+//		String password = System.getProperty("is.admin.passwd");
+		// Read account (user, password) from classpath property file
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
+       am = new IFAuthenticationManager(admin, password);
     }
 	
 	//Authentication Test

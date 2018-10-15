@@ -4,6 +4,7 @@ import java.util.List;
 
 import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
 import eu.supersede.integration.api.datastore.proxies.IFDataStoreProxy;
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.properties.IntegrationProperty;
@@ -15,8 +16,12 @@ public class SupersedeFederation {
 	public SupersedeFederation(){
 		//Get IS Token
 		IFDataStoreProxy<Object, Object> proxy = new IFDataStoreProxy<Object, Object> ();
-        String admin = System.getProperty("is.admin.user");
-		String password = System.getProperty("is.admin.passwd");
+ //		String admin = System.getProperty("is.admin.user");
+//		String password = System.getProperty("is.admin.passwd");
+		// Read account (user, password) from classpath property file
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
+
 		IFAuthenticationManager am = new IFAuthenticationManager(admin, password);
 		try {
 			AuthorizationToken token = am.getAuthorizationToken(admin, password, "");

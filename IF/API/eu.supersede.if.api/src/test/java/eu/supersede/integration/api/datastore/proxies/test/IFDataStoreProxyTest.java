@@ -19,7 +19,10 @@
  *******************************************************************************/
 package eu.supersede.integration.api.datastore.proxies.test;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -30,6 +33,7 @@ import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
 import eu.supersede.integration.api.datastore.proxies.IFDataStoreProxy;
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
@@ -42,8 +46,11 @@ public class IFDataStoreProxyTest {
 	@BeforeClass
 	public static void setup() throws Exception {
 		proxy = new IFDataStoreProxy<Object, Object>();
-		String admin = System.getProperty("is.admin.user");
-		String password = System.getProperty("is.admin.passwd");
+//		String admin = System.getProperty("is.admin.user");
+//		String password = System.getProperty("is.admin.passwd");
+		// Read account (user, password) from classpath property file
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
 		am = new IFAuthenticationManager(admin, password);
 		token = am.getAuthorizationToken(admin, password, "");
 	}
@@ -56,7 +63,8 @@ public class IFDataStoreProxyTest {
 			log.debug("Platform: " + platform);
 	}
 
-	@Test @Ignore
+	@Test
+	@Ignore
 	public void testCreateGetDeleteSupersedePlatform() throws Exception {
 		SupersedePlatform platform = testInsertSupersedePlatform();
 		platform = testGetSupersedePlatform(platform.getPlatform());
@@ -67,29 +75,26 @@ public class IFDataStoreProxyTest {
 	public void setupSupersedePlatforms() throws Exception {
 		// Reset platforms
 		resetPlatforms();
-		
+
 		// Populate Supersede platforms
 		populatePlatforms();
 	}
 
 	private void populatePlatforms() throws Exception {
-		SupersedePlatform platform = 
-				createPlatform("development", "admin", "$up3r$3d3", "supersede.es.atos.net:5676");
+		SupersedePlatform platform = createPlatform("development", "admin", "$up3r$3d3", "supersede.es.atos.net:5676");
 		Boolean result = proxy.insertSupersedePlatform(platform, token);
 		Assert.isTrue(result);
-		platform = 
-				createPlatform("production", "admin", "$up3r$3d3", "platform.supersede.eu:5676");
+		platform = createPlatform("production", "admin", "$up3r$3d3", "platform.supersede.eu:5676");
 		result = proxy.insertSupersedePlatform(platform, token);
 		Assert.isTrue(result);
-		platform = 
-				createPlatform("senercon", "admin", "admin2", "mb_senercon.supersede.eu:5676");
+		platform = createPlatform("senercon", "admin", "admin2", "mb_senercon.supersede.eu:5676");
 		result = proxy.insertSupersedePlatform(platform, token);
 		Assert.isTrue(result);
 	}
 
 	private void resetPlatforms() throws Exception {
 		List<SupersedePlatform> platforms = proxy.getSupersedePlatforms(token);
-		for (SupersedePlatform platform: platforms){
+		for (SupersedePlatform platform : platforms) {
 			proxy.deleteSupersedePlatform(platform.getPlatform(), token);
 		}
 		platforms = proxy.getSupersedePlatforms(token);
@@ -110,8 +115,7 @@ public class IFDataStoreProxyTest {
 		return platform;
 	}
 
-	private SupersedePlatform createPlatform(
-			String platformName, String mb_user, String mb_password, String mb_url) {
+	private SupersedePlatform createPlatform(String platformName, String mb_user, String mb_password, String mb_url) {
 		SupersedePlatform platform = new SupersedePlatform();
 		platform.setPlatform(platformName);
 		platform.setMb_User(mb_user);

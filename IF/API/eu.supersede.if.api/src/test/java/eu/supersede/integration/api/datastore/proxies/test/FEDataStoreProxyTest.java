@@ -32,6 +32,7 @@ import eu.supersede.integration.api.datastore.fe.types.Notification;
 import eu.supersede.integration.api.datastore.fe.types.Profile;
 import eu.supersede.integration.api.datastore.fe.types.User;
 import eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy;
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
@@ -44,8 +45,11 @@ public class FEDataStoreProxyTest {
     @BeforeClass
     public static void setup() throws Exception {
         proxy = new FEDataStoreProxy<Object, Object> ();
-        String admin = System.getProperty("is.admin.user");
-		String password = System.getProperty("is.admin.passwd");
+//		String admin = System.getProperty("is.admin.user");
+//		String password = System.getProperty("is.admin.passwd");
+		// Read account (user, password) from classpath property file
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
         am = new IFAuthenticationManager(admin, password);
         token = am.getAuthorizationToken(admin, password, "");
     }

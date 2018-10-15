@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import eu.supersede.integration.api.mail.proxies.MailProxy;
 import eu.supersede.integration.api.mail.types.Email;
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
@@ -37,8 +38,11 @@ public class MailProxyTest {
 	
     @BeforeClass
     public static void setup() throws Exception {
-    	String admin = System.getProperty("is.admin.user");
-		String password = System.getProperty("is.admin.passwd");
+//		String admin = System.getProperty("is.admin.user");
+//		String password = System.getProperty("is.admin.passwd");
+		// Read account (user, password) from classpath property file
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
         am = new IFAuthenticationManager(admin, password);
         token = am.getAuthorizationToken(admin, password, "");
     }

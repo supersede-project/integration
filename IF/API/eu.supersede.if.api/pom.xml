@@ -371,20 +371,6 @@
             <exclude>**/DataProviderProxyTest.java</exclude>
             <exclude>**/IFDataStoreProxyTest.java</exclude>
           </excludes>
-          <systemProperties>
-            <property>
-              <name>supersede.if.properties</name>
-              <value>if.development.properties</value>
-            </property>
-            <property>
-              <name>is.admin.user</name>
-              <value>admin</value>
-            </property>
-            <property>
-              <name>is.admin.passwd</name>
-              <value>$2pRSid#</value>
-            </property>
-          </systemProperties>
         </configuration>
       </plugin>
     </plugins>
