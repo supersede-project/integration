@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.datastore.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -29,6 +31,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
@@ -82,14 +85,11 @@ public class IFDataStoreProxyTest {
 
 	private void populatePlatforms() throws Exception {
 		SupersedePlatform platform = createPlatform("development", "admin", "$up3r$3d3", "supersede.es.atos.net:5676");
-		Boolean result = proxy.insertSupersedePlatform(platform, token);
-		Assert.isTrue(result);
+		assertEquals(proxy.insertSupersedePlatform(platform, token), HttpStatus.ACCEPTED);
 		platform = createPlatform("production", "admin", "$up3r$3d3", "platform.supersede.eu:5676");
-		result = proxy.insertSupersedePlatform(platform, token);
-		Assert.isTrue(result);
+		assertEquals(proxy.insertSupersedePlatform(platform, token), HttpStatus.ACCEPTED);
 		platform = createPlatform("senercon", "admin", "admin2", "mb_senercon.supersede.eu:5676");
-		result = proxy.insertSupersedePlatform(platform, token);
-		Assert.isTrue(result);
+		assertEquals(proxy.insertSupersedePlatform(platform, token), HttpStatus.ACCEPTED);
 	}
 
 	private void resetPlatforms() throws Exception {
@@ -110,8 +110,7 @@ public class IFDataStoreProxyTest {
 
 	private SupersedePlatform testInsertSupersedePlatform() throws Exception {
 		SupersedePlatform platform = createPlatform("test", "supersede", "password_test", "test.supersede.eu:5676");
-		Boolean result = proxy.insertSupersedePlatform(platform, token);
-		Assert.isTrue(result);
+		assertEquals(proxy.insertSupersedePlatform(platform, token), HttpStatus.ACCEPTED);
 		return platform;
 	}
 
@@ -125,8 +124,7 @@ public class IFDataStoreProxyTest {
 	}
 
 	private void testDeleteSupersedePlatform(String platformId) throws Exception {
-		Boolean result = proxy.deleteSupersedePlatform(platformId, token);
-		Assert.isTrue(result);
+		assertEquals(proxy.deleteSupersedePlatform(platformId, token), HttpStatus.ACCEPTED);
 	}
 
 }

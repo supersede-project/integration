@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.dashboad.types.Action;
@@ -30,8 +31,8 @@ public class AdaptationDashboardResetTest {
 		for (Adaptation adaptation: adaptations){
 			Enactment enactment = proxy.getEnactment(adaptation.getFc_id());
 			if (enactment!=null)
-				proxy.deleteEnactment(adaptation.getFc_id());
-			proxy.deleteAdaptation(adaptation.getFc_id());
+				assertEquals(proxy.deleteEnactment(adaptation.getFc_id()), HttpStatus.OK);
+			assertEquals(proxy.deleteAdaptation(adaptation.getFc_id()), HttpStatus.OK);
 		}
 		
 		//Create Atos adaptation

@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.FileSystems;
@@ -27,6 +29,7 @@ import java.nio.file.Path;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
@@ -50,7 +53,7 @@ public class HttpMonitorProxyTest {
 		HttpMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
 		Assert.notNull(result);
 		Assert.isTrue(result.getId()>0);
-		proxy.deleteMonitorConfiguration(conf);
+		assertEquals(proxy.deleteMonitorConfiguration(conf), HttpStatus.OK);
 	}
 	
 	@Test
@@ -60,7 +63,7 @@ public class HttpMonitorProxyTest {
 		HttpMonitorConfiguration result = proxy.createMonitorConfiguration(conf, file );
 		Assert.notNull(result);
 		Assert.isTrue(result.getId()>0);
-		proxy.deleteMonitorConfiguration(conf);
+		assertEquals(proxy.deleteMonitorConfiguration(conf),  HttpStatus.OK);
 	}
 	
 	@Ignore

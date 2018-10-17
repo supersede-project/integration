@@ -85,7 +85,7 @@ public class IFDataStoreProxy<T, S> extends IFServiceProxy<T, S> implements IFDa
 	}
 
 	@Override
-	public boolean insertSupersedePlatform(SupersedePlatform platform, AuthorizationToken authenticationToken) throws Exception {
+	public HttpStatus insertSupersedePlatform(SupersedePlatform platform, AuthorizationToken authenticationToken) throws Exception {
 		try {
 			Assert.notNull(platform, "Platform id cannot be unasigned");
 			Assert.notNull(authenticationToken, "Provide a valid authentication token");
@@ -109,12 +109,12 @@ public class IFDataStoreProxy<T, S> extends IFServiceProxy<T, S> implements IFDa
 			return insertJSONObject("{}", uri, HttpStatus.ACCEPTED, authenticationToken.getAccessToken());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
 	@Override
-	public boolean deleteSupersedePlatform(String platformId, AuthorizationToken authenticationToken) throws Exception {
+	public HttpStatus deleteSupersedePlatform(String platformId, AuthorizationToken authenticationToken) throws Exception {
 		try {
 			Assert.notNull(platformId, "PlatformId id cannot be unasigned");
 			Assert.notNull(authenticationToken, "Provide a valid authentication token");
@@ -127,7 +127,7 @@ public class IFDataStoreProxy<T, S> extends IFServiceProxy<T, S> implements IFDa
 			return deleteUriResource(uri, HttpStatus.ACCEPTED, authenticationToken.getAccessToken()); 
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 }

@@ -94,7 +94,7 @@ public class MetadataManagementProxy<T, S> extends IFServiceProxy<T, S> implemen
 	}
 
 	@Override
-	public boolean sendFile(Path filePath) throws Exception {
+	public HttpStatus sendFile(Path filePath) throws Exception {
 		Assert.notNull(filePath, "Provide a valid filePath");
 		
 		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + "files");

@@ -113,11 +113,11 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteApiUser(long idUser) throws Exception {
+	public HttpStatus deleteApiUser(long idUser) throws Exception {
 		Assert.notNull(idUser, "Provide a valid idUser");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/api_users/" + idUser);
 		log.debug("Sending message deleteAPIUser with idUser: " + idUser + " to FeedbackRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	// API User Permissions
@@ -164,14 +164,14 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteApiUserPermission(long idUser, long idUserPermission) throws Exception {
+	public HttpStatus deleteApiUserPermission(long idUser, long idUserPermission) throws Exception {
 		Assert.notNull(idUser, "Provide a valid idUser");
 		Assert.notNull(idUserPermission, "Provide a valid idUserPermission");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/api_users/" + idUser
 				+ "/api_user_permissions/" + idUserPermission);
 		log.debug("Sending message deleteApiUserPermission with idUser: " + idUser + " and idUserPermission: "
 				+ idUserPermission + " to FeedbackRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	// Applications
@@ -211,12 +211,12 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteApplication(long idApplication) throws Exception {
+	public HttpStatus deleteApplication(long idApplication) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication);
 		log.debug("Sending message deleteApplication with idApplication: " + idApplication
 				+ " to FeedbackRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -318,7 +318,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration)
+	public HttpStatus deleteGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration)
 			throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		Assert.notNull(idGeneralConfiguration, "Provide a valid idGeneralConfiguration");
@@ -326,7 +326,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 				+ "/general_configuration/" + idGeneralConfiguration);
 		log.debug("Sending message deleteGeneralConfigurationOfApplication with idApplication: " + idApplication
 				+ " and idGeneralConfiguration: " + idGeneralConfiguration + " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	// Configurations
@@ -374,14 +374,14 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteConfiguration(long idApplication, long idConfiguration) throws Exception {
+	public HttpStatus deleteConfiguration(long idApplication, long idConfiguration) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		Assert.notNull(idConfiguration, "Provide a valid idConfiguration");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication
 				+ "/configurations/" + idConfiguration);
 		log.debug("Sending message deleteConfiguration with idApplication: " + idApplication + " and idConfiguration: "
 				+ idConfiguration + " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 	
 	@Override
@@ -452,7 +452,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteGeneralConfigurationsOfConfiguration(long idApplication, long idConfiguration,
+	public HttpStatus deleteGeneralConfigurationsOfConfiguration(long idApplication, long idConfiguration,
 			long idGeneralConfiguration) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		Assert.notNull(idConfiguration, "Provide a valid idConfiguration");
@@ -461,7 +461,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 		log.debug("Sending message deleteGeneralConfigurationsOfConfiguration with idApplication: " + idApplication
 				+ " and idConfiguration: " + idConfiguration + " and idGeneralConfiguration: " + idGeneralConfiguration
 				+ " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 	
 	
@@ -521,7 +521,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism)
+	public HttpStatus deleteMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism)
 			throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		Assert.notNull(idConfiguration, "Provide a valid idConfiguration");
@@ -531,7 +531,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 		log.debug("Sending message deleteMechanismOfConfiguration with idApplication: " + idApplication
 				+ " and idConfiguration: " + idConfiguration + " and idMechanism: " + idMechanism
 				+ " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	// Application Mechanisms
@@ -585,7 +585,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteMechanismOfApplication(long idApplication, long idMechanism)
+	public HttpStatus deleteMechanismOfApplication(long idApplication, long idMechanism)
 			throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		Assert.notNull(idMechanism, "Provide a valid idMechanism");
@@ -594,7 +594,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 		log.debug("Sending message deleteMechanismOfApplication with idApplication: " + idApplication
 				+ " and idMechanism: " + idMechanism
 				+ " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 	
 	// Mechanism parameter
@@ -645,12 +645,12 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteParameter(long idParameter) throws Exception {
+	public HttpStatus deleteParameter(long idParameter) throws Exception {
 		Assert.notNull(idParameter, "Provide a valid idParameter");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/parameters/" + idParameter);
 		log.debug("Sending message deleteParameter with idParameter: " + idParameter
 				+ " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 	
 
@@ -665,15 +665,14 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void createUser(User user, long idApplication) throws Exception {
+	public HttpStatus createUser(User user, long idApplication) throws Exception {
 		Assert.notNull(user, "Provide a valid user");
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication + "/users");
 		log.debug("Sending message createUser with user: " + user 
 				+ " and idApplication: " + idApplication
 				+ " to FeedbackOrchestrator at uri " + uri);
-		if (!insertJSONObject(user, uri, HttpStatus.CREATED, token))
-			throw new IFException("There was a problem creating an user : " + user + " in idApplication: " + idApplication);
+		return insertJSONObject(user, uri, HttpStatus.CREATED, token);
 	}
 	
 	@Override
@@ -701,7 +700,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteUser(long idApplication, long idUser) throws Exception {
+	public HttpStatus deleteUser(long idApplication, long idUser) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idParameter");
 		Assert.notNull(idUser, "Provide a valid idUser");
 
@@ -710,7 +709,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 		log.debug("Sending message deleteUser with idUser: " + idUser
 				+ " and idApplication: " + idApplication
 				+ " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -738,15 +737,14 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void createUserGroup(UserGroup userGroup, long idApplication) throws Exception {
+	public HttpStatus createUserGroup(UserGroup userGroup, long idApplication) throws Exception {
 		Assert.notNull(userGroup, "Provide a valid userGroup");
 		Assert.notNull(idApplication, "Provide a valid idApplication");
 		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/applications/" + idApplication + "/user_groups");
 		log.debug("Sending message createUserGroup with userGroup: " + userGroup 
 				+ " and idApplication: " + idApplication
 				+ " to FeedbackOrchestrator at uri " + uri);
-		if (!insertJSONObject(userGroup, uri, HttpStatus.CREATED, token))
-			throw new IFException("There was a problem creating a user group: " + userGroup + " in idApplication: " + idApplication);
+		return insertJSONObject(userGroup, uri, HttpStatus.CREATED, token);
 	}
 	
 	@Override
@@ -774,7 +772,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 	}
 
 	@Override
-	public void deleteUserGroup(long idApplication, long idUserGroup) throws Exception {
+	public HttpStatus deleteUserGroup(long idApplication, long idUserGroup) throws Exception {
 		Assert.notNull(idApplication, "Provide a valid idParameter");
 		Assert.notNull(idUserGroup, "Provide a valid idUserGroup");
 
@@ -783,7 +781,7 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 		log.debug("Sending message deleteUserGroup with idUserGroup: " + idUserGroup
 				+ " and idApplication: " + idApplication
 				+ " to FeedbackOrchestrator at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK, token);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 
 	@Override
@@ -904,7 +902,39 @@ public class FeedbackOrchestratorProxy<T, S> extends IFServiceProxy<T, S> implem
 				+ " to FeedbackOrchestrator at uri " + uri);
 		
 		return updateJSONObjectAndReturnAnotherType("{}", new ArrayList<Parameter>().getClass(), uri, HttpStatus.OK, token);
-
+	}
+	
+	//Mechanism parameter
+	@Override
+	public Parameter createParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception{
+		Assert.notNull(parameter, "Provide a valid parameter");
+		Assert.notNull(mechanismId, "Provide a valid mechanismId");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/mechanisms/" + mechanismId + "/parameters");
+		log.debug("Sending message createParameterInMechanism with parameter: " + parameter 
+				+ " and mechanismId: " + mechanismId
+				+ " to FeedbackOrchestrator at uri " + uri);
+		return insertandReturnJSONObject(parameter, uri, HttpStatus.CREATED, token);
+	}
+	
+	@Override
+	public Parameter updateParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception{
+		Assert.notNull(parameter, "Provide a valid parameter");
+		Assert.notNull(parameter.getId(), "Provide a valid parameter with not null id");
+		Assert.notNull(mechanismId, "Provide a valid mechanismId");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/mechanisms/" + mechanismId + "/parameters/" + parameter.getId());
+		log.debug("Sending message updateParameterInMechanism with parameter: " + parameter 
+				+ " and mechanismId: " + mechanismId
+				+ " to FeedbackOrchestrator at uri " + uri);
+		return updateAndReturnJSONObject(parameter, uri, HttpStatus.OK, token);
+	}
+	
+	@Override
+	public HttpStatus deleteParameterInMechanism (long parameterId, Integer mechanismId) throws Exception{
+		Assert.notNull(parameterId, "Provide a valid idParameter");
+		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + "/mechanisms/" + mechanismId + "/parameters/" + parameterId);
+		log.debug("Sending message deleteParameterInMechanism with parameterId: " + parameterId
+				+ " to FeedbackOrchestrator at uri " + uri);
+		return deleteUriResource(uri, HttpStatus.OK, token);
 	}
 	
 }

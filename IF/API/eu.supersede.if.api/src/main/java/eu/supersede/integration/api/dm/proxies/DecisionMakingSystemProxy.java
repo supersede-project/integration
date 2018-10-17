@@ -35,7 +35,7 @@ public class DecisionMakingSystemProxy <T, S> extends IFServiceProxy<T,S> implem
 	private final static String SUPERSEDE_DMGAME_ENDPOINT = IntegrationProperty.getProperty("dmgame.endpoint");
 	
 	@Override
-	public boolean notifyAlert(Alert alert)  {
+	public HttpStatus notifyAlert(Alert alert)  {
 		try {
 			Assert.notNull(alert, "Provide a valid alert");
 			String suri = SUPERSEDE_DMGAME_ENDPOINT + "public/monitoring/alert";
@@ -44,7 +44,7 @@ public class DecisionMakingSystemProxy <T, S> extends IFServiceProxy<T,S> implem
 			return insertJSONObject(alert, uri, HttpStatus.OK);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 

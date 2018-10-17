@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.monitoring.manager.types.GooglePlayMonitorConfiguration;
 
 public interface IGooglePlayMonitor {
@@ -26,5 +28,5 @@ public interface IGooglePlayMonitor {
 			throws Exception;
 	public GooglePlayMonitorConfiguration updateMonitorConfiguration(GooglePlayMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception;
+	public HttpStatus deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception;
 }

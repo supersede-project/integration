@@ -1,10 +1,13 @@
 package eu.supersede.integration.api.adaptation.dashboard.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Calendar;
 import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.dashboad.types.Action;
@@ -20,7 +23,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@BeforeClass
 	public static void setup() throws Exception{
-		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "senercon");
+		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		
 		List<Adaptation> adaptations = proxy.getAllAdaptations();
 		Assert.notEmpty(adaptations);
@@ -50,7 +53,7 @@ public class AdaptationDashboardProxyTest {
 		adaptation = proxy.getAdaptation(adaptation.getFc_id());
 		Assert.notNull(adaptation);
 		
-		proxy.deleteAdaptation(adaptation.getFc_id());
+		assertEquals(proxy.deleteAdaptation(adaptation.getFc_id()), HttpStatus.OK);
 	}
 	
 	@Test
@@ -59,7 +62,7 @@ public class AdaptationDashboardProxyTest {
 		adaptation = proxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation); 
 		
-		proxy.deleteAdaptation(adaptation.getFc_id());
+		assertEquals(proxy.deleteAdaptation(adaptation.getFc_id()), HttpStatus.OK);
 	}
 
 	private Adaptation createAdaptation(String fc_id) {
@@ -85,14 +88,16 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testGetAllEnactments() throws Exception {
-		List<Enactment> adaptations = proxy.getAllEnactments();
-		Assert.notNull(adaptations);
+		List<Enactment> enactments = proxy.getAllEnactments();
+		Assert.notNull(enactments);
 	}
 	
 	@Test
 	public void testGetEnactment() throws Exception {
-		Enactment enactment = proxy.getEnactment(enactmentId);
-//		Assert.notNull(enactment);
+		List<Enactment> enactments = proxy.getAllEnactments();
+		Assert.notNull(enactments);
+		Enactment enactment = proxy.getEnactment(enactments.get(0).getFc_id());
+		Assert.notNull(enactment);
 	}
 	
 	@Test
@@ -104,8 +109,8 @@ public class AdaptationDashboardProxyTest {
 		enactment = proxy.addEnactment(enactment);
 		Assert.notNull(enactment); 
 		
-		proxy.deleteEnactment(adaptation.getFc_id());
-		proxy.deleteAdaptation(adaptation.getFc_id());
+		assertEquals(proxy.deleteEnactment(adaptation.getFc_id()), HttpStatus.OK);
+		assertEquals(proxy.deleteAdaptation(adaptation.getFc_id()), HttpStatus.OK);
 	}
 
 	private Enactment createEnactment(String fc_id) {

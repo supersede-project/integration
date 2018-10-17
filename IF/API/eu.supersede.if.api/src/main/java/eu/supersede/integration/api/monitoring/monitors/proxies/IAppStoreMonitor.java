@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.monitoring.manager.types.AppStoreMonitorConfiguration;
 
 public interface IAppStoreMonitor {
@@ -26,5 +28,5 @@ public interface IAppStoreMonitor {
 			throws Exception;
 	public AppStoreMonitorConfiguration updateMonitorConfiguration(AppStoreMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception;
+	public HttpStatus deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception;
 }

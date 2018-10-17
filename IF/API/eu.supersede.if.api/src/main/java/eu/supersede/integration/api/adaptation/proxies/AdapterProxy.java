@@ -56,7 +56,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 
 
 	@Override
-	public boolean enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
+	public HttpStatus enactAdaptationDecisionActions(ModelSystem system, List<String> adaptationDecisionActionIds,
 			String featureConfigurationId) throws Exception {
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(adaptationDecisionActionIds, "Provide valid adaptationDecisionActionIds");
@@ -72,7 +72,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 	}
 
 	@Override
-	public boolean enactAdaptationDecisionActionsForFC(ModelSystem system, String featureConfigurationId)
+	public HttpStatus enactAdaptationDecisionActionsForFC(ModelSystem system, String featureConfigurationId)
 			throws Exception {
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
@@ -83,7 +83,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 	}
 
 	@Override
-	public boolean enactAdaptationDecisionActionsInFCasString(ModelSystem system,
+	public HttpStatus enactAdaptationDecisionActionsInFCasString(ModelSystem system,
 			List<String> adaptationDecisionActionIds, String featureConfigurationAsString, String featureConfigurationId) throws Exception {
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(adaptationDecisionActionIds, "Provide valid adaptationDecisionActionIds");
@@ -105,7 +105,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 	}
 	
 	@Override
-	public boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString, String featureConfigurationId) throws Exception {
+	public HttpStatus enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString, String featureConfigurationId) throws Exception {
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(featureConfigurationAsString, "Provide a valid featureConfigurationAsString");
 		Assert.isTrue(!featureConfigurationAsString.isEmpty(), "Provide a not empty featureConfigurationAsString content");
@@ -122,7 +122,7 @@ public class AdapterProxy <T, S> extends IFServiceProxy<T, S> implements IAdapte
 	}
 
 	@Override
-	public boolean enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws Exception {
+	public HttpStatus enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws Exception {
 		Assert.notNull(system, "Provide a valid system");
 		Assert.notNull(featureConfigurationId, "Provide a valid featureConfigurationId");
 		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + "featureConfiguration/" + featureConfigurationId + "/system/" + system;

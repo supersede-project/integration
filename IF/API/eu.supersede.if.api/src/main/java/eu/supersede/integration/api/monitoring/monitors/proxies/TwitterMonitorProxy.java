@@ -22,6 +22,7 @@ package eu.supersede.integration.api.monitoring.monitors.proxies;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -56,9 +57,9 @@ public class TwitterMonitorProxy<T, S> extends MonitorProxy implements ITwitterM
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+	public HttpStatus deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		deleteMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf));
+		return deleteMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf));
 	}
 
 }

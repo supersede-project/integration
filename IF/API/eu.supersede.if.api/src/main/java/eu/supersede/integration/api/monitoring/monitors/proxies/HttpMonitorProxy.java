@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 import org.springframework.util.LinkedMultiValueMap;
 
@@ -65,9 +66,9 @@ public class HttpMonitorProxy<T, S> extends MonitorProxy implements IHttpMonitor
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception {
+	public HttpStatus deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		deleteMonitorConfiguration(new HttpMonitorConfigurationRequest(conf));
+		return deleteMonitorConfiguration(new HttpMonitorConfigurationRequest(conf));
 	}
 	
 	@Override

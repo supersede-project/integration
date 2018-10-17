@@ -19,10 +19,12 @@
  *******************************************************************************/
 package eu.supersede.integration.api.adaptation.proxies;
 
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.adaptation.types.AdaptationMode;
 
 public interface IAdaptationConfiguration {
 	 AdaptationMode getAdaptationConfigurationMode() throws Exception;
-	 void setAdaptationConfigurationMode(AdaptationMode mode) throws Exception;
+	 HttpStatus setAdaptationConfigurationMode(AdaptationMode mode) throws Exception;
 }
 

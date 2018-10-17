@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfiguration;
 
 public interface IDiskMonitor {
@@ -26,5 +28,5 @@ public interface IDiskMonitor {
 			throws Exception;
 	public DiskMonitorConfiguration updateMonitorConfiguration(DiskMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception;
+	public HttpStatus deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception;
 }

@@ -19,13 +19,18 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 
+import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
+import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.monitoring.manager.proxies.MonitorManagerProxy;
 import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
 import eu.supersede.integration.api.monitoring.manager.types.Method;
@@ -43,15 +48,14 @@ public class MonitorManagerProxyTest {
 		proxy = new MonitorManagerProxy<MonitorSpecificConfiguration, Object>();
 	}
 
-	
 	@Test
 	public void testCreateUpdateAndDeleteTwitterMonitorConfiguration() throws Exception {
 		TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
 		conf = proxy.createMonitorConfiguration(conf);
 		Assert.assertNotNull(conf);
 		conf.setTimeSlot(60);
-		proxy.updateMonitorConfiguration(conf);
-		proxy.deleteMonitorConfiguration(conf);
+		assertEquals(proxy.updateMonitorConfiguration(conf), HttpStatus.OK);
+		assertEquals(proxy.deleteMonitorConfiguration(conf), HttpStatus.OK);
 	}
 
 	private TwitterMonitorConfiguration createTwitterMonitorConfiguration() throws MalformedURLException {
@@ -61,10 +65,10 @@ public class MonitorManagerProxyTest {
 		twitterConf.setKafkaEndpoint(new URL("http://localhost:9092"));
 		twitterConf.setKafkaTopic("tweeterMonitoring");
 		twitterConf.setKeywordExpression("(olympics) AND (streaming)");
-		
+
 		return twitterConf;
 	}
-	
+
 	@Ignore
 	@Test
 	public void testCreateUpdateAndDeleteHttpMonitorConfiguration() throws Exception {
@@ -72,8 +76,8 @@ public class MonitorManagerProxyTest {
 		conf = proxy.createMonitorConfiguration(conf);
 		Assert.assertNotNull(conf);
 		conf.setTimeSlot(60);
-		proxy.updateMonitorConfiguration(conf);
-		proxy.deleteMonitorConfiguration(conf);
+		assertEquals(proxy.updateMonitorConfiguration(conf), HttpStatus.OK);
+		assertEquals(proxy.deleteMonitorConfiguration(conf), HttpStatus.OK);
 	}
 
 	private HttpMonitorConfiguration createHttpMonitorConfiguration() throws MalformedURLException {
@@ -83,7 +87,7 @@ public class MonitorManagerProxyTest {
 		httpConf.setKafkaTopic("httpStress");
 		httpConf.setUrl("http://lab-supersede.atos-sports.tv:8000/handshake_test.php");
 		httpConf.setMethod(Method.GET);
-				
+
 		return httpConf;
 	}
 

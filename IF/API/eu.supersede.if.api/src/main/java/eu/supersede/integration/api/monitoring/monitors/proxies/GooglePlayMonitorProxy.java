@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
+import org.springframework.http.HttpStatus;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.supersede.integration.api.monitoring.manager.types.GooglePlayMonitorConfiguration;
@@ -50,8 +52,8 @@ public class GooglePlayMonitorProxy<T, S> extends MonitorProxy implements IGoogl
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception {
-		deleteMonitorConfiguration(new GooglePlayMonitorConfigurationRequest(conf));
+	public HttpStatus deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception {
+		return deleteMonitorConfiguration(new GooglePlayMonitorConfigurationRequest(conf));
 	}
 
 }

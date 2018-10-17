@@ -19,38 +19,31 @@
  *******************************************************************************/
 package eu.supersede.integration.api.replan.controller.proxies.test;
 
-import java.time.LocalDateTime;
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.replan.controller.proxies.IReplanController;
 import eu.supersede.integration.api.replan.controller.proxies.ReplanControllerProxy;
-import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
-import eu.supersede.integration.api.replan.controller.types.Constraint;
 import eu.supersede.integration.api.replan.controller.types.Feature;
 import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
-import eu.supersede.integration.api.replan.controller.types.FeatureWP3;
-import eu.supersede.integration.api.replan.controller.types.Format;
 import eu.supersede.integration.api.replan.controller.types.Plan;
-import eu.supersede.integration.api.replan.controller.types.Priority;
 import eu.supersede.integration.api.replan.controller.types.Project;
-import eu.supersede.integration.api.replan.controller.types.Property;
 import eu.supersede.integration.api.replan.controller.types.Release;
+import eu.supersede.integration.api.replan.controller.types.ReplanIdentifiableObject;
 import eu.supersede.integration.api.replan.controller.types.Resource;
 import eu.supersede.integration.api.replan.controller.types.Skill;
-import eu.supersede.integration.api.replan.controller.types.SoftDependency;
-import eu.supersede.integration.api.replan.controller.types.SoftDependencyType;
 
 public class ReplanControllerProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
@@ -96,8 +89,7 @@ public class ReplanControllerProxyTest {
     	
     	//Create Release
     	Release release = createRelease();
-    	boolean result = proxy.addReleaseOfProjectById(release, projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.addReleaseOfProjectById(release, projectId), HttpStatus.OK);
     	List<Release> releases = proxy.getReleasesOfProjectById(projectId);
     	Assert.notEmpty(releases);
     	Assert.notNull(releases.get(0).getId());
@@ -111,19 +103,19 @@ public class ReplanControllerProxyTest {
     @AfterClass
     public static void cleanup() throws Exception {
     	//Clean test project skill
-    	Assert.isTrue(proxy.deleteSkillByIdOfProjectById(skillId, projectId));
+    	assertEquals(proxy.deleteSkillByIdOfProjectById(skillId, projectId), HttpStatus.OK);
     	
     	//Clean test project feature
-    	Assert.isTrue(proxy.deleteFeatureByIdOfProjectById(featureId, projectId));
+    	assertEquals(proxy.deleteFeatureByIdOfProjectById(featureId, projectId), HttpStatus.OK);
     	
     	//Clean test project resource
-    	Assert.isTrue(proxy.deleteResourceByIdOfProjectById(resourceId, projectId));
+    	assertEquals(proxy.deleteResourceByIdOfProjectById(resourceId, projectId), HttpStatus.OK);
     	
     	//Clean test project release
-    	Assert.isTrue(proxy.deleteReleaseByIdOfProjectById(releaseId, projectId));
+    	assertEquals(proxy.deleteReleaseByIdOfProjectById(releaseId, projectId), HttpStatus.OK);
     	
         //Clean test project
-    	Assert.isTrue(proxy.deleteProjectById(projectId));
+    	assertEquals(proxy.deleteProjectById(projectId), HttpStatus.OK);
     }
 
     @Test
@@ -231,7 +223,7 @@ public class ReplanControllerProxyTest {
     	project = proxy.createProject(project);
     	Assert.notNull(project);
     	Assert.notNull(project.getId());
-    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
+    	assertEquals(proxy.deleteProjectById(project.getId()), HttpStatus.OK);
     }
     
     private static Project createProject() {
@@ -254,8 +246,8 @@ public class ReplanControllerProxyTest {
     	feature = proxy.createFeatureOfProjectById(feature, project.getId());
     	Assert.notNull(feature);
     	Assert.notNull(feature.getId());
-    	Assert.isTrue(proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
+    	assertEquals(proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()), HttpStatus.OK);
+    	assertEquals(proxy.deleteProjectById(project.getId()), HttpStatus.OK);
     }
     
 	private static Feature createFeature() {
@@ -291,10 +283,10 @@ public class ReplanControllerProxyTest {
     	project.setDescription(project.getDescription() + " modified by test");
     	project = proxy.updateProject(project);
     	Assert.notNull(project);
-    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
+    	assertEquals(proxy.deleteProjectById(project.getId()), HttpStatus.OK);
     }
     
-    @Ignore @Test
+    @Test @Ignore
     public void testUpdateFeatureOfProjectById() throws Exception{
     	Project project = createProject();
     	project = proxy.createProject(project);
@@ -315,8 +307,8 @@ public class ReplanControllerProxyTest {
     	proxy.updateFeatureOfProjectById(feature, projectId);
     	Assert.notNull(feature);
     	
-    	Assert.isTrue(proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-    	Assert.isTrue(proxy.deleteProjectById(project.getId()));
+    	assertEquals(proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()), HttpStatus.OK);
+    	assertEquals(proxy.deleteProjectById(project.getId()), HttpStatus.OK);
     }
     
     @Test
@@ -378,6 +370,9 @@ public class ReplanControllerProxyTest {
     	
     	feature = proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), projectId);
     	Assert.notNull(feature);
+    	
+    	//TODO: Test Improvement: check skills was already removed
+    	
     }
     
     @Test
@@ -440,11 +435,9 @@ public class ReplanControllerProxyTest {
     	
     	List<Feature> featuresToAdd = new ArrayList<>();
     	featuresToAdd.add(features.get(0));
-    	boolean result = proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId), HttpStatus.OK);
     	
-    	result = proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId), HttpStatus.OK);
     }
     
     @Test
@@ -456,8 +449,7 @@ public class ReplanControllerProxyTest {
     	skill = proxy.addSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
     	
-    	boolean result = proxy.deleteSkillByIdOfProjectById(skill.getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.deleteSkillByIdOfProjectById(skill.getId(), projectId), HttpStatus.OK);
     }
     
     @Test
@@ -470,11 +462,22 @@ public class ReplanControllerProxyTest {
     	resource = proxy.addResourceOfProjectById(resource, projectId);
     	Assert.notNull(resource);
     	
-    	boolean result = proxy.deleteResourceByIdOfProjectById(resource.getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.deleteResourceByIdOfProjectById(resource.getId(), projectId), HttpStatus.OK);
+
     }
     
-    @Test
+    private <T extends ReplanIdentifiableObject> boolean containsId(List<T> collection, Integer id) {
+		boolean result = false;
+		for (T object: collection){
+			if (object.getId() == id){
+				result = true;
+				break;
+			}
+		}
+		return result;
+	}
+
+	@Test
     public void testAddDeleteSkillsOfResourceByIdOfProjectById() throws Exception{
     	List<Skill> skills = proxy.getSkillsOfProjectById(projectId);
     	Assert.notNull(skills);
@@ -586,8 +589,7 @@ public class ReplanControllerProxyTest {
     	
     	List<Feature> featuresToAdd = new ArrayList<>();
     	featuresToAdd.add(features.get(0));
-    	boolean result = proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), projectId), HttpStatus.OK);
     	
     	List<Feature> featuresOfRelease = proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.notNull(features);
@@ -597,8 +599,7 @@ public class ReplanControllerProxyTest {
     	List<Feature> featuresToDelete = new ArrayList<>();
     	featuresToDelete.add(features.get(0));
     	
-    	result = proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), projectId), HttpStatus.OK);
     	
     	featuresOfRelease = proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), projectId);
     	Assert.notNull(features);
@@ -627,12 +628,11 @@ public class ReplanControllerProxyTest {
     	skill = proxy.addSkillOfProjectById(skill, projectId);
     	Assert.notNull(skill);
     	
-    	boolean result = proxy.deleteSkillByIdOfProjectById(skill.getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals( proxy.deleteSkillByIdOfProjectById(skill.getId(), projectId), HttpStatus.OK);
     }
     
     @Test
-    public void tesDeleteResourceOfProjectById() throws Exception{
+    public void testDeleteResourceOfProjectById() throws Exception{
     	Resource resource = new Resource();
     	resource.setName("Atos test: Swift Developer");
     	resource.setDescription("Atos test: Swift developer with experience on iOS 10");
@@ -641,8 +641,11 @@ public class ReplanControllerProxyTest {
     	resource = proxy.addResourceOfProjectById(resource, projectId);
     	Assert.notNull(resource);
     	
-    	boolean result = proxy.deleteResourceByIdOfProjectById(resource.getId(), projectId);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.deleteResourceByIdOfProjectById(resource.getId(), projectId), HttpStatus.OK);
+    	
+    	//Test Improvement: check resource was already removed
+    	List<Resource> resources = proxy.getResourcesOfProjectById(projectId);
+    	Assert.isTrue(!containsId (resources, resource.getId()));
     }
     
     

@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.mdm.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.List;
@@ -27,6 +29,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.types.Tenant;
@@ -131,8 +134,7 @@ public class MetadataManagementProxyTest {
 	@Test
 	public void testSendFiles() throws Exception{
 		Path filePath = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-		boolean result = proxy.sendFile(filePath);
-		Assert.isTrue(result);
+		assertEquals(proxy.sendFile(filePath), HttpStatus.OK);
 	}
 	
 	@Test

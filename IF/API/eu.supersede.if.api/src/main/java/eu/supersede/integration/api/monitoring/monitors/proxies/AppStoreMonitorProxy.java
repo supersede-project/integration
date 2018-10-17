@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.monitors.proxies;
 
+import org.springframework.http.HttpStatus;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import eu.supersede.integration.api.monitoring.manager.types.AppStoreMonitorConfiguration;
@@ -50,8 +52,8 @@ public class AppStoreMonitorProxy<T, S> extends MonitorProxy implements IAppStor
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception {
-		deleteMonitorConfiguration(new AppStoreMonitorConfigurationRequest(conf));
+	public HttpStatus deleteMonitorConfiguration(AppStoreMonitorConfiguration conf) throws Exception {
+		return deleteMonitorConfiguration(new AppStoreMonitorConfigurationRequest(conf));
 	}
 
 }

@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +28,7 @@ import org.joda.time.field.UnsupportedDurationField;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy;
@@ -65,7 +68,7 @@ public class MonitoringOrchestratorProxyTest {
 		result = proxy.getMonitorType(result.getName());
 		Assert.notNull(result);
 
-		proxy.deleteMonitorType(result);
+		assertEquals(proxy.deleteMonitorType(result), HttpStatus.OK);
 	}
 
 	private MonitorType createMonitorType() throws Exception {
@@ -96,9 +99,9 @@ public class MonitoringOrchestratorProxyTest {
 		monitorTool = proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
 		Assert.notNull(monitorTool);
 
-		proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+		assertEquals(proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName()), HttpStatus.OK);
 
-		proxy.deleteMonitorType(monitorType);
+		assertEquals(proxy.deleteMonitorType(monitorType), HttpStatus.OK);
 	}
 
 	private MonitorTool createMonitorTool(MonitorType monitorType) throws Exception {
@@ -153,12 +156,12 @@ public class MonitoringOrchestratorProxyTest {
 					monitorConfigurationResult, monitorTool.getName(), monitorType.getName());
 		Assert.notNull(monitorConfigurationResult);
 
-		proxy.deleteMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(),
-				monitorType.getName());
+		assertEquals(proxy.deleteMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(),
+				monitorType.getName()), HttpStatus.OK);
 
-		proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+		assertEquals(proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName()), HttpStatus.OK);
 
-		proxy.deleteMonitorType(monitorType);
+		assertEquals(proxy.deleteMonitorType(monitorType), HttpStatus.OK);
 	}
 
 }

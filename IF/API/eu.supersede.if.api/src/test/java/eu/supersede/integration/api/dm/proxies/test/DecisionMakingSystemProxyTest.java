@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.dm.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.dm.proxies.DecisionMakingSystemProxy;
@@ -50,8 +53,7 @@ public class DecisionMakingSystemProxyTest {
     @Test
     public void testNotifyAlert() throws Exception{
     	Alert alert = createAlert();
-    	boolean result = proxy.notifyAlert(alert);
-    	Assert.isTrue(result);
+    	assertEquals(proxy.notifyAlert(alert), HttpStatus.OK);
     }
 
 	private Alert createAlert() {

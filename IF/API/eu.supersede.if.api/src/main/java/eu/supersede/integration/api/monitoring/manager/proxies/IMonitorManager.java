@@ -19,10 +19,12 @@
  *******************************************************************************/
 package eu.supersede.integration.api.monitoring.manager.proxies;
 
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration;
 
 public interface IMonitorManager {
 	<T extends MonitorSpecificConfiguration> T createMonitorConfiguration(T conf) throws Exception;
-	<T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception;
-	void deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception;
+	<T extends MonitorSpecificConfiguration> HttpStatus updateMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception;
+	HttpStatus deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception;
 }

@@ -324,8 +324,7 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
-	public <T> boolean insertJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
-		boolean result = false;
+	public <T> HttpStatus insertJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
 			Assert.notNull(uri, "Provide a valid uri");
@@ -333,20 +332,18 @@ public abstract class IFServiceProxy<T, S> {
 					messageClient.postJsonMessage(object, uri, object.getClass());
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
-				result = true;
 			} else {
 				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
-	public <T> boolean insertJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
-		boolean result = false;
+	public <T> HttpStatus insertJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
 			Assert.notNull(uri, "Provide a valid uri");
@@ -355,20 +352,18 @@ public abstract class IFServiceProxy<T, S> {
 					messageClient.postJsonMessage(object, uri, object.getClass(), token);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + object);
-				result = true;
 			} else {
 				log.info("There was a problem inserting JSON object " + object + " in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
-	public boolean insertJSONObject(String json, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
-		boolean result = false;
+	public HttpStatus insertJSONObject(String json, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
 		try {
 			Assert.notNull(json, "Provide a valid json ");
 			Assert.notNull(uri, "Provide a valid uri");
@@ -376,15 +371,14 @@ public abstract class IFServiceProxy<T, S> {
 					messageClient.postJsonMessage(json, uri, String.class, session);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + json);
-				result = true;
 			} else {
 				log.info("There was a problem inserting JSON object " + json + " in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.info("There was a problem inserting JSON object " + json + " in URI: " + uri);
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
@@ -436,8 +430,7 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
-	public <T> Boolean postJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
-		Boolean result = false;
+	public <T> HttpStatus postJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
 			Assert.notNull(uri, "Provide a valid uri");
@@ -456,7 +449,7 @@ public abstract class IFServiceProxy<T, S> {
 					log.info(message);
 				}
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (HttpClientErrorException|HttpServerErrorException e) {
 			log.info("There was a problem posting JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
@@ -558,7 +551,7 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
-	public <T> void updateJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+	public <T> HttpStatus updateJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
 		try {
 			Assert.notNull(object, "Provide a valid object of type " + object.getClass());
 			Assert.notNull(uri, "Provide a valid uri");
@@ -569,7 +562,7 @@ public abstract class IFServiceProxy<T, S> {
 			} else {
 				log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 			}
-			
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.info("There was a problem updating JSON object " + object + " in URI: " + uri);
 			log.error(e.getMessage(), e);
@@ -599,8 +592,7 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
-	public boolean postJSONString(String jsonInput, URI uri, HttpStatus expectedStatus) throws Exception {
-		boolean result = false;
+	public HttpStatus postJSONString(String jsonInput, URI uri, HttpStatus expectedStatus) throws Exception {
 		try {
 			Assert.notNull(jsonInput, "Provide a valid json object");
 			Assert.notNull(uri, "Provide a valid uri");
@@ -608,20 +600,18 @@ public abstract class IFServiceProxy<T, S> {
 					messageClient.postJsonMessage(jsonInput, uri, jsonInput.getClass());
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted JSON object " + jsonInput);
-				result = true;
 			} else {
 				log.info("There was a problem inserting JSON object " + jsonInput + " in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.info("There was a problem inserting JSON object " + jsonInput + " in URI: " + uri);
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
-	public boolean postXMLString(String xmlInput, URI uri, HttpStatus expectedStatus) throws Exception {
-		boolean result = false;
+	public HttpStatus postXMLString(String xmlInput, URI uri, HttpStatus expectedStatus) throws Exception {
 		try {
 			Assert.notNull(xmlInput, "Provide a valid XML object");
 			Assert.notNull(uri, "Provide a valid uri");
@@ -629,15 +619,14 @@ public abstract class IFServiceProxy<T, S> {
 					messageClient.postXmlMessage(xmlInput, uri, xmlInput.getClass());
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully inserted XML object " + xmlInput);
-				result = true;
 			} else {
 				log.info("There was a problem inserting XML object " + xmlInput + " in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.info("There was a problem inserting XML object " + xmlInput + " in URI: " + uri);
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
@@ -650,8 +639,7 @@ public abstract class IFServiceProxy<T, S> {
 	 * @return
 	 * @throws Exception
 	 */
-	public <T> boolean postFormURLEncoded(URI query, Map<String,List<T>> values, HttpStatus expectedStatus) throws Exception {
-		boolean result = false;
+	public <T> HttpStatus postFormURLEncoded(URI query, Map<String,List<T>> values, HttpStatus expectedStatus) throws Exception {
 		try {
 			Assert.notNull(query, "Provide a valid query");
 			Assert.notNull(values, "Provide a valid values");
@@ -672,14 +660,13 @@ public abstract class IFServiceProxy<T, S> {
 			
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully posted query " + query);
-				result = true;
 			} else {
 				log.info("There was a problem posting query query");
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
@@ -724,60 +711,54 @@ public abstract class IFServiceProxy<T, S> {
 		}
 	}
 	
-	public boolean deleteUriResource(URI uri, HttpStatus expectedStatus) throws Exception {
-		boolean result = false;
+	public HttpStatus deleteUriResource(URI uri, HttpStatus expectedStatus) throws Exception {
 		try {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<String> response = 
 					messageClient.deleteJsonMessage(uri);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully delete in uri " + uri);
-				result = true;
 			} else {
 				log.info("There was a problem deleting in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
-	public boolean deleteUriResource(URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
-		boolean result = false;
+	public HttpStatus deleteUriResource(URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
 		try {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<String> response = 
 					messageClient.deleteJsonMessage(uri, session);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully delete in uri " + uri);
-				result = true;
 			} else {
 				log.info("There was a problem deleting in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
-	public boolean deleteUriResource(URI uri, HttpStatus expectedStatus, String token) throws Exception {
-		boolean result = false;
+	public HttpStatus deleteUriResource(URI uri, HttpStatus expectedStatus, String token) throws Exception {
 		try {
 			Assert.notNull(uri, "Provide a valid uri");
 			ResponseEntity<String> response = 
 					messageClient.deleteJsonMessage(uri, token);
 			if (response.getStatusCode().equals(expectedStatus)) {
 				log.info("Successfully delete in uri " + uri);
-				result = true;
 			} else {
 				log.info("There was a problem deleting in URI: " + uri);
 			}
-			return result;
+			return response.getStatusCode();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-			return false;
+			return null;
 		}
 	}
 	
@@ -808,7 +789,7 @@ public abstract class IFServiceProxy<T, S> {
 		return response.getBody();
 	}
 	
-	public boolean sendMultipartFormDataMessage(URI uri, MultiValueMap<String, Object> parts, HttpMethod method, HttpStatus expectedStatus) {
+	public HttpStatus sendMultipartFormDataMessage(URI uri, MultiValueMap<String, Object> parts, HttpMethod method, HttpStatus expectedStatus) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		
@@ -818,7 +799,7 @@ public abstract class IFServiceProxy<T, S> {
 		ResponseEntity<String> response =
 				messageClient.exchange(uri, 
 		                  method, requestEntity, String.class);
-		return response.getStatusCode().equals(expectedStatus);
+		return response.getStatusCode();
 	}
 
 	public <T> String convertToJSON(T object) throws JsonProcessingException {

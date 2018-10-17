@@ -19,8 +19,11 @@
  *******************************************************************************/
 package eu.supersede.integration.api.adaptation.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.proxies.AdaptationConfigurationProxy;
@@ -44,7 +47,7 @@ public class AdaptationConfigurationProxyTest {
 	
 	@Test
 	public void testSetAdaptationConfigurationMode() throws Exception {
-		proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
+		assertEquals(proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED), HttpStatus.OK);
 	}
 	
 	@Test

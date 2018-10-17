@@ -229,7 +229,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean addReleaseOfProjectById(Release release, int projectId) throws Exception {
+	public HttpStatus addReleaseOfProjectById(Release release, int projectId) throws Exception {
 		Assert.notNull(release, "Provide a valid release");
 		Assert.notNull(projectId, "Provide a valid projectId");
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases");
@@ -256,7 +256,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean addFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, int projectId) throws Exception {
+	public HttpStatus addFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, int projectId) throws Exception {
 		Assert.notEmpty(features, "Provide a not-empty list of features");
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(projectId, "Provide a valid projectId");
@@ -340,7 +340,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean deleteReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+	public HttpStatus deleteReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(projectId, "Provide a valid projectId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + releaseId);
@@ -368,7 +368,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	
 	
 	@Override
-	public boolean deleteFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, int projectId) throws Exception {
+	public HttpStatus deleteFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, int projectId) throws Exception {
 		Assert.notEmpty(features, "Provide a not-empty list of features");
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(projectId, "Provide a valid projectId");
@@ -383,7 +383,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean cancelLastPlanOfReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+	public HttpStatus cancelLastPlanOfReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(projectId, "Provide a valid projectId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/releases/" + releaseId + "/plan");
@@ -395,7 +395,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean deleteSkillByIdOfProjectById(int skillId, int projectId) throws Exception {
+	public HttpStatus deleteSkillByIdOfProjectById(int skillId, int projectId) throws Exception {
 		Assert.notNull(skillId, "Provide a valid skillId");
 		Assert.notNull(projectId, "Provide a valid projectId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/skills/" + skillId);
@@ -407,7 +407,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean deleteResourceByIdOfProjectById(int resourceId, int projectId) throws Exception {
+	public HttpStatus deleteResourceByIdOfProjectById(int resourceId, int projectId) throws Exception {
 		Assert.notNull(resourceId, "Provide a valid resourceId");
 		Assert.notNull(projectId, "Provide a valid projectId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/resources/" + resourceId);
@@ -434,8 +434,8 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws ReplanControllerException {
-		boolean result = false;
+	public HttpStatus addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws ReplanControllerException {
+		HttpStatus result = null;
 		Assert.notNull(payload, "Provide a valid payload");
 		Assert.notNull(projectId, "Provide a valid projectId");
 		try {
@@ -501,7 +501,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 
 	@Override
-	public boolean deleteProjectById(int projectId) throws Exception {
+	public HttpStatus deleteProjectById(int projectId) throws Exception {
 		Assert.notNull(projectId, "Provide a valid projectId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId);
 		log.debug("Sending message deleteProjectById with projectId: " + projectId 
@@ -524,7 +524,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 
 	@Override
-	public boolean deleteFeatureByIdOfProjectById(int featureId, int projectId) throws Exception {
+	public HttpStatus deleteFeatureByIdOfProjectById(int featureId, int projectId) throws Exception {
 		Assert.notNull(featureId, "Provide a valid featureId");
 		Assert.notNull(projectId, "Provide a valid projectId");
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + projectId + "/features/" + featureId);
@@ -717,7 +717,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean addReleaseOfProjectById(Release release, String tenantId) throws Exception {
+	public HttpStatus addReleaseOfProjectById(Release release, String tenantId) throws Exception {
 		Assert.notNull(release, "Provide a valid release");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/releases");
@@ -744,7 +744,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean addFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, String tenantId) throws Exception {
+	public HttpStatus addFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, String tenantId) throws Exception {
 		Assert.notEmpty(features, "Provide a not-empty list of features");
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
@@ -828,7 +828,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean deleteReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
+	public HttpStatus deleteReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/releases/" + releaseId);
@@ -856,7 +856,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	
 	
 	@Override
-	public boolean deleteFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, String tenantId) throws Exception {
+	public HttpStatus deleteFeaturesOfReleaseByIdOfProjectById(List<Feature> features, int releaseId, String tenantId) throws Exception {
 		Assert.notEmpty(features, "Provide a not-empty list of features");
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
@@ -871,7 +871,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean cancelLastPlanOfReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
+	public HttpStatus cancelLastPlanOfReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
 		Assert.notNull(releaseId, "Provide a valid releaseId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/releases/" + releaseId + "/plan");
@@ -883,7 +883,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean deleteSkillByIdOfProjectById(int skillId, String tenantId) throws Exception {
+	public HttpStatus deleteSkillByIdOfProjectById(int skillId, String tenantId) throws Exception {
 		Assert.notNull(skillId, "Provide a valid skillId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/skills/" + skillId);
@@ -895,7 +895,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean deleteResourceByIdOfProjectById(int resourceId, String tenantId) throws Exception {
+	public HttpStatus deleteResourceByIdOfProjectById(int resourceId, String tenantId) throws Exception {
 		Assert.notNull(resourceId, "Provide a valid resourceId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/resources/" + resourceId);
@@ -922,8 +922,8 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 	
 	@Override
-	public boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, String tenantId) throws ReplanControllerException {
-		boolean result = false;
+	public HttpStatus addFeaturesToProjectById(AddFeaturesForProjectPayload payload, String tenantId) throws ReplanControllerException {
+		HttpStatus result = null;
 		Assert.notNull(payload, "Provide a valid payload");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		try {
@@ -948,7 +948,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 
 	@Override
-	public boolean deleteProjectById(String tenantId) throws Exception {
+	public HttpStatus deleteProjectById(String tenantId) throws Exception {
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId);
 		log.debug("Sending message deleteProjectById with tenantId: " + tenantId 
@@ -971,7 +971,7 @@ public class ReplanControllerProxy <T, S> extends IFServiceProxy<T, S> implement
 	}
 
 	@Override
-	public boolean deleteFeatureByIdOfProjectById(int featureId, String tenantId) throws Exception {
+	public HttpStatus deleteFeatureByIdOfProjectById(int featureId, String tenantId) throws Exception {
 		Assert.notNull(featureId, "Provide a valid featureId");
 		Assert.notNull(tenantId, "Provide a valid tenantId");
 		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + "projects/" + tenantId + "/features/" + featureId);

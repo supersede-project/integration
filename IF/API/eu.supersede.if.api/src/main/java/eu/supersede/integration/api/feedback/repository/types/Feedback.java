@@ -207,11 +207,11 @@ public class Feedback {
         this.application = application;
     }
 
-	public FeedbackStatus getFeedbackStatus() {
-		return feedbackStatus;
-	}
+    public FeedbackStatus getFeedbackStatus() {
+	return feedbackStatus;
+    }
 
-	public void setFeedbackStatus(FeedbackStatus feedbackStatus) {
-		this.feedbackStatus = feedbackStatus;
-	}
+    public void setFeedbackStatus(FeedbackStatus feedbackStatus) {
+	this.feedbackStatus = feedbackStatus;
+    }
 }

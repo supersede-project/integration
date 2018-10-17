@@ -162,11 +162,11 @@ public abstract class MonitorProxy<T, S> extends IFServiceProxy<T, S> implements
 	// }
 
 	@Override
-	public <T extends MonitorConfigurationRequest> void deleteMonitorConfiguration(T conf) throws Exception {
+	public <T extends MonitorConfigurationRequest> HttpStatus deleteMonitorConfiguration(T conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(endpoint + "configuration/" + conf.getId());
 		log.debug("Sending message deleteMonitorConfiguration with conf: " + conf + " to Monitor at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK);
+		return deleteUriResource(uri, HttpStatus.OK);
 	}
 }

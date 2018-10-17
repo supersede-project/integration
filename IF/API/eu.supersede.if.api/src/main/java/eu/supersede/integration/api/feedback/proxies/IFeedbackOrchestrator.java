@@ -21,6 +21,8 @@ package eu.supersede.integration.api.feedback.proxies;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUser;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserPermission;
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
@@ -41,21 +43,21 @@ public interface IFeedbackOrchestrator {
 	ApiUser createApiUser (ApiUser user) throws Exception;
 	ApiUser updateApiUser (ApiUser user) throws Exception;
 	ApiUser getApiUser (long idUser) throws Exception;
-	void deleteApiUser (long idUser) throws Exception;
+	HttpStatus deleteApiUser (long idUser) throws Exception;
 	
 	//API User Permissions
 	List<ApiUserPermission> getApiUserPermissions (long idUser) throws Exception;
 	ApiUserPermission createApiUserPermission (ApiUserPermission permission, long idUser) throws Exception;
 	ApiUserPermission updateApiUserPermission (ApiUserPermission permission, long idUser) throws Exception;
 	ApiUserPermission getApiUserPermission (long idUser, long idUserPermission) throws Exception;
-	void deleteApiUserPermission (long idUser, long idUserPermission) throws Exception;
+	HttpStatus deleteApiUserPermission (long idUser, long idUserPermission) throws Exception;
 	
 	//Applications
 	List<Application> getApplications() throws Exception;
 	Application createApplication(Application app) throws Exception;
 	Application updateApplication(Application app) throws Exception;
 	Application importApplication(Application app) throws Exception;
-	void deleteApplication(long idApplication) throws Exception;
+	HttpStatus deleteApplication(long idApplication) throws Exception;
 	Application getApplicationWithConfiguration(long idApplication) throws Exception;
 	Application getApplicationWithConfigurationForAllLanguages(long idApplication) throws Exception;
 	Application getApplicationForUser(long idApplication, long idUser) throws Exception;
@@ -68,14 +70,14 @@ public interface IFeedbackOrchestrator {
 	GeneralConfiguration updateGeneralConfigurationOfApplication(GeneralConfiguration generalConfiguration, long idApplication)
 			throws Exception;
 	GeneralConfiguration getGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration) throws Exception;
-	void deleteGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration) throws Exception;
+	HttpStatus deleteGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration) throws Exception;
 	
 	// Configurations
 	List<Configuration> getConfigurations(long idApplication) throws Exception;
 	Configuration createConfiguration(Configuration configuration, long idApplication) throws Exception;
 	Configuration updateConfiguration(Configuration configuration, long idApplication) throws Exception;
 	Configuration getConfiguration(long idApplication, long idConfiguration) throws Exception;
-	void deleteConfiguration(long idApplication, long idConfiguration) throws Exception;
+	HttpStatus deleteConfiguration(long idApplication, long idConfiguration) throws Exception;
 	
 	Configuration createPullConfigurationForUserInfo(Message message, long idApplication, long idUser) throws Exception;
 	
@@ -84,21 +86,21 @@ public interface IFeedbackOrchestrator {
 	GeneralConfiguration createGeneralConfigurationOfConfiguration(GeneralConfiguration generalConfiguration, long idApplication, long idConfiguration) throws Exception;
 	GeneralConfiguration updateGeneralConfigurationOfConfiguration(GeneralConfiguration generalConfiguration, long idApplication, long idConfiguration) throws Exception;
 	GeneralConfiguration getGeneralConfigurationOfConfiguration(long idApplication, long idConfiguration, long idGeneralConfiguration) throws Exception;
-	void deleteGeneralConfigurationsOfConfiguration(long idApplication, long idConfiguration, long idGeneralConfiguration) throws Exception;
+	HttpStatus deleteGeneralConfigurationsOfConfiguration(long idApplication, long idConfiguration, long idGeneralConfiguration) throws Exception;
 	
 	//Configuration Mechanisms
 	List<Mechanism> getMechanismsOfConfiguration(long idApplication, long idConfiguration) throws Exception;
 	Mechanism createMechanismOfConfiguration(Mechanism Mechanism, long idApplication, long idConfiguration) throws Exception;
 	Mechanism updateMechanismOfConfiguration(Mechanism Mechanism, long idApplication, long idConfiguration) throws Exception;
 	Mechanism getMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism) throws Exception;
-	void deleteMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism) throws Exception;
+	HttpStatus deleteMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism) throws Exception;
 	
 	//Application Mechanisms
 	List<Mechanism> getMechanismsOfApplication(long idApplication) throws Exception;
 	Mechanism createMechanismOfApplication(Mechanism Mechanism, long idApplication) throws Exception;
 	Mechanism updateMechanismOfApplication(Mechanism Mechanism, long idApplication) throws Exception;
 	Mechanism getMechanismOfApplication(long idApplication, long idMechanism) throws Exception;
-	void deleteMechanismOfApplication(long idApplication, long idMechanism) throws Exception;
+	HttpStatus deleteMechanismOfApplication(long idApplication, long idMechanism) throws Exception;
 	
 	//Mechanism parameter
 	List<Parameter> getMechanismParameters(long idApplication, long idMechanism) throws Exception;
@@ -108,22 +110,22 @@ public interface IFeedbackOrchestrator {
 	Parameter createParameter(Parameter Parameter) throws Exception;
 	Parameter updateParameter(Parameter Parameter) throws Exception;
 	Parameter getParameter(long idParameter) throws Exception;
-	void deleteParameter(long idParameter) throws Exception;
+	HttpStatus deleteParameter(long idParameter) throws Exception;
 	
 	//Users
 	List<User> getUsers(long idApplication) throws Exception;
-	void createUser (User user, long idApplication) throws Exception;
+	HttpStatus createUser (User user, long idApplication) throws Exception;
 	User updateUser (User user, long idApplication) throws Exception;
 	User getUser (long idApplication, long idUser) throws Exception;
-	void deleteUser (long idApplication, long idUser) throws Exception;
+	HttpStatus deleteUser (long idApplication, long idUser) throws Exception;
 	User updateUser (User user, long idApplication, long idUser) throws Exception;
 	
 	//Groups
 	List<UserGroup> getUserGroups(long idApplication) throws Exception;
-	void createUserGroup (UserGroup userGroup, long idApplication) throws Exception;
+	HttpStatus createUserGroup (UserGroup userGroup, long idApplication) throws Exception;
 	UserGroup updateUserGroup (UserGroup userGroup, long idApplication) throws Exception;
 	UserGroup getUserGroup (long idApplication, long idUserGroup) throws Exception;
-	void deleteUserGroup (long idApplication, long idUserGroup) throws Exception;
+	HttpStatus deleteUserGroup (long idApplication, long idUserGroup) throws Exception;
 	UserGroup updateUserGroup (UserGroup user, long idApplication, long idUserGroup) throws Exception;
 	
 	//Parameter reordering/switching
@@ -133,5 +135,10 @@ public interface IFeedbackOrchestrator {
 	List<Parameter> reorderParameterOfGeneralConfiguration(long idApplication, long idGeneralConfiguration, long idParam, long order) throws Exception;
 	List<Parameter> switchOrderOfParametersOfParameter(long idApplication, long idParam, long idParam1, long idParam2) throws Exception;
 	List<Parameter> reorderParameterOfParameter(long idApplication, long idParam1, long idParam2, long order) throws Exception;
+	
+	//Mechanism parameter
+	Parameter createParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception;
+	Parameter updateParameterInMechanism (Parameter parameter, Integer mechanismId) throws Exception;
+	HttpStatus deleteParameterInMechanism (long parameterId, Integer mechanismId) throws Exception;
 
 }

@@ -22,6 +22,7 @@ package eu.supersede.integration.api.monitoring.monitors.proxies;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,9 +58,9 @@ public class DiskMonitorProxy<T, S> extends MonitorProxy implements IDiskMonitor
 	}
 
 	@Override
-	public void deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception {
+	public HttpStatus deleteMonitorConfiguration(DiskMonitorConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
-		deleteMonitorConfiguration(new DiskMonitorConfigurationRequest(conf));
+		return deleteMonitorConfiguration(new DiskMonitorConfigurationRequest(conf));
 	}
 
 }

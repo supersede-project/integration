@@ -44,11 +44,11 @@ public class AdaptationConfigurationProxy <T, S> extends IFServiceProxy<T, S> im
 	}
 	
 	@Override
-	public void setAdaptationConfigurationMode(AdaptationMode mode) throws Exception{
+	public HttpStatus setAdaptationConfigurationMode(AdaptationMode mode) throws Exception{
 		Assert.notNull(mode, "Provide a valid adaptation mode");
 		URI uri = new URI(SUPERSEDE_ADAPTATION_CONFIGURATION_ENDPOINT);
 		log.debug("Sending message - setAdaptationConfigurationMode to DM Optimizer at uri " + uri);
-		updateJSONObject(mode, uri, HttpStatus.OK);
+		return updateJSONObject(mode, uri, HttpStatus.OK);
 	}
 
 }

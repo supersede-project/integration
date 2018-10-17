@@ -19,6 +19,8 @@
  *******************************************************************************/
 package eu.supersede.integration.api.adaptation.proxies.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -36,6 +38,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.adaptation.proxies.ModelRepositoryProxy;
@@ -49,6 +52,7 @@ import eu.supersede.integration.api.adaptation.types.ModelType;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
 import eu.supersede.integration.api.adaptation.types.Status;
 import eu.supersede.integration.api.adaptation.types.TypedModelId;
+import eu.supersede.integration.api.replan.controller.types.Project;
 
 public class ModelRepositoryProxyTest {
 	// private static final Logger log =
@@ -64,117 +68,119 @@ public class ModelRepositoryProxyTest {
 		baseModel = result.get(0);
 		Assert.notNull(baseModel);
 	}
-	
+
 	@Test
 	public void testCreateGetAndDeleteAdaptationModel() throws Exception {
-		//Create model
+		// Create model
 		ModelMetadata metadata = createAdatabilityModelMetadata();
 		IModel[] result = proxy.createModelInstances(ModelType.AdaptabilityModel, metadata);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 		AdaptabilityModel am = (AdaptabilityModel) result[0];
-		
-		//Read created model
+
+		// Read created model
 		am = (AdaptabilityModel) proxy.getModelInstance(ModelType.AdaptabilityModel, am.getId());
 		Assert.notNull(am);
-		
-		//Delete created model
-		proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId());
+
+		// Delete created model
+		assertEquals(proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId()), HttpStatus.NO_CONTENT);
 	}
-	
+
 	@Test
 	public void testCreateGetAndDeleteBaseModel() throws Exception {
-		//Create model
+		// Create model
 		ModelMetadata metadata = createBaseModelMetadata();
 		IModel[] result = proxy.createModelInstances(ModelType.BaseModel, metadata);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 		BaseModel am = (BaseModel) result[0];
-		
-		//Read created model
+
+		// Read created model
 		am = (BaseModel) proxy.getModelInstance(ModelType.BaseModel, am.getId());
 		Assert.notNull(am);
-		
-		//Delete created model
-		proxy.deleteModelInstance(ModelType.BaseModel, am.getId());
+
+		// Delete created model
+		assertEquals(proxy.deleteModelInstance(ModelType.BaseModel, am.getId()), HttpStatus.NO_CONTENT);
 	}
-	
+
 	@Test
 	public void testCreateUpdateAndDeleteAdaptationModel() throws Exception {
-		//Create model
+		// Create model
 		ModelMetadata metadata = createAdatabilityModelMetadata();
 		IModel[] result = proxy.createModelInstances(ModelType.AdaptabilityModel, metadata);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 		AdaptabilityModel am = (AdaptabilityModel) result[0];
-		
-		//Update created model
+
+		// Update created model
 		ModelUpdateMetadata mum = createModelupdateMetadata(am);
 		am = (AdaptabilityModel) proxy.updateModelInstance(ModelType.AdaptabilityModel, mum, am.getId());
 		Assert.notNull(am);
-		
-		//Delete created model
-		proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId());
+
+		// Delete created model
+		assertEquals(proxy.deleteModelInstance(ModelType.AdaptabilityModel, am.getId()), HttpStatus.NO_CONTENT);
+
 	}
-	
+
 	@Test
 	public void testGetAllAdaptationModels() throws Exception {
 		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
-	
+
 	@Test
 	public void testGetAllFCModels() throws Exception {
 		List<IModel> result = proxy.getModelInstances(ModelType.FeatureConfiguration, ModelSystem.Atos_HSK, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
-	
+
 	@Test
 	public void testGetAllBaseModels() throws Exception {
 		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, null, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
-		
+
 		Collections.sort(result);
-		
+
 		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
 		Assert.notNull(model);
 	}
-	
+
 	@Test
 	public void testGetAllBaseModelsWithQueryMetadata() throws Exception {
 		BaseModel metadata = new BaseModel();
-		metadata.setAuthorId((String)baseModel.getValue("authorId"));
+		metadata.setAuthorId((String) baseModel.getValue("authorId"));
 		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, metadata);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
-		
+
 		Collections.sort(result);
-		
+
 		IModel model = proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
 		Assert.notNull(model.getValue("id"));
 	}
-	
+
 	@Test
 	public void testGetBaseModelsForSystem() throws Exception {
 		List<IModel> result = proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
 		Assert.notNull(result);
 		Assert.notEmpty(result);
 	}
-	
-//	@Test
-//	public void getModelInstance() throws Exception {
-//		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
-//		IModel result = proxy.getModelInstance(modelId);
-//		Assert.notNull(result);
-//	}
-	
+
+	// @Test
+	// public void getModelInstance() throws Exception {
+	// ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, "1");
+	// IModel result = proxy.getModelInstance(modelId);
+	// Assert.notNull(result);
+	// }
+
 	@Test
 	public void getModelInstance() throws Exception {
 		ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, (String) baseModel.getValue("id"));
-		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, (String) baseModel.getValue("relativePath"));
+		IModel result = proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK,
+				(String) baseModel.getValue("relativePath"));
 		Assert.notNull(result);
 	}
 
@@ -182,14 +188,14 @@ public class ModelRepositoryProxyTest {
 		ModelUpdateMetadata mum = new ModelUpdateMetadata();
 		mum.setSender("Adapter");
 		mum.setTimeStamp(Calendar.getInstance().getTime());
-		
+
 		Map<String, Object> values = new HashMap<>();
-		
+
 		values.put("authorId", "marc");
 		values.put("featureId", "GooglePlay_API");
-		
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		
+
 		values.put("lastModificationDate", dateFormat.format(am.getLastModificationDate()));
 		values.put("systemId", am.getSystemId().toString());
 		values.put("fileExtension", am.getFileExtension());
@@ -199,20 +205,20 @@ public class ModelRepositoryProxyTest {
 		values.put("modelContent", am.getModelContent());
 		values.put("creationDate", dateFormat.format(am.getCreationDate()));
 		values.put("dependencies", am.getDependencies());
-		
+
 		mum.setValues(values);
-		
+
 		return mum;
 	}
 
 	private ModelMetadata createAdatabilityModelMetadata() throws IOException {
 		ModelMetadata metadata = new ModelMetadata();
-		
+
 		metadata.setSender("Adapter");
 		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createAdaptabilityModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
-		
+
 		return metadata;
 	}
 
@@ -220,7 +226,7 @@ public class ModelRepositoryProxyTest {
 		List<IModel> modelInstances = new ArrayList<>();
 		AdaptabilityModel am = new AdaptabilityModel();
 		modelInstances.add(am);
-		
+
 		am.setName("googleplay_api_googleplay_tool");
 		am.setAuthorId("zavala");
 		am.setCreationDate(Calendar.getInstance().getTime());
@@ -231,28 +237,29 @@ public class ModelRepositoryProxyTest {
 		am.setRelativePath("path/to/model");
 		am.setDependencies(new ArrayList<TypedModelId>());
 		am.setModelContent(getAdaptabilityModelContent());
-		
+
 		return modelInstances;
 	}
 
 	private String getAdaptabilityModelContent() throws IOException {
 		File f = new File("");
 		List<String> lines = Files.readAllLines(
-			Paths.get(f.getAbsolutePath() + 
-				"/src/test/resources/files/timeslot_twitter.aspect"), StandardCharsets.UTF_8);
+				Paths.get(f.getAbsolutePath() + "/src/test/resources/files/timeslot_twitter.aspect"),
+				StandardCharsets.UTF_8);
 		String content = "";
-		for (String s : lines) content += s + "\n";
+		for (String s : lines)
+			content += s + "\n";
 		return content;
 	}
-	
+
 	private ModelMetadata createBaseModelMetadata() throws IOException {
 		ModelMetadata metadata = new ModelMetadata();
-		
+
 		metadata.setSender("Adapter");
 		metadata.setTimeStamp(Calendar.getInstance().getTime());
 		List<IModel> modelInstances = createBaseModelMetadataInstances();
 		metadata.setModelInstances(modelInstances);
-		
+
 		return metadata;
 	}
 
@@ -260,7 +267,7 @@ public class ModelRepositoryProxyTest {
 		List<IModel> modelInstances = new ArrayList<>();
 		BaseModel am = new BaseModel();
 		modelInstances.add(am);
-		
+
 		am.setName("ATOS Base Model");
 		am.setAuthorId("yosu");
 		am.setCreationDate(Calendar.getInstance().getTime());
@@ -271,19 +278,20 @@ public class ModelRepositoryProxyTest {
 		am.setModelContent(getBaseModelContent());
 		am.setRelativePath("models/base");
 		am.setDependencies(new ArrayList<TypedModelId>());
-		
+
 		return modelInstances;
 	}
 
 	private String getBaseModelContent() throws IOException {
 		File f = new File("");
 		List<String> lines = Files.readAllLines(
-			Paths.get(f.getAbsolutePath() + 
-				"/src/test/resources/files/atos_base_model.uml"), StandardCharsets.UTF_8);
+				Paths.get(f.getAbsolutePath() + "/src/test/resources/files/atos_base_model.uml"),
+				StandardCharsets.UTF_8);
 		String content = "";
-		for (String s : lines) content += s + "\n";
-		content = content.replace("\"","'");
+		for (String s : lines)
+			content += s + "\n";
+		content = content.replace("\"", "'");
 		return content;
 	}
-	
+
 }

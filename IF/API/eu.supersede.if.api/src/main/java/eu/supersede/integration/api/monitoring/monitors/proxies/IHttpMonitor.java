@@ -21,6 +21,8 @@ package eu.supersede.integration.api.monitoring.monitors.proxies;
 
 import java.nio.file.Path;
 
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
 
 public interface IHttpMonitor {
@@ -28,7 +30,7 @@ public interface IHttpMonitor {
 			throws Exception;
 	public HttpMonitorConfiguration updateMonitorConfiguration(HttpMonitorConfiguration conf)
 			throws Exception;
-	public void deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception;
+	public HttpStatus deleteMonitorConfiguration(HttpMonitorConfiguration conf) throws Exception;
 	public HttpMonitorConfiguration createMonitorConfiguration(HttpMonitorConfiguration conf, Path file) throws Exception;
 	public HttpMonitorConfiguration updateMonitorConfiguration(HttpMonitorConfiguration conf, Path file) throws Exception;
 }

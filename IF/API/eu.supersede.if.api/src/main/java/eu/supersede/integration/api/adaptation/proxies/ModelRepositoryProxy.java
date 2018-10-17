@@ -75,12 +75,12 @@ public class ModelRepositoryProxy <T, S> extends IFServiceProxy<T, S> implements
 	}
 
 	@Override
-	public void deleteModelInstance(ModelType modelType, String modelId) throws Exception {
+	public HttpStatus deleteModelInstance(ModelType modelType, String modelId) throws Exception {
 		Assert.notNull(modelType, "Provide a valid model type");
 		Assert.notNull(modelId, "Provide a valid model id");
 		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + "models/" + modelType + "/" + modelId);
 		log.debug("Sending message deleteModelInstance for modelId: " + modelId + " for modelType: " + modelType + " to ModelRepository at uri " + uri);
-		deleteUriResource(uri, HttpStatus.NO_CONTENT);
+		return deleteUriResource(uri, HttpStatus.NO_CONTENT);
 	}
 
 	@Override

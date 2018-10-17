@@ -20,6 +20,9 @@
 package eu.supersede.integration.api.monitoring.orchestrator.proxies;
 
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
+
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorConfiguration;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorTool;
 import eu.supersede.integration.api.monitoring.orchestrator.types.MonitorType;
@@ -29,17 +32,17 @@ public interface IMonitoringOrchestrator {
 	List<MonitorType> listAllMonitorTypes() throws Exception;
 	MonitorType createMonitorType (MonitorType monitorType) throws Exception;
 	MonitorType getMonitorType (String monitorTypeName) throws Exception;
-	void deleteMonitorType (MonitorType monitorType) throws Exception;
+	HttpStatus deleteMonitorType (MonitorType monitorType) throws Exception;
 	
 	//Monitor Tools
 	MonitorTool createMonitorToolForMonitorType (MonitorTool monitorTool, String monitorTypeName) throws Exception;
 	MonitorTool getMonitorToolForMonitorType (String monitorToolName, String monitorTypeName) throws Exception;
-	void deleteMonitorToolForMonitorType (MonitorTool monitorTool, String monitorTypeName) throws Exception;
+	HttpStatus deleteMonitorToolForMonitorType (MonitorTool monitorTool, String monitorTypeName) throws Exception;
 	
 	//Monitor Configurations
 	MonitorConfiguration createMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, 
 			String monitorToolName, String monitorTypeName) throws Exception;
 	MonitorConfiguration getMonitorConfigurationForMonitorToolAndMonitorType (Integer configurationId, String monitorToolName, String monitorTypeName) throws Exception;
 	MonitorConfiguration updateMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, String monitorToolName, String monitorTypeName) throws Exception;
-	void deleteMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, String monitorToolName, String monitorTypeName) throws Exception;
+	HttpStatus deleteMonitorConfigurationForMonitorToolAndMonitorType (MonitorConfiguration monitorConfiguration, String monitorToolName, String monitorTypeName) throws Exception;
 }

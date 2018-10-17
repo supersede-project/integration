@@ -72,23 +72,23 @@ public class MonitorManagerProxy<T extends MonitorSpecificConfiguration, S> exte
 	}
 
 	@Override
-	public <T extends MonitorSpecificConfiguration> void updateMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
+	public <T extends MonitorSpecificConfiguration> HttpStatus updateMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
 		MonitorConfiguration monitorConf = factoryCreateMonitorConfiguration(conf);
 		log.debug("Sending message updateMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
-		updateJSONObject(monitorConf, uri, HttpStatus.OK);
+		return updateJSONObject(monitorConf, uri, HttpStatus.OK);
 	}
 
 
 	@Override
-	public void deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
+	public HttpStatus deleteMonitorConfiguration(MonitorSpecificConfiguration conf) throws Exception {
 		Assert.notNull(conf, "Provide a valid monitor configuration");
 		Assert.notNull(conf.getId(), "Provide a valid monitor configuration id");
 		URI uri = new URI(SUPERSEDE_MONITOR_MANAGER_ENDPOINT + getType (conf) + "/configuration/" + conf.getId());
 		log.debug("Sending message deleteMonitorConfiguration with conf: " + conf + " to MonitorManager at uri " + uri);
-		deleteUriResource(uri, HttpStatus.OK);
+		return deleteUriResource(uri, HttpStatus.OK);
 	}
 
 
