@@ -24,10 +24,6 @@ DSPOT_ITERACTIONS=1
 #Target Test:
 TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest
 
-#JVM parameters
-JAVA_OPTS="-Dsupersede.if.properties=if.development.properties -Dis.admin.user=admin -Dis.admin.passwd='\$2pRSid#'"
-
-
 DSPOT_OPTS="-i $DSPOT_ITERACTIONS -t $TARGET_TEST -a $DSPOT_AMPLIFIERS -s $DSPOT_SELECTOR --timeOut $TIMEOUT --verbose"
 
 echo "DSpot configuration: " $DSPOT_OPTS
@@ -42,7 +38,7 @@ echo "Started DSpot: `date`" > $filename
 echo "DSpot CLI configuration: " $DSPOT_OPTS >> $filename
 echo "DSpot properties file: " $DSPOT_PROPERTIES >> $filename
 
-nohup time java $JAVA_OPTS -jar $DSPOT_JAR -p $DSPOT_PROPERTIES $DSPOT_OPTS | tee -a $filename &
+nohup time java -jar $DSPOT_JAR -p $DSPOT_PROPERTIES $DSPOT_OPTS | tee -a $filename &
 pid_dpot=$!
 ((pid_dpot--)) #Decremented to capture mvn command pid, otherwise it captures tee command pid
 
