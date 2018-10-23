@@ -8,6 +8,7 @@ RESULTS_DIR=/home/stamp/Git/dspot-usecases-output/atos/supersede/IF/DSpot
 DSPOT_JAR_NAME=dspot-1.1.1-SNAPSHOT-jar-with-dependencies.jar
 DSPOT_JAR=/home/stamp/Git/dspot/dspot/target/$DSPOT_JAR_NAME
 DSPOT_OUT=./dspot-out
+rm -rf $DSPOT_OUT
 mkdir -p $DSPOT_OUT
 
 #Time out:
@@ -54,7 +55,7 @@ pid_dpot=$!
 wait $pid_dpot
 
 #copy DSpot results
-cp -r $DSPOT_OUT $RESULTS_DIR
-cp -r $DSPOT_PROPERTIES $RESULTS_DIR
+mv $DSPOT_OUT $RESULTS_DIR
+cp $DSPOT_PROPERTIES $RESULTS_DIR
 
 echo "Ended DSpot: `date`" >> $filename
