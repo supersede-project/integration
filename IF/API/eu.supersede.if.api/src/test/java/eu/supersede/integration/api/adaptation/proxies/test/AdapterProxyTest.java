@@ -72,15 +72,14 @@ public class AdapterProxyTest {
 		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 
 		// //Create adaptation in dashboard
-		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
+		Adaptation adaptation = createAdaptation(new Integer(featureConfigurationId), "SmartPlatformFC_HSK_SingleVM_HighLoad");
 		adaptation = adaptationProxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation);
 
 		List<String> adaptationDecisionActionIds = new ArrayList<>();
 		adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
 		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-		assertEquals(proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId),
-				HttpStatus.OK);
+		assertEquals(HttpStatus.OK, proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId));
 	}
 
 	@Test
@@ -91,7 +90,7 @@ public class AdapterProxyTest {
 		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 
 		// //Create adaptation in dashboard
-		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
+		Adaptation adaptation = createAdaptation(new Integer(featureConfigurationId), "SmartPlatformFC_HSK_SingleVM_HighLoad");
 		adaptation = adaptationProxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation);
 
@@ -100,8 +99,8 @@ public class AdapterProxyTest {
 		adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
 		Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-		assertEquals(proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds,
-				featureConfigurationAsString, featureConfigurationId), HttpStatus.OK);
+		assertEquals(HttpStatus.OK, proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds,
+				featureConfigurationAsString, featureConfigurationId));
 	}
 
 	@Test
@@ -112,13 +111,13 @@ public class AdapterProxyTest {
 		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 
 		// //Create adaptation in dashboard
-		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
+		Adaptation adaptation = createAdaptation(new Integer(featureConfigurationId), "SmartPlatformFC_HSK_SingleVM_HighLoad");
 		adaptation = adaptationProxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation);
 
 		Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 		String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-		assertEquals(proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId), HttpStatus.OK);
+		assertEquals(HttpStatus.OK, proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId));
 	}
 
 	@Test
@@ -127,11 +126,11 @@ public class AdapterProxyTest {
 		String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
 
 		// //Create adaptation in dashboard
-		Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
+		Adaptation adaptation = createAdaptation(new Integer(featureConfigurationId), "SmartPlatformFC_HSK_SingleVM_HighLoad");
 		adaptation = adaptationProxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation);
 
-		assertEquals(proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId), HttpStatus.OK);
+		assertEquals(HttpStatus.OK, proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId));
 	}
 
 	private String uploadLatestComputedFC(String fcName) throws IOException, Exception {
@@ -186,7 +185,7 @@ public class AdapterProxyTest {
 		return content;
 	}
 
-	private Adaptation createAdaptation(String fc_id, String name) {
+	private Adaptation createAdaptation(Integer fc_id, String name) {
 		Adaptation adaptation = new Adaptation();
 		adaptation.setFc_id(fc_id);
 		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());

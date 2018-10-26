@@ -33,8 +33,8 @@ public class Adaptation implements Comparable<Adaptation>{
 		return fc_id.toString();
 	}
 
-	public void setFc_id(String fc_id) {
-		this.fc_id = new Integer(fc_id);
+	public void setFc_id(Integer fc_id) {
+		this.fc_id = fc_id;
 	}
 
 	public String getName() {
