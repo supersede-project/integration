@@ -17,7 +17,7 @@ import eu.supersede.integration.api.json.AdaptationTimeJsonSerializer;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Adaptation implements Comparable<Adaptation>{
 
-    private String fc_id;
+    private Integer fc_id;
 	private String name;
 	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
 	@JsonSerialize(using = AdaptationTimeJsonSerializer.class)
@@ -30,11 +30,11 @@ public class Adaptation implements Comparable<Adaptation>{
 	public Adaptation(){}
     
     public String getFc_id() {
-		return fc_id;
+		return fc_id.toString();
 	}
 
 	public void setFc_id(String fc_id) {
-		this.fc_id = fc_id;
+		this.fc_id = new Integer(fc_id);
 	}
 
 	public String getName() {
