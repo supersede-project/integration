@@ -46,7 +46,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testGetAdaptation() throws Exception {
-		Adaptation adaptation = createAdaptation("905");
+		Adaptation adaptation = createAdaptation(3);
 		adaptation = proxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation); 
 		
@@ -58,14 +58,14 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testAddAdaptation() throws Exception {
-		Adaptation adaptation = createAdaptation("905");
+		Adaptation adaptation = createAdaptation(4);
 		adaptation = proxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation); 
 		
 		assertEquals(proxy.deleteAdaptation(adaptation.getFc_id()), HttpStatus.OK);
 	}
 
-	private Adaptation createAdaptation(String fc_id) {
+	private Adaptation createAdaptation(Integer fc_id) {
 		Adaptation adaptation = new Adaptation();
 		adaptation.setFc_id(fc_id);
 		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
@@ -102,7 +102,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testAddEnactment() throws Exception {
-		Adaptation adaptation = createAdaptation("905");
+		Adaptation adaptation = createAdaptation(5);
 		adaptation = proxy.addAdaptation(adaptation);
 		
 		Enactment enactment = createEnactment(adaptation.getFc_id());

@@ -36,7 +36,7 @@ public class AdaptationDashboardResetTest {
 		}
 		
 		//Create Atos adaptation
-		Adaptation adaptation = createAtosAdaptation();
+		Adaptation adaptation = createAtosAdaptation(1);
 		adaptation = proxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation); 
 		
@@ -45,7 +45,7 @@ public class AdaptationDashboardResetTest {
 		Assert.notNull(enactment); 
 		
 		//Create Siemens adaptation
-		adaptation = createSiemensAdaptation();
+		adaptation = createSiemensAdaptation(2);
 		adaptation = proxy.addAdaptation(adaptation);
 		Assert.notNull(adaptation); 
 		
@@ -55,9 +55,8 @@ public class AdaptationDashboardResetTest {
 	}
 	
 
-	private Adaptation createAtosAdaptation() {
+	private Adaptation createAtosAdaptation(Integer id) {
 		Adaptation adaptation = new Adaptation();
-		String id = "1241";
 		adaptation.setFc_id(id);
 		Calendar computation = Calendar.getInstance();
 		adaptation.setComputation_timestamp(computation.getTime());
@@ -113,9 +112,8 @@ public class AdaptationDashboardResetTest {
 		return enactment;
 	}
 	
-	private Adaptation createSiemensAdaptation() {
+	private Adaptation createSiemensAdaptation(Integer id) {
 		Adaptation adaptation = new Adaptation();
-		String id = "1238";
 		adaptation.setFc_id(id);
 		Calendar computation = Calendar.getInstance();
 		computation.add(Calendar.MINUTE, 10);
