@@ -31,6 +31,7 @@ public class AdaptationDashboardProxyTest {
 		if (adaptations.isEmpty()){
 			createdAdaptation = createAdaptation(1);
 			proxy.addAdaptation(createdAdaptation);
+			adaptations = proxy.getAllAdaptations();
 		}
 		adaptationId = adaptations.get(0).getFc_id();
 		Assert.notNull(adaptationId);

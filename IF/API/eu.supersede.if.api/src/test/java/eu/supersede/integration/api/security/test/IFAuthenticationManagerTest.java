@@ -91,6 +91,7 @@ public class IFAuthenticationManagerTest {
     	am.addUser(user, testUserPassword, requirePasswordChange);
 	}
 	
+        @Ignore
 	@Test //(expected = org.wso2.carbon.user.core.UserStoreException.class)
 	public void throwUserExistWhenAddUserTest() throws UserStoreException, MalformedURLException{
 		User user = am.getUser(testUserName);
