@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Calendar;
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,17 @@ public class AdaptationDashboardProxyTest {
 	private static AdaptationDashboardProxy <Object, Object> proxy;
 	private static String adaptationId;
 	private static String enactmentId;
+	private static Adaptation createdAdaptation;
 	
 	@BeforeClass
 	public static void setup() throws Exception{
 		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		
 		List<Adaptation> adaptations = proxy.getAllAdaptations();
-		Assert.notEmpty(adaptations);
+		if (adaptations.isEmpty()){
+			createdAdaptation = createAdaptation(1);
+			proxy.addAdaptation(createdAdaptation);
+		}
 		adaptationId = adaptations.get(0).getFc_id();
 		Assert.notNull(adaptationId);
 
@@ -36,6 +41,12 @@ public class AdaptationDashboardProxyTest {
 //		enactmentId = enactments.get(0).getFc_id();
 //		Assert.notNull(enactmentId);
 
+	}
+	
+	@AfterClass
+	public static void cleanup() throws Exception{
+		if (createdAdaptation != null)
+			assertEquals(proxy.deleteAdaptation(createdAdaptation.getFc_id()), HttpStatus.OK);
 	}
 
 	@Test
@@ -65,7 +76,7 @@ public class AdaptationDashboardProxyTest {
 		assertEquals(proxy.deleteAdaptation(adaptation.getFc_id()), HttpStatus.OK);
 	}
 
-	private Adaptation createAdaptation(Integer fc_id) {
+	private static Adaptation createAdaptation(Integer fc_id) {
 		Adaptation adaptation = new Adaptation();
 		adaptation.setFc_id(fc_id);
 		adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
@@ -76,7 +87,7 @@ public class AdaptationDashboardProxyTest {
 		return adaptation;
 	}
 
-	private Action createAction() {
+	private static Action createAction() {
 		Action action = new Action ();
 		action.setAction_id("vm2_b_high");
 		action.setDescription("Medium load configuration for HSK service");
@@ -102,7 +113,7 @@ public class AdaptationDashboardProxyTest {
 	
 	@Test
 	public void testAddEnactment() throws Exception {
-		Adaptation adaptation = createAdaptation(5);
+		Adaptation adaptation = createAdaptation(2);
 		adaptation = proxy.addAdaptation(adaptation);
 		
 		Enactment enactment = createEnactment(adaptation.getFc_id());
