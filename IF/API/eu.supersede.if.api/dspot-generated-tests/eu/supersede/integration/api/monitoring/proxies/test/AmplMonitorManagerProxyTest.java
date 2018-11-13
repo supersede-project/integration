@@ -21,7 +21,7 @@ public class AmplMonitorManagerProxyTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        MonitorManagerProxyTest.proxy = new MonitorManagerProxy<eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration, Object>();
+        AmplMonitorManagerProxyTest.proxy = new MonitorManagerProxy<eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfiguration, Object>();
     }
 
     @Test(timeout = 30000)
@@ -44,9 +44,9 @@ public class AmplMonitorManagerProxyTest {
         Assert.assertNull(((URL) (((TwitterMonitorConfiguration) (conf)).getKafkaEndpoint())).getRef());
         Assert.assertEquals("tweeterMonitoring", ((TwitterMonitorConfiguration) (conf)).getKafkaTopic());
         Assert.assertNull(((TwitterMonitorConfiguration) (conf)).getId());
-        conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+        conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
         conf.setTimeSlot(61);
-        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
         Assert.assertEquals("OK", ((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6)).is2xxSuccessful());
@@ -54,7 +54,7 @@ public class AmplMonitorManagerProxyTest {
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6)).is4xxClientError());
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6)).is5xxServerError());
         Assert.assertEquals("200", ((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6)).toString());
-        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
         Assert.assertEquals("OK", ((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7)).is2xxSuccessful());
@@ -108,9 +108,9 @@ public class AmplMonitorManagerProxyTest {
         Assert.assertNull(((URL) (((TwitterMonitorConfiguration) (conf)).getKafkaEndpoint())).getRef());
         Assert.assertEquals("tweeterMonitoring", ((TwitterMonitorConfiguration) (conf)).getKafkaTopic());
         Assert.assertNull(((TwitterMonitorConfiguration) (conf)).getId());
-        conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+        conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
         conf.setTimeSlot(60);
-        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
         Assert.assertEquals("OK", ((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8)).is2xxSuccessful());
@@ -118,7 +118,7 @@ public class AmplMonitorManagerProxyTest {
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8)).is4xxClientError());
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8)).is5xxServerError());
         Assert.assertEquals("200", ((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8)).toString());
-        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+        HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
         Assert.assertEquals("OK", ((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9)).is2xxSuccessful());
@@ -163,10 +163,10 @@ public class AmplMonitorManagerProxyTest {
     public void testCreateUpdateAndDeleteTwitterMonitorConfigurationnull9_failAssert0() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-            conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(null);
+            conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(null);
             conf.setTimeSlot(60);
-            MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
-            MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+            AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationnull9 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("Provide a valid monitor configuration", expected.getMessage());
@@ -177,10 +177,10 @@ public class AmplMonitorManagerProxyTest {
     public void testCreateUpdateAndDeleteTwitterMonitorConfigurationnull11_failAssert1() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-            conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+            conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
             conf.setTimeSlot(60);
-            MonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
-            MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
+            AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationnull11 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("Provide a valid monitor configuration", expected.getMessage());
@@ -191,10 +191,10 @@ public class AmplMonitorManagerProxyTest {
     public void testCreateUpdateAndDeleteTwitterMonitorConfigurationnull12_failAssert2() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-            conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+            conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
             conf.setTimeSlot(60);
-            MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
-            MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
+            AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+            AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
             org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationnull12 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("Provide a valid monitor configuration", expected.getMessage());
@@ -205,10 +205,10 @@ public class AmplMonitorManagerProxyTest {
     public void testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1null85_failAssert3() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-            conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+            conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
             conf.setTimeSlot(61);
-            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
-            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
+            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1null85 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("Provide a valid monitor configuration", expected.getMessage());
@@ -219,10 +219,10 @@ public class AmplMonitorManagerProxyTest {
     public void testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1null101_failAssert4() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-            conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+            conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
             conf.setTimeSlot(61);
-            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
-            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
+            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
             org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1null101 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("Provide a valid monitor configuration", expected.getMessage());
@@ -234,10 +234,10 @@ public class AmplMonitorManagerProxyTest {
         try {
             List<String> __DSPOT_accounts_0 = Collections.singletonList("k},GdhscbCS@!x*zH_,y");
             TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-            conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(null);
+            conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(null);
             conf.setTimeSlot(60);
-            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
-            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+            HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
             conf.setAccounts(__DSPOT_accounts_0);
             org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7null168 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -250,10 +250,10 @@ public class AmplMonitorManagerProxyTest {
         try {
             {
                 TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-                conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+                conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
                 conf.setTimeSlot(60);
-                MonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
-                MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
+                AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
+                AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
                 org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationnull11 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationnull11_failAssert1null148 should have thrown IllegalArgumentException");
@@ -268,10 +268,10 @@ public class AmplMonitorManagerProxyTest {
             {
                 List<String> __DSPOT_accounts_12 = Collections.singletonList("KC*+{5@T5!^MYU(dM7KJ");
                 TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-                conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+                conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
                 conf.setTimeSlot(61);
-                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
-                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
+                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1null85 should have thrown IllegalArgumentException");
                 conf.setAccounts(__DSPOT_accounts_12);
             }
@@ -287,10 +287,10 @@ public class AmplMonitorManagerProxyTest {
             {
                 List<String> __DSPOT_accounts_14 = Collections.singletonList("9Flz5*yC=M]:bMoV#NG^");
                 TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-                conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+                conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
                 conf.setTimeSlot(61);
-                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
-                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
+                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__6 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1__7 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
                 org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationlitNum1null101 should have thrown IllegalArgumentException");
                 conf.setAccounts(__DSPOT_accounts_14);
             }
@@ -306,10 +306,10 @@ public class AmplMonitorManagerProxyTest {
             {
                 List<String> __DSPOT_accounts_0 = Collections.singletonList("ApacheHttp");
                 TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-                conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(null);
+                conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(null);
                 conf.setTimeSlot(60);
-                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8 = MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
-                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9 = MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__8 = AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf);
+                HttpStatus o_testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7__9 = AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf);
                 conf.setAccounts(__DSPOT_accounts_0);
                 org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfiguration_mg7null168 should have thrown IllegalArgumentException");
             }
@@ -325,10 +325,10 @@ public class AmplMonitorManagerProxyTest {
             {
                 {
                     TwitterMonitorConfiguration conf = createTwitterMonitorConfiguration();
-                    conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+                    conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
                     conf.setTimeSlot(59);
-                    MonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
-                    MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
+                    AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(null);
+                    AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(null);
                     org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationnull11 should have thrown IllegalArgumentException");
                 }
                 org.junit.Assert.fail("testCreateUpdateAndDeleteTwitterMonitorConfigurationnull11_failAssert1null148 should have thrown IllegalArgumentException");
@@ -353,11 +353,11 @@ public class AmplMonitorManagerProxyTest {
     @Test
     public void testCreateUpdateAndDeleteHttpMonitorConfiguration() throws Exception {
         HttpMonitorConfiguration conf = createHttpMonitorConfiguration();
-        conf = MonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
+        conf = AmplMonitorManagerProxyTest.proxy.createMonitorConfiguration(conf);
         Assert.assertNotNull(conf);
         conf.setTimeSlot(60);
-        Assert.assertEquals(MonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf), HttpStatus.OK);
-        Assert.assertEquals(MonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf), HttpStatus.OK);
+        Assert.assertEquals(AmplMonitorManagerProxyTest.proxy.updateMonitorConfiguration(conf), HttpStatus.OK);
+        Assert.assertEquals(AmplMonitorManagerProxyTest.proxy.deleteMonitorConfiguration(conf), HttpStatus.OK);
     }
 
     private HttpMonitorConfiguration createHttpMonitorConfiguration() throws MalformedURLException {

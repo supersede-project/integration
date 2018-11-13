@@ -41,7 +41,6 @@ import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
 
-@Ignore
 public class IFAuthenticationManagerTest {
 	static IFAuthenticationManager am;
 	//User test
@@ -61,9 +60,10 @@ public class IFAuthenticationManagerTest {
 //		String admin = System.getProperty("is.admin.user");
 //		String password = System.getProperty("is.admin.passwd");
 		// Read account (user, password) from classpath property file
-		String admin = IFAccount.getUser();
-		String password = IFAccount.getPassword();
-       am = new IFAuthenticationManager(admin, password);
+//		String admin = IFAccount.getUser();
+//		String password = IFAccount.getPassword();
+//       am = new IFAuthenticationManager(admin, password);
+       am = new IFAuthenticationManager();
     }
 	
 	//Authentication Test
@@ -90,10 +90,33 @@ public class IFAuthenticationManagerTest {
 		
     	am.addUser(user, testUserPassword, requirePasswordChange);
 	}
+	
+	@Test //(expected = org.wso2.carbon.user.core.UserStoreException.class)
+	public void throwUserExistWhenAddUserTest() throws UserStoreException, MalformedURLException{
+		User user = am.getUser(testUserName);
+		try {
+			//If user does not exist, create user
+			if (user==null){
+				user = createTestUser();
+		    	am.addUser(user, testUserPassword, requirePasswordChange);
+			}
+			//Try to create a new user
+			am.addUser(user, testUserPassword, requirePasswordChange);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			am.deleteUser(user);
+		}
+	}
 
 	private User createTestUser() throws UserStoreException {
+		return createTestUser(testUserName);
+	}
+	
+	private User createTestUser(String userName) throws UserStoreException {
 		User user = new User();
-		user.setUserName(testUserName);
+		user.setUserName(userName);
 		user.setFirstname("User Test firstname");
 		user.setLastname("User Test lastname");
 		user.setOrganization("User Test organization");
@@ -224,6 +247,17 @@ public class IFAuthenticationManagerTest {
 	    	am.addUser(user, testUserPassword, requirePasswordChange);
 		}
 		am.deleteUser(user);
+	}
+	
+	@Test (expected=org.wso2.carbon.user.core.UserStoreException.class)
+	public void throwUserDoesNotExistWhenDeleteUserTest() throws UserStoreException, MalformedURLException{
+		try {
+			User user = createTestUser("userdoesnotexist");
+			am.deleteUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
 	//Role tests

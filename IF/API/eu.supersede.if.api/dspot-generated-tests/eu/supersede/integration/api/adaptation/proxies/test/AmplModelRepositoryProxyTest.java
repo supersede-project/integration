@@ -34,24 +34,24 @@ import org.springframework.web.client.HttpServerErrorException;
 import static org.junit.Assert.assertEquals;
 
 
-public class ModelRepositoryProxyTest {
+public class AmplModelRepositoryProxyTest {
     private static ModelRepositoryProxy<?, ?> proxy;
 
     private static IModel baseModel;
 
     @BeforeClass
     public static void setup() throws Exception {
-        ModelRepositoryProxyTest.proxy = new ModelRepositoryProxy<Object, Object>();
-        List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
+        AmplModelRepositoryProxyTest.proxy = new ModelRepositoryProxy<Object, Object>();
+        List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
         Assert.notEmpty(result);
-        ModelRepositoryProxyTest.baseModel = result.get(0);
-        Assert.notNull(ModelRepositoryProxyTest.baseModel);
+        AmplModelRepositoryProxyTest.baseModel = result.get(0);
+        Assert.notNull(AmplModelRepositoryProxyTest.baseModel);
     }
 
     @Test(timeout = 240000)
     public void testGetAllAdaptationModelsnull1802_failAssert194() throws Exception {
         try {
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
             Assert.notNull(null);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testGetAllAdaptationModelsnull1802 should have thrown IllegalArgumentException");
@@ -63,7 +63,7 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetAllFCModelsnull3889_failAssert767() throws Exception {
         try {
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.FeatureConfiguration, ModelSystem.Atos_HSK, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.FeatureConfiguration, ModelSystem.Atos_HSK, null);
             Assert.notNull(null);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testGetAllFCModelsnull3889 should have thrown IllegalArgumentException");
@@ -75,11 +75,11 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetAllBaseModelslitString1809_failAssert195() throws Exception {
         try {
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("zavala").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("zavala").toString());
             Assert.notNull(model);
             org.junit.Assert.fail("testGetAllBaseModelslitString1809 should have thrown Exception");
         } catch (Exception expected) {
@@ -90,11 +90,11 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetAllBaseModelslitNum1815_failAssert200() throws Exception {
         try {
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("id").toString());
             Assert.notNull(model);
             org.junit.Assert.fail("testGetAllBaseModelslitNum1815 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -106,11 +106,11 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModels_mg1820_failAssert204() throws Exception {
         try {
             String __DSPOT_property_290 = "T7=5zOkK&a$)LIMmqw=M";
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model);
             model.getValue(__DSPOT_property_290);
             org.junit.Assert.fail("testGetAllBaseModels_mg1820 should have thrown Exception");
@@ -124,11 +124,11 @@ public class ModelRepositoryProxyTest {
         try {
             Object __DSPOT_value_292 = new Object();
             String __DSPOT_property_291 = "a !VX)*-a  F#YgRr^w4";
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model);
             model.setValue(__DSPOT_property_291, __DSPOT_value_292);
             org.junit.Assert.fail("testGetAllBaseModels_mg1821 should have thrown Exception");
@@ -140,11 +140,11 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetAllBaseModelsnull1822_failAssert206() throws Exception {
         try {
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
             Assert.notNull(null);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model);
             org.junit.Assert.fail("testGetAllBaseModelsnull1822 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -155,11 +155,11 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetAllBaseModelsnull1826_failAssert209() throws Exception {
         try {
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(null);
             org.junit.Assert.fail("testGetAllBaseModelsnull1826 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -171,11 +171,11 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelslitString1809_failAssert195litNum1896_failAssert210() throws Exception {
         try {
             {
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("zavala").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("zavala").toString());
                 Assert.notNull(model);
                 org.junit.Assert.fail("testGetAllBaseModelslitString1809 should have thrown Exception");
             }
@@ -189,11 +189,11 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelslitString1809_failAssert195litNum1900_failAssert211() throws Exception {
         try {
             {
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("zavala").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("zavala").toString());
                 Assert.notNull(model);
                 org.junit.Assert.fail("testGetAllBaseModelslitString1809 should have thrown Exception");
             }
@@ -207,11 +207,11 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelslitNum1815_failAssert200null1936_failAssert226() throws Exception {
         try {
             {
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                 Assert.notNull(null);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("id").toString());
                 Assert.notNull(model);
                 org.junit.Assert.fail("testGetAllBaseModelslitNum1815 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -226,11 +226,11 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 String __DSPOT_property_290 = "\n";
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model);
                 model.getValue(__DSPOT_property_290);
                 org.junit.Assert.fail("testGetAllBaseModels_mg1820 should have thrown Exception");
@@ -246,11 +246,11 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 String __DSPOT_property_290 = null;
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model);
                 model.getValue(__DSPOT_property_290);
                 org.junit.Assert.fail("testGetAllBaseModels_mg1820 should have thrown Exception");
@@ -267,11 +267,11 @@ public class ModelRepositoryProxyTest {
             {
                 Object __DSPOT_value_292 = new Object();
                 String __DSPOT_property_291 = "";
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model);
                 model.setValue(__DSPOT_property_291, __DSPOT_value_292);
                 org.junit.Assert.fail("testGetAllBaseModels_mg1821 should have thrown Exception");
@@ -287,11 +287,11 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 {
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("zavala").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("zavala").toString());
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetAllBaseModelslitString1809 should have thrown Exception");
                 }
@@ -308,11 +308,11 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 {
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("zavala").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("zavala").toString());
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetAllBaseModelslitString1809 should have thrown Exception");
                 }
@@ -329,11 +329,11 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 {
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                     Assert.notNull(null);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("googleplay_api_googleplay_tool").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(-1).getValue("googleplay_api_googleplay_tool").toString());
                     Assert.notNull(model);
                     org.junit.Assert.fail("testGetAllBaseModelslitNum1815 should have thrown ArrayIndexOutOfBoundsException");
                 }
@@ -351,11 +351,11 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_290 = "\n";
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("id").toString());
                     Assert.notNull(model);
                     model.getValue(__DSPOT_property_290);
                     org.junit.Assert.fail("testGetAllBaseModels_mg1820 should have thrown Exception");
@@ -374,11 +374,11 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_290 = "\n";
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(null);
                     model.getValue(__DSPOT_property_290);
                     org.junit.Assert.fail("testGetAllBaseModels_mg1820 should have thrown Exception");
@@ -397,11 +397,11 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_290 = null;
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("relativePath").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("relativePath").toString());
                     Assert.notNull(model);
                     model.getValue(__DSPOT_property_290);
                     org.junit.Assert.fail("testGetAllBaseModels_mg1820 should have thrown Exception");
@@ -421,11 +421,11 @@ public class ModelRepositoryProxyTest {
                 {
                     Object __DSPOT_value_292 = new Object();
                     String __DSPOT_property_291 = "";
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null, null);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(1).getValue("id").toString());
                     Assert.notNull(model);
                     model.setValue(__DSPOT_property_291, __DSPOT_value_292);
                     org.junit.Assert.fail("testGetAllBaseModels_mg1821 should have thrown Exception");
@@ -442,12 +442,12 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelsWithQueryMetadatalitString2464_failAssert383() throws Exception {
         try {
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("fileExtension"))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("fileExtension"))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model.getValue("id"));
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatalitString2464 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -459,12 +459,12 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelsWithQueryMetadatalitString2465_failAssert384() throws Exception {
         try {
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("auth7rId"))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("auth7rId"))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model.getValue("id"));
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatalitString2465 should have thrown Exception");
         } catch (Exception expected) {
@@ -476,12 +476,12 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelsWithQueryMetadatalitString2473_failAssert391() throws Exception {
         try {
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("=").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("=").toString());
             Assert.notNull(model.getValue("id"));
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatalitString2473 should have thrown Exception");
         } catch (Exception expected) {
@@ -493,12 +493,12 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelsWithQueryMetadatalitString2478_failAssert395() throws Exception {
         try {
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model.getValue("H"));
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatalitString2478 should have thrown Exception");
         } catch (Exception expected) {
@@ -512,12 +512,12 @@ public class ModelRepositoryProxyTest {
             Object __DSPOT_value_344 = new Object();
             String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model.getValue("id"));
             model.setValue(__DSPOT_property_343, __DSPOT_value_344);
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -530,12 +530,12 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelsWithQueryMetadatanull2491_failAssert405() throws Exception {
         try {
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model.getValue("id"));
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2491 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -547,12 +547,12 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelsWithQueryMetadatanull2492_failAssert406() throws Exception {
         try {
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
             Assert.notNull(result);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model.getValue("id"));
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2492 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -564,12 +564,12 @@ public class ModelRepositoryProxyTest {
     public void testGetAllBaseModelsWithQueryMetadatanull2493_failAssert407() throws Exception {
         try {
             BaseModel metadata = new BaseModel();
-            metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+            metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
             Assert.notNull(null);
             Assert.notEmpty(result);
             Collections.sort(result);
-            IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+            IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
             Assert.notNull(model.getValue("id"));
             org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2493 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -586,12 +586,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_344 = new Object();
                 String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -610,12 +610,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_368 = new Object();
                 String __DSPOT_property_367 = "ev !-3SN*sw)`v}zN/0N";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("fileExtension"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("fileExtension"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatalitString2464 should have thrown IllegalArgumentException");
                 model.setValue(__DSPOT_property_367, __DSPOT_value_368);
@@ -633,12 +633,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_364 = new Object();
                 String __DSPOT_property_363 = ")5f-JJZB2+%9x<5]|k5a";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(null);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2493 should have thrown IllegalArgumentException");
                 model.setValue(__DSPOT_property_363, __DSPOT_value_364);
@@ -656,12 +656,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_344 = new Object();
                 String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(Integer.MIN_VALUE).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(Integer.MIN_VALUE).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -679,12 +679,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_344 = new Object();
                 String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("GooglePlay"));
                 model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -702,12 +702,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_344 = new Object();
                 String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("authorId").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("authorId").toString());
                 Assert.notNull(model.getValue("id"));
                 model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -725,12 +725,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_358 = new Object();
                 String __DSPOT_property_357 = "pT%vt_F}Hln6O(.TI(`V";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("auth7rId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("auth7rId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatalitString2465 should have thrown Exception");
                 model.setValue(__DSPOT_property_357, __DSPOT_value_358);
@@ -748,12 +748,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_376 = new Object();
                 String __DSPOT_property_375 = "7BI]Rw}{*r:hZ=ZTOAJL";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2492 should have thrown IllegalArgumentException");
                 model.setValue(__DSPOT_property_375, __DSPOT_value_376);
@@ -771,12 +771,12 @@ public class ModelRepositoryProxyTest {
                 Object __DSPOT_value_344 = new Object();
                 String __DSPOT_property_343 = "relativePath";
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -792,12 +792,12 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2491 should have thrown NullPointerException");
             }
@@ -812,12 +812,12 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 BaseModel metadata = new BaseModel();
-                metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("dependencies"))));
-                List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
+                metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("dependencies"))));
+                List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
                 Assert.notNull(result);
                 Assert.notEmpty(result);
                 Collections.sort(result);
-                IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                 Assert.notNull(model.getValue("id"));
                 org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2492 should have thrown IllegalArgumentException");
             }
@@ -833,12 +833,12 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
                     Assert.notNull(null);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2491 should have thrown NullPointerException");
                 }
@@ -856,12 +856,12 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("dependencies"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("dependencies"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
                     Assert.notNull(null);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatanull2492 should have thrown IllegalArgumentException");
                 }
@@ -883,12 +883,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("googleplay_api_googleplay_tool"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -912,12 +912,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(Integer.MIN_VALUE).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(Integer.MIN_VALUE).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -941,12 +941,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("creationDate").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("creationDate").toString());
                     Assert.notNull(model.getValue("id"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -970,12 +970,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = "HnJBZ}O[]Ip/#WP}M8a6";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -999,12 +999,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("aLuthorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("aLuthorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -1028,12 +1028,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(null);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -1057,12 +1057,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = ";F#O7,e!<J!z&e#9R[n4";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, null);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -1086,12 +1086,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_344 = new Object();
                     String __DSPOT_property_343 = "id";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("authorId"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("authorId"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(0).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     model.setValue(__DSPOT_property_343, __DSPOT_value_344);
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadata_mg2490 should have thrown Exception");
@@ -1113,12 +1113,12 @@ public class ModelRepositoryProxyTest {
                     Object __DSPOT_value_368 = new Object();
                     String __DSPOT_property_367 = "ev !-3SN*sw)`v}zN/0N";
                     BaseModel metadata = new BaseModel();
-                    metadata.setAuthorId(((String) (ModelRepositoryProxyTest.baseModel.getValue("fileExtension"))));
-                    List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
+                    metadata.setAuthorId(((String) (AmplModelRepositoryProxyTest.baseModel.getValue("fileExtension"))));
+                    List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, metadata);
                     Assert.notNull(result);
                     Assert.notEmpty(result);
                     Collections.sort(result);
-                    IModel model = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(Integer.MAX_VALUE).getValue("id").toString());
+                    IModel model = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, result.get(Integer.MAX_VALUE).getValue("id").toString());
                     Assert.notNull(model.getValue("id"));
                     org.junit.Assert.fail("testGetAllBaseModelsWithQueryMetadatalitString2464 should have thrown IllegalArgumentException");
                     model.setValue(__DSPOT_property_367, __DSPOT_value_368);
@@ -1134,7 +1134,7 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetBaseModelsForSystemnull3896_failAssert768() throws Exception {
         try {
-            List<IModel> result = ModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
+            List<IModel> result = AmplModelRepositoryProxyTest.proxy.getModelInstances(ModelType.BaseModel, ModelSystem.Atos_HSK, null);
             Assert.notNull(null);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testGetBaseModelsForSystemnull3896 should have thrown IllegalArgumentException");
@@ -1146,8 +1146,8 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void getModelInstancelitString1_failAssert0() throws Exception {
         try {
-            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay_API"))));
-            IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay_API"))));
+            IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
             Assert.notNull(result);
             org.junit.Assert.fail("getModelInstancelitString1 should have thrown Exception");
         } catch (Exception expected) {
@@ -1158,8 +1158,8 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void getModelInstancelitString6_failAssert5() throws Exception {
         try {
-            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-            IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
+            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+            IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
             Assert.notNull(result);
             org.junit.Assert.fail("getModelInstancelitString6 should have thrown Exception");
         } catch (Exception expected) {
@@ -1171,8 +1171,8 @@ public class ModelRepositoryProxyTest {
     public void getModelInstance_mg14_failAssert13() throws Exception {
         try {
             String __DSPOT_property_0 = ",y(q2 5[gpbL[{$QV5:W";
-            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-            IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+            IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
             Assert.notNull(result);
             result.getValue(__DSPOT_property_0);
             org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1186,8 +1186,8 @@ public class ModelRepositoryProxyTest {
         try {
             Object __DSPOT_value_2 = new Object();
             String __DSPOT_property_1 = "z2[|+mr6#-VtX(r!Fs2l";
-            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-            IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+            IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
             Assert.notNull(result);
             result.setValue(__DSPOT_property_1, __DSPOT_value_2);
             org.junit.Assert.fail("getModelInstance_mg15 should have thrown Exception");
@@ -1199,8 +1199,8 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void getModelInstancenull16_failAssert15() throws Exception {
         try {
-            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
-            IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
+            IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
             Assert.notNull(result);
             org.junit.Assert.fail("getModelInstancenull16 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -1211,8 +1211,8 @@ public class ModelRepositoryProxyTest {
     @Test(timeout = 240000)
     public void getModelInstancenull17_failAssert16() throws Exception {
         try {
-            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-            IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
+            ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+            IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
             Assert.notNull(result);
             org.junit.Assert.fail("getModelInstancenull17 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -1224,8 +1224,8 @@ public class ModelRepositoryProxyTest {
     public void getModelInstancelitString1_failAssert0litString56_failAssert18() throws Exception {
         try {
             {
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay_API"))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay_API"))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
                 Assert.notNull(result);
                 org.junit.Assert.fail("getModelInstancelitString1 should have thrown Exception");
             }
@@ -1240,8 +1240,8 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 String __DSPOT_property_6 = "xHdm7#=ToX)D7x>[Bob5";
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
                 Assert.notNull(result);
                 org.junit.Assert.fail("getModelInstancelitString6 should have thrown Exception");
                 result.getValue(__DSPOT_property_6);
@@ -1257,8 +1257,8 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 String __DSPOT_property_0 = "path/to/model";
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                 Assert.notNull(result);
                 result.getValue(__DSPOT_property_0);
                 org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1274,8 +1274,8 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 String __DSPOT_property_0 = ",y(q2 5[gpbL[{$QV5:W";
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("lastModificationDate"))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("lastModificationDate"))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                 Assert.notNull(result);
                 result.getValue(__DSPOT_property_0);
                 org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1291,8 +1291,8 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 String __DSPOT_property_0 = ",y(q2 5[gpbL[{$QV5:W";
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                 Assert.notNull(result);
                 result.getValue(__DSPOT_property_0);
                 org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1308,8 +1308,8 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 String __DSPOT_property_0 = ",y(q2 5[gpbL[{$QV5:W";
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
                 Assert.notNull(result);
                 result.getValue(__DSPOT_property_0);
                 org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1326,8 +1326,8 @@ public class ModelRepositoryProxyTest {
             {
                 Object __DSPOT_value_2 = new Object();
                 String __DSPOT_property_1 = "modelContent";
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                 Assert.notNull(result);
                 result.setValue(__DSPOT_property_1, __DSPOT_value_2);
                 org.junit.Assert.fail("getModelInstance_mg15 should have thrown Exception");
@@ -1344,8 +1344,8 @@ public class ModelRepositoryProxyTest {
             {
                 Object __DSPOT_value_2 = new Object();
                 String __DSPOT_property_1 = "z2[|+mr6#&VtX(r!Fs2l";
-                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                 Assert.notNull(result);
                 result.setValue(__DSPOT_property_1, __DSPOT_value_2);
                 org.junit.Assert.fail("getModelInstance_mg15 should have thrown Exception");
@@ -1361,8 +1361,8 @@ public class ModelRepositoryProxyTest {
         try {
             {
                 {
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay_API"))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay_API"))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
                     Assert.notNull(null);
                     org.junit.Assert.fail("getModelInstancelitString1 should have thrown Exception");
                 }
@@ -1380,8 +1380,8 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_6 = "xHdm7#=ToX)D7x>[Bob5";
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("GooglePlay"))));
                     Assert.notNull(null);
                     org.junit.Assert.fail("getModelInstancelitString6 should have thrown Exception");
                     result.getValue(__DSPOT_property_6);
@@ -1400,8 +1400,8 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_0 = "path/to/model";
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                     Assert.notNull(result);
                     result.getValue(__DSPOT_property_0);
                     org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1420,8 +1420,8 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_0 = "path/to/model";
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                     Assert.notNull(result);
                     result.getValue(__DSPOT_property_0);
                     org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1440,8 +1440,8 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_0 = "path/to/model";
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue(null))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue(null))));
                     Assert.notNull(result);
                     result.getValue(__DSPOT_property_0);
                     org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1460,8 +1460,8 @@ public class ModelRepositoryProxyTest {
             {
                 {
                     String __DSPOT_property_0 = ",y(q2 5[gpbL[{$QV5:W";
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("lastModificationDate"))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("googleplay_api_googleplay_tool"))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("lastModificationDate"))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("googleplay_api_googleplay_tool"))));
                     Assert.notNull(result);
                     result.getValue(__DSPOT_property_0);
                     org.junit.Assert.fail("getModelInstance_mg14 should have thrown Exception");
@@ -1481,8 +1481,8 @@ public class ModelRepositoryProxyTest {
                 {
                     Object __DSPOT_value_2 = new Object();
                     String __DSPOT_property_1 = "z2[|+mr6#&VtX(r!Fs2l";
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
                     Assert.notNull(result);
                     result.setValue(__DSPOT_property_1, __DSPOT_value_2);
                     org.junit.Assert.fail("getModelInstance_mg15 should have thrown Exception");
@@ -1502,8 +1502,8 @@ public class ModelRepositoryProxyTest {
                 {
                     Object __DSPOT_value_2 = new Object();
                     String __DSPOT_property_1 = "z2[|+mr6#&VtX(r!Fs2l";
-                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (ModelRepositoryProxyTest.baseModel.getValue("id"))));
-                    IModel result = ModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (ModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
+                    ITypedModelId modelId = new TypedModelId(ModelType.BaseModel, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("id"))));
+                    IModel result = AmplModelRepositoryProxyTest.proxy.getModelInstance(ModelType.BaseModel, ModelSystem.Atos_HSK, ((String) (AmplModelRepositoryProxyTest.baseModel.getValue("relativePath"))));
                     Assert.notNull(result);
                     result.setValue(__DSPOT_property_1, null);
                     org.junit.Assert.fail("getModelInstance_mg15 should have thrown Exception");

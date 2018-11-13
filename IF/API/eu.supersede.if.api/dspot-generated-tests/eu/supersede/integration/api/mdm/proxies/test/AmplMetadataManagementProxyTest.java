@@ -24,7 +24,7 @@ public class AmplMetadataManagementProxyTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        MetadataManagementProxyTest.proxy = new MetadataManagementProxy<Object, Object>();
+        AmplMetadataManagementProxyTest.proxy = new MetadataManagementProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
@@ -37,7 +37,7 @@ public class AmplMetadataManagementProxyTest {
             release.setJsonInstances(jsonInstances);
             release.setDispatch(true);
             release.setDispatcherPath("/path/to/dispatcher.txt");
-            KafkaTopic result = MetadataManagementProxyTest.proxy.registerRelease(release);
+            KafkaTopic result = AmplMetadataManagementProxyTest.proxy.registerRelease(release);
             Assert.notNull(result);
             org.junit.Assert.fail("testRegisterReleaselitString201 should have thrown HttpServerErrorException");
         } catch (HttpServerErrorException expected) {
@@ -55,7 +55,7 @@ public class AmplMetadataManagementProxyTest {
             release.setJsonInstances(jsonInstances);
             release.setDispatch(true);
             release.setDispatcherPath("/path/to/dispatcher.txt");
-            KafkaTopic result = MetadataManagementProxyTest.proxy.registerRelease(null);
+            KafkaTopic result = AmplMetadataManagementProxyTest.proxy.registerRelease(null);
             Assert.notNull(result);
             org.junit.Assert.fail("testRegisterReleasenull243 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -74,7 +74,7 @@ public class AmplMetadataManagementProxyTest {
                 release.setJsonInstances(jsonInstances);
                 release.setDispatch(true);
                 release.setDispatcherPath("/path/to/dispatcher.txt");
-                KafkaTopic result = MetadataManagementProxyTest.proxy.registerRelease(release);
+                KafkaTopic result = AmplMetadataManagementProxyTest.proxy.registerRelease(release);
                 Assert.notNull(result);
                 org.junit.Assert.fail("testRegisterReleaselitString201 should have thrown HttpServerErrorException");
             }
@@ -95,7 +95,7 @@ public class AmplMetadataManagementProxyTest {
                 release.setJsonInstances(jsonInstances);
                 release.setDispatch(true);
                 release.setDispatcherPath("/path/to/dispatcher.txt");
-                KafkaTopic result = MetadataManagementProxyTest.proxy.registerRelease(null);
+                KafkaTopic result = AmplMetadataManagementProxyTest.proxy.registerRelease(null);
                 Assert.notNull(result);
                 org.junit.Assert.fail("testRegisterReleaselitString201 should have thrown HttpServerErrorException");
             }
@@ -117,7 +117,7 @@ public class AmplMetadataManagementProxyTest {
                     release.setJsonInstances(jsonInstances);
                     release.setDispatch(true);
                     release.setDispatcherPath("/path/to/dispatcher.txt");
-                    KafkaTopic result = MetadataManagementProxyTest.proxy.registerRelease(release);
+                    KafkaTopic result = AmplMetadataManagementProxyTest.proxy.registerRelease(release);
                     Assert.notNull(result);
                     org.junit.Assert.fail("testRegisterReleaselitString201 should have thrown HttpServerErrorException");
                 }
@@ -141,7 +141,7 @@ public class AmplMetadataManagementProxyTest {
                     release.setJsonInstances(jsonInstances);
                     release.setDispatch(true);
                     release.setDispatcherPath("/path/to/dispatcher.txt");
-                    KafkaTopic result = MetadataManagementProxyTest.proxy.registerRelease(null);
+                    KafkaTopic result = AmplMetadataManagementProxyTest.proxy.registerRelease(null);
                     Assert.notNull(result);
                     org.junit.Assert.fail("testRegisterReleaselitString201 should have thrown HttpServerErrorException");
                 }
@@ -156,7 +156,7 @@ public class AmplMetadataManagementProxyTest {
     @Test(timeout = 30000)
     public void testGelAllReleasesnull8_failAssert1() throws Exception {
         try {
-            List<Release> result = MetadataManagementProxyTest.proxy.getAllReleases();
+            List<Release> result = AmplMetadataManagementProxyTest.proxy.getAllReleases();
             Assert.notNull(null);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testGelAllReleasesnull8 should have thrown IllegalArgumentException");
@@ -168,7 +168,7 @@ public class AmplMetadataManagementProxyTest {
     @Test(timeout = 30000)
     public void testGelAllEventsnull1_failAssert0() throws Exception {
         try {
-            List<Event> result = MetadataManagementProxyTest.proxy.getAllEvents();
+            List<Event> result = AmplMetadataManagementProxyTest.proxy.getAllEvents();
             Assert.notNull(null);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testGelAllEventsnull1 should have thrown IllegalArgumentException");
@@ -189,7 +189,7 @@ public class AmplMetadataManagementProxyTest {
     public void testSendFileslitString822_failAssert206() throws Exception {
         try {
             Path filePath = FileSystems.getDefault().getPath("Sample_Version_1", "list1s.txt");
-            MetadataManagementProxyTest.proxy.sendFile(filePath);
+            AmplMetadataManagementProxyTest.proxy.sendFile(filePath);
             org.junit.Assert.fail("testSendFileslitString822 should have thrown NoSuchFileException");
         } catch (NoSuchFileException expected) {
             assertEquals("Sample_Version_1/list1s.txt", expected.getMessage());
@@ -200,7 +200,7 @@ public class AmplMetadataManagementProxyTest {
     public void testSendFilesnull839_failAssert223() throws Exception {
         try {
             Path filePath = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            MetadataManagementProxyTest.proxy.sendFile(null);
+            AmplMetadataManagementProxyTest.proxy.sendFile(null);
             org.junit.Assert.fail("testSendFilesnull839 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid filePath", expected.getMessage());
@@ -212,7 +212,7 @@ public class AmplMetadataManagementProxyTest {
         try {
             {
                 Path filePath = FileSystems.getDefault().getPath("Sample_Version_1", "{\"SocialNetworksMonitoredData\":{\"idOutput\":\"12345\",\"confId\":\"67890\",\"searchTimeStamp\":\"2016-07-19 17:23:00.000\",\"numDataItems\":1,\"DataItems\":[{\"idItem\":\"6253282\",\"timeStamp\":\"2016-05-25 20:03\",\"message\":\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\",\"author\":\"@SnoopDogg\",\"link\":\"https://twitter.com/SnoopDogg/status/734894106967703552\"}]}}");
-                MetadataManagementProxyTest.proxy.sendFile(filePath);
+                AmplMetadataManagementProxyTest.proxy.sendFile(filePath);
                 org.junit.Assert.fail("testSendFileslitString822 should have thrown NoSuchFileException");
             }
             org.junit.Assert.fail("testSendFileslitString822_failAssert206litString881 should have thrown NoSuchFileException");
@@ -226,7 +226,7 @@ public class AmplMetadataManagementProxyTest {
         try {
             {
                 Path filePath = FileSystems.getDefault().getPath("Sample_Version_1", "list1s.txt");
-                MetadataManagementProxyTest.proxy.sendFile(null);
+                AmplMetadataManagementProxyTest.proxy.sendFile(null);
                 org.junit.Assert.fail("testSendFileslitString822 should have thrown NoSuchFileException");
             }
             org.junit.Assert.fail("testSendFileslitString822_failAssert206null915 should have thrown IllegalArgumentException");
@@ -241,7 +241,7 @@ public class AmplMetadataManagementProxyTest {
             {
                 {
                     Path filePath = FileSystems.getDefault().getPath("Sample_Version_1", "{\"SocialNetworksMonitoredData\":{\"idOutput\":\"12345\",\"confId\":\"67890\",\"searchTimeStamp\":\"2016-07-19 17:23:00.000\",\"numDataItems\":1,\"DataItems\":[{\"idItem\":\"6253282\",\"timeStamp\":\"2016-05-25 20:03\",\"message\":\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\",\"author\":\"@SnoopDogg\",\"link\":\"https://twitter.com/SnoopDogg/status/734894106967703552\"}]}}");
-                    MetadataManagementProxyTest.proxy.sendFile(null);
+                    AmplMetadataManagementProxyTest.proxy.sendFile(null);
                     org.junit.Assert.fail("testSendFileslitString822 should have thrown NoSuchFileException");
                 }
                 org.junit.Assert.fail("testSendFileslitString822_failAssert206litString881 should have thrown NoSuchFileException");
@@ -256,7 +256,7 @@ public class AmplMetadataManagementProxyTest {
     public void testRealtimeFeedbackClassificationnull66_failAssert2() throws Exception {
         try {
             Feedback feedback = new Feedback("hello, I don't like this");
-            FeedbackClassification result = MetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(null);
+            FeedbackClassification result = AmplMetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(null);
             Assert.notNull(result);
             org.junit.Assert.fail("testRealtimeFeedbackClassificationnull66 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -268,7 +268,7 @@ public class AmplMetadataManagementProxyTest {
     public void testRealtimeFeedbackClassificationnull67_failAssert3() throws Exception {
         try {
             Feedback feedback = new Feedback("hello, I don't like this");
-            FeedbackClassification result = MetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(feedback);
+            FeedbackClassification result = AmplMetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(feedback);
             Assert.notNull(null);
             org.junit.Assert.fail("testRealtimeFeedbackClassificationnull67 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -281,7 +281,7 @@ public class AmplMetadataManagementProxyTest {
         try {
             {
                 Feedback feedback = new Feedback("list1s.txt");
-                FeedbackClassification result = MetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(null);
+                FeedbackClassification result = AmplMetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(null);
                 Assert.notNull(result);
                 org.junit.Assert.fail("testRealtimeFeedbackClassificationnull66 should have thrown IllegalArgumentException");
             }
@@ -296,7 +296,7 @@ public class AmplMetadataManagementProxyTest {
         try {
             {
                 Feedback feedback = new Feedback("{\"SocialNetworksMonitoredData\":{\"idOutput\":\"12345\",\"confId\":\"67890\",\"searchTimeStamp\":\"2016-07-19 17:23:00.000\",\"numDataItems\":1,\"DataItems\":[{\"idItem\":\"6253282\",\"timeStamp\":\"2016-05-25 20:03\",\"message\":\"Game on. Big ten network in 10 mins. Hoop for water. Flint we got ya back\",\"author\":\"@SnoopDogg\",\"link\":\"https://twitter.com/SnoopDogg/status/734894106967703552\"}]}}");
-                FeedbackClassification result = MetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(feedback);
+                FeedbackClassification result = AmplMetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(feedback);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testRealtimeFeedbackClassificationnull67 should have thrown IllegalArgumentException");
             }
@@ -312,7 +312,7 @@ public class AmplMetadataManagementProxyTest {
             {
                 {
                     Feedback feedback = new Feedback("list1s.txt");
-                    FeedbackClassification result = MetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(null);
+                    FeedbackClassification result = AmplMetadataManagementProxyTest.proxy.getRealtimeFeedbackClassification(null);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testRealtimeFeedbackClassificationnull66 should have thrown IllegalArgumentException");
                 }

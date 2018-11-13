@@ -35,7 +35,7 @@ import static org.junit.Assert.assertTrue;
 
 
 public class AmplFeedbackOrchestratorProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
+    private static final Logger log = LoggerFactory.getLogger(AmplFeedbackOrchestratorProxyTest.class);
 
     private static FeedbackOrchestratorProxy<?, ?> proxy;
 
@@ -61,16 +61,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public static void setup() throws Exception {
         String user = "superadmin";
         String password = "password";
-        FeedbackOrchestratorProxyTest.proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
-        Application app = FeedbackOrchestratorProxyTest.createApplication();
-        Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(app);
-        FeedbackOrchestratorProxyTest.idApplication = result.getId();
-        FeedbackOrchestratorProxyTest.idApplication_loaded = FeedbackOrchestratorProxyTest.idApplication;
-        FeedbackOrchestratorProxyTest.idApplicationBackup = FeedbackOrchestratorProxyTest.idApplication;
-        FeedbackOrchestratorProxyTest.idGeneralConfiguration = result.getGeneralConfiguration().getId();
-        FeedbackOrchestratorProxyTest.idConfiguration = result.getConfigurations().get(0).getId();
-        FeedbackOrchestratorProxyTest.idParameter = result.getGeneralConfiguration().getParameters().get(0).getId();
-        FeedbackOrchestratorProxyTest.log.info((((((((("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + (FeedbackOrchestratorProxyTest.idApplication)) + ", generalConfigurationId: ") + (FeedbackOrchestratorProxyTest.idGeneralConfiguration)) + ", configurationId: ") + (FeedbackOrchestratorProxyTest.idConfiguration)) + ", parameterId: ") + (FeedbackOrchestratorProxyTest.idParameter)) + ")"));
+        AmplFeedbackOrchestratorProxyTest.proxy = new FeedbackOrchestratorProxy<Object, Object>(user, password);
+        Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+        Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(app);
+        AmplFeedbackOrchestratorProxyTest.idApplication = result.getId();
+        AmplFeedbackOrchestratorProxyTest.idApplication_loaded = AmplFeedbackOrchestratorProxyTest.idApplication;
+        AmplFeedbackOrchestratorProxyTest.idApplicationBackup = AmplFeedbackOrchestratorProxyTest.idApplication;
+        AmplFeedbackOrchestratorProxyTest.idGeneralConfiguration = result.getGeneralConfiguration().getId();
+        AmplFeedbackOrchestratorProxyTest.idConfiguration = result.getConfigurations().get(0).getId();
+        AmplFeedbackOrchestratorProxyTest.idParameter = result.getGeneralConfiguration().getParameters().get(0).getId();
+        AmplFeedbackOrchestratorProxyTest.log.info((((((((("Testing FeedbackOrchestratorProxy with these artifacts: (applicationId: " + (AmplFeedbackOrchestratorProxyTest.idApplication)) + ", generalConfigurationId: ") + (AmplFeedbackOrchestratorProxyTest.idGeneralConfiguration)) + ", configurationId: ") + (AmplFeedbackOrchestratorProxyTest.idConfiguration)) + ", parameterId: ") + (AmplFeedbackOrchestratorProxyTest.idParameter)) + ")"));
     }
 
     @Test(timeout = 240000)
@@ -78,7 +78,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             String user = "test";
             String password = "password";
-            String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+            String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
             Assert.notNull(token);
             org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
         } catch (HttpClientErrorException expected) {
@@ -91,7 +91,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             String user = "";
             String password = "password";
-            String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+            String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
             Assert.notNull(token);
             org.junit.Assert.fail("testAuthenticatelitString72 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -104,7 +104,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             String user = "superadmin";
             String password = "";
-            String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+            String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
             Assert.notNull(token);
             org.junit.Assert.fail("testAuthenticatelitString80 should have thrown HttpClientErrorException");
         } catch (HttpClientErrorException expected) {
@@ -117,7 +117,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             String user = "superadmin";
             String password = null;
-            String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+            String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
             Assert.notNull(token);
             org.junit.Assert.fail("testAuthenticatenull84 should have thrown HttpClientErrorException");
         } catch (HttpClientErrorException expected) {
@@ -130,7 +130,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             String user = "superadmin";
             String password = "password";
-            String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+            String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
             Assert.notNull(null);
             org.junit.Assert.fail("testAuthenticatenull87 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -144,7 +144,7 @@ public class AmplFeedbackOrchestratorProxyTest {
             {
                 String user = "test";
                 String password = "mainColor";
-                String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+                String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
                 Assert.notNull(token);
                 org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
             }
@@ -160,7 +160,7 @@ public class AmplFeedbackOrchestratorProxyTest {
             {
                 String user = "test";
                 String password = "";
-                String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+                String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
                 Assert.notNull(token);
                 org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
             }
@@ -176,7 +176,7 @@ public class AmplFeedbackOrchestratorProxyTest {
             {
                 String user = "test";
                 String password = null;
-                String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+                String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
                 Assert.notNull(token);
                 org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
             }
@@ -192,7 +192,7 @@ public class AmplFeedbackOrchestratorProxyTest {
             {
                 String user = "test";
                 String password = "password";
-                String token = FeedbackOrchestratorProxyTest.proxy.authenticate(null, password);
+                String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(null, password);
                 Assert.notNull(token);
                 org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
             }
@@ -209,7 +209,7 @@ public class AmplFeedbackOrchestratorProxyTest {
                 {
                     String user = "test";
                     String password = "mainColor";
-                    String token = FeedbackOrchestratorProxyTest.proxy.authenticate(null, password);
+                    String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(null, password);
                     Assert.notNull(token);
                     org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
                 }
@@ -228,7 +228,7 @@ public class AmplFeedbackOrchestratorProxyTest {
                 {
                     String user = "test";
                     String password = "mainColor";
-                    String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, null);
+                    String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, null);
                     Assert.notNull(token);
                     org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
                 }
@@ -247,7 +247,7 @@ public class AmplFeedbackOrchestratorProxyTest {
                 {
                     String user = "test";
                     String password = "mainColor";
-                    String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+                    String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
                 }
@@ -266,7 +266,7 @@ public class AmplFeedbackOrchestratorProxyTest {
                 {
                     String user = "test";
                     String password = "";
-                    String token = FeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
+                    String token = AmplFeedbackOrchestratorProxyTest.proxy.authenticate(user, password);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testAuthenticatelitString67 should have thrown HttpClientErrorException");
                 }
@@ -281,7 +281,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetAPIUsersnull4950_failAssert1236() throws Exception {
         try {
-            List<ApiUser> result = FeedbackOrchestratorProxyTest.proxy.getApiUsers();
+            List<ApiUser> result = AmplFeedbackOrchestratorProxyTest.proxy.getApiUsers();
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetAPIUsersnull4950 should have thrown IllegalArgumentException");
@@ -293,7 +293,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetAPIUsernull4947_failAssert1235() throws Exception {
         try {
-            ApiUser result = FeedbackOrchestratorProxyTest.proxy.getApiUser(FeedbackOrchestratorProxyTest.idUser);
+            ApiUser result = AmplFeedbackOrchestratorProxyTest.proxy.getApiUser(AmplFeedbackOrchestratorProxyTest.idUser);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetAPIUsernull4947 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -305,20 +305,20 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test
     public void testCreateUpdateDeleteAPIUser() throws Exception {
         ApiUser user = createApiUser();
-        ApiUser result = FeedbackOrchestratorProxyTest.proxy.createApiUser(user);
+        ApiUser result = AmplFeedbackOrchestratorProxyTest.proxy.createApiUser(user);
         Assert.notNull(result);
         Assert.isTrue(((result.getId()) > 0));
         result.setUsername(((result.getUsername()) + "Modified"));
         result.setName(((result.getName()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateApiUser(result);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateApiUser(result);
         Assert.isTrue(result.getUsername().contains("Modified"));
-        FeedbackOrchestratorProxyTest.proxy.deleteApiUser(result.getId());
+        AmplFeedbackOrchestratorProxyTest.proxy.deleteApiUser(result.getId());
     }
 
     @Ignore
     @Test
     public void testGetAPIUserPermissions() throws Exception {
-        List<ApiUserPermission> result = FeedbackOrchestratorProxyTest.proxy.getApiUserPermissions(FeedbackOrchestratorProxyTest.idUser);
+        List<ApiUserPermission> result = AmplFeedbackOrchestratorProxyTest.proxy.getApiUserPermissions(AmplFeedbackOrchestratorProxyTest.idUser);
         Assert.notNull(result);
         Assert.isTrue((!(result.isEmpty())));
     }
@@ -326,9 +326,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test
     @Ignore
     public void testCreateUpdateDeleteAPIUserPermission() throws Exception {
-        ApiUser user = FeedbackOrchestratorProxyTest.proxy.getApiUser(FeedbackOrchestratorProxyTest.idUser);
+        ApiUser user = AmplFeedbackOrchestratorProxyTest.proxy.getApiUser(AmplFeedbackOrchestratorProxyTest.idUser);
         ApiUserPermission permission = createApiUserPermission(user);
-        ApiUserPermission result = FeedbackOrchestratorProxyTest.proxy.createApiUserPermission(permission, user.getId());
+        ApiUserPermission result = AmplFeedbackOrchestratorProxyTest.proxy.createApiUserPermission(permission, user.getId());
         Assert.notNull(result);
         Assert.isTrue(((result.getId()) > 0));
 
@@ -338,7 +338,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetApplicationsnull4965_failAssert1241() throws Exception {
         try {
-            List<Application> result = FeedbackOrchestratorProxyTest.proxy.getApplications();
+            List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.getApplications();
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetApplicationsnull4965 should have thrown IllegalArgumentException");
@@ -350,7 +350,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetApplicationWithConfigurationnull4959_failAssert1239() throws Exception {
         try {
-            Application result = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetApplicationWithConfigurationnull4959 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -361,7 +361,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetApplicationWithConfigurationForAllLanguagesnull4962_failAssert1240() throws Exception {
         try {
-            Application result = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfigurationForAllLanguages(FeedbackOrchestratorProxyTest.idApplication);
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfigurationForAllLanguages(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetApplicationWithConfigurationForAllLanguagesnull4962 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -372,7 +372,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetApplicationForUsernull4953_failAssert1237() throws Exception {
         try {
-            Application result = FeedbackOrchestratorProxyTest.proxy.getApplicationForUser(FeedbackOrchestratorProxyTest.idApplication_loaded, FeedbackOrchestratorProxyTest.idUser);
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationForUser(AmplFeedbackOrchestratorProxyTest.idApplication_loaded, AmplFeedbackOrchestratorProxyTest.idUser);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetApplicationForUsernull4953 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -383,7 +383,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetApplicationForUserGroupnull4956_failAssert1238() throws Exception {
         try {
-            Application result = FeedbackOrchestratorProxyTest.proxy.getApplicationForUserGroup(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUserGroup);
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationForUserGroup(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUserGroup);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetApplicationForUserGroupnull4956 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -394,7 +394,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void searchApplicationsByNamelitString1_failAssert0() throws Exception {
         try {
-            List<Application> result = FeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Modified");
+            List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Modified");
             Assert.notNull(result);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("searchApplicationsByNamelitString1 should have thrown IllegalArgumentException");
@@ -406,7 +406,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void searchApplicationsByNamelitString3_failAssert2() throws Exception {
         try {
-            List<Application> result = FeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Test, Website 21");
+            List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Test, Website 21");
             Assert.notNull(result);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("searchApplicationsByNamelitString3 should have thrown HttpClientErrorException");
@@ -418,7 +418,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void searchApplicationsByNamenull9_failAssert8() throws Exception {
         try {
-            List<Application> result = FeedbackOrchestratorProxyTest.proxy.searchApplicationsByName(null);
+            List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.searchApplicationsByName(null);
             Assert.notNull(result);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("searchApplicationsByNamenull9 should have thrown IllegalArgumentException");
@@ -430,7 +430,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void searchApplicationsByNamenull10_failAssert9() throws Exception {
         try {
-            List<Application> result = FeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Test Website 21");
+            List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Test Website 21");
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("searchApplicationsByNamenull10 should have thrown IllegalArgumentException");
@@ -443,7 +443,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void searchApplicationsByNamelitString1_failAssert0null38_failAssert10() throws Exception {
         try {
             {
-                List<Application> result = FeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Modified");
+                List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Modified");
                 Assert.notNull(null);
                 Assert.isTrue((!(result.isEmpty())));
                 org.junit.Assert.fail("searchApplicationsByNamelitString1 should have thrown IllegalArgumentException");
@@ -458,7 +458,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void searchApplicationsByNamelitString3_failAssert2null39_failAssert11() throws Exception {
         try {
             {
-                List<Application> result = FeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Test, Website 21");
+                List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.searchApplicationsByName("Test, Website 21");
                 Assert.notNull(null);
                 Assert.isTrue((!(result.isEmpty())));
                 org.junit.Assert.fail("searchApplicationsByNamelitString3 should have thrown HttpClientErrorException");
@@ -473,7 +473,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void searchApplicationsByNamenull9_failAssert8null35_failAssert12() throws Exception {
         try {
             {
-                List<Application> result = FeedbackOrchestratorProxyTest.proxy.searchApplicationsByName(null);
+                List<Application> result = AmplFeedbackOrchestratorProxyTest.proxy.searchApplicationsByName(null);
                 Assert.notNull(null);
                 Assert.isTrue((!(result.isEmpty())));
                 org.junit.Assert.fail("searchApplicationsByNamenull9 should have thrown IllegalArgumentException");
@@ -486,11 +486,11 @@ public class AmplFeedbackOrchestratorProxyTest {
 
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteApplicationlitString545() throws Exception {
-        Application app = FeedbackOrchestratorProxyTest.createApplication();
-        Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(app);
+        Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+        Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(app);
         Assert.notNull(result);
-        FeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
-        HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = FeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
+        AmplFeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
+        HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = AmplFeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteApplicationlitString545__14)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteApplicationlitString545__14)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteApplicationlitString545__14)).is2xxSuccessful());
@@ -503,11 +503,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteApplicationnull553_failAssert160() throws Exception {
         try {
-            Application app = FeedbackOrchestratorProxyTest.createApplication();
-            Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(null);
+            Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(null);
             Assert.notNull(result);
-            FeedbackOrchestratorProxyTest.log.debug(("Removing application: " + (result.getId())));
-            FeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
+            AmplFeedbackOrchestratorProxyTest.log.debug(("Removing application: " + (result.getId())));
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteApplicationnull553 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid application", expected.getMessage());
@@ -517,11 +517,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteApplicationnull554_failAssert161() throws Exception {
         try {
-            Application app = FeedbackOrchestratorProxyTest.createApplication();
-            Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(app);
+            Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(app);
             Assert.notNull(null);
-            FeedbackOrchestratorProxyTest.log.debug(("Removing application: " + (result.getId())));
-            FeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
+            AmplFeedbackOrchestratorProxyTest.log.debug(("Removing application: " + (result.getId())));
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteApplicationnull554 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -531,11 +531,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteApplicationlitString545null602_failAssert162() throws Exception {
         try {
-            Application app = FeedbackOrchestratorProxyTest.createApplication();
-            Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(null);
+            Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(null);
             Assert.notNull(result);
-            FeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
-            HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = FeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
+            AmplFeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
+            HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = AmplFeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteApplicationlitString545null602 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid application", expected.getMessage());
@@ -545,11 +545,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteApplicationlitString545null604_failAssert163() throws Exception {
         try {
-            Application app = FeedbackOrchestratorProxyTest.createApplication();
-            Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(app);
+            Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+            Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(app);
             Assert.notNull(null);
-            FeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
-            HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = FeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
+            AmplFeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
+            HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = AmplFeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteApplicationlitString545null604 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -560,11 +560,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteApplicationlitString545null602_failAssert162null715_failAssert202() throws Exception {
         try {
             {
-                Application app = FeedbackOrchestratorProxyTest.createApplication();
-                Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(null);
+                Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+                Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(null);
                 Assert.notNull(null);
-                FeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
-                HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = FeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
+                AmplFeedbackOrchestratorProxyTest.log.debug(("usertest" + (result.getId())));
+                HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = AmplFeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteApplicationlitString545null602 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteApplicationlitString545null602_failAssert162null715 should have thrown IllegalArgumentException");
@@ -577,11 +577,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteApplicationlitString545null604_failAssert163null714_failAssert205() throws Exception {
         try {
             {
-                Application app = FeedbackOrchestratorProxyTest.createApplication();
-                Application result = FeedbackOrchestratorProxyTest.proxy.createApplication(app);
+                Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+                Application result = AmplFeedbackOrchestratorProxyTest.proxy.createApplication(app);
                 Assert.notNull(null);
-                FeedbackOrchestratorProxyTest.log.debug(null);
-                HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = FeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
+                AmplFeedbackOrchestratorProxyTest.log.debug(null);
+                HttpStatus o_testCreateUpdateDeleteApplicationlitString545__14 = AmplFeedbackOrchestratorProxyTest.proxy.deleteApplication(result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteApplicationlitString545null604 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteApplicationlitString545null604_failAssert163null714 should have thrown IllegalArgumentException");
@@ -593,15 +593,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Ignore
     @Test
     public void testImportApplication() throws Exception {
-        Application app = FeedbackOrchestratorProxyTest.createApplication();
-        Application result = FeedbackOrchestratorProxyTest.proxy.importApplication(app);
+        Application app = AmplFeedbackOrchestratorProxyTest.createApplication();
+        Application result = AmplFeedbackOrchestratorProxyTest.proxy.importApplication(app);
         Assert.notNull(result);
     }
 
     @Test(timeout = 240000)
     public void testGetGeneralConfigurationOfApplicationnull4974_failAssert1244() throws Exception {
         try {
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetGeneralConfigurationOfApplicationnull4974 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -612,7 +612,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetGeneralConfigurationOfApplicationByIdnull4977_failAssert1245() throws Exception {
         try {
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idGeneralConfiguration);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idGeneralConfiguration);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetGeneralConfigurationOfApplicationByIdnull4977 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -623,13 +623,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1806() throws Exception {
         List<Parameter> parameters = createParameters();
-        GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-        GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+        GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+        GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.notNull(result);
         result.setName(((result.getName()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.isTrue(result.getName().contains(""));
-        HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1806__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+        HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1806__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1806__17)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1806__17)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1806__17)).is2xxSuccessful());
@@ -642,13 +642,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809() throws Exception {
         List<Parameter> parameters = createParameters();
-        GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
-        GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+        GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+        GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.notNull(result);
         result.setName(((result.getName()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.isTrue(result.getName().contains("Modified"));
-        HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+        HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17)).is2xxSuccessful());
@@ -662,13 +662,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793_failAssert528() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "Removing application: "));
-            result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -679,13 +679,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1810_failAssert543() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(null, FeedbackOrchestratorProxyTest.idApplication);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1810 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid generalConfiguration", expected.getMessage());
@@ -696,13 +696,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1811_failAssert544() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1811 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -713,13 +713,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867_failAssert548() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "grouptest"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -730,13 +730,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809null1945_failAssert562() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(null, FeedbackOrchestratorProxyTest.idApplication);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809null1945 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid generalConfiguration", expected.getMessage());
@@ -747,13 +747,13 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809null1947_failAssert563() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809null1947 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -765,13 +765,13 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-                GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+                GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "Removing application: "));
-                result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("usertest"));
-                FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793_failAssert528litString1862 should have thrown IllegalArgumentException");
@@ -785,13 +785,13 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-                GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+                GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(null);
                 result.setName(((result.getName()) + "Removing application: "));
-                result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793_failAssert528null1964 should have thrown IllegalArgumentException");
@@ -805,13 +805,13 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
-                GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "grouptest"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("nodified"));
-                HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867_failAssert548litString2184 should have thrown IllegalArgumentException");
@@ -825,13 +825,13 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
-                GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(null, FeedbackOrchestratorProxyTest.idApplication);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(null, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "grouptest"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867_failAssert548null2242 should have thrown IllegalArgumentException");
@@ -845,13 +845,13 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
-                GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(null);
                 result.setName(((result.getName()) + "grouptest"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809__17 = AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationnull1809litString1867_failAssert548null2244 should have thrown IllegalArgumentException");
@@ -866,13 +866,13 @@ public class AmplFeedbackOrchestratorProxyTest {
             {
                 {
                     List<Parameter> parameters = createParameters();
-                    GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-                    GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, FeedbackOrchestratorProxyTest.idApplication);
+                    GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+                    GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfApplication(genConf, AmplFeedbackOrchestratorProxyTest.idApplication);
                     Assert.notNull(null);
                     result.setName(((result.getName()) + "Removing application: "));
-                    result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+                    result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                     Assert.isTrue(result.getName().contains("Modified"));
-                    FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                    AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                     org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793 should have thrown IllegalArgumentException");
                 }
                 org.junit.Assert.fail("testCreateUpdateDeleteGeneralConfigurationOfApplicationlitString1793_failAssert528null1964 should have thrown IllegalArgumentException");
@@ -886,7 +886,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetConfigurationsnull4971_failAssert1243() throws Exception {
         try {
-            List<Configuration> result = FeedbackOrchestratorProxyTest.proxy.getConfigurations(FeedbackOrchestratorProxyTest.idApplication);
+            List<Configuration> result = AmplFeedbackOrchestratorProxyTest.proxy.getConfigurations(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetConfigurationsnull4971 should have thrown IllegalArgumentException");
@@ -898,7 +898,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetConfigurationnull4968_failAssert1242() throws Exception {
         try {
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.getConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.getConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetConfigurationnull4968 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -909,15 +909,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteConfigurationlitString738() throws Exception {
         List<Parameter> parameters = createParameters();
-        GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+        GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
         List<Mechanism> mechanisms = createMechanisms(parameters);
-        Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-        Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+        Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+        Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.notNull(result);
         result.setName(((result.getName()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.isTrue(result.getName().contains(""));
-        HttpStatus o_testCreateUpdateDeleteConfigurationlitString738__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+        HttpStatus o_testCreateUpdateDeleteConfigurationlitString738__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteConfigurationlitString738__21)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteConfigurationlitString738__21)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteConfigurationlitString738__21)).is2xxSuccessful());
@@ -930,15 +930,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteConfigurationnull741() throws Exception {
         List<Parameter> parameters = createParameters();
-        GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+        GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
         List<Mechanism> mechanisms = createMechanisms(parameters);
-        Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-        Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+        Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+        Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.notNull(result);
         result.setName(((result.getName()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.isTrue(result.getName().contains("Modified"));
-        HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+        HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteConfigurationnull741__21)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteConfigurationnull741__21)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteConfigurationnull741__21)).is2xxSuccessful());
@@ -951,15 +951,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteConfigurationnull743() throws Exception {
         List<Parameter> parameters = createParameters();
-        GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+        GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
         List<Mechanism> mechanisms = createMechanisms(parameters);
-        Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
-        Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+        Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
+        Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.notNull(result);
         result.setName(((result.getName()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.isTrue(result.getName().contains("Modified"));
-        HttpStatus o_testCreateUpdateDeleteConfigurationnull743__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+        HttpStatus o_testCreateUpdateDeleteConfigurationnull743__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteConfigurationnull743__21)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteConfigurationnull743__21)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteConfigurationnull743__21)).is2xxSuccessful());
@@ -973,15 +973,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationlitString725_failAssert206() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "test"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationlitString725 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -992,15 +992,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull744_failAssert221() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, null);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, null);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull744 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -1011,15 +1011,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull745_failAssert222() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(null, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull745 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid configuration", expected.getMessage());
@@ -1030,15 +1030,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull746_failAssert223() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull746 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1049,15 +1049,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull741litString808_failAssert227() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "mainColor"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -1068,15 +1068,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull741null933_failAssert242() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, null);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, null);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741null933 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -1087,15 +1087,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull741null936_failAssert243() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(null, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741null936 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid configuration", expected.getMessage());
@@ -1106,15 +1106,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull741null939_failAssert244() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741null939 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1125,15 +1125,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull743litString819_failAssert248() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             result.setName(((result.getName()) + "M9dified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteConfigurationnull743__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteConfigurationnull743__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull743litString819 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -1144,15 +1144,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteConfigurationnull743null945_failAssert263() throws Exception {
         try {
             List<Parameter> parameters = createParameters();
-            GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+            GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
             List<Mechanism> mechanisms = createMechanisms(parameters);
-            Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+            Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             result.setName(((result.getName()) + "Modified"));
-            result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+            result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.isTrue(result.getName().contains("Modified"));
-            HttpStatus o_testCreateUpdateDeleteConfigurationnull743__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+            HttpStatus o_testCreateUpdateDeleteConfigurationnull743__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull743null945 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1164,15 +1164,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "test"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("ModiTied"));
-                FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationlitString725 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationlitString725_failAssert206litString809 should have thrown IllegalArgumentException");
@@ -1186,15 +1186,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(null);
                 result.setName(((result.getName()) + "test"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationlitString725 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationlitString725_failAssert206null942 should have thrown IllegalArgumentException");
@@ -1208,15 +1208,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "mainColor"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Disposing created application: "));
-                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808_failAssert227litString1336 should have thrown IllegalArgumentException");
@@ -1230,15 +1230,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "mainColor"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808_failAssert227null1444 should have thrown IllegalArgumentException");
@@ -1252,15 +1252,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, null);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, null);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "mainColor"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808_failAssert227null1448 should have thrown NullPointerException");
@@ -1274,15 +1274,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(null, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(null, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(result);
                 result.setName(((result.getName()) + "mainColor"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808_failAssert227null1450 should have thrown IllegalArgumentException");
@@ -1296,15 +1296,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(null);
                 result.setName(((result.getName()) + "mainColor"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741litString808_failAssert227null1452 should have thrown IllegalArgumentException");
@@ -1318,15 +1318,15 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 List<Parameter> parameters = createParameters();
-                GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
+                GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(null);
                 List<Mechanism> mechanisms = createMechanisms(parameters);
-                Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, null, mechanisms);
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(null);
                 result.setName(((result.getName()) + "Modified"));
-                result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.isTrue(result.getName().contains("Modified"));
-                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                HttpStatus o_testCreateUpdateDeleteConfigurationnull741__21 = AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741null939 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteConfigurationnull741null939_failAssert244null1474 should have thrown IllegalArgumentException");
@@ -1341,15 +1341,15 @@ public class AmplFeedbackOrchestratorProxyTest {
             {
                 {
                     List<Parameter> parameters = createParameters();
-                    GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+                    GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
                     List<Mechanism> mechanisms = createMechanisms(parameters);
-                    Configuration conf = FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
-                    Configuration result = FeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, FeedbackOrchestratorProxyTest.idApplication);
+                    Configuration conf = AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PULL, genConf, mechanisms);
+                    Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createConfiguration(conf, AmplFeedbackOrchestratorProxyTest.idApplication);
                     Assert.notNull(null);
                     result.setName(((result.getName()) + "test"));
-                    result = FeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, FeedbackOrchestratorProxyTest.idApplication);
+                    result = AmplFeedbackOrchestratorProxyTest.proxy.updateConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication);
                     Assert.isTrue(result.getName().contains("Modified"));
-                    FeedbackOrchestratorProxyTest.proxy.deleteConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+                    AmplFeedbackOrchestratorProxyTest.proxy.deleteConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
                     org.junit.Assert.fail("testCreateUpdateDeleteConfigurationlitString725 should have thrown IllegalArgumentException");
                 }
                 org.junit.Assert.fail("testCreateUpdateDeleteConfigurationlitString725_failAssert206null942 should have thrown IllegalArgumentException");
@@ -1363,8 +1363,8 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreatePullConfigurationForUserInfonull335_failAssert106() throws Exception {
         try {
-            Message message = new Message((("Hey user " + (FeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(null, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUser);
+            Message message = new Message((("Hey user " + (AmplFeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(null, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUser);
             Assert.notNull(result);
             org.junit.Assert.fail("testCreatePullConfigurationForUserInfonull335 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1375,8 +1375,8 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreatePullConfigurationForUserInfonull336_failAssert107() throws Exception {
         try {
-            Message message = new Message((("Hey user " + (FeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
-            Configuration result = FeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(message, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUser);
+            Message message = new Message((("Hey user " + (AmplFeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
+            Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(message, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUser);
             Assert.notNull(null);
             org.junit.Assert.fail("testCreatePullConfigurationForUserInfonull336 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1388,8 +1388,8 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreatePullConfigurationForUserInfonull335_failAssert106litString400_failAssert108() throws Exception {
         try {
             {
-                Message message = new Message((("Modified" + (FeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(null, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUser);
+                Message message = new Message((("Modified" + (AmplFeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(null, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUser);
                 Assert.notNull(result);
                 org.junit.Assert.fail("testCreatePullConfigurationForUserInfonull335 should have thrown IllegalArgumentException");
             }
@@ -1403,8 +1403,8 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreatePullConfigurationForUserInfonull336_failAssert107litString389_failAssert125() throws Exception {
         try {
             {
-                Message message = new Message((("GeneralConfiguration generated" + (FeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
-                Configuration result = FeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(message, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUser);
+                Message message = new Message((("GeneralConfiguration generated" + (AmplFeedbackOrchestratorProxyTest.idUser)) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
+                Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(message, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUser);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testCreatePullConfigurationForUserInfonull336 should have thrown IllegalArgumentException");
             }
@@ -1419,8 +1419,8 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    Message message = new Message((("Modified" + (FeedbackOrchestratorProxyTest.idUser)) + "password"));
-                    Configuration result = FeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(null, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUser);
+                    Message message = new Message((("Modified" + (AmplFeedbackOrchestratorProxyTest.idUser)) + "password"));
+                    Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(null, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUser);
                     Assert.notNull(result);
                     org.junit.Assert.fail("testCreatePullConfigurationForUserInfonull335 should have thrown IllegalArgumentException");
                 }
@@ -1437,8 +1437,8 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    Message message = new Message((("GeneralConfiguration generated" + (FeedbackOrchestratorProxyTest.idUser)) + "Modified"));
-                    Configuration result = FeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(message, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUser);
+                    Message message = new Message((("GeneralConfiguration generated" + (AmplFeedbackOrchestratorProxyTest.idUser)) + "Modified"));
+                    Configuration result = AmplFeedbackOrchestratorProxyTest.proxy.createPullConfigurationForUserInfo(message, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUser);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testCreatePullConfigurationForUserInfonull336 should have thrown IllegalArgumentException");
                 }
@@ -1453,7 +1453,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetGeneralConfigurationsOfConfigurationnull4980_failAssert1246() throws Exception {
         try {
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetGeneralConfigurationsOfConfigurationnull4980 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1464,7 +1464,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetGeneralConfigurationsOfConfigurationByIdnull4983_failAssert1247() throws Exception {
         try {
-            GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration, FeedbackOrchestratorProxyTest.idGeneralConfiguration);
+            GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.getGeneralConfigurationOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration, AmplFeedbackOrchestratorProxyTest.idGeneralConfiguration);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetGeneralConfigurationsOfConfigurationByIdnull4983 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1476,21 +1476,21 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test
     public void testCreateUpdateDeleteGeneralConfigurationOfConfiguration() throws Exception {
         List<Parameter> parameters = createParameters();
-        GeneralConfiguration genConf = FeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
-        GeneralConfiguration result = FeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfConfiguration(genConf, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+        GeneralConfiguration genConf = AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(parameters);
+        GeneralConfiguration result = AmplFeedbackOrchestratorProxyTest.proxy.createGeneralConfigurationOfConfiguration(genConf, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
         Assert.notNull(result);
         result.setName(((result.getName()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfConfiguration(result, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateGeneralConfigurationOfConfiguration(result, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
         Assert.isTrue(result.getName().contains("Modified"));
-        FeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationsOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, result.getId(), FeedbackOrchestratorProxyTest.idConfiguration);
+        AmplFeedbackOrchestratorProxyTest.proxy.deleteGeneralConfigurationsOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId(), AmplFeedbackOrchestratorProxyTest.idConfiguration);
     }
 
     @Test(timeout = 240000)
     public void testGetMechanismsOfConfigurationlitNum5302_failAssert1323() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 8;
-            FeedbackOrchestratorProxyTest.idConfiguration = 8;
-            List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+            AmplFeedbackOrchestratorProxyTest.idConfiguration = 8;
+            List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
             Assert.notNull(result);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetMechanismsOfConfigurationlitNum5302 should have thrown IllegalArgumentException");
@@ -1502,9 +1502,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetMechanismsOfConfigurationnull5307_failAssert1328() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 8;
-            FeedbackOrchestratorProxyTest.idConfiguration = 9;
-            List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+            AmplFeedbackOrchestratorProxyTest.idConfiguration = 9;
+            List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetMechanismsOfConfigurationnull5307 should have thrown IllegalArgumentException");
@@ -1517,9 +1517,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismsOfConfigurationlitNum5302_failAssert1323null5342_failAssert1329() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 8;
-                FeedbackOrchestratorProxyTest.idConfiguration = 8;
-                List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+                AmplFeedbackOrchestratorProxyTest.idConfiguration = 8;
+                List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
                 Assert.notNull(null);
                 Assert.isTrue((!(result.isEmpty())));
                 org.junit.Assert.fail("testGetMechanismsOfConfigurationlitNum5302 should have thrown IllegalArgumentException");
@@ -1534,9 +1534,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismsOfConfigurationnull5307_failAssert1328litNum5341_failAssert1330() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 9;
-                FeedbackOrchestratorProxyTest.idConfiguration = 9;
-                List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                AmplFeedbackOrchestratorProxyTest.idConfiguration = 9;
+                List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
                 Assert.notNull(null);
                 Assert.isTrue((!(result.isEmpty())));
                 org.junit.Assert.fail("testGetMechanismsOfConfigurationnull5307 should have thrown IllegalArgumentException");
@@ -1552,9 +1552,9 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    FeedbackOrchestratorProxyTest.idApplication = 9;
-                    FeedbackOrchestratorProxyTest.idConfiguration = 10;
-                    List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+                    AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                    AmplFeedbackOrchestratorProxyTest.idConfiguration = 10;
+                    List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
                     Assert.notNull(null);
                     Assert.isTrue((!(result.isEmpty())));
                     org.junit.Assert.fail("testGetMechanismsOfConfigurationnull5307 should have thrown IllegalArgumentException");
@@ -1572,9 +1572,9 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    FeedbackOrchestratorProxyTest.idApplication = 9;
-                    FeedbackOrchestratorProxyTest.idConfiguration = 8;
-                    List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+                    AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                    AmplFeedbackOrchestratorProxyTest.idConfiguration = 8;
+                    List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
                     Assert.notNull(null);
                     Assert.isTrue((!(result.isEmpty())));
                     org.junit.Assert.fail("testGetMechanismsOfConfigurationnull5307 should have thrown IllegalArgumentException");
@@ -1590,10 +1590,10 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetMechanismOfConfigurationlitNum5102_failAssert1273() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 8;
-            FeedbackOrchestratorProxyTest.idConfiguration = 9;
-            FeedbackOrchestratorProxyTest.idMechanism = 28;
-            Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration, FeedbackOrchestratorProxyTest.idMechanism);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+            AmplFeedbackOrchestratorProxyTest.idConfiguration = 9;
+            AmplFeedbackOrchestratorProxyTest.idMechanism = 28;
+            Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration, AmplFeedbackOrchestratorProxyTest.idMechanism);
             Assert.notNull(result);
             org.junit.Assert.fail("testGetMechanismOfConfigurationlitNum5102 should have thrown HttpClientErrorException");
         } catch (HttpClientErrorException expected) {
@@ -1604,10 +1604,10 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetMechanismOfConfigurationnull5107_failAssert1278() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 8;
-            FeedbackOrchestratorProxyTest.idConfiguration = 9;
-            FeedbackOrchestratorProxyTest.idMechanism = 29;
-            Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration, FeedbackOrchestratorProxyTest.idMechanism);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+            AmplFeedbackOrchestratorProxyTest.idConfiguration = 9;
+            AmplFeedbackOrchestratorProxyTest.idMechanism = 29;
+            Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration, AmplFeedbackOrchestratorProxyTest.idMechanism);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetMechanismOfConfigurationnull5107 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1619,10 +1619,10 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismOfConfigurationlitNum5102_failAssert1273null5160_failAssert1279() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 8;
-                FeedbackOrchestratorProxyTest.idConfiguration = 9;
-                FeedbackOrchestratorProxyTest.idMechanism = 28;
-                Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration, FeedbackOrchestratorProxyTest.idMechanism);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+                AmplFeedbackOrchestratorProxyTest.idConfiguration = 9;
+                AmplFeedbackOrchestratorProxyTest.idMechanism = 28;
+                Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration, AmplFeedbackOrchestratorProxyTest.idMechanism);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetMechanismOfConfigurationlitNum5102 should have thrown HttpClientErrorException");
             }
@@ -1636,10 +1636,10 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismOfConfigurationnull5107_failAssert1278litNum5159_failAssert1280() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 9;
-                FeedbackOrchestratorProxyTest.idConfiguration = 9;
-                FeedbackOrchestratorProxyTest.idMechanism = 29;
-                Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration, FeedbackOrchestratorProxyTest.idMechanism);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                AmplFeedbackOrchestratorProxyTest.idConfiguration = 9;
+                AmplFeedbackOrchestratorProxyTest.idMechanism = 29;
+                Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration, AmplFeedbackOrchestratorProxyTest.idMechanism);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetMechanismOfConfigurationnull5107 should have thrown IllegalArgumentException");
             }
@@ -1654,10 +1654,10 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    FeedbackOrchestratorProxyTest.idApplication = 9;
-                    FeedbackOrchestratorProxyTest.idConfiguration = 10;
-                    FeedbackOrchestratorProxyTest.idMechanism = 29;
-                    Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration, FeedbackOrchestratorProxyTest.idMechanism);
+                    AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                    AmplFeedbackOrchestratorProxyTest.idConfiguration = 10;
+                    AmplFeedbackOrchestratorProxyTest.idMechanism = 29;
+                    Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration, AmplFeedbackOrchestratorProxyTest.idMechanism);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetMechanismOfConfigurationnull5107 should have thrown IllegalArgumentException");
                 }
@@ -1674,10 +1674,10 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    FeedbackOrchestratorProxyTest.idApplication = 9;
-                    FeedbackOrchestratorProxyTest.idConfiguration = 9;
-                    FeedbackOrchestratorProxyTest.idMechanism = 28;
-                    Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration, FeedbackOrchestratorProxyTest.idMechanism);
+                    AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                    AmplFeedbackOrchestratorProxyTest.idConfiguration = 9;
+                    AmplFeedbackOrchestratorProxyTest.idMechanism = 28;
+                    Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration, AmplFeedbackOrchestratorProxyTest.idMechanism);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetMechanismOfConfigurationnull5107 should have thrown IllegalArgumentException");
                 }
@@ -1693,15 +1693,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test
     public void testCreateMechanismOfConfiguration() throws Exception {
         Mechanism fm = createFeedbackMechanism(MechanismType.AUDIO_TYPE);
-        Mechanism result = FeedbackOrchestratorProxyTest.proxy.createMechanismOfConfiguration(fm, FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idConfiguration);
+        Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.createMechanismOfConfiguration(fm, AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idConfiguration);
         Assert.notNull(result);
     }
 
     @Test(timeout = 240000)
     public void testGetMechanismsOfApplicationlitNum5253_failAssert1310() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 7;
-            List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(FeedbackOrchestratorProxyTest.idApplication);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 7;
+            List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(result);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetMechanismsOfApplicationlitNum5253 should have thrown IllegalArgumentException");
@@ -1713,8 +1713,8 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetMechanismsOfApplicationnull5258_failAssert1315() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 8;
-            List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(FeedbackOrchestratorProxyTest.idApplication);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+            List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetMechanismsOfApplicationnull5258 should have thrown IllegalArgumentException");
@@ -1727,8 +1727,8 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismsOfApplicationlitNum5253_failAssert1310null5275_failAssert1316() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 7;
-                List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(FeedbackOrchestratorProxyTest.idApplication);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 7;
+                List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(null);
                 Assert.isTrue((!(result.isEmpty())));
                 org.junit.Assert.fail("testGetMechanismsOfApplicationlitNum5253 should have thrown IllegalArgumentException");
@@ -1743,8 +1743,8 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismsOfApplicationnull5258_failAssert1315litNum5274_failAssert1317() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 9;
-                List<Mechanism> result = FeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(FeedbackOrchestratorProxyTest.idApplication);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                List<Mechanism> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismsOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication);
                 Assert.notNull(null);
                 Assert.isTrue((!(result.isEmpty())));
                 org.junit.Assert.fail("testGetMechanismsOfApplicationnull5258 should have thrown IllegalArgumentException");
@@ -1758,9 +1758,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetMechanismOfApplicationlitNum4993_failAssert1248() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 8;
-            FeedbackOrchestratorProxyTest.idMechanism = 27;
-            Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idMechanism);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+            AmplFeedbackOrchestratorProxyTest.idMechanism = 27;
+            Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idMechanism);
             Assert.notNull(result);
             org.junit.Assert.fail("testGetMechanismOfApplicationlitNum4993 should have thrown HttpClientErrorException");
         } catch (HttpClientErrorException expected) {
@@ -1771,9 +1771,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetMechanismOfApplicationnull4998_failAssert1253() throws Exception {
         try {
-            FeedbackOrchestratorProxyTest.idApplication = 8;
-            FeedbackOrchestratorProxyTest.idMechanism = 28;
-            Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idMechanism);
+            AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+            AmplFeedbackOrchestratorProxyTest.idMechanism = 28;
+            Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idMechanism);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetMechanismOfApplicationnull4998 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1785,9 +1785,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismOfApplicationlitNum4993_failAssert1248null5033_failAssert1254() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 8;
-                FeedbackOrchestratorProxyTest.idMechanism = 27;
-                Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idMechanism);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+                AmplFeedbackOrchestratorProxyTest.idMechanism = 27;
+                Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idMechanism);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetMechanismOfApplicationlitNum4993 should have thrown HttpClientErrorException");
             }
@@ -1801,9 +1801,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testGetMechanismOfApplicationnull4998_failAssert1253litNum5032_failAssert1255() throws Exception {
         try {
             {
-                FeedbackOrchestratorProxyTest.idApplication = 9;
-                FeedbackOrchestratorProxyTest.idMechanism = 28;
-                Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idMechanism);
+                AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                AmplFeedbackOrchestratorProxyTest.idMechanism = 28;
+                Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idMechanism);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetMechanismOfApplicationnull4998 should have thrown IllegalArgumentException");
             }
@@ -1818,9 +1818,9 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    FeedbackOrchestratorProxyTest.idApplication = 9;
-                    FeedbackOrchestratorProxyTest.idMechanism = 29;
-                    Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idMechanism);
+                    AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                    AmplFeedbackOrchestratorProxyTest.idMechanism = 29;
+                    Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idMechanism);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetMechanismOfApplicationnull4998 should have thrown IllegalArgumentException");
                 }
@@ -1837,9 +1837,9 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    FeedbackOrchestratorProxyTest.idApplication = 9;
-                    FeedbackOrchestratorProxyTest.idMechanism = 27;
-                    Mechanism result = FeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idMechanism);
+                    AmplFeedbackOrchestratorProxyTest.idApplication = 9;
+                    AmplFeedbackOrchestratorProxyTest.idMechanism = 27;
+                    Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idMechanism);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetMechanismOfApplicationnull4998 should have thrown IllegalArgumentException");
                 }
@@ -1855,20 +1855,20 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test
     public void testCreateUpdateDeleteMechanismOfApplication() throws Exception {
         Mechanism fm = createFeedbackMechanism(MechanismType.INFO_TYPE);
-        Mechanism result = FeedbackOrchestratorProxyTest.proxy.createMechanismOfApplication(fm, FeedbackOrchestratorProxyTest.idApplication);
+        Mechanism result = AmplFeedbackOrchestratorProxyTest.proxy.createMechanismOfApplication(fm, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.notNull(result);
         result.setType(MechanismType.SCREENSHOT_TYPE);
-        result = FeedbackOrchestratorProxyTest.proxy.updateMechanismOfApplication(result, FeedbackOrchestratorProxyTest.idApplication);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateMechanismOfApplication(result, AmplFeedbackOrchestratorProxyTest.idApplication);
         Assert.isTrue(((result.getType()) == (MechanismType.SCREENSHOT_TYPE)));
-        FeedbackOrchestratorProxyTest.proxy.deleteMechanismOfApplication(FeedbackOrchestratorProxyTest.idApplication, result.getId());
+        AmplFeedbackOrchestratorProxyTest.proxy.deleteMechanismOfApplication(AmplFeedbackOrchestratorProxyTest.idApplication, result.getId());
     }
 
     @Ignore
     @Test
     public void testGetMechanismParameters() throws Exception {
-        FeedbackOrchestratorProxyTest.idApplication = 8;
-        FeedbackOrchestratorProxyTest.idMechanism = 28;
-        List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.getMechanismParameters(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idMechanism);
+        AmplFeedbackOrchestratorProxyTest.idApplication = 8;
+        AmplFeedbackOrchestratorProxyTest.idMechanism = 28;
+        List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.getMechanismParameters(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idMechanism);
         Assert.notNull(result);
         Assert.isTrue((!(result.isEmpty())));
     }
@@ -1876,7 +1876,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetParametersnull5401_failAssert1349() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.getParameters();
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.getParameters();
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetParametersnull5401 should have thrown IllegalArgumentException");
@@ -1888,7 +1888,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetParameternull5398_failAssert1348() throws Exception {
         try {
-            Parameter result = FeedbackOrchestratorProxyTest.proxy.getParameter(FeedbackOrchestratorProxyTest.idParameter);
+            Parameter result = AmplFeedbackOrchestratorProxyTest.proxy.getParameter(AmplFeedbackOrchestratorProxyTest.idParameter);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetParameternull5398 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1900,18 +1900,18 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test
     public void testCreateUpdateDeleteParameters() throws Exception {
         List<Parameter> parameters = createParameters();
-        Parameter result = FeedbackOrchestratorProxyTest.proxy.createParameter(parameters.get(0));
+        Parameter result = AmplFeedbackOrchestratorProxyTest.proxy.createParameter(parameters.get(0));
         Assert.notNull(result);
         result.setValue(((result.getValue()) + "Modified"));
-        result = FeedbackOrchestratorProxyTest.proxy.updateParameter(result);
+        result = AmplFeedbackOrchestratorProxyTest.proxy.updateParameter(result);
         Assert.isTrue(result.getValue().contains("Modified"));
-        FeedbackOrchestratorProxyTest.proxy.deleteParameter(result.getId());
+        AmplFeedbackOrchestratorProxyTest.proxy.deleteParameter(result.getId());
     }
 
     @Test(timeout = 240000)
     public void testGetUsersnull5407_failAssert1351() throws Exception {
         try {
-            List<User> result = FeedbackOrchestratorProxyTest.proxy.getUsers(FeedbackOrchestratorProxyTest.idApplication);
+            List<User> result = AmplFeedbackOrchestratorProxyTest.proxy.getUsers(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetUsersnull5407 should have thrown IllegalArgumentException");
@@ -1922,10 +1922,10 @@ public class AmplFeedbackOrchestratorProxyTest {
 
     @Test(timeout = 240000)
     public void testCreateUserlitString4256() throws Exception {
-        Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+        Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
         UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
         User user = new User("usertest", "usertest", application, userGroup);
-        HttpStatus o_testCreateUserlitString4256__8 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, FeedbackOrchestratorProxyTest.idApplication);
+        HttpStatus o_testCreateUserlitString4256__8 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, AmplFeedbackOrchestratorProxyTest.idApplication);
         assertEquals("Created", ((HttpStatus) (o_testCreateUserlitString4256__8)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUserlitString4256__8)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUserlitString4256__8)).is2xxSuccessful());
@@ -1933,7 +1933,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         assertFalse(((HttpStatus) (o_testCreateUserlitString4256__8)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testCreateUserlitString4256__8)).is5xxServerError());
         assertEquals("201", ((HttpStatus) (o_testCreateUserlitString4256__8)).toString());
-        HttpStatus o_testCreateUserlitString4256__9 = FeedbackOrchestratorProxyTest.proxy.createUser(user, FeedbackOrchestratorProxyTest.idApplication);
+        HttpStatus o_testCreateUserlitString4256__9 = AmplFeedbackOrchestratorProxyTest.proxy.createUser(user, AmplFeedbackOrchestratorProxyTest.idApplication);
         assertEquals("Created", ((HttpStatus) (o_testCreateUserlitString4256__9)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUserlitString4256__9)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUserlitString4256__9)).is2xxSuccessful());
@@ -1953,11 +1953,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUsernull4280_failAssert1083() throws Exception {
         try {
-            Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+            Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
             UserGroup userGroup = new UserGroup("grouptest", new ArrayList<>(), application);
             User user = new User("usertest", "usertest", application, userGroup);
-            FeedbackOrchestratorProxyTest.proxy.createUserGroup(null, FeedbackOrchestratorProxyTest.idApplication);
-            FeedbackOrchestratorProxyTest.proxy.createUser(user, FeedbackOrchestratorProxyTest.idApplication);
+            AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(null, AmplFeedbackOrchestratorProxyTest.idApplication);
+            AmplFeedbackOrchestratorProxyTest.proxy.createUser(user, AmplFeedbackOrchestratorProxyTest.idApplication);
             org.junit.Assert.fail("testCreateUsernull4280 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid userGroup", expected.getMessage());
@@ -1967,11 +1967,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUsernull4281_failAssert1084() throws Exception {
         try {
-            Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+            Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
             UserGroup userGroup = new UserGroup("grouptest", new ArrayList<>(), application);
             User user = new User("usertest", "usertest", application, userGroup);
-            FeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, FeedbackOrchestratorProxyTest.idApplication);
-            FeedbackOrchestratorProxyTest.proxy.createUser(null, FeedbackOrchestratorProxyTest.idApplication);
+            AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, AmplFeedbackOrchestratorProxyTest.idApplication);
+            AmplFeedbackOrchestratorProxyTest.proxy.createUser(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             org.junit.Assert.fail("testCreateUsernull4281 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid user", expected.getMessage());
@@ -1981,11 +1981,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUserlitString4256null4437_failAssert1085() throws Exception {
         try {
-            Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+            Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
             UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
             User user = new User("usertest", "usertest", application, userGroup);
-            HttpStatus o_testCreateUserlitString4256__8 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(null, FeedbackOrchestratorProxyTest.idApplication);
-            HttpStatus o_testCreateUserlitString4256__9 = FeedbackOrchestratorProxyTest.proxy.createUser(user, FeedbackOrchestratorProxyTest.idApplication);
+            HttpStatus o_testCreateUserlitString4256__8 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(null, AmplFeedbackOrchestratorProxyTest.idApplication);
+            HttpStatus o_testCreateUserlitString4256__9 = AmplFeedbackOrchestratorProxyTest.proxy.createUser(user, AmplFeedbackOrchestratorProxyTest.idApplication);
             org.junit.Assert.fail("testCreateUserlitString4256null4437 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid userGroup", expected.getMessage());
@@ -1995,11 +1995,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUserlitString4256null4441_failAssert1086() throws Exception {
         try {
-            Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+            Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
             UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
             User user = new User("usertest", "usertest", application, userGroup);
-            HttpStatus o_testCreateUserlitString4256__8 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, FeedbackOrchestratorProxyTest.idApplication);
-            HttpStatus o_testCreateUserlitString4256__9 = FeedbackOrchestratorProxyTest.proxy.createUser(null, FeedbackOrchestratorProxyTest.idApplication);
+            HttpStatus o_testCreateUserlitString4256__8 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, AmplFeedbackOrchestratorProxyTest.idApplication);
+            HttpStatus o_testCreateUserlitString4256__9 = AmplFeedbackOrchestratorProxyTest.proxy.createUser(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             org.junit.Assert.fail("testCreateUserlitString4256null4441 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid user", expected.getMessage());
@@ -2010,11 +2010,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUsernull4280_failAssert1083litString4388_failAssert1097() throws Exception {
         try {
             {
-                Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+                Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
                 UserGroup userGroup = new UserGroup("grouptest", new ArrayList<>(), application);
                 User user = new User("us ertest", "usertest", application, userGroup);
-                FeedbackOrchestratorProxyTest.proxy.createUserGroup(null, FeedbackOrchestratorProxyTest.idApplication);
-                FeedbackOrchestratorProxyTest.proxy.createUser(user, FeedbackOrchestratorProxyTest.idApplication);
+                AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(null, AmplFeedbackOrchestratorProxyTest.idApplication);
+                AmplFeedbackOrchestratorProxyTest.proxy.createUser(user, AmplFeedbackOrchestratorProxyTest.idApplication);
                 org.junit.Assert.fail("testCreateUsernull4280 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUsernull4280_failAssert1083litString4388 should have thrown IllegalArgumentException");
@@ -2027,11 +2027,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUserlitString4256null4437_failAssert1085litString4690_failAssert1173() throws Exception {
         try {
             {
-                Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+                Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
                 UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
                 User user = new User("GeneralConfiguration generated", "usertest", application, userGroup);
-                HttpStatus o_testCreateUserlitString4256__8 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(null, FeedbackOrchestratorProxyTest.idApplication);
-                HttpStatus o_testCreateUserlitString4256__9 = FeedbackOrchestratorProxyTest.proxy.createUser(user, FeedbackOrchestratorProxyTest.idApplication);
+                HttpStatus o_testCreateUserlitString4256__8 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(null, AmplFeedbackOrchestratorProxyTest.idApplication);
+                HttpStatus o_testCreateUserlitString4256__9 = AmplFeedbackOrchestratorProxyTest.proxy.createUser(user, AmplFeedbackOrchestratorProxyTest.idApplication);
                 org.junit.Assert.fail("testCreateUserlitString4256null4437 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUserlitString4256null4437_failAssert1085litString4690 should have thrown IllegalArgumentException");
@@ -2044,11 +2044,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUserlitString4256null4441_failAssert1086litString4690_failAssert1190() throws Exception {
         try {
             {
-                Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+                Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
                 UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
                 User user = new User("Test Website 21", "usertest", application, userGroup);
-                HttpStatus o_testCreateUserlitString4256__8 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, FeedbackOrchestratorProxyTest.idApplication);
-                HttpStatus o_testCreateUserlitString4256__9 = FeedbackOrchestratorProxyTest.proxy.createUser(null, FeedbackOrchestratorProxyTest.idApplication);
+                HttpStatus o_testCreateUserlitString4256__8 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, AmplFeedbackOrchestratorProxyTest.idApplication);
+                HttpStatus o_testCreateUserlitString4256__9 = AmplFeedbackOrchestratorProxyTest.proxy.createUser(null, AmplFeedbackOrchestratorProxyTest.idApplication);
                 org.junit.Assert.fail("testCreateUserlitString4256null4441 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUserlitString4256null4441_failAssert1086litString4690 should have thrown IllegalArgumentException");
@@ -2061,11 +2061,11 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUserlitString4256null4441_failAssert1086null4732_failAssert1206() throws Exception {
         try {
             {
-                Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+                Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
                 UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
                 User user = new User("usertest", "usertest", application, userGroup);
-                HttpStatus o_testCreateUserlitString4256__8 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(null, FeedbackOrchestratorProxyTest.idApplication);
-                HttpStatus o_testCreateUserlitString4256__9 = FeedbackOrchestratorProxyTest.proxy.createUser(null, FeedbackOrchestratorProxyTest.idApplication);
+                HttpStatus o_testCreateUserlitString4256__8 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(null, AmplFeedbackOrchestratorProxyTest.idApplication);
+                HttpStatus o_testCreateUserlitString4256__9 = AmplFeedbackOrchestratorProxyTest.proxy.createUser(null, AmplFeedbackOrchestratorProxyTest.idApplication);
                 org.junit.Assert.fail("testCreateUserlitString4256null4441 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUserlitString4256null4441_failAssert1086null4732 should have thrown IllegalArgumentException");
@@ -2077,7 +2077,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testGetUserGroupsnull5404_failAssert1350() throws Exception {
         try {
-            List<UserGroup> result = FeedbackOrchestratorProxyTest.proxy.getUserGroups(FeedbackOrchestratorProxyTest.idApplication);
+            List<UserGroup> result = AmplFeedbackOrchestratorProxyTest.proxy.getUserGroups(AmplFeedbackOrchestratorProxyTest.idApplication);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetUserGroupsnull5404 should have thrown IllegalArgumentException");
@@ -2089,15 +2089,15 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Ignore
     @Test
     public void testGetUserGroup() throws Exception {
-        UserGroup result = FeedbackOrchestratorProxyTest.proxy.getUserGroup(FeedbackOrchestratorProxyTest.idApplication, FeedbackOrchestratorProxyTest.idUserGroup);
+        UserGroup result = AmplFeedbackOrchestratorProxyTest.proxy.getUserGroup(AmplFeedbackOrchestratorProxyTest.idApplication, AmplFeedbackOrchestratorProxyTest.idUserGroup);
         Assert.notNull(result);
     }
 
     @Test(timeout = 240000)
     public void testCreateUserGrouplitString4857() throws Exception {
-        Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+        Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
         UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
-        HttpStatus o_testCreateUserGrouplitString4857__6 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, FeedbackOrchestratorProxyTest.idApplication);
+        HttpStatus o_testCreateUserGrouplitString4857__6 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(userGroup, AmplFeedbackOrchestratorProxyTest.idApplication);
         assertEquals("Created", ((HttpStatus) (o_testCreateUserGrouplitString4857__6)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUserGrouplitString4857__6)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUserGrouplitString4857__6)).is2xxSuccessful());
@@ -2110,9 +2110,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUserGroupnull4865_failAssert1216() throws Exception {
         try {
-            Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+            Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
             UserGroup userGroup = new UserGroup("grouptest", new ArrayList<>(), application);
-            FeedbackOrchestratorProxyTest.proxy.createUserGroup(null, FeedbackOrchestratorProxyTest.idApplication);
+            AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             org.junit.Assert.fail("testCreateUserGroupnull4865 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid userGroup", expected.getMessage());
@@ -2122,9 +2122,9 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUserGrouplitString4857null4893_failAssert1217() throws Exception {
         try {
-            Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+            Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
             UserGroup userGroup = new UserGroup("Modified", new ArrayList<>(), application);
-            HttpStatus o_testCreateUserGrouplitString4857__6 = FeedbackOrchestratorProxyTest.proxy.createUserGroup(null, FeedbackOrchestratorProxyTest.idApplication);
+            HttpStatus o_testCreateUserGrouplitString4857__6 = AmplFeedbackOrchestratorProxyTest.proxy.createUserGroup(null, AmplFeedbackOrchestratorProxyTest.idApplication);
             org.junit.Assert.fail("testCreateUserGrouplitString4857null4893 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid userGroup", expected.getMessage());
@@ -2134,7 +2134,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testSwitchOrderOfParametersOfMechanismlitNum6119_failAssert1516() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 45, 46);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 45, 46);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testSwitchOrderOfParametersOfMechanismlitNum6119 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2145,7 +2145,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testSwitchOrderOfParametersOfMechanismlitNum6126_failAssert1521() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 28, Integer.MAX_VALUE, 46);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 28, Integer.MAX_VALUE, 46);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testSwitchOrderOfParametersOfMechanismlitNum6126 should have thrown HttpServerErrorException");
         } catch (HttpServerErrorException expected) {
@@ -2157,7 +2157,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testSwitchOrderOfParametersOfMechanismlitNum6119_failAssert1516litNum6198_failAssert1529() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 46, 46);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 46, 46);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testSwitchOrderOfParametersOfMechanismlitNum6119 should have thrown IllegalArgumentException");
             }
@@ -2171,7 +2171,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testSwitchOrderOfParametersOfMechanismlitNum6119_failAssert1516litNum6202_failAssert1531() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, Integer.MAX_VALUE, 46);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, Integer.MAX_VALUE, 46);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testSwitchOrderOfParametersOfMechanismlitNum6119 should have thrown IllegalArgumentException");
             }
@@ -2186,7 +2186,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 46, 47);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 46, 47);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testSwitchOrderOfParametersOfMechanismlitNum6119 should have thrown IllegalArgumentException");
                 }
@@ -2203,7 +2203,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 46, Integer.MAX_VALUE);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfMechanism(8, 27, 46, Integer.MAX_VALUE);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testSwitchOrderOfParametersOfMechanismlitNum6119 should have thrown IllegalArgumentException");
                 }
@@ -2218,7 +2218,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testReorderParameterOfMechanismlitNum5600_failAssert1395() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 29, 45, 1);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 29, 45, 1);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testReorderParameterOfMechanismlitNum5600 should have thrown HttpServerErrorException");
         } catch (HttpServerErrorException expected) {
@@ -2229,7 +2229,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testReorderParameterOfMechanismlitNum5601_failAssert1396() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 27, 45, 1);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 27, 45, 1);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testReorderParameterOfMechanismlitNum5601 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2241,7 +2241,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testReorderParameterOfMechanismlitNum5600_failAssert1395litNum5686_failAssert1408() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 29, 46, 1);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 29, 46, 1);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testReorderParameterOfMechanismlitNum5600 should have thrown HttpServerErrorException");
             }
@@ -2255,7 +2255,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testReorderParameterOfMechanismlitNum5601_failAssert1396litNum5675_failAssert1418() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 27, 46, 1);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 27, 46, 1);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testReorderParameterOfMechanismlitNum5601 should have thrown IllegalArgumentException");
             }
@@ -2270,7 +2270,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 29, 46, 2);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 29, 46, 2);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testReorderParameterOfMechanismlitNum5600 should have thrown HttpServerErrorException");
                 }
@@ -2287,7 +2287,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 27, 46, 2);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfMechanism(8, 27, 46, 2);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testReorderParameterOfMechanismlitNum5601 should have thrown IllegalArgumentException");
                 }
@@ -2302,7 +2302,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937_failAssert1472() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 40, 41);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 40, 41);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2313,7 +2313,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testSwitchOrderOfParametersOfGeneralConfigurationlitNum5943_failAssert1477() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 8, 39, 41);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 8, 39, 41);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testSwitchOrderOfParametersOfGeneralConfigurationlitNum5943 should have thrown HttpServerErrorException");
         } catch (HttpServerErrorException expected) {
@@ -2325,7 +2325,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937_failAssert1472litNum6014_failAssert1486() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 41, 41);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 41, 41);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937 should have thrown IllegalArgumentException");
             }
@@ -2339,7 +2339,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937_failAssert1472litNum6015_failAssert1487() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 39, 41);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 39, 41);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937 should have thrown IllegalArgumentException");
             }
@@ -2354,7 +2354,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 41, 42);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 41, 42);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937 should have thrown IllegalArgumentException");
                 }
@@ -2371,7 +2371,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 41, Integer.MAX_VALUE);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 7, 41, Integer.MAX_VALUE);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testSwitchOrderOfParametersOfGeneralConfigurationlitNum5937 should have thrown IllegalArgumentException");
                 }
@@ -2386,7 +2386,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testReorderParameterOfGeneralConfigurationlitNum5416_failAssert1352() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 9, 40, 1);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 9, 40, 1);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testReorderParameterOfGeneralConfigurationlitNum5416 should have thrown HttpServerErrorException");
         } catch (HttpServerErrorException expected) {
@@ -2397,7 +2397,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testReorderParameterOfGeneralConfigurationlitNum5417_failAssert1353() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 7, 40, 1);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 7, 40, 1);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testReorderParameterOfGeneralConfigurationlitNum5417 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2409,7 +2409,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testReorderParameterOfGeneralConfigurationlitNum5416_failAssert1352litNum5490_failAssert1366() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 9, 41, 1);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 9, 41, 1);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testReorderParameterOfGeneralConfigurationlitNum5416 should have thrown HttpServerErrorException");
             }
@@ -2423,7 +2423,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testReorderParameterOfGeneralConfigurationlitNum5417_failAssert1353litNum5490_failAssert1376() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 7, 41, 1);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 7, 41, 1);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testReorderParameterOfGeneralConfigurationlitNum5417 should have thrown IllegalArgumentException");
             }
@@ -2438,7 +2438,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 9, 41, 2);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 9, 41, 2);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testReorderParameterOfGeneralConfigurationlitNum5416 should have thrown HttpServerErrorException");
                 }
@@ -2455,7 +2455,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 7, 41, 2);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfGeneralConfiguration(8, 7, 41, 2);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testReorderParameterOfGeneralConfigurationlitNum5417 should have thrown IllegalArgumentException");
                 }
@@ -2470,7 +2470,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testSwitchOrderOfParametersOfParameterlitNum6337_failAssert1571() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 78, 79);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 78, 79);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testSwitchOrderOfParametersOfParameterlitNum6337 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2481,7 +2481,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testSwitchOrderOfParametersOfParameterlitNum6345_failAssert1577() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 77, Integer.MAX_VALUE, 79);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 77, Integer.MAX_VALUE, 79);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testSwitchOrderOfParametersOfParameterlitNum6345 should have thrown HttpServerErrorException");
         } catch (HttpServerErrorException expected) {
@@ -2493,7 +2493,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testSwitchOrderOfParametersOfParameterlitNum6337_failAssert1571litNum6431_failAssert1585() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 79, 79);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 79, 79);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testSwitchOrderOfParametersOfParameterlitNum6337 should have thrown IllegalArgumentException");
             }
@@ -2507,7 +2507,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testSwitchOrderOfParametersOfParameterlitNum6337_failAssert1571litNum6435_failAssert1587() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, Integer.MAX_VALUE, 79);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, Integer.MAX_VALUE, 79);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testSwitchOrderOfParametersOfParameterlitNum6337 should have thrown IllegalArgumentException");
             }
@@ -2522,7 +2522,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 79, 80);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 79, 80);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testSwitchOrderOfParametersOfParameterlitNum6337 should have thrown IllegalArgumentException");
                 }
@@ -2539,7 +2539,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 79, Integer.MAX_VALUE);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.switchOrderOfParametersOfParameter(8, 78, 79, Integer.MAX_VALUE);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testSwitchOrderOfParametersOfParameterlitNum6337 should have thrown IllegalArgumentException");
                 }
@@ -2554,7 +2554,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testReorderParameterOfParameterlitNum5785_failAssert1438() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 78, 1);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 78, 1);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testReorderParameterOfParameterlitNum5785 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2565,7 +2565,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testReorderParameterOfParameterlitNum5792_failAssert1444() throws Exception {
         try {
-            List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 77, 77, 1);
+            List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 77, 77, 1);
             Assert.notEmpty(result);
             org.junit.Assert.fail("testReorderParameterOfParameterlitNum5792 should have thrown HttpServerErrorException");
         } catch (HttpServerErrorException expected) {
@@ -2577,7 +2577,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testReorderParameterOfParameterlitNum5785_failAssert1438litNum5859_failAssert1452() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 79, 1);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 79, 1);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testReorderParameterOfParameterlitNum5785 should have thrown IllegalArgumentException");
             }
@@ -2591,7 +2591,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testReorderParameterOfParameterlitNum5785_failAssert1438litNum5871_failAssert1459() throws Exception {
         try {
             {
-                List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 78, 0);
+                List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 78, 0);
                 Assert.notEmpty(result);
                 org.junit.Assert.fail("testReorderParameterOfParameterlitNum5785 should have thrown IllegalArgumentException");
             }
@@ -2606,7 +2606,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 79, 2);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 79, 2);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testReorderParameterOfParameterlitNum5785 should have thrown IllegalArgumentException");
                 }
@@ -2623,7 +2623,7 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 {
-                    List<Parameter> result = FeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 79, 0);
+                    List<Parameter> result = AmplFeedbackOrchestratorProxyTest.proxy.reorderParameterOfParameter(8, 78, 79, 0);
                     Assert.notEmpty(result);
                     org.junit.Assert.fail("testReorderParameterOfParameterlitNum5785 should have thrown IllegalArgumentException");
                 }
@@ -2638,16 +2638,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteParameterInMechanismlitString2414() throws Exception {
         Integer mechanismId = 1;
-        Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+        Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
         parameter.setLanguage("en");
         parameter.setCreatedAt(Calendar.getInstance().getTime());
         parameter.setOrder(1);
-        parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+        parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
         Assert.notNull(parameter.getId());
         parameter.setValue(((parameter.getValue()) + "modified"));
-        parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+        parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
         Assert.isTrue(parameter.getValue().contains("modified"));
-        HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+        HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteParameterInMechanismlitString2414__20)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteParameterInMechanismlitString2414__20)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteParameterInMechanismlitString2414__20)).is2xxSuccessful());
@@ -2660,16 +2660,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     @Test(timeout = 240000)
     public void testCreateUpdateDeleteParameterInMechanismnull2473() throws Exception {
         Integer mechanismId = 1;
-        Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", null);
+        Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", null);
         parameter.setLanguage("en");
         parameter.setCreatedAt(Calendar.getInstance().getTime());
         parameter.setOrder(1);
-        parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+        parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
         Assert.notNull(parameter.getId());
         parameter.setValue(((parameter.getValue()) + "modified"));
-        parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+        parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
         Assert.isTrue(parameter.getValue().contains("modified"));
-        HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+        HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
         assertEquals("OK", ((HttpStatus) (o_testCreateUpdateDeleteParameterInMechanismnull2473__20)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateUpdateDeleteParameterInMechanismnull2473__20)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateUpdateDeleteParameterInMechanismnull2473__20)).is2xxSuccessful());
@@ -2683,16 +2683,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismlitString2435_failAssert712() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "en"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2435 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -2703,16 +2703,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2471_failAssert727() throws Exception {
         try {
             Integer mechanismId = null;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2471 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid mechanismId", expected.getMessage());
@@ -2723,16 +2723,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2476_failAssert728() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(null, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(null, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2476 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid parameter", expected.getMessage());
@@ -2743,16 +2743,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2478_failAssert730() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(null);
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2478 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -2763,16 +2763,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2479_failAssert731() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2479 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid parameter", expected.getMessage());
@@ -2783,16 +2783,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2480_failAssert732() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2480 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid mechanismId", expected.getMessage());
@@ -2803,16 +2803,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismlitString2414litString2881_failAssert734() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("m{odified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414litString2881 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -2823,16 +2823,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismlitString2414null3058_failAssert750() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3058 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid parameter", expected.getMessage());
@@ -2843,16 +2843,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismlitString2414null3046_failAssert751() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(null, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(null, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3046 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid parameter", expected.getMessage());
@@ -2863,16 +2863,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismlitString2414null3061_failAssert752() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3061 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid mechanismId", expected.getMessage());
@@ -2883,16 +2883,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismlitString2414null3051_failAssert753() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, null);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, null);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3051 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid mechanismId", expected.getMessage());
@@ -2903,16 +2903,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismlitString2414null3055_failAssert754() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(null);
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3055 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -2923,16 +2923,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2473null2961_failAssert772() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", null);
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", null);
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2961 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid parameter", expected.getMessage());
@@ -2943,16 +2943,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2473null2965_failAssert774() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", null);
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", null);
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(((parameter.getValue()) + "modified"));
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2965 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid mechanismId", expected.getMessage());
@@ -2963,16 +2963,16 @@ public class AmplFeedbackOrchestratorProxyTest {
     public void testCreateUpdateDeleteParameterInMechanismnull2473null2955_failAssert775() throws Exception {
         try {
             Integer mechanismId = 1;
-            Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", null);
+            Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", null);
             parameter.setLanguage("en");
             parameter.setCreatedAt(Calendar.getInstance().getTime());
             parameter.setOrder(1);
-            parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
             Assert.notNull(parameter.getId());
             parameter.setValue(null);
-            parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+            parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
             Assert.isTrue(parameter.getValue().contains("modified"));
-            HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+            HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2955 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -2984,16 +2984,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = 1;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", null);
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", null);
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(((parameter.getValue()) + ", we considered your feedback and implemented it today. It will be shipped with the release next Monday."));
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2965 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2965_failAssert774litString3586 should have thrown IllegalArgumentException");
@@ -3007,16 +3007,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = Integer.MIN_VALUE;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(((parameter.getValue()) + "modified"));
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
                 Assert.isTrue(parameter.getValue().contains("m{odified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414litString2881 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414litString2881_failAssert734litNum3589 should have thrown IllegalArgumentException");
@@ -3030,16 +3030,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = 1;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", null);
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", null);
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(null);
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2961 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2961_failAssert772null3834 should have thrown IllegalArgumentException");
@@ -3053,16 +3053,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = 1;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(Integer.MAX_VALUE);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(null);
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3055 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3055_failAssert754litNum3677 should have thrown IllegalArgumentException");
@@ -3076,16 +3076,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = Integer.MAX_VALUE;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(null, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(null, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(((parameter.getValue()) + "modified"));
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3046 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3046_failAssert751litNum3799 should have thrown IllegalArgumentException");
@@ -3099,16 +3099,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = Integer.MAX_VALUE;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(((parameter.getValue()) + "modified"));
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(null, mechanismId);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3058 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3058_failAssert750litNum3782 should have thrown IllegalArgumentException");
@@ -3122,16 +3122,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = 1;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, null);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, null);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(null);
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3051 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3051_failAssert753null3811 should have thrown IllegalArgumentException");
@@ -3145,16 +3145,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = 1;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("Modified", "test");
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("Modified", "test");
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(null);
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, null);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismlitString2414__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3061 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismlitString2414null3061_failAssert752null3820 should have thrown IllegalArgumentException");
@@ -3168,16 +3168,16 @@ public class AmplFeedbackOrchestratorProxyTest {
         try {
             {
                 Integer mechanismId = 1;
-                Parameter parameter = FeedbackOrchestratorProxyTest.createParameter("test", null);
+                Parameter parameter = AmplFeedbackOrchestratorProxyTest.createParameter("test", null);
                 parameter.setLanguage("en");
                 parameter.setCreatedAt(Calendar.getInstance().getTime());
                 parameter.setOrder(1);
-                parameter = FeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.createParameterInMechanism(parameter, mechanismId);
                 Assert.notNull(parameter.getId());
                 parameter.setValue(null);
-                parameter = FeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
+                parameter = AmplFeedbackOrchestratorProxyTest.proxy.updateParameterInMechanism(parameter, mechanismId);
                 Assert.isTrue(parameter.getValue().contains("modified"));
-                HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = FeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), null);
+                HttpStatus o_testCreateUpdateDeleteParameterInMechanismnull2473__20 = AmplFeedbackOrchestratorProxyTest.proxy.deleteParameterInMechanism(parameter.getId(), null);
                 org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2955 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateUpdateDeleteParameterInMechanismnull2473null2955_failAssert775null3813 should have thrown IllegalArgumentException");
@@ -3227,7 +3227,7 @@ public class AmplFeedbackOrchestratorProxyTest {
     }
 
     private ApiUserPermission createApiUserPermission(ApiUser user) throws Exception {
-        Application application = FeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(FeedbackOrchestratorProxyTest.idApplication);
+        Application application = AmplFeedbackOrchestratorProxyTest.proxy.getApplicationWithConfiguration(AmplFeedbackOrchestratorProxyTest.idApplication);
         ApiUserPermission permission = new ApiUserPermission(user, application, true);
         return permission;
     }
@@ -3237,11 +3237,11 @@ public class AmplFeedbackOrchestratorProxyTest {
         app.setName(("Test Website " + (new Random().nextInt(1000))));
         app.setState(1);
         List<Parameter> fps = new ArrayList<>();
-        fps.add(FeedbackOrchestratorProxyTest.createParameter("reviewActive", "1"));
-        fps.add(FeedbackOrchestratorProxyTest.createParameter("mainColor", "#00ff00"));
-        app.setGeneralConfiguration(FeedbackOrchestratorProxyTest.createGeneralConfiguration(fps));
+        fps.add(AmplFeedbackOrchestratorProxyTest.createParameter("reviewActive", "1"));
+        fps.add(AmplFeedbackOrchestratorProxyTest.createParameter("mainColor", "#00ff00"));
+        app.setGeneralConfiguration(AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(fps));
         app.setConfigurations(new ArrayList<Configuration>());
-        app.getConfigurations().add(FeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PUSH, FeedbackOrchestratorProxyTest.createGeneralConfiguration(fps), new ArrayList<Mechanism>()));
+        app.getConfigurations().add(AmplFeedbackOrchestratorProxyTest.createConfiguration(TriggerType.PUSH, AmplFeedbackOrchestratorProxyTest.createGeneralConfiguration(fps), new ArrayList<Mechanism>()));
         return app;
     }
 

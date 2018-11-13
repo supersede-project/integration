@@ -20,14 +20,14 @@ public class AmplConfigurationFileHttpMonitorProxyTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        ConfigurationFileHttpMonitorProxyTest.proxy = new ConfigurationFileHttpMonitorProxy<Object, Object>();
+        AmplConfigurationFileHttpMonitorProxyTest.proxy = new ConfigurationFileHttpMonitorProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
     public void testCreateMonitorConfigurationnull11_failAssert0() throws Exception {
         try {
             HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-            HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(null);
+            HttpMonitorConfigurationFile result = AmplConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(null);
             Assert.notNull(result);
             org.junit.Assert.fail("testCreateMonitorConfigurationnull11 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -39,7 +39,7 @@ public class AmplConfigurationFileHttpMonitorProxyTest {
     public void testCreateMonitorConfigurationnull12_failAssert1() throws Exception {
         try {
             HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-            HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
+            HttpMonitorConfigurationFile result = AmplConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
             Assert.notNull(null);
             org.junit.Assert.fail("testCreateMonitorConfigurationnull12 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -53,7 +53,7 @@ public class AmplConfigurationFileHttpMonitorProxyTest {
             {
                 List<String> __DSPOT_listOfEvents_16 = Collections.singletonList("h`l V!3a(!.#b{[Iz>YS");
                 HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-                HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(null);
+                HttpMonitorConfigurationFile result = AmplConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(null);
                 Assert.notNull(result);
                 org.junit.Assert.fail("testCreateMonitorConfigurationnull11 should have thrown IllegalArgumentException");
                 conf.setListOfEvents(__DSPOT_listOfEvents_16);
@@ -70,7 +70,7 @@ public class AmplConfigurationFileHttpMonitorProxyTest {
             {
                 List<String> __DSPOT_listOfEvents_10 = Collections.singletonList("cvg[?i!rb0/|]6^FT)-e");
                 HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-                HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
+                HttpMonitorConfigurationFile result = AmplConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testCreateMonitorConfigurationnull12 should have thrown IllegalArgumentException");
                 conf.setListOfEvents(__DSPOT_listOfEvents_10);
@@ -88,7 +88,7 @@ public class AmplConfigurationFileHttpMonitorProxyTest {
                 {
                     List<String> __DSPOT_listOfEvents_16 = Collections.singletonList("change");
                     HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-                    HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(null);
+                    HttpMonitorConfigurationFile result = AmplConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(null);
                     Assert.notNull(result);
                     org.junit.Assert.fail("testCreateMonitorConfigurationnull11 should have thrown IllegalArgumentException");
                     conf.setListOfEvents(__DSPOT_listOfEvents_16);
@@ -108,7 +108,7 @@ public class AmplConfigurationFileHttpMonitorProxyTest {
                 {
                     List<String> __DSPOT_listOfEvents_10 = Collections.singletonList("production");
                     HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-                    HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
+                    HttpMonitorConfigurationFile result = AmplConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testCreateMonitorConfigurationnull12 should have thrown IllegalArgumentException");
                     conf.setListOfEvents(__DSPOT_listOfEvents_10);

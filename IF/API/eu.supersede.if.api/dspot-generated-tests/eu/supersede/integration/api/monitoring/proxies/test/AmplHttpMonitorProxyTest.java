@@ -25,27 +25,27 @@ public class AmplHttpMonitorProxyTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        HttpMonitorProxyTest.proxy = new HttpMonitorProxy<Object, Object>();
+        AmplHttpMonitorProxyTest.proxy = new HttpMonitorProxy<Object, Object>();
     }
 
     @Ignore
     @Test
     public void testCreateAndDeleteMonitorConfiguration() throws Exception {
         HttpMonitorConfiguration conf = createMonitorConfiguration();
-        HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+        HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf);
         Assert.notNull(result);
         Assert.isTrue(((result.getId()) > 0));
-        org.junit.Assert.assertEquals(HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf), HttpStatus.OK);
+        org.junit.Assert.assertEquals(AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf), HttpStatus.OK);
     }
 
     @Test(timeout = 30000)
     public void testCreateAndDeleteMonitorConfigurationMultipart() throws Exception {
         HttpMonitorConfiguration conf = createMonitorConfiguration();
         Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-        HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+        HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
         Assert.notNull(result);
         Assert.isTrue(((result.getId()) > 0));
-        HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipart__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+        HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipart__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
         assertEquals("OK", ((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationMultipart__11)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationMultipart__11)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationMultipart__11)).is2xxSuccessful());
@@ -59,10 +59,10 @@ public class AmplHttpMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationMultipartlitNum17() throws Exception {
         HttpMonitorConfiguration conf = createMonitorConfiguration();
         Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-        HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+        HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
         Assert.notNull(result);
         Assert.isTrue(((result.getId()) > 1));
-        HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+        HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
         assertEquals("OK", ((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11)).is2xxSuccessful());
@@ -77,10 +77,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("list1s.txt", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 0));
-            HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitString1 should have thrown NoSuchFileException");
         } catch (NoSuchFileException expected) {
             assertEquals("list1s.txt/list1s.txt", expected.getMessage());
@@ -92,10 +92,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > (Integer.MAX_VALUE)));
-            HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum19 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -107,10 +107,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 0));
-            HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartnull26 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid HttpMonitorConfiguration conf", expected.getMessage());
@@ -122,10 +122,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 0));
-            HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartnull27 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid Path file", expected.getMessage());
@@ -137,10 +137,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(null);
             Assert.isTrue(((result.getId()) > 0));
-            HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartnull28 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -152,10 +152,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("list1s.txt", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 1));
-            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97 should have thrown NoSuchFileException");
         } catch (NoSuchFileException expected) {
             assertEquals("list1s.txt/list1s.txt", expected.getMessage());
@@ -167,10 +167,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 1));
-            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17null230 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid HttpMonitorConfiguration conf", expected.getMessage());
@@ -182,10 +182,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 1));
-            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17null232 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid Path file", expected.getMessage());
@@ -197,10 +197,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(null);
             Assert.isTrue(((result.getId()) > 1));
-            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17null237 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -213,10 +213,10 @@ public class AmplHttpMonitorProxyTest {
             {
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/]est/resources/files", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(null);
                 Assert.isTrue(((result.getId()) > 0));
-                HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartnull28 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartnull28_failAssert20litString99 should have thrown NoSuchFileException");
@@ -231,10 +231,10 @@ public class AmplHttpMonitorProxyTest {
             {
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("list1s.txt", "src/test/resources/files");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97 should have thrown NoSuchFileException");
             }
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97_failAssert21litString679 should have thrown NoSuchFileException");
@@ -250,10 +250,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_14 = "Ct1H=N6{+DN-eV8<Or;(";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("list1s.txt", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97 should have thrown NoSuchFileException");
                 conf.setUrl(__DSPOT_url_14);
             }
@@ -269,10 +269,10 @@ public class AmplHttpMonitorProxyTest {
             {
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("list1s.txt", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97 should have thrown NoSuchFileException");
             }
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97_failAssert21null751 should have thrown IllegalArgumentException");
@@ -287,10 +287,10 @@ public class AmplHttpMonitorProxyTest {
             {
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("list1s.txt", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97 should have thrown NoSuchFileException");
             }
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17litString97_failAssert21null753 should have thrown IllegalArgumentException");
@@ -305,10 +305,10 @@ public class AmplHttpMonitorProxyTest {
             {
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath(null, "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17null232 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17null232_failAssert39null769 should have thrown IllegalArgumentException");
@@ -324,10 +324,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_18 = " _ 2&pb?56TtKz.F5M(E";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(null);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = HttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationMultipartlitNum17__11 = AmplHttpMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationMultipartlitNum17null237 should have thrown IllegalArgumentException");
                 conf.setUrl(__DSPOT_url_18);
             }
@@ -341,10 +341,10 @@ public class AmplHttpMonitorProxyTest {
     @Test
     public void testUpdateMonitorConfiguration() throws Exception {
         HttpMonitorConfiguration conf = createMonitorConfiguration();
-        HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+        HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf);
         Assert.notNull(result);
         result.setTimeSlot(6000);
-        result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+        result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
         Assert.notNull(result);
         Assert.isTrue(((result.getTimeSlot()) == 6000));
     }
@@ -354,10 +354,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/fIles", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(result);
             result.setTimeSlot(6000);
-            result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 6000));
             org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitString986 should have thrown NoSuchFileException");
@@ -371,10 +371,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(result);
             result.setTimeSlot(6001);
-            result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 6000));
             org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitNum1001 should have thrown IllegalArgumentException");
@@ -388,10 +388,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(result);
             result.setTimeSlot(5999);
-            result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 6000));
             org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitNum1002 should have thrown IllegalArgumentException");
@@ -405,10 +405,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(result);
             result.setTimeSlot(Integer.MIN_VALUE);
-            result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 6000));
             org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitNum1004 should have thrown NullPointerException");
@@ -422,10 +422,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
             Assert.notNull(result);
             result.setTimeSlot(6000);
-            result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 6000));
             org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1016 should have thrown IllegalArgumentException");
@@ -439,10 +439,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
             Assert.notNull(result);
             result.setTimeSlot(6000);
-            result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 6000));
             org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1017 should have thrown IllegalArgumentException");
@@ -456,10 +456,10 @@ public class AmplHttpMonitorProxyTest {
         try {
             HttpMonitorConfiguration conf = createMonitorConfiguration();
             Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-            HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+            HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
             Assert.notNull(null);
             result.setTimeSlot(6000);
-            result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 6000));
             org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1018 should have thrown IllegalArgumentException");
@@ -475,10 +475,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_35 = "w1WL[gZTO{/AJ+_NXuz7";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(null);
                 result.setTimeSlot(6000);
-                result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 6000));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1018 should have thrown IllegalArgumentException");
@@ -497,10 +497,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_28 = "d]z^b ndZQzekGw)WtZA";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(result);
                 result.setTimeSlot(6001);
-                result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 6000));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitNum1001 should have thrown IllegalArgumentException");
@@ -519,10 +519,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_39 = "Un((j*-vj<@X]YP!2!1t";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
                 Assert.notNull(result);
                 result.setTimeSlot(6000);
-                result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 6000));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1016 should have thrown IllegalArgumentException");
@@ -541,10 +541,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_31 = "I]?$AOD{_@e,R]r3_{}V";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/fIles", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(result);
                 result.setTimeSlot(6000);
-                result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 6000));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitString986 should have thrown NoSuchFileException");
@@ -563,10 +563,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_37 = "F5:K|}Y.+DPW(yw#7%vG";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
                 Assert.notNull(result);
                 result.setTimeSlot(6000);
-                result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 6000));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1017 should have thrown IllegalArgumentException");
@@ -585,10 +585,10 @@ public class AmplHttpMonitorProxyTest {
                 String __DSPOT_url_27 = "!a`s[iA&c(8{&?H -[-T";
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(result);
                 result.setTimeSlot(Integer.MIN_VALUE);
-                result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 6000));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitNum1004 should have thrown NullPointerException");
@@ -606,10 +606,10 @@ public class AmplHttpMonitorProxyTest {
             {
                 HttpMonitorConfiguration conf = createMonitorConfiguration();
                 Path file = FileSystems.getDefault().getPath("src/test/resources/fIles", "list1s.txt");
-                HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                 Assert.notNull(result);
                 result.setTimeSlot(Integer.MAX_VALUE);
-                result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 6000));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitString986 should have thrown NoSuchFileException");
@@ -627,10 +627,10 @@ public class AmplHttpMonitorProxyTest {
                 {
                     HttpMonitorConfiguration conf = createMonitorConfiguration();
                     Path file = FileSystems.getDefault().getPath("src/test/resources/fIles", "");
-                    HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                    HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                     Assert.notNull(result);
                     result.setTimeSlot(Integer.MAX_VALUE);
-                    result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == 6000));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitString986 should have thrown NoSuchFileException");
@@ -650,10 +650,10 @@ public class AmplHttpMonitorProxyTest {
                 {
                     HttpMonitorConfiguration conf = createMonitorConfiguration();
                     Path file = FileSystems.getDefault().getPath("src/test/resources/fIles", "list1s.txt");
-                    HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
+                    HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(null, file);
                     Assert.notNull(result);
                     result.setTimeSlot(Integer.MAX_VALUE);
-                    result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == 6000));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitString986 should have thrown NoSuchFileException");
@@ -673,10 +673,10 @@ public class AmplHttpMonitorProxyTest {
                 {
                     HttpMonitorConfiguration conf = createMonitorConfiguration();
                     Path file = FileSystems.getDefault().getPath("src/test/resources/fIles", "list1s.txt");
-                    HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
+                    HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, null);
                     Assert.notNull(result);
                     result.setTimeSlot(Integer.MAX_VALUE);
-                    result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == 6000));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitString986 should have thrown NoSuchFileException");
@@ -697,10 +697,10 @@ public class AmplHttpMonitorProxyTest {
                     String __DSPOT_url_35 = "w1WL[gZTO{/AJ+_NXuz7";
                     HttpMonitorConfiguration conf = createMonitorConfiguration();
                     Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                    HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                    HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                     Assert.notNull(null);
                     result.setTimeSlot(6000);
-                    result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == (Integer.MIN_VALUE)));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1018 should have thrown IllegalArgumentException");
@@ -722,10 +722,10 @@ public class AmplHttpMonitorProxyTest {
                     String __DSPOT_url_28 = "d]z^b ndZQzekGw)WtZA";
                     HttpMonitorConfiguration conf = createMonitorConfiguration();
                     Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                    HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                    HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                     Assert.notNull(result);
                     result.setTimeSlot(6001);
-                    result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == (Integer.MIN_VALUE)));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitNum1001 should have thrown IllegalArgumentException");
@@ -747,10 +747,10 @@ public class AmplHttpMonitorProxyTest {
                     String __DSPOT_url_27 = null;
                     HttpMonitorConfiguration conf = createMonitorConfiguration();
                     Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                    HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                    HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                     Assert.notNull(result);
                     result.setTimeSlot(Integer.MIN_VALUE);
-                    result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == 6000));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartlitNum1004 should have thrown NullPointerException");
@@ -772,10 +772,10 @@ public class AmplHttpMonitorProxyTest {
                     String __DSPOT_url_35 = "w1WL[gZTO{/AJ+_NXuz7";
                     HttpMonitorConfiguration conf = createMonitorConfiguration();
                     Path file = FileSystems.getDefault().getPath("src/test/resources/files", "list1s.txt");
-                    HttpMonitorConfiguration result = HttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
+                    HttpMonitorConfiguration result = AmplHttpMonitorProxyTest.proxy.createMonitorConfiguration(conf, file);
                     Assert.notNull(null);
                     result.setTimeSlot(6000);
-                    result = HttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplHttpMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == 6001));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationMultipartnull1018 should have thrown IllegalArgumentException");

@@ -23,16 +23,16 @@ public class AmplTwitterMonitorProxyTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        TwitterMonitorProxyTest.proxy = new TwitterMonitorProxy<Object, Object>();
+        AmplTwitterMonitorProxyTest.proxy = new TwitterMonitorProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
     public void testCreateAndDeleteMonitorConfigurationlitNum1() throws Exception {
         TwitterMonitorConfiguration conf = createMonitorConfiguration();
-        TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+        TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
         Assert.notNull(result);
         Assert.isTrue(((result.getId()) > 1));
-        HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = TwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+        HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = AmplTwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
         assertEquals("OK", ((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationlitNum1__8)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationlitNum1__8)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateAndDeleteMonitorConfigurationlitNum1__8)).is2xxSuccessful());
@@ -46,10 +46,10 @@ public class AmplTwitterMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationlitNum3_failAssert0() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createMonitorConfiguration();
-            TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > (Integer.MAX_VALUE)));
-            TwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplTwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationlitNum3 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -60,10 +60,10 @@ public class AmplTwitterMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationnull21_failAssert1() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createMonitorConfiguration();
-            TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
+            TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 0));
-            TwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AmplTwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationnull21 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid monitor configuration", expected.getMessage());
@@ -74,10 +74,10 @@ public class AmplTwitterMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationlitNum1null103_failAssert3() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createMonitorConfiguration();
-            TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
+            TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
             Assert.notNull(result);
             Assert.isTrue(((result.getId()) > 1));
-            HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = TwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = AmplTwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationlitNum1null103 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid monitor configuration", expected.getMessage());
@@ -88,10 +88,10 @@ public class AmplTwitterMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationlitNum1null104_failAssert4() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createMonitorConfiguration();
-            TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
             Assert.notNull(null);
             Assert.isTrue(((result.getId()) > 1));
-            HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = TwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = AmplTwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationlitNum1null104 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -104,10 +104,10 @@ public class AmplTwitterMonitorProxyTest {
             {
                 List<String> __DSPOT_accounts_20 = Collections.singletonList("ndBdj-qEHp!#I]LDWP=,");
                 TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
+                TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = TwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = AmplTwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationlitNum1null103 should have thrown IllegalArgumentException");
                 conf.setAccounts(__DSPOT_accounts_20);
             }
@@ -123,10 +123,10 @@ public class AmplTwitterMonitorProxyTest {
             {
                 List<String> __DSPOT_accounts_16 = Collections.singletonList("><6ycw,-c^.vZ(8(U^r,");
                 TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+                TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
                 Assert.notNull(null);
                 Assert.isTrue(((result.getId()) > 1));
-                HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = TwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+                HttpStatus o_testCreateAndDeleteMonitorConfigurationlitNum1__8 = AmplTwitterMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
                 org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationlitNum1null104 should have thrown IllegalArgumentException");
                 conf.setAccounts(__DSPOT_accounts_16);
             }
@@ -140,10 +140,10 @@ public class AmplTwitterMonitorProxyTest {
     public void testUpdateMonitorConfigurationlitNum254_failAssert50() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createMonitorConfiguration();
-            TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
             Assert.notNull(result);
             result.setTimeSlot(61);
-            result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfigurationlitNum254 should have thrown IllegalArgumentException");
@@ -156,10 +156,10 @@ public class AmplTwitterMonitorProxyTest {
     public void testUpdateMonitorConfigurationnull270_failAssert62() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createMonitorConfiguration();
-            TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
+            TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
             Assert.notNull(result);
             result.setTimeSlot(60);
-            result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfigurationnull270 should have thrown IllegalArgumentException");
@@ -172,10 +172,10 @@ public class AmplTwitterMonitorProxyTest {
     public void testUpdateMonitorConfigurationnull271_failAssert63() throws Exception {
         try {
             TwitterMonitorConfiguration conf = createMonitorConfiguration();
-            TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
             Assert.notNull(null);
             result.setTimeSlot(60);
-            result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
             Assert.notNull(result);
             Assert.isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfigurationnull271 should have thrown IllegalArgumentException");
@@ -189,10 +189,10 @@ public class AmplTwitterMonitorProxyTest {
         try {
             {
                 TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+                TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
                 Assert.notNull(result);
                 result.setTimeSlot(61);
-                result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 59));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationlitNum254 should have thrown IllegalArgumentException");
@@ -208,10 +208,10 @@ public class AmplTwitterMonitorProxyTest {
         try {
             {
                 TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+                TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
                 Assert.notNull(result);
                 result.setTimeSlot(61);
-                result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(null);
+                result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(null);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 60));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationlitNum254 should have thrown IllegalArgumentException");
@@ -227,10 +227,10 @@ public class AmplTwitterMonitorProxyTest {
         try {
             {
                 TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
+                TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
                 Assert.notNull(result);
                 result.setTimeSlot(61);
-                result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                 Assert.notNull(result);
                 Assert.isTrue(((result.getTimeSlot()) == 60));
                 org.junit.Assert.fail("testUpdateMonitorConfigurationnull270 should have thrown IllegalArgumentException");
@@ -247,10 +247,10 @@ public class AmplTwitterMonitorProxyTest {
             {
                 {
                     TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                    TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+                    TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
                     Assert.notNull(result);
                     result.setTimeSlot(61);
-                    result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(null);
+                    result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(null);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == 59));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationlitNum254 should have thrown IllegalArgumentException");
@@ -269,10 +269,10 @@ public class AmplTwitterMonitorProxyTest {
             {
                 {
                     TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                    TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+                    TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(conf);
                     Assert.notNull(result);
                     result.setTimeSlot(61);
-                    result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(null);
                     Assert.isTrue(((result.getTimeSlot()) == 59));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationlitNum254 should have thrown IllegalArgumentException");
@@ -291,10 +291,10 @@ public class AmplTwitterMonitorProxyTest {
             {
                 {
                     TwitterMonitorConfiguration conf = createMonitorConfiguration();
-                    TwitterMonitorConfiguration result = TwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
+                    TwitterMonitorConfiguration result = AmplTwitterMonitorProxyTest.proxy.createMonitorConfiguration(null);
                     Assert.notNull(result);
                     result.setTimeSlot(61);
-                    result = TwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+                    result = AmplTwitterMonitorProxyTest.proxy.updateMonitorConfiguration(result);
                     Assert.notNull(result);
                     Assert.isTrue(((result.getTimeSlot()) == 61));
                     org.junit.Assert.fail("testUpdateMonitorConfigurationnull270 should have thrown IllegalArgumentException");

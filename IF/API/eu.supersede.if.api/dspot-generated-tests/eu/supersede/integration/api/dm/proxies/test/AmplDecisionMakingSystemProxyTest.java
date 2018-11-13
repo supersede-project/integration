@@ -26,14 +26,14 @@ public class AmplDecisionMakingSystemProxyTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        DecisionMakingSystemProxyTest.proxy = new DecisionMakingSystemProxy<Object, Object>();
+    	AmplDecisionMakingSystemProxyTest.proxy = new DecisionMakingSystemProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
     public void testNotifyAlert_mg1() throws Exception {
         String __DSPOT_applicationId_0 = "-*k},GdhscbCS@!x*zH_";
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_mg1__4 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_mg1__4 = AmplDecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
         Assert.assertEquals("OK", ((HttpStatus) (o_testNotifyAlert_mg1__4)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testNotifyAlert_mg1__4)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testNotifyAlert_mg1__4)).is2xxSuccessful());
@@ -55,7 +55,7 @@ public class AmplDecisionMakingSystemProxyTest {
     public void testNotifyAlert_mg2() throws Exception {
         List<Condition> __DSPOT_conditions_1 = Collections.<Condition>emptyList();
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_mg2__5 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_mg2__5 = AmplDecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
         Assert.assertEquals("OK", ((HttpStatus) (o_testNotifyAlert_mg2__5)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testNotifyAlert_mg2__5)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testNotifyAlert_mg2__5)).is2xxSuccessful());
@@ -77,7 +77,7 @@ public class AmplDecisionMakingSystemProxyTest {
     public void testNotifyAlert_mg4() throws Exception {
         List<UserRequest> __DSPOT_requests_3 = Collections.singletonList(new UserRequest());
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_mg4__6 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_mg4__6 = AmplDecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
         Assert.assertEquals("OK", ((HttpStatus) (o_testNotifyAlert_mg4__6)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testNotifyAlert_mg4__6)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testNotifyAlert_mg4__6)).is2xxSuccessful());

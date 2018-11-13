@@ -24,20 +24,20 @@ import static org.junit.Assert.assertEquals;
 
 
 public class AmplReplanOptimizerV2ProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(ReplanOptimizerV2ProxyTest.class);
+    private static final Logger log = LoggerFactory.getLogger(AmplReplanOptimizerV2ProxyTest.class);
 
     private static IReplanOptimizer proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        ReplanOptimizerV2ProxyTest.proxy = new ReplanOptimizerProxy();
+        AmplReplanOptimizerV2ProxyTest.proxy = new ReplanOptimizerProxy();
     }
 
     @Test(timeout = 30000)
     public void testOptimizePlannull8_failAssert0() throws Exception {
         try {
             NextReleaseProblem nrProblem = createNextReleaseProblem();
-            PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
+            PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
             Assert.notNull(solution);
             org.junit.Assert.fail("testOptimizePlannull8 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -49,7 +49,7 @@ public class AmplReplanOptimizerV2ProxyTest {
     public void testOptimizePlannull9_failAssert1() throws Exception {
         try {
             NextReleaseProblem nrProblem = createNextReleaseProblem();
-            PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
+            PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
             Assert.notNull(null);
             org.junit.Assert.fail("testOptimizePlannull9 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -63,7 +63,7 @@ public class AmplReplanOptimizerV2ProxyTest {
             {
                 AlgorithmParameters __DSPOT_algorithmParameters_77 = new AlgorithmParameters();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
+                PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
                 Assert.notNull(solution);
                 org.junit.Assert.fail("testOptimizePlannull8 should have thrown NullPointerException");
                 nrProblem.setAlgorithmParameters(__DSPOT_algorithmParameters_77);
@@ -80,7 +80,7 @@ public class AmplReplanOptimizerV2ProxyTest {
             {
                 PlanningSolution __DSPOT_currentPlan_79 = new PlanningSolution();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
+                PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
                 Assert.notNull(solution);
                 org.junit.Assert.fail("testOptimizePlannull8 should have thrown NullPointerException");
                 nrProblem.setCurrentPlan(__DSPOT_currentPlan_79);
@@ -97,7 +97,7 @@ public class AmplReplanOptimizerV2ProxyTest {
             {
                 List<Feature> __DSPOT_features_81 = Collections.<Feature>emptyList();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
+                PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
                 Assert.notNull(solution);
                 org.junit.Assert.fail("testOptimizePlannull8 should have thrown NullPointerException");
                 nrProblem.setFeatures(__DSPOT_features_81);
@@ -114,7 +114,7 @@ public class AmplReplanOptimizerV2ProxyTest {
             {
                 AlgorithmParameters __DSPOT_algorithmParameters_76 = new AlgorithmParameters();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
+                PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testOptimizePlannull9 should have thrown IllegalArgumentException");
                 nrProblem.setAlgorithmParameters(__DSPOT_algorithmParameters_76);
@@ -131,7 +131,7 @@ public class AmplReplanOptimizerV2ProxyTest {
             {
                 PlanningSolution __DSPOT_currentPlan_78 = new PlanningSolution();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
+                PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testOptimizePlannull9 should have thrown IllegalArgumentException");
                 nrProblem.setCurrentPlan(__DSPOT_currentPlan_78);
@@ -149,7 +149,7 @@ public class AmplReplanOptimizerV2ProxyTest {
                 {
                     AlgorithmParameters __DSPOT_algorithmParameters_77 = new AlgorithmParameters();
                     NextReleaseProblem nrProblem = createNextReleaseProblem();
-                    PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
+                    PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testOptimizePlannull8 should have thrown NullPointerException");
                     nrProblem.setAlgorithmParameters(__DSPOT_algorithmParameters_77);
@@ -169,7 +169,7 @@ public class AmplReplanOptimizerV2ProxyTest {
                 {
                     PlanningSolution __DSPOT_currentPlan_79 = new PlanningSolution();
                     NextReleaseProblem nrProblem = createNextReleaseProblem();
-                    PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
+                    PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testOptimizePlannull8 should have thrown NullPointerException");
                     nrProblem.setCurrentPlan(__DSPOT_currentPlan_79);
@@ -189,7 +189,7 @@ public class AmplReplanOptimizerV2ProxyTest {
                 {
                     List<Feature> __DSPOT_features_81 = Collections.<Feature>emptyList();
                     NextReleaseProblem nrProblem = createNextReleaseProblem();
-                    PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
+                    PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(null);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testOptimizePlannull8 should have thrown NullPointerException");
                     nrProblem.setFeatures(__DSPOT_features_81);
@@ -209,7 +209,7 @@ public class AmplReplanOptimizerV2ProxyTest {
                 {
                     AlgorithmParameters __DSPOT_algorithmParameters_76 = new AlgorithmParameters();
                     NextReleaseProblem nrProblem = createNextReleaseProblem();
-                    PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
+                    PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testOptimizePlannull9 should have thrown IllegalArgumentException");
                     nrProblem.setAlgorithmParameters(null);
@@ -229,7 +229,7 @@ public class AmplReplanOptimizerV2ProxyTest {
                 {
                     PlanningSolution __DSPOT_currentPlan_78 = new PlanningSolution();
                     NextReleaseProblem nrProblem = createNextReleaseProblem();
-                    PlanningSolution solution = ReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
+                    PlanningSolution solution = AmplReplanOptimizerV2ProxyTest.proxy.optimizePlan(nrProblem);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testOptimizePlannull9 should have thrown IllegalArgumentException");
                     nrProblem.setCurrentPlan(null);

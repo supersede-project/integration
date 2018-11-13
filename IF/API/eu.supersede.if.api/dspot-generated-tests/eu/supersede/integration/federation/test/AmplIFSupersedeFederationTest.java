@@ -14,21 +14,21 @@ import static org.junit.Assert.assertEquals;
 
 
 public class AmplIFSupersedeFederationTest {
-    private static final Logger log = LoggerFactory.getLogger(IFSupersedeFederationTest.class);
+    private static final Logger log = LoggerFactory.getLogger(AmplIFSupersedeFederationTest.class);
 
     private static SupersedeFederation federation;
 
     @BeforeClass
     public static void setup() throws Exception {
-        IFSupersedeFederationTest.federation = new SupersedeFederation();
+        AmplIFSupersedeFederationTest.federation = new SupersedeFederation();
     }
 
     @Test(timeout = 30000)
     public void testSupersedeFederationnull6_failAssert0() throws Exception {
         try {
-            List<SupersedePlatform> platforms = IFSupersedeFederationTest.federation.getFederatedSupersedePlatforms();
+            List<SupersedePlatform> platforms = AmplIFSupersedeFederationTest.federation.getFederatedSupersedePlatforms();
             Assert.notEmpty(platforms);
-            SupersedePlatform localPlatform = IFSupersedeFederationTest.federation.getLocalFederatedSupersedePlatform();
+            SupersedePlatform localPlatform = AmplIFSupersedeFederationTest.federation.getLocalFederatedSupersedePlatform();
             Assert.notNull(null);
             org.junit.Assert.fail("testSupersedeFederationnull6 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -41,9 +41,9 @@ public class AmplIFSupersedeFederationTest {
         try {
             {
                 String __DSPOT_mb_user_4 = "8;0L`A=SO/woO!OKS@Rl";
-                List<SupersedePlatform> platforms = IFSupersedeFederationTest.federation.getFederatedSupersedePlatforms();
+                List<SupersedePlatform> platforms = AmplIFSupersedeFederationTest.federation.getFederatedSupersedePlatforms();
                 Assert.notEmpty(platforms);
-                SupersedePlatform localPlatform = IFSupersedeFederationTest.federation.getLocalFederatedSupersedePlatform();
+                SupersedePlatform localPlatform = AmplIFSupersedeFederationTest.federation.getLocalFederatedSupersedePlatform();
                 Assert.notNull(null);
                 org.junit.Assert.fail("testSupersedeFederationnull6 should have thrown IllegalArgumentException");
                 localPlatform.setMb_User(__DSPOT_mb_user_4);
@@ -60,9 +60,9 @@ public class AmplIFSupersedeFederationTest {
             {
                 {
                     String __DSPOT_mb_user_4 = "8;0L`A}SO/woO!OKS@Rl";
-                    List<SupersedePlatform> platforms = IFSupersedeFederationTest.federation.getFederatedSupersedePlatforms();
+                    List<SupersedePlatform> platforms = AmplIFSupersedeFederationTest.federation.getFederatedSupersedePlatforms();
                     Assert.notEmpty(platforms);
-                    SupersedePlatform localPlatform = IFSupersedeFederationTest.federation.getLocalFederatedSupersedePlatform();
+                    SupersedePlatform localPlatform = AmplIFSupersedeFederationTest.federation.getLocalFederatedSupersedePlatform();
                     Assert.notNull(null);
                     org.junit.Assert.fail("testSupersedeFederationnull6 should have thrown IllegalArgumentException");
                     localPlatform.setMb_User(__DSPOT_mb_user_4);

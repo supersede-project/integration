@@ -30,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 
 
 public class AmplFeedbackRepositoryProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(FeedbackRepositoryProxyTest.class);
+    private static final Logger log = LoggerFactory.getLogger(AmplFeedbackRepositoryProxyTest.class);
 
     private static FeedbackRepositoryProxy<Object, Object> proxy;
 
@@ -44,13 +44,13 @@ public class AmplFeedbackRepositoryProxyTest {
     public static void setup() throws Exception {
         String user = "super_admin";
         String password = "password";
-        FeedbackRepositoryProxyTest.proxy = new FeedbackRepositoryProxy<Object, Object>(user, password);
+        AmplFeedbackRepositoryProxyTest.proxy = new FeedbackRepositoryProxy<Object, Object>(user, password);
     }
 
     @Test(timeout = 240000)
     public void testGetFeedbacksForApplicationnull1086_failAssert302() throws Exception {
         try {
-            List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplication(applicationId);
+            List<Feedback> result = AmplFeedbackRepositoryProxyTest.proxy.getFeedbacksForApplication(applicationId);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetFeedbacksForApplicationnull1086 should have thrown IllegalArgumentException");
@@ -62,7 +62,7 @@ public class AmplFeedbackRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetFeedbacksForApplicationWithOrchestratorConfigurationnull1092_failAssert304() throws Exception {
         try {
-            List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
+            List<Feedback> result = AmplFeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetFeedbacksForApplicationWithOrchestratorConfigurationnull1092 should have thrown IllegalArgumentException");
@@ -74,7 +74,7 @@ public class AmplFeedbackRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetFeedbacksForApplicationByUsernull1089_failAssert303() throws Exception {
         try {
-            List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
+            List<Feedback> result = AmplFeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
             Assert.notNull(null);
             Assert.isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetFeedbacksForApplicationByUsernull1089 should have thrown IllegalArgumentException");
@@ -86,7 +86,7 @@ public class AmplFeedbackRepositoryProxyTest {
     @Test(timeout = 240000)
     public void testGetFeedbackForApplicationnull1083_failAssert301() throws Exception {
         try {
-            Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+            Feedback result = AmplFeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetFeedbackForApplicationnull1083 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -106,7 +106,7 @@ public class AmplFeedbackRepositoryProxyTest {
     }
 
     public <T> String convertToJSON(T object) throws JsonProcessingException {
-        return FeedbackRepositoryProxyTest.proxy.convertToJSON(object);
+        return AmplFeedbackRepositoryProxyTest.proxy.convertToJSON(object);
     }
 
     private Feedback createFeedbackForApplication() throws Exception {
@@ -118,7 +118,7 @@ public class AmplFeedbackRepositoryProxyTest {
         screenshots.put("screenshot1", FileSystems.getDefault().getPath("src/test/resources/files", "supersede_screenshot1.png"));
         Map<String, Path> audios = new HashMap<>();
         audios.put("audio1", FileSystems.getDefault().getPath("src/test/resources/files", "track.mp3"));
-        Feedback result = FeedbackRepositoryProxyTest.proxy.createFeedbackForApplication(feedback, attachments, screenshots, audios, applicationId);
+        Feedback result = AmplFeedbackRepositoryProxyTest.proxy.createFeedbackForApplication(feedback, attachments, screenshots, audios, applicationId);
         return result;
     }
 
@@ -154,7 +154,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAttachmentlitString12() throws Exception {
         String attachmentName = "57377_1508862074050.txt";
         assertEquals("57377_1508862074050.txt", attachmentName);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+        byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
         Assert.isTrue(((result.length) > 0));
         Path path = Paths.get("Text Feedback 1");
         Files.write(path, result);
@@ -165,7 +165,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAttachmentlitString4_failAssert1() throws Exception {
         try {
             String attachmentName = "Text Feedback 1";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("attachment.att");
             Files.write(path, result);
@@ -179,7 +179,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAttachmentlitString5_failAssert2() throws Exception {
         try {
             String attachmentName = "57377k1508862074050.txt";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("attachment.att");
             Files.write(path, result);
@@ -193,7 +193,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAttachmentnull26_failAssert12() throws Exception {
         try {
             String attachmentName = null;
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("attachment.att");
             Files.write(path, result);
@@ -207,7 +207,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAttachmentlitString12litNum93() throws Exception {
         String attachmentName = "57377_1508862074050.txt";
         assertEquals("57377_1508862074050.txt", attachmentName);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+        byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
         Assert.isTrue(((result.length) > 1));
         Path path = Paths.get("Text Feedback 1");
         Files.write(path, result);
@@ -219,7 +219,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String attachmentName = "Text Feedback 1";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("attachment1");
                 Files.write(path, result);
@@ -236,7 +236,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String attachmentName = "Text Feedback 1";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(null, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(null, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("attachment.att");
                 Files.write(path, result);
@@ -253,7 +253,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String attachmentName = "57377k1508862074050.txt";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
                 Files.write(path, result);
@@ -269,7 +269,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAttachmentlitString12litNum93null278_failAssert70() throws Exception {
         try {
             String attachmentName = "57377_1508862074050.txt";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
             Assert.isTrue(((result.length) > 1));
             Path path = Paths.get("Text Feedback 1");
             Files.write(null, result);
@@ -285,7 +285,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String attachmentName = "Text Feedback 1";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
                     Assert.isTrue(((result.length) > 1));
                     Path path = Paths.get("attachment1");
                     Files.write(path, result);
@@ -305,7 +305,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String attachmentName = "Text Feedback 1";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(null, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(null, applicationId);
                     Assert.isTrue(((result.length) > 0));
                     Path path = Paths.get("attachment2");
                     Files.write(path, result);
@@ -325,7 +325,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String attachmentName = "57377k1508862074050.txt";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
                     Assert.isTrue(((result.length) > 1));
                     Path path = Paths.get("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
                     Files.write(path, result);
@@ -343,7 +343,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadScreenshotlitString734() throws Exception {
         String screenshotName = "21794_1508918809103.png";
         assertEquals("21794_1508918809103.png", screenshotName);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+        byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
         Assert.isTrue(((result.length) > 0));
         Path path = Paths.get("^creenshot.png");
         Files.write(path, result);
@@ -354,7 +354,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadScreenshotlitString725_failAssert200() throws Exception {
         try {
             String screenshotName = "password";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("screenshot.png");
             Files.write(path, result);
@@ -368,7 +368,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadScreenshotlitString729_failAssert204() throws Exception {
         try {
             String screenshotName = "5_w)+KtmI6N*:lKC*+{5@T5";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("screenshot.png");
             Files.write(path, result);
@@ -382,7 +382,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadScreenshotnull747_failAssert212() throws Exception {
         try {
             String screenshotName = null;
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("screenshot.png");
             Files.write(path, result);
@@ -396,7 +396,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadScreenshotlitString734litNum813() throws Exception {
         String screenshotName = "21794_1508918809103.png";
         assertEquals("21794_1508918809103.png", screenshotName);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+        byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
         Assert.isTrue(((result.length) > 1));
         Path path = Paths.get("^creenshot.png");
         Files.write(path, result);
@@ -408,7 +408,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String screenshotName = "password";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("src/test/resources/files");
                 Files.write(path, result);
@@ -425,7 +425,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String screenshotName = "password";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(null, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(null, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("screenshot.png");
                 Files.write(path, result);
@@ -442,7 +442,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String screenshotName = "5_w)+KtmI6N*:lKC*+{5@T5";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("ZH");
                 Files.write(path, result);
@@ -458,7 +458,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadScreenshotlitString734litNum813null1000_failAssert270() throws Exception {
         try {
             String screenshotName = "21794_1508918809103.png";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
             Assert.isTrue(((result.length) > 1));
             Path path = Paths.get("^creenshot.png");
             Files.write(null, result);
@@ -474,7 +474,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String screenshotName = "password";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
                     Assert.isTrue(((result.length) > 1));
                     Path path = Paths.get("src/test/resources/files");
                     Files.write(path, result);
@@ -494,7 +494,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String screenshotName = "password";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(null, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(null, applicationId);
                     Assert.isTrue(((result.length) > 0));
                     Path path = Paths.get("attachment.att");
                     Files.write(path, result);
@@ -514,7 +514,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String screenshotName = "5_w)+KtmI6N*:lKC*+{5@T5";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
                     Assert.isTrue(((result.length) > 1));
                     Path path = Paths.get("ZH");
                     Files.write(path, result);
@@ -532,7 +532,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAudiolitString372() throws Exception {
         String audioName = "535533_1508250908348.mp3";
         assertEquals("535533_1508250908348.mp3", audioName);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+        byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
         Assert.isTrue(((result.length) > 0));
         Path path = Paths.get("attachment1");
         Files.write(path, result);
@@ -543,7 +543,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAudiolitString364_failAssert101() throws Exception {
         try {
             String audioName = "5.0";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("audio.mp3");
             Files.write(path, result);
@@ -557,7 +557,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAudiolitString368_failAssert105() throws Exception {
         try {
             String audioName = "auR%h1,xavU[1Rvnj|}8wu]&";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("audio.mp3");
             Files.write(path, result);
@@ -571,7 +571,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAudionull386_failAssert112() throws Exception {
         try {
             String audioName = null;
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
             Assert.isTrue(((result.length) > 0));
             Path path = Paths.get("audio.mp3");
             Files.write(path, result);
@@ -585,7 +585,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAudiolitString372litNum455() throws Exception {
         String audioName = "535533_1508250908348.mp3";
         assertEquals("535533_1508250908348.mp3", audioName);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+        byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
         Assert.isTrue(((result.length) > 1));
         Path path = Paths.get("attachment1");
         Files.write(path, result);
@@ -597,7 +597,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String audioName = "5.0";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("21794_1508918809103.png");
                 Files.write(path, result);
@@ -614,7 +614,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String audioName = "5.0";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(null, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(null, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("audio.mp3");
                 Files.write(path, result);
@@ -631,7 +631,7 @@ public class AmplFeedbackRepositoryProxyTest {
         try {
             {
                 String audioName = "auR%h1,xavU[1Rvnj|}8wu]&";
-                byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+                byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
                 Assert.isTrue(((result.length) > 0));
                 Path path = Paths.get("attachment1");
                 Files.write(path, result);
@@ -647,7 +647,7 @@ public class AmplFeedbackRepositoryProxyTest {
     public void testDownloadAudiolitString372litNum455null644_failAssert169() throws Exception {
         try {
             String audioName = "535533_1508250908348.mp3";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+            byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
             Assert.isTrue(((result.length) > 1));
             Path path = Paths.get("attachment1");
             Files.write(null, result);
@@ -663,7 +663,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String audioName = "5.0";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
                     Assert.isTrue(((result.length) > 1));
                     Path path = Paths.get("21794_1508918809103.png");
                     Files.write(path, result);
@@ -683,7 +683,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String audioName = "5.0";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(null, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(null, applicationId);
                     Assert.isTrue(((result.length) > 0));
                     Path path = Paths.get("Text Feedback 1");
                     Files.write(path, result);
@@ -703,7 +703,7 @@ public class AmplFeedbackRepositoryProxyTest {
             {
                 {
                     String audioName = "auR%h1,xavU[1Rvnj|}8wu]&";
-                    byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+                    byte[] result = AmplFeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
                     Assert.isTrue(((result.length) > 1));
                     Path path = Paths.get("attachment1");
                     Files.write(path, result);

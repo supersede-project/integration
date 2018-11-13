@@ -185,33 +185,6 @@ public class AmplDiskMonitorProxyTest {
     }
 
     @Test(timeout = 120000)
-    public void testCreateAndDeleteMonitorConfiguration_add1_sd96() throws Exception {
-        boolean o_testCreateAndDeleteMonitorConfiguration_add1_sd96__7 = ((java.net.URLConnection)((java.net.URL)((eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfiguration)o_testCreateAndDeleteMonitorConfiguration_add1__1).getKafkaEndpoint()).openConnection()).getHeaderFields().isEmpty();
-        Assert.assertTrue(o_testCreateAndDeleteMonitorConfiguration_add1_sd96__7);
-        boolean o_testCreateAndDeleteMonitorConfiguration_add1_sd96__8 = ((java.net.URLConnection)((java.net.URL)((eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfiguration)o_testCreateAndDeleteMonitorConfiguration_add1__1).getKafkaEndpoint()).openConnection()).getRequestProperties().isEmpty();
-        Assert.assertTrue(o_testCreateAndDeleteMonitorConfiguration_add1_sd96__8);
-        DiskMonitorConfiguration conf = createMonitorConfiguration();
-        DiskMonitorConfiguration result = AmplDiskMonitorProxyTest.proxy.createMonitorConfiguration(conf);
-        notNull(result);
-        isTrue(((result.getId()) > 0));
-        AmplDiskMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
-        createMonitorConfiguration().setInstructions(Collections.singletonList(new Instruction("[T]e_+S#i]w!maZJcf{Y", "<x-zr2#$hDLf,#+w{NUw")));
-    }
-
-    @Test(timeout = 120000)
-    public void testCreateAndDeleteMonitorConfiguration_add1_sd96_sd221() throws Exception {
-        boolean o_testCreateAndDeleteMonitorConfiguration_add1_sd96__7 = ((java.net.URLConnection)((java.net.URL)((eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfiguration)o_testCreateAndDeleteMonitorConfiguration_add1__1).getKafkaEndpoint()).openConnection()).getHeaderFields().isEmpty();
-        boolean o_testCreateAndDeleteMonitorConfiguration_add1_sd96__8 = ((java.net.URLConnection)((java.net.URL)((eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfiguration)o_testCreateAndDeleteMonitorConfiguration_add1__1).getKafkaEndpoint()).openConnection()).getRequestProperties().isEmpty();
-        DiskMonitorConfiguration conf = createMonitorConfiguration();
-        DiskMonitorConfiguration result = AmplDiskMonitorProxyTest.proxy.createMonitorConfiguration(conf);
-        notNull(result);
-        isTrue(((result.getId()) > 0));
-        AmplDiskMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
-        createMonitorConfiguration().setInstructions(Collections.singletonList(new Instruction("[T]e_+S#i]w!maZJcf{Y", "<x-zr2#$hDLf,#+w{NUw")));
-        Assert.assertEquals("tools.supersede.atos-sports.tv", conf.getHost());
-    }
-
-    @Test(timeout = 120000)
     public void testUpdateMonitorConfiguration_literalMutationNumber483_failAssert0() throws Exception {
         try {
             DiskMonitorConfiguration conf = createMonitorConfiguration();

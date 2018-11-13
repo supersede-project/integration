@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
 
 
 public class AmplReplanControllerProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(ReplanControllerProxyTest.class);
+    private static final Logger log = LoggerFactory.getLogger(AmplReplanControllerProxyTest.class);
 
     private static IReplanController proxy;
 
@@ -46,7 +46,7 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetAllProjectsnull12480_failAssert3117() throws Exception {
         try {
-            List<Project> projects = ReplanControllerProxyTest.proxy.getAllProjects();
+            List<Project> projects = AmplReplanControllerProxyTest.proxy.getAllProjects();
             Assert.notNull(null);
             Assert.notEmpty(projects);
             org.junit.Assert.fail("testGetAllProjectsnull12480 should have thrown IllegalArgumentException");
@@ -58,7 +58,7 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetProjectByIdnull13002_failAssert3216() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.proxy.getProjectById(ReplanControllerProxyTest.projectId);
+            Project project = AmplReplanControllerProxyTest.proxy.getProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetProjectByIdnull13002 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -71,7 +71,7 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_753 = "A_paq1]6^Tc.QTdw$*mg";
-                Project project = ReplanControllerProxyTest.proxy.getProjectById(ReplanControllerProxyTest.projectId);
+                Project project = AmplReplanControllerProxyTest.proxy.getProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetProjectByIdnull13002 should have thrown IllegalArgumentException");
                 project.setEffortUnit(__DSPOT_effortUnit_753);
@@ -88,7 +88,7 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     String __DSPOT_effortUnit_753 = "Atos Test: Swift developer with experience on iOS 10";
-                    Project project = ReplanControllerProxyTest.proxy.getProjectById(ReplanControllerProxyTest.projectId);
+                    Project project = AmplReplanControllerProxyTest.proxy.getProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetProjectByIdnull13002 should have thrown IllegalArgumentException");
                     project.setEffortUnit(__DSPOT_effortUnit_753);
@@ -104,10 +104,10 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetFeaturesOfProjectByIdnull12647_failAssert3148() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(features);
-            features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId, FeatureStatus.PENDING);
+            features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId, FeatureStatus.PENDING);
             Assert.notNull(features);
             Assert.notEmpty(features);
             org.junit.Assert.fail("testGetFeaturesOfProjectByIdnull12647 should have thrown IllegalArgumentException");
@@ -119,10 +119,10 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetFeaturesOfProjectByIdnull12649_failAssert3149() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId, FeatureStatus.PENDING);
+            features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId, FeatureStatus.PENDING);
             Assert.notNull(null);
             Assert.notEmpty(features);
             org.junit.Assert.fail("testGetFeaturesOfProjectByIdnull12649 should have thrown IllegalArgumentException");
@@ -135,10 +135,10 @@ public class AmplReplanControllerProxyTest {
     public void testGetFeaturesOfProjectByIdnull12647_failAssert3148null12659_failAssert3150() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(features);
-                features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId, FeatureStatus.PENDING);
+                features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId, FeatureStatus.PENDING);
                 Assert.notNull(null);
                 Assert.notEmpty(features);
                 org.junit.Assert.fail("testGetFeaturesOfProjectByIdnull12647 should have thrown IllegalArgumentException");
@@ -152,9 +152,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetFeatureByIdOfProjectByIdlitNum12487_failAssert3118() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testGetFeatureByIdOfProjectByIdlitNum12487 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -165,9 +165,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetFeatureByIdOfProjectByIdnull12501_failAssert3123() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetFeatureByIdOfProjectByIdnull12501 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -180,9 +180,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Integer __DSPOT_code_674 = -610563678;
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testGetFeatureByIdOfProjectByIdlitNum12487 should have thrown ArrayIndexOutOfBoundsException");
                 feature.setCode(__DSPOT_code_674);
@@ -197,9 +197,9 @@ public class AmplReplanControllerProxyTest {
     public void testGetFeatureByIdOfProjectByIdnull12501_failAssert3123litNum12544_failAssert3136() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetFeatureByIdOfProjectByIdnull12501 should have thrown IllegalArgumentException");
             }
@@ -215,9 +215,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Integer __DSPOT_code_674 = null;
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
                     org.junit.Assert.fail("testGetFeatureByIdOfProjectByIdlitNum12487 should have thrown ArrayIndexOutOfBoundsException");
                     feature.setCode(__DSPOT_code_674);
@@ -233,7 +233,7 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetReleasesOfProjectByIdnull13300_failAssert3290() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(releases);
             org.junit.Assert.fail("testGetReleasesOfProjectByIdnull13300 should have thrown IllegalArgumentException");
@@ -245,9 +245,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetReleaseByIdOfProjectByIdlitNum13067_failAssert3231() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(releases);
-            Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdlitNum13067 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -259,9 +259,9 @@ public class AmplReplanControllerProxyTest {
     public void testGetReleaseByIdOfProjectById_mg13073_failAssert3236() throws Exception {
         try {
             Date __DSPOT_deadline_761 = new Date("W&j=|H&S:leb1;bIVLt3");
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(releases);
-            Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             release.setDeadline(__DSPOT_deadline_761);
             org.junit.Assert.fail("testGetReleaseByIdOfProjectById_mg13073 should have thrown IllegalArgumentException");
@@ -273,9 +273,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetReleaseByIdOfProjectByIdnull13077_failAssert3238() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(releases);
-            Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdnull13077 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -288,9 +288,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_764 = new Date(1115136137, 941142490, -533569656);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdlitNum13067 should have thrown ArrayIndexOutOfBoundsException");
                 release.setDeadline(__DSPOT_deadline_764);
@@ -306,9 +306,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_765 = Collections.singletonList(new Resource());
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdlitNum13067 should have thrown ArrayIndexOutOfBoundsException");
                 release.setResources(__DSPOT_resources_765);
@@ -324,9 +324,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_761 = new Date("Atos Test: Swift development of iOS");
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 release.setDeadline(__DSPOT_deadline_761);
                 org.junit.Assert.fail("testGetReleaseByIdOfProjectById_mg13073 should have thrown IllegalArgumentException");
@@ -341,9 +341,9 @@ public class AmplReplanControllerProxyTest {
     public void testGetReleaseByIdOfProjectByIdnull13077_failAssert3238litNum13114_failAssert3266() throws Exception {
         try {
             {
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdnull13077 should have thrown IllegalArgumentException");
             }
@@ -358,9 +358,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_768 = Collections.singletonList(new Resource());
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdnull13077 should have thrown IllegalArgumentException");
                 release.setResources(__DSPOT_resources_768);
@@ -377,9 +377,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Date __DSPOT_deadline_764 = new Date(1115136137, 941142490, -533569656);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdlitNum13067 should have thrown ArrayIndexOutOfBoundsException");
                     release.setDeadline(__DSPOT_deadline_764);
@@ -398,9 +398,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_765 = Collections.singletonList(new Resource());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdlitNum13067 should have thrown ArrayIndexOutOfBoundsException");
                     release.setResources(__DSPOT_resources_765);
@@ -419,9 +419,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Date __DSPOT_deadline_761 = new Date("Atos Test: Swift development of iOS");
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     release.setDeadline(__DSPOT_deadline_761);
                     org.junit.Assert.fail("testGetReleaseByIdOfProjectById_mg13073 should have thrown IllegalArgumentException");
@@ -440,9 +440,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_768 = Collections.singletonList(new Resource());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Release release = ReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Release release = AmplReplanControllerProxyTest.proxy.getReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetReleaseByIdOfProjectByIdnull13077 should have thrown IllegalArgumentException");
                     release.setResources(__DSPOT_resources_768);
@@ -458,9 +458,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetFeaturesOfReleaseByIdOfProjectByIdlitNum12675_failAssert3152() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(releases);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             org.junit.Assert.fail("testGetFeaturesOfReleaseByIdOfProjectByIdlitNum12675 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -471,9 +471,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetFeaturesOfReleaseByIdOfProjectByIdnull12682_failAssert3157() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(releases);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetFeaturesOfReleaseByIdOfProjectByIdnull12682 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -485,9 +485,9 @@ public class AmplReplanControllerProxyTest {
     public void testGetFeaturesOfReleaseByIdOfProjectByIdlitNum12675_failAssert3152null12704_failAssert3158() throws Exception {
         try {
             {
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetFeaturesOfReleaseByIdOfProjectByIdlitNum12675 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -501,9 +501,9 @@ public class AmplReplanControllerProxyTest {
     public void testGetFeaturesOfReleaseByIdOfProjectByIdnull12682_failAssert3157litNum12705_failAssert3163() throws Exception {
         try {
             {
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetFeaturesOfReleaseByIdOfProjectByIdnull12682 should have thrown IllegalArgumentException");
             }
@@ -516,9 +516,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetPlanOfReleaseByIdOfProjectByIdlitNum12728_failAssert3165() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(releases);
-            Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(plan);
             org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdlitNum12728 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -529,9 +529,9 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetPlanOfReleaseByIdOfProjectByIdnull12741_failAssert3170() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(releases);
-            Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdnull12741 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -544,9 +544,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_creationDate_702 = new Date(-925352950, -1585112445, -1177372626, -1145321272, -725103276);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(plan);
                 org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdlitNum12728 should have thrown ArrayIndexOutOfBoundsException");
                 plan.setCreationDate(__DSPOT_creationDate_702);
@@ -562,9 +562,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Job> __DSPOT_jobs_703 = Collections.singletonList(new Job());
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(plan);
                 org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdlitNum12728 should have thrown ArrayIndexOutOfBoundsException");
                 plan.setJobs(__DSPOT_jobs_703);
@@ -580,9 +580,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resourceUsage_708 = Collections.singletonList(new Resource());
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(plan);
                 org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdlitNum12728 should have thrown ArrayIndexOutOfBoundsException");
                 plan.setResourceUsage(__DSPOT_resourceUsage_708);
@@ -597,9 +597,9 @@ public class AmplReplanControllerProxyTest {
     public void testGetPlanOfReleaseByIdOfProjectByIdnull12741_failAssert3170litNum12782_failAssert3182() throws Exception {
         try {
             {
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdnull12741 should have thrown IllegalArgumentException");
             }
@@ -614,9 +614,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_creationDate_704 = new Date(-1121624603L);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdnull12741 should have thrown IllegalArgumentException");
                 plan.setCreationDate(__DSPOT_creationDate_704);
@@ -632,9 +632,9 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Job> __DSPOT_jobs_705 = Collections.singletonList(new Job());
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(releases);
-                Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdnull12741 should have thrown IllegalArgumentException");
                 plan.setJobs(__DSPOT_jobs_705);
@@ -651,9 +651,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Date __DSPOT_creationDate_702 = new Date(-925352950, -1585112445, -1177372626, -1145321272, -725103276);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdlitNum12728 should have thrown ArrayIndexOutOfBoundsException");
                     plan.setCreationDate(__DSPOT_creationDate_702);
@@ -672,9 +672,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Job> __DSPOT_jobs_703 = Collections.singletonList(new Job());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdlitNum12728 should have thrown ArrayIndexOutOfBoundsException");
                     plan.setJobs(__DSPOT_jobs_703);
@@ -693,9 +693,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resourceUsage_708 = Collections.singletonList(new Resource());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdlitNum12728 should have thrown ArrayIndexOutOfBoundsException");
                     plan.setResourceUsage(__DSPOT_resourceUsage_708);
@@ -714,9 +714,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Date __DSPOT_creationDate_704 = new Date(-1121624602L);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdnull12741 should have thrown IllegalArgumentException");
                     plan.setCreationDate(__DSPOT_creationDate_704);
@@ -735,9 +735,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Job> __DSPOT_jobs_705 = Collections.singletonList(new Job());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdnull12741 should have thrown IllegalArgumentException");
                     plan.setJobs(__DSPOT_jobs_705);
@@ -756,9 +756,9 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Job> __DSPOT_jobs_705 = Collections.singletonList(new Job());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(releases);
-                    Plan plan = ReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Plan plan = AmplReplanControllerProxyTest.proxy.getPlanOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     org.junit.Assert.fail("testGetPlanOfReleaseByIdOfProjectByIdnull12741 should have thrown IllegalArgumentException");
                     plan.setJobs(null);
@@ -774,7 +774,7 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetSkillsOfProjectByIdnull13314_failAssert3292() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
             org.junit.Assert.fail("testGetSkillsOfProjectByIdnull13314 should have thrown IllegalArgumentException");
@@ -786,7 +786,7 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testGetResourcesOfProjectByIdnull13307_failAssert3291() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(resources);
             org.junit.Assert.fail("testGetResourcesOfProjectByIdnull13307 should have thrown IllegalArgumentException");
@@ -798,11 +798,11 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteProject_mg6010() throws Exception {
         String __DSPOT_effortUnit_405 = "7yoEh?_F)3VJg?!KP(j8";
-        Project project = ReplanControllerProxyTest.createProject();
-        project = ReplanControllerProxyTest.proxy.createProject(project);
+        Project project = AmplReplanControllerProxyTest.createProject();
+        project = AmplReplanControllerProxyTest.proxy.createProject(project);
         Assert.notNull(project);
         Assert.notNull(project.getId());
-        HttpStatus o_testCreateAndDeleteProject_mg6010__9 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+        HttpStatus o_testCreateAndDeleteProject_mg6010__9 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateAndDeleteProject_mg6010__9)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateAndDeleteProject_mg6010__9)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateAndDeleteProject_mg6010__9)).is2xxSuccessful());
@@ -823,11 +823,11 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteProjectnull6014_failAssert1528() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(null);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(null);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testCreateAndDeleteProjectnull6014 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid project", expected.getMessage());
@@ -837,11 +837,11 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteProjectnull6015_failAssert1529() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(null);
             Assert.notNull(project.getId());
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testCreateAndDeleteProjectnull6015 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -852,11 +852,11 @@ public class AmplReplanControllerProxyTest {
     public void testCreateAndDeleteProject_mg6010null6074_failAssert1530() throws Exception {
         try {
             String __DSPOT_effortUnit_405 = "7yoEh?_F)3VJg?!KP(j8";
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(null);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(null);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            HttpStatus o_testCreateAndDeleteProject_mg6010__9 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testCreateAndDeleteProject_mg6010__9 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             project.setEffortUnit(__DSPOT_effortUnit_405);
             org.junit.Assert.fail("testCreateAndDeleteProject_mg6010null6074 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -868,11 +868,11 @@ public class AmplReplanControllerProxyTest {
     public void testCreateAndDeleteProject_mg6010null6075_failAssert1531() throws Exception {
         try {
             String __DSPOT_effortUnit_405 = "7yoEh?_F)3VJg?!KP(j8";
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(null);
             Assert.notNull(project.getId());
-            HttpStatus o_testCreateAndDeleteProject_mg6010__9 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testCreateAndDeleteProject_mg6010__9 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             project.setEffortUnit(__DSPOT_effortUnit_405);
             org.junit.Assert.fail("testCreateAndDeleteProject_mg6010null6075 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -885,11 +885,11 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_416 = Collections.singletonList(new Resource());
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(null);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(null);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testCreateAndDeleteProjectnull6014 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_416);
             }
@@ -904,11 +904,11 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_414 = Collections.singletonList(new Resource());
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(null);
                 Assert.notNull(project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testCreateAndDeleteProjectnull6015 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_414);
             }
@@ -923,11 +923,11 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_405 = " modified by test";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(null);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(null);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                HttpStatus o_testCreateAndDeleteProject_mg6010__9 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteProject_mg6010__9 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(__DSPOT_effortUnit_405);
                 org.junit.Assert.fail("testCreateAndDeleteProject_mg6010null6074 should have thrown IllegalArgumentException");
             }
@@ -942,11 +942,11 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_405 = "Bla, bla, bla es mucho decir";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(null);
                 Assert.notNull(project.getId());
-                HttpStatus o_testCreateAndDeleteProject_mg6010__9 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteProject_mg6010__9 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(__DSPOT_effortUnit_405);
                 org.junit.Assert.fail("testCreateAndDeleteProject_mg6010null6075 should have thrown IllegalArgumentException");
             }
@@ -962,11 +962,11 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_416 = Collections.singletonList(new Resource());
-                    Project project = ReplanControllerProxyTest.createProject();
-                    project = ReplanControllerProxyTest.proxy.createProject(null);
+                    Project project = AmplReplanControllerProxyTest.createProject();
+                    project = AmplReplanControllerProxyTest.proxy.createProject(null);
                     Assert.notNull(null);
                     Assert.notNull(project.getId());
-                    ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                    AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                     org.junit.Assert.fail("testCreateAndDeleteProjectnull6014 should have thrown IllegalArgumentException");
                     project.setResources(__DSPOT_resources_416);
                 }
@@ -984,11 +984,11 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_414 = Collections.singletonList(new Resource());
-                    Project project = ReplanControllerProxyTest.createProject();
-                    project = ReplanControllerProxyTest.proxy.createProject(project);
+                    Project project = AmplReplanControllerProxyTest.createProject();
+                    project = AmplReplanControllerProxyTest.proxy.createProject(project);
                     Assert.notNull(null);
                     Assert.notNull(project.getId());
-                    ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                    AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                     org.junit.Assert.fail("testCreateAndDeleteProjectnull6015 should have thrown IllegalArgumentException");
                     project.setResources(null);
                 }
@@ -1013,15 +1013,15 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteFeatureForProject_mg4724() throws Exception {
         String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-        Project project = ReplanControllerProxyTest.createProject();
-        project = ReplanControllerProxyTest.proxy.createProject(project);
+        Project project = AmplReplanControllerProxyTest.createProject();
+        project = AmplReplanControllerProxyTest.proxy.createProject(project);
         Assert.notNull(project);
         Assert.notNull(project.getId());
-        Feature feature = ReplanControllerProxyTest.createFeature();
-        feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+        Feature feature = AmplReplanControllerProxyTest.createFeature();
+        feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
         Assert.notNull(feature);
         Assert.notNull(feature.getId());
-        HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+        HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__17)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__17)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__17)).is2xxSuccessful());
@@ -1029,7 +1029,7 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__17)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__17)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__17)).toString());
-        HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+        HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
         assertEquals("OK", ((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__20)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__20)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testCreateAndDeleteFeatureForProject_mg4724__20)).is2xxSuccessful());
@@ -1058,16 +1058,16 @@ public class AmplReplanControllerProxyTest {
     public void testCreateAndDeleteFeatureForProject_mg4729_failAssert1269() throws Exception {
         try {
             Date __DSPOT_deadline_225 = new Date("I]?$AOD{_@e,R]r3_{}V");
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             feature.setDeadline(__DSPOT_deadline_225);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4729 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1078,16 +1078,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteFeatureForProjectnull4735_failAssert1270() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(null);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(null);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull4735 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid project", expected.getMessage());
@@ -1097,16 +1097,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteFeatureForProjectnull4736_failAssert1271() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(null);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull4736 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1116,16 +1116,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteFeatureForProjectnull4737_failAssert1272() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull4737 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid feature", expected.getMessage());
@@ -1135,16 +1135,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testCreateAndDeleteFeatureForProjectnull4738_failAssert1273() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(null);
             Assert.notNull(feature.getId());
-            ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull4738 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1155,16 +1155,16 @@ public class AmplReplanControllerProxyTest {
     public void testCreateAndDeleteFeatureForProject_mg4724null4971_failAssert1274() throws Exception {
         try {
             String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(null);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(null);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             project.setEffortUnit(__DSPOT_effortUnit_220);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4971 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1176,16 +1176,16 @@ public class AmplReplanControllerProxyTest {
     public void testCreateAndDeleteFeatureForProject_mg4724null4974_failAssert1275() throws Exception {
         try {
             String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(null);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             project.setEffortUnit(__DSPOT_effortUnit_220);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4974 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1197,16 +1197,16 @@ public class AmplReplanControllerProxyTest {
     public void testCreateAndDeleteFeatureForProject_mg4724null4976_failAssert1276() throws Exception {
         try {
             String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             project.setEffortUnit(__DSPOT_effortUnit_220);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4976 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1218,16 +1218,16 @@ public class AmplReplanControllerProxyTest {
     public void testCreateAndDeleteFeatureForProject_mg4724null4977_failAssert1277() throws Exception {
         try {
             String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Feature feature = ReplanControllerProxyTest.createFeature();
-            feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+            Feature feature = AmplReplanControllerProxyTest.createFeature();
+            feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(null);
             Assert.notNull(feature.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+            HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             project.setEffortUnit(__DSPOT_effortUnit_220);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4977 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1240,16 +1240,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_225 = new Date("Atos test: Swift");
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 feature.setDeadline(__DSPOT_deadline_225);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4729 should have thrown IllegalArgumentException");
             }
@@ -1265,16 +1265,16 @@ public class AmplReplanControllerProxyTest {
             {
                 List<Resource> __DSPOT_resources_265 = Collections.singletonList(new Resource());
                 Date __DSPOT_deadline_225 = new Date("I]?$AOD{_@e,R]r3_{}V");
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 feature.setDeadline(__DSPOT_deadline_225);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4729 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_265);
@@ -1291,16 +1291,16 @@ public class AmplReplanControllerProxyTest {
             {
                 List<Feature> __DSPOT_dependencies_283 = Collections.singletonList(new Feature());
                 Date __DSPOT_deadline_225 = new Date("I]?$AOD{_@e,R]r3_{}V");
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 feature.setDeadline(__DSPOT_deadline_225);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4729 should have thrown IllegalArgumentException");
                 feature.setDependencies(__DSPOT_dependencies_283);
@@ -1317,16 +1317,16 @@ public class AmplReplanControllerProxyTest {
             {
                 List<Skill> __DSPOT_requiredSkills_289 = Collections.singletonList(new Skill());
                 Date __DSPOT_deadline_225 = new Date("I]?$AOD{_@e,R]r3_{}V");
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 feature.setDeadline(__DSPOT_deadline_225);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4729 should have thrown IllegalArgumentException");
                 feature.setRequiredSkills(__DSPOT_requiredSkills_289);
@@ -1342,16 +1342,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_246 = Collections.singletonList(new Resource());
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(null);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(null);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull4735 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_246);
             }
@@ -1366,16 +1366,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_245 = Collections.singletonList(new Resource());
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull4737 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_245);
             }
@@ -1390,16 +1390,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(null);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(null);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(null);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4971 should have thrown IllegalArgumentException");
             }
@@ -1414,16 +1414,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(null);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4976 should have thrown IllegalArgumentException");
             }
@@ -1439,16 +1439,16 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Date __DSPOT_deadline_225 = new Date("Atos test: Swift");
-                    Project project = ReplanControllerProxyTest.createProject();
-                    project = ReplanControllerProxyTest.proxy.createProject(project);
+                    Project project = AmplReplanControllerProxyTest.createProject();
+                    project = AmplReplanControllerProxyTest.proxy.createProject(project);
                     Assert.notNull(project);
                     Assert.notNull(project.getId());
-                    Feature feature = ReplanControllerProxyTest.createFeature();
-                    feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                    Feature feature = AmplReplanControllerProxyTest.createFeature();
+                    feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                     Assert.notNull(feature);
                     Assert.notNull(feature.getId());
-                    ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                    ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                    AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                    AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                     feature.setDeadline(null);
                     org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4729 should have thrown IllegalArgumentException");
                 }
@@ -1465,16 +1465,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(null);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(null, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(__DSPOT_effortUnit_220);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4976 should have thrown IllegalArgumentException");
             }
@@ -1489,16 +1489,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(null);
                 Assert.notNull(feature.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(null);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4977 should have thrown IllegalArgumentException");
             }
@@ -1514,16 +1514,16 @@ public class AmplReplanControllerProxyTest {
             {
                 List<Resource> __DSPOT_resources_349 = Collections.singletonList(new Resource());
                 String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(null);
                 Assert.notNull(feature.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(__DSPOT_effortUnit_220);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4977 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_349);
@@ -1540,16 +1540,16 @@ public class AmplReplanControllerProxyTest {
             {
                 List<Resource> __DSPOT_resources_337 = Collections.singletonList(new Resource());
                 String __DSPOT_effortUnit_220 = "{5uN(!P:(01(Vo/][%sG";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(null);
                 Assert.notNull(project.getId());
-                Feature feature = ReplanControllerProxyTest.createFeature();
-                feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+                Feature feature = AmplReplanControllerProxyTest.createFeature();
+                feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
-                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__17 = AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId());
+                HttpStatus o_testCreateAndDeleteFeatureForProject_mg4724__20 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 project.setEffortUnit(__DSPOT_effortUnit_220);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_mg4724null4974 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_337);
@@ -1584,14 +1584,14 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testUpdateProjectlitString13321() throws Exception {
-        Project project = ReplanControllerProxyTest.createProject();
-        project = ReplanControllerProxyTest.proxy.createProject(project);
+        Project project = AmplReplanControllerProxyTest.createProject();
+        project = AmplReplanControllerProxyTest.proxy.createProject(project);
         Assert.notNull(project);
         Assert.notNull(project.getId());
         project.setDescription(((project.getDescription()) + "Atos Project Test Description"));
-        project = ReplanControllerProxyTest.proxy.updateProject(project);
+        project = AmplReplanControllerProxyTest.proxy.updateProject(project);
         Assert.notNull(project);
-        HttpStatus o_testUpdateProjectlitString13321__13 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+        HttpStatus o_testUpdateProjectlitString13321__13 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
         assertEquals("OK", ((HttpStatus) (o_testUpdateProjectlitString13321__13)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testUpdateProjectlitString13321__13)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testUpdateProjectlitString13321__13)).is2xxSuccessful());
@@ -1604,14 +1604,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateProjectnull13333_failAssert3293() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(null);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(null);
             Assert.notNull(project);
             Assert.notNull(project.getId());
             project.setDescription(((project.getDescription()) + " modified by test"));
-            project = ReplanControllerProxyTest.proxy.updateProject(project);
+            project = AmplReplanControllerProxyTest.proxy.updateProject(project);
             Assert.notNull(project);
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testUpdateProjectnull13333 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid project", expected.getMessage());
@@ -1621,14 +1621,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateProjectnull13334_failAssert3294() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(null);
             Assert.notNull(project.getId());
             project.setDescription(((project.getDescription()) + " modified by test"));
-            project = ReplanControllerProxyTest.proxy.updateProject(project);
+            project = AmplReplanControllerProxyTest.proxy.updateProject(project);
             Assert.notNull(project);
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testUpdateProjectnull13334 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1638,14 +1638,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateProjectnull13337_failAssert3296() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
             project.setDescription(((project.getDescription()) + " modified by test"));
-            project = ReplanControllerProxyTest.proxy.updateProject(project);
+            project = AmplReplanControllerProxyTest.proxy.updateProject(project);
             Assert.notNull(null);
-            ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testUpdateProjectnull13337 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1655,14 +1655,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateProjectlitString13321null13413_failAssert3297() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(null);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(null);
             Assert.notNull(project);
             Assert.notNull(project.getId());
             project.setDescription(((project.getDescription()) + "Atos Project Test Description"));
-            project = ReplanControllerProxyTest.proxy.updateProject(project);
+            project = AmplReplanControllerProxyTest.proxy.updateProject(project);
             Assert.notNull(project);
-            HttpStatus o_testUpdateProjectlitString13321__13 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testUpdateProjectlitString13321__13 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testUpdateProjectlitString13321null13413 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid project", expected.getMessage());
@@ -1672,14 +1672,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateProjectlitString13321null13416_failAssert3298() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(null);
             Assert.notNull(project.getId());
             project.setDescription(((project.getDescription()) + "Atos Project Test Description"));
-            project = ReplanControllerProxyTest.proxy.updateProject(project);
+            project = AmplReplanControllerProxyTest.proxy.updateProject(project);
             Assert.notNull(project);
-            HttpStatus o_testUpdateProjectlitString13321__13 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testUpdateProjectlitString13321__13 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testUpdateProjectlitString13321null13416 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1689,14 +1689,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateProjectlitString13321null13423_failAssert3300() throws Exception {
         try {
-            Project project = ReplanControllerProxyTest.createProject();
-            project = ReplanControllerProxyTest.proxy.createProject(project);
+            Project project = AmplReplanControllerProxyTest.createProject();
+            project = AmplReplanControllerProxyTest.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
             project.setDescription(((project.getDescription()) + "Atos Project Test Description"));
-            project = ReplanControllerProxyTest.proxy.updateProject(project);
+            project = AmplReplanControllerProxyTest.proxy.updateProject(project);
             Assert.notNull(null);
-            HttpStatus o_testUpdateProjectlitString13321__13 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+            HttpStatus o_testUpdateProjectlitString13321__13 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
             org.junit.Assert.fail("testUpdateProjectlitString13321null13423 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1708,14 +1708,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_802 = Collections.singletonList(new Resource());
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(null);
                 Assert.notNull(project.getId());
                 project.setDescription(((project.getDescription()) + " modified by test"));
-                project = ReplanControllerProxyTest.proxy.updateProject(project);
+                project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                 Assert.notNull(project);
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testUpdateProjectnull13334 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_802);
             }
@@ -1730,14 +1730,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_802 = Collections.singletonList(new Resource());
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
                 project.setDescription(((project.getDescription()) + " modified by test"));
-                project = ReplanControllerProxyTest.proxy.updateProject(project);
+                project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                 Assert.notNull(null);
-                ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testUpdateProjectnull13337 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_802);
             }
@@ -1752,14 +1752,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_808 = "SN*sw)`v}zN/0NJ?w/&c";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(null);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(null);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
                 project.setDescription(((project.getDescription()) + "Atos Project Test Description"));
-                project = ReplanControllerProxyTest.proxy.updateProject(project);
+                project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                 Assert.notNull(project);
-                HttpStatus o_testUpdateProjectlitString13321__13 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testUpdateProjectlitString13321__13 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testUpdateProjectlitString13321null13413 should have thrown IllegalArgumentException");
                 project.setEffortUnit(__DSPOT_effortUnit_808);
             }
@@ -1774,14 +1774,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_805 = "Bd%$(Yc4+914v7{bG0ev";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(null);
                 Assert.notNull(project.getId());
                 project.setDescription(((project.getDescription()) + "Atos Project Test Description"));
-                project = ReplanControllerProxyTest.proxy.updateProject(project);
+                project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                 Assert.notNull(project);
-                HttpStatus o_testUpdateProjectlitString13321__13 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testUpdateProjectlitString13321__13 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testUpdateProjectlitString13321null13416 should have thrown IllegalArgumentException");
                 project.setEffortUnit(__DSPOT_effortUnit_805);
             }
@@ -1796,14 +1796,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 String __DSPOT_effortUnit_804 = "BXWZ9Li]$FA^|2]&v3A9";
-                Project project = ReplanControllerProxyTest.createProject();
-                project = ReplanControllerProxyTest.proxy.createProject(project);
+                Project project = AmplReplanControllerProxyTest.createProject();
+                project = AmplReplanControllerProxyTest.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
                 project.setDescription(((project.getDescription()) + "Atos Project Test Description"));
-                project = ReplanControllerProxyTest.proxy.updateProject(project);
+                project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                 Assert.notNull(null);
-                HttpStatus o_testUpdateProjectlitString13321__13 = ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                HttpStatus o_testUpdateProjectlitString13321__13 = AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                 org.junit.Assert.fail("testUpdateProjectlitString13321null13423 should have thrown IllegalArgumentException");
                 project.setEffortUnit(__DSPOT_effortUnit_804);
             }
@@ -1819,14 +1819,14 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_802 = Collections.singletonList(new Resource());
-                    Project project = ReplanControllerProxyTest.createProject();
-                    project = ReplanControllerProxyTest.proxy.createProject(project);
+                    Project project = AmplReplanControllerProxyTest.createProject();
+                    project = AmplReplanControllerProxyTest.proxy.createProject(project);
                     Assert.notNull(null);
                     Assert.notNull(project.getId());
                     project.setDescription(((project.getDescription()) + "Atos test: Swift development of iOS"));
-                    project = ReplanControllerProxyTest.proxy.updateProject(project);
+                    project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                     Assert.notNull(project);
-                    ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                    AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                     org.junit.Assert.fail("testUpdateProjectnull13334 should have thrown IllegalArgumentException");
                     project.setResources(__DSPOT_resources_802);
                 }
@@ -1844,14 +1844,14 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_802 = Collections.singletonList(new Resource());
-                    Project project = ReplanControllerProxyTest.createProject();
-                    project = ReplanControllerProxyTest.proxy.createProject(null);
+                    Project project = AmplReplanControllerProxyTest.createProject();
+                    project = AmplReplanControllerProxyTest.proxy.createProject(null);
                     Assert.notNull(null);
                     Assert.notNull(project.getId());
                     project.setDescription(((project.getDescription()) + " modified by test"));
-                    project = ReplanControllerProxyTest.proxy.updateProject(project);
+                    project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                     Assert.notNull(project);
-                    ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                    AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                     org.junit.Assert.fail("testUpdateProjectnull13334 should have thrown IllegalArgumentException");
                     project.setResources(__DSPOT_resources_802);
                 }
@@ -1869,14 +1869,14 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_802 = Collections.singletonList(new Resource());
-                    Project project = ReplanControllerProxyTest.createProject();
-                    project = ReplanControllerProxyTest.proxy.createProject(project);
+                    Project project = AmplReplanControllerProxyTest.createProject();
+                    project = AmplReplanControllerProxyTest.proxy.createProject(project);
                     Assert.notNull(project);
                     Assert.notNull(project.getId());
                     project.setDescription(((project.getDescription()) + "Atos test: Swift Developer"));
-                    project = ReplanControllerProxyTest.proxy.updateProject(project);
+                    project = AmplReplanControllerProxyTest.proxy.updateProject(project);
                     Assert.notNull(null);
-                    ReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
+                    AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId());
                     org.junit.Assert.fail("testUpdateProjectnull13337 should have thrown IllegalArgumentException");
                     project.setResources(__DSPOT_resources_802);
                 }
@@ -1891,38 +1891,38 @@ public class AmplReplanControllerProxyTest {
     @Test
     @Ignore
     public void testUpdateFeatureOfProjectById() throws Exception {
-        Project project = ReplanControllerProxyTest.createProject();
-        project = ReplanControllerProxyTest.proxy.createProject(project);
+        Project project = AmplReplanControllerProxyTest.createProject();
+        project = AmplReplanControllerProxyTest.proxy.createProject(project);
         Assert.notNull(project);
         Assert.notNull(project.getId());
-        Feature feature = ReplanControllerProxyTest.createFeature();
-        feature = ReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
+        Feature feature = AmplReplanControllerProxyTest.createFeature();
+        feature = AmplReplanControllerProxyTest.proxy.createFeatureOfProjectById(feature, project.getId());
         Assert.notNull(feature);
         Assert.notNull(feature.getId());
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(project.getId());
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(project.getId());
         Assert.notEmpty(features);
-        feature = ReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(0).getId(), project.getId());
+        feature = AmplReplanControllerProxyTest.proxy.getFeatureByIdOfProjectById(features.get(0).getId(), project.getId());
         Assert.notNull(feature);
         feature.setDescription(((feature.getDescription()) + " modified by test"));
-        ReplanControllerProxyTest.proxy.updateFeatureOfProjectById(feature, ReplanControllerProxyTest.projectId);
+        AmplReplanControllerProxyTest.proxy.updateFeatureOfProjectById(feature, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(feature);
-        org.junit.Assert.assertEquals(ReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()), HttpStatus.OK);
-        org.junit.Assert.assertEquals(ReplanControllerProxyTest.proxy.deleteProjectById(project.getId()), HttpStatus.OK);
+        org.junit.Assert.assertEquals(AmplReplanControllerProxyTest.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()), HttpStatus.OK);
+        org.junit.Assert.assertEquals(AmplReplanControllerProxyTest.proxy.deleteProjectById(project.getId()), HttpStatus.OK);
     }
 
     @Test(timeout = 30000)
     public void testUpdateReleasesOfProjectByIdlitNum13856_failAssert3426() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             Release release = releases.get(1);
             String originalDescription = release.getDescription();
             release.setDescription(((release.getDescription()) + " modified by test"));
-            release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             release.setDescription(originalDescription);
-            release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testUpdateReleasesOfProjectByIdlitNum13856 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -1933,16 +1933,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateReleasesOfProjectByIdnull13868_failAssert3432() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             Release release = releases.get(0);
             String originalDescription = release.getDescription();
             release.setDescription(((release.getDescription()) + " modified by test"));
-            release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             release.setDescription(originalDescription);
-            release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13868 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1953,16 +1953,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateReleasesOfProjectByIdnull13869_failAssert3433() throws Exception {
         try {
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             Release release = releases.get(0);
             String originalDescription = release.getDescription();
             release.setDescription(((release.getDescription()) + " modified by test"));
-            release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             release.setDescription(originalDescription);
-            release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13869 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1974,16 +1974,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateReleasesOfProjectByIdlitNum13856_failAssert3426litString13936_failAssert3436() throws Exception {
         try {
             {
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 Release release = releases.get(1);
                 String originalDescription = release.getDescription();
                 release.setDescription(((release.getDescription()) + "Atos Test: Swift developer with experience on iOS 10"));
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 release.setDescription(originalDescription);
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testUpdateReleasesOfProjectByIdlitNum13856 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -1998,16 +1998,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_828 = Collections.singletonList(new Resource());
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 Release release = releases.get(1);
                 String originalDescription = release.getDescription();
                 release.setDescription(((release.getDescription()) + " modified by test"));
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 release.setDescription(originalDescription);
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testUpdateReleasesOfProjectByIdlitNum13856 should have thrown ArrayIndexOutOfBoundsException");
                 release.setResources(__DSPOT_resources_828);
@@ -2022,16 +2022,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateReleasesOfProjectByIdnull13868_failAssert3432litString13938_failAssert3454() throws Exception {
         try {
             {
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 Release release = releases.get(0);
                 String originalDescription = release.getDescription();
                 release.setDescription(((release.getDescription()) + " modified by test"));
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 release.setDescription(originalDescription);
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13868 should have thrown IllegalArgumentException");
             }
@@ -2045,16 +2045,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateReleasesOfProjectByIdnull13869_failAssert3433litString13937_failAssert3477() throws Exception {
         try {
             {
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 Release release = releases.get(0);
                 String originalDescription = release.getDescription();
                 release.setDescription(((release.getDescription()) + "Atos test release description"));
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 release.setDescription(originalDescription);
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13869 should have thrown IllegalArgumentException");
             }
@@ -2069,16 +2069,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Resource> __DSPOT_resources_832 = Collections.singletonList(new Resource());
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 Release release = releases.get(0);
                 String originalDescription = release.getDescription();
                 release.setDescription(((release.getDescription()) + " modified by test"));
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 release.setDescription(originalDescription);
-                release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13869 should have thrown IllegalArgumentException");
                 release.setResources(__DSPOT_resources_832);
@@ -2094,16 +2094,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.notEmpty(releases);
                     Release release = releases.get(1);
                     String originalDescription = release.getDescription();
                     release.setDescription(((release.getDescription()) + "Atos Test: Swift developer with experience on iOS 10"));
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     release.setDescription(originalDescription);
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     org.junit.Assert.fail("testUpdateReleasesOfProjectByIdlitNum13856 should have thrown ArrayIndexOutOfBoundsException");
                 }
@@ -2121,16 +2121,16 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_828 = Collections.singletonList(new Resource());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     Release release = releases.get(1);
                     String originalDescription = release.getDescription();
                     release.setDescription(((release.getDescription()) + " modified by test"));
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     release.setDescription(originalDescription);
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     org.junit.Assert.fail("testUpdateReleasesOfProjectByIdlitNum13856 should have thrown ArrayIndexOutOfBoundsException");
                     release.setResources(__DSPOT_resources_828);
@@ -2148,16 +2148,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     Release release = releases.get(0);
                     String originalDescription = release.getDescription();
                     release.setDescription(((release.getDescription()) + " modified by test"));
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     release.setDescription(originalDescription);
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13868 should have thrown IllegalArgumentException");
                 }
@@ -2174,16 +2174,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     Release release = releases.get(0);
                     String originalDescription = release.getDescription();
                     release.setDescription(((release.getDescription()) + "Atos test release description"));
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     release.setDescription(originalDescription);
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13869 should have thrown IllegalArgumentException");
                 }
@@ -2201,16 +2201,16 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_832 = Collections.singletonList(new Resource());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     Release release = releases.get(0);
                     String originalDescription = release.getDescription();
                     release.setDescription(((release.getDescription()) + "Atos test: Swift Developer"));
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     release.setDescription(originalDescription);
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13869 should have thrown IllegalArgumentException");
                     release.setResources(__DSPOT_resources_832);
@@ -2229,16 +2229,16 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Resource> __DSPOT_resources_832 = Collections.singletonList(new Resource());
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     Release release = releases.get(0);
                     String originalDescription = release.getDescription();
                     release.setDescription(((release.getDescription()) + " modified by test"));
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     release.setDescription(originalDescription);
-                    release = ReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.updateReleaseOfProjectById(release, AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     org.junit.Assert.fail("testUpdateReleasesOfProjectByIdnull13869 should have thrown IllegalArgumentException");
                     release.setResources(__DSPOT_resources_832);
@@ -2253,17 +2253,17 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testUpdateSkillsOfProjectByIdlitString14985() throws Exception {
-        List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skills);
         Assert.notEmpty(skills);
         Skill skill = skills.get(0);
         String originalDescription = skill.getDescription();
         assertEquals("Atos test: Swift development of iOS", originalDescription);
         skill.setDescription(((skill.getDescription()) + ":"));
-        skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+        skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skill);
         skill.setDescription(originalDescription);
-        skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+        skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skill);
         assertEquals("Atos test: Swift development of iOS", originalDescription);
     }
@@ -2271,16 +2271,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateSkillsOfProjectByIdlitNum14986_failAssert3690() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
             Skill skill = skills.get(1);
             String originalDescription = skill.getDescription();
             skill.setDescription(((skill.getDescription()) + " modified by test"));
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             skill.setDescription(originalDescription);
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             org.junit.Assert.fail("testUpdateSkillsOfProjectByIdlitNum14986 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -2291,16 +2291,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateSkillsOfProjectByIdnull14995_failAssert3696() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
             Skill skill = skills.get(0);
             String originalDescription = skill.getDescription();
             skill.setDescription(((skill.getDescription()) + " modified by test"));
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             skill.setDescription(originalDescription);
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             org.junit.Assert.fail("testUpdateSkillsOfProjectByIdnull14995 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2311,16 +2311,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateSkillsOfProjectByIdlitString14985litNum15055_failAssert3700() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
             Skill skill = skills.get(1);
             String originalDescription = skill.getDescription();
             skill.setDescription(((skill.getDescription()) + ":"));
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             skill.setDescription(originalDescription);
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             org.junit.Assert.fail("testUpdateSkillsOfProjectByIdlitString14985litNum15055 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -2331,16 +2331,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateSkillsOfProjectByIdlitString14985null15079_failAssert3706() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
             Skill skill = skills.get(0);
             String originalDescription = skill.getDescription();
             skill.setDescription(((skill.getDescription()) + ":"));
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             skill.setDescription(originalDescription);
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             org.junit.Assert.fail("testUpdateSkillsOfProjectByIdlitString14985null15079 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2351,16 +2351,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateSkillsOfProjectByIdlitString14985null15081_failAssert3707() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
             Skill skill = skills.get(0);
             String originalDescription = skill.getDescription();
             skill.setDescription(((skill.getDescription()) + ":"));
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             skill.setDescription(originalDescription);
-            skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
             org.junit.Assert.fail("testUpdateSkillsOfProjectByIdlitString14985null15081 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2372,16 +2372,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateSkillsOfProjectByIdlitString14985litNum15055_failAssert3700null15212_failAssert3745() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(skills);
                 Skill skill = skills.get(1);
                 String originalDescription = skill.getDescription();
                 skill.setDescription(((skill.getDescription()) + ":"));
-                skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skill);
                 skill.setDescription(originalDescription);
-                skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skill);
                 org.junit.Assert.fail("testUpdateSkillsOfProjectByIdlitString14985litNum15055 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -2395,16 +2395,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateSkillsOfProjectByIdlitString14985null15079_failAssert3706litNum15219_failAssert3756() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
                 Skill skill = skills.get(0);
                 String originalDescription = skill.getDescription();
                 skill.setDescription(((skill.getDescription()) + ":"));
-                skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skill);
                 skill.setDescription(originalDescription);
-                skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skill);
                 org.junit.Assert.fail("testUpdateSkillsOfProjectByIdlitString14985null15079 should have thrown IllegalArgumentException");
             }
@@ -2418,16 +2418,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateSkillsOfProjectByIdlitString14985null15081_failAssert3707litNum15217_failAssert3768() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
                 Skill skill = skills.get(0);
                 String originalDescription = skill.getDescription();
                 skill.setDescription(((skill.getDescription()) + ":"));
-                skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 skill.setDescription(originalDescription);
-                skill = ReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.updateSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skill);
                 org.junit.Assert.fail("testUpdateSkillsOfProjectByIdlitString14985null15081 should have thrown IllegalArgumentException");
             }
@@ -2440,17 +2440,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateResourceOfProjectById_mg14392() throws Exception {
         Double __DSPOT_availability_851 = 0.6395468426119268;
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resources);
         Assert.notEmpty(resources);
         Resource resource = resources.get(0);
         String originalDescription = resource.getDescription();
         assertEquals("Atos test: Swift developer with experience on iOS 10", originalDescription);
         resource.setDescription(((resource.getDescription()) + " modified by test"));
-        resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         resource.setDescription(originalDescription);
-        resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         resource.setAvailability(__DSPOT_availability_851);
         assertEquals("Atos test: Swift developer with experience on iOS 10", originalDescription);
@@ -2459,16 +2459,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateResourceOfProjectByIdlitNum14386_failAssert3568() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             Resource resource = resources.get(1);
             String originalDescription = resource.getDescription();
             resource.setDescription(((resource.getDescription()) + " modified by test"));
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setDescription(originalDescription);
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testUpdateResourceOfProjectByIdlitNum14386 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -2479,16 +2479,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateResourceOfProjectByIdnull14397_failAssert3574() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             Resource resource = resources.get(0);
             String originalDescription = resource.getDescription();
             resource.setDescription(((resource.getDescription()) + " modified by test"));
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setDescription(originalDescription);
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testUpdateResourceOfProjectByIdnull14397 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -2499,17 +2499,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateResourceOfProjectById_mg14392litString14473() throws Exception {
         Double __DSPOT_availability_851 = 0.6395468426119268;
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resources);
         Assert.notEmpty(resources);
         Resource resource = resources.get(0);
         String originalDescription = resource.getDescription();
         assertEquals("Atos test: Swift developer with experience on iOS 10", originalDescription);
         resource.setDescription(((resource.getDescription()) + " modified by tst"));
-        resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         resource.setDescription(originalDescription);
-        resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         resource.setAvailability(__DSPOT_availability_851);
         assertEquals("Atos test: Swift developer with experience on iOS 10", originalDescription);
@@ -2519,16 +2519,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateResourceOfProjectById_mg14392litNum14510_failAssert3578() throws Exception {
         try {
             Double __DSPOT_availability_851 = 0.6395468426119268;
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             Resource resource = resources.get(1);
             String originalDescription = resource.getDescription();
             resource.setDescription(((resource.getDescription()) + " modified by test"));
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setDescription(originalDescription);
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setAvailability(__DSPOT_availability_851);
             org.junit.Assert.fail("testUpdateResourceOfProjectById_mg14392litNum14510 should have thrown ArrayIndexOutOfBoundsException");
@@ -2541,16 +2541,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateResourceOfProjectById_mg14392null14533_failAssert3584() throws Exception {
         try {
             Double __DSPOT_availability_851 = 0.6395468426119268;
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             Resource resource = resources.get(0);
             String originalDescription = resource.getDescription();
             resource.setDescription(((resource.getDescription()) + " modified by test"));
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setDescription(originalDescription);
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setAvailability(__DSPOT_availability_851);
             org.junit.Assert.fail("testUpdateResourceOfProjectById_mg14392null14533 should have thrown IllegalArgumentException");
@@ -2562,17 +2562,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testUpdateResourceOfProjectById_mg14392litString14473litNum14716() throws Exception {
         Double __DSPOT_availability_851 = 1.6395468426119268;
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resources);
         Assert.notEmpty(resources);
         Resource resource = resources.get(0);
         String originalDescription = resource.getDescription();
         assertEquals("Atos test: Swift developer with experience on iOS 10", originalDescription);
         resource.setDescription(((resource.getDescription()) + " modified by tst"));
-        resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         resource.setDescription(originalDescription);
-        resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         resource.setAvailability(__DSPOT_availability_851);
         assertEquals("Atos test: Swift developer with experience on iOS 10", originalDescription);
@@ -2582,16 +2582,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateResourceOfProjectById_mg14392litString14473litNum14741_failAssert3627() throws Exception {
         try {
             Double __DSPOT_availability_851 = 0.6395468426119268;
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             Resource resource = resources.get(1);
             String originalDescription = resource.getDescription();
             resource.setDescription(((resource.getDescription()) + " modified by tst"));
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setDescription(originalDescription);
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setAvailability(__DSPOT_availability_851);
             org.junit.Assert.fail("testUpdateResourceOfProjectById_mg14392litString14473litNum14741 should have thrown ArrayIndexOutOfBoundsException");
@@ -2604,16 +2604,16 @@ public class AmplReplanControllerProxyTest {
     public void testUpdateResourceOfProjectById_mg14392litString14473null14777_failAssert3633() throws Exception {
         try {
             Double __DSPOT_availability_851 = 0.6395468426119268;
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             Resource resource = resources.get(0);
             String originalDescription = resource.getDescription();
             resource.setDescription(((resource.getDescription()) + " modified by tst"));
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setDescription(originalDescription);
-            resource = ReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.updateResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             resource.setAvailability(__DSPOT_availability_851);
             org.junit.Assert.fail("testUpdateResourceOfProjectById_mg14392litString14473null14777 should have thrown IllegalArgumentException");
@@ -2625,14 +2625,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369_failAssert900() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
 
             org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369 should have thrown ArrayIndexOutOfBoundsException");
@@ -2644,14 +2644,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3375_failAssert905() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
 
             org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3375 should have thrown ArrayIndexOutOfBoundsException");
@@ -2663,14 +2663,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3388_failAssert910() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
 
             org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3388 should have thrown IllegalArgumentException");
@@ -2682,14 +2682,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3391_failAssert911() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
 
             org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3391 should have thrown IllegalArgumentException");
@@ -2701,14 +2701,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3394_failAssert914() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
 
             org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3394 should have thrown IllegalArgumentException");
@@ -2721,14 +2721,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369_failAssert900litNum3456_failAssert915() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
 
                 org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369 should have thrown ArrayIndexOutOfBoundsException");
@@ -2743,14 +2743,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369_failAssert900null3526_failAssert928() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
 
                 org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369 should have thrown ArrayIndexOutOfBoundsException");
@@ -2766,14 +2766,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Integer __DSPOT_code_122 = -342650539;
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
 
                 org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3375 should have thrown ArrayIndexOutOfBoundsException");
@@ -2789,14 +2789,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3375_failAssert905null3514_failAssert941() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
 
                 org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3375 should have thrown ArrayIndexOutOfBoundsException");
@@ -2811,14 +2811,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3394_failAssert914litNum3477_failAssert995() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
 
                 org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3394 should have thrown IllegalArgumentException");
@@ -2834,14 +2834,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_135 = new Date("$S oY.>c^U!$Cz2lvLY3");
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
 
                 org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3394 should have thrown IllegalArgumentException");
@@ -2858,14 +2858,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
 
                     org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369 should have thrown ArrayIndexOutOfBoundsException");
@@ -2883,14 +2883,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(skills);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
 
                     org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3369 should have thrown ArrayIndexOutOfBoundsException");
@@ -2909,14 +2909,14 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Integer __DSPOT_code_122 = null;
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(skills);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
 
                     org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3375 should have thrown ArrayIndexOutOfBoundsException");
@@ -2936,14 +2936,14 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Integer __DSPOT_code_122 = -342650539;
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(skills);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
 
                     org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdlitNum3375 should have thrown ArrayIndexOutOfBoundsException");
@@ -2962,14 +2962,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(skills);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
 
                     org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3394 should have thrown IllegalArgumentException");
@@ -2988,14 +2988,14 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Date __DSPOT_deadline_135 = new Date("Atos Project Test");
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(skills);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
 
                     org.junit.Assert.fail("testAddDeleteSkillsOfFeatureByIdOfProjectByIdnull3394 should have thrown IllegalArgumentException");
@@ -3011,15 +3011,15 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5() throws Exception {
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
         List<Feature> dependencies = new ArrayList<>();
         boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
         assertTrue(o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7);
-        Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+        Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(feature);
-        feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+        feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(feature);
         assertTrue(o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7);
     }
@@ -3027,14 +3027,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum1_failAssert0() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             dependencies.add(features.get(1));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum1 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3045,14 +3045,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum13_failAssert10() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             dependencies.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum13 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3063,14 +3063,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdnull28_failAssert16() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             dependencies.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdnull28 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3081,14 +3081,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum103_failAssert20() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum103 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3099,14 +3099,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum123_failAssert25() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum123 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3118,14 +3118,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5_mg147_failAssert30() throws Exception {
         try {
             Date __DSPOT_deadline_15 = new Date("gpbL[{$QV5:Wz2[|+mr6");
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             feature.setDeadline(__DSPOT_deadline_15);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5_mg147 should have thrown IllegalArgumentException");
@@ -3137,14 +3137,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5null181_failAssert32() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5null181 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3155,14 +3155,14 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5null188_failAssert35() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependencies = new ArrayList<>();
             boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5null188 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3174,14 +3174,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum103_failAssert20litNum390_failAssert101() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependencies = new ArrayList<>();
                 boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum103 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -3196,14 +3196,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Integer __DSPOT_code_35 = -439235821;
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependencies = new ArrayList<>();
                 boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum123 should have thrown ArrayIndexOutOfBoundsException");
                 feature.setCode(__DSPOT_code_35);
@@ -3218,14 +3218,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum123_failAssert25null465_failAssert127() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependencies = new ArrayList<>();
                 boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5litNum123 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -3240,14 +3240,14 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_15 = new Date("Atos test release description");
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependencies = new ArrayList<>();
                 boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 feature.setDeadline(__DSPOT_deadline_15);
                 org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5_mg147 should have thrown IllegalArgumentException");
@@ -3264,14 +3264,14 @@ public class AmplReplanControllerProxyTest {
             {
                 List<Skill> __DSPOT_requiredSkills_69 = Collections.singletonList(new Skill());
                 Date __DSPOT_deadline_15 = new Date("gpbL[{$QV5:Wz2[|+mr6");
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependencies = new ArrayList<>();
                 boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 feature.setDeadline(__DSPOT_deadline_15);
                 org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5_mg147 should have thrown IllegalArgumentException");
@@ -3287,14 +3287,14 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5null188_failAssert35litNum407_failAssert191() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependencies = new ArrayList<>();
                 boolean o_testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5__7 = dependencies.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependencies, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testAddDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum5null188 should have thrown IllegalArgumentException");
             }
@@ -3306,18 +3306,18 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327() throws Exception {
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resources);
         Assert.notEmpty(resources);
-        List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(releases);
         Assert.notEmpty(releases);
         List<Resource> resourcesToAdd = new ArrayList<>();
         boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
         assertTrue(o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11);
-        Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(release);
-        release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(release);
         assertTrue(o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11);
     }
@@ -3325,17 +3325,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2323_failAssert617() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(1));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2323 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3346,17 +3346,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2335_failAssert627() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2335 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3367,17 +3367,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdnull2344_failAssert632() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdnull2344 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3388,17 +3388,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdnull2348_failAssert634() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdnull2348 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3409,17 +3409,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2418_failAssert638() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2418 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3430,17 +3430,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2450_failAssert643() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2450 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -3451,17 +3451,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2495_failAssert648() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2495 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3472,17 +3472,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2506_failAssert650() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2506 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3493,17 +3493,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2511_failAssert653() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2511 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -3515,17 +3515,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2418_failAssert638litNum2748_failAssert736() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2418 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -3540,17 +3540,17 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_103 = new Date(";(?xw0]W#nkib%A@IY:W");
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2418 should have thrown ArrayIndexOutOfBoundsException");
                 release.setDeadline(__DSPOT_deadline_103);
@@ -3565,17 +3565,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2418_failAssert638null2800_failAssert745() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2418 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -3590,17 +3590,17 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_100 = new Date(-1368023980, -1071949933, 891928193, -1710226138, 24742384, -726566497);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2450 should have thrown ArrayIndexOutOfBoundsException");
                 release.setDeadline(__DSPOT_deadline_100);
@@ -3615,17 +3615,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2450_failAssert643null2794_failAssert756() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327litNum2450 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -3639,17 +3639,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2511_failAssert653litNum2770_failAssert804() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testAddDeleteResourcesOfReleaseByIdOfProjectByIdlitNum2327null2511 should have thrown IllegalArgumentException");
             }
@@ -3661,16 +3661,16 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727() throws Exception {
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
-        List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(releases);
         Assert.notEmpty(releases);
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11);
-        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13)).is2xxSuccessful());
@@ -3678,7 +3678,7 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13)).toString());
-        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16)).is2xxSuccessful());
@@ -3698,16 +3698,16 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733() throws Exception {
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
-        List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(releases);
         Assert.notEmpty(releases);
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__11 = featuresToAdd.add(features.get(0));
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__11);
-        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13)).is2xxSuccessful());
@@ -3715,7 +3715,7 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__13)).toString());
-        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__16)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__16)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum733__16)).is2xxSuccessful());
@@ -3736,16 +3736,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum723_failAssert210() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(1));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum723 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
             assertEquals("1", expected.getMessage());
@@ -3755,16 +3755,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum724_failAssert211() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(-1));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum724 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
             assertEquals("-1", expected.getMessage());
@@ -3774,16 +3774,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum735_failAssert220() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum735 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
             assertEquals("1", expected.getMessage());
@@ -3793,16 +3793,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum736_failAssert221() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(-1).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(-1).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum736 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
             assertEquals("-1", expected.getMessage());
@@ -3812,16 +3812,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull741_failAssert225() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull741 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -3831,16 +3831,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull745_failAssert227() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull745 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a not-empty list of features", expected.getMessage());
@@ -3850,16 +3850,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
             assertEquals("2147483647", expected.getMessage());
@@ -3869,16 +3869,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908_failAssert230() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
             assertEquals("-2147483648", expected.getMessage());
@@ -3888,16 +3888,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum830_failAssert231() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum830 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
             assertEquals("2147483647", expected.getMessage());
@@ -3907,16 +3907,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727null955_failAssert245() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727null955 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -3926,16 +3926,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727null981_failAssert249() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727null981 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a not-empty list of features", expected.getMessage());
@@ -3946,16 +3946,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull741_failAssert225litNum805_failAssert322() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 featuresToAdd.add(features.get(-1));
-                ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull741 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull741_failAssert225litNum805 should have thrown IllegalArgumentException");
@@ -3968,16 +3968,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229litNum1446_failAssert410() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896 should have thrown ArrayIndexOutOfBoundsException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229litNum1446 should have thrown ArrayIndexOutOfBoundsException");
@@ -3990,16 +3990,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229litNum1469_failAssert414() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896 should have thrown ArrayIndexOutOfBoundsException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229litNum1469 should have thrown ArrayIndexOutOfBoundsException");
@@ -4012,16 +4012,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229null1484_failAssert416() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896 should have thrown ArrayIndexOutOfBoundsException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229null1484 should have thrown IllegalArgumentException");
@@ -4034,16 +4034,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229null1504_failAssert418() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896 should have thrown ArrayIndexOutOfBoundsException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229null1504 should have thrown IllegalArgumentException");
@@ -4056,16 +4056,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229null1507_failAssert419() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(null, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(null, releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896 should have thrown ArrayIndexOutOfBoundsException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum896_failAssert229null1507 should have thrown ArrayIndexOutOfBoundsException");
@@ -4078,16 +4078,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908_failAssert230litNum1447_failAssert423() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908 should have thrown ArrayIndexOutOfBoundsException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908_failAssert230litNum1447 should have thrown ArrayIndexOutOfBoundsException");
@@ -4100,16 +4100,16 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908_failAssert230null1482_failAssert426() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727__16 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908 should have thrown ArrayIndexOutOfBoundsException");
             }
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum727litNum908_failAssert230null1482 should have thrown IllegalArgumentException");
@@ -4123,9 +4123,9 @@ public class AmplReplanControllerProxyTest {
         Skill skill = new Skill();
         skill.setName(" modified by test");
         skill.setDescription("Atos Test: Swift development of iOS");
-        skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+        skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skill);
-        HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testAddDeleteSkillOfProjectByIdlitString3019__8)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testAddDeleteSkillOfProjectByIdlitString3019__8)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testAddDeleteSkillOfProjectByIdlitString3019__8)).is2xxSuccessful());
@@ -4141,9 +4141,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName("Atos test: Swift");
             skill.setDescription("Atos Test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
-            ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdnull3037 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid skill", expected.getMessage());
@@ -4156,9 +4156,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName("Atos test: Swift");
             skill.setDescription("Atos Test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdnull3038 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -4171,9 +4171,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName(" modified by test");
             skill.setDescription("Atos Test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
-            HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdlitString3019null3138 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid skill", expected.getMessage());
@@ -4186,9 +4186,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName(" modified by test");
             skill.setDescription("Atos Test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdlitString3019null3139 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -4202,9 +4202,9 @@ public class AmplReplanControllerProxyTest {
                 Skill skill = new Skill();
                 skill.setName(" modified by test");
                 skill.setDescription("Atos test: Swift Developer");
-                skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skill);
-                HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdlitString3019null3138 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdlitString3019null3138_failAssert822litString3309 should have thrown IllegalArgumentException");
@@ -4220,9 +4220,9 @@ public class AmplReplanControllerProxyTest {
                 Skill skill = new Skill();
                 skill.setName(" modified by test");
                 skill.setDescription("Atos test: Swift Developer");
-                skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
-                HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteSkillOfProjectByIdlitString3019__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdlitString3019null3139 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdlitString3019null3139_failAssert823litString3309 should have thrown IllegalArgumentException");
@@ -4237,9 +4237,9 @@ public class AmplReplanControllerProxyTest {
         resource.setName("Atos Test: Swift development of iOS");
         resource.setDescription("Atos Test: Swift developer with experience on iOS 10");
         resource.setAvailability(80.0);
-        resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
-        HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testAddDeleteResourceOfProjectByIdlitString1713__9)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testAddDeleteResourceOfProjectByIdlitString1713__9)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testAddDeleteResourceOfProjectByIdlitString1713__9)).is2xxSuccessful());
@@ -4256,9 +4256,9 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos test: Swift Developer");
             resource.setDescription("Atos Test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdnull1744 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid resource", expected.getMessage());
@@ -4272,9 +4272,9 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos test: Swift Developer");
             resource.setDescription("Atos Test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdnull1745 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -4288,9 +4288,9 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos Test: Swift development of iOS");
             resource.setDescription("Atos Test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdlitString1713null1922 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid resource", expected.getMessage());
@@ -4304,9 +4304,9 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos Test: Swift development of iOS");
             resource.setDescription("Atos Test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdlitString1713null1925 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -4321,9 +4321,9 @@ public class AmplReplanControllerProxyTest {
                 resource.setName("Atos Test: Swift development of iOS");
                 resource.setDescription("Atos test release name");
                 resource.setAvailability(80.0);
-                resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdlitString1713null1922 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdlitString1713null1922_failAssert487litString2186 should have thrown IllegalArgumentException");
@@ -4340,9 +4340,9 @@ public class AmplReplanControllerProxyTest {
                 resource.setName("Atos Test: Swift development of iOS");
                 resource.setDescription(" modified by test");
                 resource.setAvailability(80.0);
-                resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
-                HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testAddDeleteResourceOfProjectByIdlitString1713__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdlitString1713null1925 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testAddDeleteResourceOfProjectByIdlitString1713null1925_failAssert488litString2185 should have thrown IllegalArgumentException");
@@ -4364,18 +4364,18 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066() throws Exception {
-        List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skills);
         Assert.notEmpty(skills);
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resources);
         Assert.notEmpty(resources);
         List<Skill> skillsToAdd = new ArrayList<>();
         boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
         assertTrue(o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11);
-        Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+        Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
-        resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         assertTrue(o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11);
     }
@@ -4383,17 +4383,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4062_failAssert1075() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(1));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4062 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -4404,17 +4404,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4074_failAssert1085() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4074 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -4425,17 +4425,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdnull4082_failAssert1090() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdnull4082 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4446,17 +4446,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdnull4086_failAssert1092() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdnull4086 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4467,17 +4467,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4151_failAssert1096() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4151 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -4488,17 +4488,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4178_failAssert1101() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4178 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -4509,17 +4509,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4221_failAssert1106() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4221 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4530,17 +4530,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4235_failAssert1108() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4235 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4551,17 +4551,17 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4242_failAssert1111() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4242 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4573,17 +4573,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4151_failAssert1096litNum4468_failAssert1190() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4151 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -4597,17 +4597,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4151_failAssert1096null4518_failAssert1198() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4151 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -4622,17 +4622,17 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Double __DSPOT_availability_210 = 0.3673320059283104;
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4178 should have thrown ArrayIndexOutOfBoundsException");
                 resource.setAvailability(__DSPOT_availability_210);
@@ -4647,17 +4647,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4178_failAssert1101null4508_failAssert1208() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066litNum4178 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -4671,17 +4671,17 @@ public class AmplReplanControllerProxyTest {
     public void testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4242_failAssert1111litNum4492_failAssert1254() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testAddDeleteSkillsOfResourceByIdOfProjectByIdlitNum4066null4242 should have thrown IllegalArgumentException");
             }
@@ -4693,17 +4693,17 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707() throws Exception {
-        List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skills);
         Assert.notEmpty(skills);
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notEmpty(features);
-        Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+        Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(feature);
         List<Skill> skillsToDelete = new ArrayList<>();
         boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(0));
         assertTrue(o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16);
-        feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+        feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(feature);
         assertTrue(o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16);
     }
@@ -4711,16 +4711,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11703_failAssert2911() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11703 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -4731,16 +4731,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11709_failAssert2916() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(1));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11709 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -4751,16 +4751,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdnull11722_failAssert2921() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdnull11722 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4771,16 +4771,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdnull11725_failAssert2922() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdnull11725 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4791,16 +4791,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789_failAssert2926() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(1));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -4811,16 +4811,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11858_failAssert2931() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11858 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4831,16 +4831,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11870_failAssert2932() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11870 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4851,16 +4851,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11876_failAssert2935() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notEmpty(features);
-            Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11876 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -4872,16 +4872,16 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11703_failAssert2911litNum11791_failAssert2936() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 skillsToDelete.add(skills.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11703 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -4896,16 +4896,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_592 = new Date("C6HvQ{7`[>;YwP/8[Coz");
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 skillsToDelete.add(skills.get(0));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11703 should have thrown ArrayIndexOutOfBoundsException");
                 feature.setDeadline(__DSPOT_deadline_592);
@@ -4921,16 +4921,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 List<Feature> __DSPOT_dependencies_613 = Collections.singletonList(new Feature());
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 skillsToDelete.add(skills.get(0));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdnull11722 should have thrown IllegalArgumentException");
                 feature.setDependencies(__DSPOT_dependencies_613);
@@ -4946,16 +4946,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Integer __DSPOT_code_619 = 1555849796;
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789 should have thrown ArrayIndexOutOfBoundsException");
                 feature.setCode(__DSPOT_code_619);
@@ -4971,16 +4971,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_621 = new Date("j.pbZs?{yo3o#YMTVY|P");
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789 should have thrown ArrayIndexOutOfBoundsException");
                 feature.setDeadline(__DSPOT_deadline_621);
@@ -4995,16 +4995,16 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789_failAssert2926null12176_failAssert3019() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -5018,16 +5018,16 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789_failAssert2926null12194_failAssert3020() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707litNum11789 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -5041,16 +5041,16 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11876_failAssert2935litNum12130_failAssert3062() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notEmpty(features);
-                Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707__16 = skillsToDelete.add(skills.get(0));
-                feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11707null11876 should have thrown IllegalArgumentException");
             }
@@ -5065,16 +5065,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(skills);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(null, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
                     List<Skill> skillsToDelete = new ArrayList<>();
                     skillsToDelete.add(skills.get(1));
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
                     org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdlitNum11703 should have thrown ArrayIndexOutOfBoundsException");
                 }
@@ -5092,16 +5092,16 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     List<Feature> __DSPOT_dependencies_613 = Collections.singletonList(new Feature());
-                    List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.notEmpty(skills);
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notEmpty(features);
-                    Feature feature = ReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                    Feature feature = AmplReplanControllerProxyTest.proxy.addSkillsOfFeatureByIdOfProjectById(skills, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
                     List<Skill> skillsToDelete = new ArrayList<>();
                     skillsToDelete.add(skills.get(0));
-                    feature = ReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                    feature = AmplReplanControllerProxyTest.proxy.deleteSkillsOfFeatureByIdOfProjectById(skillsToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(feature);
                     org.junit.Assert.fail("testDeleteSkillsOfFeatureByIdOfProjectByIdnull11722 should have thrown IllegalArgumentException");
                     feature.setDependencies(__DSPOT_dependencies_613);
@@ -5116,18 +5116,18 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284() throws Exception {
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
         List<Feature> dependenciesToAdd = new ArrayList<>();
         boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
         assertTrue(o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7);
-        Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+        Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(feature);
         List<Feature> dependenciesToDelete = new ArrayList<>();
         boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(0));
         assertTrue(o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16);
-        feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+        feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(feature);
         assertTrue(o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7);
         assertTrue(o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16);
@@ -5136,16 +5136,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7280_failAssert1881() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependenciesToAdd = new ArrayList<>();
             dependenciesToAdd.add(features.get(1));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Feature> dependenciesToDelete = new ArrayList<>();
             dependenciesToDelete.add(features.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7280 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5156,16 +5156,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7292_failAssert1891() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependenciesToAdd = new ArrayList<>();
             dependenciesToAdd.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Feature> dependenciesToDelete = new ArrayList<>();
             dependenciesToDelete.add(features.get(1));
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7292 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5176,16 +5176,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdnull7307_failAssert1897() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependenciesToAdd = new ArrayList<>();
             dependenciesToAdd.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Feature> dependenciesToDelete = new ArrayList<>();
             dependenciesToDelete.add(features.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdnull7307 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5196,16 +5196,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7383_failAssert1901() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependenciesToAdd = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Feature> dependenciesToDelete = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7383 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5216,16 +5216,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7408_failAssert1906() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependenciesToAdd = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Feature> dependenciesToDelete = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(1));
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7408 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5236,16 +5236,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284null7462_failAssert1912() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependenciesToAdd = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Feature> dependenciesToDelete = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284null7462 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5256,16 +5256,16 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284null7467_failAssert1915() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             List<Feature> dependenciesToAdd = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-            Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(feature);
             List<Feature> dependenciesToDelete = new ArrayList<>();
             boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(0));
-            feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+            feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284null7467 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5277,16 +5277,16 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7383_failAssert1901litNum7666_failAssert1981() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependenciesToAdd = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Feature> dependenciesToDelete = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7383 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -5301,16 +5301,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Integer __DSPOT_code_498 = 1190111293;
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependenciesToAdd = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Feature> dependenciesToDelete = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7408 should have thrown ArrayIndexOutOfBoundsException");
                 feature.setCode(__DSPOT_code_498);
@@ -5326,16 +5326,16 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_499 = new Date("ErJ,Q*wO|INCdXv>?dZt");
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependenciesToAdd = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Feature> dependenciesToDelete = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7408 should have thrown ArrayIndexOutOfBoundsException");
                 feature.setDeadline(__DSPOT_deadline_499);
@@ -5350,16 +5350,16 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7408_failAssert1906null7722_failAssert2007() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependenciesToAdd = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(null, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Feature> dependenciesToDelete = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(1));
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284litNum7408 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -5373,16 +5373,16 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284null7467_failAssert1915litNum7681_failAssert2038() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 List<Feature> dependenciesToAdd = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__7 = dependenciesToAdd.add(features.get(0));
-                Feature feature = ReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Feature feature = AmplReplanControllerProxyTest.proxy.addDependenciesOfFeatureByIdOfProjectById(dependenciesToAdd, features.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(feature);
                 List<Feature> dependenciesToDelete = new ArrayList<>();
                 boolean o_testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284__16 = dependenciesToDelete.add(features.get(0));
-                feature = ReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), ReplanControllerProxyTest.projectId);
+                feature = AmplReplanControllerProxyTest.proxy.deleteDependenciesOfFeatureByIdOfProjectById(dependenciesToDelete, feature.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testDeleteDependenciesOfFeatureByIdOfProjectByIdlitNum7284null7467 should have thrown IllegalArgumentException");
             }
@@ -5394,21 +5394,21 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554() throws Exception {
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resources);
         Assert.notEmpty(resources);
-        List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(releases);
         Assert.notEmpty(releases);
         List<Resource> resourcesToAdd = new ArrayList<>();
         boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
         assertTrue(o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11);
-        Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(release);
         List<Resource> resourcesToDelete = new ArrayList<>();
         boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(0));
         assertTrue(o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20);
-        release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+        release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(release);
         assertTrue(o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11);
         assertTrue(o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20);
@@ -5417,19 +5417,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10550_failAssert2596() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(1));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             resourcesToDelete.add(resources.get(0));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10550 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5440,19 +5440,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10562_failAssert2606() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             resourcesToDelete.add(resources.get(1));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10562 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5463,19 +5463,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdnull10571_failAssert2611() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             resourcesToDelete.add(resources.get(0));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdnull10571 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5486,19 +5486,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdnull10575_failAssert2613() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             resourcesToDelete.add(resources.get(0));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdnull10575 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5509,19 +5509,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10655_failAssert2617() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(0));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10655 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5532,19 +5532,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10684_failAssert2622() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(1));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10684 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -5555,19 +5555,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10730_failAssert2627() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(0));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10730 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5578,19 +5578,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10744_failAssert2629() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(0));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10744 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5601,19 +5601,19 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10753_failAssert2632() throws Exception {
         try {
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Resource> resourcesToAdd = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-            Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(release);
             List<Resource> resourcesToDelete = new ArrayList<>();
             boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(0));
-            release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+            release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10753 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -5626,19 +5626,19 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_550 = new Date("]!qOeddHWm8&1a$RH&p;");
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 List<Resource> resourcesToDelete = new ArrayList<>();
                 resourcesToDelete.add(resources.get(0));
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdnull10571 should have thrown IllegalArgumentException");
                 release.setDeadline(__DSPOT_deadline_550);
@@ -5653,19 +5653,19 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10655_failAssert2617litNum10978_failAssert2715() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 List<Resource> resourcesToDelete = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(1));
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10655 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -5679,19 +5679,19 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10655_failAssert2617null11056_failAssert2724() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 List<Resource> resourcesToDelete = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(0));
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10655 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -5706,19 +5706,19 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Date __DSPOT_deadline_558 = new Date(-239449135, 1084192896, -1187098048, 1135323118, 543729403, -1304718600);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 List<Resource> resourcesToDelete = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(1));
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10684 should have thrown ArrayIndexOutOfBoundsException");
                 release.setDeadline(__DSPOT_deadline_558);
@@ -5733,19 +5733,19 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10684_failAssert2622null11041_failAssert2735() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 List<Resource> resourcesToDelete = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(1));
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554litNum10684 should have thrown ArrayIndexOutOfBoundsException");
             }
@@ -5759,19 +5759,19 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10753_failAssert2632litNum11008_failAssert2783() throws Exception {
         try {
             {
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Resource> resourcesToAdd = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__11 = resourcesToAdd.add(resources.get(0));
-                Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(release);
                 List<Resource> resourcesToDelete = new ArrayList<>();
                 boolean o_testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554__20 = resourcesToDelete.add(resources.get(0));
-                release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+                release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdlitNum10554null10753 should have thrown IllegalArgumentException");
             }
@@ -5787,19 +5787,19 @@ public class AmplReplanControllerProxyTest {
             {
                 {
                     Date __DSPOT_deadline_550 = new Date("Atos test: Swift Developer");
-                    List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.notEmpty(resources);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     List<Resource> resourcesToAdd = new ArrayList<>();
                     resourcesToAdd.add(resources.get(0));
-                    Release release = ReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    Release release = AmplReplanControllerProxyTest.proxy.addResourcesOfReleaseByIdOfProjectById(resourcesToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     List<Resource> resourcesToDelete = new ArrayList<>();
                     resourcesToDelete.add(resources.get(0));
-                    release = ReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), ReplanControllerProxyTest.projectId);
+                    release = AmplReplanControllerProxyTest.proxy.deleteResourcesOfReleaseByIdOfProjectById(resourcesToDelete, release.getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(release);
                     org.junit.Assert.fail("testDeleteResourcesOfReleaseByIdOfProjectByIdnull10571 should have thrown IllegalArgumentException");
                     release.setDeadline(__DSPOT_deadline_550);
@@ -5814,16 +5814,16 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906() throws Exception {
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
-        List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(releases);
         Assert.notEmpty(releases);
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11);
-        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13)).is2xxSuccessful());
@@ -5831,14 +5831,14 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13)).toString());
-        List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
         int numberOfFeaturesOfRelease = featuresOfRelease.size();
         List<Feature> featuresToDelete = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26);
-        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28)).is2xxSuccessful());
@@ -5846,7 +5846,7 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28)).toString());
-        featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11);
@@ -5869,16 +5869,16 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912() throws Exception {
-        List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
-        List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(releases);
         Assert.notEmpty(releases);
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__11 = featuresToAdd.add(features.get(0));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__11);
-        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13)).is2xxSuccessful());
@@ -5886,14 +5886,14 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13)).toString());
-        List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.notEmpty(features);
         int numberOfFeaturesOfRelease = featuresOfRelease.size();
         List<Feature> featuresToDelete = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__26 = featuresToDelete.add(features.get(0));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__26);
-        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28)).is2xxSuccessful());
@@ -5901,7 +5901,7 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28)).toString());
-        featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+        featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(features);
         Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__11);
@@ -5925,23 +5925,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7902_failAssert2057() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(1));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(0));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7902 should have thrown ArrayIndexOutOfBoundsException");
@@ -5953,23 +5953,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7907_failAssert2061() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(460330538));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(0));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7907 should have thrown ArrayIndexOutOfBoundsException");
@@ -5981,23 +5981,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7914_failAssert2067() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(0));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7914 should have thrown ArrayIndexOutOfBoundsException");
@@ -6009,23 +6009,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7915_failAssert2068() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(-1).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(-1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(0));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7915 should have thrown ArrayIndexOutOfBoundsException");
@@ -6037,23 +6037,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7920_failAssert2072() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(1));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7920 should have thrown ArrayIndexOutOfBoundsException");
@@ -6065,23 +6065,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7922_failAssert2074() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(Integer.MAX_VALUE));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7922 should have thrown ArrayIndexOutOfBoundsException");
@@ -6093,23 +6093,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdnull7943_failAssert2092() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(0));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdnull7943 should have thrown IllegalArgumentException");
@@ -6121,23 +6121,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdnull7947_failAssert2094() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             featuresToDelete.add(features.get(0));
-            ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdnull7947 should have thrown IllegalArgumentException");
@@ -6149,23 +6149,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497_failAssert2098() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - (Integer.MIN_VALUE))));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497 should have thrown IllegalArgumentException");
@@ -6177,23 +6177,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8293_failAssert2100() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(Integer.MIN_VALUE));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8293 should have thrown ArrayIndexOutOfBoundsException");
@@ -6205,23 +6205,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8417_failAssert2101() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8417 should have thrown ArrayIndexOutOfBoundsException");
@@ -6233,23 +6233,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8119_failAssert2106() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8119 should have thrown ArrayIndexOutOfBoundsException");
@@ -6261,23 +6261,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8207_failAssert2107() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8207 should have thrown ArrayIndexOutOfBoundsException");
@@ -6289,23 +6289,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8179_failAssert2136() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8179 should have thrown ArrayIndexOutOfBoundsException");
@@ -6317,23 +6317,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8259_failAssert2138() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(1));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8259 should have thrown ArrayIndexOutOfBoundsException");
@@ -6345,23 +6345,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906null8545_failAssert2155() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906null8545 should have thrown IllegalArgumentException");
@@ -6373,23 +6373,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912null8496_failAssert2158() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7912null8496 should have thrown IllegalArgumentException");
@@ -6401,23 +6401,23 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906null8579_failAssert2161() throws Exception {
         try {
-            List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
-            List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.notEmpty(features);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-            featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+            featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
             org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906null8579 should have thrown IllegalArgumentException");
@@ -6430,23 +6430,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7920_failAssert2072null8503_failAssert2169() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 featuresToAdd.add(features.get(0));
-                ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 featuresToDelete.add(features.get(1));
-                ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7920 should have thrown ArrayIndexOutOfBoundsException");
@@ -6461,23 +6461,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7902_failAssert2057null8584_failAssert2170() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 featuresToAdd.add(features.get(1));
-                ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 featuresToDelete.add(features.get(0));
-                ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7902 should have thrown ArrayIndexOutOfBoundsException");
@@ -6493,23 +6493,23 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     List<Feature> featuresToAdd = new ArrayList<>();
                     featuresToAdd.add(features.get(1));
-                    ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
                     int numberOfFeaturesOfRelease = featuresOfRelease.size();
                     List<Feature> featuresToDelete = new ArrayList<>();
                     featuresToDelete.add(features.get(0));
-                    ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                     org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7902 should have thrown ArrayIndexOutOfBoundsException");
@@ -6527,23 +6527,23 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     List<Feature> featuresToAdd = new ArrayList<>();
                     featuresToAdd.add(features.get(1));
-                    ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
                     int numberOfFeaturesOfRelease = featuresOfRelease.size();
                     List<Feature> featuresToDelete = new ArrayList<>();
                     featuresToDelete.add(features.get(0));
-                    ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                     org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7902 should have thrown ArrayIndexOutOfBoundsException");
@@ -6561,23 +6561,23 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.notEmpty(features);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     List<Feature> featuresToAdd = new ArrayList<>();
                     featuresToAdd.add(features.get(1));
-                    ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
                     int numberOfFeaturesOfRelease = featuresOfRelease.size();
                     List<Feature> featuresToDelete = new ArrayList<>();
                     featuresToDelete.add(features.get(0));
-                    ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                     org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7902 should have thrown ArrayIndexOutOfBoundsException");
@@ -6595,23 +6595,23 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     List<Feature> featuresToAdd = new ArrayList<>();
                     featuresToAdd.add(features.get(0));
-                    ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
                     int numberOfFeaturesOfRelease = featuresOfRelease.size();
                     List<Feature> featuresToDelete = new ArrayList<>();
                     featuresToDelete.add(features.get(1));
-                    ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                     org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7920 should have thrown ArrayIndexOutOfBoundsException");
@@ -6629,23 +6629,23 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.notEmpty(features);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     List<Feature> featuresToAdd = new ArrayList<>();
                     featuresToAdd.add(features.get(0));
-                    ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
                     int numberOfFeaturesOfRelease = featuresOfRelease.size();
                     List<Feature> featuresToDelete = new ArrayList<>();
                     featuresToDelete.add(features.get(1));
-                    ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                     org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7920 should have thrown ArrayIndexOutOfBoundsException");
@@ -6663,23 +6663,23 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 {
-                    List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
-                    List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                    List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(releases);
                     Assert.notEmpty(releases);
                     List<Feature> featuresToAdd = new ArrayList<>();
                     featuresToAdd.add(features.get(0));
-                    ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(features);
                     Assert.notEmpty(features);
                     int numberOfFeaturesOfRelease = featuresOfRelease.size();
                     List<Feature> featuresToDelete = new ArrayList<>();
                     featuresToDelete.add(features.get(1));
-                    ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                    featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                    AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                    featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                     Assert.notNull(null);
                     Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
                     org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7920 should have thrown ArrayIndexOutOfBoundsException");
@@ -6696,23 +6696,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497_failAssert2098litNum9297_failAssert2327() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - (Integer.MIN_VALUE))));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497 should have thrown IllegalArgumentException");
@@ -6727,23 +6727,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497_failAssert2098litNum9346_failAssert2329() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - (Integer.MIN_VALUE))));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497 should have thrown IllegalArgumentException");
@@ -6758,23 +6758,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497_failAssert2098litNum9190_failAssert2330() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(Integer.MAX_VALUE));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - (Integer.MIN_VALUE))));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497 should have thrown IllegalArgumentException");
@@ -6789,23 +6789,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497_failAssert2098litNum9128_failAssert2331() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - (Integer.MIN_VALUE))));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497 should have thrown IllegalArgumentException");
@@ -6820,23 +6820,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497_failAssert2098litNum9362_failAssert2332() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MIN_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MIN_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - (Integer.MIN_VALUE))));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8497 should have thrown IllegalArgumentException");
@@ -6851,23 +6851,23 @@ public class AmplReplanControllerProxyTest {
     public void testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8207_failAssert2107litNum9283_failAssert2387() throws Exception {
         try {
             {
-                List<Feature> features = ReplanControllerProxyTest.proxy.getFeaturesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Feature> features = AmplReplanControllerProxyTest.proxy.getFeaturesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
-                List<Release> releases = ReplanControllerProxyTest.proxy.getReleasesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Release> releases = AmplReplanControllerProxyTest.proxy.getReleasesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(releases);
                 Assert.notEmpty(releases);
                 List<Feature> featuresToAdd = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__11 = featuresToAdd.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = ReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                List<Feature> featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__13 = AmplReplanControllerProxyTest.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                List<Feature> featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(Integer.MAX_VALUE).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.notEmpty(features);
                 int numberOfFeaturesOfRelease = featuresOfRelease.size();
                 List<Feature> featuresToDelete = new ArrayList<>();
                 boolean o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__26 = featuresToDelete.add(features.get(0));
-                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = ReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest.projectId);
-                featuresOfRelease = ReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906__28 = AmplReplanControllerProxyTest.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
+                featuresOfRelease = AmplReplanControllerProxyTest.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(features);
                 Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - (Integer.MAX_VALUE))));
                 org.junit.Assert.fail("testDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum7906litNum8207 should have thrown ArrayIndexOutOfBoundsException");
@@ -6883,9 +6883,9 @@ public class AmplReplanControllerProxyTest {
         Skill skill = new Skill();
         skill.setName("Atos Project Test");
         skill.setDescription("Atos test: Swift development of iOS");
-        skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+        skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skill);
-        HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testDeleteSkillOfProjectByIdlitString11353__8)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testDeleteSkillOfProjectByIdlitString11353__8)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testDeleteSkillOfProjectByIdlitString11353__8)).is2xxSuccessful());
@@ -6901,9 +6901,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName("Atos test: Swift");
             skill.setDescription("Atos test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
-            ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testDeleteSkillOfProjectByIdnull11371 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid skill", expected.getMessage());
@@ -6916,9 +6916,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName("Atos test: Swift");
             skill.setDescription("Atos test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testDeleteSkillOfProjectByIdnull11372 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -6931,9 +6931,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName("Atos Project Test");
             skill.setDescription("Atos test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skill);
-            HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testDeleteSkillOfProjectByIdlitString11353null11480 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid skill", expected.getMessage());
@@ -6946,9 +6946,9 @@ public class AmplReplanControllerProxyTest {
             Skill skill = new Skill();
             skill.setName("Atos Project Test");
             skill.setDescription("Atos test: Swift development of iOS");
-            skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+            skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
             org.junit.Assert.fail("testDeleteSkillOfProjectByIdlitString11353null11483 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -6962,9 +6962,9 @@ public class AmplReplanControllerProxyTest {
                 Skill skill = new Skill();
                 skill.setName("Atos Project Test");
                 skill.setDescription("Atos test release name");
-                skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(null, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skill);
-                HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testDeleteSkillOfProjectByIdlitString11353null11480 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testDeleteSkillOfProjectByIdlitString11353null11480_failAssert2833litString11644 should have thrown IllegalArgumentException");
@@ -6980,9 +6980,9 @@ public class AmplReplanControllerProxyTest {
                 Skill skill = new Skill();
                 skill.setName("Atos Project Test");
                 skill.setDescription("Atos test release description");
-                skill = ReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest.projectId);
+                skill = AmplReplanControllerProxyTest.proxy.addSkillOfProjectById(skill, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
-                HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = ReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteSkillOfProjectByIdlitString11353__8 = AmplReplanControllerProxyTest.proxy.deleteSkillByIdOfProjectById(skill.getId(), AmplReplanControllerProxyTest.projectId);
                 org.junit.Assert.fail("testDeleteSkillOfProjectByIdlitString11353null11483 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testDeleteSkillOfProjectByIdlitString11353null11483_failAssert2834litString11643 should have thrown IllegalArgumentException");
@@ -6997,9 +6997,9 @@ public class AmplReplanControllerProxyTest {
         resource.setName("Atos test: Swift developer with experience on iOS 10");
         resource.setDescription("Atos test: Swift developer with experience on iOS 10");
         resource.setAvailability(80.0);
-        resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
-        HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
+        HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
         assertEquals("OK", ((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).is2xxSuccessful());
@@ -7007,7 +7007,7 @@ public class AmplReplanControllerProxyTest {
         assertFalse(((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).toString());
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.isTrue((!(containsId(resources, resource.getId()))));
         assertEquals("OK", ((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testDeleteResourceOfProjectByIdlitString9850__9)).is1xxInformational());
@@ -7025,10 +7025,10 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos test: Swift Developer");
             resource.setDescription("Atos test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.isTrue((!(containsId(resources, resource.getId()))));
             org.junit.Assert.fail("testDeleteResourceOfProjectByIdnull9881 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -7043,10 +7043,10 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos test: Swift Developer");
             resource.setDescription("Atos test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.isTrue((!(containsId(resources, resource.getId()))));
             org.junit.Assert.fail("testDeleteResourceOfProjectByIdnull9882 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -7061,10 +7061,10 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos test: Swift developer with experience on iOS 10");
             resource.setDescription("Atos test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.isTrue((!(containsId(resources, resource.getId()))));
             org.junit.Assert.fail("testDeleteResourceOfProjectByIdlitString9850null10073 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -7079,10 +7079,10 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos test: Swift developer with experience on iOS 10");
             resource.setDescription("Atos test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
-            HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.isTrue((!(containsId(resources, resource.getId()))));
             org.junit.Assert.fail("testDeleteResourceOfProjectByIdlitString9850null10076 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -7097,10 +7097,10 @@ public class AmplReplanControllerProxyTest {
             resource.setName("Atos test: Swift developer with experience on iOS 10");
             resource.setDescription("Atos test: Swift developer with experience on iOS 10");
             resource.setAvailability(80.0);
-            resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
-            HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.isTrue((!(containsId(null, resource.getId()))));
             org.junit.Assert.fail("testDeleteResourceOfProjectByIdlitString9850null10079 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -7116,10 +7116,10 @@ public class AmplReplanControllerProxyTest {
                 resource.setName("Atos test: Swift developer with experience on iOS 10");
                 resource.setDescription("Atos test: Swift");
                 resource.setAvailability(80.0);
-                resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(null, ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(null, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.isTrue((!(containsId(resources, resource.getId()))));
                 org.junit.Assert.fail("testDeleteResourceOfProjectByIdlitString9850null10073 should have thrown IllegalArgumentException");
             }
@@ -7137,10 +7137,10 @@ public class AmplReplanControllerProxyTest {
                 resource.setName("Atos test: Swift developer with experience on iOS 10");
                 resource.setDescription(" modified by test");
                 resource.setAvailability(80.0);
-                resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
-                HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.isTrue((!(containsId(resources, resource.getId()))));
                 org.junit.Assert.fail("testDeleteResourceOfProjectByIdlitString9850null10076 should have thrown IllegalArgumentException");
             }
@@ -7158,10 +7158,10 @@ public class AmplReplanControllerProxyTest {
                 resource.setName("Atos test: Swift developer with experience on iOS 10");
                 resource.setDescription(" modified by test");
                 resource.setAvailability(80.0);
-                resource = ReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.addResourceOfProjectById(resource, AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
-                HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = ReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest.projectId);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                HttpStatus o_testDeleteResourceOfProjectByIdlitString9850__9 = AmplReplanControllerProxyTest.proxy.deleteResourceByIdOfProjectById(resource.getId(), AmplReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.isTrue((!(containsId(null, resource.getId()))));
                 org.junit.Assert.fail("testDeleteResourceOfProjectByIdlitString9850null10079 should have thrown NullPointerException");
             }
@@ -7173,22 +7173,22 @@ public class AmplReplanControllerProxyTest {
 
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339() throws Exception {
-        List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(skills);
         Assert.notEmpty(skills);
-        List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+        List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resources);
         Assert.notEmpty(resources);
         List<Skill> skillsToAdd = new ArrayList<>();
         boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
         assertTrue(o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11);
-        Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+        Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         List<Skill> skillsToDelete = new ArrayList<>();
         boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
         assertTrue(o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20);
         int numberOfSkills = resource.getSkills().size();
-        resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+        resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
         Assert.notNull(resource);
         Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
         assertTrue(o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11);
@@ -7198,20 +7198,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6335_failAssert1594() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(1));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6335 should have thrown ArrayIndexOutOfBoundsException");
@@ -7223,20 +7223,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6347_failAssert1604() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(1));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6347 should have thrown ArrayIndexOutOfBoundsException");
@@ -7248,20 +7248,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdnull6360_failAssert1614() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdnull6360 should have thrown IllegalArgumentException");
@@ -7273,20 +7273,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdnull6364_failAssert1616() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdnull6364 should have thrown IllegalArgumentException");
@@ -7298,20 +7298,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdnull6366_failAssert1618() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(null, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(null, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdnull6366 should have thrown IllegalArgumentException");
@@ -7323,20 +7323,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6437_failAssert1620() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6437 should have thrown ArrayIndexOutOfBoundsException");
@@ -7348,20 +7348,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6464_failAssert1625() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(1));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6464 should have thrown ArrayIndexOutOfBoundsException");
@@ -7373,20 +7373,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6492_failAssert1630() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 2)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6492 should have thrown IllegalArgumentException");
@@ -7398,20 +7398,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339null6541_failAssert1635() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(null);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339null6541 should have thrown IllegalArgumentException");
@@ -7423,20 +7423,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339null6559_failAssert1637() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339null6559 should have thrown IllegalArgumentException");
@@ -7448,20 +7448,20 @@ public class AmplReplanControllerProxyTest {
     @Test(timeout = 30000)
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339null6565_failAssert1639() throws Exception {
         try {
-            List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(skills);
             Assert.notEmpty(skills);
-            List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+            List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resources);
             Assert.notEmpty(resources);
             List<Skill> skillsToAdd = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-            Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+            Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             List<Skill> skillsToDelete = new ArrayList<>();
             boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
             int numberOfSkills = resource.getSkills().size();
-            resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(null, resource.getId(), ReplanControllerProxyTest.projectId);
+            resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(null, resource.getId(), AmplReplanControllerProxyTest.projectId);
             Assert.notNull(resource);
             Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
             org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339null6565 should have thrown IllegalArgumentException");
@@ -7474,20 +7474,20 @@ public class AmplReplanControllerProxyTest {
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6437_failAssert1620litNum6923_failAssert1769() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(1));
                 int numberOfSkills = resource.getSkills().size();
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
                 org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6437 should have thrown ArrayIndexOutOfBoundsException");
@@ -7502,20 +7502,20 @@ public class AmplReplanControllerProxyTest {
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6437_failAssert1620null7012_failAssert1782() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(null);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(1).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
                 int numberOfSkills = resource.getSkills().size();
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
                 org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6437 should have thrown ArrayIndexOutOfBoundsException");
@@ -7530,20 +7530,20 @@ public class AmplReplanControllerProxyTest {
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6464_failAssert1625litNum6932_failAssert1788() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(1));
                 int numberOfSkills = resource.getSkills().size();
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 2)));
                 org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6464 should have thrown ArrayIndexOutOfBoundsException");
@@ -7558,20 +7558,20 @@ public class AmplReplanControllerProxyTest {
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6464_failAssert1625null7009_failAssert1797() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(null, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(1));
                 int numberOfSkills = resource.getSkills().size();
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 1)));
                 org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6464 should have thrown ArrayIndexOutOfBoundsException");
@@ -7587,20 +7587,20 @@ public class AmplReplanControllerProxyTest {
         try {
             {
                 Double __DSPOT_availability_451 = 0.018693381144411436;
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
                 int numberOfSkills = resource.getSkills().size();
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(skillsToAdd, resource.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 2)));
                 org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6492 should have thrown IllegalArgumentException");
@@ -7616,20 +7616,20 @@ public class AmplReplanControllerProxyTest {
     public void testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6492_failAssert1630null6973_failAssert1807() throws Exception {
         try {
             {
-                List<Skill> skills = ReplanControllerProxyTest.proxy.getSkillsOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Skill> skills = AmplReplanControllerProxyTest.proxy.getSkillsOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(skills);
                 Assert.notEmpty(skills);
-                List<Resource> resources = ReplanControllerProxyTest.proxy.getResourcesOfProjectById(ReplanControllerProxyTest.projectId);
+                List<Resource> resources = AmplReplanControllerProxyTest.proxy.getResourcesOfProjectById(AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resources);
                 Assert.notEmpty(resources);
                 List<Skill> skillsToAdd = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__11 = skillsToAdd.add(skills.get(0));
-                Resource resource = ReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), ReplanControllerProxyTest.projectId);
+                Resource resource = AmplReplanControllerProxyTest.proxy.addSkillOfResourceByIdOfProjectById(skillsToAdd, resources.get(0).getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 List<Skill> skillsToDelete = new ArrayList<>();
                 boolean o_testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339__20 = skillsToDelete.add(skills.get(0));
                 int numberOfSkills = resource.getSkills().size();
-                resource = ReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(null, resource.getId(), ReplanControllerProxyTest.projectId);
+                resource = AmplReplanControllerProxyTest.proxy.deleteSkillsOfResourceByIdOfProjectById(null, resource.getId(), AmplReplanControllerProxyTest.projectId);
                 Assert.notNull(resource);
                 Assert.isTrue(((resource.getSkills().size()) == (numberOfSkills - 2)));
                 org.junit.Assert.fail("testDelecteSkillsOfResourceByIdOfProjectByIdlitNum6339litNum6492 should have thrown IllegalArgumentException");
