@@ -22,6 +22,7 @@ public class AdaptationDashboardProxyTest {
 	private static String adaptationId;
 	private static String enactmentId;
 	private static Adaptation createdAdaptation;
+	private static Enactment createdEnactment;
 	
 	@BeforeClass
 	public static void setup() throws Exception{
@@ -36,16 +37,22 @@ public class AdaptationDashboardProxyTest {
 		adaptationId = adaptations.get(0).getFc_id();
 		Assert.notNull(adaptationId);
 
-//		
-//		List<Enactment> enactments = proxy.getAllEnactments();
-//		Assert.notEmpty(enactments);
-//		enactmentId = enactments.get(0).getFc_id();
-//		Assert.notNull(enactmentId);
-
+	
+		List<Enactment> enactments = proxy.getAllEnactments();
+		if (enactments.isEmpty()){
+			createdEnactment = createEnactment(createdAdaptation.getFc_id());
+			proxy.addEnactment(createdEnactment);
+			enactments = proxy.getAllEnactments();
+		}
+		enactmentId = enactments.get(0).getFc_id();
+		Assert.notNull(enactmentId);
 	}
 	
 	@AfterClass
 	public static void cleanup() throws Exception{
+		if (createdEnactment != null)
+			assertEquals(proxy.deleteEnactment(createdAdaptation.getFc_id()), HttpStatus.OK);
+		
 		if (createdAdaptation != null)
 			assertEquals(proxy.deleteAdaptation(createdAdaptation.getFc_id()), HttpStatus.OK);
 	}
@@ -125,7 +132,7 @@ public class AdaptationDashboardProxyTest {
 		assertEquals(proxy.deleteAdaptation(adaptation.getFc_id()), HttpStatus.OK);
 	}
 
-	private Enactment createEnactment(String fc_id) {
+	private static Enactment createEnactment(String fc_id) {
 		Enactment enactment = new Enactment();
 		enactment.setFc_id(fc_id);
 		enactment.setEnactment_completion_time(Calendar.getInstance().getTime());
