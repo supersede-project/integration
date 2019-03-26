@@ -4,9 +4,9 @@ set -e # Any subsequent(*) commands which fail will cause the shell script to ex
 mvn clean package -DskipTests
 
 #Configuration
-RESULTS_DIR=/home/stamp/Git/dspot-usecases-output/atos/supersede/IF/DSpot
-DSPOT_JAR_NAME=dspot-1.1.1-SNAPSHOT-jar-with-dependencies.jar
-DSPOT_JAR=/home/stamp/Git/dspot/dspot/target/$DSPOT_JAR_NAME
+RESULTS_DIR=/home/yosu/Projects/STAMP/Git/dspot-usecases-output/atos/supersede/IF/DSpot
+DSPOT_JAR_NAME=dspot-1.2.2-SNAPSHOT-jar-with-dependencies.jar
+DSPOT_JAR=/home/yosu/Projects/STAMP/Git/dspot/dspot/target/$DSPOT_JAR_NAME
 DSPOT_OUT=./dspot-out
 rm -rf $DSPOT_OUT
 mkdir -p $DSPOT_OUT
@@ -24,7 +24,7 @@ DSPOT_AMPLIFIERS=AllLiteralAmplifiers:MethodGeneratorAmplifier:ReturnValueAmplif
 DSPOT_ITERACTIONS=3
 
 #Target Test:
-TARGET_TEST=eu.supersede.integration.api.monitoring.proxies.test.*
+TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest
 
 #Number of amplified tests (default=200)
 MAX_TEST_AMPLIFIED=200

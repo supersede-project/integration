@@ -250,7 +250,7 @@ public class IFAuthenticationManagerTest {
 		am.deleteUser(user);
 	}
 	
-	@Test (expected=org.wso2.carbon.user.core.UserStoreException.class)
+	@Ignore @Test (expected=org.wso2.carbon.user.core.UserStoreException.class)
 	public void throwUserDoesNotExistWhenDeleteUserTest() throws UserStoreException, MalformedURLException{
 		try {
 			User user = createTestUser("userdoesnotexist");
@@ -336,6 +336,17 @@ public class IFAuthenticationManagerTest {
 		Assert.notNull(token);
 		Assert.notNull(token.getAccessToken());
 		Assert.isTrue(!token.getAccessToken().isEmpty());
+	}
+	
+	@Ignore @Test
+	public void testUpdateUserCredential() throws UserStoreException, MalformedURLException{
+		User user = am.getUser(testUserName);
+		
+		if (user==null){
+			user = createTestUser();
+	    	am.addUser(user, testUserPassword, requirePasswordChange);
+		}
+		am.updateUserCredential(user, "newCredential", "oldCredential");
 	}
 	
 }

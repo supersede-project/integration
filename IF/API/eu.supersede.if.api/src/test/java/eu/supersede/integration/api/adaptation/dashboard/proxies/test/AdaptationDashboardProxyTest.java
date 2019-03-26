@@ -122,6 +122,10 @@ public class AdaptationDashboardProxyTest {
 	@Test
 	public void testAddEnactment() throws Exception {
 		Adaptation adaptation = createAdaptation(2);
+		//Remove if enactment exists
+		if (proxy.getEnactment(adaptation.getFc_id())!=null) {
+			proxy.deleteEnactment(adaptation.getFc_id());
+		}
 		adaptation = proxy.addAdaptation(adaptation);
 		
 		Enactment enactment = createEnactment(adaptation.getFc_id());

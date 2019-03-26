@@ -21,6 +21,7 @@ package eu.supersede.integration.api.replan.controller.proxies.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -36,8 +37,11 @@ import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.replan.controller.proxies.IReplanController;
 import eu.supersede.integration.api.replan.controller.proxies.ReplanControllerProxy;
+import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
+import eu.supersede.integration.api.replan.controller.types.Constraint;
 import eu.supersede.integration.api.replan.controller.types.Feature;
 import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
+import eu.supersede.integration.api.replan.controller.types.FeatureWP3;
 import eu.supersede.integration.api.replan.controller.types.Plan;
 import eu.supersede.integration.api.replan.controller.types.Project;
 import eu.supersede.integration.api.replan.controller.types.Release;
@@ -250,6 +254,30 @@ public class ReplanControllerProxyTest {
     	assertEquals(proxy.deleteProjectById(project.getId()), HttpStatus.OK);
     }
     
+    @Test @Ignore
+    public void testAddFeaturesOfProjectById() throws Exception{
+    	AddFeaturesForProjectPayload payload = new AddFeaturesForProjectPayload();
+    	List<FeatureWP3> features = new ArrayList <>();
+    	features.add(createFeatureWP3());
+		payload.setFeatures(features);
+    	
+    	List<Constraint> constraints = new ArrayList<>();
+    	constraints.add(createConstraint());
+		payload.setConstraints(constraints );
+    	
+    	payload.setEvaluationTime(DateFormat.getDateInstance().format (Calendar.getInstance().getTime()));
+		proxy.addFeaturesToProjectById(payload , 1);
+    }
+    
+	private Constraint createConstraint() {
+		Constraint constraint = new Constraint();
+		constraint.setOperator("EQUALS");
+		constraint.setVariable("size");
+		constraint.setValue(1.0);
+		
+		return constraint;
+	}
+
 	private static Feature createFeature() {
 		Feature feature = new Feature();
 		feature.setCode(111);
@@ -258,6 +286,14 @@ public class ReplanControllerProxyTest {
 		feature.setEffort(4.0);
 		feature.setDeadline(Calendar.getInstance().getTime());
 		feature.setPriority(5);
+		return feature;
+	}
+	
+	private static FeatureWP3 createFeatureWP3() {
+		FeatureWP3 feature = new FeatureWP3();
+		feature.setName("Atos Test Feature: Fix auto upload");
+		feature.setDescription("Bla, bla, bla es mucho decir");
+		feature.setEffort(4.0);
 		return feature;
 	}
 	
