@@ -370,6 +370,7 @@
 	  <excludes>
             <exclude>**/DataProviderProxyTest.java</exclude>
             <exclude>**/IFDataStoreProxyTest.java</exclude>
+            <exclude>**/AdapterProxyTest.java</exclude>
           </excludes>
         </configuration>
       </plugin>
