@@ -381,7 +381,7 @@
 	  <excludedTestClasses>
 	    <param>eu.supersede.integration.api.analysis.proxies.test.DataProviderProxyTest</param>
 	    <param>eu.supersede.integration.api.datastore.proxies.test.IFDataStoreProxyTest</param>
-	    <param>eu.supersede.integration.api.adaptation.proxies.test.AdapterProxyTest/param>
+	    <param>eu.supersede.integration.api.adaptation.proxies.test.AdapterProxyTest</param>
 	  </excludedTestClasses>	
 	  <threads>16</threads>
 	  <timeoutConstant>30000</timeoutConstant>:
