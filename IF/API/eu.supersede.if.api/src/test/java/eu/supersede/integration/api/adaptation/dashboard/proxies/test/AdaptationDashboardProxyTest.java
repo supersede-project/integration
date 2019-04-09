@@ -29,21 +29,29 @@ public class AdaptationDashboardProxyTest {
 		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		
 		List<Adaptation> adaptations = proxy.getAllAdaptations();
-		if (adaptations.isEmpty()){
-			createdAdaptation = createAdaptation(1);
-			proxy.addAdaptation(createdAdaptation);
-			adaptations = proxy.getAllAdaptations();
+		List<Enactment> enactments = proxy.getAllEnactments();
+		//Cleaning adaptations and enactments
+		for (Enactment e: enactments){
+			proxy.deleteEnactment(e.getFc_id());
 		}
+		for (Adaptation a: adaptations){
+			proxy.deleteAdaptation(a.getFc_id());
+		}
+		
+		//Creating adaptation
+		createdAdaptation = createAdaptation(1);
+		proxy.addAdaptation(createdAdaptation);
+		adaptations = proxy.getAllAdaptations();
+		
 		adaptationId = adaptations.get(0).getFc_id();
 		Assert.notNull(adaptationId);
-
 	
-		List<Enactment> enactments = proxy.getAllEnactments();
-		if (enactments.isEmpty()){
-			createdEnactment = createEnactment(createdAdaptation.getFc_id());
-			proxy.addEnactment(createdEnactment);
-			enactments = proxy.getAllEnactments();
-		}
+		
+		//Creating enactment
+		createdEnactment = createEnactment(createdAdaptation.getFc_id());
+		proxy.addEnactment(createdEnactment);
+		enactments = proxy.getAllEnactments();
+		
 		enactmentId = enactments.get(0).getFc_id();
 		Assert.notNull(enactmentId);
 	}
