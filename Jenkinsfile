@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-		sh 'cd IF/API/eu.supersede.if.api'
-                sh 'gradle build'
+                sh 'gradle -p IF/API/eu.supersede.if.api build'
             }
         }
     }
