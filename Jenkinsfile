@@ -16,12 +16,12 @@ pipeline {
 	    agent { 
 		docker { 
 	    	   image 'maven:3.6.0' 
-	    	   args '--network=host'
+	    	   args '--network=host -v /var/jenkins_home:/supersede'
 		} 
     	    }	    
 	    steps {	
-		sh 'mvn -f IF/API/eu.supersede.if.api/pom.xml clean package -DskipTests'
-		sh 'mvn -f IF/API/eu.supersede.if.api/pom_descartes.xml org.pitest:pitest-maven:mutationCoverage -DmutationEngine=descartes'
+		sh 'mvn -s /supersede/settings.xml -f IF/API/eu.supersede.if.api/pom.xml clean package -DskipTests'
+		sh 'mvn -s /supersede/settings.xml -f IF/API/eu.supersede.if.api/pom_descartes.xml org.pitest:pitest-maven:mutationCoverage -DmutationEngine=descartes'
 	    }
 	}
     }
