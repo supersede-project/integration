@@ -10,6 +10,7 @@
 buildscript {
     repositories {
         mavenCentral()
+	jcenter()
         mavenLocal()
 		maven {
 	            url "${artifactory_contextUrl}/libs-snapshot"
@@ -32,9 +33,10 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
 	//Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
         pitest 'fr.inria.stamp:descartes:0.2-SNAPSHOT'
         classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
+	classpath files(new File(gradle.gradleUserHomeDir, 'plugins/build-info-extractor-gradle-4.9.6-uber.jar'))
     }
 }
 

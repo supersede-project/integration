@@ -389,6 +389,7 @@
 	      <value>JSON</value>
 	      <value>METHODS</value>
 	      <value>ISSUES</value>
+	      <value>HTML</value>
 	  </outputFormats>
 	</configuration>
 	<dependencies>

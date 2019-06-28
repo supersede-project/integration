@@ -5,26 +5,27 @@ mvn clean package -DskipTests
 
 #Configuration
 RESULTS_DIR=/home/stamp/Git/dspot-usecases-output/atos/supersede/IF/DSpot
-DSPOT_JAR_NAME=dspot-1.1.1-SNAPSHOT-jar-with-dependencies.jar
+DSPOT_JAR_NAME=dspot-1.2.2-SNAPSHOT-jar-with-dependencies.jar
 DSPOT_JAR=/home/stamp/Git/dspot/dspot/target/$DSPOT_JAR_NAME
 DSPOT_OUT=./dspot-out
 rm -rf $DSPOT_OUT
 mkdir -p $DSPOT_OUT
 
 #Time out:
-TIMEOUT=30000
+TIMEOUT=240000
 
 #Selectors: PitMutantScoreSelector | ExecutedMutantSelector | CloverCoverageSelector | JacocoCoverageSelector | TakeAllSelector | ChangeDetectorSelector
 DSPOT_SELECTOR=JacocoCoverageSelector
 
 #Amplifiers: StringLiteralAmplifier,NumberLiteralAmplifier,CharLiteralAmplifier,BooleanLiteralAmplifier,AllLiteralAmplifiers,MethodAdd,MethodRemove,TestDataMutator (deprecated),MethodGeneratorAmplifier,ReturnValueAmplifier,ReplacementAmplifier,NullifierAmplifier
 DSPOT_AMPLIFIERS=AllLiteralAmplifiers:MethodGeneratorAmplifier:ReturnValueAmplifier:NullifierAmplifier
+#DSPOT_AMPLIFIERS=AllLiteralAmplifiers:ReturnValueAmplifier:NullifierAmplifier
 
 #Iterations:
 DSPOT_ITERACTIONS=3
 
 #Target Test:
-TARGET_TEST=eu.supersede.integration.api.monitoring.proxies.test.*
+TARGET_TEST=eu.supersede.integration.api.adaptation.proxies.test.AdapterProxyTest
 
 #Number of amplified tests (default=200)
 MAX_TEST_AMPLIFIED=200

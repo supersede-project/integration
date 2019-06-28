@@ -6,7 +6,7 @@ mvn clean package -DskipTests
 
 #Configuration
 DATE=`date '+%Y%m%d%H%M'`
-RESULTS_DIR=/home/stamp/Git/descartes-usecases-output/atos/supersede/if/mutation-score/baseline/descartes/$DATE/
+RESULTS_DIR=/home/stamp/Git/descartes-usecases-output/atos/supersede/if/mutation-score/treatment/descartes/$DATE/
 OUT=./target/pit-reports/$DATE/*
 LOG=$DATE"_descartes.log"
 mkdir -p $RESULTS_DIR

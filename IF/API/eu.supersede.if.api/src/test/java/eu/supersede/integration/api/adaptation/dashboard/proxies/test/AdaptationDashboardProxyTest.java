@@ -40,7 +40,7 @@ public class AdaptationDashboardProxyTest {
 	
 		List<Enactment> enactments = proxy.getAllEnactments();
 		if (enactments.isEmpty()){
-			createdEnactment = createEnactment(createdAdaptation.getFc_id());
+			createdEnactment = createEnactment(adaptationId);
 			proxy.addEnactment(createdEnactment);
 			enactments = proxy.getAllEnactments();
 		}
@@ -51,7 +51,10 @@ public class AdaptationDashboardProxyTest {
 	@AfterClass
 	public static void cleanup() throws Exception{
 		if (createdEnactment != null)
-			assertEquals(proxy.deleteEnactment(createdAdaptation.getFc_id()), HttpStatus.OK);
+                        if (createdAdaptation != null)
+				assertEquals(proxy.deleteEnactment(createdAdaptation.getFc_id()), HttpStatus.OK);
+			else
+				assertEquals(proxy.deleteEnactment(adaptationId), HttpStatus.OK);
 		
 		if (createdAdaptation != null)
 			assertEquals(proxy.deleteAdaptation(createdAdaptation.getFc_id()), HttpStatus.OK);
