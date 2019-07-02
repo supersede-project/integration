@@ -31,7 +31,7 @@ echo "DSpot configuration: " $DSPOT_OPTS
 DSPOT_PROPERTIES="./dspot.properties"
 
 #mvn help:evaluate -Dexpression=settings.localRepository | grep -v '\[INFO\]'
-DSPOT_OUT=./target/dspot/output/
+DSPOT_OUT=./dspot-out/
 DSPOT_AMPLIFIERS_PATH=${DSPOT_AMPLIFIERS//,/-}
 RESULTS_DIR=/var/jenkins_home/workspace/dspot-usecases-output/atos/supersede/IF/DSpot
 RESULTS_DIR=$RESULTS_DIR/$DSPOT_SELECTOR/$DSPOT_AMPLIFIERS_PATH/`date '+%Y%m%d%H%M'`
