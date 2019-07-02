@@ -45,7 +45,7 @@ echo "DSpot properties file: " $DSPOT_PROPERTIES >> $filename
 
 
 #NOTE: Copy /var/jenkins_home/settings.xml into /root/.m2 folder of Jenkins container
-mvn eu.stamp-project:dspot-maven:amplify-unit-tests -Dpath-to-properties=$DSPOT_PROPERTIES $DSPOT_OPTS
+mvn -f pom_dspot.xml eu.stamp-project:dspot-maven:amplify-unit-tests -Dpath-to-properties=$DSPOT_PROPERTIES $DSPOT_OPTS
 
 #Storing DSpot execution in dspot-usecases-output
 cp -r $DSPOT_OUT $RESULTS_DIR
