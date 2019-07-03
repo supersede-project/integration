@@ -15,7 +15,7 @@ DSPOT_SELECTOR=JacocoCoverageSelector
 
 #Amplifiers: MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier,None
 #AllLiteralAmplifiers,MethodGeneratorAmplifier,ReturnValueAmplifier,NullifierAmplifier
-DSPOT_AMPLIFIERS=AllLiteralAmplifiers,MethodGeneratorAmplifier,ReturnValueAmplifier,NullifierAmplifier
+DSPOT_AMPLIFIERS=MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier
 
 #Iterations (default=3):
 DSPOT_ITERACTIONS=3
@@ -24,10 +24,10 @@ DSPOT_ITERACTIONS=3
 TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest
 
 #Number of amplified tests (default=200)
-MAX_TEST_AMPLIFIED=300
+MAX_TEST_AMPLIFIED=200
 
-#Budgetizer (NoBudgetizer|SimpleBudgetizer)
-BUGETIZER=NoBudgetizer
+#Budgetizer (RandomBudgetizer | TextualDistanceBudgetizer | SimpleBudgetizer>)
+BUGETIZER=RandomBudgetizer
 
 DSPOT_OPTS="-Diteration=$DSPOT_ITERACTIONS -Dtest=$TARGET_TEST -Damplifiers=$DSPOT_AMPLIFIERS -Dtest-criterion=$DSPOT_SELECTOR -DtimeOut=$TIMEOUT -Dmax-test-amplified=$MAX_TEST_AMPLIFIED -Dbudgetizer=$BUGETIZER -Dclean -Dverbose"
 
