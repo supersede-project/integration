@@ -39,6 +39,7 @@ pipeline {
 /*	stage ('Descartes') {
             steps {
                 sh '''
+		    #!/bin/bash -xe
 		    cd IF/API/eu.supersede.if.api
 		    mvn clean package -DskipTests
 		    cp /var/jenkins_home/ifaccount.properties src/test/resources/
