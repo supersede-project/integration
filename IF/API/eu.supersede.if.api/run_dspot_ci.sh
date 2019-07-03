@@ -1,4 +1,8 @@
 #!/bin/bash -xe
+#Configure Maven
+export MAVEN_HOME=/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/Maven_3.6.0
+export PATH=$PATH:$MAVEN_HOME/bin
+
 #NOTE: Copy /var/jenkins_home/settings.xml into /roo/.m2 folder of Jenkins container
 cd IF/API/eu.supersede.if.api
 mvn clean package -DskipTests
