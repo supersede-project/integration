@@ -1,10 +1,8 @@
 pipeline { 
     agent any
-    properties([
-	parameters([
-		string(name: 'TARGET_TEST', defaultValue: 'eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest', description: 'The target test to amplify with DSpot')
-   	])
-    ])
+    parameters{
+	string(name: 'TARGET_TEST', defaultValue: 'eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest', description: 'The target test to amplify with DSpot')
+    }
     tools { 
         maven 'Maven 3.6.0' 
 	gradle "Gradle 4.10.2"
