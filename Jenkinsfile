@@ -38,7 +38,7 @@ pipeline {
 
 /*	stage ('Descartes') {
             steps {
-                sh '''
+                bash '''
 		    #!/bin/bash -xe
 		    cd IF/API/eu.supersede.if.api
 		    mvn clean package -DskipTests
