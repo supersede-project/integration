@@ -14,9 +14,16 @@ pipeline {
             }
         }
 
-        stage('Build') { 
+        stage('Gradle Build') { 
             steps { 
-               echo 'This is a minimal pipeline.' 
+               echo 'Bulding Supersede IF with Gradle'
+	       sh 'gradle build -x test'
+            }
+        }
+
+	stage ('Maven Build') {
+            steps {
+                sh 'mvn -s/var/jenkins_home/settings.xml clean package -DskipTests' 
             }
         }
     }
