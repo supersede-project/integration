@@ -1,5 +1,10 @@
 pipeline { 
     agent any
+    properties([
+	parameters([
+		string(name: 'TARGET_TEST', defaultValue: 'eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest', description: 'The target test to amplify with DSpot', )
+   	])
+    ])
     tools { 
         maven 'Maven 3.6.0' 
 	gradle "Gradle 4.10.2"
@@ -76,7 +81,7 @@ DSPOT_AMPLIFIERS=MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier
 		DSPOT_ITERACTIONS=3
 
 		#Target Test:
-		TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest
+		#TARGET_TEST=eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest
 
 		#Number of amplified tests (default=200)
 		MAX_TEST_AMPLIFIED=200
