@@ -3,8 +3,7 @@ pipeline {
     parameters{
 	string(name: 'TARGET_TEST', defaultValue: 'eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest', description: 'The target test to amplify with DSpot')
 	choice(name: 'DSPOT_SELECTOR', choices: ['PitMutantScoreSelector','JacocoCoverageSelector','TakeAllSelector','ChangeDetectorSelector'], description: '')
-	string(name: 'DSPOT_AMPLIFIERS', defaultValue: 'MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier
-', description: 'options: MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier
+	string(name: 'DSPOT_AMPLIFIERS', defaultValue: 'MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier', description: 'options: MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier
 ')
 	string(name: 'DSPOT_ITERACTIONS', defaultValue: '3', description: 'Number of DSpot iteractions')
     }
