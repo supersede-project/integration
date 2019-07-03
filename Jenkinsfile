@@ -1,6 +1,8 @@
 pipeline { 
     agent any
     parameters{
+	booleanParam(name: 'RUN_DESCARTES', defaultValue: false, description: 'Enable to run Descartes analysis')
+	booleanParam(name: 'RUN_DSPOT', defaultValue: false, description: 'Enable to run DSpot amplification')
 	string(name: 'TARGET_TEST', defaultValue: 'eu.supersede.integration.api.adaptation.dashboard.proxies.test.AdaptationDashboardProxyTest', description: 'The target test to amplify with DSpot')
 	choice(name: 'DSPOT_SELECTOR', choices: ['PitMutantScoreSelector','JacocoCoverageSelector','TakeAllSelector','ChangeDetectorSelector'], description: '')
 string(name:'DSPOT_AMPLIFIERS',defaultValue:'MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier',description:'options:MethodAdd,MethodRemove,TestDataMutator,MethodGeneratorAmplifier,ReturnValueAmplifier,StringLiteralAmplifier,NumberLiteralAmplifier,BooleanLiteralAmplifier,CharLiteralAmplifier,AllLiteralAmplifiers,NullifierAmplifier')
@@ -39,7 +41,10 @@ string(name:'DSPOT_AMPLIFIERS',defaultValue:'MethodAdd,MethodRemove,TestDataMuta
             }
         }
 
-/*	stage ('Descartes') {
+	stage ('Descartes') {
+	    when { 
+      		environment name: 'RUN_DESCARTES', value: 'true' 
+    	    }
             steps {
                 sh '''
 		    cd IF/API/eu.supersede.if.api
@@ -60,8 +65,11 @@ string(name:'DSPOT_AMPLIFIERS',defaultValue:'MethodAdd,MethodRemove,TestDataMuta
 		''' 
             }
         }
-*/
+
 	stage ('Dspot') {
+	    when { 
+      		environment name: 'RUN_DSPOT', value: 'true' 
+    	    }
             steps {
 		sh '''#!/bin/bash -xe
 		    cd IF/API/eu.supersede.if.api
