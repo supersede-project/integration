@@ -25,7 +25,7 @@ pipeline {
 		sh 'mvn -s /supersede/settings.xml -f IF/API/eu.supersede.if.api/pom_descartes.xml org.pitest:pitest-maven:mutationCoverage -DmutationEngine=descartes'
 	    }
 	}
-	stage ('dspot') {
+/*	stage ('dspot') {
 	    when { equals expected: true, actual: false }
 
 	    agent { 
@@ -76,5 +76,6 @@ pipeline {
 		}
 	    }
 	}
+*/
     }
 }
