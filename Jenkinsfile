@@ -35,9 +35,9 @@ pipeline {
 		} 
     	    }	    
 	    steps {	
-		echo 'Running Descartes on SUPERSEDE IF..'
+		echo 'Running Dspot on SUPERSEDE IF..'
 		script {
-		    #NOTE: Copy /var/jenkins_home/settings.xml into /roo/.m2 folder of Jenkins container
+		    //NOTE: Copy /var/jenkins_home/settings.xml into /roo/.m2 folder of Jenkins container
 		    mvn -s /supersede/settings.xml -f IF/API/eu.supersede.if.api/pom.xml clean package -DskipTests
 
 		    #Time out:
