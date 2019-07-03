@@ -12,7 +12,7 @@ pipeline {
                 sh 'gradle -p IF/API/eu.supersede.if.api build'
             }
         }
-	stage ('descartes') {
+/*	stage ('descartes') {
 	    agent { 
 		docker { 
 	    	   image 'maven:3.6.0' 
@@ -25,6 +25,7 @@ pipeline {
 		sh 'mvn -s /supersede/settings.xml -f IF/API/eu.supersede.if.api/pom_descartes.xml org.pitest:pitest-maven:mutationCoverage -DmutationEngine=descartes'
 	    }
 	}
+*/
 /*	stage ('dspot') {
 	    when { equals expected: true, actual: false }
 
