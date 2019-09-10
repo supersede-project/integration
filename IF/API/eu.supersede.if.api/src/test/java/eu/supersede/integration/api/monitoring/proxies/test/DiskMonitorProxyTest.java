@@ -32,6 +32,7 @@ import eu.supersede.integration.api.monitoring.manager.types.DiskMonitorConfigur
 import eu.supersede.integration.api.monitoring.manager.types.Instruction;
 import eu.supersede.integration.api.monitoring.monitors.proxies.DiskMonitorProxy;
 
+@Ignore
 public class DiskMonitorProxyTest {
 	// private static final Logger log =
 	// LoggerFactory.getLogger(FeedbackOrchestratorProxyTest.class);
@@ -43,7 +44,6 @@ public class DiskMonitorProxyTest {
 	}
 
 	@Test
-	@Ignore
 	public void testCreateAndDeleteMonitorConfiguration() throws Exception {
 		DiskMonitorConfiguration conf = createMonitorConfiguration();
 		DiskMonitorConfiguration result = proxy.createMonitorConfiguration(conf);
@@ -53,7 +53,6 @@ public class DiskMonitorProxyTest {
 	}
 	
 	@Test
-	@Ignore
 	public void testUpdateMonitorConfiguration() throws Exception {
 		DiskMonitorConfiguration conf = createMonitorConfiguration();
 		DiskMonitorConfiguration result = proxy.createMonitorConfiguration(conf);

@@ -41,7 +41,6 @@ import eu.supersede.integration.api.security.types.AuthorizationToken;
 import eu.supersede.integration.api.security.types.Role;
 import eu.supersede.integration.api.security.types.User;
 
-@Ignore
 public class IFAuthenticationManagerTest {
 	static IFAuthenticationManager am;
 	//User test
@@ -54,16 +53,9 @@ public class IFAuthenticationManagerTest {
 	
 	@BeforeClass
     public static void setup() throws Exception {
-		// Set Identity Server user/password as Java launcher properties:
-		// -Dis.admin.user=
-		// -Dis.admin.passwd=
-		// for each tenant organization, use its admin account
-//		String admin = System.getProperty("is.admin.user");
-//		String password = System.getProperty("is.admin.passwd");
-		// Read account (user, password) from classpath property file
 		String admin = IFAccount.getUser();
 		String password = IFAccount.getPassword();
-       am = new IFAuthenticationManager(admin, password);
+        am = new IFAuthenticationManager(admin, password);
     }
 	
 	//Authentication Test

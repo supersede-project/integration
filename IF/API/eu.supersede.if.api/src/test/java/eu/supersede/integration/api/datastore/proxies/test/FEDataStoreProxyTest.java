@@ -45,9 +45,6 @@ public class FEDataStoreProxyTest {
     @BeforeClass
     public static void setup() throws Exception {
         proxy = new FEDataStoreProxy<Object, Object> ();
-//		String admin = System.getProperty("is.admin.user");
-//		String password = System.getProperty("is.admin.passwd");
-		// Read account (user, password) from classpath property file
 		String admin = IFAccount.getUser();
 		String password = IFAccount.getPassword();
         am = new IFAuthenticationManager(admin, password);

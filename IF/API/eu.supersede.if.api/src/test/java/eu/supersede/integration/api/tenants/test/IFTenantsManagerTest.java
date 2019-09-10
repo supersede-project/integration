@@ -27,20 +27,17 @@ import org.junit.Test;
 import org.springframework.util.Assert;
 import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
 
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.tenants.IFTenantsManager;
 
-@Ignore
+
 public class IFTenantsManagerTest {
 	static IFTenantsManager tm;
 	
 	@BeforeClass
     public static void setup() throws Exception {
-		// Set Identity Server user/password as Java launcher properties:
-		// -Dis.admin.user=
-		// -Dis.admin.passwd=
-		// for each tenant organization, use its admin account
-		String admin = System.getProperty("is.admin.user");
-		String password = System.getProperty("is.admin.passwd");
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
         tm = new IFTenantsManager(admin, password);
     }
 	
