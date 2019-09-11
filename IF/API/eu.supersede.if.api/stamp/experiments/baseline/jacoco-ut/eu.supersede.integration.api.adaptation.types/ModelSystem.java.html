@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ModelSystem.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.adaptation.types</a> &gt; <span class="el_source">ModelSystem.java</span></div><h1>ModelSystem.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.adaptation.types;
+
+<span class="fc" id="L3">public enum ModelSystem {</span>
+<span class="fc" id="L4">	Supersede (&quot;Supersede&quot;, Tenant.SUPERSEDE),</span>
+<span class="fc" id="L5">	MonitoringReconfiguration (&quot;MonitoringReconfiguration&quot;, Tenant.SUPERSEDE),</span>
+<span class="fc" id="L6">	FeedbackGatheringReconfiguration (&quot;FeedbackGatheringReconfiguration&quot;, Tenant.SUPERSEDE),</span>
+<span class="fc" id="L7">	Siemens (&quot;Siemens&quot;, Tenant.SIEMENS),</span>
+<span class="fc" id="L8">	Siemens_Buildings (&quot;Siemens_Buildings&quot;, Tenant.SIEMENS),</span>
+<span class="fc" id="L9">	Siemens_Types (&quot;Siemens_Types&quot;, Tenant.SIEMENS),</span>
+<span class="fc" id="L10">	Siemens_GetMinMaxDates (&quot;Siemens_GetMinMaxDates&quot;, Tenant.SIEMENS),</span>
+<span class="fc" id="L11">	Atos (&quot;Atos&quot;, Tenant.ATOS),</span>
+<span class="fc" id="L12">	Atos_HSK (&quot;Atos_HSK&quot;, Tenant.ATOS),</span>
+<span class="fc" id="L13">	Senercon (&quot;Senercon&quot;, Tenant.SENERCON),</span>
+<span class="fc" id="L14">	AtosMonitoringEnabling (&quot;AtosMonitoringEnabling&quot;, Tenant.ATOS),</span>
+<span class="fc" id="L15">	AtosMonitoringTimeSlot (&quot;AtosMonitoringTimeSlot&quot;, Tenant.ATOS),</span>
+<span class="fc" id="L16">	SiemensMonitoring (&quot;SiemensMonitoring&quot;, Tenant.SIEMENS),</span>
+<span class="fc" id="L17">	SenerconMonitoring (&quot;SenerconMonitoring&quot;, Tenant.SENERCON),</span>
+<span class="fc" id="L18">	AtosFG (&quot;AtosFG&quot;, Tenant.ATOS),</span>
+<span class="fc" id="L19">	SiemensFG (&quot;SiemensFG&quot;, Tenant.SIEMENS),</span>
+<span class="fc" id="L20">	SenerconFG (&quot;SenerconFG&quot;, Tenant.SENERCON),</span>
+<span class="fc" id="L21">	SenerconFGcat (&quot;SenerconFGcat&quot;, Tenant.SENERCON),</span>
+<span class="fc" id="L22">	SiemensFGcat (&quot;SiemensFGcat&quot;, Tenant.SIEMENS),</span>
+<span class="fc" id="L23">	AtosFGcat (&quot;AtosFGcat&quot;, Tenant.ATOS),</span>
+<span class="fc" id="L24">	Health (&quot;Health&quot;, Tenant.SUPERSEDE);</span>
+	
+	String id;
+	Tenant tenant;
+	
+<span class="fc" id="L29">	ModelSystem(String id, Tenant tenant){</span>
+<span class="fc" id="L30">		this.id = id;</span>
+<span class="fc" id="L31">		this.tenant = tenant;</span>
+<span class="fc" id="L32">	}</span>
+	
+	@Override
+	public String toString(){
+<span class="fc" id="L36">		return id;</span>
+	}
+	
+	public String getId(){
+<span class="nc" id="L40">		return id;</span>
+	}
+	
+	public Tenant getTenant(){
+<span class="nc" id="L44">		return tenant;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

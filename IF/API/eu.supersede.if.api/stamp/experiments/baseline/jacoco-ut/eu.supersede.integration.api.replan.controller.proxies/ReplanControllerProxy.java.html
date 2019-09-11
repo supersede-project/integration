@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReplanControllerProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.replan.controller.proxies</a> &gt; <span class="el_source">ReplanControllerProxy.java</span></div><h1>ReplanControllerProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.replan.controller.proxies;
+
+import java.net.URI;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
+
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.api.replan.controller.exception.ReplanControllerDuplicatedIdException;
+import eu.supersede.integration.api.replan.controller.exception.ReplanControllerException;
+import eu.supersede.integration.api.replan.controller.types.AddFeaturesForProjectPayload;
+import eu.supersede.integration.api.replan.controller.types.Feature;
+import eu.supersede.integration.api.replan.controller.types.FeatureStatus;
+import eu.supersede.integration.api.replan.controller.types.Plan;
+import eu.supersede.integration.api.replan.controller.types.Project;
+import eu.supersede.integration.api.replan.controller.types.Release;
+import eu.supersede.integration.api.replan.controller.types.ReplanIdentifiableObject;
+import eu.supersede.integration.api.replan.controller.types.Resource;
+import eu.supersede.integration.api.replan.controller.types.Skill;
+//import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+<span class="fc" id="L47">public class ReplanControllerProxy &lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IReplanController {</span>
+<span class="fc" id="L48">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L49">	private final static String SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT = </span>
+<span class="fc" id="L50">			IntegrationProperty.getProperty(&quot;replan_controller.endpoint&quot;);</span>
+
+
+	//Methods with int projectId
+	
+	@Override
+	public Project getProjectById(int projectId) throws Exception{
+<span class="fc" id="L57">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L58">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId);</span>
+<span class="fc" id="L59">		log.debug(&quot;Sending message getProjectById with projectId: &quot; + projectId </span>
+			+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L61">		return getJSONObjectForType(Project.class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Feature&gt; getFeaturesOfProjectById(int projectId) throws Exception {
+<span class="fc" id="L66">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L67">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features&quot;);</span>
+<span class="fc" id="L68">		log.debug(&quot;Sending message getFeaturesOfProjectById with projectId: &quot; + projectId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L70">		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Feature&gt; getFeaturesOfProjectById(int projectId, FeatureStatus status) throws Exception {
+<span class="fc" id="L75">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L76">		Assert.notNull(status, &quot;Provide a valid status&quot;);</span>
+<span class="fc" id="L77">		String suri = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features&quot;;</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">		if (status != null)</span>
+<span class="fc" id="L79">			suri += &quot;?status=&quot; + status;</span>
+<span class="fc" id="L80">		URI uri = new URI(suri);</span>
+<span class="fc" id="L81">		log.debug(&quot;Sending message getFeaturesOfProjectById with projectId: &quot; + projectId </span>
+				+ &quot; with status: &quot; + status
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L84">		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature getFeatureByIdOfProjectById(int featureId, int projectId) throws Exception {
+<span class="fc" id="L89">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="fc" id="L90">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L91">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot; + featureId);</span>
+<span class="fc" id="L92">		log.debug(&quot;Sending message getFeatureByIdOfProjectById with featureId: &quot; + featureId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L95">		return getJSONObjectForType(Feature.class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public List&lt;Release&gt; getReleasesOfProjectById(int projectId) throws Exception {
+<span class="fc" id="L100">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L101">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases&quot;);</span>
+<span class="fc" id="L102">		log.debug(&quot;Sending message getReleasesOfProjectById with projectId: &quot; + projectId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L104">		return getJSONObjectsListForType(Release[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public List&lt;Feature&gt; getFeaturesOfReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+<span class="fc" id="L109">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="fc" id="L110">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L111">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId + &quot;/features&quot;);</span>
+<span class="fc" id="L112">		log.debug(&quot;Sending message getFeaturesOfReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L115">		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Plan getPlanOfReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+<span class="fc" id="L120">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="fc" id="L121">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L122">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId + &quot;/plan&quot;);</span>
+<span class="fc" id="L123">		log.debug(&quot;Sending message getPlanOfReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L126">		return getJSONObjectForType(Plan.class, uri, HttpStatus.OK);</span>
+	}
+
+	
+	@Override
+	public List&lt;Skill&gt; getSkillsOfProjectById(int projectId) throws Exception {
+<span class="fc" id="L132">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L133">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/skills&quot;);</span>
+<span class="fc" id="L134">		log.debug(&quot;Sending message getSkillsOfProjectById with projectId: &quot; + projectId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L136">		return getJSONObjectsListForType(Skill[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Resource&gt; getResourcesOfProjectById(int projectId) throws Exception {
+<span class="fc" id="L141">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L142">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/resources&quot;);</span>
+<span class="fc" id="L143">		log.debug(&quot;Sending message getResourcesOfProjectById with projectId: &quot; + projectId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L145">		return getJSONObjectsListForType(Resource[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Project updateProject(Project project) throws Exception{
+<span class="fc" id="L150">		Assert.notNull(project, &quot;Provide a valid project&quot;);</span>
+<span class="fc" id="L151">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + project.getId());</span>
+<span class="fc" id="L152">		log.debug(&quot;Sending message updateProject with project: &quot; + project </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L154">		return updateAndReturnJSONObject(project, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature updateFeatureOfProjectById(Feature feature, int projectId) throws Exception {
+<span class="nc" id="L159">		Assert.notNull(feature, &quot;Provide a valid feature&quot;);</span>
+<span class="nc" id="L160">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="nc" id="L161">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot; + feature.getId());</span>
+<span class="nc" id="L162">		log.debug(&quot;Sending message updateFeatureOfProjectById with feature: &quot; + feature </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L165">		return updateAndReturnJSONObject(feature, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Release updateReleaseOfProjectById(Release release, int projectId) throws Exception {
+<span class="fc" id="L170">		Assert.notNull(release, &quot;Provide a valid release&quot;);</span>
+<span class="fc" id="L171">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L172">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + release.getId());</span>
+<span class="fc" id="L173">		log.debug(&quot;Sending message updateReleaseOfProjectById with release: &quot; + release </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L176">		return updateAndReturnJSONObject(release, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Skill updateSkillOfProjectById(Skill skill, int projectId) throws Exception {
+<span class="fc" id="L181">		Assert.notNull(skill, &quot;Provide a valid skill&quot;);</span>
+<span class="fc" id="L182">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L183">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/skills/&quot; + skill.getId());</span>
+<span class="fc" id="L184">		log.debug(&quot;Sending message updateSkillOfProjectById with skill: &quot; + skill </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L187">		return updateAndReturnJSONObject(skill, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Resource updateResourceOfProjectById(Resource resource, int projectId) throws Exception {
+<span class="fc" id="L192">		Assert.notNull(resource, &quot;Provide a valid resource&quot;);</span>
+<span class="fc" id="L193">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L194">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/resources/&quot; + resource.getId());</span>
+<span class="fc" id="L195">		log.debug(&quot;Sending message updateResourceOfProjectById with resource: &quot; + resource </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L198">		return updateAndReturnJSONObject(resource, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature addSkillsOfFeatureByIdOfProjectById(List&lt;Skill&gt; skills, int featureId, int projectId) throws Exception {
+<span class="fc" id="L203">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="fc" id="L204">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="fc" id="L205">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L206">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot; + featureId + &quot;/skills&quot;);</span>
+<span class="fc" id="L207">		log.debug(&quot;Sending message addSkillsOfFeatureByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L211">		JSONArray jsonArray = createJSONArrayOfIdentifiers(skills, &quot;skill_id&quot;);</span>
+		
+<span class="fc" id="L213">		return postJSONStringForReturnType(Feature.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature addDependenciesOfFeatureByIdOfProjectById(List&lt;Feature&gt; features, int featureId, int projectId) throws Exception {
+<span class="fc" id="L218">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="fc" id="L219">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="fc" id="L220">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L221">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot; + featureId + &quot;/dependencies&quot;);</span>
+<span class="fc" id="L222">		log.debug(&quot;Sending message addDependenciesOfFeatureByIdOfProjectById with features: &quot; + features </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L226">		JSONArray jsonArray = createJSONArrayOfIdentifiers(features, &quot;feature_id&quot;);</span>
+
+<span class="fc" id="L228">		return postJSONStringForReturnType(Feature.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean addReleaseOfProjectById(Release release, int projectId) throws Exception {
+<span class="fc" id="L233">		Assert.notNull(release, &quot;Provide a valid release&quot;);</span>
+<span class="fc" id="L234">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L235">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases&quot;);</span>
+<span class="fc" id="L236">		log.debug(&quot;Sending message addReleaseOfProjectById with release: &quot; + release </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="fc" id="L240">		return insertJSONObject(release, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Release addResourcesOfReleaseByIdOfProjectById(List&lt;Resource&gt; resources, int releaseId, int projectId) throws Exception {
+<span class="fc" id="L245">		Assert.notEmpty(resources, &quot;Provide a not-empty list of resources&quot;);</span>
+<span class="fc" id="L246">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="fc" id="L247">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L248">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId + &quot;/resources&quot;);</span>
+<span class="fc" id="L249">		JSONArray jsonArray = createJSONArrayOfIdentifiers(resources, &quot;resource_id&quot;);</span>
+<span class="fc" id="L250">		log.debug(&quot;Sending message addResourcesOfReleaseByIdOfProjectById with resources: &quot; + resources </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="fc" id="L255">		return postJSONStringForReturnType(Release.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean addFeaturesOfReleaseByIdOfProjectById(List&lt;Feature&gt; features, int releaseId, int projectId) throws Exception {
+<span class="fc" id="L260">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="fc" id="L261">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="fc" id="L262">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L263">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId + &quot;/features&quot;);</span>
+<span class="fc" id="L264">		JSONArray jsonArray = createJSONArrayOfIdentifiers(features, &quot;feature_id&quot;);</span>
+<span class="fc" id="L265">		log.debug(&quot;Sending message addFeaturesOfReleaseByIdOfProjectById with resources: &quot; + features </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="fc" id="L270">		return postJSONString(jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Skill addSkillOfProjectById(Skill skill, int projectId) throws Exception {
+<span class="fc" id="L275">		Assert.notNull(skill, &quot;Provide a valid skill&quot;);</span>
+<span class="fc" id="L276">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L277">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/skills&quot;);</span>
+<span class="fc" id="L278">		log.debug(&quot;Sending message addSkillOfProjectById with skill: &quot; + skill </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="fc" id="L282">		return insertandReturnJSONObject(skill, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Resource addResourceOfProjectById(Resource resource, int projectId) throws Exception {
+<span class="fc" id="L287">		Assert.notNull(resource, &quot;Provide a valid resource&quot;);</span>
+<span class="fc" id="L288">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L289">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/resources&quot;);</span>
+<span class="fc" id="L290">		log.debug(&quot;Sending message addSkillOfProjectById with resource: &quot; + resource </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="fc" id="L294">		return insertandReturnJSONObject(resource, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public Resource addSkillOfResourceByIdOfProjectById(List&lt;Skill&gt; skills, int resourceId, int projectId) throws Exception {
+<span class="fc" id="L299">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="fc" id="L300">		Assert.notNull(resourceId, &quot;Provide a valid resourceId&quot;);</span>
+<span class="fc" id="L301">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L302">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/resources/&quot; + resourceId + &quot;/skills&quot;);</span>
+<span class="fc" id="L303">		JSONArray jsonArray = createJSONArrayOfIdentifiers(skills, &quot;skill_id&quot;);</span>
+<span class="fc" id="L304">		log.debug(&quot;Sending message addSkillOfResourceByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with resourceId: &quot; + resourceId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="fc" id="L309">		return postJSONStringForReturnType(Resource.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature deleteSkillsOfFeatureByIdOfProjectById(List&lt;Skill&gt; skills, int featureId, int projectId) throws Exception {
+<span class="fc" id="L314">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="fc" id="L315">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="fc" id="L316">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L317">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot; + featureId + &quot;/skills?&quot;;</span>
+<span class="fc" id="L318">		uriString = addURIQueryArray(uriString, skills, &quot;skill_id&quot;);</span>
+<span class="fc" id="L319">		log.debug(&quot;Sending message deleteSkillsOfFeatureByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="fc" id="L324">		return deleteUriResourceForReturnType(Feature.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature deleteDependenciesOfFeatureByIdOfProjectById(List&lt;Feature&gt; features, int featureId, int projectId) throws Exception {
+<span class="fc" id="L329">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="fc" id="L330">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="fc" id="L331">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L332">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot; + featureId + &quot;/dependencies?&quot;;</span>
+<span class="fc" id="L333">		uriString = addURIQueryArray(uriString, features, &quot;feature_id&quot;);</span>
+<span class="fc" id="L334">		log.debug(&quot;Sending message deleteDependenciesOfFeatureByIdOfProjectById with features: &quot; + features </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="fc" id="L339">		return deleteUriResourceForReturnType(Feature.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean deleteReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+<span class="fc" id="L344">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="fc" id="L345">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L346">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId);</span>
+<span class="fc" id="L347">		log.debug(&quot;Sending message deleteReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="fc" id="L351">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Release deleteResourcesOfReleaseByIdOfProjectById(List&lt;Resource&gt; resources, int releaseId, int projectId) throws Exception {
+<span class="fc" id="L356">		Assert.notEmpty(resources, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="fc" id="L357">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="fc" id="L358">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L359">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId + &quot;/resources?&quot;;</span>
+<span class="fc" id="L360">		uriString = addURIQueryArray(uriString, resources, &quot;ResourceId&quot;);</span>
+<span class="fc" id="L361">		log.debug(&quot;Sending message deleteResourcesOfReleaseByIdOfProjectById with resources: &quot; + resources </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="fc" id="L366">		return deleteUriResourceForReturnType(Release.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	
+	@Override
+	public boolean deleteFeaturesOfReleaseByIdOfProjectById(List&lt;Feature&gt; features, int releaseId, int projectId) throws Exception {
+<span class="fc" id="L372">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="fc" id="L373">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="fc" id="L374">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L375">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId + &quot;/features?&quot;;</span>
+<span class="fc" id="L376">		uriString = addURIQueryArray(uriString, features, &quot;featureId&quot;);</span>
+<span class="fc" id="L377">		log.debug(&quot;Sending message deleteFeaturesOfReleaseByIdOfProjectById with features: &quot; + features </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="fc" id="L382">		return deleteUriResource(new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean cancelLastPlanOfReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+<span class="nc" id="L387">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L388">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="nc" id="L389">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId + &quot;/plan&quot;);</span>
+<span class="nc" id="L390">		log.debug(&quot;Sending message cancelLastPlanOfReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="nc" id="L394">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean deleteSkillByIdOfProjectById(int skillId, int projectId) throws Exception {
+<span class="fc" id="L399">		Assert.notNull(skillId, &quot;Provide a valid skillId&quot;);</span>
+<span class="fc" id="L400">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L401">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/skills/&quot; + skillId);</span>
+<span class="fc" id="L402">		log.debug(&quot;Sending message deleteSkillByIdOfProjectById with skillId: &quot; + skillId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="fc" id="L406">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean deleteResourceByIdOfProjectById(int resourceId, int projectId) throws Exception {
+<span class="fc" id="L411">		Assert.notNull(resourceId, &quot;Provide a valid resourceId&quot;);</span>
+<span class="fc" id="L412">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L413">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/resources/&quot; + resourceId);</span>
+<span class="fc" id="L414">		log.debug(&quot;Sending message deleteResourceByIdOfProjectById with resourceId: &quot; + resourceId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="fc" id="L418">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Resource deleteSkillsOfResourceByIdOfProjectById(List&lt;Skill&gt; skills, int resourceId, int projectId) throws Exception {
+<span class="fc" id="L423">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="fc" id="L424">		Assert.notNull(resourceId, &quot;Provide a valid resourceId&quot;);</span>
+<span class="fc" id="L425">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L426">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/resources/&quot; + resourceId + &quot;/skills?&quot;;</span>
+<span class="fc" id="L427">		uriString = addURIQueryArray(uriString, skills, &quot;skillId&quot;);</span>
+<span class="fc" id="L428">		log.debug(&quot;Sending message deleteSkillsOfResourceByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with resourceId: &quot; + resourceId
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="fc" id="L433">		return deleteUriResourceForReturnType(Resource.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, int projectId) throws ReplanControllerException {
+<span class="nc" id="L438">		boolean result = false;</span>
+<span class="nc" id="L439">		Assert.notNull(payload, &quot;Provide a valid payload&quot;);</span>
+<span class="nc" id="L440">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+		try {
+<span class="nc" id="L442">			URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot;);</span>
+<span class="nc" id="L443">			log.debug(&quot;Sending message addFeaturesToProjectById with payload: &quot; + payload </span>
+					+ &quot; with projectId: &quot; + projectId
+					+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L446">			result = postJSONObject(payload, uri, HttpStatus.OK);</span>
+<span class="nc" id="L447">		} catch (Exception e) {</span>
+<span class="nc bnc" id="L448" title="All 2 branches missed.">			if (e.getMessage().contains(&quot;Already exists features&quot;))</span>
+<span class="nc" id="L449">				throw new  ReplanControllerDuplicatedIdException (e.getMessage());</span>
+			else
+<span class="nc" id="L451">				throw new ReplanControllerException (e.getMessage());</span>
+<span class="nc" id="L452">		}</span>
+<span class="nc" id="L453">		return result;</span>
+	}
+	
+	private &lt;T extends ReplanIdentifiableObject&gt; String addURIQueryArray (String uriString, List&lt;T&gt; tokens, String idLabel){
+<span class="fc" id="L457">		boolean queryStarted = false;</span>
+<span class="fc bfc" id="L458" title="All 2 branches covered.">		for (T token: tokens){</span>
+<span class="pc bpc" id="L459" title="1 of 2 branches missed.">			if (queryStarted){</span>
+<span class="nc" id="L460">				uriString = uriString + &quot;&amp;&quot;;</span>
+			}
+<span class="fc" id="L462">			uriString = uriString + idLabel + &quot;[]=&quot; + token.getId();</span>
+<span class="fc" id="L463">			queryStarted = true;</span>
+<span class="fc" id="L464">		}</span>
+		
+<span class="fc" id="L466">		return uriString;</span>
+	}
+	
+	private &lt;T extends ReplanIdentifiableObject&gt; JSONArray createJSONArrayOfIdentifiers (List&lt;T&gt; tokens, String idLabel){
+<span class="fc" id="L470">		JSONArray jsonArray = new JSONArray();</span>
+<span class="fc bfc" id="L471" title="All 2 branches covered.">		for (T token : tokens) {</span>
+<span class="fc" id="L472">			JSONObject jsonItem = new JSONObject();</span>
+<span class="fc" id="L473">			jsonItem.put(idLabel, token.getId());</span>
+<span class="fc" id="L474">			jsonArray.put(jsonItem);</span>
+<span class="fc" id="L475">		}</span>
+		
+<span class="fc" id="L477">		return jsonArray;</span>
+	}
+
+	@Override
+	public Release getReleaseByIdOfProjectById(int releaseId, int projectId) throws Exception {
+<span class="fc" id="L482">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/releases/&quot; + releaseId);</span>
+<span class="fc" id="L483">		return getJSONObjectForType(Release.class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Project&gt; getAllProjects() throws Exception {
+<span class="fc" id="L488">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects&quot;);</span>
+<span class="fc" id="L489">		log.debug(&quot;Sending message getAllProjects to ReplanController at uri &quot; + uri);</span>
+<span class="fc" id="L490">		return getJSONObjectsListForType(Project[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public Project createProject(Project project) throws Exception {
+<span class="fc" id="L495">		Assert.notNull(project, &quot;Provide a valid project&quot;);</span>
+<span class="pc bpc" id="L496" title="2 of 4 branches missed.">		Assert.isTrue(project.getResources()==null ||  project.getResources().isEmpty(), &quot;Features are not accepted in new created projects&quot;);</span>
+<span class="fc" id="L497">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects&quot;);</span>
+<span class="fc" id="L498">		log.debug(&quot;Sending message createProject with project: &quot; + project </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L500">		return insertandReturnJSONObject(project, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public boolean deleteProjectById(int projectId) throws Exception {
+<span class="fc" id="L505">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L506">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId);</span>
+<span class="fc" id="L507">		log.debug(&quot;Sending message deleteProjectById with projectId: &quot; + projectId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="fc" id="L510">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public Feature createFeatureOfProjectById(Feature feature, int projectId) throws Exception {
+<span class="fc" id="L515">		Assert.notNull(feature, &quot;Provide a valid feature&quot;);</span>
+<span class="fc" id="L516">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="pc bpc" id="L517" title="2 of 4 branches missed.">		Assert.isTrue(feature.getRequiredSkills()==null ||  feature.getRequiredSkills().isEmpty(), &quot;Required Skills are not accepted in new created features&quot;);</span>
+<span class="pc bpc" id="L518" title="2 of 4 branches missed.">		Assert.isTrue(feature.getDependencies()==null ||  feature.getDependencies().isEmpty(), &quot;Dependencies are not accepted in new created features&quot;);</span>
+<span class="fc" id="L519">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/create_one&quot;);</span>
+<span class="fc" id="L520">		log.debug(&quot;Sending message createFeatureOfProjectById with feature: &quot; + feature </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="fc" id="L523">		return insertandReturnJSONObject(feature, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public boolean deleteFeatureByIdOfProjectById(int featureId, int projectId) throws Exception {
+<span class="fc" id="L528">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="fc" id="L529">		Assert.notNull(projectId, &quot;Provide a valid projectId&quot;);</span>
+<span class="fc" id="L530">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + projectId + &quot;/features/&quot; + featureId);</span>
+<span class="fc" id="L531">		log.debug(&quot;Sending message deleteFeatureByIdOfProjectById with featureId: &quot; + featureId </span>
+				+ &quot; with projectId: &quot; + projectId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="fc" id="L535">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+
+
+	// Methods with String tenantId
+	//Methods with int projectId
+	
+	@Override
+	public Project getProjectById(String tenantId) throws Exception{
+<span class="nc" id="L544">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L545">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId);</span>
+<span class="nc" id="L546">		log.debug(&quot;Sending message getProjectById with tenantId: &quot; + tenantId </span>
+			+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L548">		return getJSONObjectForType(Project.class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Feature&gt; getFeaturesOfProjectById(String tenantId) throws Exception {
+<span class="nc" id="L553">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L554">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features&quot;);</span>
+<span class="nc" id="L555">		log.debug(&quot;Sending message getFeaturesOfProjectById with tenantId: &quot; + tenantId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L557">		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Feature&gt; getFeaturesOfProjectById(String tenantId, FeatureStatus status) throws Exception {
+<span class="nc" id="L562">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L563">		Assert.notNull(status, &quot;Provide a valid status&quot;);</span>
+<span class="nc" id="L564">		String suri = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features&quot;;</span>
+<span class="nc bnc" id="L565" title="All 2 branches missed.">		if (status != null)</span>
+<span class="nc" id="L566">			suri += &quot;?status=&quot; + status;</span>
+<span class="nc" id="L567">		URI uri = new URI(suri);</span>
+<span class="nc" id="L568">		log.debug(&quot;Sending message getFeaturesOfProjectById with tenantId: &quot; + tenantId </span>
+				+ &quot; with status: &quot; + status
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L571">		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature getFeatureByIdOfProjectById(int featureId, String tenantId) throws Exception {
+<span class="nc" id="L576">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="nc" id="L577">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L578">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot; + featureId);</span>
+<span class="nc" id="L579">		log.debug(&quot;Sending message getFeatureByIdOfProjectById with featureId: &quot; + featureId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L582">		return getJSONObjectForType(Feature.class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public List&lt;Release&gt; getReleasesOfProjectById(String tenantId) throws Exception {
+<span class="nc" id="L587">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L588">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases&quot;);</span>
+<span class="nc" id="L589">		log.debug(&quot;Sending message getReleasesOfProjectById with tenantId: &quot; + tenantId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L591">		return getJSONObjectsListForType(Release[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public List&lt;Feature&gt; getFeaturesOfReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L596">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L597">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L598">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId + &quot;/features&quot;);</span>
+<span class="nc" id="L599">		log.debug(&quot;Sending message getFeaturesOfReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L602">		return getJSONObjectsListForType(Feature[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Plan getPlanOfReleaseByIdOfTenantById(int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L607">		return getPlanOfReleaseByIdOfTenantById (releaseId, tenantId, null);</span>
+	}
+	
+	@Override
+	public Plan getPlanOfReleaseByIdOfTenantById(int releaseId, String tenantId, Boolean forceNew) throws Exception {
+<span class="nc" id="L612">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L613">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+		
+<span class="nc" id="L615">		String suri = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId + &quot;/plan&quot;;</span>
+<span class="nc bnc" id="L616" title="All 2 branches missed.">		if (forceNew != null){</span>
+<span class="nc bnc" id="L617" title="All 2 branches missed.">			suri += &quot;?force_new=&quot; + (forceNew?&quot;yes&quot;:&quot;no&quot;);</span>
+		}
+<span class="nc" id="L619">		URI uri = new URI(suri);</span>
+			
+<span class="nc" id="L621">		log.debug(&quot;Sending message getPlanOfReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L624">		return getJSONObjectForType(Plan.class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public List&lt;Skill&gt; getSkillsOfProjectById(String tenantId) throws Exception {
+<span class="nc" id="L629">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L630">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/skills&quot;);</span>
+<span class="nc" id="L631">		log.debug(&quot;Sending message getSkillsOfProjectById with tenantId: &quot; + tenantId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L633">		return getJSONObjectsListForType(Skill[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Resource&gt; getResourcesOfProjectById(String tenantId) throws Exception {
+<span class="nc" id="L638">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L639">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/resources&quot;);</span>
+<span class="nc" id="L640">		log.debug(&quot;Sending message getResourcesOfProjectById with tenantId: &quot; + tenantId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L642">		return getJSONObjectsListForType(Resource[].class, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature updateFeatureOfProjectById(Feature feature, String tenantId) throws Exception {
+<span class="nc" id="L647">		Assert.notNull(feature, &quot;Provide a valid feature&quot;);</span>
+<span class="nc" id="L648">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L649">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot; + feature.getId());</span>
+<span class="nc" id="L650">		log.debug(&quot;Sending message updateFeatureOfProjectById with feature: &quot; + feature </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L653">		return updateAndReturnJSONObject(feature, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Release updateReleaseOfProjectById(Release release, String tenantId) throws Exception {
+<span class="nc" id="L658">		Assert.notNull(release, &quot;Provide a valid release&quot;);</span>
+<span class="nc" id="L659">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L660">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + release.getId());</span>
+<span class="nc" id="L661">		log.debug(&quot;Sending message updateReleaseOfProjectById with release: &quot; + release </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L664">		return updateAndReturnJSONObject(release, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Skill updateSkillOfProjectById(Skill skill, String tenantId) throws Exception {
+<span class="nc" id="L669">		Assert.notNull(skill, &quot;Provide a valid skill&quot;);</span>
+<span class="nc" id="L670">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L671">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/skills/&quot; + skill.getId());</span>
+<span class="nc" id="L672">		log.debug(&quot;Sending message updateSkillOfProjectById with skill: &quot; + skill </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L675">		return updateAndReturnJSONObject(skill, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Resource updateResourceOfProjectById(Resource resource, String tenantId) throws Exception {
+<span class="nc" id="L680">		Assert.notNull(resource, &quot;Provide a valid resource&quot;);</span>
+<span class="nc" id="L681">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L682">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/resources/&quot; + resource.getId());</span>
+<span class="nc" id="L683">		log.debug(&quot;Sending message updateResourceOfProjectById with resource: &quot; + resource </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L686">		return updateAndReturnJSONObject(resource, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature addSkillsOfFeatureByIdOfProjectById(List&lt;Skill&gt; skills, int featureId, String tenantId) throws Exception {
+<span class="nc" id="L691">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="nc" id="L692">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="nc" id="L693">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L694">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot; + featureId + &quot;/skills&quot;);</span>
+<span class="nc" id="L695">		log.debug(&quot;Sending message addSkillsOfFeatureByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L699">		JSONArray jsonArray = createJSONArrayOfIdentifiers(skills, &quot;skill_id&quot;);</span>
+		
+<span class="nc" id="L701">		return postJSONStringForReturnType(Feature.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature addDependenciesOfFeatureByIdOfProjectById(List&lt;Feature&gt; features, int featureId, String tenantId) throws Exception {
+<span class="nc" id="L706">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="nc" id="L707">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="nc" id="L708">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L709">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot; + featureId + &quot;/dependencies&quot;);</span>
+<span class="nc" id="L710">		log.debug(&quot;Sending message addDependenciesOfFeatureByIdOfProjectById with features: &quot; + features </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L714">		JSONArray jsonArray = createJSONArrayOfIdentifiers(features, &quot;feature_id&quot;);</span>
+
+<span class="nc" id="L716">		return postJSONStringForReturnType(Feature.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean addReleaseOfProjectById(Release release, String tenantId) throws Exception {
+<span class="nc" id="L721">		Assert.notNull(release, &quot;Provide a valid release&quot;);</span>
+<span class="nc" id="L722">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L723">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases&quot;);</span>
+<span class="nc" id="L724">		log.debug(&quot;Sending message addReleaseOfProjectById with release: &quot; + release </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="nc" id="L728">		return insertJSONObject(release, uri, HttpStatus.ACCEPTED);</span>
+	}
+	
+	@Override
+	public Release addResourcesOfReleaseByIdOfProjectById(List&lt;Resource&gt; resources, int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L733">		Assert.notEmpty(resources, &quot;Provide a not-empty list of resources&quot;);</span>
+<span class="nc" id="L734">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L735">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L736">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId + &quot;/resources&quot;);</span>
+<span class="nc" id="L737">		JSONArray jsonArray = createJSONArrayOfIdentifiers(resources, &quot;resource_id&quot;);</span>
+<span class="nc" id="L738">		log.debug(&quot;Sending message addResourcesOfReleaseByIdOfProjectById with resources: &quot; + resources </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="nc" id="L743">		return postJSONStringForReturnType(Release.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean addFeaturesOfReleaseByIdOfProjectById(List&lt;Feature&gt; features, int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L748">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="nc" id="L749">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L750">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L751">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId + &quot;/features&quot;);</span>
+<span class="nc" id="L752">		JSONArray jsonArray = createJSONArrayOfIdentifiers(features, &quot;feature_id&quot;);</span>
+<span class="nc" id="L753">		log.debug(&quot;Sending message addFeaturesOfReleaseByIdOfProjectById with resources: &quot; + features </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="nc" id="L758">		return postJSONString(jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Skill addSkillOfProjectById(Skill skill, String tenantId) throws Exception {
+<span class="nc" id="L763">		Assert.notNull(skill, &quot;Provide a valid skill&quot;);</span>
+<span class="nc" id="L764">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L765">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/skills&quot;);</span>
+<span class="nc" id="L766">		log.debug(&quot;Sending message addSkillOfProjectById with skill: &quot; + skill </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="nc" id="L770">		return insertandReturnJSONObject(skill, uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Resource addResourceOfProjectById(Resource resource, String tenantId) throws Exception {
+<span class="nc" id="L775">		Assert.notNull(resource, &quot;Provide a valid resource&quot;);</span>
+<span class="nc" id="L776">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L777">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/resources&quot;);</span>
+<span class="nc" id="L778">		log.debug(&quot;Sending message addSkillOfProjectById with resource: &quot; + resource </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="nc" id="L782">		return insertandReturnJSONObject(resource, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public Resource addSkillOfResourceByIdOfProjectById(List&lt;Skill&gt; skills, int resourceId, String tenantId) throws Exception {
+<span class="nc" id="L787">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="nc" id="L788">		Assert.notNull(resourceId, &quot;Provide a valid resourceId&quot;);</span>
+<span class="nc" id="L789">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L790">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/resources/&quot; + resourceId + &quot;/skills&quot;);</span>
+<span class="nc" id="L791">		JSONArray jsonArray = createJSONArrayOfIdentifiers(skills, &quot;skill_id&quot;);</span>
+<span class="nc" id="L792">		log.debug(&quot;Sending message addSkillOfResourceByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with resourceId: &quot; + resourceId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="nc" id="L797">		return postJSONStringForReturnType(Resource.class, jsonArray.toString(), uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature deleteSkillsOfFeatureByIdOfProjectById(List&lt;Skill&gt; skills, int featureId, String tenantId) throws Exception {
+<span class="nc" id="L802">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="nc" id="L803">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="nc" id="L804">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L805">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot; + featureId + &quot;/skills?&quot;;</span>
+<span class="nc" id="L806">		uriString = addURIQueryArray(uriString, skills, &quot;skill_id&quot;);</span>
+<span class="nc" id="L807">		log.debug(&quot;Sending message deleteSkillsOfFeatureByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="nc" id="L812">		return deleteUriResourceForReturnType(Feature.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Feature deleteDependenciesOfFeatureByIdOfProjectById(List&lt;Feature&gt; features, int featureId, String tenantId) throws Exception {
+<span class="nc" id="L817">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="nc" id="L818">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="nc" id="L819">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L820">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot; + featureId + &quot;/dependencies?&quot;;</span>
+<span class="nc" id="L821">		uriString = addURIQueryArray(uriString, features, &quot;feature_id&quot;);</span>
+<span class="nc" id="L822">		log.debug(&quot;Sending message deleteDependenciesOfFeatureByIdOfProjectById with features: &quot; + features </span>
+				+ &quot; with featureId: &quot; + featureId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="nc" id="L827">		return deleteUriResourceForReturnType(Feature.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean deleteReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L832">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L833">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L834">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId);</span>
+<span class="nc" id="L835">		log.debug(&quot;Sending message deleteReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+		
+<span class="nc" id="L839">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Release deleteResourcesOfReleaseByIdOfProjectById(List&lt;Resource&gt; resources, int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L844">		Assert.notEmpty(resources, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="nc" id="L845">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L846">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L847">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId + &quot;/resources?&quot;;</span>
+<span class="nc" id="L848">		uriString = addURIQueryArray(uriString, resources, &quot;ResourceId&quot;);</span>
+<span class="nc" id="L849">		log.debug(&quot;Sending message deleteResourcesOfReleaseByIdOfProjectById with resources: &quot; + resources </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="nc" id="L854">		return deleteUriResourceForReturnType(Release.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	
+	@Override
+	public boolean deleteFeaturesOfReleaseByIdOfProjectById(List&lt;Feature&gt; features, int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L860">		Assert.notEmpty(features, &quot;Provide a not-empty list of features&quot;);</span>
+<span class="nc" id="L861">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L862">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L863">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId + &quot;/features?&quot;;</span>
+<span class="nc" id="L864">		uriString = addURIQueryArray(uriString, features, &quot;featureId&quot;);</span>
+<span class="nc" id="L865">		log.debug(&quot;Sending message deleteFeaturesOfReleaseByIdOfProjectById with features: &quot; + features </span>
+				+ &quot; with releaseId: &quot; + releaseId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="nc" id="L870">		return deleteUriResource(new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean cancelLastPlanOfReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L875">		Assert.notNull(releaseId, &quot;Provide a valid releaseId&quot;);</span>
+<span class="nc" id="L876">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L877">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId + &quot;/plan&quot;);</span>
+<span class="nc" id="L878">		log.debug(&quot;Sending message cancelLastPlanOfReleaseByIdOfProjectById with releaseId: &quot; + releaseId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="nc" id="L882">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean deleteSkillByIdOfProjectById(int skillId, String tenantId) throws Exception {
+<span class="nc" id="L887">		Assert.notNull(skillId, &quot;Provide a valid skillId&quot;);</span>
+<span class="nc" id="L888">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L889">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/skills/&quot; + skillId);</span>
+<span class="nc" id="L890">		log.debug(&quot;Sending message deleteSkillByIdOfProjectById with skillId: &quot; + skillId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="nc" id="L894">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean deleteResourceByIdOfProjectById(int resourceId, String tenantId) throws Exception {
+<span class="nc" id="L899">		Assert.notNull(resourceId, &quot;Provide a valid resourceId&quot;);</span>
+<span class="nc" id="L900">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L901">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/resources/&quot; + resourceId);</span>
+<span class="nc" id="L902">		log.debug(&quot;Sending message deleteResourceByIdOfProjectById with resourceId: &quot; + resourceId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="nc" id="L906">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public Resource deleteSkillsOfResourceByIdOfProjectById(List&lt;Skill&gt; skills, int resourceId, String tenantId) throws Exception {
+<span class="nc" id="L911">		Assert.notEmpty(skills, &quot;Provide a not-empty list of skills&quot;);</span>
+<span class="nc" id="L912">		Assert.notNull(resourceId, &quot;Provide a valid resourceId&quot;);</span>
+<span class="nc" id="L913">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L914">		String uriString = SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/resources/&quot; + resourceId + &quot;/skills?&quot;;</span>
+<span class="nc" id="L915">		uriString = addURIQueryArray(uriString, skills, &quot;skillId&quot;);</span>
+<span class="nc" id="L916">		log.debug(&quot;Sending message deleteSkillsOfResourceByIdOfProjectById with skills: &quot; + skills </span>
+				+ &quot; with resourceId: &quot; + resourceId
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uriString);
+
+<span class="nc" id="L921">		return deleteUriResourceForReturnType(Resource.class, new URI(uriString), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean addFeaturesToProjectById(AddFeaturesForProjectPayload payload, String tenantId) throws ReplanControllerException {
+<span class="nc" id="L926">		boolean result = false;</span>
+<span class="nc" id="L927">		Assert.notNull(payload, &quot;Provide a valid payload&quot;);</span>
+<span class="nc" id="L928">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+		try {
+<span class="nc" id="L930">			URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot;);</span>
+<span class="nc" id="L931">			log.debug(&quot;Sending message addFeaturesToProjectById with payload: &quot; + payload </span>
+					+ &quot; with tenantId: &quot; + tenantId
+					+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L934">			result = postJSONObject(payload, uri, HttpStatus.OK);</span>
+<span class="nc" id="L935">		} catch (Exception e) {</span>
+<span class="nc bnc" id="L936" title="All 2 branches missed.">			if (e.getMessage().contains(&quot;Already exists features&quot;))</span>
+<span class="nc" id="L937">				throw new  ReplanControllerDuplicatedIdException (e.getMessage());</span>
+			else
+<span class="nc" id="L939">				throw new ReplanControllerException (e.getMessage());</span>
+<span class="nc" id="L940">		}</span>
+<span class="nc" id="L941">		return result;</span>
+	}
+
+	@Override
+	public Release getReleaseByIdOfProjectById(int releaseId, String tenantId) throws Exception {
+<span class="nc" id="L946">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/releases/&quot; + releaseId);</span>
+<span class="nc" id="L947">		return getJSONObjectForType(Release.class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public boolean deleteProjectById(String tenantId) throws Exception {
+<span class="nc" id="L952">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L953">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId);</span>
+<span class="nc" id="L954">		log.debug(&quot;Sending message deleteProjectById with tenantId: &quot; + tenantId </span>
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="nc" id="L957">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public Feature createFeatureOfProjectById(Feature feature, String tenantId) throws Exception {
+<span class="nc" id="L962">		Assert.notNull(feature, &quot;Provide a valid feature&quot;);</span>
+<span class="nc" id="L963">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc bnc" id="L964" title="All 4 branches missed.">		Assert.isTrue(feature.getRequiredSkills()==null ||  feature.getRequiredSkills().isEmpty(), &quot;Required Skills are not accepted in new created features&quot;);</span>
+<span class="nc bnc" id="L965" title="All 4 branches missed.">		Assert.isTrue(feature.getDependencies()==null ||  feature.getDependencies().isEmpty(), &quot;Dependencies are not accepted in new created features&quot;);</span>
+<span class="nc" id="L966">		URI uri = new URI (SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/create_one&quot;);</span>
+<span class="nc" id="L967">		log.debug(&quot;Sending message createFeatureOfProjectById with feature: &quot; + feature </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+<span class="nc" id="L970">		return insertandReturnJSONObject(feature, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public boolean deleteFeatureByIdOfProjectById(int featureId, String tenantId) throws Exception {
+<span class="nc" id="L975">		Assert.notNull(featureId, &quot;Provide a valid featureId&quot;);</span>
+<span class="nc" id="L976">		Assert.notNull(tenantId, &quot;Provide a valid tenantId&quot;);</span>
+<span class="nc" id="L977">		URI uri = new URI(SUPERSEDE_REPLAN_CONTROLLER_ENDPOINT + &quot;projects/&quot; + tenantId + &quot;/features/&quot; + featureId);</span>
+<span class="nc" id="L978">		log.debug(&quot;Sending message deleteFeatureByIdOfProjectById with featureId: &quot; + featureId </span>
+				+ &quot; with tenantId: &quot; + tenantId
+				+ &quot; to ReplanController at uri &quot; + uri);
+
+<span class="nc" id="L982">		return deleteUriResource(uri, HttpStatus.OK);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

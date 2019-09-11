@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserGroup.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.orchestrator.types</a> &gt; <span class="el_source">UserGroup.java</span></div><h1>UserGroup.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.orchestrator.types;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
+
+
+public class UserGroup {
+    private long id;
+
+    private String name;
+
+    private List&lt;User&gt; users;
+
+    private boolean active;
+
+    @JsonIgnore
+    private Application application;
+
+<span class="fc" id="L21">    public UserGroup() {</span>
+<span class="fc" id="L22">    }</span>
+
+<span class="fc" id="L24">    public UserGroup(String name, List&lt;User&gt; users, Application application) {</span>
+<span class="fc" id="L25">        this.name = name;</span>
+<span class="fc" id="L26">        this.users = users;</span>
+<span class="fc" id="L27">        this.application = application;</span>
+<span class="fc" id="L28">    }</span>
+
+    public boolean containsUserWithUserIdentification(String userIdentification) {
+<span class="nc bnc" id="L31" title="All 4 branches missed.">        return this.getUsers() != null &amp;&amp; this.getUsers().stream().filter(user -&gt; user.getUserIdentification().equals(userIdentification)).count() &gt; 0;</span>
+    }
+
+    public long getId() {
+<span class="fc" id="L35">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="fc" id="L39">        this.id = id;</span>
+<span class="fc" id="L40">    }</span>
+
+    public String getName() {
+<span class="fc" id="L43">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L47">        this.name = name;</span>
+<span class="fc" id="L48">    }</span>
+
+    public List&lt;User&gt; getUsers() {
+<span class="fc" id="L51">        return users;</span>
+    }
+
+    public void setUsers(List&lt;User&gt; users) {
+<span class="fc" id="L55">        this.users = users;</span>
+<span class="fc" id="L56">    }</span>
+
+    public Application getApplication() {
+<span class="nc" id="L59">        return application;</span>
+    }
+
+    public void setApplication(Application application) {
+<span class="nc" id="L63">        this.application = application;</span>
+<span class="nc" id="L64">    }</span>
+
+    public boolean isActive() {
+<span class="fc" id="L67">        return active;</span>
+    }
+
+    public void setActive(boolean active) {
+<span class="fc" id="L71">        this.active = active;</span>
+<span class="fc" id="L72">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

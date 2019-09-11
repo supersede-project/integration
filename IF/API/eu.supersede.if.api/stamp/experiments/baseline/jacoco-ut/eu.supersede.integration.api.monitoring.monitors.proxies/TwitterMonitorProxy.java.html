@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TwitterMonitorProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.monitoring.monitors.proxies</a> &gt; <span class="el_source">TwitterMonitorProxy.java</span></div><h1>TwitterMonitorProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.monitoring.monitors.proxies;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.util.Assert;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationRequest;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationResponse;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfigurationResult;
+import eu.supersede.integration.api.monitoring.manager.types.TwitterMonitorConfiguration;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class TwitterMonitorProxy&lt;T, S&gt; extends MonitorProxy implements ITwitterMonitor {
+<span class="fc" id="L36">	private final static String SUPERSEDE_MONITOR_ENDPOINT = IntegrationProperty</span>
+<span class="fc" id="L37">			.getProperty(&quot;monitoring.monitor.twitter.endpoint&quot;);</span>
+	IMonitor proxy;
+
+	public TwitterMonitorProxy() {
+<span class="fc" id="L41">		super(SUPERSEDE_MONITOR_ENDPOINT);</span>
+<span class="fc" id="L42">	}</span>
+
+	@Override
+	public TwitterMonitorConfiguration createMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+<span class="fc" id="L46">		Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);</span>
+<span class="fc" id="L47">		return (TwitterMonitorConfiguration) createMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf),</span>
+<span class="fc" id="L48">				TwitterMonitorConfigurationResponse.class).getConfiguration();</span>
+	}
+
+	@Override
+	public TwitterMonitorConfiguration updateMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+<span class="fc" id="L53">		Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);</span>
+<span class="fc" id="L54">		return (TwitterMonitorConfiguration) updateMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf),</span>
+<span class="fc" id="L55">				TwitterMonitorConfigurationResponse.class).getConfiguration();</span>
+	}
+
+	@Override
+	public void deleteMonitorConfiguration(TwitterMonitorConfiguration conf) throws Exception {
+<span class="fc" id="L60">		Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);</span>
+<span class="fc" id="L61">		deleteMonitorConfiguration(new TwitterMonitorConfigurationRequest(conf));</span>
+<span class="fc" id="L62">	}</span>
+
+}
+
+class TwitterMonitorConfigurationRequest implements MonitorConfigurationRequest {
+	@JsonProperty(value = &quot;SocialNetworksMonitoringConfProf&quot;)
+	TwitterMonitorConfiguration twitterMonitoringConfiguration;
+
+	public TwitterMonitorConfiguration getTwitterMonitorConfiguration() {
+<span class="fc" id="L71">		return twitterMonitoringConfiguration;</span>
+	}
+
+	public void setTwitterMonitorConfiguration(TwitterMonitorConfiguration twitterMonitoringConfiguration) {
+<span class="nc" id="L75">		this.twitterMonitoringConfiguration = twitterMonitoringConfiguration;</span>
+<span class="nc" id="L76">	}</span>
+
+<span class="fc" id="L78">	public TwitterMonitorConfigurationRequest(TwitterMonitorConfiguration twitterMonitoringConfiguration) {</span>
+<span class="fc" id="L79">		this.twitterMonitoringConfiguration = twitterMonitoringConfiguration;</span>
+<span class="fc" id="L80">	}</span>
+
+<span class="nc" id="L82">	public TwitterMonitorConfigurationRequest() {</span>
+
+<span class="nc" id="L84">	}</span>
+
+	@Override
+	public void setId(Integer id) {
+<span class="fc" id="L88">		twitterMonitoringConfiguration.setId(id);</span>
+<span class="fc" id="L89">	}</span>
+
+	@Override
+	public Integer getId() {
+<span class="fc" id="L93">		return twitterMonitoringConfiguration.getId();</span>
+	}
+
+	@Override
+	public TwitterMonitorConfiguration getConfiguration() {
+<span class="fc" id="L98">		return getTwitterMonitorConfiguration();</span>
+	}
+	
+	@Override
+	public String toString (){
+<span class="fc" id="L103">		return &quot;\&quot;SocialNetworksMonitoringConfProf\&quot;: { &quot;</span>
+<span class="fc" id="L104">				+ &quot;\&quot;toolName\&quot;:\&quot;&quot; + twitterMonitoringConfiguration.getToolName() + &quot;\&quot;,&quot;</span>
+<span class="fc" id="L105">				+ &quot;\&quot;timeSlot\&quot;:\&quot;&quot; + twitterMonitoringConfiguration.getTimeSlot() + &quot;\&quot;,&quot;</span>
+<span class="fc" id="L106">				+ &quot;\&quot;kafkaEndpoint\&quot;:\&quot;&quot; + twitterMonitoringConfiguration.getKafkaEndpoint() + &quot;\&quot;,&quot;</span>
+<span class="fc" id="L107">				+ &quot;\&quot;kafkaTopic\&quot;:\&quot;&quot; + twitterMonitoringConfiguration.getKafkaTopic() + &quot;\&quot;,&quot;</span>
+<span class="fc" id="L108">				+ &quot;\&quot;keywordExpression\&quot;:\&quot;&quot; + twitterMonitoringConfiguration.getKeywordExpression() + &quot;\&quot;,&quot;</span>
+<span class="fc" id="L109">				+ &quot;\&quot;accounts\&quot;:[&quot; + asCommaSeparateList(twitterMonitoringConfiguration.getAccounts()) + &quot;]}}&quot;; </span>
+	}
+	
+	private String asCommaSeparateList (List&lt;String&gt; list){
+<span class="fc" id="L113">		return list.stream().map(i -&gt; &quot;\&quot;&quot; + i + &quot;\&quot;&quot;).collect(Collectors.joining(&quot;, &quot;));</span>
+	}
+}
+
+class TwitterMonitorConfigurationResponse implements MonitorConfigurationResponse {
+	@JsonProperty(value = &quot;SocialNetworksMonitoringConfProfResult&quot;)
+	MonitorSpecificConfigurationResult result;
+
+	@Override
+	public MonitorSpecificConfigurationResult getResult() {
+<span class="fc" id="L123">		return result;</span>
+	}
+
+	public void setResult(MonitorSpecificConfigurationResult result) {
+<span class="fc" id="L127">		this.result = result;</span>
+<span class="fc" id="L128">	}</span>
+
+<span class="nc" id="L130">	public TwitterMonitorConfigurationResponse(MonitorSpecificConfigurationResult result) {</span>
+<span class="nc" id="L131">		this.result = result;</span>
+<span class="nc" id="L132">	}</span>
+
+<span class="fc" id="L134">	public TwitterMonitorConfigurationResponse() {</span>
+
+<span class="fc" id="L136">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

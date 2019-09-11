@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IFMessageClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.rest.client</a> &gt; <span class="el_source">IFMessageClient.java</span></div><h1>IFMessageClient.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.rest.client;
+
+import java.io.File;
+import java.net.URI;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Map;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.web.client.AsyncRestTemplate;
+import org.springframework.web.client.ResponseErrorHandler;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import eu.supersede.integration.api.fe.FrontendSession;
+import eu.supersede.integration.api.feedback.repository.types.Feedback;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
+
+public class IFMessageClient {
+//	private RestTemplate restTemplate = new RestTemplate();
+	private RestTemplate restTemplate;
+<span class="fc" id="L56">	private AsyncRestTemplate asyncRestTemplate = new AsyncRestTemplate();</span>
+//	private final static String AUTH_TOKEN = IntegrationProperty.getProperty(&quot;is.authorization.token&quot;);
+<span class="fc" id="L58">	private static IFMessageClient instance = new IFMessageClient();</span>
+	private ObjectMapper objectMapper;
+	
+<span class="fc" id="L61">	private IFMessageClient (){</span>
+<span class="fc" id="L62">		objectMapper = new ObjectMapper();</span>
+		// configure your ObjectMapper here
+<span class="fc" id="L64">		objectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);</span>
+
+<span class="fc" id="L66">		restTemplate = new RestTemplate();    </span>
+
+<span class="fc" id="L68">		MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();</span>
+<span class="fc" id="L69">		messageConverter.setPrettyPrint(false);</span>
+<span class="fc" id="L70">		messageConverter.setObjectMapper(objectMapper);</span>
+		
+<span class="fc" id="L72">		messageConverter.setSupportedMediaTypes(</span>
+<span class="fc" id="L73">                Arrays.asList(new MediaType[]{MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_OCTET_STREAM}));</span>
+		
+<span class="fc" id="L75">		restTemplate.getMessageConverters().removeIf(m -&gt; m.getClass().getName().equals(MappingJackson2HttpMessageConverter.class.getName()));</span>
+<span class="fc" id="L76">		restTemplate.getMessageConverters().add(messageConverter);</span>
+<span class="fc" id="L77">	}</span>
+	
+	public static IFMessageClient getInstance(){
+<span class="fc" id="L80">		return instance;</span>
+	}
+	
+	// SYNCRONOUS MESSAGING
+	
+	//Note: S Object requires a correct JSON serialization
+	//Note: Sending POST messages through ESB requires content-type header
+	//Returned payload is an String
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postJsonMessage(S object, URI uri, AuthorizationToken token) {
+<span class="nc" id="L89">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+<span class="nc" id="L90">				.accept(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L91">				.contentType(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L92">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="nc" id="L93">				.body(object);</span>
+<span class="nc" id="L94">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, String.class);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postJsonMessage(S object, URI uri, Class&lt;S&gt; clazz, FrontendSession session) {
+<span class="nc" id="L98">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+<span class="nc" id="L99">				.contentType(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L100">				.header(HttpHeaders.COOKIE, &quot;SESSION=&quot; + session.getSession())</span>
+<span class="nc" id="L101">				.header(&quot;x-xsrf-token&quot;, session.getXsfrToken())</span>
+<span class="nc" id="L102">				.body(object);</span>
+<span class="nc" id="L103">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; postJsonMessageReturningSameType(T object, URI uri, Class&lt;T&gt; clazz, FrontendSession session) {
+<span class="fc" id="L107">		RequestEntity&lt;T&gt; request = RequestEntity.post(uri)</span>
+<span class="fc" id="L108">				.contentType(MediaType.APPLICATION_JSON)</span>
+<span class="fc" id="L109">				.header(HttpHeaders.COOKIE, &quot;SESSION=&quot; + session.getSession())</span>
+<span class="fc" id="L110">				.header(&quot;x-xsrf-token&quot;, session.getXsfrToken())</span>
+<span class="fc" id="L111">				.body(object);</span>
+<span class="fc" id="L112">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public ResponseEntity&lt;String&gt; postQuery(URI query) {
+<span class="nc" id="L116">		RequestEntity&lt;String&gt; request = RequestEntity.post(query)</span>
+<span class="nc" id="L117">				.accept(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L118">				.body(&quot;&quot;);</span>
+<span class="nc" id="L119">		return (ResponseEntity&lt;String&gt;) restTemplate.exchange(request, String.class);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postXmlMessage(S object, URI uri, AuthorizationToken token) {
+<span class="nc" id="L123">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+<span class="nc" id="L124">				.accept(MediaType.APPLICATION_XML)</span>
+<span class="nc" id="L125">				.contentType(MediaType.APPLICATION_XML)</span>
+<span class="nc" id="L126">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="nc" id="L127">				.body(object);</span>
+<span class="nc" id="L128">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, String.class);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postJsonMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
+<span class="nc" id="L132">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+//				.accept(MediaType.APPLICATION_JSON)
+<span class="nc" id="L134">				.contentType(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L135">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="nc" id="L136">				.body(object);</span>
+<span class="nc" id="L137">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postJsonMessage(S object, URI uri, Class clazz) {
+<span class="fc" id="L141">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+//				.accept(MediaType.APPLICATION_JSON)
+<span class="fc" id="L143">				.contentType(MediaType.APPLICATION_JSON)</span>
+<span class="fc" id="L144">				.body(object);</span>
+<span class="fc" id="L145">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postJsonMessage(S object, URI uri, Class clazz, String token) {
+<span class="fc" id="L149">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+//				.accept(MediaType.APPLICATION_JSON)
+<span class="fc" id="L151">				.contentType(MediaType.APPLICATION_JSON)</span>
+<span class="fc" id="L152">				.header(&quot;Authorization&quot;, token)</span>
+<span class="fc" id="L153">				.body(object);</span>
+<span class="fc" id="L154">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postXmlMessage(S object, URI uri, Class clazz) {
+<span class="nc" id="L158">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+<span class="nc" id="L159">				.accept(MediaType.APPLICATION_XML)</span>
+<span class="nc" id="L160">				.contentType(MediaType.APPLICATION_XML)</span>
+<span class="nc" id="L161">				.body(object);</span>
+<span class="nc" id="L162">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postXmlMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
+<span class="nc" id="L166">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+<span class="nc" id="L167">				.accept(MediaType.APPLICATION_XML)</span>
+<span class="nc" id="L168">				.contentType(MediaType.APPLICATION_XML)</span>
+<span class="nc" id="L169">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="nc" id="L170">				.body(object);</span>
+<span class="nc" id="L171">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; putJsonMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
+<span class="nc" id="L176">		RequestEntity&lt;S&gt; request = RequestEntity.put(uri).</span>
+//				accept(MediaType.APPLICATION_JSON).
+<span class="nc" id="L178">				contentType(MediaType.APPLICATION_JSON).</span>
+<span class="nc" id="L179">				header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken()).</span>
+<span class="nc" id="L180">				body(object);</span>
+<span class="nc" id="L181">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; putJsonMessage(S object, URI uri, Class clazz) {
+<span class="fc" id="L185">		RequestEntity&lt;S&gt; request = RequestEntity.put(uri).</span>
+//				accept(MediaType.APPLICATION_JSON).
+<span class="fc" id="L187">				contentType(MediaType.APPLICATION_JSON).</span>
+//				header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken()).
+<span class="fc" id="L189">				body(object);</span>
+<span class="fc" id="L190">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; putJsonMessage(S object, URI uri, Class clazz, String token) {
+<span class="fc" id="L194">		RequestEntity&lt;S&gt; request = RequestEntity.put(uri).</span>
+//				accept(MediaType.APPLICATION_JSON).
+<span class="fc" id="L196">				contentType(MediaType.APPLICATION_JSON).</span>
+<span class="fc" id="L197">				header(&quot;Authorization&quot;, token).</span>
+<span class="fc" id="L198">				body(object);</span>
+<span class="fc" id="L199">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T, S&gt; ResponseEntity&lt;T&gt; putXmlMessage(S object, URI uri, AuthorizationToken token) {
+<span class="nc" id="L203">		RequestEntity&lt;S&gt; request = RequestEntity.put(uri).</span>
+<span class="nc" id="L204">				accept(MediaType.APPLICATION_XML).</span>
+<span class="nc" id="L205">				contentType(MediaType.APPLICATION_XML).</span>
+<span class="nc" id="L206">				header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken()).</span>
+<span class="nc" id="L207">				body(object);</span>
+<span class="nc" id="L208">		return (ResponseEntity&lt;T&gt;) restTemplate.exchange(request, AuthorizationToken.class);</span>
+	}
+
+	/**
+	 * Send GET message to uri, accepting an object of class clazz in JSON representation
+	 * @param uri URI of GET message
+	 * @param clazz Class representing returned object
+	 */
+	public &lt;T&gt; ResponseEntity&lt;T&gt; getJSONMessage(URI uri, Class&lt;T&gt; clazz, AuthorizationToken token) throws RestClientException{
+<span class="nc" id="L217">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="nc" id="L218">				.accept(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L219">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="nc" id="L220">				.build();</span>
+<span class="nc" id="L221">		return restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; getJSONMessage(URI uri, Class&lt;T&gt; clazz) throws RestClientException{
+<span class="fc" id="L225">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="fc" id="L226">				.accept(MediaType.APPLICATION_JSON)</span>
+<span class="fc" id="L227">				.build();</span>
+<span class="fc" id="L228">		return restTemplate.exchange(request, clazz);</span>
+
+	}
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; getJSONMessage(URI uri, Class&lt;T&gt; clazz, FrontendSession session) throws RestClientException{
+<span class="fc" id="L233">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="fc" id="L234">				.accept(MediaType.APPLICATION_JSON)</span>
+<span class="fc" id="L235">				.header(HttpHeaders.COOKIE, &quot;SESSION=&quot; + session.getSession())</span>
+<span class="fc" id="L236">				.header(&quot;x-xsrf-token&quot;, session.getXsfrToken())</span>
+<span class="fc" id="L237">				.header(&quot;TenandId&quot;, session.getTenantId())</span>
+<span class="fc" id="L238">				.build();</span>
+<span class="fc" id="L239">		return restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; getJSONMessage(URI uri, Class&lt;T&gt; clazz, String token) throws RestClientException{
+<span class="fc" id="L243">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="fc" id="L244">				.accept(MediaType.APPLICATION_JSON)</span>
+<span class="fc" id="L245">				.header(&quot;Authorization&quot;, token)</span>
+<span class="fc" id="L246">				.build();</span>
+<span class="fc" id="L247">		return restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; getXMLMessage(URI uri, Class&lt;T&gt; clazz, AuthorizationToken token) throws RestClientException{
+<span class="nc" id="L251">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="nc" id="L252">				.accept(MediaType.APPLICATION_XML)</span>
+<span class="nc" id="L253">				.header(&quot;Content-Type&quot;, &quot;application/json&quot;)</span>
+<span class="nc" id="L254">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="nc" id="L255">				.build();</span>
+<span class="nc" id="L256">		return restTemplate.exchange(request, clazz);</span>
+
+//		return (ResponseEntity&lt;T&gt;) restTemplate.getForEntity(uri, clazz);
+	}
+	
+	/**
+	 * Send GET message to uri, accepting an object of class clazz in type representation
+	 * @param uri URI of GET message
+	 * @param clazz Class representing returned object
+	 * @param type The media type representation accepted for returned object
+	 */
+	public &lt;T&gt; ResponseEntity&lt;T&gt; getMessage(URI uri, Class&lt;T&gt; clazz, MediaType type, AuthorizationToken token) throws RestClientException{
+<span class="fc" id="L268">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="fc" id="L269">				.accept(type)</span>
+<span class="fc" id="L270">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="fc" id="L271">				.build();</span>
+<span class="fc" id="L272">		return restTemplate.exchange(request, clazz);</span>
+	}
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; getMessage(URI uri, Class&lt;T&gt; clazz, MediaType type, String token) throws RestClientException{
+<span class="fc" id="L276">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="fc" id="L277">				.accept(type)</span>
+<span class="fc" id="L278">				.header(&quot;Authorization&quot;, token)</span>
+<span class="fc" id="L279">				.build();</span>
+<span class="fc" id="L280">		return restTemplate.exchange(request, clazz);</span>
+	}
+	
+	
+	public ResponseEntity&lt;String&gt; deleteJsonMessage (URI uri, AuthorizationToken token){
+<span class="nc" id="L285">    	HttpHeaders headers = new HttpHeaders();</span>
+<span class="nc" id="L286">        headers.add(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="nc" id="L287">        headers.add(&quot;Accept&quot;, &quot;*/*&quot;);</span>
+<span class="nc" id="L288">        headers.add(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken());</span>
+<span class="nc" id="L289">    	HttpEntity&lt;String&gt; requestEntity = new HttpEntity&lt;&gt;(&quot;&quot;, headers);</span>
+<span class="nc" id="L290">        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);</span>
+    }
+	
+	public ResponseEntity&lt;String&gt; deleteJsonMessage (URI uri, String token){
+<span class="fc" id="L294">    	HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L295">        headers.add(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="fc" id="L296">        headers.add(&quot;Accept&quot;, &quot;*/*&quot;);</span>
+<span class="fc" id="L297">        headers.add(&quot;Authorization&quot;, token);</span>
+<span class="fc" id="L298">    	HttpEntity&lt;String&gt; requestEntity = new HttpEntity&lt;&gt;(&quot;&quot;, headers);</span>
+<span class="fc" id="L299">        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);</span>
+    }
+	
+	public ResponseEntity&lt;String&gt; deleteJsonMessage (URI uri){
+<span class="fc" id="L303">    	HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L304">        headers.add(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="fc" id="L305">        headers.add(&quot;Accept&quot;, &quot;*/*&quot;);</span>
+<span class="fc" id="L306">    	HttpEntity&lt;String&gt; requestEntity = new HttpEntity&lt;&gt;(&quot;&quot;, headers);</span>
+<span class="fc" id="L307">        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);</span>
+    }
+	
+	public ResponseEntity&lt;String&gt; deleteJsonMessage (URI uri, FrontendSession session){
+<span class="fc" id="L311">    	HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L312">        headers.add(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="fc" id="L313">        headers.add(&quot;Accept&quot;, &quot;*/*&quot;);</span>
+<span class="fc" id="L314">        headers.add(HttpHeaders.COOKIE, &quot;SESSION=&quot; + session.getSession());</span>
+<span class="fc" id="L315">        headers.add(&quot;x-xsrf-token&quot;, session.getXsfrToken());</span>
+<span class="fc" id="L316">    	HttpEntity&lt;String&gt; requestEntity = new HttpEntity&lt;&gt;(&quot;&quot;, headers);</span>
+<span class="fc" id="L317">        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, String.class);</span>
+    }
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; deleteJsonMessage(URI uri, Class&lt;T&gt; clazz) {
+<span class="fc" id="L321">		HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L322">        headers.add(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="fc" id="L323">        headers.add(&quot;Accept&quot;, &quot;*/*&quot;);</span>
+<span class="fc" id="L324">    	HttpEntity&lt;String&gt; requestEntity = new HttpEntity&lt;&gt;(&quot;&quot;, headers);</span>
+<span class="fc" id="L325">        return restTemplate.exchange(uri, HttpMethod.DELETE, requestEntity, clazz);</span>
+	}
+	
+	public ResponseEntity&lt;String&gt; deleteMessage (URI uri, AuthorizationToken token){
+<span class="nc" id="L329">    	RequestEntity request = (RequestEntity) RequestEntity.delete(uri).header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken());</span>
+<span class="nc" id="L330">        return restTemplate.exchange(request, String.class);</span>
+    }
+	
+	
+	//ASYNCHRONOUS MESSAGING
+	public &lt;T, S&gt; ListenableFuture&lt;ResponseEntity&lt;T&gt;&gt; asyncPostJsonMessage(S object, URI uri, Class clazz, AuthorizationToken token) {
+<span class="nc" id="L336">		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)</span>
+<span class="nc" id="L337">				.accept(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L338">				.contentType(MediaType.APPLICATION_JSON)</span>
+<span class="nc" id="L339">				.header(&quot;Authorization&quot;, &quot;Bearer &quot; + token.getAccessToken())</span>
+<span class="nc" id="L340">				.body(object);</span>
+<span class="nc" id="L341">		return (ListenableFuture&lt;ResponseEntity&lt;T&gt;&gt;) asyncRestTemplate.exchange(uri, HttpMethod.POST, request, clazz);</span>
+	}
+
+	public &lt;T&gt; ResponseEntity&lt;T&gt; exchange(URI uri, HttpMethod method,
+			HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; requestEntity, Class&lt;T&gt; clazz) {
+<span class="fc" id="L346">		return restTemplate.exchange(uri, </span>
+                method, requestEntity, clazz);
+	}
+	
+//	public &lt;T&gt; ResponseEntity&lt;T&gt; exchange2(URI uri, HttpMethod method,
+//			HttpEntity&lt;MultiValueMap&lt;String, MultipartFile&gt;&gt; requestEntity, Class&lt;T&gt; clazz) {
+//		return restTemplate.exchange(uri, 
+//                method, requestEntity, clazz);
+//	}
+	
+	public &lt;T&gt; ResponseEntity&lt;T&gt; exchange(RequestEntity&lt;T&gt; request, Class&lt;T&gt; clazz) {
+<span class="fc" id="L357">		return restTemplate.exchange(request, clazz);</span>
+	}
+
+	public &lt;T&gt; String convertToJSON(T object) throws JsonProcessingException {
+<span class="fc" id="L361">		return objectMapper.writeValueAsString(object);</span>
+	}
+	
+	public &lt;T,S&gt; ResponseEntity&lt;T&gt; postForEntity (URI uri, HttpEntity&lt;MultiValueMap&lt;String, S&gt;&gt; request, Class&lt;T&gt; returnType){
+<span class="fc" id="L365">		return restTemplate.postForEntity (uri, request, returnType);</span>
+	}
+	
+	public &lt;T,S&gt; ResponseEntity&lt;T&gt; getForEntity (String url, Class&lt;T&gt; responseType, Map&lt;String, S&gt; urlVariables){
+<span class="nc" id="L369">		return restTemplate.getForEntity(url, responseType, urlVariables);</span>
+	}
+
+	public void setErrorHandler(ResponseErrorHandler errorHandler) {
+<span class="fc" id="L373">		restTemplate.setErrorHandler(errorHandler);</span>
+<span class="fc" id="L374">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

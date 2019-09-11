@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApiUser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.orchestrator.types</a> &gt; <span class="el_source">ApiUser.java</span></div><h1>ApiUser.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.orchestrator.types;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ApiUser implements UserDetails {
+
+    
+    private long id;
+    private String name;
+    private String password;
+
+    @JsonIgnore
+    private List&lt;ApiUserApiUserRole&gt; apiUserApiUserRoles;
+
+    private List&lt;ApiUserPermission&gt; apiUserPermissions;
+
+    
+    private List&lt;ApiUserRole&gt; authorities;
+    
+<span class="pc" id="L31">    private Boolean accountNonExpired = true;</span>
+    
+<span class="pc" id="L33">    private Boolean accountNonLocked = true;</span>
+    
+<span class="pc" id="L35">    private Boolean credentialsNonExpired = true;</span>
+    
+<span class="pc" id="L37">    private Boolean enabled = true;</span>
+    
+    private String username;
+
+<span class="fc" id="L41">    public ApiUser() {</span>
+<span class="fc" id="L42">    }</span>
+
+<span class="nc" id="L44">    public ApiUser(String name, String password) {</span>
+<span class="nc" id="L45">        this.name = name;</span>
+<span class="nc" id="L46">        this.password = password;</span>
+<span class="nc" id="L47">    }</span>
+
+<span class="nc" id="L49">    public ApiUser(String name, String password, List&lt;ApiUserApiUserRole&gt; apiUserApiUserRoles, List&lt;ApiUserPermission&gt; apiUserPermissions) {</span>
+<span class="nc" id="L50">        this.name = name;</span>
+<span class="nc" id="L51">        this.password = password;</span>
+<span class="nc" id="L52">        this.apiUserApiUserRoles = apiUserApiUserRoles;</span>
+<span class="nc" id="L53">        this.apiUserPermissions = apiUserPermissions;</span>
+<span class="nc" id="L54">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L58">        return String.format(</span>
+                &quot;ApiUser[id=%d, name='%s', apiUserApiUserRoles='%s', authorities='%s']&quot;,
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">                id,</span>
+                name,
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">                this.apiUserApiUserRoles != null ? this.apiUserApiUserRoles.stream().map(Object::toString).collect(Collectors.joining(&quot;, &quot;)): &quot;null&quot;,</span>
+<span class="pc" id="L63">                this.authorities != null ? this.authorities.stream().map(Object::toString).collect(Collectors.joining(&quot;, &quot;)): &quot;null&quot;);</span>
+    }
+
+
+    public long getId() {
+<span class="fc" id="L68">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="fc" id="L72">        this.id = id;</span>
+<span class="fc" id="L73">    }</span>
+
+    public String getName() {
+<span class="nc" id="L76">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L80">        this.name = name;</span>
+<span class="fc" id="L81">    }</span>
+
+    @Override
+    public Collection&lt;? extends GrantedAuthority&gt; getAuthorities() {
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if(this.apiUserApiUserRoles == null) {</span>
+<span class="nc" id="L86">            return null;</span>
+        }
+<span class="nc" id="L88">        List&lt;GrantedAuthority&gt; apiUserRoles = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        for(ApiUserApiUserRole apiUserApiUserRole : this.apiUserApiUserRoles) {</span>
+<span class="nc" id="L90">            apiUserRoles.add(apiUserApiUserRole.getApiUserRole());</span>
+<span class="nc" id="L91">        }</span>
+<span class="nc" id="L92">        return apiUserRoles;</span>
+    }
+
+    public void setAuthorities(List&lt;ApiUserRole&gt; authorities) {
+<span class="fc" id="L96">        this.authorities = authorities;</span>
+
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">        if(this.apiUserApiUserRoles == null) {</span>
+<span class="fc" id="L99">            this.apiUserApiUserRoles = new ArrayList&lt;&gt;();</span>
+        }
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        for(ApiUserRole apiUserRole : this.authorities) {</span>
+<span class="fc" id="L102">            this.apiUserApiUserRoles.add(new ApiUserApiUserRole(this, apiUserRole));</span>
+<span class="fc" id="L103">        }</span>
+<span class="fc" id="L104">    }</span>
+
+    public String getPassword() {
+<span class="nc" id="L107">        return password;</span>
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+<span class="nc" id="L112">        return this.accountNonExpired;</span>
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+<span class="nc" id="L117">        return this.accountNonLocked;</span>
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+<span class="nc" id="L122">        return this.credentialsNonExpired;</span>
+    }
+
+    @Override
+    public boolean isEnabled() {
+<span class="nc" id="L127">        return this.enabled;</span>
+    }
+
+    public Boolean getAccountNonExpired() {
+<span class="nc" id="L131">        return accountNonExpired;</span>
+    }
+
+    public void setAccountNonExpired(Boolean accountNonExpired) {
+<span class="fc" id="L135">        this.accountNonExpired = accountNonExpired;</span>
+<span class="fc" id="L136">    }</span>
+
+    public Boolean getAccountNonLocked() {
+<span class="nc" id="L139">        return accountNonLocked;</span>
+    }
+
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+<span class="fc" id="L143">        this.accountNonLocked = accountNonLocked;</span>
+<span class="fc" id="L144">    }</span>
+
+    public Boolean getCredentialsNonExpired() {
+<span class="nc" id="L147">        return credentialsNonExpired;</span>
+    }
+
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+<span class="fc" id="L151">        this.credentialsNonExpired = credentialsNonExpired;</span>
+<span class="fc" id="L152">    }</span>
+
+    public Boolean getEnabled() {
+<span class="nc" id="L155">        return enabled;</span>
+    }
+
+    public void setEnabled(Boolean enabled) {
+<span class="fc" id="L159">        this.enabled = enabled;</span>
+<span class="fc" id="L160">    }</span>
+
+    public void setPassword(String password) {
+<span class="nc" id="L163">        this.password = password;</span>
+<span class="nc" id="L164">    }</span>
+
+    public List&lt;ApiUserApiUserRole&gt; getApiUserApiUserRoles() {
+<span class="nc" id="L167">        return apiUserApiUserRoles;</span>
+    }
+
+    public void setApiUserApiUserRoles(List&lt;ApiUserApiUserRole&gt; apiUserApiUserRoles) {
+<span class="nc" id="L171">        this.apiUserApiUserRoles = apiUserApiUserRoles;</span>
+<span class="nc" id="L172">    }</span>
+
+    public List&lt;ApiUserPermission&gt; getApiUserPermissions() {
+<span class="nc" id="L175">        return apiUserPermissions;</span>
+    }
+
+    public void setApiUserPermissions(List&lt;ApiUserPermission&gt; apiUserPermissions) {
+<span class="fc" id="L179">        this.apiUserPermissions = apiUserPermissions;</span>
+<span class="fc" id="L180">    }</span>
+    
+    public String getUsername() {
+<span class="nc" id="L183">        return username;</span>
+    }
+
+    public void setUsername(String username) {
+<span class="fc" id="L187">        this.username = username;</span>
+<span class="fc" id="L188">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.adaptation.types</a> &gt; <span class="el_source">IModel.java</span></div><h1>IModel.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.adaptation.types;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+<span class="fc" id="L10">public abstract class IModel implements Comparable&lt;IModel&gt;{</span>
+
+	public void setValue(String property, Object value) throws Exception {
+		
+		Field f;
+		try {
+<span class="nc" id="L16">			f = this.getClass().getDeclaredField(property);</span>
+<span class="nc" id="L17">		} catch (NoSuchFieldException e1) {</span>
+			try {
+<span class="nc" id="L19">				f = this.getClass().getSuperclass().getDeclaredField(property);</span>
+<span class="nc" id="L20">			} catch (NoSuchFieldException e2) {</span>
+<span class="nc" id="L21">				throw new Exception(&quot;This type of model does not have a &quot; + property + &quot; field&quot;);</span>
+
+<span class="nc" id="L23">			}</span>
+<span class="nc" id="L24">		} </span>
+<span class="nc" id="L25">		f.setAccessible(true);</span>
+<span class="nc" id="L26">		f.set(this, value);</span>
+
+<span class="nc" id="L28">	}</span>
+
+	public Object getValue(String property) throws Exception {
+		
+		Field f;
+		try {
+<span class="fc" id="L34">			f = this.getClass().getDeclaredField(property);</span>
+<span class="fc" id="L35">		} catch (NoSuchFieldException e1) {</span>
+			try {
+<span class="fc" id="L37">				f = this.getClass().getSuperclass().getDeclaredField(property);</span>
+<span class="fc" id="L38">			} catch (NoSuchFieldException e2) {</span>
+<span class="fc" id="L39">				throw new Exception(&quot;This type of model does not have a &quot; + property + &quot; field&quot;);</span>
+
+<span class="fc" id="L41">			}</span>
+<span class="fc" id="L42">		} </span>
+<span class="fc" id="L43">		f.setAccessible(true);</span>
+<span class="fc" id="L44">		return f.get(this);</span>
+		
+	}
+	
+	@Override
+	public int compareTo (IModel m){
+		//Comparing by lastModificationDate (inverse order)
+		try{
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">			if (m.getValue(&quot;lastModificationDate&quot;)!=null &amp;&amp; </span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">				this.getValue(&quot;lastModificationDate&quot;)!=null){</span>
+				//TODO Parse dates and compare them
+<span class="fc" id="L55">				return ((Date)m.getValue(&quot;lastModificationDate&quot;))</span>
+<span class="fc" id="L56">					.compareTo((Date)this.getValue(&quot;lastModificationDate&quot;));</span>
+			}
+<span class="nc" id="L58">		}catch (Exception e){</span>
+			//Ignored
+<span class="nc" id="L60">		}</span>
+		
+		//Otherwise by creationDate (inverse order)
+		try{
+<span class="nc bnc" id="L64" title="All 2 branches missed.">			if (m.getValue(&quot;creationDate&quot;)!=null &amp;&amp; </span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">					this.getValue(&quot;creationDate&quot;)!=null){</span>
+<span class="nc" id="L66">				return ((Date)m.getValue(&quot;creationDate&quot;))</span>
+<span class="nc" id="L67">						.compareTo((Date)this.getValue(&quot;creationDate&quot;));	</span>
+			}
+<span class="nc" id="L69">		}catch (Exception e){</span>
+			//Ignored
+<span class="nc" id="L71">		}</span>
+		
+		//Otherwise by id (inverse order)
+		try{
+<span class="nc bnc" id="L75" title="All 2 branches missed.">			if (m.getValue(&quot;id&quot;)!=null &amp;&amp; </span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">					this.getValue(&quot;id&quot;)!=null){</span>
+<span class="nc" id="L77">				return (Integer.valueOf((String)m.getValue(&quot;id&quot;)))</span>
+<span class="nc" id="L78">						.compareTo(Integer.valueOf((String)this.getValue(&quot;id&quot;)));	</span>
+			}
+<span class="nc" id="L80">		}catch (Exception e){</span>
+			//Ignored
+<span class="nc" id="L82">		}</span>
+<span class="nc" id="L83">		return 0;</span>
+	}
+	
+	@JsonIgnore
+	public List&lt;Field&gt; getFields() {
+		
+<span class="nc" id="L89">		Field[] fields1 = this.getClass().getDeclaredFields();</span>
+<span class="nc" id="L90">		Field[] fields2 = this.getClass().getSuperclass().getDeclaredFields();</span>
+		
+<span class="nc" id="L92">		List&lt;Field&gt; fields = new ArrayList&lt;&gt;();</span>
+		
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		for (Field f : fields1) fields.add(f);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">		for (Field f : fields2) fields.add(f);</span>
+		
+<span class="nc" id="L97">		return fields;</span>
+				
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MetadataManagementProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.mdm.proxies</a> &gt; <span class="el_source">MetadataManagementProxy.java</span></div><h1>MetadataManagementProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.mdm.proxies;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
+import org.springframework.util.LinkedMultiValueMap;
+
+import eu.supersede.integration.api.mdm.types.CER_Rule;
+import eu.supersede.integration.api.mdm.types.ECA_Rule;
+import eu.supersede.integration.api.mdm.types.Event;
+import eu.supersede.integration.api.mdm.types.Feedback;
+import eu.supersede.integration.api.mdm.types.FeedbackClassification;
+import eu.supersede.integration.api.mdm.types.KafkaTopic;
+import eu.supersede.integration.api.mdm.types.Release;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.exception.IFException;
+import eu.supersede.integration.federation.SupersedeFederation;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+<span class="fc" id="L53">public class MetadataManagementProxy&lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IMetadataManagement {</span>
+<span class="fc" id="L54">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L55">	private final SupersedeFederation federation = new SupersedeFederation();</span>
+
+<span class="fc" id="L57">	private final static String SUPERSEDE_MDM_ENDPOINT = IntegrationProperty</span>
+<span class="fc" id="L58">			.getProperty(&quot;metadata.management.endpoint&quot;);</span>
+
+	@Override
+	public KafkaTopic registerRelease (Release release) throws Exception {
+<span class="fc" id="L62">		Assert.notNull(release, &quot;Provide a valid release&quot;);</span>
+		//Inject Supersede platform
+<span class="fc" id="L64">		String platform = federation.getLocalFederatedSupersedePlatform().getPlatform();</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">		if (platform == null) throw new IFException(&quot;Local federation not availagle&quot;);</span>
+<span class="fc" id="L66">		release.setPlatform(platform);</span>
+<span class="fc" id="L67">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;release&quot;);</span>
+<span class="fc" id="L68">		log.debug(&quot;Sending message registerRelease with release: &quot; + release +</span>
+				&quot; to MetadataManagement at uri &quot; + uri);
+<span class="fc" id="L70">		return insertJSONObjectAndReturnAnotherType(release, KafkaTopic.class, uri,  new ArrayList&lt;HttpStatus&gt;(){{add(HttpStatus.OK);}});</span>
+	}
+
+	@Override
+	public List&lt;Release&gt; getAllReleases() throws Exception {
+<span class="fc" id="L75">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;release&quot;);</span>
+<span class="fc" id="L76">		log.debug(&quot;Sending message getAllReleases to MetadataManagement at uri &quot; + uri);</span>
+<span class="fc" id="L77">		return getJSONObjectsListForType(Release[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;ECA_Rule&gt; getAllECARules() throws Exception {
+<span class="nc" id="L82">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;eca_rule&quot;);</span>
+<span class="nc" id="L83">		log.debug(&quot;Sending message getAllECARules to MetadataManagement at uri &quot; + uri);</span>
+<span class="nc" id="L84">		return getJSONObjectsListForType(ECA_Rule[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public FeedbackClassification getRealtimeFeedbackClassification(Feedback feedback) throws Exception {
+<span class="fc" id="L89">		Assert.notNull(feedback, &quot;Provide a valid feedback&quot;);</span>
+<span class="fc" id="L90">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;classify/feedback&quot;);</span>
+<span class="fc" id="L91">		log.debug(&quot;Sending message getRealtimeFeedbackClassification for feedback: &quot; + feedback +</span>
+				&quot; to MetadataManagement at uri &quot; + uri);
+<span class="fc" id="L93">		return insertJSONObjectAndReturnAnotherType(feedback, FeedbackClassification.class, uri,  new ArrayList&lt;HttpStatus&gt;(){{add(HttpStatus.OK);}});</span>
+	}
+
+	@Override
+	public boolean sendFile(Path filePath) throws Exception {
+<span class="fc" id="L98">		Assert.notNull(filePath, &quot;Provide a valid filePath&quot;);</span>
+		
+<span class="fc" id="L100">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;files&quot;);</span>
+		
+<span class="fc" id="L102">		LinkedMultiValueMap&lt;String, Object&gt; parts = </span>
+		          new LinkedMultiValueMap&lt;String, Object&gt;();
+		
+<span class="fc" id="L105">		Resource file = new ByteArrayResource(Files.readAllBytes(filePath)){</span>
+            @Override
+            public String getFilename(){
+<span class="fc" id="L108">                return filePath.getFileName().toString();</span>
+            }
+        };
+		
+<span class="fc" id="L112">		HttpHeaders xmlHeaders = new HttpHeaders();</span>
+<span class="fc" id="L113">        xmlHeaders.setContentType(MediaType.TEXT_PLAIN);</span>
+<span class="fc" id="L114">        HttpEntity&lt;Resource&gt; fileEntity = new HttpEntity&lt;Resource&gt;(file, xmlHeaders);</span>
+		
+<span class="fc" id="L116">		parts.add(&quot;file&quot;, fileEntity);</span>
+		
+<span class="fc" id="L118">		log.debug(&quot;Sending message sendFile with filePath: &quot; + filePath</span>
+				+ &quot; to MetadataManagement at uri &quot; + uri);
+<span class="fc" id="L120">		return sendMultipartFormDataMessage(uri, parts, HttpMethod.POST, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public ECA_Rule getECARule(String id) throws Exception {
+<span class="nc" id="L125">		Assert.notNull(id, &quot;Provide a valid ECARule id&quot;);</span>
+<span class="nc" id="L126">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;eca_rule/&quot; + id);</span>
+<span class="nc" id="L127">		log.debug(&quot;Sending message getECARule to MetadataManagement at uri &quot; + uri);</span>
+<span class="nc" id="L128">		return getJSONObjectForType(ECA_Rule.class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public List&lt;Event&gt; getAllEvents() throws Exception {
+<span class="fc" id="L133">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;event&quot;);</span>
+<span class="fc" id="L134">		log.debug(&quot;Sending message getAllEvents to MetadataManagement at uri &quot; + uri);</span>
+<span class="fc" id="L135">		return getJSONObjectsListForType(Event[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public Event getEvent(String id) throws Exception {
+<span class="nc" id="L140">		Assert.notNull(id, &quot;Provide a valid Event id&quot;);</span>
+<span class="nc" id="L141">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;event/&quot; + id);</span>
+<span class="nc" id="L142">		log.debug(&quot;Sending message getEvent to MetadataManagement at uri &quot; + uri);</span>
+<span class="nc" id="L143">		return getJSONObjectForType(Event.class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public KafkaTopic createEvent(Event event) throws Exception {
+<span class="nc" id="L148">		Assert.notNull(event, &quot;Provide a valid Event&quot;);</span>
+<span class="nc" id="L149">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;event&quot;);</span>
+<span class="nc" id="L150">		log.debug(&quot;Sending message createEvent to MetadataManagement at uri &quot; + uri);</span>
+<span class="nc" id="L151">		return insertJSONObjectAndReturnAnotherType(event, KafkaTopic.class, uri,  new ArrayList&lt;HttpStatus&gt;(){{add(HttpStatus.OK);}});</span>
+	}
+	
+	@Override
+	public List&lt;CER_Rule&gt; getAllCERRules() throws Exception {
+<span class="nc" id="L156">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;cer_rule&quot;);</span>
+<span class="nc" id="L157">		log.debug(&quot;Sending message getAllCERRules to MetadataManagement at uri &quot; + uri);</span>
+<span class="nc" id="L158">		return getJSONObjectsListForType(CER_Rule[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public CER_Rule getCERRule(String id) throws Exception {
+<span class="nc" id="L163">		Assert.notNull(id, &quot;Provide a valid CERRule id&quot;);</span>
+<span class="nc" id="L164">		URI uri = new URI(SUPERSEDE_MDM_ENDPOINT + &quot;cer_rule/&quot; + id);</span>
+<span class="nc" id="L165">		log.debug(&quot;Sending message getCERRule to MetadataManagement at uri &quot; + uri);</span>
+<span class="nc" id="L166">		return getJSONObjectForType(CER_Rule.class, uri, HttpStatus.OK);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContextInformation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.repository.types</a> &gt; <span class="el_source">ContextInformation.java</span></div><h1>ContextInformation.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.feedback.repository.types;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+
+@JsonInclude(Include.NON_NULL)
+public class ContextInformation {
+
+	
+	private long id;	
+
+	private String resolution;
+	
+	private String userAgent;
+	
+	private String androidVersion;
+
+	private Date localTime;
+	
+	private String timeZone;
+	
+	private Float devicePixelRatio;
+	
+	private String country;
+	
+	private String region;
+		
+    private String url;
+    
+    private String metaData;
+    
+<span class="fc" id="L56">    public ContextInformation() {</span>
+<span class="fc" id="L57">    }</span>
+	
+    public ContextInformation(String resolution, String userAgent, 
+    		String androidVersion, Date date, String timeZone, Float devicePixelRatio, 
+<span class="fc" id="L61">    		String country, String region, String url, String metaData) {</span>
+<span class="fc" id="L62">        this.resolution = resolution;</span>
+<span class="fc" id="L63">        this.userAgent = userAgent;</span>
+<span class="fc" id="L64">        this.androidVersion = androidVersion;</span>
+<span class="fc" id="L65">        this.localTime = date;</span>
+<span class="fc" id="L66">        this.timeZone = timeZone;</span>
+<span class="fc" id="L67">        this.devicePixelRatio = devicePixelRatio;</span>
+<span class="fc" id="L68">        this.country = country;</span>
+<span class="fc" id="L69">        this.region = region;</span>
+<span class="fc" id="L70">        this.url = url;</span>
+<span class="fc" id="L71">        this.metaData = metaData;</span>
+<span class="fc" id="L72">    }</span>
+
+	public long getId() {
+<span class="fc" id="L75">		return id;</span>
+	}
+
+	public void setId(long id) {
+<span class="fc" id="L79">		this.id = id;</span>
+<span class="fc" id="L80">	}</span>
+
+	public String getResolution() {
+<span class="fc" id="L83">		return resolution;</span>
+	}
+
+	public void setResolution(String resolution) {
+<span class="fc" id="L87">		this.resolution = resolution;</span>
+<span class="fc" id="L88">	}</span>
+
+	public String getUserAgent() {
+<span class="fc" id="L91">		return userAgent;</span>
+	}
+
+	public void setUserAgent(String userAgent) {
+<span class="fc" id="L95">		this.userAgent = userAgent;</span>
+<span class="fc" id="L96">	}</span>
+
+	public String getAndroidVersion() {
+<span class="fc" id="L99">		return androidVersion;</span>
+	}
+
+	public void setAndroidVersion(String androidVersion) {
+<span class="fc" id="L103">		this.androidVersion = androidVersion;</span>
+<span class="fc" id="L104">	}</span>
+
+	public Date getLocalTime() {
+<span class="fc" id="L107">		return localTime;</span>
+	}
+
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	public void setLocalTime(Date localTime) {
+<span class="fc" id="L112">		this.localTime = localTime;</span>
+<span class="fc" id="L113">	}</span>
+
+	public String getTimeZone() {
+<span class="fc" id="L116">		return timeZone;</span>
+	}
+
+	public void setTimeZone(String timeZone) {
+<span class="fc" id="L120">		this.timeZone = timeZone;</span>
+<span class="fc" id="L121">	}</span>
+
+	public Float getDevicePixelRatio() {
+<span class="fc" id="L124">		return devicePixelRatio;</span>
+	}
+
+	public void setDevicePixelRatio(Float devicePixelRatio) {
+<span class="fc" id="L128">		this.devicePixelRatio = devicePixelRatio;</span>
+<span class="fc" id="L129">	}</span>
+
+	public String getCountry() {
+<span class="fc" id="L132">		return country;</span>
+	}
+
+	public void setCountry(String country) {
+<span class="fc" id="L136">		this.country = country;</span>
+<span class="fc" id="L137">	}</span>
+
+	public String getRegion() {
+<span class="fc" id="L140">		return region;</span>
+	}
+
+	public void setRegion(String region) {
+<span class="fc" id="L144">		this.region = region;</span>
+<span class="fc" id="L145">	}</span>
+
+	public String getUrl() {
+<span class="fc" id="L148">		return url;</span>
+	}
+
+	public void setUrl(String url) {
+<span class="fc" id="L152">		this.url = url;</span>
+<span class="fc" id="L153">	}</span>
+
+	public String getMetaData() {
+<span class="fc" id="L156">		return metaData;</span>
+	}
+
+	public void setMetaData(String metaData) {
+<span class="fc" id="L160">		this.metaData = metaData;</span>
+<span class="fc" id="L161">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

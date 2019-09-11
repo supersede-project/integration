@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TopicMessageAgent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.pubsub</a> &gt; <span class="el_source">TopicMessageAgent.java</span></div><h1>TopicMessageAgent.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.pubsub;
+
+import java.util.Properties;
+
+import javax.jms.JMSException;
+import javax.jms.TopicConnection;
+import javax.jms.TopicConnectionFactory;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public abstract class TopicMessageAgent implements iTopicMessageAgent {
+<span class="fc" id="L17">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+	protected SubscriptionTopic subscriptionTopic;
+<span class="fc" id="L19">	protected String initialContextFactory = &quot;org.wso2.andes.jndi.&quot; + &quot;PropertiesFileInitialContextFactory&quot;;</span>
+	protected String connectionString;
+	protected Properties properties;
+	protected InitialContext ctx;
+	protected TopicConnection topicConnection;
+	
+<span class="fc" id="L25">	protected TopicMessageAgent(SubscriptionTopic subscriptionTopic, String platform) throws NamingException{</span>
+<span class="fc" id="L26">		this.subscriptionTopic = subscriptionTopic;</span>
+<span class="fc" id="L27">		connectionString = IntegrationProperty.getMBConnection(platform);</span>
+<span class="fc" id="L28">		properties = new Properties();</span>
+<span class="fc" id="L29">		properties.put(&quot;java.naming.factory.initial&quot;, initialContextFactory);</span>
+<span class="fc" id="L30">		properties.put(&quot;connectionfactory.QueueConnectionFactory&quot;, connectionString);</span>
+<span class="fc" id="L31">		properties.put(&quot;topic.&quot; + subscriptionTopic.getTopic(), subscriptionTopic.getTopic());</span>
+<span class="fc" id="L32">		ctx = new InitialContext(properties);</span>
+<span class="fc" id="L33">	}</span>
+	
+<span class="fc" id="L35">	protected TopicMessageAgent(SubscriptionTopic subscriptionTopic) throws NamingException{</span>
+<span class="fc" id="L36">		this.subscriptionTopic = subscriptionTopic;</span>
+<span class="fc" id="L37">		connectionString = IntegrationProperty.getMBConnection();</span>
+<span class="fc" id="L38">		properties = new Properties();</span>
+<span class="fc" id="L39">		properties.put(&quot;java.naming.factory.initial&quot;, initialContextFactory);</span>
+<span class="fc" id="L40">		properties.put(&quot;connectionfactory.QueueConnectionFactory&quot;, connectionString);</span>
+<span class="fc" id="L41">		properties.put(&quot;topic.&quot; + subscriptionTopic.getTopic(), subscriptionTopic.getTopic());</span>
+<span class="fc" id="L42">		ctx = new InitialContext(properties);</span>
+<span class="fc" id="L43">	}</span>
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.integration.api.pubsub.iTopicMessageAgent#openTopicConnection()
+	 */
+	@Override
+	public void openTopicConnection () throws JMSException{
+		
+<span class="fc" id="L51">		closeTopicConnection();</span>
+		
+		try {
+<span class="fc" id="L54">			TopicConnectionFactory topicConnectionFactory = (TopicConnectionFactory) ctx</span>
+<span class="fc" id="L55">					.lookup(&quot;QueueConnectionFactory&quot;);</span>
+<span class="fc" id="L56">			topicConnection = topicConnectionFactory.createTopicConnection();</span>
+<span class="fc" id="L57">			log.debug(&quot;Open topic connection with Message Broker&quot;);</span>
+<span class="nc" id="L58">		} catch (NamingException e) {</span>
+<span class="nc" id="L59">			closeTopicConnection();</span>
+<span class="nc" id="L60">			throw new RuntimeException(&quot;Error in initial context lookup&quot;, e);</span>
+<span class="nc" id="L61">		} catch (JMSException e) {</span>
+<span class="nc" id="L62">			closeTopicConnection();</span>
+<span class="nc" id="L63">			throw new RuntimeException(&quot;Error in JMS operations&quot;, e);</span>
+<span class="nc" id="L64">		} finally {</span>
+			
+<span class="pc" id="L66">		}</span>
+<span class="fc" id="L67">	}</span>
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.integration.api.pubsub.iTopicMessageAgent#closeTopicConnection()
+	 */
+	@Override
+	public void closeTopicConnection() throws JMSException{
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (topicConnection != null){</span>
+<span class="fc" id="L75">			topicConnection.close();</span>
+<span class="fc" id="L76">			log.debug(&quot;Close topic connection with Message Broker&quot;);</span>
+		}
+<span class="fc" id="L78">	}</span>
+	
+	@Override
+	protected void finalize() throws Throwable {
+<span class="fc" id="L82">		closeTopicConnection();</span>
+<span class="fc" id="L83">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FrontendAuthentication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.fe</a> &gt; <span class="el_source">FrontendAuthentication.java</span></div><h1>FrontendAuthentication.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.fe;
+
+import java.net.URI;
+import java.util.Base64;
+import java.util.List;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
+import org.springframework.web.client.RestClientException;
+
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class FrontendAuthentication &lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IFrontend {
+<span class="fc" id="L22">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L23">	private final static String SUPERSEDE_FRONTEND_ENDPOINT = </span>
+<span class="fc" id="L24">		IntegrationProperty.getProperty(&quot;frontend.endpoint&quot;);</span>
+	
+<span class="fc" id="L26">	public FrontendAuthentication(){</span>
+<span class="fc" id="L27">		messageClient.setErrorHandler(new IFErrorHandler());</span>
+<span class="fc" id="L28">	}</span>
+	
+	@Override
+	public FrontendSession login(String user, String password, String tenant) throws Exception {
+		
+<span class="fc" id="L33">		Assert.notNull(user, &quot;Provide a valid user&quot;);</span>
+<span class="fc" id="L34">		Assert.notNull(password, &quot;Provide a valid password&quot;);</span>
+<span class="fc" id="L35">		URI uri = new URI (SUPERSEDE_FRONTEND_ENDPOINT + &quot;login&quot;);</span>
+<span class="fc" id="L36">		log.debug(&quot;Sending message login with user: &quot; + user + &quot; for tenant: &quot; + tenant + &quot; to Frontend at uri &quot; + uri);</span>
+		
+<span class="fc" id="L38">		FrontendSession frontEndSession = new FrontendSession();</span>
+<span class="fc" id="L39">		frontEndSession.setTenantId(tenant);</span>
+<span class="fc" id="L40">		frontEndSession.setSession(</span>
+<span class="fc" id="L41">			getLoginSession(user, password, tenant, uri));</span>
+		
+<span class="fc" id="L43">		uri = new URI (SUPERSEDE_FRONTEND_ENDPOINT + &quot;user&quot;);</span>
+<span class="fc" id="L44">		log.debug(&quot;Sending message login with user: &quot; + user + &quot; for tenant: &quot; + tenant + &quot; to Frontend at uri &quot; + uri);</span>
+		
+<span class="fc" id="L46">		frontEndSession.setXsfrToken(</span>
+<span class="fc" id="L47">				getXsfrToken(frontEndSession.getSession(), user, password, tenant, uri));</span>
+		
+<span class="fc" id="L49">		return frontEndSession;</span>
+	}
+	
+	@Override
+	public void addRequirement (String requirement, FrontendSession session) throws Exception{
+<span class="nc" id="L54">		URI uri = new URI (&quot;http://supersede.es.atos.net:8080/supersede-dm-app/requirement&quot;);</span>
+		
+<span class="nc" id="L56">		insertJSONObject(requirement, uri, HttpStatus.CREATED, session);</span>
+<span class="nc" id="L57">	}</span>
+	
+	
+//	public boolean insertJSONObjectWithAuthentication(String json, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
+//		boolean result = false;
+//		try {
+//			Assert.notNull(json, &quot;Provide a valid json &quot;);
+//			Assert.notNull(uri, &quot;Provide a valid uri&quot;);
+//			ResponseEntity&lt;String&gt; response = 
+//					postJsonMessageWithAuthentication(json, uri, String.class, session);
+//			if (response.getStatusCode().equals(expectedStatus)) {
+//				log.info(&quot;Successfully inserted JSON object &quot; + json);
+//				result = true;
+//			} else {
+//				log.info(&quot;There was a problem inserting JSON object &quot; + result + &quot; in URI: &quot; + uri);
+//			}
+//			return result;
+//		} catch (Exception e) {
+//			log.error(e.getMessage(), e);
+//			return false;
+//		}
+//	}
+	
+	private String getLoginSession(String user, String password, String tenant, URI uri) {
+		try {
+			//Encode user/password in base64
+<span class="fc" id="L83">			String base64 = Base64.getEncoder().encodeToString((user + &quot;:&quot; + password).getBytes(&quot;utf-8&quot;));</span>
+<span class="fc" id="L84">			ResponseEntity&lt;String&gt; response = sendLoginMessage(uri, base64, tenant, String.class);</span>
+			//Get session from headers
+<span class="fc" id="L86">			HttpHeaders headers = response.getHeaders();</span>
+<span class="fc" id="L87">			List&lt;String&gt; cookies = headers.get(HttpHeaders.SET_COOKIE);</span>
+<span class="fc" id="L88">			Optional&lt;String&gt; session_cookie = cookies.stream().filter(cookie-&gt;cookie.contains(&quot;SESSION&quot;)).findFirst();	</span>
+<span class="fc" id="L89">			String session = null;</span>
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">			if (session_cookie.isPresent()){</span>
+<span class="fc" id="L91">				session = session_cookie.get().substring(session_cookie.get().indexOf(&quot;=&quot;) + 1, session_cookie.get().indexOf(&quot;;&quot;));</span>
+			}
+<span class="fc" id="L93">			return session;</span>
+<span class="nc" id="L94">		} catch (Exception e) {</span>
+<span class="nc" id="L95">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L96">			return null;</span>
+		}
+	}
+	
+	private String getXsfrToken(String session, String user, String password, String tenant, URI uri) {
+		try {
+			//Encode user/password in base64
+<span class="fc" id="L103">			String base64 = Base64.getEncoder().encodeToString((user + &quot;:&quot; + password).getBytes(&quot;utf-8&quot;));</span>
+<span class="fc" id="L104">			ResponseEntity&lt;String&gt; response = sendUserMessage(uri, base64, tenant, session, String.class);</span>
+			//Get XSFR_TOKEN from headers
+<span class="fc" id="L106">			HttpHeaders headers = response.getHeaders();</span>
+<span class="fc" id="L107">			List&lt;String&gt; cookies = headers.get(HttpHeaders.SET_COOKIE);</span>
+<span class="fc" id="L108">			Optional&lt;String&gt; xsfrToken_cookie = cookies.stream().filter(cookie-&gt;cookie.contains(&quot;XSRF-TOKEN&quot;)).findFirst();	</span>
+<span class="fc" id="L109">			String xsfrToken = null;</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">			if (xsfrToken_cookie.isPresent()){</span>
+<span class="fc" id="L111">				xsfrToken = xsfrToken_cookie.get().substring(xsfrToken_cookie.get().indexOf(&quot;=&quot;) + 1, xsfrToken_cookie.get().indexOf(&quot;;&quot;));</span>
+			}
+<span class="fc" id="L113">			return xsfrToken;</span>
+<span class="nc" id="L114">		} catch (Exception e) {</span>
+<span class="nc" id="L115">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L116">			return null;</span>
+		}
+	}
+	
+	private &lt;T&gt; ResponseEntity&lt;T&gt; sendLoginMessage(URI uri, String base64, String tenant, Class&lt;T&gt; clazz) throws RestClientException{
+<span class="fc" id="L121">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="fc" id="L122">				.header(HttpHeaders.AUTHORIZATION, &quot;Basic &quot; + base64)</span>
+<span class="fc" id="L123">				.header(&quot;TenantId&quot;, tenant)</span>
+<span class="fc" id="L124">				.build();</span>
+<span class="fc" id="L125">		return messageClient.exchange(request, clazz);</span>
+	}
+	
+	private &lt;T&gt; ResponseEntity&lt;T&gt; sendUserMessage(URI uri, String base64, String tenant, String session, Class&lt;T&gt; clazz) throws RestClientException{
+<span class="fc" id="L129">		RequestEntity&lt;T&gt; request = (RequestEntity&lt;T&gt;) RequestEntity.get(uri)</span>
+<span class="fc" id="L130">				.header(HttpHeaders.AUTHORIZATION, &quot;Basic &quot; + base64)</span>
+<span class="fc" id="L131">				.header(&quot;TenantId&quot;, tenant)</span>
+<span class="fc" id="L132">				.header(HttpHeaders.COOKIE, &quot;SESSION=&quot; + session)</span>
+<span class="fc" id="L133">				.build();</span>
+<span class="fc" id="L134">		return messageClient.exchange(request, clazz);</span>
+	}
+	
+//	public &lt;T, S&gt; ResponseEntity&lt;T&gt; postJsonMessageWithAuthentication(S object, URI uri, Class&lt;S&gt; clazz, FrontendSession session) {
+//		RequestEntity&lt;S&gt; request = RequestEntity.post(uri)
+//				.contentType(MediaType.APPLICATION_JSON)
+//				.header(HttpHeaders.COOKIE, &quot;SESSION=&quot; + session.getSession())
+//				.header(&quot;x-xsrf-token&quot;, session.getXsfrToken())
+//				.body(object);
+//		return (ResponseEntity&lt;T&gt;) messageClient.exchange(request, clazz);
+//	}
+	
+//	public static void main (String[] args) throws Exception{
+//		FrontendAuthentication&lt;String, String&gt; fea = new FrontendAuthentication&lt;&gt;();
+//		FrontendSession frontEndSession = fea.login(&quot;wp_admin&quot;, &quot;9jqUuNrZ&quot;, &quot;atos&quot;);
+//		String requirement = &quot;{\&quot;name\&quot;:\&quot;ciao\&quot;,\&quot;description\&quot;:\&quot;descrizione\&quot;}&quot;;
+//		fea.addRequirement(requirement, frontEndSession);
+//	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

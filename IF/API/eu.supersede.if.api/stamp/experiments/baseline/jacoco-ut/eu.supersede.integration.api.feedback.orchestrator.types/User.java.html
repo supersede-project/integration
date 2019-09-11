@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>User.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.orchestrator.types</a> &gt; <span class="el_source">User.java</span></div><h1>User.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.orchestrator.types;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+
+public class User {
+    private long id;
+
+    private String name;
+
+    private String userIdentification;
+
+    @JsonIgnore
+    private Application application;
+
+    @JsonIgnore
+    private UserGroup userGroup;
+
+<span class="fc" id="L22">    public User() {</span>
+<span class="fc" id="L23">    }</span>
+
+<span class="fc" id="L25">    public User(String name, String userIdentification, Application application, UserGroup userGroup) {</span>
+<span class="fc" id="L26">        this.name = name;</span>
+<span class="fc" id="L27">        this.userIdentification = userIdentification;</span>
+<span class="fc" id="L28">        this.application = application;</span>
+<span class="fc" id="L29">        this.userGroup = userGroup;</span>
+<span class="fc" id="L30">    }</span>
+
+    public long getId() {
+<span class="fc" id="L33">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="fc" id="L37">        this.id = id;</span>
+<span class="fc" id="L38">    }</span>
+
+    public String getName() {
+<span class="fc" id="L41">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L45">        this.name = name;</span>
+<span class="fc" id="L46">    }</span>
+
+    public UserGroup getUserGroup() {
+<span class="nc" id="L49">        return userGroup;</span>
+    }
+
+    public void setUserGroup(UserGroup userGroup) {
+<span class="nc" id="L53">        this.userGroup = userGroup;</span>
+<span class="nc" id="L54">    }</span>
+
+    public String getUserIdentification() {
+<span class="fc" id="L57">        return userIdentification;</span>
+    }
+
+    public void setUserIdentification(String userIdentification) {
+<span class="fc" id="L61">        this.userIdentification = userIdentification;</span>
+<span class="fc" id="L62">    }</span>
+
+    public Application getApplication() {
+<span class="nc" id="L65">        return application;</span>
+    }
+
+    public void setApplication(Application application) {
+<span class="nc" id="L69">        this.application = application;</span>
+<span class="nc" id="L70">    }</span>
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

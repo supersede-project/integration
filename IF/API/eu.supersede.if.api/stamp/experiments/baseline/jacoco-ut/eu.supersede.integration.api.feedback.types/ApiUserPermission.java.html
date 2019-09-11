@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApiUserPermission.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.types</a> &gt; <span class="el_source">ApiUserPermission.java</span></div><h1>ApiUserPermission.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.types;
+
+import ch.uzh.ifi.feedback.library.rest.Service.ItemBase;
+import ch.uzh.ifi.feedback.library.rest.annotations.DbAttribute;
+import ch.uzh.ifi.feedback.library.rest.validation.Id;
+import ch.uzh.ifi.feedback.library.rest.validation.NotNull;
+
+//@Serialize(ApiUserPermissionSerializationService.class)
+<span class="nc" id="L9">public class ApiUserPermission extends ItemBase&lt;ApiUserPermission&gt; {</span>
+
+	@Id
+	private Integer id;
+	
+	@DbAttribute(&quot;application_id&quot;)
+	@NotNull
+	private Integer applicationId;
+	
+	@DbAttribute(&quot;user_id&quot;)
+	@NotNull
+	private transient Integer userId;
+	
+	@DbAttribute(&quot;has_permission&quot;)
+	@NotNull
+	private boolean hasPermission;
+	
+	@Override
+	public Integer getId() {
+<span class="nc" id="L28">		return id;</span>
+	}
+
+	@Override
+	public void setId(Integer id) {
+<span class="nc" id="L33">		this.id = id;</span>
+<span class="nc" id="L34">	}</span>
+
+	public Integer getApplicationId() {
+<span class="nc" id="L37">		return applicationId;</span>
+	}
+
+	public void setApplicationId(Integer applicationId) {
+<span class="nc" id="L41">		this.applicationId = applicationId;</span>
+<span class="nc" id="L42">	}</span>
+
+	public Integer getUserId() {
+<span class="nc" id="L45">		return userId;</span>
+	}
+
+	public void setUserId(Integer userId) {
+<span class="nc" id="L49">		this.userId = userId;</span>
+<span class="nc" id="L50">	}</span>
+
+	public boolean isHasPermission() {
+<span class="nc" id="L53">		return hasPermission;</span>
+	}
+
+	public void setHasPermission(boolean hasPermission) {
+<span class="nc" id="L57">		this.hasPermission = hasPermission;</span>
+<span class="nc" id="L58">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

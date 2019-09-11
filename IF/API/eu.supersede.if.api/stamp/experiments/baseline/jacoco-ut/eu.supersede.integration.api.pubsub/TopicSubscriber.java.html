@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TopicSubscriber.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.pubsub</a> &gt; <span class="el_source">TopicSubscriber.java</span></div><h1>TopicSubscriber.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.pubsub;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.jms.TopicSession;
+import javax.naming.NamingException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscriber {
+<span class="pc" id="L16">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+	private javax.jms.TopicSubscriber topicSubscriber;
+	private TopicSession topicSession;
+
+
+//	public static void main(String[] args) throws NamingException {
+//		iTopicSubscriber subscriber = null;
+//		try {
+//			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVENT_TOPIC);
+//			subscriber.openTopicConnection();
+//			TextMessageListener messageListener = ((TopicSubscriber)subscriber).new TextMessageListener();
+//			subscriber.createTopicSubscriptionAndKeepListening(messageListener);
+//			try {
+//				while (true) {
+//					Thread.sleep(1000); // FIXME Configure sleeping time
+//				}
+//			} catch (InterruptedException e) {
+//				log.error(e.getMessage(), e);
+//			}
+//			subscriber.closeSubscription();
+//			subscriber.closeTopicConnection();
+//		} catch (JMSException e) {
+//			log.error(e.getMessage(), e);
+//		} finally {
+//			if (subscriber != null) {
+//				try {
+//					subscriber.closeTopicConnection();
+//				} catch (JMSException e) {
+//					throw new RuntimeException(&quot;Error in closing topic connection&quot;, e);
+//				}
+//			}
+//		}
+//	}
+
+	/* (non-Javadoc)
+	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#closeSubscription()
+	 */
+	@Override
+	public void closeSubscription() throws JMSException {
+<span class="fc" id="L55">		topicSubscriber.close();</span>
+<span class="fc" id="L56">		topicSession.close();</span>
+<span class="fc" id="L57">		topicSubscriber = null;</span>
+<span class="fc" id="L58">		topicSession = null;</span>
+<span class="fc" id="L59">	}</span>
+
+	public TopicSubscriber(SubscriptionTopic subscriptionTopic,  String platform) throws NamingException {
+<span class="nc" id="L62">		super(subscriptionTopic, platform);</span>
+<span class="nc" id="L63">	}</span>
+	
+	public TopicSubscriber(SubscriptionTopic subscriptionTopic) throws NamingException {
+<span class="fc" id="L66">		super(subscriptionTopic);</span>
+<span class="fc" id="L67">	}</span>
+
+	public TopicSubscriber(SubscriptionTopic subscriptionTopic, boolean openConnection,  String platform)
+			throws NamingException, JMSException {
+<span class="nc" id="L71">		super(subscriptionTopic, platform);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">		if (openConnection)</span>
+<span class="nc" id="L73">			openTopicConnection();</span>
+
+<span class="nc" id="L75">	}</span>
+	
+	public TopicSubscriber(SubscriptionTopic subscriptionTopic, boolean openConnection)
+			throws NamingException, JMSException {
+<span class="nc" id="L79">		super(subscriptionTopic);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">		if (openConnection)</span>
+<span class="nc" id="L81">			openTopicConnection();</span>
+
+<span class="nc" id="L83">	}</span>
+
+	/* (non-Javadoc)
+	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#createTextMessageTopicSubscriptionAndKeepListening()
+	 */
+	@Override
+	public void createTextMessageTopicSubscriptionAndKeepListening() {
+<span class="nc" id="L90">		TextMessageListener messageListener = new TextMessageListener();</span>
+<span class="nc" id="L91">		createTopicSubscriptionAndKeepListening(messageListener);</span>
+<span class="nc" id="L92">	}</span>
+
+	/* (non-Javadoc)
+	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#createTopicSubscriptionAndKeepListening(javax.jms.MessageListener)
+	 */
+	@Override
+	public void createTopicSubscriptionAndKeepListening(MessageListener messageListener) {
+		try {
+<span class="pc bpc" id="L100" title="3 of 4 branches missed.">			if (topicSession != null &amp;&amp; topicSubscriber != null) {</span>
+<span class="nc" id="L101">				log.debug(&quot;Closing Topic Connection for Topic &quot; + subscriptionTopic.getTopic());</span>
+<span class="nc" id="L102">				closeSubscription();</span>
+			}
+
+<span class="fc" id="L105">			log.debug(&quot;Creating Topic Connection for Topic &quot; + subscriptionTopic.getTopic());</span>
+<span class="fc" id="L106">			topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);</span>
+
+<span class="fc" id="L108">			Topic topic = (Topic) ctx.lookup(subscriptionTopic.getTopic());</span>
+			// start the connection
+<span class="fc" id="L110">			topicConnection.start();</span>
+
+			// create a topic subscriber
+<span class="fc" id="L113">			topicSubscriber = topicSession.createSubscriber(topic);</span>
+<span class="fc" id="L114">			topicSubscriber.setMessageListener(messageListener);</span>
+<span class="nc" id="L115">		} catch (JMSException e) {</span>
+<span class="nc" id="L116">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L117">		} catch (NamingException e) {</span>
+<span class="nc" id="L118">			log.error(e.getMessage(), e);</span>
+<span class="pc" id="L119">		}</span>
+<span class="fc" id="L120">	}</span>
+	
+	/* (non-Javadoc)
+	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#createTextMessageTopicSubscriptionAndCloseAfterAWhile(int)
+	 */
+	@Override
+	public void createTextMessageTopicSubscriptionAndCloseAfterAWhile(int timeInMilliseconds) throws InterruptedException {
+<span class="nc" id="L127">		TextMessageListener messageListener = new TextMessageListener();</span>
+<span class="nc" id="L128">		createTopicSubscriptionAndCloseAfterAWhile(messageListener, timeInMilliseconds);</span>
+<span class="nc" id="L129">	}</span>
+
+	/* (non-Javadoc)
+	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#createTopicSubscriptionAndCloseAfterAWhile(javax.jms.MessageListener, int)
+	 */
+	@Override
+	public void createTopicSubscriptionAndCloseAfterAWhile(MessageListener messageListener, int timeInMilliseconds)
+			throws InterruptedException {
+		try {
+<span class="nc bnc" id="L138" title="All 4 branches missed.">			if (topicSession != null &amp;&amp; topicSubscriber != null) {</span>
+<span class="nc" id="L139">				log.debug(&quot;Closing Topic Connection for Topic &quot; + subscriptionTopic.getTopic());</span>
+<span class="nc" id="L140">				closeSubscription();</span>
+			}
+
+<span class="nc" id="L143">			log.debug(&quot;Creating Topic Connection for Topic &quot; + subscriptionTopic.getTopic());</span>
+<span class="nc" id="L144">			topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);</span>
+
+<span class="nc" id="L146">			Topic topic = (Topic) ctx.lookup(subscriptionTopic.getTopic());</span>
+			// start the connection
+<span class="nc" id="L148">			topicConnection.start();</span>
+
+			// create a topic subscriber
+<span class="nc" id="L151">			topicSubscriber = topicSession.createSubscriber(topic);</span>
+<span class="nc" id="L152">			topicSubscriber.setMessageListener(messageListener);</span>
+
+<span class="nc" id="L154">			Thread.sleep(timeInMilliseconds);</span>
+
+<span class="nc" id="L156">			topicSubscriber.close();</span>
+<span class="nc" id="L157">			topicSession.close();</span>
+<span class="nc" id="L158">		} catch (JMSException e) {</span>
+<span class="nc" id="L159">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L160">		} catch (NamingException e) {</span>
+<span class="nc" id="L161">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L162">		}</span>
+<span class="nc" id="L163">	}</span>
+
+<span class="nc" id="L165">	protected class TextMessageListener implements MessageListener {</span>
+		public void onMessage(Message message) {
+			try {
+<span class="nc" id="L168">				log.debug(&quot;Got the Message : &quot; + ((TextMessage) message).getText());</span>
+<span class="nc" id="L169">			} catch (JMSException e) {</span>
+<span class="nc" id="L170">				log.error(e.getMessage(), e);</span>
+<span class="nc" id="L171">			}</span>
+<span class="nc" id="L172">		}</span>
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+<span class="fc" id="L177">		super.finalize();</span>
+<span class="fc" id="L178">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

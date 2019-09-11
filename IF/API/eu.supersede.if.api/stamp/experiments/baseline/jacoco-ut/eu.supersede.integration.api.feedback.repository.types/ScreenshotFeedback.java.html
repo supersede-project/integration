@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScreenshotFeedback.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.repository.types</a> &gt; <span class="el_source">ScreenshotFeedback.java</span></div><h1>ScreenshotFeedback.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.repository.types;
+
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ScreenshotFeedback implements FileFeedback, MechanismFeedback {
+
+    protected long id;
+    private long mechanismId;
+    private String path;
+    private  int size;
+    private String part;
+    private String fileExtension;
+    private List&lt;TextAnnotation&gt; textAnnotations;
+
+    @JsonIgnore
+    private Mechanism mechanism;
+
+    @Override
+    public String toString() {
+<span class="nc" id="L28">        return String.format(</span>
+                &quot;ScreenshotFeedback[id=%d, mechanismId='%d', path='%s', fileExtension='%s']&quot;,
+<span class="nc" id="L30">                id, mechanismId, path, fileExtension);</span>
+    }
+
+<span class="fc" id="L33">    public ScreenshotFeedback() {</span>
+<span class="fc" id="L34">    }</span>
+
+<span class="nc" id="L36">    public ScreenshotFeedback(long mechanismId, List&lt;TextAnnotation&gt; textAnnotations) {</span>
+<span class="nc" id="L37">        this.mechanismId = mechanismId;</span>
+<span class="nc" id="L38">        this.textAnnotations = textAnnotations;</span>
+<span class="nc" id="L39">    }</span>
+
+<span class="fc" id="L41">    public ScreenshotFeedback(String part, long mechanismId, List&lt;TextAnnotation&gt; textAnnotations) {</span>
+<span class="fc" id="L42">        this.part = part;</span>
+<span class="fc" id="L43">        this.mechanismId = mechanismId;</span>
+<span class="fc" id="L44">        this.textAnnotations = textAnnotations;</span>
+<span class="fc" id="L45">    }</span>
+
+<span class="nc" id="L47">    public ScreenshotFeedback(String path, int size, String part, String fileExtension, long mechanismId, List&lt;TextAnnotation&gt; textAnnotations) {</span>
+<span class="nc" id="L48">        this.path = path;</span>
+<span class="nc" id="L49">        this.size = size;</span>
+<span class="nc" id="L50">        this.part = part;</span>
+<span class="nc" id="L51">        this.fileExtension = fileExtension;</span>
+<span class="nc" id="L52">        this.mechanismId = mechanismId;</span>
+<span class="nc" id="L53">        this.textAnnotations = textAnnotations;</span>
+<span class="nc" id="L54">    }</span>
+
+    public long getMechanismId() {
+<span class="fc" id="L57">        return mechanismId;</span>
+    }
+
+    public void setMechanismId(long mechanismId) {
+<span class="fc" id="L61">        this.mechanismId = mechanismId;</span>
+<span class="fc" id="L62">    }</span>
+
+    public List&lt;TextAnnotation&gt; getTextAnnotations() {
+<span class="fc" id="L65">        return textAnnotations;</span>
+    }
+
+    public void setTextAnnotations(List&lt;TextAnnotation&gt; textAnnotations) {
+<span class="fc" id="L69">        this.textAnnotations = textAnnotations;</span>
+<span class="fc" id="L70">    }</span>
+
+    public long getId() {
+<span class="fc" id="L73">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="fc" id="L77">        this.id = id;</span>
+<span class="fc" id="L78">    }</span>
+
+    public String getPath() {
+<span class="fc" id="L81">        return path;</span>
+    }
+
+    @Override
+    public void setPath(String path) {
+<span class="fc" id="L86">        this.path = path;</span>
+<span class="fc" id="L87">    }</span>
+
+    public int getSize() {
+<span class="fc" id="L90">        return size;</span>
+    }
+
+    @Override
+    public void setSize(int size) {
+<span class="fc" id="L95">        this.size = size;</span>
+<span class="fc" id="L96">    }</span>
+
+    @Override
+    public String getPart() {
+<span class="fc" id="L100">        return part;</span>
+    }
+
+    public void setPart(String part) {
+<span class="fc" id="L104">        this.part = part;</span>
+<span class="fc" id="L105">    }</span>
+
+    public String getFileExtension() {
+<span class="fc" id="L108">        return fileExtension;</span>
+    }
+
+    public void setFileExtension(String fileExtension) {
+<span class="fc" id="L112">        this.fileExtension = fileExtension;</span>
+<span class="fc" id="L113">    }</span>
+
+    @Override
+    public Mechanism getMechanism() {
+<span class="nc" id="L117">        return mechanism;</span>
+    }
+
+    @Override
+    public void setMechanism(Mechanism mechanism) {
+<span class="nc" id="L122">        this.mechanism = mechanism;</span>
+<span class="nc" id="L123">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

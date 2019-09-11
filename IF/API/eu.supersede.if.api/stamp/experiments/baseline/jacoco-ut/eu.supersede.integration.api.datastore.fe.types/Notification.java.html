@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Notification.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.datastore.fe.types</a> &gt; <span class="el_source">Notification.java</span></div><h1>Notification.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.datastore.fe.types;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import eu.supersede.integration.api.json.*;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+<span class="fc" id="L31">public class Notification {</span>
+	Date creation_time;
+	boolean email_sent;
+	boolean read;
+	int user_id;
+	String link;
+	int notification_id;
+	String message;
+	
+	public Date getCreation_time() {
+<span class="nc" id="L41">		return creation_time;</span>
+	}
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
+	public void setCreation_time(Date creation_time) {
+<span class="nc" id="L46">		this.creation_time = creation_time;</span>
+<span class="nc" id="L47">	}</span>
+	public boolean isEmail_sent() {
+<span class="nc" id="L49">		return email_sent;</span>
+	}
+	public void setEmail_sent(boolean email_sent) {
+<span class="nc" id="L52">		this.email_sent = email_sent;</span>
+<span class="nc" id="L53">	}</span>
+	public boolean isRead() {
+<span class="nc" id="L55">		return read;</span>
+	}
+	public void setRead(boolean read) {
+<span class="nc" id="L58">		this.read = read;</span>
+<span class="nc" id="L59">	}</span>
+	public int getUser_id() {
+<span class="nc" id="L61">		return user_id;</span>
+	}
+	public void setUser_id(int user_id) {
+<span class="nc" id="L64">		this.user_id = user_id;</span>
+<span class="nc" id="L65">	}</span>
+	public String getLink() {
+<span class="nc" id="L67">		return link;</span>
+	}
+	public void setLink(String link) {
+<span class="nc" id="L70">		this.link = link;</span>
+<span class="nc" id="L71">	}</span>
+	public int getNotification_id() {
+<span class="nc" id="L73">		return notification_id;</span>
+	}
+	public void setNotification_id(int notification_id) {
+<span class="nc" id="L76">		this.notification_id = notification_id;</span>
+<span class="nc" id="L77">	}</span>
+	public String getMessage() {
+<span class="nc" id="L79">		return message;</span>
+	}
+	public void setMessage(String message) {
+<span class="nc" id="L82">		this.message = message;</span>
+<span class="nc" id="L83">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

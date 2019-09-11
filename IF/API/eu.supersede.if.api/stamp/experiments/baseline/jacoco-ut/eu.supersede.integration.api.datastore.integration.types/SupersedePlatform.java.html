@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupersedePlatform.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.datastore.integration.types</a> &gt; <span class="el_source">SupersedePlatform.java</span></div><h1>SupersedePlatform.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.datastore.integration.types;
+
+<span class="fc" id="L3">public class SupersedePlatform {</span>
+	String platform;
+	String mb_user;
+	String mb_password;
+	String mb_url;
+	
+	public String getPlatform() {
+<span class="fc" id="L10">		return platform;</span>
+	}
+	public void setPlatform(String platform) {
+<span class="fc" id="L13">		this.platform = platform;</span>
+<span class="fc" id="L14">	}</span>
+	public String getMb_user() {
+<span class="fc" id="L16">		return mb_user;</span>
+	}
+	public void setMb_User(String mb_user) {
+<span class="nc" id="L19">		this.mb_user = mb_user;</span>
+<span class="nc" id="L20">	}</span>
+	public String getMb_password() {
+<span class="fc" id="L22">		return mb_password;</span>
+	}
+	public void setMb_password(String mb_password) {
+<span class="fc" id="L25">		this.mb_password = mb_password;</span>
+<span class="fc" id="L26">	}</span>
+	
+	public String getMb_url() {
+<span class="fc" id="L29">		return mb_url;</span>
+	}
+	public void setMb_url(String mb_url) {
+<span class="fc" id="L32">		this.mb_url = mb_url;</span>
+<span class="fc" id="L33">	}</span>
+	@Override
+	public String toString(){
+<span class="fc" id="L36">		return &quot;SupersedePlatform[&quot; </span>
+				+ &quot;platform: &quot; + platform 
+				+ &quot;, mb_user: &quot; + mb_user 
+				+ &quot;, mb_password: &quot; + mb_password
+				+ &quot;, mb_url: &quot; + mb_url + &quot;]&quot;;
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

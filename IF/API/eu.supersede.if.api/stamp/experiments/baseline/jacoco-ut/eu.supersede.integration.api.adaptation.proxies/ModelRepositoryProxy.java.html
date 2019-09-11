@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ModelRepositoryProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.adaptation.proxies</a> &gt; <span class="el_source">ModelRepositoryProxy.java</span></div><h1>ModelRepositoryProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.adaptation.proxies;
+
+import java.net.URI;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
+
+import eu.supersede.integration.api.adaptation.types.GenericModel;
+import eu.supersede.integration.api.adaptation.types.IModel;
+import eu.supersede.integration.api.adaptation.types.ITypedModelId;
+import eu.supersede.integration.api.adaptation.types.ModelMetadata;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.adaptation.types.ModelType;
+import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
+import eu.supersede.integration.api.adaptation.types.Status;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+//import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+<span class="fc" id="L44">public class ModelRepositoryProxy &lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IModelRepository {</span>
+<span class="fc" id="L45">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L46">	private final static String SUPERSEDE_MODELREPOSITORY_ENDPOINT = </span>
+<span class="fc" id="L47">			IntegrationProperty.getProperty(&quot;modelrepository.endpoint&quot;);</span>
+
+	@Override
+	public IModel[] createModelInstances(ModelType modelType, ModelMetadata metadata) throws Exception {
+<span class="fc" id="L51">		Assert.notNull(modelType, &quot;Provide a valid model type&quot;);</span>
+<span class="fc" id="L52">		Assert.notNull(metadata, &quot;Provide a valid model metadata&quot;);</span>
+<span class="fc" id="L53">		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + &quot;models/&quot; + modelType);</span>
+<span class="fc" id="L54">		log.debug(&quot;Sending message createModelInstances with metadata: &quot; + metadata + &quot; for modelType: &quot; + modelType + &quot; to ModelRepository at uri &quot; + uri);</span>
+<span class="fc" id="L55">		return (IModel[]) insertJSONObjectAndReturnAnotherType(metadata, modelType.getTypeArrayClass(), uri, new ArrayList&lt;HttpStatus&gt;(){{add(HttpStatus.CREATED);}});</span>
+	}
+
+	@Override
+	public IModel updateModelInstance(ModelType modelType, ModelUpdateMetadata metadata, String modelId) throws Exception {
+<span class="fc" id="L60">		Assert.notNull(modelType, &quot;Provide a valid model type&quot;);</span>
+<span class="fc" id="L61">		Assert.notNull(metadata, &quot;Provide a valid model update metadata&quot;);</span>
+<span class="fc" id="L62">		Assert.notNull(modelId, &quot;Provide a valid model id&quot;);</span>
+<span class="fc" id="L63">		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + &quot;models/&quot; + modelType + &quot;/&quot; + modelId);</span>
+<span class="fc" id="L64">		log.debug(&quot;Sending message updateModelInstance with metadata: &quot; + metadata + &quot; for modelId: &quot; + modelId + &quot; for modelType: &quot; + modelType + &quot; to ModelRepository at uri &quot; + uri);</span>
+<span class="fc" id="L65">		return (IModel) updateJSONObjectAndReturnAnotherType(metadata, modelType.getTypeClass(), uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public IModel getModelInstance(ModelType modelType, String modelId) throws Exception {
+<span class="fc" id="L70">		Assert.notNull(modelType, &quot;Provide a valid model type&quot;);</span>
+<span class="fc" id="L71">		Assert.notNull(modelId, &quot;Provide a valid model id&quot;);</span>
+<span class="fc" id="L72">		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + &quot;models/&quot; + modelType + &quot;/&quot; + modelId);</span>
+<span class="fc" id="L73">		log.debug(&quot;Sending message getModelInstance for modelId: &quot; + modelId + &quot; for modelType: &quot; + modelType + &quot; to ModelRepository at uri &quot; + uri);</span>
+<span class="fc" id="L74">		return (IModel) getJSONObjectForType(modelType.getTypeClass(), uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public void deleteModelInstance(ModelType modelType, String modelId) throws Exception {
+<span class="fc" id="L79">		Assert.notNull(modelType, &quot;Provide a valid model type&quot;);</span>
+<span class="fc" id="L80">		Assert.notNull(modelId, &quot;Provide a valid model id&quot;);</span>
+<span class="fc" id="L81">		URI uri = new URI (SUPERSEDE_MODELREPOSITORY_ENDPOINT + &quot;models/&quot; + modelType + &quot;/&quot; + modelId);</span>
+<span class="fc" id="L82">		log.debug(&quot;Sending message deleteModelInstance for modelId: &quot; + modelId + &quot; for modelType: &quot; + modelType + &quot; to ModelRepository at uri &quot; + uri);</span>
+<span class="fc" id="L83">		deleteUriResource(uri, HttpStatus.NO_CONTENT);</span>
+<span class="fc" id="L84">	}</span>
+
+	@Override
+	/**
+	 * SystemId and status are optional
+	 */
+	public List&lt;IModel&gt; getModelInstances(ModelType modelType, ModelSystem systemId, Status status) throws Exception {
+<span class="fc" id="L91">		Assert.notNull(modelType, &quot;Provide a valid model type&quot;);</span>
+<span class="fc" id="L92">		String suri = SUPERSEDE_MODELREPOSITORY_ENDPOINT + &quot;models/&quot; + modelType + &quot;?&quot;;</span>
+
+<span class="fc bfc" id="L94" title="All 2 branches covered.">		if (systemId != null){</span>
+<span class="fc" id="L95">			suri += &quot;systemId=&quot; + systemId;</span>
+		}
+		
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">		if (status != null){</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">			if (systemId !=null){</span>
+<span class="nc" id="L100">				suri += &quot;&amp;&quot;;</span>
+			}
+<span class="nc" id="L102">			suri += &quot;status=&quot; + status;</span>
+		}
+		
+<span class="fc" id="L105">		log.debug(&quot;Sending message getModelInstances with modelType: &quot; + modelType </span>
+			+ &quot; with systemId: &quot; + systemId 
+			+ &quot; with status: &quot; + status
+			+ &quot; to ModelRepository at uri &quot; + suri);
+<span class="fc" id="L109">		return  (List&lt;IModel&gt;) getJSONObjectsListForType((Class&lt;T[]&gt;) modelType.getTypeArrayClass(), new URI (suri), HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public &lt;S extends GenericModel&gt; List&lt;IModel&gt; getModelInstances (ModelType modelType, S metadata) throws Exception {
+<span class="fc" id="L114">		Assert.notNull(modelType, &quot;Provide a valid model type&quot;);</span>
+<span class="fc" id="L115">		Assert.notNull(metadata, &quot;Provide a valid metadata&quot;);</span>
+<span class="fc" id="L116">		String suri = SUPERSEDE_MODELREPOSITORY_ENDPOINT + &quot;models/&quot; + modelType + &quot;?&quot;;</span>
+
+<span class="fc" id="L118">		boolean addParameterSeparator = false;</span>
+		try{
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">			if (metadata.getValue(&quot;systemId&quot;)!=null){</span>
+<span class="nc" id="L121">				suri += &quot;systemId=&quot; + URLEncoder.encode(metadata.getValue(&quot;systemId&quot;).toString(), &quot;UTF-8&quot;);</span>
+<span class="nc" id="L122">				addParameterSeparator = true;</span>
+			}
+<span class="nc" id="L124">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L126">		}</span>
+		
+		try{
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">			if (metadata.getValue(&quot;status&quot;)!=null){</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L131">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="nc" id="L133">					addParameterSeparator = true;</span>
+<span class="nc" id="L134">				suri += &quot;status=&quot; + URLEncoder.encode(metadata.getValue(&quot;status&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="fc" id="L136">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L138">		}</span>
+		
+		try{
+<span class="nc bnc" id="L141" title="All 2 branches missed.">			if (metadata.getValue(&quot;featureId&quot;)!=null){</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L143">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="nc" id="L145">					addParameterSeparator = true;</span>
+<span class="nc" id="L146">				suri += &quot;featureId=&quot; + URLEncoder.encode(metadata.getValue(&quot;featureId&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="fc" id="L148">		}catch (Exception e){</span>
+			//Ignored
+<span class="nc" id="L150">		}</span>
+		
+		try{
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">			if (metadata.getValue(&quot;name&quot;)!=null){</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L155">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="nc" id="L157">					addParameterSeparator = true;</span>
+<span class="nc" id="L158">				suri += &quot;name=&quot; + URLEncoder.encode(metadata.getValue(&quot;name&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="nc" id="L160">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L162">		}</span>
+			
+		try{
+<span class="nc bnc" id="L165" title="All 2 branches missed.">			if (metadata.getValue(&quot;url&quot;)!=null){</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L167">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="nc" id="L169">					addParameterSeparator = true;</span>
+<span class="nc" id="L170">				suri += &quot;url=&quot; + URLEncoder.encode(metadata.getValue(&quot;url&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="fc" id="L172">		}catch (Exception e){</span>
+			//Ignored
+<span class="nc" id="L174">		}</span>
+		
+		try{
+<span class="fc bfc" id="L177" title="All 2 branches covered.">			if (metadata.getValue(&quot;authorId&quot;)!=null){</span>
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L179">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="fc" id="L181">					addParameterSeparator = true;</span>
+<span class="fc" id="L182">				suri += &quot;authorId=&quot; + URLEncoder.encode(metadata.getValue(&quot;authorId&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="nc" id="L184">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L186">		}</span>
+		
+		try{
+<span class="pc bpc" id="L189" title="1 of 2 branches missed.">			if (metadata.getValue(&quot;creationDate&quot;)!=null){</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L191">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="nc" id="L193">					addParameterSeparator = true;</span>
+<span class="nc" id="L194">				suri += &quot;creationDate=&quot; + URLEncoder.encode(metadata.getValue(&quot;creationDate&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="nc" id="L196">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L198">		}</span>
+		
+		try{
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">			if (metadata.getValue(&quot;lastModificationDate&quot;)!=null){</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L203">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="nc" id="L205">					addParameterSeparator = true;</span>
+<span class="nc" id="L206">				suri += &quot;lastModificationDate=&quot; + URLEncoder.encode(metadata.getValue(&quot;lastModificationDate&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="nc" id="L208">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L210">		}</span>
+		
+		try{
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">			if (metadata.getValue(&quot;fileExtension&quot;)!=null){</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L215">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="nc" id="L217">					addParameterSeparator = true;</span>
+<span class="nc" id="L218">				suri += &quot;fileExtension=&quot; + URLEncoder.encode(metadata.getValue(&quot;fileExtension&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="nc" id="L220">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L222">		}</span>
+		
+		try{
+<span class="fc bfc" id="L225" title="All 2 branches covered.">			if (metadata.getValue(&quot;relativePath&quot;)!=null){</span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">				if (addParameterSeparator)</span>
+<span class="nc" id="L227">					suri += &quot;&amp;&quot;;</span>
+				else
+<span class="fc" id="L229">					addParameterSeparator = true;</span>
+<span class="fc" id="L230">				suri += &quot;relativePath=&quot; + URLEncoder.encode(metadata.getValue(&quot;relativePath&quot;).toString(), &quot;UTF-8&quot;);</span>
+			}
+<span class="nc" id="L232">		}catch (Exception e){</span>
+			//Ignored
+<span class="fc" id="L234">		}</span>
+		
+<span class="fc" id="L236">		log.debug(&quot;Sending message getModelInstances with modelType: &quot; + modelType </span>
+			+ &quot; with metadata: &quot; + metadata 
+			+ &quot; to ModelRepository at uri &quot; + suri);
+<span class="fc" id="L239">		return  (List&lt;IModel&gt;) getJSONObjectsListForType((Class&lt;T[]&gt;) modelType.getTypeArrayClass(), new URI (suri), HttpStatus.OK);</span>
+	}
+
+	@Override
+	public IModel getModelInstance(ITypedModelId modelId) throws Exception {
+<span class="nc" id="L244">		return getModelInstance(modelId.getModelType(), modelId.getNumber());</span>
+	}
+	
+	@Override
+	public IModel getModelInstance(ModelType modelType, ModelSystem system, String relativePath) throws Exception {
+<span class="fc" id="L249">		GenericModel metadata = new GenericModel();</span>
+<span class="fc" id="L250">		metadata.setRelativePath(relativePath);</span>
+<span class="fc" id="L251">		List&lt;IModel&gt; results = getModelInstances (modelType, metadata);</span>
+<span class="pc bpc" id="L252" title="1 of 2 branches missed.">		if (results.size()&gt;0)</span>
+<span class="fc" id="L253">			return results.get(0);</span>
+		else
+<span class="nc" id="L255">			return null;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
