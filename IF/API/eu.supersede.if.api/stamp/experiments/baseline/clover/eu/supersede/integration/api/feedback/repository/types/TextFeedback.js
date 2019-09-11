@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":66,"id":3330,"methods":[{"el":19,"sc":5,"sl":17},{"el":24,"sc":5,"sl":21},{"el":31,"sc":5,"sl":26},{"el":35,"sc":5,"sl":33},{"el":39,"sc":5,"sl":37},{"el":43,"sc":5,"sl":41},{"el":47,"sc":5,"sl":45},{"el":51,"sc":5,"sl":49},{"el":55,"sc":5,"sl":53},{"el":60,"sc":5,"sl":57},{"el":65,"sc":5,"sl":62}],"name":"TextFeedback","sl":8}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_0":{"methods":[{"sl":17},{"sl":21},{"sl":33},{"sl":37},{"sl":41},{"sl":45},{"sl":49},{"sl":53}],"name":"testCreateFeedbackForApplication","pass":true,"statements":[{"sl":22},{"sl":23},{"sl":34},{"sl":38},{"sl":42},{"sl":46},{"sl":50},{"sl":54}]},"test_105":{"methods":[{"sl":17},{"sl":37},{"sl":45},{"sl":53}],"name":"testGetFeedbacksForApplicationWithOrchestratorConfiguration","pass":true,"statements":[{"sl":38},{"sl":46},{"sl":54}]},"test_140":{"methods":[{"sl":17},{"sl":37},{"sl":45},{"sl":53}],"name":"testGetFeedbacksForApplication","pass":true,"statements":[{"sl":38},{"sl":46},{"sl":54}]},"test_47":{"methods":[{"sl":17},{"sl":37},{"sl":45},{"sl":53}],"name":"testGetFeedbacksForApplicationByUser","pass":true,"statements":[{"sl":38},{"sl":46},{"sl":54}]},"test_77":{"methods":[{"sl":17},{"sl":37},{"sl":45},{"sl":53}],"name":"testGetFeedbackForApplication","pass":true,"statements":[{"sl":38},{"sl":46},{"sl":54}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [0, 47, 140, 105, 77], [], [], [], [0], [0], [0], [], [], [], [], [], [], [], [], [], [0], [0], [], [], [0, 47, 140, 105, 77], [0, 47, 140, 105, 77], [], [], [0], [0], [], [], [0, 47, 140, 105, 77], [0, 47, 140, 105, 77], [], [], [0], [0], [], [], [0, 47, 140, 105, 77], [0, 47, 140, 105, 77], [], [], [], [], [], [], [], [], [], [], [], []]

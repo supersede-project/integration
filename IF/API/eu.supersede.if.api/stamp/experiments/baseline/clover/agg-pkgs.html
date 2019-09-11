@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    
+    
+    <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <link rel="stylesheet" href="aui/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all"/>
+    <!--[if IE 9]><link rel="stylesheet" href="aui/css/aui-ie9.min.css" media="all"/><![endif]-->
+
+    <style type="text/css" media="all">
+        @import url('style.css');
+        @import url('tree.css');
+        
+    </style>
+
+    <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-experimental.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-soy.min.js" type="text/javascript"></script>
+
+    <script src="package-nodes-tree.js" type="text/javascript"></script>
+    <script src="clover-tree.js" type="text/javascript"></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="clover-descriptions.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+
+            <title>eu.supersede.if.api 0.4.0-SNAPSHOT</title>
+    </head>
+
+<body  >
+    <div id="page">
+        
+        
+
+
+<header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-clover">
+                    <a href="http://openclover.org" title="Visit OpenClover home page"><span class="aui-header-logo-device">OpenClover</span></a>
+                </h1>
+                            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav">
+                    <li id="system-help-menu">
+                        <a class="aui-nav-link" title="Open online documentation" target="_blank"
+                           href="http://openclover.org/documentation">
+                            <span class="aui-icon aui-icon-small aui-iconfont-help">&#160;Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav aui-page-panel-nav-clover">
+                    
+
+<div class="aui-page-header-inner" style="margin-bottom: 20px;">
+    <div class="aui-page-header-image">
+                <div class="aui-avatar aui-avatar-large aui-avatar-project">
+            <div class="aui-avatar-inner">
+                                    <img src="img/clover_logo_large.png" alt="Clover icon"/>
+                            </div>
+        </div>
+            </div>
+    <div class="aui-page-header-main" >
+        <h1>
+                                        eu.supersede.if.api 0.4.0-SNAPSHOT
+                                </h1>
+    </div>
+</div>
+
+<nav class="aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+                                            <ul class="aui-nav">
+                <li class="aui-nav-selected">
+                    <a href="dashboard.html">Project overview</a>
+                </li>
+            </ul>
+        
+                <div class="aui-nav-heading packages-nav-heading">
+            <strong>Packages</strong>
+        </div>
+        <div class="aui-nav project-packages">
+            <form method="get" action="#" class="aui package-filter-container">
+                <input type="text" autocomplete="off" class="package-filter text"
+                       placeholder="Type to filter packages..." name="package-filter" id="package-filter"
+                       title="Start typing package name (or part of the name) to search through the tree. Use arrow keys and the Enter key to navigate."/>
+            </form>
+            <p class="package-filter-no-results-message hidden">
+                <small>No results found.</small>
+            </p>
+                                                  <div class="packages-tree-wrapper" data-root-relative="" data-package-name="">
+                <div class="packages-tree-container"></div>
+                <div class="clover-packages-lozenges"></div>
+            </div>
+        </div>
+        
+            </div>
+</nav>                </div>
+                <section class="aui-page-panel-content">
+                    <div class="aui-page-panel-content-clover">
+
+                    
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+            
+        <li><a href="dashboard.html">Project Clover database Wed Sep 11 2019 08:35:54 UTC</a></li>
+    </ol>
+    
+<h1 class="aui-h2-clover">
+            Project overview
+    </h1>
+<div class="aui-tabs horizontal-tabs">
+
+            <ul class="tabs-menu">
+            <li class="menu-item ">
+            <a href="dashboard.html">Dashboard</a>
+        </li>
+                <li class="menu-item active-tab">
+            <a href="pkg-summary.html"><strong>Application code</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="testsrc-pkg-summary.html"><strong>Test code</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="test-pkg-summary.html"><strong>Test results</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="top-risks.html"><strong>Top risks</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="quick-wins.html"><strong>Quick wins</strong></a>
+        </li>
+                                                <li class="menu-item ">
+                <a href="treemap.html"><strong>Coverage tree map</strong></a>
+            </li>
+            </ul>
+    <div class="tabs-pane active-pane" id="tabs-first">
+
+        <div>&#160;</div>
+
+            <div class="dashboard-widget">
+        <header class="dashboard-widget-header">
+            <h3>Code metrics</h3>
+        </header>
+        <div class="dashboard-widget-content">
+                        
+
+<div id="td-header-stats" class="aui-item" style="display: ">
+<div style="display: table">
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of branches in this project">Branches:</label></div>
+        <div class="stats-box-value">518</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of statements in this project">Statements:</label></div>
+        <div class="stats-box-value">4,891</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of methods in this project">Methods:</label></div>
+        <div class="stats-box-value">1,992</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of classes in this project">Classes:</label></div>
+        <div class="stats-box-value">281</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of files in this project">Files:</label></div>
+            <div class="stats-box-value">267</div>
+        </div>
+                <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of packages in this project">Packages:</label></div>
+            <div class="stats-box-value">46</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of lines of code in this project">LOC:</label></div>
+        <div class="stats-box-value">20,091</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of non-comment lines of code in this project">NCLOC:</label></div>
+        <div class="stats-box-value">14,021</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Cyclomatic complexity is the number of paths in this project">Total complexity:</label></div>
+        <div class="stats-box-value">2,467</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label">
+            <label title="Complexity density is the complexity divided by the number of statements in this project">Complexity density:</label>
+        </div>
+        <div class="stats-box-value">0.5</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of statements per method.">Statements/Method:</label></div>
+        <div class="stats-box-value">2.46</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of methods per class.">Methods/Class:</label></div>
+        <div class="stats-box-value">7.09</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Number of classes per package.">Classes/Package:</label></div>
+            <div class="stats-box-value">6.11</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Complexity divided by the number of methods in this project">Average method complexity:</label></div>
+        <div class="stats-box-value">1.24</div>
+    </div>
+</div>
+
+</div>
+                        
+
+<div id="td-filtered-header-stats" class="aui-item" style="display: none">
+<div style="display: table">
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of branches in this project">Branches:</label></div>
+        <div class="stats-box-value">518</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of statements in this project">Statements:</label></div>
+        <div class="stats-box-value">4,891</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of methods in this project">Methods:</label></div>
+        <div class="stats-box-value">1,992</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of classes in this project">Classes:</label></div>
+        <div class="stats-box-value">281</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of files in this project">Files:</label></div>
+            <div class="stats-box-value">267</div>
+        </div>
+                <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of packages in this project">Packages:</label></div>
+            <div class="stats-box-value">46</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of lines of code in this project">LOC:</label></div>
+        <div class="stats-box-value">20,091</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of non-comment lines of code in this project">NCLOC:</label></div>
+        <div class="stats-box-value">14,021</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Cyclomatic complexity is the number of paths in this project">Total complexity:</label></div>
+        <div class="stats-box-value">2,467</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label">
+            <label title="Complexity density is the complexity divided by the number of statements in this project">Complexity density:</label>
+        </div>
+        <div class="stats-box-value">0.5</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of statements per method.">Statements/Method:</label></div>
+        <div class="stats-box-value">2.46</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of methods per class.">Methods/Class:</label></div>
+        <div class="stats-box-value">7.09</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Number of classes per package.">Classes/Package:</label></div>
+            <div class="stats-box-value">6.11</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Complexity divided by the number of methods in this project">Average method complexity:</label></div>
+        <div class="stats-box-value">1.24</div>
+    </div>
+</div>
+
+</div>        </div>
+    </div>
+        
+
+
+        
+        <table id="projectSummaryTable" class="aui">
+                        <thead>
+    <tr>
+        <th width="30%">Project</th>
+                    <th colspan="1">
+                <label >Packages</label>
+            </th>
+                    <th colspan="1">
+                <label  title="The percentage of elements that have been filtered from this report.">% Filtered</label>
+            </th>
+                    <th colspan="1">
+                <label  title="The average number of paths per method.">Average Method Complexity</label>
+            </th>
+                    <th colspan="1">
+                <label  title="The number of statements and branches that were not covered during testing.">Uncovered Elements</label>
+            </th>
+                    <th colspan="2">
+                <label  title="The amount of code that was hit at least once during testing.">TOTAL Coverage</label>
+            </th>
+            </tr>
+</thead>
+            <tbody>
+                                <tr>
+    <td>
+                <span class="sortValue">Clover&#160;database&#160;Wed&#160;Sep&#160;11&#160;2019&#160;08:35:54&#160;UTC</span>
+                    Clover&#160;database&#160;Wed&#160;Sep&#160;11&#160;2019&#160;08:35:54&#160;UTC
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">46.0</span>
+            46
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2384539</span>
+            1.24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">3559.0</span>
+            3,559
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.519119</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.519119</span>51.9%</div><div style="display: table-cell">
+ <div title="51.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+            </tbody>
+        </table>
+
+        <div>&#160;</div>
+                <div>
+    Metrics from sub-packages:
+            <p class="aui-buttons">
+        <a href="pkg-summary.html"
+           class="aui-button"
+           id="simple-tooltip"
+           title="Calculate code metrics from sub-packages separately">
+            Separated
+        </a>
+        <a href="agg-pkgs.html"
+           class="aui-button active"
+           id="simple-tooltip"
+           title="Calculate a sum of metrics from a given package and all its sub-packages">
+            Aggregated
+        </a>
+    </p>
+</div>
+        
+        <table id="aggregatedPacakgesTable" class="aui aui-table-sortable">
+                        <thead>
+    <tr>
+        <th width="30%">Package (aggregated)</th>
+                            <th colspan="1">
+                <label >
+                    Packages
+                </label>
+            </th>
+                                <th colspan="1">
+                <label  title="The percentage of elements that have been filtered from this report.">
+                    % Filtered
+                </label>
+            </th>
+                                <th colspan="1">
+                <label  title="The average number of paths per method.">
+                    Average Method Complexity
+                </label>
+            </th>
+                                <th colspan="1">
+                <label  title="The number of statements and branches that were not covered during testing.">
+                    Uncovered Elements
+                </label>
+            </th>
+                                <th colspan="2">
+                <label  title="The amount of code that was hit at least once during testing.">
+                    TOTAL Coverage
+                </label>
+            </th>
+                        </tr>
+</thead>
+            <tbody>
+                <!-- render list of package coverage bargraphs -->
+                                                                                                            <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.analysis</span>
+                    eu.supersede.integration.api.analysis
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.060606</span>
+            1.06
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">105.0</span>
+            105
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.controller.exception</span>
+                    <a href="eu/supersede/integration/api/replan/controller/exception/pkg-summary.html" title="eu.supersede.integration.api.replan.controller.exception">eu.supersede.integration.api.replan.controller.exception</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">4.0</span>
+            4
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.exception</span>
+                    <a href="eu/supersede/integration/exception/pkg-summary.html" title="eu.supersede.integration.exception">eu.supersede.integration.exception</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.mail</span>
+                    eu.supersede.integration.api.mail
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0625</span>
+            1.06
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">43.0</span>
+            43
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.analysis.proxies</span>
+                    <a href="eu/supersede/integration/api/analysis/proxies/pkg-summary.html" title="eu.supersede.integration.api.analysis.proxies">eu.supersede.integration.api.analysis.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.25</span>
+            1.25
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">51.0</span>
+            51
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.mail.proxies</span>
+                    <a href="eu/supersede/integration/api/mail/proxies/pkg-summary.html" title="eu.supersede.integration.api.mail.proxies">eu.supersede.integration.api.mail.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.3333334</span>
+            1.33
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">17.0</span>
+            17
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.mail.types</span>
+                    <a href="eu/supersede/integration/api/mail/types/pkg-summary.html" title="eu.supersede.integration.api.mail.types">eu.supersede.integration.api.mail.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">26.0</span>
+            26
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback.types</span>
+                    <a href="eu/supersede/integration/api/feedback/types/pkg-summary.html" title="eu.supersede.integration.api.feedback.types">eu.supersede.integration.api.feedback.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0555556</span>
+            1.06
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">40.0</span>
+            40
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.analysis.types</span>
+                    <a href="eu/supersede/integration/api/analysis/types/pkg-summary.html" title="eu.supersede.integration.api.analysis.types">eu.supersede.integration.api.analysis.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">54.0</span>
+            54
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.dm.proxies</span>
+                    <a href="eu/supersede/integration/api/dm/proxies/pkg-summary.html" title="eu.supersede.integration.api.dm.proxies">eu.supersede.integration.api.dm.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">33.0</span>
+            33
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.175</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.175</span>17.5%</div><div style="display: table-cell">
+ <div title="17.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:17.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.datastore.fe</span>
+                    eu.supersede.integration.api.datastore.fe
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">76.0</span>
+            76
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.2244898</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.2244898</span>22.4%</div><div style="display: table-cell">
+ <div title="22.4% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:22.4%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.datastore.fe.types</span>
+                    <a href="eu/supersede/integration/api/datastore/fe/types/pkg-summary.html" title="eu.supersede.integration.api.datastore.fe.types">eu.supersede.integration.api.datastore.fe.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">76.0</span>
+            76
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.2244898</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.2244898</span>22.4%</div><div style="display: table-cell">
+ <div title="22.4% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:22.4%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.mdm.types</span>
+                    <a href="eu/supersede/integration/api/mdm/types/pkg-summary.html" title="eu.supersede.integration.api.mdm.types">eu.supersede.integration.api.mdm.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0530303</span>
+            1.05
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">221.0</span>
+            221
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.24054983</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.24054983</span>24.1%</div><div style="display: table-cell">
+ <div title="24.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:24.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.datastore.util</span>
+                    <a href="eu/supersede/integration/api/datastore/util/pkg-summary.html" title="eu.supersede.integration.api.datastore.util">eu.supersede.integration.api.datastore.util</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.4285715</span>
+            1.43
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">41.0</span>
+            41
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.29310346</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.29310346</span>29.3%</div><div style="display: table-cell">
+ <div title="29.3% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:29.3%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.mdm</span>
+                    eu.supersede.integration.api.mdm
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0544218</span>
+            1.05
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">253.0</span>
+            253
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.30110496</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.30110496</span>30.1%</div><div style="display: table-cell">
+ <div title="30.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:30.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback.orchestrator</span>
+                    eu.supersede.integration.api.feedback.orchestrator
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.206687</span>
+            1.21
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">700.0</span>
+            700
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.342723</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.342723</span>34.3%</div><div style="display: table-cell">
+ <div title="34.3% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:34.3%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback.orchestrator.types</span>
+                    <a href="eu/supersede/integration/api/feedback/orchestrator/types/pkg-summary.html" title="eu.supersede.integration.api.feedback.orchestrator.types">eu.supersede.integration.api.feedback.orchestrator.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.206687</span>
+            1.21
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">700.0</span>
+            700
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.342723</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.342723</span>34.3%</div><div style="display: table-cell">
+ <div title="34.3% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:34.3%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.controller.types</span>
+                    <a href="eu/supersede/integration/api/replan/controller/types/pkg-summary.html" title="eu.supersede.integration.api.replan.controller.types">eu.supersede.integration.api.replan.controller.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1130434</span>
+            1.11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">179.0</span>
+            179
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.37412587</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.37412587</span>37.4%</div><div style="display: table-cell">
+ <div title="37.4% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:37.4%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.controller</span>
+                    eu.supersede.integration.api.replan.controller
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">3.0</span>
+            3
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1139896</span>
+            1.11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">457.0</span>
+            457
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.43088418</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.43088418</span>43.1%</div><div style="display: table-cell">
+ <div title="43.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:43.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback</span>
+                    eu.supersede.integration.api.feedback
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">5.0</span>
+            5
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1219136</span>
+            1.12
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1174.0</span>
+            1,174
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.45037454</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.45037454</span>45%</div><div style="display: table-cell">
+ <div title="45% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:45%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.controller.proxies</span>
+                    <a href="eu/supersede/integration/api/replan/controller/proxies/pkg-summary.html" title="eu.supersede.integration.api.replan.controller.proxies">eu.supersede.integration.api.replan.controller.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1184211</span>
+            1.12
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">274.0</span>
+            274
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.46588695</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.46588695</span>46.6%</div><div style="display: table-cell">
+ <div title="46.6% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:46.6%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan</span>
+                    eu.supersede.integration.api.replan
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">7.0</span>
+            7
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.137931</span>
+            1.14
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">591.0</span>
+            591
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.4774536</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.4774536</span>47.7%</div><div style="display: table-cell">
+ <div title="47.7% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:47.7%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.datastore</span>
+                    eu.supersede.integration.api.datastore
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">4.0</span>
+            4
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1710526</span>
+            1.17
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">154.0</span>
+            154
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.4883721</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.4883721</span>48.8%</div><div style="display: table-cell">
+ <div title="48.8% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:48.8%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.orchestrator.types</span>
+                    <a href="eu/supersede/integration/api/monitoring/orchestrator/types/pkg-summary.html" title="eu.supersede.integration.api.monitoring.orchestrator.types">eu.supersede.integration.api.monitoring.orchestrator.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">44.0</span>
+            44
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.51111114</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.51111114</span>51.1%</div><div style="display: table-cell">
+ <div title="51.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback.repository</span>
+                    eu.supersede.integration.api.feedback.repository
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">233.0</span>
+            233
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.51458335</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.51458335</span>51.5%</div><div style="display: table-cell">
+ <div title="51.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback.repository.types</span>
+                    <a href="eu/supersede/integration/api/feedback/repository/types/pkg-summary.html" title="eu.supersede.integration.api.feedback.repository.types">eu.supersede.integration.api.feedback.repository.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">233.0</span>
+            233
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.51458335</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.51458335</span>51.5%</div><div style="display: table-cell">
+ <div title="51.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api</span>
+                    eu.supersede.integration.api
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">42.0</span>
+            42
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2399588</span>
+            1.24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">3493.0</span>
+            3,493
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.51465887</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.51465887</span>51.5%</div><div style="display: table-cell">
+ <div title="51.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu</span>
+                    eu
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">46.0</span>
+            46
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2384539</span>
+            1.24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">3559.0</span>
+            3,559
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.519119</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.519119</span>51.9%</div><div style="display: table-cell">
+ <div title="51.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration</span>
+                    eu.supersede.integration
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">46.0</span>
+            46
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2384539</span>
+            1.24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">3559.0</span>
+            3,559
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.519119</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.519119</span>51.9%</div><div style="display: table-cell">
+ <div title="51.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede</span>
+                    eu.supersede
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">46.0</span>
+            46
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2384539</span>
+            1.24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">3559.0</span>
+            3,559
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.519119</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.519119</span>51.9%</div><div style="display: table-cell">
+ <div title="51.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.pubsub</span>
+                    <a href="eu/supersede/integration/api/pubsub/pkg-summary.html" title="eu.supersede.integration.api.pubsub">eu.supersede.integration.api.pubsub</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">3.0</span>
+            3
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.3965517</span>
+            1.4
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">122.0</span>
+            122
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5234375</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5234375</span>52.3%</div><div style="display: table-cell">
+ <div title="52.3% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:52.3%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.pubsub.adaptation</span>
+                    <a href="eu/supersede/integration/api/pubsub/adaptation/pkg-summary.html" title="eu.supersede.integration.api.pubsub.adaptation">eu.supersede.integration.api.pubsub.adaptation</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2352941</span>
+            1.24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">30.0</span>
+            30
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.52380955</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.52380955</span>52.4%</div><div style="display: table-cell">
+ <div title="52.4% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:52.4%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.pubsub.evolution</span>
+                    <a href="eu/supersede/integration/api/pubsub/evolution/pkg-summary.html" title="eu.supersede.integration.api.pubsub.evolution">eu.supersede.integration.api.pubsub.evolution</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2352941</span>
+            1.24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">30.0</span>
+            30
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.53125</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.53125</span>53.1%</div><div style="display: table-cell">
+ <div title="53.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:53.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback.orchestrator.types.serialization</span>
+                    <a href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/pkg-summary.html" title="eu.supersede.integration.api.feedback.orchestrator.types.serialization">eu.supersede.integration.api.feedback.orchestrator.types.serialization</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">3.3</span>
+            3.3
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">49.0</span>
+            49
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5377358</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5377358</span>53.8%</div><div style="display: table-cell">
+ <div title="53.8% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:53.8%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.orchestrator</span>
+                    eu.supersede.integration.api.monitoring.orchestrator
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0172414</span>
+            1.02
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">74.0</span>
+            74
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5487805</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5487805</span>54.9%</div><div style="display: table-cell">
+ <div title="54.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:54.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.mdm.proxies</span>
+                    <a href="eu/supersede/integration/api/mdm/proxies/pkg-summary.html" title="eu.supersede.integration.api.mdm.proxies">eu.supersede.integration.api.mdm.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0666667</span>
+            1.07
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">32.0</span>
+            32
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5492958</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5492958</span>54.9%</div><div style="display: table-cell">
+ <div title="54.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:54.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.tenants</span>
+                    <a href="eu/supersede/integration/api/tenants/pkg-summary.html" title="eu.supersede.integration.api.tenants">eu.supersede.integration.api.tenants</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.2</span>
+            2.2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">19.0</span>
+            19
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5681818</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5681818</span>56.8%</div><div style="display: table-cell">
+ <div title="56.8% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:56.8%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.manager.proxies</span>
+                    <a href="eu/supersede/integration/api/monitoring/manager/proxies/pkg-summary.html" title="eu.supersede.integration.api.monitoring.manager.proxies">eu.supersede.integration.api.monitoring.manager.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.6</span>
+            2.6
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">24.0</span>
+            24
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5714286</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5714286</span>57.1%</div><div style="display: table-cell">
+ <div title="57.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:57.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.optimizer_v2.types</span>
+                    <a href="eu/supersede/integration/api/replan/optimizer_v2/types/pkg-summary.html" title="eu.supersede.integration.api.replan.optimizer_v2.types">eu.supersede.integration.api.replan.optimizer_v2.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1803279</span>
+            1.18
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">67.0</span>
+            67
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5759494</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5759494</span>57.6%</div><div style="display: table-cell">
+ <div title="57.6% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:57.6%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.optimizer.types</span>
+                    <a href="eu/supersede/integration/api/replan/optimizer/types/pkg-summary.html" title="eu.supersede.integration.api.replan.optimizer.types">eu.supersede.integration.api.replan.optimizer.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1803279</span>
+            1.18
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">67.0</span>
+            67
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5759494</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5759494</span>57.6%</div><div style="display: table-cell">
+ <div title="57.6% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:57.6%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.optimizer</span>
+                    eu.supersede.integration.api.replan.optimizer
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1746032</span>
+            1.17
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">67.0</span>
+            67
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5914634</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5914634</span>59.1%</div><div style="display: table-cell">
+ <div title="59.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:59.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.optimizer_v2</span>
+                    eu.supersede.integration.api.replan.optimizer_v2
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1746032</span>
+            1.17
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">67.0</span>
+            67
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5914634</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5914634</span>59.1%</div><div style="display: table-cell">
+ <div title="59.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:59.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.orchestrator.proxies</span>
+                    <a href="eu/supersede/integration/api/monitoring/orchestrator/proxies/pkg-summary.html" title="eu.supersede.integration.api.monitoring.orchestrator.proxies">eu.supersede.integration.api.monitoring.orchestrator.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0769231</span>
+            1.08
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">30.0</span>
+            30
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.5945946</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5945946</span>59.5%</div><div style="display: table-cell">
+ <div title="59.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:59.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.proxy</span>
+                    <a href="eu/supersede/integration/api/proxy/pkg-summary.html" title="eu.supersede.integration.api.proxy">eu.supersede.integration.api.proxy</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.868421</span>
+            2.87
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">230.0</span>
+            230
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6020761</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6020761</span>60.2%</div><div style="display: table-cell">
+ <div title="60.2% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:60.2%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.security</span>
+                    <a href="eu/supersede/integration/api/security/pkg-summary.html" title="eu.supersede.integration.api.security">eu.supersede.integration.api.security</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.8527132</span>
+            1.85
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">270.0</span>
+            270
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6035242</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6035242</span>60.4%</div><div style="display: table-cell">
+ <div title="60.4% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:60.4%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.json</span>
+                    <a href="eu/supersede/integration/api/json/pkg-summary.html" title="eu.supersede.integration.api.json">eu.supersede.integration.api.json</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.1111112</span>
+            2.11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">46.0</span>
+            46
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.60683763</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.60683763</span>60.7%</div><div style="display: table-cell">
+ <div title="60.7% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:60.7%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.rest.client</span>
+                    <a href="eu/supersede/integration/rest/client/pkg-summary.html" title="eu.supersede.integration.rest.client">eu.supersede.integration.rest.client</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">48.0</span>
+            48
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.62204725</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.62204725</span>62.2%</div><div style="display: table-cell">
+ <div title="62.2% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:62.2%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.rest</span>
+                    eu.supersede.integration.rest
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">48.0</span>
+            48
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.62204725</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.62204725</span>62.2%</div><div style="display: table-cell">
+ <div title="62.2% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:62.2%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring</span>
+                    eu.supersede.integration.api.monitoring
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">5.0</span>
+            5
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1314554</span>
+            1.13
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">224.0</span>
+            224
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6222597</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6222597</span>62.2%</div><div style="display: table-cell">
+ <div title="62.2% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:62.2%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.manager</span>
+                    eu.supersede.integration.api.monitoring.manager
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1964285</span>
+            1.2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">64.0</span>
+            64
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.627907</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.627907</span>62.8%</div><div style="display: table-cell">
+ <div title="62.8% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:62.8%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.adaptation.types</span>
+                    <a href="eu/supersede/integration/api/adaptation/types/pkg-summary.html" title="eu.supersede.integration.api.adaptation.types">eu.supersede.integration.api.adaptation.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1196581</span>
+            1.12
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">109.0</span>
+            109
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6279864</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6279864</span>62.8%</div><div style="display: table-cell">
+ <div title="62.8% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:62.8%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.feedback.proxies</span>
+                    <a href="eu/supersede/integration/api/feedback/proxies/pkg-summary.html" title="eu.supersede.integration.api.feedback.proxies">eu.supersede.integration.api.feedback.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1123595</span>
+            1.11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">201.0</span>
+            201
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6352087</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6352087</span>63.5%</div><div style="display: table-cell">
+ <div title="63.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:63.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.adaptation.proxies</span>
+                    <a href="eu/supersede/integration/api/adaptation/proxies/pkg-summary.html" title="eu.supersede.integration.api.adaptation.proxies">eu.supersede.integration.api.adaptation.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">3.0625</span>
+            3.06
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">74.0</span>
+            74
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6542056</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6542056</span>65.4%</div><div style="display: table-cell">
+ <div title="65.4% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:65.4%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.dm</span>
+                    eu.supersede.integration.api.dm
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0652174</span>
+            1.07
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">48.0</span>
+            48
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.65467626</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.65467626</span>65.5%</div><div style="display: table-cell">
+ <div title="65.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:65.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.manager.types</span>
+                    <a href="eu/supersede/integration/api/monitoring/manager/types/pkg-summary.html" title="eu.supersede.integration.api.monitoring.manager.types">eu.supersede.integration.api.monitoring.manager.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0588236</span>
+            1.06
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">40.0</span>
+            40
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6551724</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6551724</span>65.5%</div><div style="display: table-cell">
+ <div title="65.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:65.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.monitors</span>
+                    eu.supersede.integration.api.monitoring.monitors
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1616162</span>
+            1.16
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">86.0</span>
+            86
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.66536963</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.66536963</span>66.5%</div><div style="display: table-cell">
+ <div title="66.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:66.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.monitoring.monitors.proxies</span>
+                    <a href="eu/supersede/integration/api/monitoring/monitors/proxies/pkg-summary.html" title="eu.supersede.integration.api.monitoring.monitors.proxies">eu.supersede.integration.api.monitoring.monitors.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1616162</span>
+            1.16
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">86.0</span>
+            86
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.66536963</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.66536963</span>66.5%</div><div style="display: table-cell">
+ <div title="66.5% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:66.5%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.adaptation</span>
+                    eu.supersede.integration.api.adaptation
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">4.0</span>
+            4
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.2833333</span>
+            1.28
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">194.0</span>
+            194
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.6896</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6896</span>69%</div><div style="display: table-cell">
+ <div title="69% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:69%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.security.types</span>
+                    <a href="eu/supersede/integration/api/security/types/pkg-summary.html" title="eu.supersede.integration.api.security.types">eu.supersede.integration.api.security.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.8571428</span>
+            1.86
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">56.0</span>
+            56
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.7227723</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.7227723</span>72.3%</div><div style="display: table-cell">
+ <div title="72.3% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:72.3%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.datastore.proxies</span>
+                    <a href="eu/supersede/integration/api/datastore/proxies/pkg-summary.html" title="eu.supersede.integration.api.datastore.proxies">eu.supersede.integration.api.datastore.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">35.0</span>
+            35
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.72440946</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.72440946</span>72.4%</div><div style="display: table-cell">
+ <div title="72.4% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:72.4%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.properties</span>
+                    <a href="eu/supersede/integration/properties/pkg-summary.html" title="eu.supersede.integration.properties">eu.supersede.integration.properties</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.7777778</span>
+            1.78
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">14.0</span>
+            14
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.7307692</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.7307692</span>73.1%</div><div style="display: table-cell">
+ <div title="73.1% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:73.1%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.fe</span>
+                    <a href="eu/supersede/integration/api/fe/pkg-summary.html" title="eu.supersede.integration.api.fe">eu.supersede.integration.api.fe</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.4375</span>
+            1.44
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">20.0</span>
+            20
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.76744187</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.76744187</span>76.7%</div><div style="display: table-cell">
+ <div title="76.7% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:76.7%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.dm.types</span>
+                    <a href="eu/supersede/integration/api/dm/types/pkg-summary.html" title="eu.supersede.integration.api.dm.types">eu.supersede.integration.api.dm.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">15.0</span>
+            15
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.8484849</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.8484849</span>84.8%</div><div style="display: table-cell">
+ <div title="84.8% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:84.8%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.adaptation.dashboad</span>
+                    eu.supersede.integration.api.adaptation.dashboad
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1052631</span>
+            1.11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">11.0</span>
+            11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.86585367</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.86585367</span>86.6%</div><div style="display: table-cell">
+ <div title="86.6% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:86.6%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.adaptation.dashboad.types</span>
+                    <a href="eu/supersede/integration/api/adaptation/dashboad/types/pkg-summary.html" title="eu.supersede.integration.api.adaptation.dashboad.types">eu.supersede.integration.api.adaptation.dashboad.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.1052631</span>
+            1.11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">11.0</span>
+            11
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.86585367</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.86585367</span>86.6%</div><div style="display: table-cell">
+ <div title="86.6% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:86.6%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.datastore.integration</span>
+                    eu.supersede.integration.api.datastore.integration
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.8888889</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.8888889</span>88.9%</div><div style="display: table-cell">
+ <div title="88.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:88.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.datastore.integration.types</span>
+                    <a href="eu/supersede/integration/api/datastore/integration/types/pkg-summary.html" title="eu.supersede.integration.api.datastore.integration.types">eu.supersede.integration.api.datastore.integration.types</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.8888889</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.8888889</span>88.9%</div><div style="display: table-cell">
+ <div title="88.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:88.9%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.federation</span>
+                    <a href="eu/supersede/integration/federation/pkg-summary.html" title="eu.supersede.integration.federation">eu.supersede.integration.federation</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.5</span>
+            1.5
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">2.0</span>
+            2
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.9130435</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.9130435</span>91.3%</div><div style="display: table-cell">
+ <div title="91.3% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:91.3%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.adaptation.dashboard</span>
+                    eu.supersede.integration.api.adaptation.dashboard
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">1.0</span>100%</div><div style="display: table-cell">
+ <div title="100% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:100%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.adaptation.dashboard.proxies</span>
+                    <a href="eu/supersede/integration/api/adaptation/dashboard/proxies/pkg-summary.html" title="eu.supersede.integration.api.adaptation.dashboard.proxies">eu.supersede.integration.api.adaptation.dashboard.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">1.0</span>100%</div><div style="display: table-cell">
+ <div title="100% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:100%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.optimizer_v2.proxies</span>
+                    <a href="eu/supersede/integration/api/replan/optimizer_v2/proxies/pkg-summary.html" title="eu.supersede.integration.api.replan.optimizer_v2.proxies">eu.supersede.integration.api.replan.optimizer_v2.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">1.0</span>100%</div><div style="display: table-cell">
+ <div title="100% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:100%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                                                                                                <tr>
+    <td>
+                <span class="sortValue">eu.supersede.integration.api.replan.optimizer.proxies</span>
+                    <a href="eu/supersede/integration/api/replan/optimizer/proxies/pkg-summary.html" title="eu.supersede.integration.api.replan.optimizer.proxies">eu.supersede.integration.api.replan.optimizer.proxies</a>
+                    </td>
+
+                
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0%
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            1
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">0.0</span>
+            0
+        </td>
+        
+            
+        <td class=" " align="right">
+            <span class="sortValue">1.0</span>
+            <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">1.0</span>100%</div><div style="display: table-cell">
+ <div title="100% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:100%"></div></div></div></div>
+        </td>
+        
+    </tr>
+                                                </tbody>
+        </table>
+
+    </div> <!-- tabs-pane active-pane -->
+</div> <!-- aui-tabs horizontal-tabs -->
+
+                        </div> <!-- class="aui-page-panel-content-clover" -->
+                    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul>
+            <li>
+                Report generated by <a target="_new" href="http://openclover.org">OpenClover</a> v 4.2.0
+                on Wed Sep 11 2019 08:40:43 UTC using coverage data from Wed Sep 11 2019 08:40:40 UTC.
+            </li>
+        </ul>
+        <ul>
+            <li>Clover free edition. </li>
+        </ul>
+    </section>
+</footer>                </section> <!-- class="aui-page-panel-content" -->
+            </div> <!-- class="aui-page-panel-inner" -->
+        </div> <!-- class="aui-page-panel" -->
+    </div> <!-- id="page" -->
+</body>
+</html>
