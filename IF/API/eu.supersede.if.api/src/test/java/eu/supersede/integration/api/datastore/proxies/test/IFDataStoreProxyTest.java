@@ -37,12 +37,14 @@ import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
+@Ignore
 public class IFDataStoreProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(IFDataStoreProxyTest.class);
 	private static IFDataStoreProxy<Object, Object> proxy;
 	private static IFAuthenticationManager am;
 	private static AuthorizationToken token;
 
+	@Ignore
 	@BeforeClass
 	public static void setup() throws Exception {
 		proxy = new IFDataStoreProxy<Object, Object>();
@@ -52,6 +54,7 @@ public class IFDataStoreProxyTest {
 		token = am.getAuthorizationToken(admin, password, "");
 	}
 
+	@Ignore
 	@Test
 	public void testGetSupersedePlatforms() throws Exception {
 		List<SupersedePlatform> platforms = proxy.getSupersedePlatforms(token);
@@ -60,16 +63,16 @@ public class IFDataStoreProxyTest {
 			log.debug("Platform: " + platform);
 	}
 
-	@Test
 	@Ignore
+	@Test
 	public void testCreateGetDeleteSupersedePlatform() throws Exception {
 		SupersedePlatform platform = testInsertSupersedePlatform();
 		platform = testGetSupersedePlatform(platform.getPlatform());
 		testDeleteSupersedePlatform(platform.getPlatform());
 	}
 
-	@Test
 	@Ignore
+	@Test
 	public void setupSupersedePlatforms() throws Exception {
 		// Reset platforms
 		resetPlatforms();
