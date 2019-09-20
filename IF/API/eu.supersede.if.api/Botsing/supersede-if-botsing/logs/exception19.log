@@ -1,0 +1,10 @@
+org.springframework.web.client.HttpServerErrorException: 500 Internal Server Error
+        at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:94)
+        at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:667)
+        at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:620)
+        at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:595)
+        at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:557)
+        at eu.supersede.integration.rest.client.IFMessageClient.postJsonMessage(IFMessageClient.java:145)
+        at eu.supersede.integration.api.proxy.IFServiceProxy.postJSONString(IFServiceProxy.java:608)
+        at eu.supersede.integration.api.adaptation.proxies.AdapterProxy.enactAdaptationDecisionActionsForFC(AdapterProxy.java:82)
+        at eu.supersede.dynadapt.adapter.dashboard.rest.AdaptationRest.enactAdaptation(AdaptationRest.java:119)

@@ -1,0 +1,11 @@
+java.lang.NullPointerException: null
+        at eu.supersede.integration.api.datastore.util.PasswordCrypt.hexStringToByteArray(PasswordCrypt.java:54)
+        at eu.supersede.integration.api.datastore.util.PasswordCrypt.decryptPassword(PasswordCrypt.java:90)
+        at eu.supersede.integration.api.datastore.proxies.IFDataStoreProxy.getSupersedePlatform(IFDataStoreProxy.java:78)
+        at eu.supersede.integration.federation.SupersedeFederation.<init>(SupersedeFederation.java:24)
+        at eu.supersede.integration.properties.IntegrationProperty.getFederation(IntegrationProperty.java:94)
+        at eu.supersede.integration.properties.IntegrationProperty.getLocalPlatform(IntegrationProperty.java:108)
+        at eu.supersede.integration.properties.IntegrationProperty.getMBConnection(IntegrationProperty.java:85)
+        at eu.supersede.integration.api.pubsub.TopicMessageAgent.<init>(TopicMessageAgent.java:37)
+        at eu.supersede.integration.api.pubsub.TopicSubscriber.<init>(TopicSubscriber.java:66)
+        at eu.supersede.integration.api.pubsub.evolution.EvolutionSubscriber.<init>(EvolutionSubscriber.java:14)

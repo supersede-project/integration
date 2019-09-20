@@ -1,0 +1,9 @@
+org.apache.axis2.AxisFault: Old credential does not match with the existing credentials.
+        at org.apache.axis2.util.Utils.getInboundFaultFromMessageContext(Utils.java:531)
+        at org.apache.axis2.description.RobustOutOnlyAxisOperation$RobustOutOnlyOperationClient.handleResponse(RobustOutOnlyAxisOperation.java:91)
+        at org.apache.axis2.description.OutInAxisOperationClient.send(OutInAxisOperation.java:421)
+        at org.apache.axis2.description.OutInAxisOperationClient.executeImpl(OutInAxisOperation.java:229)
+        at org.apache.axis2.client.OperationClient.execute(OperationClient.java:165)
+        at org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceStub.updateCredential(RemoteUserStoreManagerServiceStub.java:5753)
+        at eu.supersede.integration.api.security.IFUserStoreManager.updateCredential(IFUserStoreManager.java:487)
+        at eu.supersede.integration.api.security.IFAuthenticationManager.updateUserCredential(IFAuthenticationManager.java:201)

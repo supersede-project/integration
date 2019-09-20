@@ -1,0 +1,4 @@
+org.wso2.carbon.user.core.UserStoreException: Username 'test' already exists in the system. Please pick another username.
+	at eu.supersede.integration.api.security.IFUserStoreManager.handleException(IFUserStoreManager.java:573)
+	at eu.supersede.integration.api.security.IFUserStoreManager.addUser(IFUserStoreManager.java:142)
+	at eu.supersede.integration.api.security.IFAuthenticationManager.addUser(IFAuthenticationManager.java:165)

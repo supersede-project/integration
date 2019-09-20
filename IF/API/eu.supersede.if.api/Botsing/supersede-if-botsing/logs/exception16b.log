@@ -1,0 +1,4 @@
+org.wso2.carbon.user.core.UserStoreException: Cannot delete user who is not exist
+	at eu.supersede.integration.api.security.IFUserStoreManager.handleException(IFUserStoreManager.java:573)
+	at eu.supersede.integration.api.security.IFUserStoreManager.deleteUser(IFUserStoreManager.java:211)
+	at eu.supersede.integration.api.security.IFAuthenticationManager.deleteUser(IFAuthenticationManager.java:239)
