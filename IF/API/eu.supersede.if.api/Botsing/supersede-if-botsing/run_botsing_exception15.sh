@@ -1,1 +1,1 @@
-java -jar botsing-reproduction-1.0.7.jar -Dsearch_budget=180 -Dpopulation=100 -Dtest_dir=crash-reproduction-tests -crash_log ./logs/exception15.log -target_frame 7 -projectCP ./libs -model ../models -Dp_object_pool=1.0 -Dsandbox=False
+java -jar botsing-reproduction-1.0.7.jar -Dsearch_budget=180 -Dpopulation=100 -Dtest_dir=../results/crash-reproduction-tests -crash_log ./logs/exception15.log -target_frame 7 -projectCP ./libs -model ../results/models -Dp_object_pool=1.0 -Dsandbox=False

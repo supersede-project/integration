@@ -22,5 +22,5 @@ mvn install:install-file -Dfile=dependency/org.wso2.carbon.logging-4.4.1.jar -Dg
 mvn install:install-file -Dfile=dependency/org.wso2.securevault-1.0.0-wso2v2.jar -DgroupId=org.wso2.securevault -DartifactId=org.wso2.securevault -Dversion=1.0.0-wso2v2 -Dpackaging=jar
 
 mvn clean package -DskipTests
-echo -n "./target/classes:./target/test-classes:" > classpath.txt
-for i in ./dependency/*.jar; do echo -n $i":"; done >> classpath.txt
+echo -n "./target/classes:./target/test-classes:" > results/classpath.txt
+for i in ./dependency/*.jar; do echo -n $i":"; done >> results/classpath.txt
