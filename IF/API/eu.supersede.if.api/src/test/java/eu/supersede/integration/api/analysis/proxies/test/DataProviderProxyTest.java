@@ -36,6 +36,7 @@ import org.slf4j.LoggerFactory;
 import eu.supersede.integration.api.analysis.proxies.DataProviderProxy;
 import eu.supersede.integration.api.analysis.types.MonitoringData;
 
+@Ignore
 public class DataProviderProxyTest {
 	private final Logger log = LoggerFactory.getLogger(this.getClass()); 
 	private static DataProviderProxy proxy;
@@ -47,7 +48,6 @@ public class DataProviderProxyTest {
     }
 
     @Test
-    @Ignore
     public void testIngestMonitoringData() throws Exception{
     	List<MonitoringData> dataList = createMonitoringDataList();
 		String timeStamp = Calendar.getInstance().getTime().toString();
@@ -58,7 +58,6 @@ public class DataProviderProxyTest {
     }
     
     @Test
-    @Ignore
     public void testIngestJsonData() throws Exception{
     	JSONObject jsonData = createMonitoringDataListAsJson();
 		String topic = "atos";
@@ -66,7 +65,6 @@ public class DataProviderProxyTest {
     }
     
     @Test
-    @Ignore
     public void testIngestData() throws Exception{
     	JSONObject jsonData = createMonitoringDataListAsJson();
 		String topic = "atos";
@@ -74,7 +72,6 @@ public class DataProviderProxyTest {
     }
     
     @Test
-    @Ignore
     public void testIngestDataSequence() throws Exception{
     	JSONObject jsonData = createMonitoringDataListAsJson();
 		String topic = "atos";

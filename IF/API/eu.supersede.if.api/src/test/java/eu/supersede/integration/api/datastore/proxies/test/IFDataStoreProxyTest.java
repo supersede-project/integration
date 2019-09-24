@@ -40,6 +40,7 @@ import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFAuthenticationManager;
 import eu.supersede.integration.api.security.types.AuthorizationToken;
 
+@Ignore
 public class IFDataStoreProxyTest {
 	private static final Logger log = LoggerFactory.getLogger(IFDataStoreProxyTest.class);
 	private static IFDataStoreProxy<Object, Object> proxy;
@@ -49,15 +50,13 @@ public class IFDataStoreProxyTest {
 	@BeforeClass
 	public static void setup() throws Exception {
 		proxy = new IFDataStoreProxy<Object, Object>();
-//		String admin = System.getProperty("is.admin.user");
-//		String password = System.getProperty("is.admin.passwd");
-		// Read account (user, password) from classpath property file
 		String admin = IFAccount.getUser();
 		String password = IFAccount.getPassword();
 		am = new IFAuthenticationManager(admin, password);
 		token = am.getAuthorizationToken(admin, password, "");
 	}
-
+	
+	@Ignore
 	@Test
 	public void testGetSupersedePlatforms() throws Exception {
 		List<SupersedePlatform> platforms = proxy.getSupersedePlatforms(token);
@@ -75,6 +74,7 @@ public class IFDataStoreProxyTest {
 	}
 
 	@Test
+	@Ignore
 	public void setupSupersedePlatforms() throws Exception {
 		// Reset platforms
 		resetPlatforms();

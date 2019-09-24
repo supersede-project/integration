@@ -35,19 +35,15 @@ public class IFTenantsManagerTest {
 	
 	@BeforeClass
     public static void setup() throws Exception {
-		// Set Identity Server user/password as Java launcher properties:
-		// -Dis.admin.user=
-		// -Dis.admin.passwd=
-		// for each tenant organization, use its admin account
-		String admin = System.getProperty("is.admin.user");
-		String password = System.getProperty("is.admin.passwd");
+	String admin = IFAccount.getUser();
+	String password = IFAccount.getPassword();
         tm = new IFTenantsManager(admin, password);
     }
 	
 	//Authentication Test
 	@Test
     public void getAllTenantsTest() throws Exception{
-		List<TenantInfoBean> tenants = tm.getAllTenants();
+	List<TenantInfoBean> tenants = tm.getAllTenants();
     	Assert.notEmpty(tenants);
     	System.out.println("Located " + tenants.size() + " tenants");
     }

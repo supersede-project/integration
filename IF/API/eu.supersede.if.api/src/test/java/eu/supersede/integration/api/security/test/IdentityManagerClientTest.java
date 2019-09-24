@@ -54,10 +54,8 @@ public class IdentityManagerClientTest {
 	
     @BeforeClass
     public static void setup() throws Exception {
-//    	String admin = IntegrationProperty.getProperty("is.admin.user");
-//		String password = IntegrationProperty.getProperty("is.admin.passwd");
-    	admin = System.getProperty("is.admin.user");
-    	password = System.getProperty("is.admin.passwd");
+	admin = IFAccount.getUser();
+	password = IFAccount.getPassword();
         usm = new IFUserStoreManager(admin, password);
     }
 
