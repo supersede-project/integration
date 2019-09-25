@@ -63,7 +63,7 @@ public class DMOptimizerProxyTest {
 			publisher = new AdaptationPublisher(true, federation.getLocalFederatedSupersedePlatform().getPlatform());
 			Alert alert = createAlert();
 			publisher.publishAdaptationAlertMesssage(alert);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (publisher != null){

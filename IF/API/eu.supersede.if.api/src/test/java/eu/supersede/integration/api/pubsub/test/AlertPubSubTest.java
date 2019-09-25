@@ -24,6 +24,7 @@ import eu.supersede.integration.api.json.JsonUtils;
 import eu.supersede.integration.api.pubsub.SubscriptionTopic;
 import eu.supersede.integration.api.pubsub.TopicPublisher;
 import eu.supersede.integration.api.pubsub.TopicSubscriber;
+import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.federation.SupersedeFederation;
 
 public class AlertPubSubTest implements Runnable {
@@ -41,7 +42,7 @@ public class AlertPubSubTest implements Runnable {
 		startPublisher();
 	}
 
-	private void startPublisher() throws NamingException, JsonProcessingException {
+	private void startPublisher() throws NamingException, JsonProcessingException, IFException {
 		TopicPublisher publisher = null;
 		try {
 			try {
@@ -55,6 +56,9 @@ public class AlertPubSubTest implements Runnable {
 					federation.getLocalFederatedSupersedePlatform().getPlatform());
 			Alert alert = createAlert();
 			String json = JsonUtils.serializeObjectAsJsonString(alert);
+			if (json == null) {
+				throw new IFException("Alert could not be serialized in JSON");
+			}
 			publisher.publishTextMesssageInTopic(json);
 			try {
 				while (!messageReceived) {
@@ -81,12 +85,12 @@ public class AlertPubSubTest implements Runnable {
 		try {
 			// Invoking Subscriber
 			startSubscriber();
-		} catch (NamingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void startSubscriber() throws NamingException {
+	private void startSubscriber() throws Exception {
 		TopicSubscriber subscriber = null;
 		try {
 			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);
@@ -102,6 +106,7 @@ public class AlertPubSubTest implements Runnable {
 				e.printStackTrace();
 			}
 			subscriber.closeSubscription();
+			
 			subscriber.closeTopicConnection();
 		} catch (JMSException e) {
 			e.printStackTrace();

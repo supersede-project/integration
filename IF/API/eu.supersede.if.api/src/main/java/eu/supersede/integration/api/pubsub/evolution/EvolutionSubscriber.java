@@ -35,18 +35,18 @@ public class EvolutionSubscriber extends TopicSubscriber implements iEvolutionSu
 	}
 
 	@Override
-	public void createEvolutionAlertSubscriptionAndKeepListening(MessageListener messageListener) {
+	public void createEvolutionAlertSubscriptionAndKeepListening(MessageListener messageListener) throws Exception {
 		createTopicSubscriptionAndKeepListening (messageListener);
 	}
 
 	@Override
 	public void createEvolutionAlertSubscriptionAndCloseAfterAWhile(MessageListener messageListener,
-			int timeInMilliseconds) throws InterruptedException {
+			int timeInMilliseconds) throws Exception {
 		createTopicSubscriptionAndCloseAfterAWhile(messageListener, timeInMilliseconds);
 	}
 
 	@Override
-	public EvolutionAlertMessageListener createEvolutionAlertSubscriptionAndKeepListening() {
+	public EvolutionAlertMessageListener createEvolutionAlertSubscriptionAndKeepListening() throws Exception {
 		EvolutionAlertMessageListener messageListener = new EvolutionAlertMessageListener();
 		createTopicSubscriptionAndKeepListening(messageListener);
 		return messageListener;
@@ -54,7 +54,7 @@ public class EvolutionSubscriber extends TopicSubscriber implements iEvolutionSu
 
 	@Override
 	public EvolutionAlertMessageListener createEvolutionAlertSubscriptionAndCloseAfterAWhile(int timeInMilliseconds)
-			throws InterruptedException {
+			throws Exception {
 		EvolutionAlertMessageListener messageListener = new EvolutionAlertMessageListener();
 		createTopicSubscriptionAndCloseAfterAWhile(messageListener, timeInMilliseconds);
 		return messageListener;

@@ -22,6 +22,7 @@ import eu.supersede.integration.api.pubsub.evolution.EvolutionPublisher;
 import eu.supersede.integration.api.pubsub.evolution.EvolutionSubscriber;
 import eu.supersede.integration.api.pubsub.evolution.iEvolutionPublisher;
 import eu.supersede.integration.api.pubsub.evolution.iEvolutionSubscriber;
+import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.federation.SupersedeFederation;
 
 public class EvolutionAlertPubSubTest implements Runnable{
@@ -39,7 +40,7 @@ public class EvolutionAlertPubSubTest implements Runnable{
     	startPublisher();
     }
 
-	private void startPublisher() throws NamingException, JsonProcessingException {
+	private void startPublisher() throws NamingException, JsonProcessingException, IFException {
 		iEvolutionPublisher publisher = null;
 		int num_messages = 1;
 		try {
@@ -53,7 +54,9 @@ public class EvolutionAlertPubSubTest implements Runnable{
 			publisher = new EvolutionPublisher(true, federation.getLocalFederatedSupersedePlatform().getPlatform());
 			Alert alert = createAlert();
 			for (int i=0; i<num_messages; i++){
-				publisher.publishEvolutionAlertMesssage(alert);
+				if (!publisher.publishEvolutionAlertMesssage(alert)) {
+					throw new IFException ("An alert could not be published");
+				}
 			}
 			try {
 				while (!messageReceived) {
@@ -80,12 +83,12 @@ public class EvolutionAlertPubSubTest implements Runnable{
 		try {
 			// Invoking Subscriber
 			startSubscriber();
-		} catch (NamingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void startSubscriber() throws NamingException {
+	private void startSubscriber() throws Exception {
 		iEvolutionSubscriber subscriber = null;
 		try {
 			subscriber = new EvolutionSubscriber();

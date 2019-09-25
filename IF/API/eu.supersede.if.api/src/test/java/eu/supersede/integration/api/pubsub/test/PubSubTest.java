@@ -68,12 +68,12 @@ public class PubSubTest implements Runnable {
 		try {
 			// Invoking Subscriber
 			startSubscriber();
-		} catch (NamingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void startSubscriber() throws NamingException {
+	private void startSubscriber() throws Exception {
 		TopicSubscriber subscriber = null;
 		try {
 			subscriber = new TopicSubscriber(SubscriptionTopic.ANALISIS_DM_EVOLUTION_EVENT_TOPIC);

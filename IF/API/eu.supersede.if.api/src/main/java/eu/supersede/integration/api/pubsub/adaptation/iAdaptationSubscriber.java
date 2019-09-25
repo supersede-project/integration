@@ -6,10 +6,10 @@ import eu.supersede.integration.api.pubsub.iTopicSubscriber;
 
 public interface iAdaptationSubscriber extends iTopicSubscriber{	
 	//Adaptation Alert Subscriptor
-	void createAdaptationAlertSubscriptionAndKeepListening(MessageListener messageListener);
+	void createAdaptationAlertSubscriptionAndKeepListening(MessageListener messageListener) throws Exception;
 	void createAdaptationAlertSubscriptionAndCloseAfterAWhile(MessageListener messageListener, int timeInMilliseconds)
-		throws InterruptedException;
-	AdaptationAlertMessageListener createAdaptationAlertSubscriptionAndKeepListening();
+		throws InterruptedException, Exception;
+	AdaptationAlertMessageListener createAdaptationAlertSubscriptionAndKeepListening() throws Exception;
 	AdaptationAlertMessageListener createAdaptationAlertSubscriptionAndCloseAfterAWhile(int timeInMilliseconds)
-			throws InterruptedException;
+			throws Exception;
 }

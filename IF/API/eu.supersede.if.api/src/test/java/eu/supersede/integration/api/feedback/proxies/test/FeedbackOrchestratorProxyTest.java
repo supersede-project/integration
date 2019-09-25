@@ -522,7 +522,8 @@ public class FeedbackOrchestratorProxyTest {
 		parameter = proxy.updateParameterInMechanism(parameter, mechanismId);
 		Assert.isTrue(parameter.getValue().contains("modified"));
 		
-		proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+		HttpStatus status = proxy.deleteParameterInMechanism(parameter.getId(), mechanismId);
+		Assert.isTrue(status == HttpStatus.OK);
 	
 	}
 	

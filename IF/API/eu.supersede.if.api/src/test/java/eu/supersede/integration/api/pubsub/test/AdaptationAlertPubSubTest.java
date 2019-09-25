@@ -21,6 +21,7 @@ import eu.supersede.integration.api.pubsub.adaptation.AdaptationPublisher;
 import eu.supersede.integration.api.pubsub.adaptation.AdaptationSubscriber;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationPublisher;
 import eu.supersede.integration.api.pubsub.adaptation.iAdaptationSubscriber;
+import eu.supersede.integration.exception.IFException;
 import eu.supersede.integration.federation.SupersedeFederation;
 
 public class AdaptationAlertPubSubTest implements Runnable{
@@ -76,12 +77,12 @@ public class AdaptationAlertPubSubTest implements Runnable{
 		try {
 			// Invoking Subscriber
 			startSubscriber();
-		} catch (NamingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void startSubscriber() throws NamingException {
+	private void startSubscriber() throws Exception {
 		iAdaptationSubscriber subscriber = null;
 		try {
 			subscriber = new AdaptationSubscriber();
@@ -96,12 +97,18 @@ public class AdaptationAlertPubSubTest implements Runnable{
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Received alert: " + messageListener.getNextAlert());
+			
+			Alert alert = messageListener.getNextAlert();
+			if (alert == null) {
+				throw new IFException ("Alert not received");
+			}
+			System.out.println("Received alert: " + alert);
 			messageReceived = true;
 			subscriber.closeSubscription();
 			subscriber.closeTopicConnection();
 		} catch (JMSException e) {
 			e.printStackTrace();
+			throw e;
 		}finally{
 			if (subscriber != null){
 				try {

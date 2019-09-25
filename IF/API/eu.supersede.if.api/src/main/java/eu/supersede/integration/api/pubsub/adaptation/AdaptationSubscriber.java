@@ -32,18 +32,18 @@ public class AdaptationSubscriber extends TopicSubscriber implements iAdaptation
 	}
 
 	@Override
-	public void createAdaptationAlertSubscriptionAndKeepListening(MessageListener messageListener) {
+	public void createAdaptationAlertSubscriptionAndKeepListening(MessageListener messageListener) throws Exception {
 		createTopicSubscriptionAndKeepListening (messageListener);
 	}
 
 	@Override
 	public void createAdaptationAlertSubscriptionAndCloseAfterAWhile(MessageListener messageListener,
-			int timeInMilliseconds) throws InterruptedException {
+			int timeInMilliseconds) throws Exception {
 		createTopicSubscriptionAndCloseAfterAWhile(messageListener, timeInMilliseconds);
 	}
 
 	@Override
-	public AdaptationAlertMessageListener createAdaptationAlertSubscriptionAndKeepListening() {
+	public AdaptationAlertMessageListener createAdaptationAlertSubscriptionAndKeepListening() throws Exception {
 		AdaptationAlertMessageListener messageListener = new AdaptationAlertMessageListener();
 		createTopicSubscriptionAndKeepListening(messageListener);
 		return messageListener;
@@ -51,7 +51,7 @@ public class AdaptationSubscriber extends TopicSubscriber implements iAdaptation
 
 	@Override
 	public AdaptationAlertMessageListener createAdaptationAlertSubscriptionAndCloseAfterAWhile(int timeInMilliseconds)
-			throws InterruptedException {
+			throws Exception {
 		AdaptationAlertMessageListener messageListener = new AdaptationAlertMessageListener();
 		createTopicSubscriptionAndCloseAfterAWhile(messageListener, timeInMilliseconds);
 		return messageListener;

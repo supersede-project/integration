@@ -85,7 +85,7 @@ public class FEDataStoreProxyTest {
     public void testGetNotifications() throws Exception{
     	String tenandId = "atos";
     	List<Notification> notifications = proxy.getNotifications(tenandId, token);
-//    	Assert.notEmpty(notifications);
+    	Assert.notNull(notifications);
     }
     
     @Test
@@ -93,7 +93,7 @@ public class FEDataStoreProxyTest {
     	String tenandId = "atos";
     	int notificationId = 3342;
     	Notification notification = proxy.getNotification(tenandId, notificationId, token);
-//    	Assert.notNull(notification);
+    	Assert.notNull(notification);
     }
     
     @Test

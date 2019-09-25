@@ -7,13 +7,13 @@ public interface iTopicSubscriber extends iTopicMessageAgent{
 
 	void closeSubscription() throws JMSException;
 
-	void createTextMessageTopicSubscriptionAndKeepListening();
+	void createTextMessageTopicSubscriptionAndKeepListening() throws Exception;
 
-	void createTopicSubscriptionAndKeepListening(MessageListener messageListener);
+	void createTopicSubscriptionAndKeepListening(MessageListener messageListener) throws Exception;
 
-	void createTextMessageTopicSubscriptionAndCloseAfterAWhile(int timeInMilliseconds) throws InterruptedException;
+	void createTextMessageTopicSubscriptionAndCloseAfterAWhile(int timeInMilliseconds) throws Exception;
 
 	void createTopicSubscriptionAndCloseAfterAWhile(MessageListener messageListener, int timeInMilliseconds)
-			throws InterruptedException;
+			throws Exception;
 
 }

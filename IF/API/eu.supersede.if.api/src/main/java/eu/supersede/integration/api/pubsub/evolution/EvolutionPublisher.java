@@ -31,7 +31,7 @@ public class EvolutionPublisher extends TopicPublisher implements iEvolutionPubl
 	}
 
 	@Override
-	public void publishEvolutionAlertMesssage(Alert alert) throws JMSException, NamingException, JsonProcessingException {
+	public boolean publishEvolutionAlertMesssage(Alert alert) throws JMSException, NamingException, JsonProcessingException {
 		TopicSession topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 		// create or use the topic
 		log.debug("Publishing on the Topic " + subscriptionTopic.getTopic());
@@ -43,6 +43,7 @@ public class EvolutionPublisher extends TopicPublisher implements iEvolutionPubl
 		log.debug("Publishing evolution alert message: " + textMessage);
 		topicPublisher.close();
 		topicSession.close();
+		return true;
 	}
 	
 	@Override

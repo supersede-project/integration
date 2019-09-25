@@ -86,7 +86,7 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#createTextMessageTopicSubscriptionAndKeepListening()
 	 */
 	@Override
-	public void createTextMessageTopicSubscriptionAndKeepListening() {
+	public void createTextMessageTopicSubscriptionAndKeepListening() throws Exception {
 		TextMessageListener messageListener = new TextMessageListener();
 		createTopicSubscriptionAndKeepListening(messageListener);
 	}
@@ -95,7 +95,7 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#createTopicSubscriptionAndKeepListening(javax.jms.MessageListener)
 	 */
 	@Override
-	public void createTopicSubscriptionAndKeepListening(MessageListener messageListener) {
+	public void createTopicSubscriptionAndKeepListening(MessageListener messageListener) throws Exception {
 		try {
 			if (topicSession != null && topicSubscriber != null) {
 				log.debug("Closing Topic Connection for Topic " + subscriptionTopic.getTopic());
@@ -112,18 +112,17 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 			// create a topic subscriber
 			topicSubscriber = topicSession.createSubscriber(topic);
 			topicSubscriber.setMessageListener(messageListener);
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-		} catch (NamingException e) {
-			log.error(e.getMessage(), e);
-		}
+			throw e;
+		} 
 	}
 	
 	/* (non-Javadoc)
 	 * @see eu.supersede.integration.api.pubsub.iTopicSubscriber#createTextMessageTopicSubscriptionAndCloseAfterAWhile(int)
 	 */
 	@Override
-	public void createTextMessageTopicSubscriptionAndCloseAfterAWhile(int timeInMilliseconds) throws InterruptedException {
+	public void createTextMessageTopicSubscriptionAndCloseAfterAWhile(int timeInMilliseconds) throws Exception {
 		TextMessageListener messageListener = new TextMessageListener();
 		createTopicSubscriptionAndCloseAfterAWhile(messageListener, timeInMilliseconds);
 	}
@@ -133,7 +132,7 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 	 */
 	@Override
 	public void createTopicSubscriptionAndCloseAfterAWhile(MessageListener messageListener, int timeInMilliseconds)
-			throws InterruptedException {
+			throws Exception {
 		try {
 			if (topicSession != null && topicSubscriber != null) {
 				log.debug("Closing Topic Connection for Topic " + subscriptionTopic.getTopic());
@@ -155,11 +154,10 @@ public class TopicSubscriber extends TopicMessageAgent implements iTopicSubscrib
 
 			topicSubscriber.close();
 			topicSession.close();
-		} catch (JMSException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(), e);
-		} catch (NamingException e) {
-			log.error(e.getMessage(), e);
-		}
+			throw e;
+		} 
 	}
 
 	protected class TextMessageListener implements MessageListener {
