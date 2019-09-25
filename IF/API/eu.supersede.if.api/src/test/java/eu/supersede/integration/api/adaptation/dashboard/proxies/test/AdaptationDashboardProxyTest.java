@@ -29,14 +29,22 @@ public class AdaptationDashboardProxyTest {
 		proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
 		
 		List<Adaptation> adaptations = proxy.getAllAdaptations();
-		if (adaptations.isEmpty()){
-			createdAdaptation = createAdaptation(1);
-			proxy.addAdaptation(createdAdaptation);
-			adaptations = proxy.getAllAdaptations();
+		List<Enactment> enactments = proxy.getAllEnactments();
+		//Cleaning adaptations and enactments
+		for (Enactment e: enactments){
+			proxy.deleteEnactment(e.getFc_id());
 		}
+		for (Adaptation a: adaptations){
+			proxy.deleteAdaptation(a.getFc_id());
+		}
+		
+		//Creating adaptation
+		createdAdaptation = createAdaptation(1);
+		proxy.addAdaptation(createdAdaptation);
+		adaptations = proxy.getAllAdaptations();
+		
 		adaptationId = adaptations.get(0).getFc_id();
 		Assert.notNull(adaptationId);
-
 	
 		List<Enactment> enactments = proxy.getAllEnactments();
 		if (enactments.isEmpty()){
@@ -125,6 +133,10 @@ public class AdaptationDashboardProxyTest {
 	@Test
 	public void testAddEnactment() throws Exception {
 		Adaptation adaptation = createAdaptation(2);
+		//Remove if enactment exists
+		if (proxy.getEnactment(adaptation.getFc_id())!=null) {
+			proxy.deleteEnactment(adaptation.getFc_id());
+		}
 		adaptation = proxy.addAdaptation(adaptation);
 		
 		Enactment enactment = createEnactment(adaptation.getFc_id());
