@@ -52,11 +52,19 @@ public class IFAuthenticationManagerTest {
 	boolean requirePasswordChange = false;
 	
 	@BeforeClass
-    	public static void setup() throws Exception {
+    public static void setup() throws Exception {
 		String admin = IFAccount.getUser();
 		String password = IFAccount.getPassword();
         	am = new IFAuthenticationManager(admin, password);
-    	}
+        	
+        try {
+        	User user = new User();
+        	user.setUserName("test");
+        	am.deleteUser(user);
+        }catch(Exception e) {
+        	//Ignore
+        }
+    }
 	
 	//Authentication Test
 	@Test
