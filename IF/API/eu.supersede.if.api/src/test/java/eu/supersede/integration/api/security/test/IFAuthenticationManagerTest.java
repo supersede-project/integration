@@ -52,23 +52,22 @@ public class IFAuthenticationManagerTest {
 	boolean requirePasswordChange = false;
 	
 	@BeforeClass
-    public static void setup() throws Exception {
-	String admin = IFAccount.getUser();
-	String password = IFAccount.getPassword();
-        am = new IFAuthenticationManager(admin, password);
-    }
+    	public static void setup() throws Exception {
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
+        	am = new IFAuthenticationManager(admin, password);
+    	}
 	
 	//Authentication Test
 	@Test
-    public void authenticateUserTest() throws Exception{
+    	public void authenticateUserTest() throws Exception{
 		//If user does not exist, create user
 		if (am.getUser(testUserName)==null){
 			User user = createTestUser();
-			
-	    	am.addUser(user, testUserPassword, requirePasswordChange);
+	    		am.addUser(user, testUserPassword, requirePasswordChange);
 		}
-    	Assert.isTrue(am.authenticateUser(testUserName, testUserPassword));
-    }
+    		Assert.isTrue(am.authenticateUser(testUserName, testUserPassword));
+    	}	
 	
 	//User tests
 	
@@ -80,7 +79,7 @@ public class IFAuthenticationManagerTest {
 			am.deleteUser(user);
 		}
 		
-    	am.addUser(user, testUserPassword, requirePasswordChange);
+    		am.addUser(user, testUserPassword, requirePasswordChange);
 	}
 	
         @Ignore
@@ -120,11 +119,11 @@ public class IFAuthenticationManagerTest {
 		user.setMobile("800-555-55-55");
 		user.setIm("User Test IM");
     	try {
-			user.setUrl(new URL("http://organization.org"));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		user.setUrl(new URL("http://organization.org"));
+	} catch (MalformedURLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     	
     	//Adding roles
     	Set<Role>roles = new HashSet<Role>();
@@ -148,7 +147,7 @@ public class IFAuthenticationManagerTest {
 		//If user does not exist, create user
 		if (am.getUser(testUserName)==null){
 			User user = createTestUser();
-	    	am.addUser(user, testUserPassword, requirePasswordChange);
+	    		am.addUser(user, testUserPassword, requirePasswordChange);
 		}
 		User user = am.getUser(testUserName);
 		Assert.notNull(user);
@@ -159,14 +158,14 @@ public class IFAuthenticationManagerTest {
 		Role role = createTestRole();
 		//Add role if it does not exist
 		Set<Role> allRoles = am.getAllRoles();
-    	if (!allRoles.contains(role)){
-    		am.addRole(role);
-    	}
+    		if (!allRoles.contains(role)){
+    			am.addRole(role);
+    		}
     	
 		//Add user if user does not exist
 		if (am.getUser(testUserName)==null){
 			User user = createTestUser();
-	    	am.addUser(user, testUserPassword, requirePasswordChange);
+	    		am.addUser(user, testUserPassword, requirePasswordChange);
 		}
 		
 		List<User> users = am.getAllUsersForRole(role);
@@ -180,14 +179,14 @@ public class IFAuthenticationManagerTest {
 		//If user does not exist, create user
 		if (user==null){
 			user = createTestUser();
-	    	am.addUser(user, testUserPassword, requirePasswordChange);
+	    		am.addUser(user, testUserPassword, requirePasswordChange);
 		}
 
 		updateUser(user);
 
-    	//Updating password and user profile
-    	am.updateUserCredential(user, testUserPassword + "New", testUserPassword);
-    	am.updateUser(user);
+    		//Updating password and user profile
+    		am.updateUserCredential(user, testUserPassword + "New", testUserPassword);
+    		am.updateUser(user);
 	}
 
 	private void updateUser(User user) throws UserStoreException {
@@ -237,7 +236,7 @@ public class IFAuthenticationManagerTest {
 		//If user does not exist, create user
 		if (user==null){
 			user = createTestUser();
-	    	am.addUser(user, testUserPassword, requirePasswordChange);
+	    		am.addUser(user, testUserPassword, requirePasswordChange);
 		}
 		am.deleteUser(user);
 	}
@@ -258,12 +257,12 @@ public class IFAuthenticationManagerTest {
 	public void addRoleTest() throws UserStoreException, MalformedURLException{
 		Role role = createTestRole();
     	
-    	//if role exist, remove role
-    	if (am.getAllRoles().contains(role)){
-    		am.deleteRole(role);
-    	}
+    		//if role exist, remove role
+    		if (am.getAllRoles().contains(role)){
+    			am.deleteRole(role);
+    		}
     	
-    	am.addRole(role);
+    		am.addRole(role);
 	}
 
 	private Role createTestRole() {
@@ -271,9 +270,9 @@ public class IFAuthenticationManagerTest {
 		role.setRoleName (testRoleName);
     	
 		//Permissions
-    	Permission permission = new Permission("/permission/admin/login", CarbonConstants.UI_PERMISSION_ACTION);
-    	Permission[] permissions = new Permission[]{permission};
-    	role.setPermissions(permissions);
+    		Permission permission = new Permission("/permission/admin/login", CarbonConstants.UI_PERMISSION_ACTION);
+    		Permission[] permissions = new Permission[]{permission};
+    		role.setPermissions(permissions);
 		return role;
 	}
 	
@@ -288,7 +287,7 @@ public class IFAuthenticationManagerTest {
 		//If user does not exist, create user
 		if (user==null){
 			user = createTestUser();
-	    	am.addUser(user, testUserPassword, requirePasswordChange);
+	    		am.addUser(user, testUserPassword, requirePasswordChange);
 		}
 		Assert.notNull(user);
 		Set<Role> roles = am.getAllRolesOfUser(user);
@@ -314,10 +313,10 @@ public class IFAuthenticationManagerTest {
 	@Test
 	public void deleteRoleTest() throws UserStoreException{
 		Role role = createTestRole();
-    	//if role does no exist, create role
-    	if (!am.getAllRoles().contains(role)){
-    		am.addRole(role);
-    	}
+    		//if role does no exist, create role
+    		if (!am.getAllRoles().contains(role)){
+    			am.addRole(role);
+    		}
 		
 		am.deleteRole(role);
 	}
