@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
 import org.wso2.carbon.CarbonConstants;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreManager;
-
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFUserStoreManager;
 
 @Ignore

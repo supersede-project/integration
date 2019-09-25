@@ -26,7 +26,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
-
+import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.tenants.IFTenantsManager;
 
 @Ignore

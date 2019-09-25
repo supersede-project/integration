@@ -46,7 +46,7 @@ public class AdaptationDashboardProxyTest {
 		adaptationId = adaptations.get(0).getFc_id();
 		Assert.notNull(adaptationId);
 	
-		List<Enactment> enactments = proxy.getAllEnactments();
+		enactments = proxy.getAllEnactments();
 		if (enactments.isEmpty()){
 			createdEnactment = createEnactment(adaptationId);
 			proxy.addEnactment(createdEnactment);
