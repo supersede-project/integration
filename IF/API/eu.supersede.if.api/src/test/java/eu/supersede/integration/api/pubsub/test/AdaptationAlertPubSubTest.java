@@ -59,6 +59,9 @@ public class AdaptationAlertPubSubTest implements Runnable{
 			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			if (messageReceived == false) {
+				throw new RuntimeException("Message was not published"); 
+			}
 		} catch (JMSException e) {
 			e.printStackTrace();
 		} finally {

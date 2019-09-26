@@ -36,7 +36,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUser;
-import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserApiUserRole;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserPermission;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserRole;
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
@@ -566,6 +565,7 @@ public class FeedbackOrchestratorProxyTest {
 
 		// user.setApiUserPermissions(createListApiUserPermissions(user));
 		user.setAuthorities(createAuthorities());
+		Assert.notEmpty(user.getAuthorities());
 
 		return user;
 	}
@@ -588,7 +588,7 @@ public class FeedbackOrchestratorProxyTest {
 		return permission;
 	}
 
-	private static Application createApplication() {
+	private static Application createApplication() throws Exception {
 		Application app = new Application();
 		app.setName("Test Website " + new Random().nextInt(1000));
 		app.setState(1);
@@ -613,7 +613,7 @@ public class FeedbackOrchestratorProxyTest {
 	}
 
 	private static Configuration createConfiguration(TriggerType type, GeneralConfiguration gc,
-			List<Mechanism> mechanisms) {
+			List<Mechanism> mechanisms) throws Exception {
 		Configuration conf = new Configuration();
 		conf.setType(type);
 		conf.setGeneralConfiguration(gc);
@@ -622,11 +622,34 @@ public class FeedbackOrchestratorProxyTest {
 		conf.setPushDefault(false);
 		conf.setName("Configuration generated");
 		
+		conf.setUserGroups(createUserGroups());
+		Assert.notEmpty(conf.getUserGroups());
+		
+		conf.setMechanisms(createMechanisms());
+		Assert.notEmpty(conf.getMechanisms());
+		
 		return conf;
 	}
 
 
-	private Mechanism createFeedbackMechanism(MechanismType type) {
+	private static List<Mechanism> createMechanisms() {
+		ArrayList<Mechanism> mechanisms = new ArrayList<>();
+		mechanisms.add(createFeedbackMechanism(MechanismType.AUDIO_TYPE));
+		return mechanisms;
+	}
+
+	private static ArrayList<UserGroup> createUserGroups() throws Exception {
+		ArrayList<UserGroup> userGroups = new ArrayList<>();
+		userGroups.add(createUserGroup());
+		return userGroups;
+	}
+
+	private static UserGroup createUserGroup() throws Exception {
+		Application application = proxy.getApplicationWithConfiguration(idApplication);
+		return new UserGroup ("grouptest", new ArrayList<>(), application);
+	}
+
+	private static Mechanism createFeedbackMechanism(MechanismType type) {
 		Mechanism fm = new Mechanism();
 		fm.setType(type);
 		fm.setActive(true);

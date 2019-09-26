@@ -87,10 +87,12 @@ public class IFAuthenticationManagerTest {
 			am.deleteUser(user);
 		}
 		
-    		am.addUser(user, testUserPassword, requirePasswordChange);
+    	am.addUser(user, testUserPassword, requirePasswordChange);
+    	user = am.getUser(testUserName);
+    	Assert.isTrue(isValidTestUser(user));
 	}
 	
-        @Ignore
+    @Ignore
 	@Test //(expected = org.wso2.carbon.user.core.UserStoreException.class)
 	public void throwUserExistWhenAddUserTest() throws UserStoreException, MalformedURLException{
 		User user = am.getUser(testUserName);
@@ -150,6 +152,30 @@ public class IFAuthenticationManagerTest {
 		return user;
 	}
 	
+	private boolean isValidTestUser(User user) {
+		if (user == null) 
+			return false;
+		if (!user.getFirstname().equals("User Test firstname"))
+			return false;
+		if (!user.getLastname().equals("User Test lastname"))
+			return false;
+		if (!user.getOrganization().equals("User Test organization"))
+			return false;
+		if (!user.getAddress().equals("User Test address"))
+			return false;
+		if (!user.getCountry().equals("User Test country"))
+			return false;
+		if (!user.getEmail().equals("user@organization.org"))
+			return false;
+		if (!user.getTelephone().equals("800-555-55-55"))
+			return false;
+		if (!user.getMobile().equals("800-555-55-55"))
+			return false;
+		if (!user.getIm().equals("User Test IM"))
+			return false;
+		return true;
+	}
+	
 	@Test
 	public void getUserTest() throws UserStoreException, MalformedURLException{
 		//If user does not exist, create user
@@ -192,9 +218,9 @@ public class IFAuthenticationManagerTest {
 
 		updateUser(user);
 
-    		//Updating password and user profile
-    		am.updateUserCredential(user, testUserPassword + "New", testUserPassword);
-    		am.updateUser(user);
+		//Updating password and user profile
+		am.updateUserCredential(user, testUserPassword + "New", testUserPassword);
+		am.updateUser(user);
 	}
 
 	private void updateUser(User user) throws UserStoreException {

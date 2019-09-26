@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -51,8 +52,24 @@ public class ParameterSerializer extends JsonSerializer<Parameter> {
                 jgen.writeEndArray();
             }
             jgen.writeStringField("language", parameter.getLanguage());
-            jgen.writeStringField("createdAt", dateToString(parameter.getCreatedAt()));
-            jgen.writeStringField("updatedAt", dateToString(parameter.getUpdatedAt()));
+            if (parameter.getCreatedAt()!=null) {
+            	String sDate = dateToString(parameter.getCreatedAt());
+            	try {
+					checkValidDate(sDate);
+				} catch (ParseException e) {
+					throw new IOException(e);
+				}
+            	jgen.writeStringField("createdAt", sDate);
+            }
+            if (parameter.getUpdatedAt()!=null) {
+            	String sDate = dateToString(parameter.getUpdatedAt());
+            	try {
+					checkValidDate(sDate);
+				} catch (ParseException e) {
+					throw new IOException(e);
+				}
+            	jgen.writeStringField("updatedAt", dateToString(parameter.getUpdatedAt()));
+            }
             jgen.writeEndObject();
         } else {
             jgen.writeNull();
@@ -65,5 +82,10 @@ public class ParameterSerializer extends JsonSerializer<Parameter> {
         }
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         return df.format(date);
+    }
+    
+    public void checkValidDate (String stringDate) throws ParseException {
+    	DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    	df.parse(stringDate);
     }
 }
