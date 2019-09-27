@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    
+    
+    <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <link rel="stylesheet" href="aui/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all"/>
+    <!--[if IE 9]><link rel="stylesheet" href="aui/css/aui-ie9.min.css" media="all"/><![endif]-->
+
+    <style type="text/css" media="all">
+        @import url('style.css');
+        @import url('tree.css');
+        
+    </style>
+
+    <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-experimental.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-soy.min.js" type="text/javascript"></script>
+
+    <script src="package-nodes-tree.js" type="text/javascript"></script>
+    <script src="clover-tree.js" type="text/javascript"></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="clover-descriptions.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+
+            <title>eu.supersede.if.api 0.4.0-SNAPSHOT</title>
+    </head>
+
+<body onresize="processTreeMapDashJson(treeMapJson);" >
+    <div id="page">
+        
+        
+
+
+<header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-clover">
+                    <a href="http://openclover.org" title="Visit OpenClover home page"><span class="aui-header-logo-device">OpenClover</span></a>
+                </h1>
+                            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav">
+                    <li id="system-help-menu">
+                        <a class="aui-nav-link" title="Open online documentation" target="_blank"
+                           href="http://openclover.org/documentation">
+                            <span class="aui-icon aui-icon-small aui-iconfont-help">&#160;Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav aui-page-panel-nav-clover">
+                    
+
+<div class="aui-page-header-inner" style="margin-bottom: 20px;">
+    <div class="aui-page-header-image">
+                <div class="aui-avatar aui-avatar-large aui-avatar-project">
+            <div class="aui-avatar-inner">
+                                    <img src="img/clover_logo_large.png" alt="Clover icon"/>
+                            </div>
+        </div>
+            </div>
+    <div class="aui-page-header-main" >
+        <h1>
+                                        eu.supersede.if.api 0.4.0-SNAPSHOT
+                                </h1>
+    </div>
+</div>
+
+<nav class="aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+                                            <ul class="aui-nav">
+                <li class="aui-nav-selected">
+                    <a href="dashboard.html">Project overview</a>
+                </li>
+            </ul>
+        
+                <div class="aui-nav-heading packages-nav-heading">
+            <strong>Packages</strong>
+        </div>
+        <div class="aui-nav project-packages">
+            <form method="get" action="#" class="aui package-filter-container">
+                <input type="text" autocomplete="off" class="package-filter text"
+                       placeholder="Type to filter packages..." name="package-filter" id="package-filter"
+                       title="Start typing package name (or part of the name) to search through the tree. Use arrow keys and the Enter key to navigate."/>
+            </form>
+            <p class="package-filter-no-results-message hidden">
+                <small>No results found.</small>
+            </p>
+                                                  <div class="packages-tree-wrapper" data-root-relative="" data-package-name="">
+                <div class="packages-tree-container"></div>
+                <div class="clover-packages-lozenges"></div>
+            </div>
+        </div>
+        
+            </div>
+</nav>                </div>
+                <section class="aui-page-panel-content">
+                    <div class="aui-page-panel-content-clover">
+
+                    
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+            
+        <li><a href="dashboard.html">Project Clover database Fri Sep 27 2019 13:16:05 CEST</a></li>
+    </ol>
+    
+<h1 class="aui-h2-clover">
+            Project overview
+    </h1>
+<div class="aui-tabs horizontal-tabs">
+        <ul class="tabs-menu">
+            <li class="menu-item active-tab">
+            <a href="dashboard.html">Dashboard</a>
+        </li>
+                <li class="menu-item ">
+            <a href="pkg-summary.html"><strong>Application code</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="testsrc-pkg-summary.html"><strong>Test code</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="test-pkg-summary.html"><strong>Test results</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="top-risks.html"><strong>Top risks</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="quick-wins.html"><strong>Quick wins</strong></a>
+        </li>
+                                                <li class="menu-item ">
+                <a href="treemap.html"><strong>Coverage tree map</strong></a>
+            </li>
+            </ul>
+    <div class="tabs-pane active-pane" id="tabs-first">
+
+        <div>&#160;</div>
+
+
+
+
+
+
+<div class="aui-group">
+    <div class="aui-item">
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                
+                <h3>
+                    Code coverage
+                    <small style="float:right; font-weight: normal">
+                        281 classes,
+                        3,853 /
+                        7,421 elements
+                    </small>
+                </h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5192023</span>51.9%</div><div style="display: table-cell">
+ <div title="51.9% Covered"  style="min-width:200px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.9%"></div></div></div></div>
+                <p><a href="pkg-summary.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>
+                    Test results
+                    <small style="float:right; font-weight: normal">
+                        143 /
+                        143 tests
+                        420 secs
+                    </small>
+                </h3>
+            </header>
+            <div class="dashboard-widget-content">
+                                    
+
+<div style="display: table; width: 100%">
+            <div class="barGraphValue"><span class="sortValue">1.0</span>100%</div>         <div style="display: table-cell">
+            
+            <div title="0% Errors" style="min-width: 40px;" class="testBarError">
+                <div title="100% of tests passed&lt;br/&gt;0% of tests failed" class="testBarFail" style="width: 100%"><div class="testBarPass" style="width: 100%"></div></div>
+            </div>
+        </div>
+    </div>                                <p><a href="test-pkg-summary.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Code metrics</h3>
+            </header>
+                         
+
+<div id="$statsId" class="aui-item" style="display: ${display}">
+<div style="display: table">
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of branches in this project">Branches:</label></div>
+        <div class="stats-box-value">520</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of statements in this project">Statements:</label></div>
+        <div class="stats-box-value">4,902</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of methods in this project">Methods:</label></div>
+        <div class="stats-box-value">1,999</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of classes in this project">Classes:</label></div>
+        <div class="stats-box-value">281</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of files in this project">Files:</label></div>
+            <div class="stats-box-value">267</div>
+        </div>
+                <div class="stats-box">
+            <div class="stats-box-label"><label title="Total number of packages in this project">Packages:</label></div>
+            <div class="stats-box-value">46</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of lines of code in this project">LOC:</label></div>
+        <div class="stats-box-value">20,194</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Total number of non-comment lines of code in this project">NCLOC:</label></div>
+        <div class="stats-box-value">14,086</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Cyclomatic complexity is the number of paths in this project">Total complexity:</label></div>
+        <div class="stats-box-value">2,475</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label">
+            <label title="Complexity density is the complexity divided by the number of statements in this project">Complexity density:</label>
+        </div>
+        <div class="stats-box-value">0.5</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of statements per method.">Statements/Method:</label></div>
+        <div class="stats-box-value">2.45</div>
+    </div>
+    <div class="stats-box">
+        <div class="stats-box-label"><label title="Number of methods per class.">Methods/Class:</label></div>
+        <div class="stats-box-value">7.11</div>
+    </div>
+            <div class="stats-box">
+            <div class="stats-box-label"><label title="Number of classes per package.">Classes/Package:</label></div>
+            <div class="stats-box-value">6.11</div>
+        </div>
+        <div class="stats-box">
+        <div class="stats-box-label"><label title="Complexity divided by the number of methods in this project">Average method complexity:</label></div>
+        <div class="stats-box-value">1.24</div>
+    </div>
+</div>
+
+</div>        </div>
+
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Class Coverage Distribution</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="text-align: center">                     <img src="img/classDistrubutionChart.png" alt="img/classDistrubutionChart.png" usemap="#classDistrubutionChart.png"/>
+                </div>
+                <map id="classDistrubutionChart.png" name="classDistrubutionChart.png">
+<area shape="rect" coords="288,73,310,207" title="49 classes have 91-100% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="263,149,285,206" title="21 classes have 81-90% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="238,141,260,206" title="24 classes have 71-80% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="213,179,235,206" title="10 classes have 61-70% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="188,174,210,206" title="12 classes have 51-60% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="163,171,185,206" title="13 classes have 41-50% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="138,193,160,206" title="5 classes have 31-40% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="113,163,135,206" title="16 classes have 21-30% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="38,15,60,206" title="70 classes have 0% coverage" alt="" nohref="nohref"/>
+</map>
+            </div>
+        </div>
+        
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Class Complexity</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <div style="text-align: center">
+                    <img src="img/classComplexityChart.png" alt="img/classComplexityChart.png" usemap="#classComplexityChart.png"/>
+                </div>
+                <map id="classComplexityChart.png" name="classComplexityChart.png">
+<area shape="poly" coords="186,181,183,184,181,181,183,179,186,181,186,181" title="Complexity: 16; Coverage: 54%; Class: MetadataManagementProxy" alt="" href="eu/supersede/integration/api/mdm/proxies/MetadataManagementProxy.html#MetadataManagementProxy"/>
+<area shape="poly" coords="242,187,240,189,237,187,240,184,242,187,242,187" title="Complexity: 13; Coverage: 77%; Class: UserGroup" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/UserGroup.html#UserGroup"/>
+<area shape="poly" coords="223,188,220,191,218,188,220,186,223,188,223,188" title="Complexity: 12; Coverage: 69%; Class: User" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/User.html#User"/>
+<area shape="poly" coords="122,131,120,134,117,131,120,129,122,131,122,131" title="Complexity: 45; Coverage: 28%; Class: Parameter" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/Parameter.html#Parameter"/>
+<area shape="poly" coords="115,202,112,205,110,202,112,200,115,202,115,202" title="Complexity: 4; Coverage: 25%; Class: OrchestratorItem" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/OrchestratorItem.html#OrchestratorItem"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,188,51,191,49,188,51,186,54,188,54,188" title="Complexity: 12; Coverage: 0%; Class: MonitorTool" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorTool.html#MonitorTool"/>
+<area shape="poly" coords="54,154,51,156,49,154,51,151,54,154,54,154" title="Complexity: 32; Coverage: 0%; Class: MonitorConfiguration" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorConfiguration.html#MonitorConfiguration"/>
+<area shape="poly" coords="193,202,191,205,188,202,191,200,193,202,193,202" title="Complexity: 4; Coverage: 57%; Class: Message" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/Message.html#Message"/>
+<area shape="poly" coords="166,149,164,151,161,149,164,146,166,149,166,149" title="Complexity: 35; Coverage: 46%; Class: Mechanism" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/Mechanism.html#Mechanism"/>
+<area shape="poly" coords="125,156,122,158,120,156,122,153,125,156,125,156" title="Complexity: 31; Coverage: 29%; Class: GeneralConfiguration" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/GeneralConfiguration.html#GeneralConfiguration"/>
+<area shape="poly" coords="115,180,112,182,110,180,112,177,115,180,115,180" title="Complexity: 17; Coverage: 25%; Class: ConfigurationUserGroup" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ConfigurationUserGroup.html#ConfigurationUserGroup"/>
+<area shape="poly" coords="110,169,107,172,105,169,107,167,110,169,110,169" title="Complexity: 23; Coverage: 23%; Class: ConfigurationMechanism" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ConfigurationMechanism.html#ConfigurationMechanism"/>
+<area shape="poly" coords="178,137,176,139,173,137,176,134,178,137,178,137" title="Complexity: 42; Coverage: 51%; Class: Configuration" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/Configuration.html#Configuration"/>
+<area shape="poly" coords="156,147,154,149,151,147,154,144,156,147,156,147" title="Complexity: 36; Coverage: 42%; Class: Application" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/Application.html#Application"/>
+<area shape="poly" coords="200,206,198,208,195,206,198,203,200,206,200,206" title="Complexity: 2; Coverage: 60%; Class: ApiUserRole" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserRole.html#ApiUserRole"/>
+<area shape="poly" coords="54,192,51,194,49,192,51,189,54,192,54,192" title="Complexity: 10; Coverage: 0%; Class: ApiUserPermission" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserPermission.html#ApiUserPermission"/>
+<area shape="poly" coords="115,199,112,201,110,199,112,196,115,199,115,199" title="Complexity: 6; Coverage: 25%; Class: ApiUserApiUserRole" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserApiUserRole.html#ApiUserApiUserRole"/>
+<area shape="poly" coords="154,152,151,155,149,152,151,150,154,152,154,152" title="Complexity: 33; Coverage: 41%; Class: ApiUser" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUser.html#ApiUser"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="262,199,259,201,257,199,259,196,262,199,262,199" title="Complexity: 6; Coverage: 85%; Class: Resource" alt="" href="eu/supersede/integration/api/replan/controller/types/Resource.html#Resource"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="269,195,267,198,264,195,267,193,269,195,269,195" title="Complexity: 8; Coverage: 88%; Class: Release" alt="" href="eu/supersede/integration/api/replan/controller/types/Release.html#Release"/>
+<area shape="poly" coords="54,199,51,201,49,199,51,196,54,199,54,199" title="Complexity: 6; Coverage: 0%; Class: Property" alt="" href="eu/supersede/integration/api/replan/controller/types/Property.html#Property"/>
+<area shape="poly" coords="274,192,271,194,269,192,271,189,274,192,274,192" title="Complexity: 10; Coverage: 90%; Class: Project" alt="" href="eu/supersede/integration/api/replan/controller/types/Project.html#Project"/>
+<area shape="poly" coords="54,204,51,206,49,204,51,201,54,204,54,204" title="Complexity: 3; Coverage: 0%; Class: Priority" alt="" href="eu/supersede/integration/api/replan/controller/types/Priority.html#Priority"/>
+<area shape="poly" coords="125,183,122,186,120,183,122,181,125,183,125,183" title="Complexity: 15; Coverage: 29%; Class: Plan" alt="" href="eu/supersede/integration/api/replan/controller/types/Plan.html#Plan"/>
+<area shape="poly" coords="54,180,51,182,49,180,51,177,54,180,54,180" title="Complexity: 17; Coverage: 0%; Class: Job" alt="" href="eu/supersede/integration/api/replan/controller/types/Job.html#Job"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="54,181,51,184,49,181,51,179,54,181,54,181" title="Complexity: 16; Coverage: 0%; Class: FeatureWP3" alt="" href="eu/supersede/integration/api/replan/controller/types/FeatureWP3.html#FeatureWP3"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 1; Coverage: 100%; Class: FeatureStatus" alt="" href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html#FeatureStatus"/>
+<area shape="poly" coords="272,180,269,182,267,180,269,177,272,180,272,180" title="Complexity: 17; Coverage: 89%; Class: Feature" alt="" href="eu/supersede/integration/api/replan/controller/types/Feature.html#Feature"/>
+<area shape="poly" coords="54,199,51,201,49,199,51,196,54,199,54,199" title="Complexity: 6; Coverage: 0%; Class: Property" alt="" href="eu/supersede/integration/api/replan/controller/types/Property.html#Property"/>
+<area shape="poly" coords="54,193,51,196,49,193,51,191,54,193,54,193" title="Complexity: 9; Coverage: 0%; Class: AddFeaturesForProjectPayload" alt="" href="eu/supersede/integration/api/replan/controller/types/AddFeaturesForProjectPayload.html#AddFeaturesForProjectPayload"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="281,200,279,203,276,200,279,198,281,200,281,200" title="Complexity: 5; Coverage: 93%; Class: NillableObjectJsonDeserializer" alt="" href="eu/supersede/integration/api/json/NillableObjectJsonDeserializer.html#NillableObjectJsonDeserializer"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 1; Coverage: 100%; Class: FeatureStatus" alt="" href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html#FeatureStatus"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 1; Coverage: 100%; Class: FeatureStatus" alt="" href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html#FeatureStatus"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="152,200,149,203,147,200,149,198,152,200,152,200" title="Complexity: 5; Coverage: 40%; Class: JsonUtils" alt="" href="eu/supersede/integration/api/json/JsonUtils.html#JsonUtils"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 1; Coverage: 100%; Class: FeatureStatus" alt="" href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html#FeatureStatus"/>
+<area shape="poly" coords="54,207,51,210,49,207,51,205,54,207,54,207" title="Complexity: 1; Coverage: 0%; Class: CustomJsonTimestampSerializer" alt="" href="eu/supersede/integration/api/json/CustomJsonTimestampSerializer.html#CustomJsonTimestampSerializer"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 1; Coverage: 100%; Class: FeatureStatus" alt="" href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html#FeatureStatus"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="298,207,296,210,293,207,296,205,298,207,298,207" title="Complexity: 1; Coverage: 100%; Class: FeatureStatus" alt="" href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html#FeatureStatus"/>
+<area shape="poly" coords="193,187,191,189,188,187,191,184,193,187,193,187" title="Complexity: 13; Coverage: 57%; Class: MonitorManagerProxy" alt="" href="eu/supersede/integration/api/monitoring/manager/proxies/MonitorManagerProxy.html#MonitorManagerProxy"/>
+<area shape="poly" coords="54,185,51,187,49,185,51,182,54,185,54,185" title="Complexity: 14; Coverage: 0%; Class: MonitoringParams" alt="" href="eu/supersede/integration/api/analysis/types/MonitoringParams.html#MonitoringParams"/>
+<area shape="poly" coords="54,190,51,193,49,190,51,188,54,190,54,190" title="Complexity: 11; Coverage: 0%; Class: MonitoringData" alt="" href="eu/supersede/integration/api/analysis/types/MonitoringData.html#MonitoringData"/>
+<area shape="poly" coords="298,200,296,203,293,200,296,198,298,200,298,200" title="Complexity: 5; Coverage: 100%; Class: TwitterMonitorConfiguration" alt="" href="eu/supersede/integration/api/monitoring/manager/types/TwitterMonitorConfiguration.html#TwitterMonitorConfiguration"/>
+<area shape="poly" coords="176,199,174,201,171,199,174,196,176,199,176,199" title="Complexity: 6; Coverage: 50%; Class: MonitorSpecificConfigurationResult" alt="" href="eu/supersede/integration/api/monitoring/manager/types/MonitorSpecificConfigurationResult.html#MonitorSpecificConfigurationResult"/>
+<area shape="poly" coords="298,192,296,194,293,192,296,189,298,192,298,192" title="Complexity: 10; Coverage: 100%; Class: MonitorSpecificConfiguration" alt="" href="eu/supersede/integration/api/monitoring/manager/types/MonitorSpecificConfiguration.html#MonitorSpecificConfiguration"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="54,200,51,203,49,200,51,198,54,200,54,200" title="Complexity: 5; Coverage: 0%; Class: Instruction" alt="" href="eu/supersede/integration/api/monitoring/manager/types/Instruction.html#Instruction"/>
+<area shape="poly" coords="237,190,235,193,232,190,235,188,237,190,237,190" title="Complexity: 11; Coverage: 75%; Class: HttpMonitorConfigurationFile" alt="" href="eu/supersede/integration/api/monitoring/manager/types/HttpMonitorConfigurationFile.html#HttpMonitorConfigurationFile"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="54,197,51,199,49,197,51,194,54,197,54,197" title="Complexity: 7; Coverage: 0%; Class: DiskMonitorConfiguration" alt="" href="eu/supersede/integration/api/monitoring/manager/types/DiskMonitorConfiguration.html#DiskMonitorConfiguration"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="181,200,178,203,176,200,178,198,181,200,181,200" title="Complexity: 5; Coverage: 52%; Class: IFErrorHandler" alt="" href="eu/supersede/integration/api/fe/IFErrorHandler.html#IFErrorHandler"/>
+<area shape="poly" coords="298,199,296,201,293,199,296,196,298,199,298,199" title="Complexity: 6; Coverage: 100%; Class: FrontendSession" alt="" href="eu/supersede/integration/api/fe/FrontendSession.html#FrontendSession"/>
+<area shape="poly" coords="257,190,254,193,252,190,254,188,257,190,257,190" title="Complexity: 11; Coverage: 83%; Class: FrontendAuthentication" alt="" href="eu/supersede/integration/api/fe/FrontendAuthentication.html#FrontendAuthentication"/>
+<area shape="poly" coords="54,207,51,210,49,207,51,205,54,207,54,207" title="Complexity: 1; Coverage: 0%; Class: CustomJsonTimestampSerializer" alt="" href="eu/supersede/integration/api/json/CustomJsonTimestampSerializer.html#CustomJsonTimestampSerializer"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="269,195,267,198,264,195,267,193,269,195,269,195" title="Complexity: 8; Coverage: 88%; Class: Release" alt="" href="eu/supersede/integration/api/replan/controller/types/Release.html#Release"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="115,204,112,206,110,204,112,201,115,204,115,204" title="Complexity: 3; Coverage: 25%; Class: PlanningSolution" alt="" href="eu/supersede/integration/api/replan/optimizer/types/PlanningSolution.html#PlanningSolution"/>
+<area shape="poly" coords="176,192,174,194,171,192,174,189,176,192,176,192" title="Complexity: 10; Coverage: 50%; Class: PlannedFeature" alt="" href="eu/supersede/integration/api/replan/optimizer/types/PlannedFeature.html#PlannedFeature"/>
+<area shape="poly" coords="237,185,235,187,232,185,235,182,237,185,237,185" title="Complexity: 14; Coverage: 75%; Class: NextReleaseProblem" alt="" href="eu/supersede/integration/api/replan/optimizer/types/NextReleaseProblem.html#NextReleaseProblem"/>
+<area shape="poly" coords="267,187,264,189,262,187,264,184,267,187,267,187" title="Complexity: 13; Coverage: 87%; Class: Feature" alt="" href="eu/supersede/integration/api/replan/optimizer/types/Feature.html#Feature"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,192,51,194,49,192,51,189,54,192,54,192" title="Complexity: 10; Coverage: 0%; Class: ApiUserPermission" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserPermission.html#ApiUserPermission"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="298,178,296,180,293,178,296,175,298,178,298,178" title="Complexity: 18; Coverage: 100%; Class: Release" alt="" href="eu/supersede/integration/api/mdm/types/Release.html#Release"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="176,206,174,208,171,206,174,203,176,206,176,206" title="Complexity: 2; Coverage: 50%; Class: KafkaTopic" alt="" href="eu/supersede/integration/api/mdm/types/KafkaTopic.html#KafkaTopic"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="193,202,191,205,188,202,191,200,193,202,193,202" title="Complexity: 4; Coverage: 57%; Class: Message" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/Message.html#Message"/>
+<area shape="poly" coords="166,166,164,168,161,166,164,163,166,166,166,166" title="Complexity: 25; Coverage: 46%; Class: Event" alt="" href="eu/supersede/integration/api/mdm/types/Event.html#Event"/>
+<area shape="poly" coords="54,152,51,155,49,152,51,150,54,152,54,152" title="Complexity: 33; Coverage: 0%; Class: ECA_Rule" alt="" href="eu/supersede/integration/api/mdm/types/ECA_Rule.html#ECA_Rule"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,176,51,179,49,176,51,174,54,176,54,176" title="Complexity: 19; Coverage: 0%; Class: CER_Rule" alt="" href="eu/supersede/integration/api/mdm/types/CER_Rule.html#CER_Rule"/>
+<area shape="poly" coords="176,202,174,205,171,202,174,200,176,202,176,202" title="Complexity: 4; Coverage: 50%; Class: Attribute" alt="" href="eu/supersede/integration/api/mdm/types/Attribute.html#Attribute"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="274,175,271,177,269,175,271,172,274,175,274,175" title="Complexity: 20; Coverage: 90%; Class: FeedbackRepositoryProxy" alt="" href="eu/supersede/integration/api/feedback/proxies/FeedbackRepositoryProxy.html#FeedbackRepositoryProxy"/>
+<area shape="poly" coords="196,71,193,74,191,71,193,69,196,71,196,71" title="Complexity: 80; Coverage: 58%; Class: FeedbackOrchestratorProxy" alt="" href="eu/supersede/integration/api/feedback/proxies/FeedbackOrchestratorProxy.html#FeedbackOrchestratorProxy"/>
+<area shape="poly" coords="54,187,51,189,49,187,51,184,54,187,54,187" title="Complexity: 13; Coverage: 0%; Class: Email" alt="" href="eu/supersede/integration/api/mail/types/Email.html#Email"/>
+<area shape="poly" coords="298,199,296,201,293,199,296,196,298,199,298,199" title="Complexity: 6; Coverage: 100%; Class: FrontendSession" alt="" href="eu/supersede/integration/api/fe/FrontendSession.html#FrontendSession"/>
+<area shape="poly" coords="152,192,149,194,147,192,149,189,152,192,152,192" title="Complexity: 10; Coverage: 40%; Class: MonitorTool" alt="" href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorTool.html#MonitorTool"/>
+<area shape="poly" coords="120,159,117,161,115,159,117,156,120,159,120,159" title="Complexity: 29; Coverage: 27%; Class: MonitorConfiguration" alt="" href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorConfiguration.html#MonitorConfiguration"/>
+<area shape="poly" coords="166,62,164,65,161,62,164,60,166,62,166,62" title="Complexity: 85; Coverage: 46%; Class: ReplanControllerProxy" alt="" href="eu/supersede/integration/api/replan/controller/proxies/ReplanControllerProxy.html#ReplanControllerProxy"/>
+<area shape="poly" coords="276,199,274,201,271,199,274,196,276,199,276,199" title="Complexity: 6; Coverage: 91%; Class: SupersedeFederation" alt="" href="eu/supersede/integration/federation/SupersedeFederation.html#SupersedeFederation"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="125,192,122,194,120,192,122,189,125,192,125,192" title="Complexity: 10; Coverage: 29%; Class: PasswordCrypt" alt="" href="eu/supersede/integration/api/datastore/util/PasswordCrypt.html#PasswordCrypt"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="269,195,267,198,264,195,267,193,269,195,269,195" title="Complexity: 8; Coverage: 88%; Class: Release" alt="" href="eu/supersede/integration/api/replan/controller/types/Release.html#Release"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="115,204,112,206,110,204,112,201,115,204,115,204" title="Complexity: 3; Coverage: 25%; Class: PlanningSolution" alt="" href="eu/supersede/integration/api/replan/optimizer/types/PlanningSolution.html#PlanningSolution"/>
+<area shape="poly" coords="176,192,174,194,171,192,174,189,176,192,176,192" title="Complexity: 10; Coverage: 50%; Class: PlannedFeature" alt="" href="eu/supersede/integration/api/replan/optimizer/types/PlannedFeature.html#PlannedFeature"/>
+<area shape="poly" coords="237,185,235,187,232,185,235,182,237,185,237,185" title="Complexity: 14; Coverage: 75%; Class: NextReleaseProblem" alt="" href="eu/supersede/integration/api/replan/optimizer/types/NextReleaseProblem.html#NextReleaseProblem"/>
+<area shape="poly" coords="267,187,264,189,262,187,264,184,267,187,267,187" title="Complexity: 13; Coverage: 87%; Class: Feature" alt="" href="eu/supersede/integration/api/replan/optimizer/types/Feature.html#Feature"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,192,51,194,49,192,51,189,54,192,54,192" title="Complexity: 10; Coverage: 0%; Class: ApiUserPermission" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserPermission.html#ApiUserPermission"/>
+<area shape="poly" coords="242,206,240,208,237,206,240,203,242,206,242,206" title="Complexity: 2; Coverage: 77%; Class: DecisionMakingSystemProxy" alt="" href="eu/supersede/integration/api/dm/proxies/DecisionMakingSystemProxy.html#DecisionMakingSystemProxy"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="139,185,137,187,134,185,137,182,139,185,139,185" title="Complexity: 14; Coverage: 35%; Class: MonitoringOrchestratorProxy" alt="" href="eu/supersede/integration/api/monitoring/orchestrator/proxies/MonitoringOrchestratorProxy.html#MonitoringOrchestratorProxy"/>
+<area shape="poly" coords="298,175,296,177,293,175,296,172,298,175,298,175" title="Complexity: 20; Coverage: 100%; Class: UserRequest" alt="" href="eu/supersede/integration/api/dm/types/UserRequest.html#UserRequest"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="298,200,296,203,293,200,296,198,298,200,298,200" title="Complexity: 5; Coverage: 100%; Class: TwitterMonitorConfiguration" alt="" href="eu/supersede/integration/api/monitoring/manager/types/TwitterMonitorConfiguration.html#TwitterMonitorConfiguration"/>
+<area shape="poly" coords="237,185,235,187,232,185,235,182,237,185,237,185" title="Complexity: 14; Coverage: 75%; Class: NextReleaseProblem" alt="" href="eu/supersede/integration/api/replan/optimizer/types/NextReleaseProblem.html#NextReleaseProblem"/>
+<area shape="poly" coords="54,190,51,193,49,190,51,188,54,190,54,190" title="Complexity: 11; Coverage: 0%; Class: MonitoringData" alt="" href="eu/supersede/integration/api/analysis/types/MonitoringData.html#MonitoringData"/>
+<area shape="poly" coords="105,197,102,199,100,197,102,194,105,197,105,197" title="Complexity: 7; Coverage: 21%; Class: TypedModelId" alt="" href="eu/supersede/integration/api/adaptation/types/TypedModelId.html#TypedModelId"/>
+<area shape="poly" coords="215,204,213,206,210,204,213,201,215,204,215,204" title="Complexity: 3; Coverage: 66%; Class: Tenant" alt="" href="eu/supersede/integration/api/adaptation/types/Tenant.html#Tenant"/>
+<area shape="poly" coords="298,199,296,201,293,199,296,196,298,199,298,199" title="Complexity: 6; Coverage: 100%; Class: FrontendSession" alt="" href="eu/supersede/integration/api/fe/FrontendSession.html#FrontendSession"/>
+<area shape="poly" coords="264,199,262,201,259,199,262,196,264,199,264,199" title="Complexity: 6; Coverage: 86%; Class: ModelType" alt="" href="eu/supersede/integration/api/adaptation/types/ModelType.html#ModelType"/>
+<area shape="poly" coords="188,202,186,205,183,202,186,200,188,202,188,202" title="Complexity: 4; Coverage: 55%; Class: ModelSystem" alt="" href="eu/supersede/integration/api/adaptation/types/ModelSystem.html#ModelSystem"/>
+<area shape="poly" coords="298,199,296,201,293,199,296,196,298,199,298,199" title="Complexity: 6; Coverage: 100%; Class: FrontendSession" alt="" href="eu/supersede/integration/api/fe/FrontendSession.html#FrontendSession"/>
+<area shape="poly" coords="129,180,127,182,124,180,127,177,129,180,129,180" title="Complexity: 17; Coverage: 31%; Class: IModel" alt="" href="eu/supersede/integration/api/adaptation/types/IModel.html#IModel"/>
+<area shape="poly" coords="298,175,296,177,293,175,296,172,298,175,298,175" title="Complexity: 20; Coverage: 100%; Class: UserRequest" alt="" href="eu/supersede/integration/api/dm/types/UserRequest.html#UserRequest"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="223,199,220,201,218,199,220,196,223,199,223,199" title="Complexity: 6; Coverage: 69%; Class: DataID" alt="" href="eu/supersede/integration/api/adaptation/types/DataID.html#DataID"/>
+<area shape="poly" coords="298,195,296,198,293,195,296,193,298,195,298,195" title="Complexity: 8; Coverage: 100%; Class: Condition" alt="" href="eu/supersede/integration/api/adaptation/types/Condition.html#Condition"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="54,199,51,201,49,199,51,196,54,199,54,199" title="Complexity: 6; Coverage: 0%; Class: Property" alt="" href="eu/supersede/integration/api/replan/controller/types/Property.html#Property"/>
+<area shape="poly" coords="240,178,237,180,235,178,237,175,240,178,240,178" title="Complexity: 18; Coverage: 76%; Class: Alert" alt="" href="eu/supersede/integration/api/adaptation/types/Alert.html#Alert"/>
+<area shape="poly" coords="252,202,249,205,247,202,249,200,252,202,252,202" title="Complexity: 4; Coverage: 81%; Class: AdaptationMode" alt="" href="eu/supersede/integration/api/adaptation/types/AdaptationMode.html#AdaptationMode"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="54,199,51,201,49,199,51,196,54,199,54,199" title="Complexity: 6; Coverage: 0%; Class: Property" alt="" href="eu/supersede/integration/api/replan/controller/types/Property.html#Property"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,207,51,210,49,207,51,205,54,207,54,207" title="Complexity: 1; Coverage: 0%; Class: CustomJsonTimestampSerializer" alt="" href="eu/supersede/integration/api/json/CustomJsonTimestampSerializer.html#CustomJsonTimestampSerializer"/>
+<area shape="poly" coords="230,190,227,193,225,190,227,188,230,190,230,190" title="Complexity: 11; Coverage: 72%; Class: TextFeedback" alt="" href="eu/supersede/integration/api/feedback/repository/types/TextFeedback.html#TextFeedback"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,192,51,194,49,192,51,189,54,192,54,192" title="Complexity: 10; Coverage: 0%; Class: ApiUserPermission" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserPermission.html#ApiUserPermission"/>
+<area shape="poly" coords="218,173,215,175,213,173,215,170,218,173,218,173" title="Complexity: 21; Coverage: 67%; Class: ScreenshotFeedback" alt="" href="eu/supersede/integration/api/feedback/repository/types/ScreenshotFeedback.html#ScreenshotFeedback"/>
+<area shape="poly" coords="122,183,120,186,117,183,120,181,122,183,122,183" title="Complexity: 15; Coverage: 28%; Class: RatingFeedback" alt="" href="eu/supersede/integration/api/feedback/repository/types/RatingFeedback.html#RatingFeedback"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="237,140,235,143,232,140,235,138,237,140,237,140" title="Complexity: 40; Coverage: 75%; Class: Feedback" alt="" href="eu/supersede/integration/api/feedback/repository/types/Feedback.html#Feedback"/>
+<area shape="poly" coords="298,168,296,170,293,168,296,165,298,168,298,168" title="Complexity: 24; Coverage: 100%; Class: ContextInformation" alt="" href="eu/supersede/integration/api/feedback/repository/types/ContextInformation.html#ContextInformation"/>
+<area shape="poly" coords="54,187,51,189,49,187,51,184,54,187,54,187" title="Complexity: 13; Coverage: 0%; Class: Email" alt="" href="eu/supersede/integration/api/mail/types/Email.html#Email"/>
+<area shape="poly" coords="54,176,51,179,49,176,51,174,54,176,54,176" title="Complexity: 19; Coverage: 0%; Class: CER_Rule" alt="" href="eu/supersede/integration/api/mdm/types/CER_Rule.html#CER_Rule"/>
+<area shape="poly" coords="227,175,225,177,222,175,225,172,227,175,227,175" title="Complexity: 20; Coverage: 71%; Class: AudioFeedback" alt="" href="eu/supersede/integration/api/feedback/repository/types/AudioFeedback.html#AudioFeedback"/>
+<area shape="poly" coords="215,176,213,179,210,176,213,174,215,176,215,176" title="Complexity: 19; Coverage: 66%; Class: AttachmentFeedback" alt="" href="eu/supersede/integration/api/feedback/repository/types/AttachmentFeedback.html#AttachmentFeedback"/>
+<area shape="poly" coords="298,193,296,196,293,193,296,191,298,193,298,193" title="Complexity: 9; Coverage: 100%; Class: AdaptationDashboardProxy" alt="" href="eu/supersede/integration/api/adaptation/dashboard/proxies/AdaptationDashboardProxy.html#AdaptationDashboardProxy"/>
+<area shape="poly" coords="117,190,115,193,112,190,115,188,117,190,117,190" title="Complexity: 11; Coverage: 26%; Class: EvolutionSubscriber" alt="" href="eu/supersede/integration/api/pubsub/evolution/EvolutionSubscriber.html#EvolutionSubscriber"/>
+<area shape="poly" coords="264,200,262,203,259,200,262,198,264,200,264,200" title="Complexity: 5; Coverage: 86%; Class: EvolutionPublisher" alt="" href="eu/supersede/integration/api/pubsub/evolution/EvolutionPublisher.html#EvolutionPublisher"/>
+<area shape="poly" coords="279,200,276,203,274,200,276,198,279,200,279,200" title="Complexity: 5; Coverage: 92%; Class: EvolutionAlertMessageListener" alt="" href="eu/supersede/integration/api/pubsub/evolution/EvolutionAlertMessageListener.html#EvolutionAlertMessageListener"/>
+<area shape="poly" coords="54,195,51,198,49,195,51,193,54,195,54,195" title="Complexity: 8; Coverage: 0%; Class: MonitorType" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorType.html#MonitorType"/>
+<area shape="poly" coords="54,190,51,193,49,190,51,188,54,190,54,190" title="Complexity: 11; Coverage: 0%; Class: MonitoringData" alt="" href="eu/supersede/integration/api/analysis/types/MonitoringData.html#MonitoringData"/>
+<area shape="poly" coords="54,204,51,206,49,204,51,201,54,204,54,204" title="Complexity: 3; Coverage: 0%; Class: Priority" alt="" href="eu/supersede/integration/api/replan/controller/types/Priority.html#Priority"/>
+<area shape="poly" coords="54,204,51,206,49,204,51,201,54,204,54,204" title="Complexity: 3; Coverage: 0%; Class: Priority" alt="" href="eu/supersede/integration/api/replan/controller/types/Priority.html#Priority"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="215,181,213,184,210,181,213,179,215,181,215,181" title="Complexity: 16; Coverage: 66%; Class: ParameterSerializer" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterSerializer.html#ParameterSerializer"/>
+<area shape="poly" coords="259,188,257,191,254,188,257,186,259,188,259,188" title="Complexity: 12; Coverage: 84%; Class: ParameterDeserializer" alt="" href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterDeserializer.html#ParameterDeserializer"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="191,137,188,139,186,137,188,134,191,137,191,137" title="Complexity: 42; Coverage: 56%; Class: ModelRepositoryProxy" alt="" href="eu/supersede/integration/api/adaptation/proxies/ModelRepositoryProxy.html#ModelRepositoryProxy"/>
+<area shape="poly" coords="267,200,264,203,262,200,264,198,267,200,267,200" title="Complexity: 5; Coverage: 87%; Class: AdapterProxy" alt="" href="eu/supersede/integration/api/adaptation/proxies/AdapterProxy.html#AdapterProxy"/>
+<area shape="poly" coords="298,206,296,208,293,206,296,203,298,206,298,206" title="Complexity: 2; Coverage: 100%; Class: ReplanIdentifiableObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html#ReplanIdentifiableObject"/>
+<area shape="poly" coords="164,197,161,199,159,197,161,194,164,197,164,197" title="Complexity: 7; Coverage: 45%; Class: IFDataStoreProxy" alt="" href="eu/supersede/integration/api/datastore/proxies/IFDataStoreProxy.html#IFDataStoreProxy"/>
+<area shape="poly" coords="267,187,264,189,262,187,264,184,267,187,267,187" title="Complexity: 13; Coverage: 87%; Class: Feature" alt="" href="eu/supersede/integration/api/replan/optimizer/types/Feature.html#Feature"/>
+<area shape="poly" coords="298,190,296,193,293,190,296,188,298,190,298,190" title="Complexity: 11; Coverage: 100%; Class: Enactment" alt="" href="eu/supersede/integration/api/adaptation/dashboad/types/Enactment.html#Enactment"/>
+<area shape="poly" coords="237,178,235,180,232,178,235,175,237,178,237,178" title="Complexity: 18; Coverage: 75%; Class: Adaptation" alt="" href="eu/supersede/integration/api/adaptation/dashboad/types/Adaptation.html#Adaptation"/>
+<area shape="poly" coords="279,187,276,189,274,187,276,184,279,187,279,187" title="Complexity: 13; Coverage: 92%; Class: Action" alt="" href="eu/supersede/integration/api/adaptation/dashboad/types/Action.html#Action"/>
+<area shape="poly" coords="232,181,230,184,227,181,230,179,232,181,232,181" title="Complexity: 16; Coverage: 73%; Class: IntegrationProperty" alt="" href="eu/supersede/integration/properties/IntegrationProperty.html#IntegrationProperty"/>
+<area shape="poly" coords="249,92,247,94,244,92,247,89,249,92,249,92" title="Complexity: 68; Coverage: 80%; Class: User" alt="" href="eu/supersede/integration/api/security/types/User.html#User"/>
+<area shape="poly" coords="259,183,257,186,254,183,257,181,259,183,259,183" title="Complexity: 15; Coverage: 84%; Class: Role" alt="" href="eu/supersede/integration/api/security/types/Role.html#Role"/>
+<area shape="poly" coords="237,195,235,198,232,195,235,193,237,195,237,195" title="Complexity: 8; Coverage: 75%; Class: AuthorizationToken" alt="" href="eu/supersede/integration/api/security/types/AuthorizationToken.html#AuthorizationToken"/>
+<area shape="poly" coords="227,202,225,205,222,202,225,200,227,202,227,202" title="Complexity: 4; Coverage: 71%; Class: TwitterMonitorConfigurationResponse" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html#TwitterMonitorConfigurationResponse"/>
+<area shape="poly" coords="254,193,252,196,249,193,252,191,254,193,254,193" title="Complexity: 9; Coverage: 82%; Class: TwitterMonitorConfigurationRequest" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html#TwitterMonitorConfigurationRequest"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="218,171,215,174,213,171,215,169,218,171,218,171" title="Complexity: 22; Coverage: 67%; Class: MonitorProxy" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/MonitorProxy.html#MonitorProxy"/>
+<area shape="poly" coords="227,202,225,205,222,202,225,200,227,202,227,202" title="Complexity: 4; Coverage: 71%; Class: TwitterMonitorConfigurationResponse" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html#TwitterMonitorConfigurationResponse"/>
+<area shape="poly" coords="240,197,237,199,235,197,237,194,240,197,240,197" title="Complexity: 7; Coverage: 76%; Class: HttpMonitorConfigurationRequest" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html#HttpMonitorConfigurationRequest"/>
+<area shape="poly" coords="208,199,205,201,203,199,205,196,208,199,208,199" title="Complexity: 6; Coverage: 63%; Class: HttpMonitorProxy" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html#HttpMonitorProxy"/>
+<area shape="poly" coords="227,202,225,205,222,202,225,200,227,202,227,202" title="Complexity: 4; Coverage: 71%; Class: TwitterMonitorConfigurationResponse" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html#TwitterMonitorConfigurationResponse"/>
+<area shape="poly" coords="240,197,237,199,235,197,237,194,240,197,240,197" title="Complexity: 7; Coverage: 76%; Class: HttpMonitorConfigurationRequest" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html#HttpMonitorConfigurationRequest"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="54,197,51,199,49,197,51,194,54,197,54,197" title="Complexity: 7; Coverage: 0%; Class: DiskMonitorConfiguration" alt="" href="eu/supersede/integration/api/monitoring/manager/types/DiskMonitorConfiguration.html#DiskMonitorConfiguration"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="227,202,225,205,222,202,225,200,227,202,227,202" title="Complexity: 4; Coverage: 71%; Class: TwitterMonitorConfigurationResponse" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html#TwitterMonitorConfigurationResponse"/>
+<area shape="poly" coords="279,197,276,199,274,197,276,194,279,197,279,197" title="Complexity: 7; Coverage: 92%; Class: HttpMonitorConfigurationFileRequest" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html#HttpMonitorConfigurationFileRequest"/>
+<area shape="poly" coords="205,204,203,206,200,204,203,201,205,204,205,204" title="Complexity: 3; Coverage: 62%; Class: ConfigurationFileHttpMonitorProxy" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html#ConfigurationFileHttpMonitorProxy"/>
+<area shape="poly" coords="227,202,225,205,222,202,225,200,227,202,227,202" title="Complexity: 4; Coverage: 71%; Class: TwitterMonitorConfigurationResponse" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html#TwitterMonitorConfigurationResponse"/>
+<area shape="poly" coords="240,197,237,199,235,197,237,194,240,197,240,197" title="Complexity: 7; Coverage: 76%; Class: HttpMonitorConfigurationRequest" alt="" href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html#HttpMonitorConfigurationRequest"/>
+<area shape="poly" coords="298,202,296,205,293,202,296,200,298,202,298,202" title="Complexity: 4; Coverage: 100%; Class: ReplanBaseObject" alt="" href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html#ReplanBaseObject"/>
+<area shape="poly" coords="176,181,174,184,171,181,174,179,176,181,176,181" title="Complexity: 16; Coverage: 50%; Class: User" alt="" href="eu/supersede/integration/api/datastore/fe/types/User.html#User"/>
+<area shape="poly" coords="176,199,174,201,171,199,174,196,176,199,176,199" title="Complexity: 6; Coverage: 50%; Class: MonitorSpecificConfigurationResult" alt="" href="eu/supersede/integration/api/monitoring/manager/types/MonitorSpecificConfigurationResult.html#MonitorSpecificConfigurationResult"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="54,185,51,187,49,185,51,182,54,185,54,185" title="Complexity: 14; Coverage: 0%; Class: MonitoringParams" alt="" href="eu/supersede/integration/api/analysis/types/MonitoringParams.html#MonitoringParams"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="54,199,51,201,49,199,51,196,54,199,54,199" title="Complexity: 6; Coverage: 0%; Class: Property" alt="" href="eu/supersede/integration/api/replan/controller/types/Property.html#Property"/>
+<area shape="poly" coords="142,18,139,20,137,18,139,15,142,18,142,18" title="Complexity: 111; Coverage: 36%; Class: IFUserStoreManager" alt="" href="eu/supersede/integration/api/security/IFUserStoreManager.html#IFUserStoreManager"/>
+<area shape="poly" coords="245,154,242,156,240,154,242,151,245,154,245,154" title="Complexity: 32; Coverage: 78%; Class: IFAuthenticationManager" alt="" href="eu/supersede/integration/api/security/IFAuthenticationManager.html#IFAuthenticationManager"/>
+<area shape="poly" coords="242,195,240,198,237,195,240,193,242,195,242,195" title="Complexity: 8; Coverage: 77%; Class: IFAccount" alt="" href="eu/supersede/integration/api/security/IFAccount.html#IFAccount"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="127,178,125,180,122,178,125,175,127,178,127,178" title="Complexity: 18; Coverage: 30%; Class: TopicSubscriber" alt="" href="eu/supersede/integration/api/pubsub/TopicSubscriber.html#TopicSubscriber"/>
+<area shape="poly" coords="286,200,284,203,281,200,284,198,286,200,286,200" title="Complexity: 5; Coverage: 95%; Class: TopicPublisher" alt="" href="eu/supersede/integration/api/pubsub/TopicPublisher.html#TopicPublisher"/>
+<area shape="poly" coords="269,195,267,198,264,195,267,193,269,195,269,195" title="Complexity: 8; Coverage: 88%; Class: Release" alt="" href="eu/supersede/integration/api/replan/controller/types/Release.html#Release"/>
+<area shape="poly" coords="188,202,186,205,183,202,186,200,188,202,188,202" title="Complexity: 4; Coverage: 55%; Class: ModelSystem" alt="" href="eu/supersede/integration/api/adaptation/types/ModelSystem.html#ModelSystem"/>
+<area shape="poly" coords="198,21,196,24,193,21,196,19,198,21,198,21" title="Complexity: 109; Coverage: 59%; Class: IFServiceProxy" alt="" href="eu/supersede/integration/api/proxy/IFServiceProxy.html#IFServiceProxy"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="54,206,51,208,49,206,51,203,54,206,54,206" title="Complexity: 2; Coverage: 0%; Class: SoftDependencyType" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependencyType.html#SoftDependencyType"/>
+<area shape="poly" coords="54,207,51,210,49,207,51,205,54,207,54,207" title="Complexity: 1; Coverage: 0%; Class: CustomJsonTimestampSerializer" alt="" href="eu/supersede/integration/api/json/CustomJsonTimestampSerializer.html#CustomJsonTimestampSerializer"/>
+<area shape="poly" coords="54,207,51,210,49,207,51,205,54,207,54,207" title="Complexity: 1; Coverage: 0%; Class: CustomJsonTimestampSerializer" alt="" href="eu/supersede/integration/api/json/CustomJsonTimestampSerializer.html#CustomJsonTimestampSerializer"/>
+<area shape="poly" coords="54,202,51,205,49,202,51,200,54,202,54,202" title="Complexity: 4; Coverage: 0%; Class: SoftDependency" alt="" href="eu/supersede/integration/api/replan/controller/types/SoftDependency.html#SoftDependency"/>
+<area shape="poly" coords="54,199,51,201,49,199,51,196,54,199,54,199" title="Complexity: 6; Coverage: 0%; Class: Property" alt="" href="eu/supersede/integration/api/replan/controller/types/Property.html#Property"/>
+<area shape="poly" coords="117,190,115,193,112,190,115,188,117,190,117,190" title="Complexity: 11; Coverage: 26%; Class: EvolutionSubscriber" alt="" href="eu/supersede/integration/api/pubsub/evolution/EvolutionSubscriber.html#EvolutionSubscriber"/>
+<area shape="poly" coords="262,200,259,203,257,200,259,198,262,200,262,200" title="Complexity: 5; Coverage: 85%; Class: AdaptationPublisher" alt="" href="eu/supersede/integration/api/pubsub/adaptation/AdaptationPublisher.html#AdaptationPublisher"/>
+<area shape="poly" coords="276,200,274,203,271,200,274,198,276,200,276,200" title="Complexity: 5; Coverage: 91%; Class: AdaptationAlertMessageListener" alt="" href="eu/supersede/integration/api/pubsub/adaptation/AdaptationAlertMessageListener.html#AdaptationAlertMessageListener"/>
+<area shape="poly" coords="205,147,203,149,200,147,203,144,205,147,205,147" title="Complexity: 36; Coverage: 62%; Class: IFMessageClient" alt="" href="eu/supersede/integration/rest/client/IFMessageClient.html#IFMessageClient"/>
+<area shape="poly" coords="269,193,267,196,264,193,267,191,269,193,269,193" title="Complexity: 9; Coverage: 88%; Class: SupersedePlatform" alt="" href="eu/supersede/integration/api/datastore/integration/types/SupersedePlatform.html#SupersedePlatform"/>
+</map>
+            </div>
+        </div>
+        
+                    <div class="dashboard-widget">
+                <header class="dashboard-widget-header">
+                    <h3>Coverage tree map</h3>
+                </header>
+                <div class="dashboard-widget-content">
+                    <div id="infovis" style="width:100%; height:250px;">
+                        <div id="treemap-loader" style="position:relative;top:50px;">
+                            <p>
+                                Generating Coverage Tree Map. Please wait...
+                            </p>
+                            <p>
+                                <img src="img/ajax-loader.gif" alt="Loading Treemap"/>
+                            </p>
+                        </div>
+                    </div>
+                    <p><a href="treemap.html">See more</a></p>
+                </div>
+
+            </div>
+            </div>
+
+
+    <div class="aui-item">
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Top 20 project risks</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                
+                                                                <a class="tag" href="eu/supersede/integration/api/json/NillableObjectJsonDeserializer.html"
+                            style="font-size: 27px;color:#89c495"
+                            title="Average Method Complexity - 5 , Coverage - 93.8% ">NillableObjectJsonDeserializer</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterDeserializer.html"
+                            style="font-size: 24px;color:#14892c"
+                            title="Average Method Complexity - 4 , Coverage - 84.4% ">ParameterDeserializer</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/datastore/proxies/FEDataStoreProxy.html"
+                            style="font-size: 18px;color:#14892c"
+                            title="Average Method Complexity - 2.167 , Coverage - 87.7% ">FEDataStoreProxy</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/federation/SupersedeFederation.html"
+                            style="font-size: 16px;color:#89c495"
+                            title="Average Method Complexity - 1.5 , Coverage - 91.3% ">SupersedeFederation</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/pubsub/TopicMessageAgent.html"
+                            style="font-size: 16px;color:#14892c"
+                            title="Average Method Complexity - 1.6 , Coverage - 88.2% ">TopicMessageAgent</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/security/types/User.html"
+                            style="font-size: 18px;color:#14892c"
+                            title="Average Method Complexity - 2.267 , Coverage - 80.9% ">User</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/pubsub/TopicPublisher.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 1.25 , Coverage - 95% ">TopicPublisher</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/pubsub/evolution/EvolutionAlertMessageListener.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 1.25 , Coverage - 92.3% ">EvolutionAlertMessageListener</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/security/IFAccount.html"
+                            style="font-size: 18px;color:#fae1a0"
+                            title="Average Method Complexity - 2 , Coverage - 77.8% ">IFAccount</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/dm/proxies/DecisionMakingSystemProxy.html"
+                            style="font-size: 18px;color:#fae1a0"
+                            title="Average Method Complexity - 2 , Coverage - 77.8% ">DecisionMakingSystemProxy</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/pubsub/adaptation/AdaptationAlertMessageListener.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 1.25 , Coverage - 91.7% ">AdaptationAlertMessageListener</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/feedback/proxies/FeedbackRepositoryProxy.html"
+                            style="font-size: 15px;color:#89c495"
+                            title="Average Method Complexity - 1.25 , Coverage - 90.7% ">FeedbackRepositoryProxy</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterSerializer.html"
+                            style="font-size: 28px;color:#f6c342"
+                            title="Average Method Complexity - 5.333 , Coverage - 66.2% ">ParameterSerializer</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/fe/FrontendAuthentication.html"
+                            style="font-size: 16px;color:#14892c"
+                            title="Average Method Complexity - 1.571 , Coverage - 83% ">FrontendAuthentication</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/security/IFAuthenticationManager.html"
+                            style="font-size: 16px;color:#fae1a0"
+                            title="Average Method Complexity - 1.6 , Coverage - 78.8% ">IFAuthenticationManager</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/monitoring/monitors/proxies/MonitorProxy.html"
+                            style="font-size: 22px;color:#f6c342"
+                            title="Average Method Complexity - 3.667 , Coverage - 67.6% ">MonitorProxy</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/security/types/Role.html"
+                            style="font-size: 16px;color:#14892c"
+                            title="Average Method Complexity - 1.364 , Coverage - 84.4% ">Role</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/adaptation/types/AdaptationMode.html"
+                            style="font-size: 15px;color:#14892c"
+                            title="Average Method Complexity - 1.333 , Coverage - 81.8% ">AdaptationMode</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/pubsub/evolution/EvolutionPublisher.html"
+                            style="font-size: 15px;color:#14892c"
+                            title="Average Method Complexity - 1.25 , Coverage - 86.4% ">EvolutionPublisher</a>
+                                    
+                                                                <a class="tag" href="eu/supersede/integration/api/adaptation/proxies/ModelRepositoryProxy.html"
+                            style="font-size: 25px;color:#e7a19b"
+                            title="Average Method Complexity - 4.667 , Coverage - 57% ">ModelRepositoryProxy</a>
+                                                    <p><a href="top-risks.html">See more</a></p>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Most complex packages</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                
+                <table class="aui">
+                                            
+                                                <tr>
+                            <td>1. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.34138656</span>34.1%</div><div style="display: table-cell">
+ <div title="34.1% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:34.1%"></div></div></div></div></td>
+                            <td>
+                                <a href="eu/supersede/integration/api/feedback/orchestrator/types/pkg-summary.html">eu.supersede.integration.api.feedback.orchestrator.types</a>
+                                <span class="aui-badge" title="Package complexity">365</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>2. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.51458335</span>51.5%</div><div style="display: table-cell">
+ <div title="51.5% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:51.5%"></div></div></div></div></td>
+                            <td>
+                                <a href="eu/supersede/integration/api/feedback/repository/types/pkg-summary.html">eu.supersede.integration.api.feedback.repository.types</a>
+                                <span class="aui-badge" title="Package complexity">212</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>3. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.5323887</span>53.2%</div><div style="display: table-cell">
+ <div title="53.2% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:53.2%"></div></div></div></div></td>
+                            <td>
+                                <a href="eu/supersede/integration/api/security/pkg-summary.html">eu.supersede.integration.api.security</a>
+                                <span class="aui-badge" title="Package complexity">151</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>4. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.24054983</span>24.1%</div><div style="display: table-cell">
+ <div title="24.1% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:24.1%"></div></div></div></div></td>
+                            <td>
+                                <a href="eu/supersede/integration/api/mdm/types/pkg-summary.html">eu.supersede.integration.api.mdm.types</a>
+                                <span class="aui-badge" title="Package complexity">139</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>5. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.6279864</span>62.8%</div><div style="display: table-cell">
+ <div title="62.8% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:62.8%"></div></div></div></div></td>
+                            <td>
+                                <a href="eu/supersede/integration/api/adaptation/types/pkg-summary.html">eu.supersede.integration.api.adaptation.types</a>
+                                <span class="aui-badge" title="Package complexity">131</span>
+                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+
+        <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Most complex classes</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <table class="aui">
+                                            
+                                                <tr>
+                            <td>1. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.36363637</span>36.4%</div><div style="display: table-cell">
+ <div title="36.4% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:36.4%"></div></div></div></div></td>
+                            <td>
+                                <a  href="eu/supersede/integration/api/security/IFUserStoreManager.html"  title="eu.supersede.integration.api.security.IFUserStoreManager">IFUserStoreManager</a>
+                                <span class="aui-badge" title="Class complexity">111</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>2. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.59821427</span>59.8%</div><div style="display: table-cell">
+ <div title="59.8% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:59.8%"></div></div></div></div></td>
+                            <td>
+                                <a  href="eu/supersede/integration/api/proxy/IFServiceProxy.html"  title="eu.supersede.integration.api.proxy.IFServiceProxy">IFServiceProxy</a>
+                                <span class="aui-badge" title="Class complexity">109</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>3. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.46588695</span>46.6%</div><div style="display: table-cell">
+ <div title="46.6% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:46.6%"></div></div></div></div></td>
+                            <td>
+                                <a  href="eu/supersede/integration/api/replan/controller/proxies/ReplanControllerProxy.html"  title="eu.supersede.integration.api.replan.controller.proxies.ReplanControllerProxy">ReplanControllerProxy</a>
+                                <span class="aui-badge" title="Class complexity">85</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>4. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.589011</span>58.9%</div><div style="display: table-cell">
+ <div title="58.9% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:58.9%"></div></div></div></div></td>
+                            <td>
+                                <a  href="eu/supersede/integration/api/feedback/proxies/FeedbackOrchestratorProxy.html"  title="eu.supersede.integration.api.feedback.proxies.FeedbackOrchestratorProxy">FeedbackOrchestratorProxy</a>
+                                <span class="aui-badge" title="Class complexity">80</span>
+                            </td>
+                        </tr>
+                                            
+                                                <tr>
+                            <td>5. </td>
+                            <td><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.80851066</span>80.9%</div><div style="display: table-cell">
+ <div title="80.9% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:80.9%"></div></div></div></div></td>
+                            <td>
+                                <a  href="eu/supersede/integration/api/security/types/User.html"  title="eu.supersede.integration.api.security.types.User">User</a>
+                                <span class="aui-badge" title="Class complexity">68</span>
+                            </td>
+                        </tr>
+                                    </table>
+            </div>
+        </div>
+
+                <div class="dashboard-widget">
+            <header class="dashboard-widget-header">
+                <h3>Least tested methods</h3>
+            </header>
+            <div class="dashboard-widget-content">
+                <table class="aui">
+                                            
+
+                    <tr>
+                        <td align="right">1.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IFServiceProxy.postJSONObject(T,URI,HttpStatus)&#160;:&#160;HttpStatus" href="eu/supersede/integration/api/proxy/IFServiceProxy.html?line=433#src-433">IFServiceProxy.postJSONObject(T,URI,HttpStatus)&#160;:&#160;HttpStatus</a>
+                            <span class="aui-badge" title="Method complexity">6</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">2.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="GeneralConfiguration.parametersByLanguage(String,String)&#160;:&#160;List&lt;Parameter&gt;" href="eu/supersede/integration/api/feedback/orchestrator/types/GeneralConfiguration.html?line=59#src-59">GeneralConfiguration.parametersByLanguage(String,String)&#160;:&#160;List&lt;Parameter&gt;</a>
+                            <span class="aui-badge" title="Method complexity">10</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">3.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="Mechanism.parametersByLanguage(String,String)&#160;:&#160;List&lt;Parameter&gt;" href="eu/supersede/integration/api/feedback/orchestrator/types/Mechanism.html?line=63#src-63">Mechanism.parametersByLanguage(String,String)&#160;:&#160;List&lt;Parameter&gt;</a>
+                            <span class="aui-badge" title="Method complexity">10</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">4.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="Parameter.parametersByLanguage(String,String)&#160;:&#160;List&lt;Parameter&gt;" href="eu/supersede/integration/api/feedback/orchestrator/types/Parameter.html?line=130#src-130">Parameter.parametersByLanguage(String,String)&#160;:&#160;List&lt;Parameter&gt;</a>
+                            <span class="aui-badge" title="Method complexity">10</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">5.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="DMOptimizerProxy.optimize(String,String,String,String,String,boolean)&#160;:&#160;FeatureConfiguration" href="eu/supersede/integration/api/dm/proxies/DMOptimizerProxy.html?line=40#src-40">DMOptimizerProxy.optimize(String,String,String,String,String,boolean)&#160;:&#160;FeatureConfiguration</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">6.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="DataProviderProxy.ingestMonitoringData(List&lt;MonitoringData&gt;,String,int,int,String)&#160;:&#160;void" href="eu/supersede/integration/api/analysis/proxies/DataProviderProxy.html?line=57#src-57">DataProviderProxy.ingestMonitoringData(List&lt;MonitoringData&gt;,String,int,int,String)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">7.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="TopicSubscriber.createTopicSubscriptionAndCloseAfterAWhile(MessageListener,int)&#160;:&#160;void" href="eu/supersede/integration/api/pubsub/TopicSubscriber.html?line=133#src-133">TopicSubscriber.createTopicSubscriptionAndCloseAfterAWhile(MessageListener,int)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">4</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">8.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IFAuthenticationManager.updateRole(Role,String)&#160;:&#160;void" href="eu/supersede/integration/api/security/IFAuthenticationManager.html?line=268#src-268">IFAuthenticationManager.updateRole(Role,String)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">9.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IFTenantsManager.IFTenantsManager(String,String)" href="eu/supersede/integration/api/tenants/IFTenantsManager.html?line=95#src-95">IFTenantsManager.IFTenantsManager(String,String)</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">10.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="Feedback.Feedback(String,String,Date,Date,long,long,String,ContextInformation,List&lt;AttachmentFeedback&gt;,List&lt;AudioFeedback&gt;,List&lt;CategoryFeedback&gt;,List&lt;RatingFeedback&gt;,List&lt;ScreenshotFeedback&gt;,List&lt;TextFeedback&gt;,List&lt;Status&gt;)" href="eu/supersede/integration/api/feedback/repository/types/Feedback.html?line=56#src-56">Feedback.Feedback(String,String,Date,Date,long,long,String,ContextInformation,List&lt;AttachmentFeedback&gt;,List&lt;AudioFeedback&gt;,List&lt;CategoryFeedback&gt;,List&lt;RatingFeedback&gt;,List&lt;ScreenshotFeedback&gt;,List&lt;TextFeedback&gt;,List&lt;Status&gt;)</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">11.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IFServiceProxy.getFormURLEncoded(String,Map&lt;String,&#160;S&gt;,HttpStatus,Class&lt;T&gt;)&#160;:&#160;T" href="eu/supersede/integration/api/proxy/IFServiceProxy.html?line=673#src-673">IFServiceProxy.getFormURLEncoded(String,Map&lt;String,&#160;S&gt;,HttpStatus,Class&lt;T&gt;)&#160;:&#160;T</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">12.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IFServiceProxy.insertJSONObject(String,URI,HttpStatus,FrontendSession)&#160;:&#160;HttpStatus" href="eu/supersede/integration/api/proxy/IFServiceProxy.html?line=366#src-366">IFServiceProxy.insertJSONObject(String,URI,HttpStatus,FrontendSession)&#160;:&#160;HttpStatus</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">13.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="IFServiceProxy.postXMLString(String,URI,HttpStatus)&#160;:&#160;HttpStatus" href="eu/supersede/integration/api/proxy/IFServiceProxy.html?line=614#src-614">IFServiceProxy.postXMLString(String,URI,HttpStatus)&#160;:&#160;HttpStatus</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">14.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ReplanControllerProxy.addFeaturesToProjectById(AddFeaturesForProjectPayload,int)&#160;:&#160;HttpStatus" href="eu/supersede/integration/api/replan/controller/proxies/ReplanControllerProxy.html?line=436#src-436">ReplanControllerProxy.addFeaturesToProjectById(AddFeaturesForProjectPayload,int)&#160;:&#160;HttpStatus</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">15.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ReplanControllerProxy.addFeaturesToProjectById(AddFeaturesForProjectPayload,String)&#160;:&#160;HttpStatus" href="eu/supersede/integration/api/replan/controller/proxies/ReplanControllerProxy.html?line=924#src-924">ReplanControllerProxy.addFeaturesToProjectById(AddFeaturesForProjectPayload,String)&#160;:&#160;HttpStatus</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">16.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MonitorConfiguration.MonitorConfiguration(MonitorTool,long,String,String,String,String,String,String,String,String,String,String,Method)" href="eu/supersede/integration/api/feedback/orchestrator/types/MonitorConfiguration.html?line=70#src-70">MonitorConfiguration.MonitorConfiguration(MonitorTool,long,String,String,String,String,String,String,String,String,String,String,Method)</a>
+                            <span class="aui-badge" title="Method complexity">1</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">17.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="AlgorithmType.fromName(String)&#160;:&#160;AlgorithmType" href="eu/supersede/integration/api/replan/optimizer_v2/types/AlgorithmType.html?line=16#src-16">AlgorithmType.fromName(String)&#160;:&#160;AlgorithmType</a>
+                            <span class="aui-badge" title="Method complexity">6</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">18.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="AlgorithmType.fromName(String)&#160;:&#160;AlgorithmType" href="eu/supersede/integration/api/replan/optimizer/types/AlgorithmType.html?line=16#src-16">AlgorithmType.fromName(String)&#160;:&#160;AlgorithmType</a>
+                            <span class="aui-badge" title="Method complexity">6</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">19.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="ReplanControllerProxy.getPlanOfReleaseByIdOfTenantById(int,String,Boolean)&#160;:&#160;Plan" href="eu/supersede/integration/api/replan/controller/proxies/ReplanControllerProxy.html?line=610#src-610">ReplanControllerProxy.getPlanOfReleaseByIdOfTenantById(int,String,Boolean)&#160;:&#160;Plan</a>
+                            <span class="aui-badge" title="Method complexity">3</span>
+
+                        </td>
+                    </tr>
+                                            
+
+                    <tr>
+                        <td align="right">20.</td>
+                        <td align="right"><div style="display: table; width: 100%">
+<div class="barGraphValue"><span class="sortValue">0.0</span>0%</div><div style="display: table-cell">
+ <div title="0% Covered"  style="min-width:40px;" class="barNegative contribBarNegative "><div class="barPositive contribBarPositive " style="width:0%"></div></div></div></div></td>
+                        <td>
+                              <!-- normal method -->
+                                                      <a title="MailProxy.sendEmail(Email,AuthorizationToken)&#160;:&#160;void" href="eu/supersede/integration/api/mail/proxies/MailProxy.html?line=40#src-40">MailProxy.sendEmail(Email,AuthorizationToken)&#160;:&#160;void</a>
+                            <span class="aui-badge" title="Method complexity">2</span>
+
+                        </td>
+                    </tr>
+                                    </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+                            </div> <!-- tabs-pane active-pane -->
+                        </div>
+
+    <script type="text/javascript" src="jit.js" ></script>
+    <script type="text/javascript" src="treemap-dash-json.js" ></script>
+
+                        </div> <!-- class="aui-page-panel-content-clover" -->
+                    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul>
+            <li>
+                Report generated by <a target="_new" href="http://openclover.org">OpenClover</a> v 4.2.0
+                on Fri Sep 27 2019 13:23:45 CEST using coverage data from Fri Sep 27 2019 13:23:41 CEST.
+            </li>
+        </ul>
+        <ul>
+            <li>Clover free edition. </li>
+        </ul>
+    </section>
+</footer>                </section> <!-- class="aui-page-panel-content" -->
+            </div> <!-- class="aui-page-panel-inner" -->
+        </div> <!-- class="aui-page-panel" -->
+    </div> <!-- id="page" -->
+</body>
+</html>
