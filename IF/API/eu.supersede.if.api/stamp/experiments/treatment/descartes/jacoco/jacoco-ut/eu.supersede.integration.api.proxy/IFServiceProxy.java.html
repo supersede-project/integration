@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IFServiceProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.proxy</a> &gt; <span class="el_source">IFServiceProxy.java</span></div><h1>IFServiceProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.proxy;
+
+import java.net.URI;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import eu.supersede.integration.api.fe.FrontendSession;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.rest.client.IFMessageClient;
+
+<span class="fc" id="L48">public abstract class IFServiceProxy&lt;T, S&gt; {</span>
+<span class="fc" id="L49">	protected IFMessageClient messageClient = IFMessageClient.getInstance();</span>
+<span class="fc" id="L50">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+
+	public &lt;T&gt; List&lt;T&gt; getJSONObjectsListForType(Class&lt;T[]&gt; type, URI uri, HttpStatus expectedStatus) {
+		try {
+<span class="fc" id="L54">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L55">			ResponseEntity&lt;T[]&gt; response = messageClient.getJSONMessage(uri, type);</span>
+<span class="fc" id="L56">			T[] objects = response.getBody();</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L58">				log.info(&quot;Located &quot; + objects.length + &quot; JSON object(s) for type &quot; + type);</span>
+			} else {
+<span class="nc" id="L60">				log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L62">			return (List&lt;T&gt;) Arrays.asList(objects);</span>
+<span class="nc" id="L63">		} catch (Exception e) {</span>
+<span class="nc" id="L64">			log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+<span class="nc" id="L65">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L66">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; List&lt;T&gt; getJSONObjectsListForType(Class&lt;T[]&gt; type, URI uri, HttpStatus expectedStatus, FrontendSession session) {
+		try {
+<span class="fc" id="L72">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L73">			ResponseEntity&lt;T[]&gt; response = messageClient.getJSONMessage(uri, type, session);</span>
+<span class="fc" id="L74">			T[] objects = response.getBody();</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L76">				log.info(&quot;Located &quot; + objects.length + &quot; JSON object(s) for type &quot; + type);</span>
+			} else {
+<span class="nc" id="L78">				log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L80">			return (List&lt;T&gt;) Arrays.asList(objects);</span>
+<span class="nc" id="L81">		} catch (Exception e) {</span>
+<span class="nc" id="L82">			log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+<span class="nc" id="L83">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L84">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; List&lt;T&gt; getJSONObjectsListForType(Class&lt;T[]&gt; type, URI uri, HttpStatus expectedStatus, String token) {
+		try {
+<span class="fc" id="L90">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L91">			ResponseEntity&lt;T[]&gt; response = messageClient.getJSONMessage(uri, type, token);</span>
+<span class="fc" id="L92">			T[] objects = response.getBody();</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L94">				log.info(&quot;Located &quot; + objects.length + &quot; JSON object(s) for type &quot; + type);</span>
+			} else {
+<span class="nc" id="L96">				log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L98">			return (List&lt;T&gt;) Arrays.asList(objects);</span>
+<span class="nc" id="L99">		} catch (Exception e) {</span>
+<span class="nc" id="L100">			log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+<span class="nc" id="L101">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L102">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; List&lt;T&gt; getObjectsListForType(Class&lt;T[]&gt; type, URI uri, HttpStatus expectedStatus, MediaType objectMediaType, AuthorizationToken authenticationToken) {
+		try {
+<span class="fc" id="L108">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L109">			ResponseEntity&lt;T[]&gt; response = messageClient.getMessage(uri, type, objectMediaType, authenticationToken);</span>
+<span class="fc" id="L110">			T[] objects = response.getBody();</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L112">				log.info(&quot;Located &quot; + objects.length + &quot; object(s) for type &quot; + type);</span>
+			} else {
+<span class="nc" id="L114">				log.info(&quot;There was a problem getting object(s) in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L116">			return (List&lt;T&gt;) Arrays.asList(objects);</span>
+<span class="nc" id="L117">		} catch (Exception e) {</span>
+<span class="nc" id="L118">			log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+<span class="nc" id="L119">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L120">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T getJSONObjectForType(Class&lt;T&gt; type, URI uri, HttpStatus expectedStatus) {
+		try {
+<span class="fc" id="L126">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L127">			ResponseEntity&lt;T&gt; response = messageClient.getJSONMessage(uri, type);</span>
+<span class="fc" id="L128">			T object = response.getBody();</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L130">				log.info(&quot;Located &quot; + type + &quot; JSON object: &quot; + object);</span>
+			} else {
+<span class="nc" id="L132">				log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L134">			return object;</span>
+<span class="nc" id="L135">		} catch (Exception e) {</span>
+<span class="nc" id="L136">			log.info(&quot;There was a problem getting JSON object(s) in uri: &quot; + uri);</span>
+<span class="nc" id="L137">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L138">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T getJSONObjectForType(Class&lt;T&gt; type, URI uri, HttpStatus expectedStatus, FrontendSession session) {
+		try {
+<span class="fc" id="L144">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L145">			ResponseEntity&lt;T&gt; response = messageClient.getJSONMessage(uri, type, session);</span>
+<span class="fc" id="L146">			T object = response.getBody();</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L148">				log.info(&quot;Located &quot; + type + &quot; JSON object: &quot; + object);</span>
+			} else {
+<span class="nc" id="L150">				log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L152">			return object;</span>
+<span class="nc" id="L153">		} catch (Exception e) {</span>
+<span class="nc" id="L154">			log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+<span class="nc" id="L155">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L156">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T getJSONObjectForType(Class&lt;T&gt; type, URI uri, HttpStatus expectedStatus, String token) {
+		try {
+<span class="fc" id="L162">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L163">			ResponseEntity&lt;T&gt; response = messageClient.getJSONMessage(uri, type, token);</span>
+<span class="fc" id="L164">			T object = response.getBody();</span>
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L166">				log.info(&quot;Located &quot; + type + &quot; JSON object: &quot; + object);</span>
+			} else {
+<span class="nc" id="L168">				log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L170">			return object;</span>
+<span class="fc" id="L171">		} catch (Exception e) {</span>
+<span class="fc" id="L172">			log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+<span class="fc" id="L173">			log.error(e.getMessage(), e);</span>
+<span class="fc" id="L174">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T getObjectForType(Class&lt;T&gt; type, URI uri, HttpStatus expectedStatus, MediaType objectMediaType, AuthorizationToken authenticationToken) {
+		try {
+<span class="fc" id="L180">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L181">			ResponseEntity&lt;T&gt; response = messageClient.getMessage(uri, type, objectMediaType, authenticationToken);</span>
+<span class="fc" id="L182">			T object = response.getBody();</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L184">				log.info(&quot;Located &quot; + type + &quot; JSON object: &quot; + object);</span>
+			} else {
+<span class="nc" id="L186">				log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L188">			return object;</span>
+<span class="nc" id="L189">		} catch (Exception e) {</span>
+<span class="nc" id="L190">			log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+<span class="nc" id="L191">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L192">			throw e;</span>
+		}
+	}
+	
+	public byte[] getObjectAsInputStream(URI uri, HttpStatus expectedStatus, String token) {
+		try {
+<span class="fc" id="L198">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L199">			ResponseEntity&lt;byte[]&gt; response = messageClient.getMessage(uri, byte[].class, MediaType.APPLICATION_OCTET_STREAM, token);</span>
+<span class="fc" id="L200">			byte[] object = response.getBody();</span>
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L202">				log.info(&quot;Located object: &quot; + object);</span>
+			} else {
+<span class="nc" id="L204">				log.info(&quot;There was a problem getting object in uri: &quot; + uri);</span>
+			}
+<span class="fc" id="L206">			return object;</span>
+<span class="nc" id="L207">		} catch (Exception e) {</span>
+<span class="nc" id="L208">			log.info(&quot;There was a problem getting JSON object in uri: &quot; + uri);</span>
+<span class="nc" id="L209">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L210">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T insertandReturnJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+<span class="fc" id="L215">		T result = null;</span>
+		try {
+<span class="fc" id="L217">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L218">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L219">			ResponseEntity&lt;T&gt; response = </span>
+<span class="fc" id="L220">					messageClient.postJsonMessage(object, uri, object.getClass());</span>
+<span class="fc" id="L221">			result = response.getBody();</span>
+<span class="pc bpc" id="L222" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L223">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L225">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L226">				result = null;</span>
+			}
+<span class="fc" id="L228">			return result;</span>
+<span class="nc" id="L229">		} catch (Exception e) {</span>
+<span class="nc" id="L230">			log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L231">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L232">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T insertandReturnJSONObject(T object, Class&lt;T&gt; type, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
+<span class="fc" id="L237">		T result = null;</span>
+		try {
+<span class="fc" id="L239">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L240">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L241">			ResponseEntity&lt;T&gt; response = </span>
+<span class="fc" id="L242">					messageClient.postJsonMessageReturningSameType(object, uri, type, session);</span>
+<span class="fc" id="L243">			result = response.getBody();</span>
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L245">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L247">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L248">				result = null;</span>
+			}
+<span class="fc" id="L250">			return result;</span>
+<span class="nc" id="L251">		} catch (Exception e) {</span>
+<span class="nc" id="L252">			log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L253">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L254">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T insertandReturnJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+<span class="fc" id="L259">		T result = null;</span>
+		try {
+<span class="fc" id="L261">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L262">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L263">			Assert.hasText(token, &quot;Provide a valid token&quot;);</span>
+<span class="fc" id="L264">			ResponseEntity&lt;T&gt; response = </span>
+<span class="fc" id="L265">					messageClient.postJsonMessage(object, uri, object.getClass(), token);</span>
+<span class="fc" id="L266">			result = response.getBody();</span>
+<span class="pc bpc" id="L267" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L268">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L270">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L271">				result = null;</span>
+			}
+<span class="fc" id="L273">			return result;</span>
+<span class="nc" id="L274">		} catch (Exception e) {</span>
+<span class="nc" id="L275">			log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L276">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L277">			throw e;</span>
+		}
+	}
+	
+	public &lt;T,S&gt; S insertJSONObjectAndReturnAnotherType(T object, Class&lt;S&gt; returnedType, URI uri, List&lt;HttpStatus&gt; expectedStatus) throws Exception {
+<span class="fc" id="L282">		S result = null;</span>
+		try {
+<span class="fc" id="L284">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L285">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L286">			ResponseEntity&lt;S&gt; response = </span>
+<span class="fc" id="L287">					messageClient.postJsonMessage(object, uri, returnedType);</span>
+<span class="fc" id="L288">			result = response.getBody();</span>
+<span class="pc bpc" id="L289" title="1 of 2 branches missed.">			if (expectedStatus.contains(response.getStatusCode())) {</span>
+<span class="fc" id="L290">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+<span class="fc" id="L291">				log.info(&quot;Result obtained: &quot; + result);</span>
+			} else {
+<span class="nc" id="L293">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L294">				result = null;</span>
+			}
+<span class="fc" id="L296">			return result;</span>
+<span class="nc" id="L297">		} catch (Exception e) {</span>
+<span class="nc" id="L298">			log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L299">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L300">			throw e;</span>
+		}
+	}
+	
+	public &lt;T,S&gt; S insertJSONObjectAndReturnAnotherType(T object, Class&lt;S&gt; returnedType, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+<span class="fc" id="L305">		S result = null;</span>
+		try {
+<span class="fc" id="L307">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L308">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L309">			ResponseEntity&lt;S&gt; response = </span>
+<span class="fc" id="L310">					messageClient.postJsonMessage(object, uri, returnedType, token);</span>
+<span class="fc" id="L311">			result = response.getBody();</span>
+<span class="pc bpc" id="L312" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L313">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+<span class="fc" id="L314">				log.info(&quot;Result obtained: &quot; + result);</span>
+			} else {
+<span class="nc" id="L316">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L317">				result = null;</span>
+			}
+<span class="fc" id="L319">			return result;</span>
+<span class="nc" id="L320">		} catch (Exception e) {</span>
+<span class="nc" id="L321">			log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L322">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L323">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; HttpStatus insertJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+		try {
+<span class="fc" id="L329">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L330">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L331">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L332">					messageClient.postJsonMessage(object, uri, object.getClass());</span>
+<span class="pc bpc" id="L333" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L334">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L336">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L338">			return response.getStatusCode();</span>
+<span class="nc" id="L339">		} catch (Exception e) {</span>
+<span class="nc" id="L340">			log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L341">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L342">			return null;</span>
+		}
+	}
+	
+	public &lt;T&gt; HttpStatus insertJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		try {
+<span class="fc" id="L348">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L349">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L350">			Assert.notNull(token, &quot;Provide a valid token&quot;);</span>
+<span class="fc" id="L351">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L352">					messageClient.postJsonMessage(object, uri, object.getClass(), token);</span>
+<span class="pc bpc" id="L353" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L354">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L356">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L358">			return response.getStatusCode();</span>
+<span class="nc" id="L359">		} catch (Exception e) {</span>
+			
+<span class="nc" id="L361">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L362">			return null;</span>
+		}
+	}
+	
+	public HttpStatus insertJSONObject(String json, URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
+		try {
+<span class="nc" id="L368">			Assert.notNull(json, &quot;Provide a valid json &quot;);</span>
+<span class="nc" id="L369">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="nc" id="L370">			ResponseEntity&lt;String&gt; response = </span>
+<span class="nc" id="L371">					messageClient.postJsonMessage(json, uri, String.class, session);</span>
+<span class="nc bnc" id="L372" title="All 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="nc" id="L373">				log.info(&quot;Successfully inserted JSON object &quot; + json);</span>
+			} else {
+<span class="nc" id="L375">				log.info(&quot;There was a problem inserting JSON object &quot; + json + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="nc" id="L377">			return response.getStatusCode();</span>
+<span class="nc" id="L378">		} catch (Exception e) {</span>
+<span class="nc" id="L379">			log.info(&quot;There was a problem inserting JSON object &quot; + json + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L380">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L381">			return null;</span>
+		}
+	}
+	
+	public &lt;T&gt; String insertJSONObjectAndReturnValueForJsonLabel(T object, URI uri, HttpStatus expectedStatus, String label) throws Exception {
+<span class="fc" id="L386">		String result = null;</span>
+		try {
+<span class="fc" id="L388">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L389">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L390">			Assert.notNull(expectedStatus, &quot;Provide a valid expectedStatus&quot;);</span>
+<span class="fc" id="L391">			Assert.notNull(label, &quot;Provide a valid label&quot;);</span>
+<span class="fc" id="L392">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L393">					messageClient.postJsonMessage(object, uri, String.class);</span>
+<span class="pc bpc" id="L394" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L395">				log.info(&quot;Successfully inserted JSON object &quot; + object);</span>
+<span class="fc" id="L396">				JSONObject json = new JSONObject(response.getBody());</span>
+<span class="fc" id="L397">				result = json.get(label).toString();</span>
+<span class="fc" id="L398">			} else {</span>
+<span class="nc" id="L399">				log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L401">			return result;</span>
+<span class="nc" id="L402">		} catch (Exception e) {</span>
+<span class="nc" id="L403">			log.info(&quot;There was a problem inserting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L404">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L405">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; String postJSONObjectAndReturnValueForJsonLabel(T object, URI uri, HttpStatus expectedStatus, String label) throws Exception {
+<span class="fc" id="L410">		String result = null;</span>
+		try {
+<span class="fc" id="L412">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L413">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L414">			Assert.notNull(expectedStatus, &quot;Provide a valid expectedStatus&quot;);</span>
+<span class="fc" id="L415">			Assert.notNull(label, &quot;Provide a valid label&quot;);</span>
+<span class="fc" id="L416">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L417">					messageClient.postJsonMessage(object, uri, object.getClass());</span>
+<span class="pc bpc" id="L418" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L419">				log.info(&quot;Successfully posted JSON object &quot; + object);</span>
+<span class="fc" id="L420">				JSONObject json = new JSONObject(response.getBody());</span>
+<span class="fc" id="L421">				result = json.getString(label);</span>
+<span class="fc" id="L422">			} else {</span>
+<span class="nc" id="L423">				log.info(&quot;There was a problem posting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L425">			return result;</span>
+<span class="nc" id="L426">		} catch (Exception e) {</span>
+<span class="nc" id="L427">			log.info(&quot;There was a problem posting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L428">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L429">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; HttpStatus postJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+		try {
+<span class="nc" id="L435">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="nc" id="L436">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="nc" id="L437">			ResponseEntity&lt;String&gt; response = </span>
+<span class="nc" id="L438">					messageClient.postJsonMessage(object, uri, String.class);</span>
+<span class="nc" id="L439">			JSONObject json = new JSONObject(response.getBody());</span>
+<span class="nc" id="L440">			String message = json.getString(&quot;message&quot;);</span>
+<span class="nc bnc" id="L441" title="All 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="nc" id="L442">				log.info(&quot;Successfully posted JSON object &quot; + object);</span>
+<span class="nc bnc" id="L443" title="All 2 branches missed.">				if (message != null){</span>
+<span class="nc" id="L444">					log.info(message);</span>
+				}
+			} else {
+<span class="nc" id="L447">				log.info(&quot;There was a problem posting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc bnc" id="L448" title="All 2 branches missed.">				if (message != null){</span>
+<span class="nc" id="L449">					log.info(message);</span>
+				}
+			}
+<span class="nc" id="L452">			return response.getStatusCode();</span>
+<span class="nc" id="L453">		} catch (HttpClientErrorException|HttpServerErrorException e) {</span>
+<span class="nc" id="L454">			log.info(&quot;There was a problem posting JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L455">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L456">			JSONObject json = new JSONObject(e.getResponseBodyAsString());</span>
+<span class="nc" id="L457">			String message = json.getString(&quot;message&quot;);</span>
+<span class="nc bnc" id="L458" title="All 2 branches missed.">			if (message != null){</span>
+<span class="nc" id="L459">				log.error(message);</span>
+			}
+<span class="nc" id="L461">			throw new Exception (message);</span>
+		}
+	}
+	
+	public &lt;T&gt; T updateAndReturnJSONObject(T object, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+<span class="fc" id="L466">		T result = null;</span>
+		try {
+<span class="fc" id="L468">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L469">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L470">			Assert.hasText(token, &quot;Provide a valid token&quot;);</span>
+<span class="fc" id="L471">			ResponseEntity&lt;T&gt; response = </span>
+<span class="fc" id="L472">					messageClient.putJsonMessage(object, uri, object.getClass(), token);</span>
+<span class="fc" id="L473">			result = response.getBody();</span>
+<span class="pc bpc" id="L474" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L475">				log.info(&quot;Successfully updated JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L477">				log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L478">				result = null;</span>
+			}
+<span class="fc" id="L480">			return result;</span>
+<span class="nc" id="L481">		} catch (Exception e) {</span>
+<span class="nc" id="L482">			log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L483">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L484">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T updateAndReturnJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+<span class="fc" id="L489">		T result = null;</span>
+		try {
+<span class="fc" id="L491">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L492">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L493">			ResponseEntity&lt;T&gt; response = </span>
+<span class="fc" id="L494">					messageClient.putJsonMessage(object, uri, object.getClass());</span>
+<span class="fc" id="L495">			result = response.getBody();</span>
+<span class="pc bpc" id="L496" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L497">				log.info(&quot;Successfully updated JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L499">				log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L500">				result = null;</span>
+			}
+<span class="fc" id="L502">			return result;</span>
+<span class="nc" id="L503">		} catch (Exception e) {</span>
+<span class="nc" id="L504">			log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L505">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L506">			throw e;</span>
+		}
+	}
+	
+	public &lt;T,S&gt; S updateJSONObjectAndReturnAnotherType(T object, Class&lt;S&gt; returnedType, URI uri, HttpStatus expectedStatus, String token) throws Exception {
+<span class="fc" id="L511">		S result = null;</span>
+		try {
+<span class="fc" id="L513">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L514">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L515">			ResponseEntity&lt;S&gt; response = </span>
+<span class="fc" id="L516">					messageClient.putJsonMessage(object, uri, returnedType, token);</span>
+<span class="fc" id="L517">			result = response.getBody();</span>
+<span class="pc bpc" id="L518" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L519">				log.info(&quot;Successfully updated JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L521">				log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L522">				result = null;</span>
+			}
+<span class="fc" id="L524">			return result;</span>
+<span class="nc" id="L525">		} catch (Exception e) {</span>
+<span class="nc" id="L526">			log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L527">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L528">			throw e;</span>
+		}
+	}
+	
+	public &lt;T,S&gt; S updateJSONObjectAndReturnAnotherType(T object, Class&lt;S&gt; returnedType, URI uri, HttpStatus expectedStatus) throws Exception {
+<span class="fc" id="L533">		S result = null;</span>
+		try {
+<span class="fc" id="L535">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L536">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L537">			ResponseEntity&lt;S&gt; response = </span>
+<span class="fc" id="L538">					messageClient.putJsonMessage(object, uri, returnedType);</span>
+<span class="fc" id="L539">			result = response.getBody();</span>
+<span class="pc bpc" id="L540" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L541">				log.info(&quot;Successfully updated JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L543">				log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L544">				result = null;</span>
+			}
+<span class="fc" id="L546">			return result;</span>
+<span class="nc" id="L547">		} catch (Exception e) {</span>
+<span class="nc" id="L548">			log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L549">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L550">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; HttpStatus updateJSONObject(T object, URI uri, HttpStatus expectedStatus) throws Exception {
+		try {
+<span class="fc" id="L556">			Assert.notNull(object, &quot;Provide a valid object of type &quot; + object.getClass());</span>
+<span class="fc" id="L557">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L558">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L559">					messageClient.putJsonMessage(object, uri, object.getClass());</span>
+<span class="pc bpc" id="L560" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L561">				log.info(&quot;Successfully updated JSON object &quot; + object);</span>
+			} else {
+<span class="nc" id="L563">				log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L565">			return response.getStatusCode();</span>
+<span class="nc" id="L566">		} catch (Exception e) {</span>
+<span class="nc" id="L567">			log.info(&quot;There was a problem updating JSON object &quot; + object + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L568">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L569">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T postJSONStringForReturnType(Class&lt;T&gt; type, String jsonInput, URI uri, HttpStatus expectedStatus) throws Exception {
+<span class="fc" id="L574">		T result = null;</span>
+		try {
+<span class="fc" id="L576">			Assert.notNull(jsonInput, &quot;Provide a valid json object&quot;);</span>
+<span class="fc" id="L577">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L578">			ResponseEntity&lt;T&gt; response = </span>
+<span class="fc" id="L579">					messageClient.postJsonMessage(jsonInput, uri, type);</span>
+<span class="fc" id="L580">			result = response.getBody();</span>
+<span class="pc bpc" id="L581" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L582">				log.info(&quot;Successfully inserted JSON object &quot; + jsonInput);</span>
+			} else {
+<span class="nc" id="L584">				log.info(&quot;There was a problem inserting JSON object &quot; + jsonInput + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L585">				result = null;</span>
+			}
+<span class="fc" id="L587">			return result;</span>
+<span class="nc" id="L588">		} catch (Exception e) {</span>
+<span class="nc" id="L589">			log.info(&quot;There was a problem inserting JSON object &quot; + jsonInput + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L590">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L591">			throw e;</span>
+		}
+	}
+	
+	public HttpStatus postJSONString(String jsonInput, URI uri, HttpStatus expectedStatus) throws Exception {
+		try {
+<span class="fc" id="L597">			Assert.notNull(jsonInput, &quot;Provide a valid json object&quot;);</span>
+<span class="fc" id="L598">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L599">			ResponseEntity&lt;Boolean&gt; response = </span>
+<span class="fc" id="L600">					messageClient.postJsonMessage(jsonInput, uri, jsonInput.getClass());</span>
+<span class="pc bpc" id="L601" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L602">				log.info(&quot;Successfully inserted JSON object &quot; + jsonInput);</span>
+			} else {
+<span class="nc" id="L604">				log.info(&quot;There was a problem inserting JSON object &quot; + jsonInput + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L606">			return response.getStatusCode();</span>
+<span class="nc" id="L607">		} catch (Exception e) {</span>
+<span class="nc" id="L608">			log.info(&quot;There was a problem inserting JSON object &quot; + jsonInput + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L609">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L610">			return null;</span>
+		}
+	}
+	
+	public HttpStatus postXMLString(String xmlInput, URI uri, HttpStatus expectedStatus) throws Exception {
+		try {
+<span class="nc" id="L616">			Assert.notNull(xmlInput, &quot;Provide a valid XML object&quot;);</span>
+<span class="nc" id="L617">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="nc" id="L618">			ResponseEntity&lt;Boolean&gt; response = </span>
+<span class="nc" id="L619">					messageClient.postXmlMessage(xmlInput, uri, xmlInput.getClass());</span>
+<span class="nc bnc" id="L620" title="All 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="nc" id="L621">				log.info(&quot;Successfully inserted XML object &quot; + xmlInput);</span>
+			} else {
+<span class="nc" id="L623">				log.info(&quot;There was a problem inserting XML object &quot; + xmlInput + &quot; in URI: &quot; + uri);</span>
+			}
+<span class="nc" id="L625">			return response.getStatusCode();</span>
+<span class="nc" id="L626">		} catch (Exception e) {</span>
+<span class="nc" id="L627">			log.info(&quot;There was a problem inserting XML object &quot; + xmlInput + &quot; in URI: &quot; + uri);</span>
+<span class="nc" id="L628">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L629">			return null;</span>
+		}
+	}
+	
+	/**
+	 * Sends a post message with an array of values encoded as form
+	 * @param query
+	 * @param valueLabel
+	 * @param values
+	 * @param expectedStatus
+	 * @return
+	 * @throws Exception
+	 */
+	public &lt;T&gt; HttpStatus postFormURLEncoded(URI query, Map&lt;String,List&lt;T&gt;&gt; values, HttpStatus expectedStatus) throws Exception {
+		try {
+<span class="fc" id="L644">			Assert.notNull(query, &quot;Provide a valid query&quot;);</span>
+<span class="fc" id="L645">			Assert.notNull(values, &quot;Provide a valid values&quot;);</span>
+<span class="fc" id="L646">			Assert.notNull(expectedStatus, &quot;Provide a valid expectedStatus&quot;);</span>
+			
+<span class="fc" id="L648">			HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L649">			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span>
+
+<span class="fc" id="L651">			MultiValueMap&lt;String, T&gt; map= new LinkedMultiValueMap&lt;String, T&gt;();</span>
+<span class="fc bfc" id="L652" title="All 2 branches covered.">			for (String parameter: values.keySet()){</span>
+<span class="fc bfc" id="L653" title="All 2 branches covered.">				for (T value:values.get(parameter))</span>
+<span class="fc" id="L654">					map.add(parameter, value);</span>
+<span class="fc" id="L655">			}</span>
+
+<span class="fc" id="L657">			HttpEntity&lt;MultiValueMap&lt;String, T&gt;&gt; request = new HttpEntity&lt;MultiValueMap&lt;String, T&gt;&gt;(map, headers);</span>
+
+<span class="fc" id="L659">			ResponseEntity&lt;String&gt; response = messageClient.postForEntity( query, request , String.class );</span>
+			
+<span class="pc bpc" id="L661" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L662">				log.info(&quot;Successfully posted query &quot; + query);</span>
+			} else {
+<span class="nc" id="L664">				log.info(&quot;There was a problem posting query query&quot;);</span>
+			}
+<span class="fc" id="L666">			return response.getStatusCode();</span>
+<span class="nc" id="L667">		} catch (Exception e) {</span>
+<span class="nc" id="L668">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L669">			return null;</span>
+		}
+	}
+	
+	public &lt;T, S&gt; T getFormURLEncoded(String uri, Map&lt;String, S&gt; parameters, HttpStatus expectedStatus, Class&lt;T&gt; returnType) throws Exception {
+		try {
+<span class="nc" id="L675">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="nc" id="L676">			Assert.notNull(parameters, &quot;Provide a valid parameters&quot;);</span>
+<span class="nc" id="L677">			Assert.notNull(expectedStatus, &quot;Provide a valid expectedStatus&quot;);</span>
+<span class="nc" id="L678">			Assert.notNull(returnType, &quot;Provide a valid returnType&quot;);</span>
+
+<span class="nc" id="L680">			ResponseEntity&lt;T&gt; response = messageClient.getForEntity( uri, returnType,  parameters);</span>
+			
+<span class="nc bnc" id="L682" title="All 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="nc" id="L683">				log.info(&quot;Successfully get uri &quot; + uri);</span>
+			} else {
+<span class="nc" id="L685">				log.info(&quot;There was a problem getting uri&quot;);</span>
+			}
+<span class="nc" id="L687">			return response.getBody();</span>
+<span class="nc" id="L688">		} catch (Exception e) {</span>
+<span class="nc" id="L689">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L690">			throw e;</span>
+		}
+	}
+	
+	public &lt;T&gt; T deleteUriResourceForReturnType(Class&lt;T&gt; type, URI uri, HttpStatus expectedStatus) throws Exception {
+<span class="fc" id="L695">		T result = null;</span>
+		try {
+<span class="fc" id="L697">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L698">			ResponseEntity&lt;T&gt; response = </span>
+<span class="fc" id="L699">					messageClient.deleteJsonMessage(uri, type);</span>
+<span class="fc" id="L700">			result = response.getBody();</span>
+<span class="pc bpc" id="L701" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L702">				log.info(&quot;Successfully delete in uri &quot; + uri);</span>
+			} else {
+<span class="nc" id="L704">				log.info(&quot;There was a problem deleting in URI: &quot; + uri);</span>
+<span class="nc" id="L705">				result = null;</span>
+			}
+<span class="fc" id="L707">			return result;</span>
+<span class="nc" id="L708">		} catch (Exception e) {</span>
+<span class="nc" id="L709">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L710">			throw e;</span>
+		}
+	}
+	
+	public HttpStatus deleteUriResource(URI uri, HttpStatus expectedStatus) throws Exception {
+		try {
+<span class="fc" id="L716">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L717">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L718">					messageClient.deleteJsonMessage(uri);</span>
+<span class="pc bpc" id="L719" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L720">				log.info(&quot;Successfully delete in uri &quot; + uri);</span>
+			} else {
+<span class="nc" id="L722">				log.info(&quot;There was a problem deleting in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L724">			return response.getStatusCode();</span>
+<span class="nc" id="L725">		} catch (Exception e) {</span>
+<span class="nc" id="L726">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L727">			return null;</span>
+		}
+	}
+	
+	public HttpStatus deleteUriResource(URI uri, HttpStatus expectedStatus, FrontendSession session) throws Exception {
+		try {
+<span class="fc" id="L733">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L734">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L735">					messageClient.deleteJsonMessage(uri, session);</span>
+<span class="pc bpc" id="L736" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L737">				log.info(&quot;Successfully delete in uri &quot; + uri);</span>
+			} else {
+<span class="nc" id="L739">				log.info(&quot;There was a problem deleting in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L741">			return response.getStatusCode();</span>
+<span class="nc" id="L742">		} catch (Exception e) {</span>
+<span class="nc" id="L743">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L744">			return null;</span>
+		}
+	}
+	
+	public HttpStatus deleteUriResource(URI uri, HttpStatus expectedStatus, String token) throws Exception {
+		try {
+<span class="fc" id="L750">			Assert.notNull(uri, &quot;Provide a valid uri&quot;);</span>
+<span class="fc" id="L751">			ResponseEntity&lt;String&gt; response = </span>
+<span class="fc" id="L752">					messageClient.deleteJsonMessage(uri, token);</span>
+<span class="pc bpc" id="L753" title="1 of 2 branches missed.">			if (response.getStatusCode().equals(expectedStatus)) {</span>
+<span class="fc" id="L754">				log.info(&quot;Successfully delete in uri &quot; + uri);</span>
+			} else {
+<span class="nc" id="L756">				log.info(&quot;There was a problem deleting in URI: &quot; + uri);</span>
+			}
+<span class="fc" id="L758">			return response.getStatusCode();</span>
+<span class="nc" id="L759">		} catch (Exception e) {</span>
+<span class="nc" id="L760">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L761">			return null;</span>
+		}
+	}
+	
+	public &lt;T&gt; T sendMultipartFormDataMessage(URI uri, Class&lt;T&gt; returnType, MultiValueMap&lt;String, Object&gt; parts, HttpMethod method) {
+<span class="fc" id="L766">		HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L767">		headers.setContentType(MediaType.MULTIPART_FORM_DATA);</span>
+		
+<span class="fc" id="L769">		HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; requestEntity =</span>
+		          new HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt;(parts, headers);
+		
+<span class="fc" id="L772">		ResponseEntity&lt;T&gt; response =</span>
+<span class="fc" id="L773">				messageClient.exchange(uri, </span>
+		                  method, requestEntity, returnType);
+<span class="fc" id="L775">		return response.getBody();</span>
+	}
+	
+	public &lt;T&gt; T sendMultipartFormDataMessage(URI uri, Class&lt;T&gt; returnType, MultiValueMap&lt;String, Object&gt; parts, HttpMethod method, String token) {
+<span class="fc" id="L779">		HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L780">		headers.add(&quot;Authorization&quot;, token);</span>
+<span class="fc" id="L781">		headers.setContentType(MediaType.MULTIPART_FORM_DATA);</span>
+		
+<span class="fc" id="L783">		HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; requestEntity =</span>
+		          new HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt;(parts, headers);
+		
+<span class="fc" id="L786">		ResponseEntity&lt;T&gt; response =</span>
+<span class="fc" id="L787">				messageClient.exchange(uri, </span>
+		                  method, requestEntity, returnType);
+<span class="fc" id="L789">		return response.getBody();</span>
+	}
+	
+	public HttpStatus sendMultipartFormDataMessage(URI uri, MultiValueMap&lt;String, Object&gt; parts, HttpMethod method, HttpStatus expectedStatus) {
+<span class="fc" id="L793">		HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L794">		headers.setContentType(MediaType.MULTIPART_FORM_DATA);</span>
+		
+<span class="fc" id="L796">		HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; requestEntity =</span>
+		          new HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt;(parts, headers);
+		
+<span class="fc" id="L799">		ResponseEntity&lt;String&gt; response =</span>
+<span class="fc" id="L800">				messageClient.exchange(uri, </span>
+		                  method, requestEntity, String.class);
+<span class="fc" id="L802">		return response.getStatusCode();</span>
+	}
+
+	public &lt;T&gt; String convertToJSON(T object) throws JsonProcessingException {
+<span class="fc" id="L806">		return messageClient.convertToJSON(object);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

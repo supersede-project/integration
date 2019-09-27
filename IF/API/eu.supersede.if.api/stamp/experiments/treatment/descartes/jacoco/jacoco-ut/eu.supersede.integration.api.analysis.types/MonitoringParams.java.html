@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MonitoringParams.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.analysis.types</a> &gt; <span class="el_source">MonitoringParams.java</span></div><h1>MonitoringParams.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.analysis.types;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MonitoringParams {
+	
+	private String toolName;
+	private String timeSlot;
+	private String kafkaEndpoint;
+	private String kafkaTopic;
+	private String keywordExpression;
+	private List&lt;String&gt; accounts;
+	
+<span class="nc" id="L34">	public MonitoringParams() {</span>
+<span class="nc" id="L35">		accounts = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L36">	}</span>
+	
+	public String getToolName() {
+<span class="nc" id="L39">		return toolName;</span>
+	}
+	
+	public void setToolName(String toolName) {
+<span class="nc" id="L43">		this.toolName = toolName;</span>
+<span class="nc" id="L44">	}</span>
+	
+	public String getTimeSlot() {
+<span class="nc" id="L47">		return timeSlot;</span>
+	}
+
+	public void setTimeSlot(String timeSlot) {
+<span class="nc" id="L51">		this.timeSlot = timeSlot;</span>
+<span class="nc" id="L52">	}</span>
+
+	public String getKafkaEndpoint() {
+<span class="nc" id="L55">		return kafkaEndpoint;</span>
+	}
+
+	public void setKafkaEndpoint(String kafkaEndpoint) {
+<span class="nc" id="L59">		this.kafkaEndpoint = kafkaEndpoint;</span>
+<span class="nc" id="L60">	}</span>
+
+	public String getKafkaTopic() {
+<span class="nc" id="L63">		return kafkaTopic;</span>
+	}
+
+	public void setKafkaTopic(String kafkaTopic) {
+<span class="nc" id="L67">		this.kafkaTopic = kafkaTopic;</span>
+<span class="nc" id="L68">	}</span>
+
+	public String getKeywordExpression() {
+<span class="nc" id="L71">		return keywordExpression;</span>
+	}
+
+	public void setKeywordExpression(String keywordExpression) {
+<span class="nc" id="L75">		this.keywordExpression = keywordExpression;</span>
+<span class="nc" id="L76">	}</span>
+
+	public List&lt;String&gt; getAccounts() {
+<span class="nc" id="L79">		return accounts;</span>
+	}
+
+	public void setAccounts(List&lt;String&gt; accounts) {
+<span class="nc" id="L83">		this.accounts = accounts;</span>
+<span class="nc" id="L84">	}</span>
+	
+	public void addAcount(String account) {
+<span class="nc" id="L87">		this.accounts.add(account);</span>
+<span class="nc" id="L88">	}</span>
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

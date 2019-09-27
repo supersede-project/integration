@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CER_Rule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.mdm.types</a> &gt; <span class="el_source">CER_Rule.java</span></div><h1>CER_Rule.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.mdm.types;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Created by snadal on 26/01/17.
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
+<span class="nc" id="L14">public class CER_Rule implements Serializable{</span>
+	
+	
+    private String cer_ruleID;
+	private int windowTime;
+	private int windowSize;
+	private ActionTypes actionType;
+    private String ruleName;
+    
+    @JsonProperty (&quot;pattern&quot;)
+    private List&lt;Event&gt; patterns;
+    private List&lt;Filter&gt; filters;
+    private List&lt;ActionParameter&gt; actionParameters;
+    
+
+    public String getCer_ruleID() {
+<span class="nc" id="L30">        return cer_ruleID;</span>
+    }
+
+    public void setCer_ruleID(String cer_ruleID) {
+<span class="nc" id="L34">        this.cer_ruleID = cer_ruleID;</span>
+<span class="nc" id="L35">    }</span>
+
+    public String getRuleName() {
+<span class="nc" id="L38">        return ruleName;</span>
+    }
+
+    public void setRuleName(String ruleName) {
+<span class="nc" id="L42">        this.ruleName = ruleName;</span>
+<span class="nc" id="L43">    }</span>
+
+
+    public int getWindowTime() {
+<span class="nc" id="L47">        return windowTime;</span>
+    }
+
+    public void setWindowTime(int windowTime) {
+<span class="nc" id="L51">        this.windowTime = windowTime;</span>
+<span class="nc" id="L52">    }</span>
+
+    public int getWindowSize() {
+<span class="nc" id="L55">        return windowSize;</span>
+    }
+
+    public void setWindowSize(int windowSize) {
+<span class="nc" id="L59">        this.windowSize = windowSize;</span>
+<span class="nc" id="L60">    }</span>
+
+    public ActionTypes getAction() {
+<span class="nc" id="L63">        return actionType;</span>
+    }
+
+    public void setAction(ActionTypes actionType) {
+<span class="nc" id="L67">        this.actionType = actionType;</span>
+<span class="nc" id="L68">    }</span>
+
+	public List&lt;Event&gt; getPatterns() {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		if (this.patterns == null){</span>
+<span class="nc" id="L72">			this.patterns = new ArrayList&lt;&gt;();</span>
+		}
+<span class="nc" id="L74">		return patterns;</span>
+	}
+
+	public void setPatterns(List&lt;Event&gt; patterns) {
+<span class="nc" id="L78">		this.patterns = patterns;</span>
+<span class="nc" id="L79">	}</span>
+
+
+	public List&lt;Filter&gt; getFilters() {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		if (this.filters == null){</span>
+<span class="nc" id="L84">			this.filters = new ArrayList&lt;&gt;();</span>
+		}
+<span class="nc" id="L86">		return filters;</span>
+	}
+
+	public void setFilters(List&lt;Filter&gt; filters) {
+<span class="nc" id="L90">		this.filters = filters;</span>
+<span class="nc" id="L91">	}</span>
+	
+	public List&lt;ActionParameter&gt; getActionParameters() {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		if (this.actionParameters == null){</span>
+<span class="nc" id="L95">			this.actionParameters = new ArrayList&lt;&gt;();</span>
+		}
+<span class="nc" id="L97">		return actionParameters;</span>
+	}
+
+	public void setActionParameters(List&lt;ActionParameter&gt; actionParameters) {
+<span class="nc" id="L101">		this.actionParameters = actionParameters;</span>
+<span class="nc" id="L102">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

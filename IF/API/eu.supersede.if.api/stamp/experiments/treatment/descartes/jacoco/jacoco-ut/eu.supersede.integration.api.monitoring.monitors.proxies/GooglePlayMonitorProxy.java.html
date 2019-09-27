@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GooglePlayMonitorProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.monitoring.monitors.proxies</a> &gt; <span class="el_source">GooglePlayMonitorProxy.java</span></div><h1>GooglePlayMonitorProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.monitoring.monitors.proxies;
+
+import org.springframework.http.HttpStatus;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import eu.supersede.integration.api.monitoring.manager.types.GooglePlayMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationRequest;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationResponse;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorSpecificConfigurationResult;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class GooglePlayMonitorProxy&lt;T, S&gt; extends MonitorProxy implements IGooglePlayMonitor { 
+<span class="fc" id="L33">	private final static String SUPERSEDE_MONITOR_ENDPOINT = IntegrationProperty</span>
+<span class="fc" id="L34">			.getProperty(&quot;monitoring.monitor.googleplay.endpoint&quot;);</span>
+	
+	IMonitor proxy;
+
+	public GooglePlayMonitorProxy() {
+<span class="fc" id="L39">		super(SUPERSEDE_MONITOR_ENDPOINT);</span>
+<span class="fc" id="L40">	}</span>
+
+	@Override
+	public GooglePlayMonitorConfiguration createMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception {
+<span class="fc" id="L44">		return (GooglePlayMonitorConfiguration) createMonitorConfiguration(new GooglePlayMonitorConfigurationRequest(conf),</span>
+<span class="fc" id="L45">				GooglePlayMonitorConfigurationResponse.class).getConfiguration();</span>
+	}
+
+	@Override
+	public GooglePlayMonitorConfiguration updateMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception {
+<span class="fc" id="L50">		return (GooglePlayMonitorConfiguration) updateMonitorConfiguration(new GooglePlayMonitorConfigurationRequest(conf),</span>
+<span class="fc" id="L51">				GooglePlayMonitorConfigurationResponse.class).getConfiguration();</span>
+	}
+
+	@Override
+	public HttpStatus deleteMonitorConfiguration(GooglePlayMonitorConfiguration conf) throws Exception {
+<span class="fc" id="L56">		return deleteMonitorConfiguration(new GooglePlayMonitorConfigurationRequest(conf));</span>
+	}
+
+}
+
+class GooglePlayMonitorConfigurationRequest implements MonitorConfigurationRequest {
+	@JsonProperty(value = &quot;GooglePlayConfProf&quot;)
+	GooglePlayMonitorConfiguration googlePlayMonitoringConfiguration;
+
+	public GooglePlayMonitorConfiguration getGooglePlayMonitorConfiguration() {
+<span class="fc" id="L66">		return googlePlayMonitoringConfiguration;</span>
+	}
+
+	public void setGooglePlayMonitorConfiguration(GooglePlayMonitorConfiguration googlePlayMonitoringConfiguration) {
+<span class="nc" id="L70">		this.googlePlayMonitoringConfiguration = googlePlayMonitoringConfiguration;</span>
+<span class="nc" id="L71">	}</span>
+
+<span class="fc" id="L73">	public GooglePlayMonitorConfigurationRequest(GooglePlayMonitorConfiguration googlePlayMonitoringConfiguration) {</span>
+<span class="fc" id="L74">		this.googlePlayMonitoringConfiguration = googlePlayMonitoringConfiguration;</span>
+<span class="fc" id="L75">	}</span>
+
+<span class="nc" id="L77">	public GooglePlayMonitorConfigurationRequest() {</span>
+
+<span class="nc" id="L79">	}</span>
+
+	@Override
+	public void setId(Integer id) {
+<span class="fc" id="L83">		googlePlayMonitoringConfiguration.setId(id);</span>
+<span class="fc" id="L84">	}</span>
+
+	@Override
+	public Integer getId() {
+<span class="fc" id="L88">		return googlePlayMonitoringConfiguration.getId();</span>
+	}
+
+	@Override
+	public GooglePlayMonitorConfiguration getConfiguration() {
+<span class="fc" id="L93">		return getGooglePlayMonitorConfiguration();</span>
+	}
+}
+
+class GooglePlayMonitorConfigurationResponse implements MonitorConfigurationResponse {
+	@JsonProperty(value = &quot;GooglePlayConfProfResult&quot;)
+	MonitorSpecificConfigurationResult result;
+
+	@Override
+	public MonitorSpecificConfigurationResult getResult() {
+<span class="fc" id="L103">		return result;</span>
+	}
+
+	public void setResult(MonitorSpecificConfigurationResult result) {
+<span class="fc" id="L107">		this.result = result;</span>
+<span class="fc" id="L108">	}</span>
+
+<span class="nc" id="L110">	public GooglePlayMonitorConfigurationResponse(MonitorSpecificConfigurationResult result) {</span>
+<span class="nc" id="L111">		this.result = result;</span>
+<span class="nc" id="L112">	}</span>
+
+<span class="fc" id="L114">	public GooglePlayMonitorConfigurationResponse() {</span>
+
+<span class="fc" id="L116">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LabelArrayJsonDeserializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.json</a> &gt; <span class="el_source">LabelArrayJsonDeserializer.java</span></div><h1>LabelArrayJsonDeserializer.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.json;
+
+import java.io.IOException;
+import java.util.List;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+
+import eu.supersede.integration.api.datastore.fe.types.Label;
+
+<span class="fc" id="L37">public class LabelArrayJsonDeserializer extends JsonDeserializer&lt;List&lt;Label&gt;&gt; {</span>
+
+    private static final String LABEL = &quot;label&quot;;
+<span class="fc" id="L40">    private static final ObjectMapper mapper = new ObjectMapper();</span>
+<span class="fc" id="L41">    private static final CollectionType collectionType =</span>
+            TypeFactory
+<span class="fc" id="L43">            .defaultInstance()</span>
+<span class="fc" id="L44">            .constructCollectionType(List.class, Label.class);</span>
+
+    @Override
+    public List&lt;Label&gt; deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+            throws IOException, JsonProcessingException {
+
+<span class="nc" id="L50">        ObjectNode objectNode = mapper.readTree(jsonParser);</span>
+<span class="nc" id="L51">        JsonNode nodeLabels = objectNode.get(LABEL);</span>
+
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (null == nodeLabels                     // if no label node could be found</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                || !nodeLabels.isArray()           // or label node is not an array</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                || !nodeLabels.elements().hasNext())   // or label node doesn't contain any profiles</span>
+<span class="nc" id="L56">            return null;</span>
+
+<span class="nc" id="L58">        return mapper.reader(collectionType).readValue(nodeLabels);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

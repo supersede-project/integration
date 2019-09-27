@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApiUserPermission.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.orchestrator.types</a> &gt; <span class="el_source">ApiUserPermission.java</span></div><h1>ApiUserPermission.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.orchestrator.types;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+
+public class ApiUserPermission {
+    private long id;
+
+//    @JsonIgnore
+    private ApiUser apiUser;
+
+//    @JsonIgnore
+    private Application application;
+
+    private boolean hasPermission;
+
+<span class="nc" id="L20">    public ApiUserPermission() {</span>
+<span class="nc" id="L21">    }</span>
+
+<span class="nc" id="L23">    public ApiUserPermission(ApiUser apiUser, Application application, boolean hasPermission) {</span>
+<span class="nc" id="L24">        this.apiUser = apiUser;</span>
+<span class="nc" id="L25">        this.application = application;</span>
+<span class="nc" id="L26">        this.hasPermission = hasPermission;</span>
+<span class="nc" id="L27">    }</span>
+
+    public long getId() {
+<span class="nc" id="L30">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="nc" id="L34">        this.id = id;</span>
+<span class="nc" id="L35">    }</span>
+
+    public ApiUser getApiUser() {
+<span class="nc" id="L38">        return apiUser;</span>
+    }
+
+    public void setApiUser(ApiUser apiUser) {
+<span class="nc" id="L42">        this.apiUser = apiUser;</span>
+<span class="nc" id="L43">    }</span>
+
+    public Application getApplication() {
+<span class="nc" id="L46">        return application;</span>
+    }
+
+    public void setApplication(Application application) {
+<span class="nc" id="L50">        this.application = application;</span>
+<span class="nc" id="L51">    }</span>
+
+    public boolean hasPermission() {
+<span class="nc" id="L54">        return hasPermission;</span>
+    }
+
+    public void setPermission(boolean hasPermission) {
+<span class="nc" id="L58">        this.hasPermission = hasPermission;</span>
+<span class="nc" id="L59">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

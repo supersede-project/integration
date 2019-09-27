@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IFDataStoreProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.datastore.proxies</a> &gt; <span class="el_source">IFDataStoreProxy.java</span></div><h1>IFDataStoreProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.datastore.proxies;
+
+import java.net.URI;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
+
+import eu.supersede.integration.api.datastore.integration.types.SupersedePlatform;
+import eu.supersede.integration.api.datastore.util.PasswordCrypt;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+<span class="fc" id="L37">public class IFDataStoreProxy&lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IFDataStore {</span>
+<span class="fc" id="L38">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L39">	private final static String SUPERSEDE_IF_DS_ENDPOINT = IntegrationProperty.getProperty(&quot;if.datastore.endpoint&quot;);</span>
+<span class="fc" id="L40">	private final static String SUPERSEDE_IF_DS_KEY = IntegrationProperty.getProperty(&quot;if.datastore.key&quot;);</span>
+	
+
+	@Override
+	public List&lt;SupersedePlatform&gt; getSupersedePlatforms(AuthorizationToken authenticationToken)
+			throws Exception {
+		
+<span class="fc" id="L47">		Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L48">		Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L50">		URI uri = new URI(SUPERSEDE_IF_DS_ENDPOINT + &quot;mb/accounts&quot;);</span>
+
+<span class="fc" id="L52">		log.debug(&quot;Sending message getSupersedePlatforms to IFDataStore at uri &quot; + uri);</span>
+<span class="fc" id="L53">		List&lt;SupersedePlatform&gt; platforms =  getObjectsListForType(SupersedePlatform[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML,</span>
+				authenticationToken);
+		
+		//Decrypt platforms mb_password
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		for (SupersedePlatform platform: platforms)</span>
+<span class="fc" id="L58">			platform.setMb_password(PasswordCrypt.decryptPassword(platform.getMb_password(), SUPERSEDE_IF_DS_KEY));</span>
+		
+<span class="fc" id="L60">		return platforms;</span>
+	}
+
+	@Override
+	public SupersedePlatform getSupersedePlatform(String platformId, AuthorizationToken authenticationToken) throws Exception {
+		try {
+<span class="fc" id="L66">			Assert.notNull(platformId, &quot;PlatformId id cannot be unasigned&quot;);</span>
+<span class="fc" id="L67">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L68">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L70">			URI uri = new URI(SUPERSEDE_IF_DS_ENDPOINT + &quot;mb/accounts/&quot; + platformId);</span>
+
+<span class="fc" id="L72">			log.debug(&quot;Sending message getSupersedePlatform with platformId: &quot; + platformId + &quot; to IFDataStore at uri &quot;</span>
+					+ uri);
+<span class="fc" id="L74">			SupersedePlatform platform = getObjectForType(SupersedePlatform.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML,</span>
+					authenticationToken);
+			
+			//Decrypt platform mb_password
+<span class="fc" id="L78">			platform.setMb_password(PasswordCrypt.decryptPassword(platform.getMb_password(), SUPERSEDE_IF_DS_KEY));</span>
+			
+<span class="fc" id="L80">			return platform;</span>
+<span class="nc" id="L81">		} catch (Exception e) {</span>
+<span class="nc" id="L82">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L83">			return null;</span>
+		}
+	}
+
+	@Override
+	public HttpStatus insertSupersedePlatform(SupersedePlatform platform, AuthorizationToken authenticationToken) throws Exception {
+		try {
+<span class="nc" id="L90">			Assert.notNull(platform, &quot;Platform id cannot be unasigned&quot;);</span>
+<span class="nc" id="L91">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="nc" id="L92">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+			
+			//Encrypt platform mb_password
+<span class="nc" id="L96">			platform.setMb_password(PasswordCrypt.encryptPassword(platform.getMb_password(), SUPERSEDE_IF_DS_KEY));</span>
+			
+<span class="nc" id="L98">			URI uri = new URI(SUPERSEDE_IF_DS_ENDPOINT + &quot;mb/accounts?&quot; + </span>
+<span class="nc" id="L99">					&quot;platform=&quot; + platform.getPlatform() + &quot;&amp;&quot; + </span>
+<span class="nc" id="L100">					&quot;user=&quot; + platform.getMb_user() + &quot;&amp;&quot; + </span>
+<span class="nc" id="L101">					&quot;password=&quot; + platform.getMb_password() + &quot;&amp;&quot; + </span>
+<span class="nc" id="L102">					&quot;mb_url=&quot; + platform.getMb_url());</span>
+
+<span class="nc" id="L104">			log.debug(&quot;Sending message insertSupersedePlatform with platformId: &quot; + platform.getPlatform()</span>
+<span class="nc" id="L105">					+ &quot; ,mb_user: &quot; + platform.getMb_user() + &quot; ,mb_password: &quot; + platform.getMb_password()</span>
+<span class="nc" id="L106">					+ &quot; ,mb_url: &quot; + platform.getMb_url()</span>
+					+ &quot; to IFDataStore at uri &quot; + uri);
+			
+<span class="nc" id="L109">			return insertJSONObject(&quot;{}&quot;, uri, HttpStatus.ACCEPTED, authenticationToken.getAccessToken());</span>
+<span class="nc" id="L110">		} catch (Exception e) {</span>
+<span class="nc" id="L111">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L112">			return null;</span>
+		}
+	}
+	
+	@Override
+	public HttpStatus deleteSupersedePlatform(String platformId, AuthorizationToken authenticationToken) throws Exception {
+		try {
+<span class="nc" id="L119">			Assert.notNull(platformId, &quot;PlatformId id cannot be unasigned&quot;);</span>
+<span class="nc" id="L120">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="nc" id="L121">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="nc" id="L123">			URI uri = new URI(SUPERSEDE_IF_DS_ENDPOINT + &quot;mb/accounts/&quot; + platformId);</span>
+
+<span class="nc" id="L125">			log.debug(&quot;Sending message deleteSupersedePlatform with platformId: &quot; + platformId + &quot; to IFDataStore at uri &quot;</span>
+					+ uri);
+<span class="nc" id="L127">			return deleteUriResource(uri, HttpStatus.ACCEPTED, authenticationToken.getAccessToken()); </span>
+<span class="nc" id="L128">		} catch (Exception e) {</span>
+<span class="nc" id="L129">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L130">			return null;</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

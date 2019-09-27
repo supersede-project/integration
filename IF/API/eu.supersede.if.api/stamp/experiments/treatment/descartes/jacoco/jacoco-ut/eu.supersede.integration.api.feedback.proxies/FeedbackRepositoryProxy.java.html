@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FeedbackRepositoryProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.proxies</a> &gt; <span class="el_source">FeedbackRepositoryProxy.java</span></div><h1>FeedbackRepositoryProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.feedback.proxies;
+
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+
+import eu.supersede.integration.api.feedback.repository.types.Feedback;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.exception.IFException;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class FeedbackRepositoryProxy &lt;T,S&gt; extends IFServiceProxy&lt;T,S&gt; implements IFeedbackRepository {
+<span class="fc" id="L47">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L48">	private final static String SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT = </span>
+<span class="fc" id="L49">			IntegrationProperty.getProperty(&quot;feedback.repository.endpoint&quot;);</span>
+	private String token;
+<span class="fc" id="L51">	private String language = &quot;en&quot;;</span>
+	
+	public FeedbackRepositoryProxy(String user, String password) throws Exception {
+<span class="fc" id="L54">		this(user, password, &quot;en&quot;);</span>
+<span class="fc" id="L55">	}</span>
+
+<span class="fc" id="L57">	public FeedbackRepositoryProxy(String user, String password, String language) throws Exception {</span>
+<span class="fc" id="L58">		this.token = authenticate(user, password);</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">		if (token == null)</span>
+<span class="nc" id="L60">			throw new IFException(&quot;Failed authentication in Orchestrator&quot;);</span>
+<span class="fc" id="L61">		this.language = language;</span>
+<span class="fc" id="L62">	}</span>
+
+	// Authentication
+
+
+	@Override
+	public String authenticate (String user, String password) throws Exception{
+<span class="fc" id="L69">		Assert.hasText(user, &quot;Provide a valid user&quot;);</span>
+<span class="fc" id="L70">		Assert.hasText(user, &quot;Provide a valid password&quot;);</span>
+<span class="fc" id="L71">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + &quot;authenticate&quot;);</span>
+<span class="fc" id="L72">		JSONObject accountJson = new JSONObject();</span>
+<span class="fc" id="L73">		accountJson.put(&quot;name&quot;, user);</span>
+<span class="fc" id="L74">		accountJson.put(&quot;password&quot;, password);</span>
+<span class="pc bpc" id="L75" title="2 of 4 branches missed.">		log.debug(&quot;Sending message authenticate with user: &quot; + user</span>
+				+ &quot; with password: &quot; + (password != null? &quot;not null&quot;:&quot;null&quot;)
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">				+ &quot; with password: &quot; + (password != null &amp;&amp; !password.isEmpty()? &quot;not empty&quot;:&quot;empty&quot;)</span>
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L79">		return postJSONObjectAndReturnValueForJsonLabel(accountJson.toString(), uri, HttpStatus.OK, &quot;token&quot;);</span>
+	}
+	
+	@Override
+	public List&lt;Feedback&gt; getFeedbacksForApplication(Integer idApplication) throws Exception {
+<span class="fc" id="L84">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L85">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks&quot;);</span>
+<span class="fc" id="L86">		log.debug(&quot;Sending message listAllFeedbacksForApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L88">		return getJSONObjectsListForType(Feedback[].class, uri, HttpStatus.OK, token);</span>
+	}
+	
+	@Override
+	public List&lt;Feedback&gt; getFeedbacksForApplicationWithOrchestratorConfiguration(Integer idApplication) throws Exception {
+<span class="fc" id="L93">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L94">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks/full&quot;);</span>
+<span class="fc" id="L95">		log.debug(&quot;Sending message listAllFeedbacksForApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L97">		return getJSONObjectsListForType(Feedback[].class, uri, HttpStatus.OK, token);</span>
+	}
+	
+	@Override
+	public List&lt;Feedback&gt; getFeedbacksForApplicationByUser(Integer idApplication, String idUser) throws Exception {
+<span class="fc" id="L102">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L103">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="fc" id="L104">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + </span>
+				language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks/user_identification/&quot; + idUser);
+<span class="fc" id="L106">		log.debug(&quot;Sending message listAllFeedbacksForApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; with idUser: &quot; + idUser
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L109">		return getJSONObjectsListForType(Feedback[].class, uri, HttpStatus.OK, token);</span>
+	}
+	
+	@Override
+	public Feedback getFeedbackForApplication(Integer idFeedback, Integer idApplication) throws Exception {
+<span class="fc" id="L114">		Assert.notNull(idFeedback, &quot;Provide a valid feedback id&quot;);</span>
+<span class="fc" id="L115">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L116">		Assert.notNull(token, &quot;Provide a valid token&quot;);</span>
+<span class="fc" id="L117">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks/&quot; + idFeedback);</span>
+<span class="fc" id="L118">		log.debug(&quot;Sending message getFeedbackForApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; with token: &quot; + token
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L121">		return getJSONObjectForType(Feedback.class, uri, HttpStatus.OK, token);</span>
+	}
+	
+	@Override
+	public byte[] downloadAttachment(String attachmentName, Integer idApplication) throws Exception {
+<span class="fc" id="L126">		Assert.notNull(attachmentName, &quot;Provide a valid attachment name&quot;);</span>
+<span class="fc" id="L127">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L128">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks/attachments/&quot; + attachmentName);</span>
+<span class="fc" id="L129">		log.debug(&quot;Sending message downloadAttachement with attachmentName: &quot; + attachmentName</span>
+				+ &quot; with idApplication: &quot; + idApplication
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L132">		return getObjectAsInputStream(uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public byte[] downloadScreenshot(String screenshotName, Integer idApplication) throws Exception {
+<span class="fc" id="L137">		Assert.notNull(screenshotName, &quot;Provide a valid screenshot name&quot;);</span>
+<span class="fc" id="L138">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L139">		String suri = SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks/screenshots/&quot; + screenshotName;</span>
+<span class="fc" id="L140">		URI uri = new URI(suri);</span>
+<span class="fc" id="L141">		log.debug(&quot;Sending message downloadScreenshot with screenshotName: &quot; + screenshotName</span>
+				+ &quot; with idApplication: &quot; + idApplication
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L144">		return getObjectAsInputStream(uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public byte[] downloadAudio(String audioName, Integer idApplication) throws Exception {
+<span class="fc" id="L149">		Assert.notNull(audioName, &quot;Provide a valid audio name&quot;);</span>
+<span class="fc" id="L150">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L151">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks/audios/&quot; + audioName);</span>
+<span class="fc" id="L152">		log.debug(&quot;Sending message downloadAudio with audioName: &quot; + audioName</span>
+				+ &quot; with idApplication: &quot; + idApplication
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L155">		return getObjectAsInputStream(uri, HttpStatus.OK, token);</span>
+	}
+	
+	@Override
+	public Feedback createFeedbackForApplication(Feedback feedback, 
+			Map&lt;String, Path&gt; attachmentsPaths, Map&lt;String, Path&gt; screenshotsPaths, 
+			Map&lt;String, Path&gt; audiosPaths, Integer idApplication) throws Exception {
+<span class="fc" id="L162">		Assert.notNull(feedback, &quot;Provide a valid feedback&quot;);</span>
+<span class="fc" id="L163">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L164">		Assert.notNull(token, &quot;Provide a valid token&quot;);</span>
+<span class="fc" id="L165">		Assert.notNull(attachmentsPaths, &quot;Provide valid attachments&quot;);</span>
+<span class="fc" id="L166">		Assert.notNull(screenshotsPaths, &quot;Provide valid screenshots&quot;);</span>
+<span class="fc" id="L167">		Assert.notNull(audiosPaths, &quot;Provide valid audios&quot;);</span>
+<span class="fc" id="L168">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/feedbacks&quot;);</span>
+		
+<span class="fc" id="L170">		MultiValueMap&lt;String, Object&gt; multipartRequest = </span>
+		          new LinkedMultiValueMap&lt;&gt;();
+		
+<span class="fc" id="L173">		HttpHeaders jsonHeaders = new HttpHeaders();</span>
+<span class="fc" id="L174">		jsonHeaders.setContentType(MediaType.APPLICATION_JSON);</span>
+<span class="fc" id="L175">        HttpEntity&lt;ByteArrayResource&gt; jsonPart = new HttpEntity&lt;ByteArrayResource&gt;(</span>
+<span class="fc" id="L176">				new ByteArrayResource(convertToJSON(feedback).getBytes()){</span>
+					@Override
+					public String getFilename() {
+<span class="fc" id="L179">						return &quot;&quot;;</span>
+					}
+				}, jsonHeaders);	
+<span class="fc" id="L182">        multipartRequest.add(&quot;json&quot;, jsonPart);</span>
+				
+<span class="fc bfc" id="L184" title="All 2 branches covered.">		for (String key: attachmentsPaths.keySet()){			</span>
+<span class="fc" id="L185">			HttpHeaders attachmentHeader = new HttpHeaders();</span>
+<span class="fc" id="L186">			attachmentHeader.setContentType(MediaType.TEXT_PLAIN);</span>
+<span class="fc" id="L187">			HttpEntity&lt;ByteArrayResource&gt; attachmentPart = new HttpEntity&lt;ByteArrayResource&gt;(</span>
+<span class="fc" id="L188">					new ByteArrayResource(Files.readAllBytes(attachmentsPaths.get(key))){</span>
+						@Override
+						public String getFilename() {
+<span class="fc" id="L191">							return &quot;&quot;;</span>
+						}
+					}, attachmentHeader);				
+<span class="fc" id="L194">			multipartRequest.add(key, attachmentPart);</span>
+<span class="fc" id="L195">		}</span>
+	
+<span class="fc bfc" id="L197" title="All 2 branches covered.">		for (String key: screenshotsPaths.keySet()){</span>
+<span class="fc" id="L198">			HttpHeaders screenshotHeader = new HttpHeaders();</span>
+<span class="fc" id="L199">			screenshotHeader.setContentType(MediaType.IMAGE_PNG);</span>
+<span class="fc" id="L200">			HttpEntity&lt;ByteArrayResource&gt; screenshotPart = new HttpEntity&lt;ByteArrayResource&gt;(</span>
+<span class="fc" id="L201">					new ByteArrayResource(Files.readAllBytes(screenshotsPaths.get(key))){</span>
+						@Override
+						public String getFilename() {
+<span class="fc" id="L204">							return &quot;&quot;;</span>
+						}
+					}, screenshotHeader);				
+<span class="fc" id="L207">			multipartRequest.add(key, screenshotPart);</span>
+<span class="fc" id="L208">		}</span>
+		
+<span class="fc bfc" id="L210" title="All 2 branches covered.">		for (String key: audiosPaths.keySet()){</span>
+<span class="fc" id="L211">			HttpHeaders audioHeader = new HttpHeaders();</span>
+<span class="fc" id="L212">			audioHeader.setContentType(MediaType.APPLICATION_OCTET_STREAM);</span>
+<span class="fc" id="L213">			HttpEntity&lt;ByteArrayResource&gt; audioPart = new HttpEntity&lt;ByteArrayResource&gt;(</span>
+<span class="fc" id="L214">					new ByteArrayResource(Files.readAllBytes(audiosPaths.get(key))){</span>
+						@Override
+						public String getFilename() {
+<span class="fc" id="L217">							return &quot;&quot;;</span>
+						}
+					}, audioHeader);
+<span class="fc" id="L220">			multipartRequest.add(key, audioPart);</span>
+<span class="fc" id="L221">		}</span>
+		
+<span class="fc" id="L223">		log.debug(&quot;Sending message createFeedbackForApplication with feedback: &quot; + feedback</span>
+				+ &quot; with attachmentsPaths: &quot; + attachmentsPaths
+				+ &quot; with screenshotsPaths: &quot; + screenshotsPaths
+				+ &quot; with audiosPaths: &quot; + audiosPaths
+				+ &quot; with idApplication: &quot; + idApplication
+				+ &quot; with token: &quot; + token
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L230">		return sendMultipartFormDataMessage(uri, Feedback.class, multipartRequest, HttpMethod.POST, token);</span>
+	}
+	
+	public void deleteFeedback(Integer idApplication, Integer idFeedback) throws Exception{
+<span class="nc" id="L234">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L235">		Assert.notNull(idFeedback, &quot;Provide a valid idFeedback&quot;);</span>
+<span class="nc" id="L236">		URI uri = new URI(SUPERSEDE_FEEDBACK_REPOSITORY_ENDPOINT + language </span>
+				+ &quot;/applications/&quot; + idApplication + &quot;/feedbacks/&quot; + idFeedback);
+<span class="nc" id="L238">		log.debug(&quot;Sending message deleteFeedback with idApplication: &quot; + idApplication </span>
+				+ &quot; and idFeedback: &quot; + idFeedback
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="nc" id="L241">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L242">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

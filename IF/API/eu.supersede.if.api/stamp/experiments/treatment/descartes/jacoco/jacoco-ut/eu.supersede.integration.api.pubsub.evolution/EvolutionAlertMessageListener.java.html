@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EvolutionAlertMessageListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.pubsub.evolution</a> &gt; <span class="el_source">EvolutionAlertMessageListener.java</span></div><h1>EvolutionAlertMessageListener.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.pubsub.evolution;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+import javax.jms.Message;
+import javax.jms.MessageListener;
+import javax.jms.TextMessage;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import eu.supersede.integration.api.dm.types.Alert;
+import eu.supersede.integration.api.json.JsonUtils;
+
+public class EvolutionAlertMessageListener implements MessageListener{
+<span class="fc" id="L17">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+	private Queue&lt;Alert&gt; alerts;
+	
+<span class="fc" id="L20">	public EvolutionAlertMessageListener(){</span>
+<span class="fc" id="L21">        alerts = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L22">    }</span>
+	
+	public void onMessage(Message message) {
+		try {
+<span class="fc" id="L26">			String json = ((TextMessage) message).getText();</span>
+<span class="fc" id="L27">			log.debug(&quot;Got the Json Message : &quot; + json);</span>
+<span class="fc" id="L28">			alerts.offer(JsonUtils.deserializeJsonStringAsObject(json, Alert.class));</span>
+<span class="fc" id="L29">			log.debug(&quot;Queue a number of alerts: &quot; + alerts.size());</span>
+<span class="nc" id="L30">		} catch (Exception e) {</span>
+<span class="nc" id="L31">			log.error(e.getMessage(), e);</span>
+<span class="fc" id="L32">		} </span>
+<span class="fc" id="L33">	}</span>
+	
+	public Alert getNextAlert(){
+<span class="fc" id="L36">        return alerts.poll();</span>
+    }
+	
+	public boolean areMessageReceived (){
+<span class="fc bfc" id="L40" title="All 2 branches covered.">		return alerts.size() &gt; 0;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Role.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.security.types</a> &gt; <span class="el_source">Role.java</span></div><h1>Role.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.security.types;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.wso2.carbon.user.core.Permission;
+
+<span class="fc" id="L27">public class Role {</span>
+	String roleName;
+<span class="fc" id="L29">	Set&lt;User&gt; users = new HashSet&lt;User&gt;();</span>
+<span class="fc" id="L30">	Set&lt;Permission&gt; permissions = new HashSet&lt;Permission&gt;();</span>
+	
+	public String getRoleName() {
+<span class="fc" id="L33">		return roleName;</span>
+	}
+	
+	public void setRoleName(String roleName) {
+<span class="fc" id="L37">		this.roleName = roleName;</span>
+<span class="fc" id="L38">	}</span>
+	
+	public Set&lt;User&gt; getUsers() {
+<span class="fc" id="L41">		return users;</span>
+	}
+	
+	public void setUsers(Set&lt;User&gt; userList) {
+<span class="nc" id="L45">		this.users = userList;</span>
+<span class="nc" id="L46">	}</span>
+	
+	public Set&lt;Permission&gt; getPermissions() {
+<span class="fc" id="L49">		return permissions;</span>
+	}
+	
+	public void setPermissions(Set&lt;Permission&gt; permissions) {
+<span class="nc" id="L53">		this.permissions = permissions;</span>
+<span class="nc" id="L54">	}</span>
+	
+	public void setPermissions(Permission[] permissions) {
+<span class="fc" id="L57">		this.permissions.clear();</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		for (int i=0;  i&lt;permissions.length; i++){</span>
+<span class="fc" id="L59">			this.permissions.add(permissions[i]);</span>
+		}
+<span class="fc" id="L61">	}</span>
+
+	public static String[] roleNames(Set&lt;Role&gt; roles) {
+<span class="fc" id="L64">		String[] roleNames = new String[roles.size()];</span>
+<span class="fc" id="L65">		int i = 0;</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">		for (Role role: roles){</span>
+<span class="nc" id="L67">			roleNames[i++] = role.getRoleName();</span>
+<span class="nc" id="L68">		}</span>
+<span class="fc" id="L69">		return roleNames;</span>
+	}	
+	
+	public static Set&lt;Role&gt; roles(String[] roleNames) {
+<span class="fc" id="L73">		Set&lt;Role&gt; roles = new HashSet&lt;Role&gt;(); </span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    	for (int i=0; i&lt;roleNames.length; i++){</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">    		if (roleNames[i].contains(&quot;Internal/everyone&quot;)) continue; //ignoring internal WSO2 role</span>
+<span class="fc" id="L76">    		Role role = new Role();</span>
+<span class="fc" id="L77">    		role.setRoleName(roleNames[i]);</span>
+<span class="fc" id="L78">    		roles.add(role);</span>
+    	}
+<span class="fc" id="L80">    	return roles;</span>
+	}
+	
+	@Override
+	public boolean equals (Object o){
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">		if (o instanceof Role){</span>
+<span class="fc" id="L86">			return this.roleName.equals(((Role)o).getRoleName());</span>
+		}else{
+<span class="nc" id="L88">			return false;</span>
+		}
+	}
+	
+	@Override
+	public int hashCode(){
+<span class="fc" id="L94">		return roleName.hashCode();</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

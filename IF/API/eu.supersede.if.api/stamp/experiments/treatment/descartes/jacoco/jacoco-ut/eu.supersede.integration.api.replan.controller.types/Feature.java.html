@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Feature.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.replan.controller.types</a> &gt; <span class="el_source">Feature.java</span></div><h1>Feature.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.replan.controller.types;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+import eu.supersede.integration.api.json.CustomJsonDateSerializer;
+import eu.supersede.integration.api.json.ReplanFeatureReleaseJsonDeserializer;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class Feature extends ReplanBaseObject{
+	private Integer code;
+	private Double effort;
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
+	private Date deadline;
+	private Integer priority;
+	@JsonProperty (&quot;required_skills&quot;)
+	private List&lt;Skill&gt; requiredSkills;
+	@JsonProperty (&quot;depends_on&quot;)
+	private List&lt;Feature&gt; dependencies;
+	@JsonProperty (&quot;release&quot;)
+	private Integer releaseId;
+	
+	public Feature()
+<span class="fc" id="L51">	{</span>
+<span class="fc" id="L52">		requiredSkills = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L53">		dependencies = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L54">	}</span>
+	
+	public Integer getCode() {
+<span class="fc" id="L57">		return code;</span>
+	}
+	public void setCode(Integer code) {
+<span class="fc" id="L60">		this.code = code;</span>
+<span class="fc" id="L61">	}</span>
+	public Double getEffort() {
+<span class="fc" id="L63">		return effort;</span>
+	}
+	public void setEffort(Double effort) {
+<span class="fc" id="L66">		this.effort = effort;</span>
+<span class="fc" id="L67">	}</span>
+	public Date getDeadline() {
+<span class="fc" id="L69">		return deadline;</span>
+	}
+	public void setDeadline(Date deadline) {
+<span class="fc" id="L72">		this.deadline = deadline;</span>
+<span class="fc" id="L73">	}</span>
+	public Integer getPriority() {
+<span class="fc" id="L75">		return priority;</span>
+	}
+	public void setPriority(Integer priority) {
+<span class="fc" id="L78">		this.priority = priority;</span>
+<span class="fc" id="L79">	}</span>
+	public List&lt;Skill&gt; getRequiredSkills() {
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">		if (requiredSkills == null)</span>
+<span class="nc" id="L82">			requiredSkills = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L83">		return requiredSkills;</span>
+	}
+	public void setRequiredSkills(List&lt;Skill&gt; requiredSkills) {
+<span class="fc" id="L86">		this.requiredSkills = requiredSkills;</span>
+<span class="fc" id="L87">	}</span>
+
+	public List&lt;Feature&gt; getDependencies() {
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">		if (dependencies == null)</span>
+<span class="nc" id="L91">			dependencies = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L92">		return dependencies;</span>
+	}
+
+	public void setDependencies(List&lt;Feature&gt; dependencies) {
+<span class="fc" id="L96">		this.dependencies = dependencies;</span>
+<span class="fc" id="L97">	}</span>
+
+	public Integer getReleaseId() {
+<span class="fc" id="L100">		return releaseId;</span>
+	}
+
+	@JsonDeserialize(using = ReplanFeatureReleaseJsonDeserializer.class)
+	public void setReleaseId(Integer releaseId) {
+<span class="fc" id="L105">		this.releaseId = releaseId;</span>
+<span class="fc" id="L106">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
