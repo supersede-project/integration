@@ -257,7 +257,11 @@ public class IFAuthenticationManager {
 	public void addRole(Role role) throws UserStoreException {
 		Assert.notNull(role, "role shouldn't be null");
 		Assert.hasText(role.getRoleName(), "provide a valid role name");
-		String[] userList = User.userNames(role.getUsers());
+		String[] userList = new String[0];
+		if (!role.getUsers().isEmpty()) {
+			userList = User.userNames(role.getUsers());
+			Assert.notEmpty(userList);
+		}
 		usm.addRole(role.getRoleName(), userList, role.getPermissions().toArray(new Permission[] {}));
 	}
 
@@ -276,7 +280,12 @@ public class IFAuthenticationManager {
 		usersToRemove.removeAll(usersInNewRole);
 
 		// Role Users
-		usm.updateUserListOfRole(role.getRoleName(), User.userNames(usersToRemove), User.userNames(usersToAdd));
+		String[] userToAddList = new String[0];
+		if (!usersToAdd.isEmpty()) {
+			userToAddList = User.userNames(usersToAdd);
+			Assert.notEmpty(userToAddList);
+		}
+		usm.updateUserListOfRole(role.getRoleName(), User.userNames(usersToRemove), userToAddList);
 
 		// Role permissions
 		// The stub does not allow to change permissions

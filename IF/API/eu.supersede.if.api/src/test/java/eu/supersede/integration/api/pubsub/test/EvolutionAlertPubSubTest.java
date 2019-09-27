@@ -29,6 +29,7 @@ public class EvolutionAlertPubSubTest implements Runnable{
 	private boolean messageReceived = false;
 	private boolean subscriptionDone = false;
 	private static SupersedeFederation federation = new SupersedeFederation();
+	private int num_attempts = 5;
 	
 	@Before
     public void setup() throws Exception {
@@ -59,11 +60,14 @@ public class EvolutionAlertPubSubTest implements Runnable{
 				}
 			}
 			try {
-				while (!messageReceived) {
+				while (!messageReceived && num_attempts-->0) {
 					Thread.sleep(1000); //FIXME Configure sleeping time
 				}
 			}catch (InterruptedException e) {
 				e.printStackTrace();
+			}
+			if (messageReceived == false) {
+				throw new RuntimeException("Message was not published"); 
 			}
 		} catch (JMSException e) {
 			e.printStackTrace();

@@ -129,11 +129,12 @@ public class IFAuthenticationManagerTest {
 		user.setMobile("800-555-55-55");
 		user.setIm("User Test IM");
     	try {
-		user.setUrl(new URL("http://organization.org"));
-	} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+    		user.setUrl(new URL("http://organization.org"));
+    		Assert.notNull(user.getUrl());
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	//Adding roles
     	Set<Role>roles = new HashSet<Role>();

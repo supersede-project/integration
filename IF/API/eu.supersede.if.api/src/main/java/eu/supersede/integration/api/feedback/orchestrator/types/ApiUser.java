@@ -82,14 +82,15 @@ public class ApiUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.apiUserApiUserRoles == null) {
-            return null;
-        }
-        List<GrantedAuthority> apiUserRoles = new ArrayList<>();
-        for(ApiUserApiUserRole apiUserApiUserRole : this.apiUserApiUserRoles) {
-            apiUserRoles.add(apiUserApiUserRole.getApiUserRole());
-        }
-        return apiUserRoles;
+//        if(this.apiUserApiUserRoles == null) {
+//            return null;
+//        }
+//        List<GrantedAuthority> apiUserRoles = new ArrayList<>();
+//        for(ApiUserApiUserRole apiUserApiUserRole : this.apiUserApiUserRoles) {
+//            apiUserRoles.add(apiUserApiUserRole.getApiUserRole());
+//        }
+//        return apiUserRoles;
+    	return this.authorities;
     }
 
     public void setAuthorities(List<ApiUserRole> authorities) {

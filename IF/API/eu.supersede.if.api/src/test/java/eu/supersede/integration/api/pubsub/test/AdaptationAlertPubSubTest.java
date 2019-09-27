@@ -28,6 +28,7 @@ public class AdaptationAlertPubSubTest implements Runnable{
 	private boolean messageReceived = false;
 	private boolean subscriptionDone = false;
 	private static  SupersedeFederation federation = new SupersedeFederation();
+	private int num_attempts = 5;
 	
 	@Before
     public void setup() throws Exception {
@@ -53,7 +54,7 @@ public class AdaptationAlertPubSubTest implements Runnable{
 			Alert alert = createAlert();
 			publisher.publishAdaptationAlertMesssage(alert);
 			try {
-				while (!messageReceived) {
+				while (!messageReceived && num_attempts-->0) {
 					Thread.sleep(1000); //FIXME Configure sleeping time
 				}
 			}catch (InterruptedException e) {

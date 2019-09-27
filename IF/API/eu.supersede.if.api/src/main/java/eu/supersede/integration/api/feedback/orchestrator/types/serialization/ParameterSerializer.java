@@ -13,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.util.Assert;
+
 
 public class ParameterSerializer extends JsonSerializer<Parameter> {
 
@@ -55,7 +57,7 @@ public class ParameterSerializer extends JsonSerializer<Parameter> {
             if (parameter.getCreatedAt()!=null) {
             	String sDate = dateToString(parameter.getCreatedAt());
             	try {
-					checkValidDate(sDate);
+            		Assert.isTrue(checkValidDate(sDate));
 				} catch (ParseException e) {
 					throw new IOException(e);
 				}
@@ -64,7 +66,7 @@ public class ParameterSerializer extends JsonSerializer<Parameter> {
             if (parameter.getUpdatedAt()!=null) {
             	String sDate = dateToString(parameter.getUpdatedAt());
             	try {
-					checkValidDate(sDate);
+					Assert.isTrue(checkValidDate(sDate));
 				} catch (ParseException e) {
 					throw new IOException(e);
 				}
@@ -84,8 +86,8 @@ public class ParameterSerializer extends JsonSerializer<Parameter> {
         return df.format(date);
     }
     
-    public void checkValidDate (String stringDate) throws ParseException {
+    public boolean checkValidDate (String stringDate) throws ParseException {
     	DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-    	df.parse(stringDate);
+    	return df.parse(stringDate)!=null;
     }
 }
