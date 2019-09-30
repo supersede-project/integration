@@ -56,11 +56,7 @@ public class IFDataStoreProxyTest {
 		am = new IFAuthenticationManager(admin, password);
 		token = am.getAuthorizationToken(admin, password, "");
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
 	@Ignore
 	@Test
 	public void testGetSupersedePlatforms() throws Exception {
@@ -78,7 +74,7 @@ public class IFDataStoreProxyTest {
 		testDeleteSupersedePlatform(platform.getPlatform());
 	}
 
-	@Ignore
+	
 	@Test
 	@Ignore
 	public void setupSupersedePlatforms() throws Exception {
