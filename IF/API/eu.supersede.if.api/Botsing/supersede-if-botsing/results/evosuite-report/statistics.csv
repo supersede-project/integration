@@ -1,0 +1,3 @@
+TARGET_CLASS,search_budget,Total_Time,Length,Size,LineCoverage,BranchCoverage,OutputCoverage,WeakMutationScore,Implicit_MethodExceptions,MutationScore
+eu.supersede.integration.api.security.test.IFAuthenticationManagerTest,60,64183,2,2,0.06766917293233082,0.03773584905660377,1.0,0.0,1,0.0
+eu.supersede.integration.api.security.test.IFAuthenticationManagerTest,60,64139,2,2,0.06766917293233082,0.03773584905660377,1.0,0.0,1,0.0
