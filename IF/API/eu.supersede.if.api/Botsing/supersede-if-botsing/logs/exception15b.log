@@ -1,0 +1,4 @@
+org.wso2.carbon.user.core.UserStoreException: Old credential does not match with the existing credentials.
+	at eu.supersede.integration.api.security.IFUserStoreManager.handleException(IFUserStoreManager.java:573)
+	at eu.supersede.integration.api.security.IFUserStoreManager.updateCredential(IFUserStoreManager.java:489)
+	at eu.supersede.integration.api.security.IFAuthenticationManager.updateUserCredential(IFAuthenticationManager.java:207)

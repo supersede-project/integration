@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    
+    
+    <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <link rel="stylesheet" href="aui/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all"/>
+    <!--[if IE 9]><link rel="stylesheet" href="aui/css/aui-ie9.min.css" media="all"/><![endif]-->
+
+    <style type="text/css" media="all">
+        @import url('style.css');
+        @import url('tree.css');
+        
+    </style>
+
+    <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-experimental.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-soy.min.js" type="text/javascript"></script>
+
+    <script src="package-nodes-tree.js" type="text/javascript"></script>
+    <script src="clover-tree.js" type="text/javascript"></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="clover-descriptions.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+
+            <title>eu.supersede.if.api 0.4.0-SNAPSHOT</title>
+    </head>
+
+<body  >
+    <div id="page">
+        
+        
+
+
+<header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-clover">
+                    <a href="http://openclover.org" title="Visit OpenClover home page"><span class="aui-header-logo-device">OpenClover</span></a>
+                </h1>
+                            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav">
+                    <li id="system-help-menu">
+                        <a class="aui-nav-link" title="Open online documentation" target="_blank"
+                           href="http://openclover.org/documentation">
+                            <span class="aui-icon aui-icon-small aui-iconfont-help">&#160;Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav aui-page-panel-nav-clover">
+                    
+
+<div class="aui-page-header-inner" style="margin-bottom: 20px;">
+    <div class="aui-page-header-image">
+                <div class="aui-avatar aui-avatar-large aui-avatar-project">
+            <div class="aui-avatar-inner">
+                                    <img src="img/clover_logo_large.png" alt="Clover icon"/>
+                            </div>
+        </div>
+            </div>
+    <div class="aui-page-header-main" >
+        <h1>
+                                        eu.supersede.if.api 0.4.0-SNAPSHOT
+                                </h1>
+    </div>
+</div>
+
+<nav class="aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+                                            <ul class="aui-nav">
+                <li class="aui-nav-selected">
+                    <a href="dashboard.html">Project overview</a>
+                </li>
+            </ul>
+        
+                <div class="aui-nav-heading packages-nav-heading">
+            <strong>Packages</strong>
+        </div>
+        <div class="aui-nav project-packages">
+            <form method="get" action="#" class="aui package-filter-container">
+                <input type="text" autocomplete="off" class="package-filter text"
+                       placeholder="Type to filter packages..." name="package-filter" id="package-filter"
+                       title="Start typing package name (or part of the name) to search through the tree. Use arrow keys and the Enter key to navigate."/>
+            </form>
+            <p class="package-filter-no-results-message hidden">
+                <small>No results found.</small>
+            </p>
+                                                  <div class="packages-tree-wrapper" data-root-relative="" data-package-name="">
+                <div class="packages-tree-container"></div>
+                <div class="clover-packages-lozenges"></div>
+            </div>
+        </div>
+        
+            </div>
+</nav>                </div>
+                <section class="aui-page-panel-content">
+                    <div class="aui-page-panel-content-clover">
+
+                    
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+            
+        <li><a href="dashboard.html">Project Clover database Wed Sep 11 2019 08:35:54 UTC</a></li>
+    </ol>
+    
+<h1 class="aui-h2-clover">
+            Project overview
+    </h1>
+<div class="aui-tabs horizontal-tabs">
+            <ul class="tabs-menu">
+            <li class="menu-item ">
+            <a href="dashboard.html">Dashboard</a>
+        </li>
+                <li class="menu-item ">
+            <a href="pkg-summary.html"><strong>Application code</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="testsrc-pkg-summary.html"><strong>Test code</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="test-pkg-summary.html"><strong>Test results</strong></a>
+        </li>
+                <li class="menu-item active-tab">
+            <a href="top-risks.html"><strong>Top risks</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="quick-wins.html"><strong>Quick wins</strong></a>
+        </li>
+                                                <li class="menu-item ">
+                <a href="treemap.html"><strong>Coverage tree map</strong></a>
+            </li>
+            </ul>
+    <div class="tabs-pane active-pane" id="tabs-first">
+
+        <div>&#160;</div>
+
+        
+
+
+                        <div style="text-align: right; margin-bottom: 10px">
+            
+            
+                                    <button class="aui-button aui-button-subtle" id="popupHelp">
+    <span class="aui-icon aui-icon-small aui-iconfont-help"></span>&#160;How to read this chart
+</button>
+<script>
+    AJS.InlineDialog(AJS.$("#popupHelp"), "helpDialog",
+            function (content, trigger, showPopup) {
+                var description = topRisksDescription();
+                var title = 'Top Risks';
+                content.css({"padding": "20px"}).html(
+                        '<h2>' + title + '</h2>' + description);
+                showPopup();
+                return false;
+            },
+            {
+                width: 600
+            }
+    );
+</script>
+        </div>
+
+        
+
+<div style="padding: 20px; border: 1px solid #cccccc; background-color: #f5f5f5; border-radius: 3px">
+          <div id="deepPackageCloud"  >
+                          
+    
+        
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboad/types/Action.html" class="tag"
+            style="font-size: 18px;color:#14892c"
+            title="Average Method Complexity - 1 , Coverage - 92% ">Action</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/AdaptabilityModel.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">AdaptabilityModel</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboad/types/Adaptation.html" class="tag"
+            style="font-size: 20px;color:#fae1a0"
+            title="Average Method Complexity - 1.286 , Coverage - 75% ">Adaptation</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/adaptation/AdaptationAlertMessageListener.html" class="tag"
+            style="font-size: 20px;color:#14892c"
+            title="Average Method Complexity - 1.25 , Coverage - 91.7% ">AdaptationAlertMessageListener</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/proxies/AdaptationConfigurationProxy.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">AdaptationConfigurationProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboard/proxies/AdaptationDashboardProxy.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">AdaptationDashboardProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/AdaptationMode.html" class="tag"
+            style="font-size: 20px;color:#fae1a0"
+            title="Average Method Complexity - 1.333 , Coverage - 81.8% ">AdaptationMode</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/adaptation/AdaptationPublisher.html" class="tag"
+            style="font-size: 20px;color:#fae1a0"
+            title="Average Method Complexity - 1.25 , Coverage - 76.2% ">AdaptationPublisher</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/adaptation/AdaptationSubscriber.html" class="tag"
+            style="font-size: 19px;color:#d9695f"
+            title="Average Method Complexity - 1.222 , Coverage - 20% ">AdaptationSubscriber</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/AdaptationTimeJsonSerializer.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">AdaptationTimeJsonSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/proxies/AdapterProxy.html" class="tag"
+            style="font-size: 18px;color:#14892c"
+            title="Average Method Complexity - 1 , Coverage - 87.2% ">AdapterProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/Alert.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 76.7% ">Alert</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/types/Alert.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 75.8% ">Alert</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUser.html" class="tag"
+            style="font-size: 19px;color:#de7b72"
+            title="Average Method Complexity - 1.133 , Coverage - 37.5% ">ApiUser</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserApiUserRole.html" class="tag"
+            style="font-size: 18px;color:#d9695f"
+            title="Average Method Complexity - 1 , Coverage - 25% ">ApiUserApiUserRole</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserRole.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 60% ">ApiUserRole</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/AppStoreMonitorConfiguration.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">AppStoreMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/AppStoreMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 76.9% ">AppStoreMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/AppStoreMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 71.4% ">AppStoreMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/AppStoreMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">AppStoreMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Application.html" class="tag"
+            style="font-size: 19px;color:#e28e87"
+            title="Average Method Complexity - 1.091 , Coverage - 42.1% ">Application</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/AttachmentFeedback.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 66.7% ">AttachmentFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Attribute.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 50% ">Attribute</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/AudioFeedback.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 71.1% ">AudioFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/types/AuthorizationToken.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 75% ">AuthorizationToken</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/BaseModel.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">BaseModel</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/Condition.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Condition</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/types/Condition.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Condition</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Configuration.html" class="tag"
+            style="font-size: 19px;color:#e7a19b"
+            title="Average Method Complexity - 1.135 , Coverage - 51.1% ">Configuration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 62.5% ">ConfigurationFileHttpMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ConfigurationMechanism.html" class="tag"
+            style="font-size: 19px;color:#d9695f"
+            title="Average Method Complexity - 1.095 , Coverage - 23.6% ">ConfigurationMechanism</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ConfigurationUserGroup.html" class="tag"
+            style="font-size: 18px;color:#d5584c"
+            title="Average Method Complexity - 1 , Coverage - 15.4% ">ConfigurationUserGroup</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/ContextInformation.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ContextInformation</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/CustomJsonDateDeserializer.html" class="tag"
+            style="font-size: 25px;color:#89c495"
+            title="Average Method Complexity - 2 , Coverage - 100% ">CustomJsonDateDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/CustomJsonDateSerializer.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">CustomJsonDateSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/DataID.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 69.2% ">DataID</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/proxies/DecisionMakingSystemProxy.html" class="tag"
+            style="font-size: 25px;color:#fae1a0"
+            title="Average Method Complexity - 2 , Coverage - 77.8% ">DecisionMakingSystemProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboad/types/Enactment.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Enactment</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/EnactmentCompletionTimeJsonSerializer.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">EnactmentCompletionTimeJsonSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Event.html" class="tag"
+            style="font-size: 18px;color:#e28e87"
+            title="Average Method Complexity - 1.042 , Coverage - 46.2% ">Event</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/evolution/EvolutionAlertMessageListener.html" class="tag"
+            style="font-size: 20px;color:#14892c"
+            title="Average Method Complexity - 1.25 , Coverage - 92.3% ">EvolutionAlertMessageListener</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/evolution/EvolutionPublisher.html" class="tag"
+            style="font-size: 20px;color:#fae1a0"
+            title="Average Method Complexity - 1.25 , Coverage - 76.2% ">EvolutionPublisher</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/evolution/EvolutionSubscriber.html" class="tag"
+            style="font-size: 19px;color:#d9695f"
+            title="Average Method Complexity - 1.222 , Coverage - 20% ">EvolutionSubscriber</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/proxies/FEDataStoreProxy.html" class="tag"
+            style="font-size: 26px;color:#14892c"
+            title="Average Method Complexity - 2.167 , Coverage - 87.7% ">FEDataStoreProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Feature.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.182 , Coverage - 87.1% ">Feature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Feature.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.182 , Coverage - 87.1% ">Feature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Feature.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.133 , Coverage - 89.7% ">Feature</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/FeatureConfiguration.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">FeatureConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">FeatureStatus</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/Feedback.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 75.3% ">Feedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Feedback.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 57.1% ">Feedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/proxies/FeedbackOrchestratorProxy.html" class="tag"
+            style="font-size: 19px;color:#e7a19b"
+            title="Average Method Complexity - 1.082 , Coverage - 56.9% ">FeedbackOrchestratorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/proxies/FeedbackRepositoryProxy.html" class="tag"
+            style="font-size: 20px;color:#14892c"
+            title="Average Method Complexity - 1.25 , Coverage - 90.7% ">FeedbackRepositoryProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/fe/FrontendAuthentication.html" class="tag"
+            style="font-size: 22px;color:#fae1a0"
+            title="Average Method Complexity - 1.571 , Coverage - 83% ">FrontendAuthentication</a>
+            
+    
+            <a href="eu/supersede/integration/api/fe/FrontendSession.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">FrontendSession</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/GeneralConfiguration.html" class="tag"
+            style="font-size: 21px;color:#de7b72"
+            title="Average Method Complexity - 1.476 , Coverage - 29.9% ">GeneralConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/GenericModel.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">GenericModel</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/GooglePlayMonitorConfiguration.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">GooglePlayMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/GooglePlayMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 76.9% ">GooglePlayMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/GooglePlayMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 71.4% ">GooglePlayMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/GooglePlayMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">GooglePlayMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/HttpMonitorConfiguration.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">HttpMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/HttpMonitorConfigurationFile.html" class="tag"
+            style="font-size: 19px;color:#fae1a0"
+            title="Average Method Complexity - 1.1 , Coverage - 75% ">HttpMonitorConfigurationFile</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#14892c"
+            title="Average Method Complexity - 1 , Coverage - 92.3% ">HttpMonitorConfigurationFileRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 71.4% ">HttpMonitorConfigurationFileResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 76.9% ">HttpMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 71.4% ">HttpMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 63.2% ">HttpMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/IFAccount.html" class="tag"
+            style="font-size: 25px;color:#fae1a0"
+            title="Average Method Complexity - 2 , Coverage - 77.8% ">IFAccount</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/IFAuthenticationManager.html" class="tag"
+            style="font-size: 21px;color:#14892c"
+            title="Average Method Complexity - 1.526 , Coverage - 85.2% ">IFAuthenticationManager</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/proxies/IFDataStoreProxy.html" class="tag"
+            style="font-size: 23px;color:#e28e87"
+            title="Average Method Complexity - 1.75 , Coverage - 45.7% ">IFDataStoreProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/fe/IFErrorHandler.html" class="tag"
+            style="font-size: 28px;color:#e7a19b"
+            title="Average Method Complexity - 2.5 , Coverage - 52.6% ">IFErrorHandler</a>
+            
+    
+            <a href="eu/supersede/integration/rest/client/IFMessageClient.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 62.2% ">IFMessageClient</a>
+            
+    
+            <a href="eu/supersede/integration/api/proxy/IFServiceProxy.html" class="tag"
+            style="font-size: 30px;color:#e7a19b"
+            title="Average Method Complexity - 2.868 , Coverage - 60.2% ">IFServiceProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/tenants/IFTenantsManager.html" class="tag"
+            style="font-size: 26px;color:#e7a19b"
+            title="Average Method Complexity - 2.2 , Coverage - 56.8% ">IFTenantsManager</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/IFUserStoreManager.html" class="tag"
+            style="font-size: 24px;color:#de7b72"
+            title="Average Method Complexity - 1.947 , Coverage - 37.7% ">IFUserStoreManager</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/IModel.html" class="tag"
+            style="font-size: 39px;color:#de7b72"
+            title="Average Method Complexity - 4.25 , Coverage - 31.8% ">IModel</a>
+            
+    
+            <a href="eu/supersede/integration/properties/IntegrationProperty.html" class="tag"
+            style="font-size: 23px;color:#fae1a0"
+            title="Average Method Complexity - 1.778 , Coverage - 73.1% ">IntegrationProperty</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/JsonUtils.html" class="tag"
+            style="font-size: 22px;color:#e28e87"
+            title="Average Method Complexity - 1.667 , Coverage - 40% ">JsonUtils</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/KafkaTopic.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 50% ">KafkaTopic</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Mechanism.html" class="tag"
+            style="font-size: 21px;color:#de7b72"
+            title="Average Method Complexity - 1.458 , Coverage - 37.5% ">Mechanism</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Message.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 57.1% ">Message</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/proxies/MetadataManagementProxy.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1.067 , Coverage - 54.9% ">MetadataManagementProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelMetadata.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ModelMetadata</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ModelRepositoryJsonDateSerializer.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ModelRepositoryJsonDateSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ModelRepositoryJsonTimeStampSerializer.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ModelRepositoryJsonTimeStampSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/proxies/ModelRepositoryProxy.html" class="tag"
+            style="font-size: 42px;color:#e7a19b"
+            title="Average Method Complexity - 4.667 , Coverage - 57% ">ModelRepositoryProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelSystem.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 55.6% ">ModelSystem</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelType.html" class="tag"
+            style="font-size: 18px;color:#14892c"
+            title="Average Method Complexity - 1 , Coverage - 86.7% ">ModelType</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelUpdateMetadata.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ModelUpdateMetadata</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorConfiguration.html" class="tag"
+            style="font-size: 18px;color:#d9695f"
+            title="Average Method Complexity - 1 , Coverage - 27.6% ">MonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/MonitorConfiguration.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">MonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/proxies/MonitorManagerProxy.html" class="tag"
+            style="font-size: 29px;color:#e7a19b"
+            title="Average Method Complexity - 2.6 , Coverage - 57.1% ">MonitorManagerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/MonitorProxy.html" class="tag"
+            style="font-size: 35px;color:#f6c342"
+            title="Average Method Complexity - 3.667 , Coverage - 67.6% ">MonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/MonitorSpecificConfiguration.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">MonitorSpecificConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/MonitorSpecificConfigurationResult.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 50% ">MonitorSpecificConfigurationResult</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorTool.html" class="tag"
+            style="font-size: 18px;color:#14892c"
+            title="Average Method Complexity - 1 , Coverage - 90% ">MonitorTool</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorType.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">MonitorType</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/proxies/MonitoringOrchestratorProxy.html" class="tag"
+            style="font-size: 19px;color:#e7a19b"
+            title="Average Method Complexity - 1.077 , Coverage - 59.5% ">MonitoringOrchestratorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/NextReleaseProblem.html" class="tag"
+            style="font-size: 19px;color:#fae1a0"
+            title="Average Method Complexity - 1.167 , Coverage - 75% ">NextReleaseProblem</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/NextReleaseProblem.html" class="tag"
+            style="font-size: 19px;color:#fae1a0"
+            title="Average Method Complexity - 1.167 , Coverage - 75% ">NextReleaseProblem</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/NillableObjectJsonDeserializer.html" class="tag"
+            style="font-size: 44px;color:#14892c"
+            title="Average Method Complexity - 5 , Coverage - 93.8% ">NillableObjectJsonDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/OrchestratorItem.html" class="tag"
+            style="font-size: 18px;color:#d9695f"
+            title="Average Method Complexity - 1 , Coverage - 25% ">OrchestratorItem</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Parameter.html" class="tag"
+            style="font-size: 20px;color:#d9695f"
+            title="Average Method Complexity - 1.303 , Coverage - 26% ">Parameter</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterDeserializer.html" class="tag"
+            style="font-size: 38px;color:#14892c"
+            title="Average Method Complexity - 4 , Coverage - 84.4% ">ParameterDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterSerializer.html" class="tag"
+            style="font-size: 48px;color:#f6c342"
+            title="Average Method Complexity - 5.5 , Coverage - 62.5% ">ParameterSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/util/PasswordCrypt.html" class="tag"
+            style="font-size: 21px;color:#de7b72"
+            title="Average Method Complexity - 1.429 , Coverage - 29.3% ">PasswordCrypt</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Plan.html" class="tag"
+            style="font-size: 19px;color:#de7b72"
+            title="Average Method Complexity - 1.154 , Coverage - 29.4% ">Plan</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/PlannedFeature.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 50% ">PlannedFeature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/PlannedFeature.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 50% ">PlannedFeature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/PlanningSolution.html" class="tag"
+            style="font-size: 21px;color:#d9695f"
+            title="Average Method Complexity - 1.5 , Coverage - 25% ">PlanningSolution</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/PlanningSolution.html" class="tag"
+            style="font-size: 21px;color:#d9695f"
+            title="Average Method Complexity - 1.5 , Coverage - 25% ">PlanningSolution</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Priority.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Priority</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Priority.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Priority</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/fe/types/Profile.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 50% ">Profile</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ProfileArrayJsonDeserializer.html" class="tag"
+            style="font-size: 38px;color:#89c495"
+            title="Average Method Complexity - 4 , Coverage - 100% ">ProfileArrayJsonDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Project.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.111 , Coverage - 90.9% ">Project</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/RatingFeedback.html" class="tag"
+            style="font-size: 18px;color:#de7b72"
+            title="Average Method Complexity - 1 , Coverage - 28.1% ">RatingFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Release.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Release</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Release.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.143 , Coverage - 88.9% ">Release</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ReplanBaseObject</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/proxies/ReplanControllerProxy.html" class="tag"
+            style="font-size: 19px;color:#e28e87"
+            title="Average Method Complexity - 1.118 , Coverage - 46.6% ">ReplanControllerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ReplanFeatureReleaseJsonDeserializer.html" class="tag"
+            style="font-size: 25px;color:#89c495"
+            title="Average Method Complexity - 2 , Coverage - 100% ">ReplanFeatureReleaseJsonDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ReplanIdentifiableObject</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/proxies/ReplanOptimizerProxy.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ReplanOptimizerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/proxies/ReplanOptimizerProxy.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">ReplanOptimizerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Resource.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.143 , Coverage - 88.9% ">Resource</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Resource.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.143 , Coverage - 88.9% ">Resource</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Resource.html" class="tag"
+            style="font-size: 19px;color:#14892c"
+            title="Average Method Complexity - 1.2 , Coverage - 85.7% ">Resource</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/types/Role.html" class="tag"
+            style="font-size: 20px;color:#14892c"
+            title="Average Method Complexity - 1.364 , Coverage - 84.4% ">Role</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/ScreenshotFeedback.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 67.3% ">ScreenshotFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Skill.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Skill</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Skill.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">Skill</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/SubscriptionTopic.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 55.6% ">SubscriptionTopic</a>
+            
+    
+            <a href="eu/supersede/integration/federation/SupersedeFederation.html" class="tag"
+            style="font-size: 21px;color:#14892c"
+            title="Average Method Complexity - 1.5 , Coverage - 91.3% ">SupersedeFederation</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/integration/types/SupersedePlatform.html" class="tag"
+            style="font-size: 18px;color:#14892c"
+            title="Average Method Complexity - 1 , Coverage - 88.9% ">SupersedePlatform</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/Tenant.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 66.7% ">Tenant</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/TextFeedback.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 72.7% ">TextFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/TopicMessageAgent.html" class="tag"
+            style="font-size: 22px;color:#fae1a0"
+            title="Average Method Complexity - 1.6 , Coverage - 82.4% ">TopicMessageAgent</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/TopicPublisher.html" class="tag"
+            style="font-size: 20px;color:#14892c"
+            title="Average Method Complexity - 1.25 , Coverage - 85% ">TopicPublisher</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/TopicSubscriber.html" class="tag"
+            style="font-size: 25px;color:#d9695f"
+            title="Average Method Complexity - 2 , Coverage - 27.4% ">TopicSubscriber</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/TwitterMonitorConfiguration.html" class="tag"
+            style="font-size: 20px;color:#89c495"
+            title="Average Method Complexity - 1.25 , Coverage - 100% ">TwitterMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 82.4% ">TwitterMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 71.4% ">TwitterMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">TwitterMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/TypedModelId.html" class="tag"
+            style="font-size: 18px;color:#d9695f"
+            title="Average Method Complexity - 1 , Coverage - 21.4% ">TypedModelId</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/fe/types/User.html" class="tag"
+            style="font-size: 18px;color:#e7a19b"
+            title="Average Method Complexity - 1 , Coverage - 50% ">User</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/types/User.html" class="tag"
+            style="font-size: 26px;color:#f6c342"
+            title="Average Method Complexity - 2.267 , Coverage - 68.1% ">User</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/User.html" class="tag"
+            style="font-size: 18px;color:#f6c342"
+            title="Average Method Complexity - 1 , Coverage - 69.2% ">User</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/UserGroup.html" class="tag"
+            style="font-size: 18px;color:#fae1a0"
+            title="Average Method Complexity - 1 , Coverage - 77.8% ">UserGroup</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/types/UserRequest.html" class="tag"
+            style="font-size: 18px;color:#89c495"
+            title="Average Method Complexity - 1 , Coverage - 100% ">UserRequest</a>
+           </div>
+   
+   </div>
+    </div> <!-- tabs-pane active-pane -->
+</div> <!-- aui-tabs horizontal-tabs -->
+
+                        </div> <!-- class="aui-page-panel-content-clover" -->
+                    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul>
+            <li>
+                Report generated by <a target="_new" href="http://openclover.org">OpenClover</a> v 4.2.0
+                on Wed Sep 11 2019 08:40:43 UTC using coverage data from Wed Sep 11 2019 08:40:40 UTC.
+            </li>
+        </ul>
+        <ul>
+            <li>Clover free edition. </li>
+        </ul>
+    </section>
+</footer>                </section> <!-- class="aui-page-panel-content" -->
+            </div> <!-- class="aui-page-panel-inner" -->
+        </div> <!-- class="aui-page-panel" -->
+    </div> <!-- id="page" -->
+</body>
+</html>

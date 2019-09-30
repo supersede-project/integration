@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ECA_Rule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.mdm.types</a> &gt; <span class="el_source">ECA_Rule.java</span></div><h1>ECA_Rule.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.mdm.types;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+/**
+ * Created by snadal on 26/01/17.
+ */
+@JsonIgnoreProperties(ignoreUnknown = true)
+<span class="nc" id="L13">public class ECA_Rule implements Serializable{</span>
+
+    private String eca_ruleID;
+    private String graph;
+    private String globalLevel;
+    private String name;
+    private String feature;
+    private OperatorTypes operator;
+    private PredicatesTypes predicate;
+    private Object value;
+    private int windowTime;
+    private int windowSize;
+    private ActionTypes action;
+    private List&lt;Condition&gt; conditions;
+    private Event event;
+    private List&lt;String&gt; alertParameters;
+    private List&lt;Parameter&gt; parameters;
+
+    public String getEca_ruleID() {
+<span class="nc" id="L32">        return eca_ruleID;</span>
+    }
+
+    public void setEca_ruleID(String eca_ruleID) {
+<span class="nc" id="L36">        this.eca_ruleID = eca_ruleID;</span>
+<span class="nc" id="L37">    }</span>
+
+    public String getGraph() {
+<span class="nc" id="L40">        return graph;</span>
+    }
+
+    public void setGraph(String graph) {
+<span class="nc" id="L44">        this.graph = graph;</span>
+<span class="nc" id="L45">    }</span>
+
+    public String getGlobalLevel() {
+<span class="nc" id="L48">        return globalLevel;</span>
+    }
+
+    public void setGlobalLevel(String globalLevel) {
+<span class="nc" id="L52">        this.globalLevel = globalLevel;</span>
+<span class="nc" id="L53">    }</span>
+
+    public String getName() {
+<span class="nc" id="L56">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L60">        this.name = name;</span>
+<span class="nc" id="L61">    }</span>
+
+    public String getFeature() {
+<span class="nc" id="L64">        return feature;</span>
+    }
+
+    public void setFeature(String feature) {
+<span class="nc" id="L68">        this.feature = feature;</span>
+<span class="nc" id="L69">    }</span>
+
+    public OperatorTypes getOperator() {
+<span class="nc" id="L72">        return operator;</span>
+    }
+
+    public void setOperator(OperatorTypes operator) {
+<span class="nc" id="L76">        this.operator = operator;</span>
+<span class="nc" id="L77">    }</span>
+
+    public PredicatesTypes getPredicate() {
+<span class="nc" id="L80">        return predicate;</span>
+    }
+
+    public void setPredicate(PredicatesTypes predicate) {
+<span class="nc" id="L84">        this.predicate = predicate;</span>
+<span class="nc" id="L85">    }</span>
+
+    public Object getValue() {
+<span class="nc" id="L88">        return value;</span>
+    }
+
+    public void setValue(Object value) {
+<span class="nc" id="L92">        this.value = value;</span>
+<span class="nc" id="L93">    }</span>
+
+    public int getWindowTime() {
+<span class="nc" id="L96">        return windowTime;</span>
+    }
+
+    public void setWindowTime(int windowTime) {
+<span class="nc" id="L100">        this.windowTime = windowTime;</span>
+<span class="nc" id="L101">    }</span>
+
+    public int getWindowSize() {
+<span class="nc" id="L104">        return windowSize;</span>
+    }
+
+    public void setWindowSize(int windowSize) {
+<span class="nc" id="L108">        this.windowSize = windowSize;</span>
+<span class="nc" id="L109">    }</span>
+
+    public ActionTypes getAction() {
+<span class="nc" id="L112">        return action;</span>
+    }
+
+    public void setAction(ActionTypes action) {
+<span class="nc" id="L116">        this.action = action;</span>
+<span class="nc" id="L117">    }</span>
+
+	public List&lt;Condition&gt; getConditions() {
+<span class="nc bnc" id="L120" title="All 2 branches missed.">		if (this.conditions == null){</span>
+<span class="nc" id="L121">			this.conditions = new ArrayList&lt;&gt;();</span>
+		}
+<span class="nc" id="L123">		return conditions;</span>
+	}
+
+	public void setConditions(List&lt;Condition&gt; conditions) {
+<span class="nc" id="L127">		this.conditions = conditions;</span>
+<span class="nc" id="L128">	}</span>
+
+	public Event getEvent() {
+<span class="nc" id="L131">		return event;</span>
+	}
+
+	public void setEvent(Event event) {
+<span class="nc" id="L135">		this.event = event;</span>
+<span class="nc" id="L136">	}</span>
+
+	public List&lt;String&gt; getAlertParameters() {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">		if (this.alertParameters == null){</span>
+<span class="nc" id="L140">			this.alertParameters = new ArrayList&lt;&gt;();</span>
+		}
+<span class="nc" id="L142">		return alertParameters;</span>
+	}
+
+	public void setAlertParameters(List&lt;String&gt; alertParameters) {
+<span class="nc" id="L146">		this.alertParameters = alertParameters;</span>
+<span class="nc" id="L147">	}</span>
+	
+	public List&lt;Parameter&gt; getParameters() {
+<span class="nc bnc" id="L150" title="All 2 branches missed.">		if (this.parameters == null){</span>
+<span class="nc" id="L151">			this.parameters = new ArrayList&lt;&gt;();</span>
+		}
+<span class="nc" id="L153">		return parameters;</span>
+	}
+
+	public void setParameters(List&lt;Parameter&gt; parameters) {
+<span class="nc" id="L157">		this.parameters = parameters;</span>
+<span class="nc" id="L158">	}</span>
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

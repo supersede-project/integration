@@ -21,14 +21,14 @@ import org.slf4j.LoggerFactory;
 import static org.springframework.util.Assert.isTrue;
 
 
-public class DecisionMakingSystemProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxyTest.class);
+public class DecisionMakingSystemProxyTest_Ampl2 {
+    private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxyTest_Ampl2.class);
 
     private static DecisionMakingSystemProxy<Object, Object> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        DecisionMakingSystemProxyTest.proxy = new DecisionMakingSystemProxy<Object, Object>();
+        DecisionMakingSystemProxyTest_Ampl2.proxy = new DecisionMakingSystemProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
@@ -41,7 +41,7 @@ public class DecisionMakingSystemProxyTest {
         Assert.assertFalse(((Collection) (((Alert) (o_testNotifyAlert_add1__1)).getRequests())).isEmpty());
         Assert.assertEquals("id1", ((Alert) (o_testNotifyAlert_add1__1)).getId());
         Alert alert = createAlert();
-        boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
         isTrue(result);
         Assert.assertEquals(1481717773760L, ((long) (((Alert) (o_testNotifyAlert_add1__1)).getTimestamp())));
         Assert.assertEquals("appId1", ((Alert) (o_testNotifyAlert_add1__1)).getApplicationId());
@@ -54,9 +54,9 @@ public class DecisionMakingSystemProxyTest {
     @Test(timeout = 30000)
     public void testNotifyAlert_add2() throws Exception {
         Alert alert = createAlert();
-        boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
         Assert.assertTrue(o_testNotifyAlert_add2__3);
-        boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
         isTrue(result);
         Assert.assertTrue(o_testNotifyAlert_add2__3);
     }
@@ -65,7 +65,7 @@ public class DecisionMakingSystemProxyTest {
     public void testNotifyAlertnull11_failAssert0() throws Exception {
         try {
             Alert alert = createAlert();
-            boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+            boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
             isTrue(result);
             org.junit.Assert.fail("testNotifyAlertnull11 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -78,7 +78,7 @@ public class DecisionMakingSystemProxyTest {
         try {
             Alert o_testNotifyAlert_add1__1 = createAlert();
             Alert alert = createAlert();
-            boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+            boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
             isTrue(result);
             org.junit.Assert.fail("testNotifyAlert_add1null94 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -90,8 +90,8 @@ public class DecisionMakingSystemProxyTest {
     public void testNotifyAlert_add2null100_failAssert0() throws Exception {
         try {
             Alert alert = createAlert();
-            boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
-            boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+            boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
+            boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
             isTrue(result);
             org.junit.Assert.fail("testNotifyAlert_add2null100 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -105,7 +105,7 @@ public class DecisionMakingSystemProxyTest {
             {
                 List<UserRequest> __DSPOT_requests_10 = Collections.singletonList(new UserRequest());
                 Alert alert = createAlert();
-                boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
                 isTrue(result);
                 org.junit.Assert.fail("testNotifyAlertnull11 should have thrown IllegalArgumentException");
                 alert.setRequests(__DSPOT_requests_10);
@@ -123,7 +123,7 @@ public class DecisionMakingSystemProxyTest {
                 List<Condition> __DSPOT_conditions_32 = Collections.singletonList(new Condition());
                 Alert o_testNotifyAlert_add1__1 = createAlert();
                 Alert alert = createAlert();
-                boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
                 isTrue(result);
                 org.junit.Assert.fail("testNotifyAlert_add1null94 should have thrown IllegalArgumentException");
                 o_testNotifyAlert_add1__1.setConditions(__DSPOT_conditions_32);
@@ -141,7 +141,7 @@ public class DecisionMakingSystemProxyTest {
                 List<UserRequest> __DSPOT_requests_51 = Collections.singletonList(new UserRequest());
                 Alert o_testNotifyAlert_add1__1 = createAlert();
                 Alert alert = createAlert();
-                boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
                 isTrue(result);
                 org.junit.Assert.fail("testNotifyAlert_add1null94 should have thrown IllegalArgumentException");
                 alert.setRequests(__DSPOT_requests_51);
@@ -158,8 +158,8 @@ public class DecisionMakingSystemProxyTest {
             {
                 List<Condition> __DSPOT_conditions_36 = Collections.<Condition>emptyList();
                 Alert alert = createAlert();
-                boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
-                boolean result = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+                boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
+                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
                 isTrue(result);
                 org.junit.Assert.fail("testNotifyAlert_add2null100 should have thrown IllegalArgumentException");
                 alert.setConditions(__DSPOT_conditions_36);

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MonitorProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.monitoring.monitors.proxies</a> &gt; <span class="el_source">MonitorProxy.java</span></div><h1>MonitorProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.monitoring.monitors.proxies;
+
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
+import org.springframework.util.LinkedMultiValueMap;
+
+import eu.supersede.integration.api.feedback.repository.types.Feedback;
+import eu.supersede.integration.api.monitoring.manager.types.HttpMonitorConfiguration;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationRequest;
+import eu.supersede.integration.api.monitoring.manager.types.MonitorConfigurationResponse;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+
+public abstract class MonitorProxy&lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IMonitor {
+<span class="fc" id="L45">	private static final Logger log = LoggerFactory.getLogger(MonitorProxy.class);</span>
+	private String endpoint;
+
+<span class="fc" id="L48">	protected MonitorProxy(String endpoint) {</span>
+<span class="fc" id="L49">		this.endpoint = endpoint;</span>
+<span class="fc" id="L50">	}</span>
+
+	@Override
+	public &lt;T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse&gt; T createMonitorConfiguration(
+			T conf, Class&lt;S&gt; responseType) throws Exception {
+<span class="fc" id="L55">		Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);</span>
+<span class="fc" id="L56">		URI uri = new URI(endpoint + &quot;configuration&quot;);</span>
+<span class="fc" id="L57">		log.debug(&quot;Sending message createMonitorConfiguration with conf: &quot; + conf + &quot; to Monitor at uri &quot; + uri);</span>
+<span class="fc" id="L58">		S response = insertJSONObjectAndReturnAnotherType(conf, responseType, uri, </span>
+<span class="fc" id="L59">				new ArrayList&lt;HttpStatus&gt;(){{add(HttpStatus.CREATED); add(HttpStatus.OK);}});</span>
+<span class="pc bpc" id="L60" title="3 of 6 branches missed.">		if (response != null &amp;&amp; response.getResult() != null &amp;&amp; response.getResult().getIdConf() != null) {</span>
+<span class="fc" id="L61">			log.debug (&quot;Obtained response: &quot; + response.getResult());</span>
+<span class="fc" id="L62">			conf.setId(response.getResult().getIdConf());</span>
+<span class="fc" id="L63">			return conf;</span>
+		} else {
+<span class="nc bnc" id="L65" title="All 4 branches missed.">			if (response != null &amp;&amp; response.getResult() != null) {</span>
+<span class="nc" id="L66">				log.error(response.getResult().getMessage());</span>
+			}else{
+<span class="nc" id="L68">				log.error(&quot;There was a problem creating monitor configuration &quot; + conf + &quot; in uri: &quot; + uri);</span>
+			}
+<span class="nc" id="L70">			return null;</span>
+		}
+	}
+	
+	@Override
+	public &lt;T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse&gt; T sendMonitorConfigurationMultipart 
+	(T conf, Path file, Class&lt;S&gt; responseType, HttpMethod method) throws Exception {
+<span class="fc" id="L77">		Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);</span>
+<span class="fc" id="L78">		Assert.notNull(file, &quot;Provide a valid Path file&quot;);</span>
+		
+<span class="fc" id="L80">		URI uri = new URI(endpoint + &quot;configuration&quot;);</span>
+		
+<span class="fc" id="L82">		LinkedMultiValueMap&lt;String, Object&gt; parts = </span>
+		          new LinkedMultiValueMap&lt;String, Object&gt;();
+		
+<span class="fc" id="L85">		parts.add(&quot;json&quot;, convertToJSON (conf));</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">		if (file != null){</span>
+<span class="fc" id="L87">			parts.add(&quot;file&quot;, new ByteArrayResource(Files.readAllBytes(file)));</span>
+		}
+		
+<span class="fc" id="L90">		log.debug(&quot;Sending message createFeedbackForApplication with monitor configuration: &quot; + conf</span>
+				+ &quot; with file: &quot; + file
+				+ &quot; to Monitor at uri &quot; + uri);
+<span class="fc" id="L93">		S response = sendMultipartFormDataMessage(uri, responseType, parts, method);</span>
+		
+<span class="pc bpc" id="L95" title="3 of 6 branches missed.">		if (response != null &amp;&amp; response.getResult() != null &amp;&amp; response.getResult().getIdConf() != null) {</span>
+<span class="fc" id="L96">			log.debug (&quot;Obtained response: &quot; + response.getResult());</span>
+<span class="fc" id="L97">			conf.setId(response.getResult().getIdConf());</span>
+<span class="fc" id="L98">			return conf;</span>
+		} else {
+<span class="nc bnc" id="L100" title="All 4 branches missed.">			if (response != null &amp;&amp; response.getResult() != null) {</span>
+<span class="nc" id="L101">				log.error(response.getResult().getMessage());</span>
+			}else{
+<span class="nc" id="L103">				log.error(&quot;There was a problem creating monitor configuration &quot; + conf + &quot; in uri: &quot; + uri);</span>
+			}
+<span class="nc" id="L105">			return null;</span>
+		}
+	}
+	
+
+
+	// @Override
+	// public TwitterMonitorConfiguration
+	// updateMonitorConfiguration(TwitterMonitorConfiguration conf)
+	// throws Exception {
+	// Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);
+	// URI uri = new URI(endpoint + &quot;configuration/&quot; + conf.getId());
+	// SocialNetworksMonitoringConfigurationResponse response =
+	// updateJSONObjectAndReturnAnotherType(
+	// new SocialNetworksMonitoringConfigurationRequest(conf),
+	// SocialNetworksMonitoringConfigurationResponse.class, uri, HttpStatus.OK);
+	// if (response != null &amp;&amp;
+	// response.getSocialNetworksMonitoringConfProfResult() != null
+	// &amp;&amp; response.getSocialNetworksMonitoringConfProfResult().getIdConf() !=
+	// null) {
+	// conf.setId(response.getSocialNetworksMonitoringConfProfResult().getIdConf());
+	// return conf;
+	// } else {
+	// if (response != null &amp;&amp;
+	// response.getSocialNetworksMonitoringConfProfResult() != null) {
+	// log.error(response.getSocialNetworksMonitoringConfProfResult().getMessage());
+	// }
+	// return null;
+	// }
+	// }
+
+	@Override
+	public &lt;T extends MonitorConfigurationRequest, S extends MonitorConfigurationResponse&gt; T updateMonitorConfiguration(
+			T conf, Class&lt;S&gt; responseType) throws Exception {
+<span class="fc" id="L139">		Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);</span>
+<span class="fc" id="L140">		Assert.notNull(conf.getId(), &quot;Provide a valid monitor configuration id&quot;);</span>
+<span class="fc" id="L141">		URI uri = new URI(endpoint + &quot;configuration/&quot; + conf.getId());</span>
+<span class="fc" id="L142">		log.debug(&quot;Sending message updateMonitorConfiguration with conf: &quot; + conf + &quot; to Monitor at uri &quot; + uri);</span>
+<span class="fc" id="L143">		S response = updateJSONObjectAndReturnAnotherType(conf, responseType, uri, HttpStatus.OK);</span>
+<span class="pc bpc" id="L144" title="3 of 6 branches missed.">		if (response != null &amp;&amp; response.getResult() != null &amp;&amp; response.getResult().getIdConf() != null) {</span>
+<span class="fc" id="L145">			return conf;</span>
+		} else {
+<span class="nc bnc" id="L147" title="All 4 branches missed.">			if (response != null &amp;&amp; response.getResult() != null) {</span>
+<span class="nc" id="L148">				log.error(response.getResult().getMessage());</span>
+			}else{
+<span class="nc" id="L150">				log.error(&quot;There was a problem updating monitor configuration &quot; + conf + &quot; in uri: &quot; + uri);</span>
+			}
+<span class="nc" id="L152">			return null;</span>
+		}
+	}
+
+	// @Override
+	// public void deleteMonitorConfiguration(TwitterMonitorConfiguration conf)
+	// throws Exception {
+	// Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);
+	// URI uri = new URI(endpoint + &quot;configuration/&quot; + conf.getId());
+	// deleteUriResource(uri, HttpStatus.OK);
+	// }
+
+	@Override
+	public &lt;T extends MonitorConfigurationRequest&gt; void deleteMonitorConfiguration(T conf) throws Exception {
+<span class="fc" id="L166">		Assert.notNull(conf, &quot;Provide a valid monitor configuration&quot;);</span>
+<span class="fc" id="L167">		Assert.notNull(conf.getId(), &quot;Provide a valid monitor configuration id&quot;);</span>
+<span class="fc" id="L168">		URI uri = new URI(endpoint + &quot;configuration/&quot; + conf.getId());</span>
+<span class="fc" id="L169">		log.debug(&quot;Sending message deleteMonitorConfiguration with conf: &quot; + conf + &quot; to Monitor at uri &quot; + uri);</span>
+<span class="fc" id="L170">		deleteUriResource(uri, HttpStatus.OK);</span>
+<span class="fc" id="L171">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

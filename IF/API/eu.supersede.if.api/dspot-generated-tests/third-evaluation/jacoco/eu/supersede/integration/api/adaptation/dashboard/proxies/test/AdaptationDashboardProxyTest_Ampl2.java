@@ -23,7 +23,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
 
-public class AdaptationDashboardProxyTest {
+public class AdaptationDashboardProxyTest_Ampl2 {
     private static AdaptationDashboardProxy<Object, Object> proxy;
 
     private static String adaptationId;
@@ -32,11 +32,11 @@ public class AdaptationDashboardProxyTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        AdaptationDashboardProxyTest.proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "senercon");
-        List<Adaptation> adaptations = AdaptationDashboardProxyTest.proxy.getAllAdaptations();
+    	AdaptationDashboardProxyTest_Ampl2.proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "senercon");
+        List<Adaptation> adaptations = AdaptationDashboardProxyTest_Ampl2.proxy.getAllAdaptations();
         Assert.notEmpty(adaptations);
-        AdaptationDashboardProxyTest.adaptationId = adaptations.get(0).getFc_id();
-        Assert.notNull(AdaptationDashboardProxyTest.adaptationId);
+        AdaptationDashboardProxyTest_Ampl2.adaptationId = adaptations.get(0).getFc_id();
+        Assert.notNull(AdaptationDashboardProxyTest_Ampl2.adaptationId);
 
 
 
@@ -56,11 +56,11 @@ public class AdaptationDashboardProxyTest {
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testGetAdaptation_add3216__1)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testGetAdaptation_add3216__1)).getActions())).isEmpty());
         Adaptation adaptation = createAdaptation("905");
-        adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
-        adaptation = AdaptationDashboardProxyTest.proxy.getAdaptation(adaptation.getFc_id());
-        AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.getAdaptation(adaptation.getFc_id());
+        AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
         assertEquals("905", ((Adaptation) (o_testGetAdaptation_add3216__1)).getFc_id());
         assertEquals(1.0, ((double) (((Adaptation) (o_testGetAdaptation_add3216__1)).getRank())), 0.1);
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testGetAdaptation_add3216__1)).getModel_system())).getTenant())).toString());
@@ -75,11 +75,11 @@ public class AdaptationDashboardProxyTest {
     public void testGetAdaptation_mg3233() throws Exception {
         Adaptation __DSPOT_a_281 = new Adaptation();
         Adaptation adaptation = createAdaptation("905");
-        adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
-        adaptation = AdaptationDashboardProxyTest.proxy.getAdaptation(adaptation.getFc_id());
-        AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.getAdaptation(adaptation.getFc_id());
+        AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
         int o_testGetAdaptation_mg3233__14 = adaptation.compareTo(__DSPOT_a_281);
         assertEquals(0, ((int) (o_testGetAdaptation_mg3233__14)));
     }
@@ -88,11 +88,11 @@ public class AdaptationDashboardProxyTest {
     public void testGetAdaptation_literalMutationString3227_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
-            adaptation = AdaptationDashboardProxyTest.proxy.getAdaptation(adaptation.getFc_id());
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.getAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testGetAdaptation_literalMutationString3227 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -102,11 +102,11 @@ public class AdaptationDashboardProxyTest {
     public void testGetAdaptation_literalMutationString3228_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("9/05");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
-            adaptation = AdaptationDashboardProxyTest.proxy.getAdaptation(adaptation.getFc_id());
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.getAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testGetAdaptation_literalMutationString3228 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -116,11 +116,11 @@ public class AdaptationDashboardProxyTest {
     public void testGetAdaptationlitString3244_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
-            adaptation = AdaptationDashboardProxyTest.proxy.getAdaptation(adaptation.getFc_id());
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.getAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testGetAdaptationlitString3244 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -130,7 +130,7 @@ public class AdaptationDashboardProxyTest {
     public void testGetAdaptation_mg3233_add3415() throws Exception {
         Adaptation __DSPOT_a_281 = new Adaptation();
         Adaptation adaptation = createAdaptation("905");
-        Adaptation o_testGetAdaptation_mg3233_add3415__5 = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        Adaptation o_testGetAdaptation_mg3233_add3415__5 = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         assertEquals("905", ((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getModel_system())).getTenant())).toString());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getModel_system())).getTenant())).getId());
@@ -139,11 +139,11 @@ public class AdaptationDashboardProxyTest {
         assertEquals(0.0, ((double) (((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getRank())), 0.1);
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getActions())).isEmpty());
-        adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
-        adaptation = AdaptationDashboardProxyTest.proxy.getAdaptation(adaptation.getFc_id());
-        AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.getAdaptation(adaptation.getFc_id());
+        AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
         int o_testGetAdaptation_mg3233__14 = adaptation.compareTo(__DSPOT_a_281);
         assertEquals("905", ((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getModel_system())).getTenant())).toString());
@@ -160,11 +160,11 @@ public class AdaptationDashboardProxyTest {
         try {
             {
                 Adaptation adaptation = createAdaptation("r;pu");
-                adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+                adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
                 Assert.notNull(adaptation);
                 Assert.notNull(adaptation);
-                adaptation = AdaptationDashboardProxyTest.proxy.getAdaptation(adaptation.getFc_id());
-                AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.getAdaptation(adaptation.getFc_id());
+                AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
                 org.junit.Assert.fail("testGetAdaptation_literalMutationString3228 should have thrown HttpMessageNotReadableException");
             }
             org.junit.Assert.fail("testGetAdaptation_literalMutationString3228_failAssert0litString3495 should have thrown NullPointerException");
@@ -185,9 +185,9 @@ public class AdaptationDashboardProxyTest {
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testAddAdaptation_add1__1)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testAddAdaptation_add1__1)).getActions())).isEmpty());
         Adaptation adaptation = createAdaptation("905");
-        adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
-        AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+        AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
         assertEquals("905", ((Adaptation) (o_testAddAdaptation_add1__1)).getFc_id());
         assertEquals(1.0, ((double) (((Adaptation) (o_testAddAdaptation_add1__1)).getRank())), 0.1);
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_add1__1)).getModel_system())).getTenant())).toString());
@@ -202,9 +202,9 @@ public class AdaptationDashboardProxyTest {
     public void testAddAdaptation_mg14() throws Exception {
         Adaptation __DSPOT_a_0 = new Adaptation();
         Adaptation adaptation = createAdaptation("905");
-        adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
-        AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+        AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
         int o_testAddAdaptation_mg14__10 = adaptation.compareTo(__DSPOT_a_0);
         assertEquals(0, ((int) (o_testAddAdaptation_mg14__10)));
     }
@@ -213,9 +213,9 @@ public class AdaptationDashboardProxyTest {
     public void testAddAdaptation_literalMutationString9_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("9}05");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testAddAdaptation_literalMutationString9 should have thrown URISyntaxException");
         } catch (URISyntaxException expected) {
         }
@@ -225,9 +225,9 @@ public class AdaptationDashboardProxyTest {
     public void testAddAdaptationlitString28_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("Medium load configuration for HSK service");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testAddAdaptationlitString28 should have thrown URISyntaxException");
         } catch (URISyntaxException expected) {
         }
@@ -237,9 +237,9 @@ public class AdaptationDashboardProxyTest {
     public void testAddAdaptationnull36_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation(null);
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testAddAdaptationnull36 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -249,9 +249,9 @@ public class AdaptationDashboardProxyTest {
     public void testAddAdaptationnull37_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("905");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(null);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(null);
             Assert.notNull(adaptation);
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testAddAdaptationnull37 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -271,9 +271,9 @@ public class AdaptationDashboardProxyTest {
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getActions())).isEmpty());
         Adaptation adaptation = createAdaptation("905");
-        adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
-        AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+        AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
         int o_testAddAdaptation_mg14__10 = adaptation.compareTo(__DSPOT_a_0);
         assertEquals("905", ((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getModel_system())).getTenant())).toString());
@@ -289,7 +289,7 @@ public class AdaptationDashboardProxyTest {
     public void testAddAdaptation_mg14_add184() throws Exception {
         Adaptation __DSPOT_a_0 = new Adaptation();
         Adaptation adaptation = createAdaptation("905");
-        Adaptation o_testAddAdaptation_mg14_add184__5 = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        Adaptation o_testAddAdaptation_mg14_add184__5 = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         assertEquals("905", ((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getModel_system())).getTenant())).toString());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getModel_system())).getTenant())).getId());
@@ -298,9 +298,9 @@ public class AdaptationDashboardProxyTest {
         assertEquals(0.0, ((double) (((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getRank())), 0.1);
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getActions())).isEmpty());
-        adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
-        AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+        AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
         int o_testAddAdaptation_mg14__10 = adaptation.compareTo(__DSPOT_a_0);
         assertEquals("905", ((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getModel_system())).getTenant())).toString());
@@ -319,10 +319,10 @@ public class AdaptationDashboardProxyTest {
                 {
                     double __DSPOT_rank_20 = 0.5387532636112112;
                     Adaptation adaptation = createAdaptation(null);
-                    adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+                    adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
                     Assert.notNull(adaptation);
                     Assert.notNull(adaptation);
-                    AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                    AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
                     org.junit.Assert.fail("testAddAdaptationnull36 should have thrown HttpMessageNotReadableException");
                     adaptation.setRank(__DSPOT_rank_20);
                 }
@@ -340,9 +340,9 @@ public class AdaptationDashboardProxyTest {
             Adaptation __DSPOT_a_36 = new Adaptation();
             Adaptation __DSPOT_a_0 = new Adaptation();
             Adaptation adaptation = createAdaptation("905");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             int o_testAddAdaptation_mg14__10 = adaptation.compareTo(__DSPOT_a_0);
             int o_testAddAdaptation_mg14_mg240__15 = adaptation.compareTo(__DSPOT_a_36);
             __DSPOT_a_0.setComputation_timestamp(__DSPOT_computation_timestamp_76);
@@ -375,7 +375,7 @@ public class AdaptationDashboardProxyTest {
     @Test(timeout = 30000)
     public void testGetAllEnactmentsnull5297_failAssert0() throws Exception {
         try {
-            List<Enactment> adaptations = AdaptationDashboardProxyTest.proxy.getAllEnactments();
+            List<Enactment> adaptations = AdaptationDashboardProxyTest_Ampl2.proxy.getAllEnactments();
             Assert.notNull(null);
             org.junit.Assert.fail("testGetAllEnactmentsnull5297 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -387,8 +387,8 @@ public class AdaptationDashboardProxyTest {
     public void testGetAllEnactmentsnull5297_failAssert0_add5309_failAssert0() throws Exception {
         try {
             {
-                AdaptationDashboardProxyTest.proxy.getAllEnactments();
-                List<Enactment> adaptations = AdaptationDashboardProxyTest.proxy.getAllEnactments();
+                AdaptationDashboardProxyTest_Ampl2.proxy.getAllEnactments();
+                List<Enactment> adaptations = AdaptationDashboardProxyTest_Ampl2.proxy.getAllEnactments();
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetAllEnactmentsnull5297 should have thrown IllegalArgumentException");
             }
@@ -400,9 +400,9 @@ public class AdaptationDashboardProxyTest {
 
     @Test(timeout = 30000)
     public void testGetEnactment_add5339() throws Exception {
-        Enactment o_testGetEnactment_add5339__1 = AdaptationDashboardProxyTest.proxy.getEnactment(AdaptationDashboardProxyTest.enactmentId);
+        Enactment o_testGetEnactment_add5339__1 = AdaptationDashboardProxyTest_Ampl2.proxy.getEnactment(AdaptationDashboardProxyTest_Ampl2.enactmentId);
         assertNull(o_testGetEnactment_add5339__1);
-        Enactment enactment = AdaptationDashboardProxyTest.proxy.getEnactment(AdaptationDashboardProxyTest.enactmentId);
+        Enactment enactment = AdaptationDashboardProxyTest_Ampl2.proxy.getEnactment(AdaptationDashboardProxyTest_Ampl2.enactmentId);
 
         assertNull(o_testGetEnactment_add5339__1);
     }
@@ -411,7 +411,7 @@ public class AdaptationDashboardProxyTest {
     public void testGetEnactment_mg5340_failAssert0() throws Exception {
         try {
             Adaptation __DSPOT_adaptation_467 = new Adaptation();
-            Enactment enactment = AdaptationDashboardProxyTest.proxy.getEnactment(AdaptationDashboardProxyTest.enactmentId);
+            Enactment enactment = AdaptationDashboardProxyTest_Ampl2.proxy.getEnactment(AdaptationDashboardProxyTest_Ampl2.enactmentId);
 
             enactment.setAdaptation(__DSPOT_adaptation_467);
             org.junit.Assert.fail("testGetEnactment_mg5340 should have thrown NullPointerException");
@@ -424,7 +424,7 @@ public class AdaptationDashboardProxyTest {
     public void testGetEnactment_mg5341_failAssert0() throws Exception {
         try {
             Date __DSPOT_enactment_completion_time_468 = new Date(-196662320, 2027955824, -1357756128);
-            Enactment enactment = AdaptationDashboardProxyTest.proxy.getEnactment(AdaptationDashboardProxyTest.enactmentId);
+            Enactment enactment = AdaptationDashboardProxyTest_Ampl2.proxy.getEnactment(AdaptationDashboardProxyTest_Ampl2.enactmentId);
 
             enactment.setEnactment_completion_time(__DSPOT_enactment_completion_time_468);
             org.junit.Assert.fail("testGetEnactment_mg5341 should have thrown NullPointerException");
@@ -439,7 +439,7 @@ public class AdaptationDashboardProxyTest {
             {
                 List<Action> __DSPOT_actions_475 = Collections.singletonList(new Action());
                 Adaptation __DSPOT_adaptation_467 = new Adaptation();
-                Enactment enactment = AdaptationDashboardProxyTest.proxy.getEnactment(AdaptationDashboardProxyTest.enactmentId);
+                Enactment enactment = AdaptationDashboardProxyTest_Ampl2.proxy.getEnactment(AdaptationDashboardProxyTest_Ampl2.enactmentId);
 
                 enactment.setAdaptation(__DSPOT_adaptation_467);
                 org.junit.Assert.fail("testGetEnactment_mg5340 should have thrown NullPointerException");
@@ -455,13 +455,13 @@ public class AdaptationDashboardProxyTest {
     public void testAddEnactment_add1892_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("905");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Enactment enactment = createEnactment(adaptation.getFc_id());
-            AdaptationDashboardProxyTest.proxy.addEnactment(enactment);
-            enactment = AdaptationDashboardProxyTest.proxy.addEnactment(enactment);
+            AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
-            AdaptationDashboardProxyTest.proxy.deleteEnactment(adaptation.getFc_id());
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteEnactment(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testAddEnactment_add1892 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -471,12 +471,12 @@ public class AdaptationDashboardProxyTest {
     public void testAddEnactmentlitString1924_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("\n");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Enactment enactment = createEnactment(adaptation.getFc_id());
-            enactment = AdaptationDashboardProxyTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
-            AdaptationDashboardProxyTest.proxy.deleteEnactment(adaptation.getFc_id());
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteEnactment(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testAddEnactmentlitString1924 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -486,12 +486,12 @@ public class AdaptationDashboardProxyTest {
     public void testAddEnactmentnull1936_failAssert0() throws Exception {
         try {
             Adaptation adaptation = createAdaptation("905");
-            adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Enactment enactment = createEnactment(adaptation.getFc_id());
-            enactment = AdaptationDashboardProxyTest.proxy.addEnactment(null);
+            enactment = AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(null);
             Assert.notNull(enactment);
-            AdaptationDashboardProxyTest.proxy.deleteEnactment(adaptation.getFc_id());
-            AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteEnactment(adaptation.getFc_id());
+            AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
             org.junit.Assert.fail("testAddEnactmentnull1936 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -504,12 +504,12 @@ public class AdaptationDashboardProxyTest {
             {
                 {
                     Adaptation adaptation = createAdaptation("^p05");
-                    adaptation = AdaptationDashboardProxyTest.proxy.addAdaptation(adaptation);
+                    adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
                     Enactment enactment = createEnactment(adaptation.getFc_id());
-                    enactment = AdaptationDashboardProxyTest.proxy.addEnactment(null);
+                    enactment = AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(null);
                     Assert.notNull(enactment);
-                    AdaptationDashboardProxyTest.proxy.deleteEnactment(adaptation.getFc_id());
-                    AdaptationDashboardProxyTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                    AdaptationDashboardProxyTest_Ampl2.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
                     org.junit.Assert.fail("testAddEnactmentnull1936 should have thrown NullPointerException");
                 }
                 org.junit.Assert.fail("testAddEnactmentnull1936_failAssert0_literalMutationString2134 should have thrown NullPointerException");

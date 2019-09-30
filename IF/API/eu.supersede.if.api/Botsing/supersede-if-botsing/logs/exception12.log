@@ -1,0 +1,11 @@
+java.lang.IllegalArgumentException: IS admin user not provided
+        at org.springframework.util.Assert.hasText(Assert.java:168)
+        at eu.supersede.integration.api.security.IFUserStoreManager.<init>(IFUserStoreManager.java:105)
+        at eu.supersede.integration.api.security.IFAuthenticationManager.<init>(IFAuthenticationManager.java:129)
+        at eu.supersede.integration.federation.SupersedeFederation.<init>(SupersedeFederation.java:20)
+        at eu.supersede.integration.properties.IntegrationProperty.getFederation(IntegrationProperty.java:94)
+        at eu.supersede.integration.properties.IntegrationProperty.getLocalPlatform(IntegrationProperty.java:108)
+        at eu.supersede.integration.properties.IntegrationProperty.getMBConnection(IntegrationProperty.java:85)
+        at eu.supersede.integration.api.pubsub.TopicMessageAgent.<init>(TopicMessageAgent.java:37)
+        at eu.supersede.integration.api.pubsub.TopicSubscriber.<init>(TopicSubscriber.java:66)
+        at eu.supersede.integration.api.pubsub.evolution.EvolutionSubscriber.<init>(EvolutionSubscriber.java:14)

@@ -1,0 +1,10 @@
+var clover = new Object();
+
+// JSON: {classes : [{name, id, sl, el,  methods : [{sl, el}, ...]}, ...]}
+clover.pageData = {"classes":[{"el":132,"id":9706,"methods":[{"el":60,"sc":5,"sl":55},{"el":65,"sc":5,"sl":62},{"el":73,"sc":5,"sl":67},{"el":81,"sc":5,"sl":75},{"el":117,"sc":5,"sl":83},{"el":131,"sc":5,"sl":119}],"name":"IdentityManagerClientTest","sl":37}]}
+
+// JSON: {test_ID : {"methods": [ID1, ID2, ID3...], "name" : "testXXX() void"}, ...};
+clover.testTargets = {"test_11":{"methods":[{"sl":67}],"name":"testGetRoles","pass":true,"statements":[{"sl":69},{"sl":70},{"sl":71},{"sl":72}]},"test_12":{"methods":[{"sl":75}],"name":"testGetAllProfileNames","pass":true,"statements":[{"sl":77},{"sl":78},{"sl":79},{"sl":80}]},"test_25":{"methods":[{"sl":83}],"name":"testAddUser","pass":true,"statements":[{"sl":85},{"sl":86},{"sl":87},{"sl":88},{"sl":91},{"sl":92},{"sl":97},{"sl":98},{"sl":99},{"sl":100},{"sl":101},{"sl":102},{"sl":103},{"sl":104},{"sl":105},{"sl":106},{"sl":107},{"sl":109},{"sl":110},{"sl":111},{"sl":112},{"sl":113}]},"test_81":{"methods":[{"sl":119}],"name":"testAddRole","pass":true,"statements":[{"sl":121},{"sl":122},{"sl":123},{"sl":124},{"sl":126},{"sl":127},{"sl":130}]},"test_94":{"methods":[{"sl":62}],"name":"testAuthenticateUserAccount","pass":true,"statements":[{"sl":64}]}}
+
+// JSON: { lines : [{tests : [testid1, testid2, testid3, ...]}, ...]};
+clover.srcFileLines = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [94], [], [94], [], [], [11], [], [11], [11], [11], [11], [], [], [12], [], [12], [12], [12], [12], [], [], [25], [], [25], [25], [25], [25], [], [], [25], [25], [], [], [], [], [25], [25], [25], [25], [25], [25], [25], [25], [25], [25], [25], [], [25], [25], [25], [25], [25], [], [], [], [], [], [81], [], [81], [81], [81], [81], [], [81], [81], [], [], [81], [], []]

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IFAuthenticationManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.security</a> &gt; <span class="el_source">IFAuthenticationManager.java</span></div><h1>IFAuthenticationManager.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.security;
+
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.RequestEntity;
+import org.springframework.util.Assert;
+import org.springframework.web.client.RestTemplate;
+import org.wso2.carbon.tenant.mgt.stub.TenantMgtAdminServiceExceptionException;
+import org.wso2.carbon.user.core.Permission;
+import org.wso2.carbon.user.core.UserStoreException;
+import org.wso2.carbon.user.core.claim.Claim;
+
+import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.api.security.types.Role;
+import eu.supersede.integration.api.security.types.User;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class IFAuthenticationManager {
+<span class="fc" id="L55">	private IFUserStoreManager usm = null;</span>
+//	private IFTenantsManager tm = null;
+<span class="fc" id="L57">	private RestTemplate restTemplate = new RestTemplate();</span>
+<span class="fc" id="L58">	private static String TOKEN_SERVICE_ENDPOINT = IntegrationProperty.getProperty(&quot;is.server.services.token&quot;);</span>
+//	private static String AUTHORIZATION_PAIR_BASE64 = IntegrationProperty.getProperty(&quot;is.authorization.pair.base64&quot;);
+<span class="fc" id="L60">	private static final Logger log = LoggerFactory.getLogger(IFAuthenticationManager.class);</span>
+	
+	static {
+		// This is use to enable the https SSL connection with IF WSO2 IS
+		/*
+		 * fix for Exception in thread &quot;main&quot;
+		 * javax.net.ssl.SSLHandshakeException:
+		 * sun.security.validator.ValidatorException: PKIX path building failed:
+		 * sun.security.provider.certpath.SunCertPathBuilderException: unable to
+		 * find valid certification path to requested target
+		 */
+<span class="fc" id="L71">		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {</span>
+			
+			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+<span class="fc" id="L74">				return null;</span>
+			}
+
+			public void checkClientTrusted(X509Certificate[] certs, String authType) {
+<span class="nc" id="L78">			}</span>
+
+			public void checkServerTrusted(X509Certificate[] certs, String authType) {
+<span class="fc" id="L81">			}</span>
+		} };
+
+		try {
+<span class="fc" id="L85">			SSLContext sc = SSLContext.getInstance(&quot;SSL&quot;);</span>
+<span class="fc" id="L86">			sc.init(null, trustAllCerts, new java.security.SecureRandom());</span>
+<span class="fc" id="L87">			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());</span>
+<span class="nc" id="L88">		} catch (Exception e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L90">			log.error(e.getMessage(), e);</span>
+<span class="fc" id="L91">		}</span>
+
+<span class="fc" id="L93">		HostnameVerifier supersedeISValid = new HostnameVerifier() {</span>
+			@Override
+			public boolean verify(String hostname, SSLSession session) {
+<span class="fc" id="L96">				log.debug(&quot;Verifying hostname: &quot; + hostname);</span>
+<span class="fc" id="L97">				String token_service_hostname = null;</span>
+				try {
+<span class="fc" id="L99">					token_service_hostname = new URL(TOKEN_SERVICE_ENDPOINT).getHost();</span>
+<span class="nc" id="L100">				} catch (MalformedURLException e) {</span>
+					// TODO Auto-generated catch block
+<span class="nc" id="L102">					log.error(e.getMessage(), e);</span>
+<span class="fc" id="L103">				}</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">				if (token_service_hostname == null) {</span>
+<span class="nc" id="L105">					return false;</span>
+				} else {
+<span class="fc" id="L107">					return hostname.equals(token_service_hostname);</span>
+				}
+			}
+		};
+
+<span class="fc" id="L112">		HttpsURLConnection.setDefaultHostnameVerifier(supersedeISValid);</span>
+
+		// try {
+		// HttpsURLConnection.setDefaultHostnameVerifier(supersedeISValid);
+		// String token_service_hostname = new URL
+		// (TOKEN_SERVICE_ENDPOINT).getHost();
+		// HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -&gt;
+		// hostname.equals(token_service_hostname));
+		// HttpsURLConnection.setDefaultHostnameVerifier(
+		// (hostname, session) -&gt; {System.out.println(&quot;Verifying hostname: &quot; +
+		// hostname); return hostname.equals(token_service_hostname);});
+		// } catch (MalformedURLException e) {
+		// log.error(e.getMessage(), e);
+		// }
+<span class="fc" id="L126">	}</span>
+	
+<span class="fc" id="L128">	public IFAuthenticationManager(String admin, String password){</span>
+<span class="fc" id="L129">		usm = new IFUserStoreManager(admin, password);</span>
+//		tm = new IFTenantsManager(admin, password);
+<span class="fc" id="L131">	}</span>
+
+	// User Authentication
+	public boolean authenticateUser(String userName, String credential) throws UserStoreException {
+<span class="fc" id="L135">		Assert.hasText(userName, &quot;provide a valid userName&quot;);</span>
+<span class="fc" id="L136">		Assert.hasText(credential, &quot;provide a valid credential&quot;);</span>
+<span class="fc" id="L137">		log.info(&quot;Requested to authenticate user: &quot; + userName);</span>
+<span class="fc" id="L138">		log.debug(&quot;Sending message authenticateUser with userName: &quot; + userName </span>
+				+ &quot; to IFUserStoreManager&quot;);
+<span class="fc" id="L140">		return usm.authenticate(userName, credential);</span>
+	}
+
+	// User CRUD operations
+
+	public void addUser(User user, String credential, boolean requirePasswordChange) throws UserStoreException {
+<span class="fc" id="L146">		Assert.notNull(user, &quot;user shouldn't be null&quot;);</span>
+<span class="fc" id="L147">		Assert.hasText(user.getUserName(), &quot;provide a valid userName&quot;);</span>
+<span class="fc" id="L148">		Assert.hasText(credential, &quot;provide a valid credential&quot;);</span>
+		
+<span class="fc" id="L150">		String[] profiles = usm.getAllProfileNames();</span>
+<span class="fc" id="L151">		Assert.notNull(profiles, &quot;profiles shouldn't be empty&quot;);</span>
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">		Assert.isTrue(profiles.length &gt; 0, &quot;There should be at least one profile&quot;);</span>
+<span class="fc" id="L153">		String[] roleNames = new String[user.getRoles().size()];</span>
+<span class="fc" id="L154">		int i = 0;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">		for (Role role : user.getRoles()) {</span>
+<span class="fc" id="L156">			roleNames[i++] = role.getRoleName();</span>
+<span class="fc" id="L157">		}</span>
+
+<span class="fc" id="L159">		usm.addUser(user.getUserName(), credential, roleNames, user.getClaims(), profiles[0], requirePasswordChange);</span>
+<span class="fc" id="L160">	}</span>
+
+	public User getUser(String userName) throws UserStoreException, MalformedURLException {
+<span class="fc" id="L163">		Assert.hasText(userName, &quot;provide a valid userName&quot;);</span>
+		
+<span class="fc" id="L165">		String[] foundUsers = usm.listUsers(userName, 1);</span>
+<span class="pc bpc" id="L166" title="2 of 4 branches missed.">		if (foundUsers == null || foundUsers.length == 0)</span>
+<span class="nc" id="L167">			return null;</span>
+<span class="fc" id="L168">		User user = new User();</span>
+<span class="fc" id="L169">		user.setUserName(userName);</span>
+<span class="fc" id="L170">		String[] profiles = usm.getAllProfileNames();</span>
+<span class="fc" id="L171">		Assert.notNull(profiles, &quot;profiles shouldn't be empty&quot;);</span>
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">		Assert.isTrue(profiles.length &gt; 0, &quot;There should be at least one profile&quot;);</span>
+<span class="fc" id="L173">		Claim[] claims = usm.getUserClaimValues(userName, profiles[0]);</span>
+<span class="fc" id="L174">		user.readClaims(claims);</span>
+<span class="fc" id="L175">		Set&lt;Role&gt; roles = getAllRolesOfUser(user);</span>
+<span class="fc" id="L176">		user.setRoles(roles);</span>
+
+<span class="fc" id="L178">		return user;</span>
+	}
+
+	public List&lt;User&gt; getAllUsersForRole(Role role) throws UserStoreException, MalformedURLException {
+<span class="fc" id="L182">		Assert.notNull(role, &quot;role shouldn't be null&quot;);</span>
+<span class="fc" id="L183">		Assert.notNull(role.getRoleName(), &quot;Role name shouldn't be null&quot;);</span>
+<span class="pc bpc" id="L184" title="1 of 2 branches missed.">		Assert.isTrue(!role.getRoleName().isEmpty(), &quot;Role name shouldn't be empty&quot;);</span>
+
+<span class="fc" id="L186">		String[] userNames = usm.getUserListOfRole(role.getRoleName());</span>
+<span class="fc" id="L187">		List&lt;User&gt; users = new ArrayList&lt;User&gt;();</span>
+<span class="pc bpc" id="L188" title="1 of 2 branches missed.">		if (userNames != null) {</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">			for (int i = 0; i &lt; userNames.length; i++) {</span>
+<span class="fc" id="L190">				users.add(getUser(userNames[i]));</span>
+			}
+		}
+<span class="fc" id="L193">		return users;</span>
+	}
+
+	public void updateUserCredential(User user, String newCredential, String oldCredential) throws UserStoreException {
+<span class="fc" id="L197">		Assert.notNull(user, &quot;user shouldn't be null&quot;);</span>
+<span class="fc" id="L198">		Assert.notNull(user.getUserName(), &quot;Username shouldn't be null&quot;);</span>
+<span class="pc bpc" id="L199" title="1 of 2 branches missed.">		Assert.isTrue(!user.getUserName().isEmpty(), &quot;Username shouldn't be empty&quot;);</span>
+
+<span class="fc" id="L201">		usm.updateCredential(user.getUserName(), newCredential, oldCredential);</span>
+<span class="fc" id="L202">	}</span>
+
+	public void updateUser(User user) throws UserStoreException, MalformedURLException {
+<span class="fc" id="L205">		Assert.notNull(user, &quot;user shouldn't be null&quot;);</span>
+<span class="fc" id="L206">		Assert.hasText(user.getUserName(), &quot;provide a valid userName&quot;);</span>
+
+<span class="fc" id="L208">		User oldUser = getUser(user.getUserName());</span>
+<span class="fc" id="L209">		Assert.notNull(oldUser);</span>
+
+<span class="fc" id="L211">		Set&lt;Role&gt; rolesInNewUser = user.getRoles();</span>
+<span class="fc" id="L212">		Set&lt;Role&gt; rolesInOldUser = oldUser.getRoles();</span>
+
+<span class="fc" id="L214">		Set&lt;Role&gt; rolesToAdd = new HashSet&lt;&gt;(rolesInNewUser);</span>
+<span class="fc" id="L215">		rolesToAdd.removeAll(rolesInOldUser);</span>
+<span class="fc" id="L216">		Set&lt;Role&gt; rolesToRemove = new HashSet&lt;&gt;(rolesInOldUser);</span>
+<span class="fc" id="L217">		rolesToRemove.removeAll(rolesInNewUser);</span>
+
+		// updating roles
+<span class="fc" id="L220">		usm.updateRoleListOfUser(user.getUserName(), Role.roleNames(rolesToRemove), Role.roleNames(rolesToAdd));</span>
+
+		// Updating user profile
+<span class="fc" id="L223">		String[] profiles = usm.getProfileNames(user.getUserName());</span>
+<span class="fc" id="L224">		Assert.notNull(profiles, &quot;profiles shouldn't be null&quot;);</span>
+<span class="pc bpc" id="L225" title="1 of 2 branches missed.">		Assert.isTrue(profiles.length &gt; 0, &quot;profiles shouldn't be empty&quot;);</span>
+
+<span class="fc" id="L227">		usm.setUserClaimValues(user.getUserName(), user.getClaims(), profiles[0]);</span>
+<span class="fc" id="L228">	}</span>
+
+	public void deleteUser(User user) throws UserStoreException {
+<span class="fc" id="L231">		Assert.notNull(user, &quot;user shouldn't be null&quot;);</span>
+<span class="fc" id="L232">		Assert.hasText(user.getUserName(), &quot;provide a valid userName&quot;);</span>
+<span class="fc" id="L233">		usm.deleteUser(user.getUserName());</span>
+<span class="fc" id="L234">	}</span>
+
+	// Role CRUD operations
+	public Set&lt;Role&gt; getAllRoles() throws UserStoreException {
+<span class="fc" id="L238">		String[] roleNames = usm.getRoleNames();</span>
+<span class="fc" id="L239">		Assert.notNull(roleNames, &quot;Role names shouldn't be null&quot;);</span>
+<span class="fc" id="L240">		return Role.roles(roleNames);</span>
+	}
+
+	public Set&lt;Role&gt; getAllRolesOfUser(User user) throws UserStoreException {
+<span class="fc" id="L244">		Assert.notNull(user, &quot;user shouldn't be null&quot;);</span>
+<span class="fc" id="L245">		Assert.hasText(user.getUserName(), &quot;provide a valid userName&quot;);</span>
+<span class="fc" id="L246">		String[] roleNames = usm.getRoleListOfUser(user.getUserName());</span>
+<span class="fc" id="L247">		Assert.notNull(roleNames, &quot;Role names shouldn't be null&quot;);</span>
+<span class="fc" id="L248">		return Role.roles(roleNames);</span>
+	}
+
+	public void addRole(Role role) throws UserStoreException {
+<span class="fc" id="L252">		Assert.notNull(role, &quot;role shouldn't be null&quot;);</span>
+<span class="fc" id="L253">		Assert.hasText(role.getRoleName(), &quot;provide a valid role name&quot;);</span>
+<span class="fc" id="L254">		String[] userList = User.userNames(role.getUsers());</span>
+<span class="fc" id="L255">		usm.addRole(role.getRoleName(), userList, role.getPermissions().toArray(new Permission[] {}));</span>
+<span class="fc" id="L256">	}</span>
+
+	public void updateRole(Role role, String oldRoleName) throws UserStoreException {
+<span class="nc" id="L259">		Assert.notNull(role, &quot;role shouldn't be null&quot;);</span>
+<span class="nc" id="L260">		Assert.hasText(role.getRoleName(), &quot;provide a valid role name&quot;);</span>
+		// Role name
+<span class="nc" id="L262">		usm.updateRoleName(oldRoleName, role.getRoleName());</span>
+
+<span class="nc" id="L264">		Set&lt;User&gt; usersInNewRole = role.getUsers();</span>
+<span class="nc" id="L265">		Set&lt;User&gt; usersInOldRole = User.users(usm.getUserListOfRole(oldRoleName));</span>
+
+<span class="nc" id="L267">		Set&lt;User&gt; usersToAdd = new HashSet&lt;&gt;(usersInNewRole);</span>
+<span class="nc" id="L268">		usersToAdd.removeAll(usersInOldRole);</span>
+<span class="nc" id="L269">		Set&lt;User&gt; usersToRemove = new HashSet&lt;&gt;(usersInOldRole);</span>
+<span class="nc" id="L270">		usersToRemove.removeAll(usersInNewRole);</span>
+
+		// Role Users
+<span class="nc" id="L273">		usm.updateUserListOfRole(role.getRoleName(), User.userNames(usersToRemove), User.userNames(usersToAdd));</span>
+
+		// Role permissions
+		// The stub does not allow to change permissions
+<span class="nc" id="L277">	}</span>
+
+	public void deleteRole(Role role) throws UserStoreException {
+<span class="fc" id="L280">		Assert.notNull(role, &quot;role shouldn't be null&quot;);</span>
+<span class="fc" id="L281">		Assert.hasText(role.getRoleName(), &quot;provide a valid role name&quot;);</span>
+<span class="fc" id="L282">		usm.deleteRole(role.getRoleName());</span>
+<span class="fc" id="L283">	}</span>
+
+	// Getting authorization token
+
+	public AuthorizationToken getAuthorizationToken(String userName, String credential, String tenant) throws TenantMgtAdminServiceExceptionException, URISyntaxException {
+<span class="pc bpc" id="L288" title="2 of 4 branches missed.">		Assert.isTrue(userName!=null &amp; !userName.isEmpty(), &quot;Username not set&quot;);</span>
+<span class="pc bpc" id="L289" title="2 of 4 branches missed.">		Assert.isTrue(credential!=null &amp; !credential.isEmpty(), &quot;Credential not set&quot;);</span>
+<span class="fc" id="L290">		log.info(&quot;Requested authorization token for user: &quot; + userName + &quot; for tenant: &quot; + tenant);</span>
+		
+<span class="fc" id="L292">		String tenantDomain = &quot;&quot;;</span>
+<span class="fc" id="L293">		String base64AuthorizationPair= IntegrationProperty.getProperty(&quot;is.authorization.pair.base64&quot;);</span>
+<span class="pc bpc" id="L294" title="2 of 4 branches missed.">		if (tenant!=null &amp;&amp; !tenant.isEmpty()) {</span>
+<span class="nc" id="L295">			base64AuthorizationPair = IntegrationProperty.getProperty(&quot;is.authorization.&quot; + tenant + &quot;.tenant.pair.base64&quot;);</span>
+<span class="nc" id="L296">			tenantDomain = IntegrationProperty.getProperty(&quot;is.authorization.&quot; + tenant + &quot;.tenant.domain&quot;);</span>
+<span class="nc bnc" id="L297" title="All 4 branches missed.">			Assert.isTrue(tenantDomain!=null &amp; !tenantDomain.isEmpty(), &quot;TenantUrl not retrieved from configuration&quot;);</span>
+		}//If tenant not set, using default IS
+		
+//		if (!tm.doesExistTenantDomain(tenantDomain)){
+//			throw new IFException(tenantDomain + &quot;does not exist in IF IS&quot;);
+//		}
+		
+<span class="pc bpc" id="L304" title="2 of 4 branches missed.">		Assert.isTrue(base64AuthorizationPair!=null &amp; !base64AuthorizationPair.isEmpty(), &quot;Tenant base 64 authorization pair not retrieved from configuration&quot;);</span>
+		
+<span class="fc" id="L306">		RequestEntity&lt;String&gt; request = RequestEntity.post(new URI(TOKEN_SERVICE_ENDPOINT))</span>
+<span class="fc" id="L307">					.header(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded;charset=UTF-8&quot;)</span>
+<span class="fc" id="L308">					.header(&quot;Authorization&quot;, &quot;Basic &quot; + base64AuthorizationPair)</span>
+<span class="fc" id="L309">					.body(&quot;grant_type=password&amp;username=&quot; + userName+tenantDomain + &quot;&amp;password=&quot; + credential);</span>
+		
+<span class="fc" id="L311">		System.out.println (&quot;getAuthorizationToken.TOKEN_SERVICE_ENDPOINT:&quot; + TOKEN_SERVICE_ENDPOINT);</span>
+<span class="fc" id="L312">		System.out.println (&quot;getAuthorizationToken.base64AuthorizationPair:&quot; + base64AuthorizationPair);</span>
+<span class="fc" id="L313">		System.out.println (&quot;getAuthorizationToken.userName+tenantDomain:&quot; + userName+tenantDomain);</span>
+<span class="fc" id="L314">		System.out.println (&quot;getAuthorizationToken.password:&quot; + credential);</span>
+		
+<span class="fc" id="L316">		AuthorizationToken token = restTemplate.exchange(request, AuthorizationToken.class).getBody();</span>
+<span class="pc bpc" id="L317" title="1 of 2 branches missed.">		if (token != null){</span>
+<span class="fc" id="L318">			log.info(&quot;Retrived valid token that expires in &quot; + token.getExpiresIn());</span>
+		}else{
+<span class="nc" id="L320">			log.info(&quot;Null token was returned by IS&quot;);</span>
+		}
+<span class="fc" id="L322">		return token;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

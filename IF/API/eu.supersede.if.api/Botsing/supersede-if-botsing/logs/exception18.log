@@ -1,0 +1,9 @@
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.substring(String.java:1967)
+        at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:631)
+        at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:595)
+        at org.springframework.web.client.RestTemplate.postForEntity(RestTemplate.java:423)
+        at eu.supersede.integration.rest.client.IFMessageClient.postForEntity(IFMessageClient.java:365)
+        at eu.supersede.integration.api.proxy.IFServiceProxy.postFormURLEncoded(IFServiceProxy.java:671)
+        at eu.supersede.integration.api.adaptation.proxies.AdapterProxy.enactAdaptationDecisionActions(AdapterProxy.java:71)
+        at eu.supersede.dynadapt.adapter.dashboard.rest.AdaptationRest.enactAdaptation(AdaptationRest.java:111)

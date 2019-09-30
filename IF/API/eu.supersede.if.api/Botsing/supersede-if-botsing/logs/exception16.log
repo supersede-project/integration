@@ -1,0 +1,9 @@
+org.apache.axis2.AxisFault: Cannot delete user who is not exist
+        at org.apache.axis2.util.Utils.getInboundFaultFromMessageContext(Utils.java:531)
+        at org.apache.axis2.description.RobustOutOnlyAxisOperation$RobustOutOnlyOperationClient.handleResponse(RobustOutOnlyAxisOperation.java:91)
+        at org.apache.axis2.description.OutInAxisOperationClient.send(OutInAxisOperation.java:421)
+        at org.apache.axis2.description.OutInAxisOperationClient.executeImpl(OutInAxisOperation.java:229)
+        at org.apache.axis2.client.OperationClient.execute(OperationClient.java:165)
+        at org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceStub.deleteUser(RemoteUserStoreManagerServiceStub.java:1117)
+        at eu.supersede.integration.api.security.IFUserStoreManager.deleteUser(IFUserStoreManager.java:209)
+        at eu.supersede.integration.api.security.IFAuthenticationManager.deleteUser(IFAuthenticationManager.java:233)

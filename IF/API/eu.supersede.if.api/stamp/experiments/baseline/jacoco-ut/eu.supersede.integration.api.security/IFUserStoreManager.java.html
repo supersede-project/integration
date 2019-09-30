@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IFUserStoreManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.security</a> &gt; <span class="el_source">IFUserStoreManager.java</span></div><h1>IFUserStoreManager.java</h1><pre class="source lang-java linenums">/*
+*  Copyright (c) 2005-2010, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+*  WSO2 Inc. licenses this file to you under the Apache License,
+*  Version 2.0 (the &quot;License&quot;); you may not use this file except
+*  in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*/
+/*
+ * Copyright - WSO, Inc. (http://wso.com)
+ *
+ * Licensed under the Apache License, Version .0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Adaptation of org.wso2.carbon.um.ws.api WSUserStoreManager 
+ * developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.security;
+
+
+import java.util.Date;
+import java.util.Map;
+
+import org.apache.axis2.AxisFault;
+import org.apache.axis2.client.Options;
+import org.apache.axis2.transport.http.HTTPConstants;
+import org.apache.axis2.transport.http.HttpTransportProperties;
+import org.apache.commons.httpclient.contrib.ssl.EasySSLProtocolSocketFactory;
+import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
+import org.wso2.carbon.um.ws.api.WSRealmUtil;
+import org.wso2.carbon.um.ws.api.stub.ClaimDTO;
+import org.wso2.carbon.um.ws.api.stub.ClaimValue;
+import org.wso2.carbon.um.ws.api.stub.PermissionDTO;
+import org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceStub;
+import org.wso2.carbon.user.api.ClaimManager;
+import org.wso2.carbon.user.api.Properties;
+import org.wso2.carbon.user.api.RealmConfiguration;
+import org.wso2.carbon.user.core.Permission;
+import org.wso2.carbon.user.core.UserStoreException;
+import org.wso2.carbon.user.core.UserStoreManager;
+import org.wso2.carbon.user.core.claim.Claim;
+import org.wso2.carbon.user.core.tenant.Tenant;
+
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class IFUserStoreManager implements UserStoreManager{
+<span class="fc" id="L87">	private static String IS_ENDPOINT =  IntegrationProperty.getProperty(&quot;is.server.endpoint&quot;);</span>
+<span class="fc" id="L88">	private static final Logger log = LoggerFactory.getLogger(IFUserStoreManager.class);</span>
+<span class="fc" id="L89">	private RemoteUserStoreManagerServiceStub stub = null;</span>
+	
+	static {
+		EasySSLProtocolSocketFactory easySSLProtocolSocketFactory;
+		try {
+<span class="fc" id="L94">		     easySSLProtocolSocketFactory = new EasySSLProtocolSocketFactory();</span>
+<span class="fc" id="L95">		     Protocol.unregisterProtocol(&quot;https&quot;);</span>
+<span class="fc" id="L96">		     Protocol.registerProtocol(&quot;https&quot;, new Protocol(&quot;https&quot;,</span>
+		                  (ProtocolSocketFactory) easySSLProtocolSocketFactory, 443));
+		}
+<span class="nc" id="L99">		catch (Exception e) {</span>
+<span class="nc" id="L100">		      log.error(e.getMessage(), e);</span>
+<span class="fc" id="L101">		}</span>
+<span class="fc" id="L102">	}</span>
+	
+<span class="fc" id="L104">	public IFUserStoreManager(String admin, String password){</span>
+<span class="fc" id="L105">		Assert.hasText(admin, &quot;IS admin user not provided&quot;);</span>
+<span class="fc" id="L106">		Assert.hasText(password, &quot;IS admin password not provided&quot;);</span>
+		try {
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">			if (stub == null) {</span>
+<span class="fc" id="L109">				stub = new RemoteUserStoreManagerServiceStub(null, IS_ENDPOINT + &quot;RemoteUserStoreManagerService&quot;);</span>
+<span class="fc" id="L110">				HttpTransportProperties.Authenticator basicAuth = new HttpTransportProperties.Authenticator();</span>
+<span class="fc" id="L111">				basicAuth.setUsername(admin);</span>
+<span class="fc" id="L112">				basicAuth.setPassword(password);</span>
+<span class="fc" id="L113">				basicAuth.setPreemptiveAuthentication(true);</span>
+
+<span class="fc" id="L115">				final Options clientOptions = stub._getServiceClient().getOptions();</span>
+<span class="fc" id="L116">				clientOptions.setProperty(HTTPConstants.AUTHENTICATE, basicAuth);</span>
+<span class="fc" id="L117">				stub._getServiceClient().setOptions(clientOptions);</span>
+			}
+<span class="nc" id="L119">		} catch (AxisFault e) {</span>
+<span class="nc" id="L120">			log.error(e.getMessage(), e);</span>
+<span class="fc" id="L121">		}</span>
+<span class="fc" id="L122">	}</span>
+
+    public void addUser(String userName, Object credential, String[] roleList,
+            Map&lt;String, String&gt; claims, String profileName, boolean requirePasswordChange)
+            throws UserStoreException {
+        try {
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">            if (!(credential instanceof String)) {</span>
+<span class="nc" id="L129">                throw new UserStoreException(&quot;Unsupported type of password&quot;);</span>
+            }
+<span class="fc" id="L131">            String password = (String) credential;</span>
+<span class="fc" id="L132">            ClaimValue[] claimValues = WSRealmUtil.convertMapToClaimValue(claims);</span>
+<span class="fc" id="L133">            log.debug(&quot;Sending message addUser with userName: &quot; + userName </span>
+            	+ &quot; with roleList: &quot; + roleList 
+            	+ &quot; with claims: &quot; + claims 
+            	+ &quot; with profileName: &quot; + profileName 
+            	+ &quot; with requirePasswordChange: &quot; + requirePasswordChange 
+            	+ &quot; to UserStoreManager&quot;);
+<span class="fc" id="L139">            stub.addUser(userName, password, roleList, claimValues, profileName,</span>
+                    requirePasswordChange);
+<span class="nc" id="L141">        } catch (Exception e) {</span>
+<span class="nc" id="L142">            handleException(e.getMessage(), e);</span>
+<span class="fc" id="L143">        }</span>
+<span class="fc" id="L144">    }</span>
+
+    public void addRole(String roleName, String[] userList, Permission[] permissions)
+            throws UserStoreException {
+        try {
+<span class="fc" id="L149">        	log.debug(&quot;Sending message addRole with roleName: &quot; + roleName </span>
+            	+ &quot; with userList: &quot; + userList 
+            	+ &quot; with permissions: &quot; + permissions 
+            	+ &quot; to UserStoreManager&quot;);
+<span class="fc" id="L153">            stub.addRole(roleName, userList, convertPermission(permissions));</span>
+<span class="nc" id="L154">        } catch (Exception e) {</span>
+<span class="nc" id="L155">            handleException(e.getMessage(), e);</span>
+<span class="fc" id="L156">        }</span>
+
+<span class="fc" id="L158">    }</span>
+
+    public void addUser(String userName, Object credential, String[] roleList,
+            Map&lt;String, String&gt; claims, String profileName) throws UserStoreException {
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        if (!(credential instanceof String)) {</span>
+<span class="nc" id="L163">            throw new UserStoreException(&quot;Unsupported type of password&quot;);</span>
+        }
+        try {
+<span class="nc" id="L166">        	log.debug(&quot;Sending message addUser with userName: &quot; + userName </span>
+            	+ &quot; with roleList: &quot; + roleList 
+            	+ &quot; with claims: &quot; + claims 
+            	+ &quot; with profileName: &quot; + profileName
+            	+ &quot; to UserStoreManager&quot;);
+<span class="nc" id="L171">            stub.addUser(userName, (String) credential, roleList, WSRealmUtil</span>
+<span class="nc" id="L172">                    .convertMapToClaimValue(claims), profileName, false);</span>
+<span class="nc" id="L173">        } catch (Exception e) {</span>
+<span class="nc" id="L174">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L175">        }</span>
+
+<span class="nc" id="L177">    }</span>
+
+    public boolean authenticate(String userName, Object credential) throws UserStoreException {
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">        if (!(credential instanceof String)) {</span>
+<span class="nc" id="L181">            throw new UserStoreException(&quot;Unsupported type of password&quot;);</span>
+        }
+        try {
+<span class="pc bpc" id="L184" title="1 of 2 branches missed.">        	log.debug(&quot;Sending message authenticate with userName: &quot; + userName </span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">            	+ &quot; with credential: &quot; + credential != null &amp;&amp; !credential.toString().isEmpty()?&quot; not empty&quot;:&quot;empty&quot;</span>
+            	+ &quot; to UserStoreManager&quot;);
+<span class="fc" id="L187">            return stub.authenticate(userName, (String) credential);</span>
+<span class="nc" id="L188">        } catch (Exception e) {</span>
+<span class="nc" id="L189">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L191">        return false;</span>
+    }
+
+    public void deleteRole(String roleName) throws UserStoreException {
+        try {
+<span class="fc" id="L196">        	log.debug(&quot;Sending message deleteRole with roleName: &quot; + roleName </span>
+                + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L198">            stub.deleteRole(roleName);</span>
+<span class="nc" id="L199">        } catch (Exception e) {</span>
+<span class="nc" id="L200">            handleException(e.getMessage(), e);</span>
+<span class="fc" id="L201">        }</span>
+
+<span class="fc" id="L203">    }</span>
+
+    public void deleteUser(String userName) throws UserStoreException {
+        try {
+<span class="fc" id="L207">        	log.debug(&quot;Sending message deleteUser with userName: &quot; + userName </span>
+                    + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L209">            stub.deleteUser(userName);</span>
+<span class="nc" id="L210">        } catch (Exception e) {</span>
+<span class="nc" id="L211">            handleException(e.getMessage(), e);</span>
+<span class="fc" id="L212">        }</span>
+<span class="fc" id="L213">    }</span>
+
+    public void deleteUserClaimValue(String userName, String claimURI, String profileName)
+            throws UserStoreException {
+        try {
+<span class="nc" id="L218">        	log.debug(&quot;Sending message deleteUserClaimValue with userName: &quot; + userName </span>
+            	+ &quot; with claimURI: &quot; + claimURI 
+            	+ &quot; with profileName: &quot; + profileName
+            	+ &quot; to UserStoreManager&quot;);
+<span class="nc" id="L222">            stub.deleteUser(userName);</span>
+<span class="nc" id="L223">        } catch (Exception e) {</span>
+<span class="nc" id="L224">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L225">        }</span>
+<span class="nc" id="L226">    }</span>
+
+    public void deleteUserClaimValues(String userName, String[] claims, String profileName)
+            throws UserStoreException {
+        try {
+<span class="nc" id="L231">        	log.debug(&quot;Sending message deleteUserClaimValues with userName: &quot; + userName </span>
+            	+ &quot; with claims: &quot; + claims 
+            	+ &quot; with profileName: &quot; + profileName
+            	+ &quot; to UserStoreManager&quot;);
+<span class="nc" id="L235">            stub.deleteUserClaimValues(userName, claims, profileName);</span>
+<span class="nc" id="L236">        } catch (Exception e) {</span>
+<span class="nc" id="L237">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L238">        }</span>
+
+<span class="nc" id="L240">    }</span>
+
+    public String[] getAllProfileNames() throws UserStoreException {
+        try {
+<span class="fc" id="L244">        	log.debug(&quot;Sending message getAllProfileNames to UserStoreManager&quot;);</span>
+<span class="fc" id="L245">            return stub.getAllProfileNames();</span>
+<span class="nc" id="L246">        } catch (Exception e) {</span>
+<span class="nc" id="L247">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L249">        return null;</span>
+    }
+
+    public String[] getHybridRoles() throws UserStoreException {
+        try {
+<span class="nc" id="L254">        	log.debug(&quot;Sending message getHybridRoles to UserStoreManager&quot;);</span>
+<span class="nc" id="L255">            return stub.getHybridRoles();</span>
+<span class="nc" id="L256">        } catch (Exception e) {</span>
+<span class="nc" id="L257">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L259">        return null;</span>
+    }
+
+    public String[] getAllSecondaryRoles() throws UserStoreException {
+<span class="nc" id="L263">        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.</span>
+    }
+
+    public Date getPasswordExpirationTime(String userName) throws UserStoreException {
+        try {
+<span class="nc" id="L268">        	log.debug(&quot;Sending message getPasswordExpirationTime with userName: &quot; + userName </span>
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L270">            long time = stub.getPasswordExpirationTime(userName);</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">            if(time != -1) {</span>
+<span class="nc" id="L272">                return new Date(time);</span>
+            }
+<span class="nc" id="L274">        } catch (Exception e) {</span>
+<span class="nc" id="L275">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L276">        }</span>
+<span class="nc" id="L277">        return null;</span>
+    }
+
+    public String[] getProfileNames(String userName) throws UserStoreException {
+        try {
+<span class="fc" id="L282">        	log.debug(&quot;Sending message getProfileNames with userName: &quot; + userName </span>
+                    + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L284">            return stub.getProfileNames(userName);</span>
+<span class="nc" id="L285">        } catch (Exception e) {</span>
+<span class="nc" id="L286">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L288">        return null;</span>
+    }
+
+    public String[] getRoleListOfUser(String userName) throws UserStoreException {
+        try {
+<span class="fc" id="L293">        	log.debug(&quot;Sending message getRoleListOfUser with userName: &quot; + userName </span>
+                    + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L295">            return stub.getRoleListOfUser(userName);</span>
+<span class="nc" id="L296">        } catch (Exception e) {</span>
+<span class="nc" id="L297">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L299">        return null;</span>
+    }
+
+    public String[] getRoleNames() throws UserStoreException {
+        try {
+<span class="fc" id="L304">        	log.debug(&quot;Sending message getRoleNames to UserStoreManager&quot;);</span>
+<span class="fc" id="L305">            return stub.getRoleNames();</span>
+<span class="nc" id="L306">        } catch (Exception e) {</span>
+<span class="nc" id="L307">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L309">        return null;</span>
+    }
+
+    public String[] getRoleNames(boolean b) throws UserStoreException {
+<span class="nc" id="L313">        return new String[0];  //To change body of implemented methods use File | Settings | File Templates.</span>
+    }
+
+    public int getTenantId() throws UserStoreException {
+        try {
+<span class="nc" id="L318">        	log.debug(&quot;Sending message getTenantId to UserStoreManager&quot;);</span>
+<span class="nc" id="L319">            return stub.getTenantId();</span>
+<span class="nc" id="L320">        } catch (Exception e) {</span>
+<span class="nc" id="L321">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L323">        return -1;</span>
+    }
+
+    public int getTenantId(String userName) throws UserStoreException {
+        try {
+<span class="nc" id="L328">        	log.debug(&quot;Sending message getTenantId with userName: &quot; + userName </span>
+                    + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L330">            return stub.getTenantIdofUser(userName);</span>
+<span class="nc" id="L331">        } catch (Exception e) {</span>
+<span class="nc" id="L332">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L334">        return -1;</span>
+    }
+
+    public String getUserClaimValue(String userName, String claim, String profileName)
+            throws UserStoreException {
+        try {
+<span class="nc" id="L340">        	log.debug(&quot;Sending message getUserClaimValue with userName: &quot; + userName </span>
+            	+ &quot; with claim: &quot; + claim
+            	+ &quot; with profileName: &quot; + profileName
+            	+ &quot; to UserStoreManager&quot;);
+<span class="nc" id="L344">            return stub.getUserClaimValue(userName, claim, profileName);</span>
+<span class="nc" id="L345">        } catch (Exception e) {</span>
+<span class="nc" id="L346">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L348">        return profileName;</span>
+    }
+
+    public Claim[] getUserClaimValues(String userName, String profileName)
+            throws UserStoreException {
+        try {
+<span class="fc" id="L354">        	log.debug(&quot;Sending message getUserClaimValues with userName: &quot; + userName </span>
+            	+ &quot; with profileName: &quot; + profileName
+            	+ &quot; to UserStoreManager&quot;);
+<span class="fc" id="L357">        	ClaimDTO[] claims = stub.getUserClaimValues(userName, profileName);</span>
+<span class="pc bpc" id="L358" title="1 of 2 branches missed.">        	if (claims != null)</span>
+<span class="fc" id="L359">        		return WSRealmUtil.convertToClaims(claims);</span>
+<span class="nc" id="L360">        } catch (Exception e) {</span>
+<span class="nc" id="L361">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L362">        }</span>
+<span class="nc" id="L363">        return null;</span>
+    }
+
+    public Map&lt;String, String&gt; getUserClaimValues(String userName, String[] claims,
+            String profileName) throws UserStoreException {
+        try {
+<span class="nc" id="L369">        	log.debug(&quot;Sending message getUserClaimValues with userName: &quot; + userName </span>
+    			+ &quot; with claims: &quot; + claims
+            	+ &quot; with profileName: &quot; + profileName
+            	+ &quot; to UserStoreManager&quot;);
+<span class="nc" id="L373">            return WSRealmUtil.</span>
+<span class="nc" id="L374">                convertClaimValuesToMap(stub.getUserClaimValuesForClaims(userName, claims, profileName));</span>
+<span class="nc" id="L375">        } catch (Exception e) {</span>
+<span class="nc" id="L376">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L378">        return null;</span>
+    }
+
+    public int getUserId(String userName) throws UserStoreException {
+        try {
+<span class="nc" id="L383">        	log.debug(&quot;Sending message getUserId with userName: &quot; + userName </span>
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L385">            return stub.getUserId(userName);</span>
+<span class="nc" id="L386">        } catch (Exception e) {</span>
+<span class="nc" id="L387">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L389">        return -1;</span>
+    }
+
+    public String[] getUserListOfRole(String roleName) throws UserStoreException {
+        try {
+<span class="fc" id="L394">        	log.debug(&quot;Sending message getUserListOfRole with roleName: &quot; + roleName </span>
+                + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L396">            return stub.getUserListOfRole(roleName);</span>
+<span class="nc" id="L397">        } catch (Exception e) {</span>
+<span class="nc" id="L398">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L400">        return null;</span>
+    }
+
+    public boolean isExistingRole(String roleName, boolean isSharedRole) throws UserStoreException {
+        try {
+<span class="nc" id="L405">        	log.debug(&quot;Sending message isExistingRole with roleName: &quot; + roleName </span>
+    			+ &quot; with isSharedRole: &quot; + isSharedRole
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L408">            return stub.isExistingRole(roleName);</span>
+<span class="nc" id="L409">        } catch (Exception e) {</span>
+<span class="nc" id="L410">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L412">        return false;</span>
+    }
+
+    public boolean isExistingUser(String userName) throws UserStoreException {
+        try {
+<span class="nc" id="L417">        	log.debug(&quot;Sending message isExistingUser with userName: &quot; + userName </span>
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L419">            return stub.isExistingUser(userName);</span>
+<span class="nc" id="L420">        } catch (Exception e) {</span>
+<span class="nc" id="L421">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L423">        return false;</span>
+    }
+
+    public boolean isReadOnly() throws UserStoreException {
+        try {
+<span class="nc" id="L428">        	log.debug(&quot;Sending message isReadOnly to UserStoreManager&quot;);</span>
+<span class="nc" id="L429">            return stub.isReadOnly();</span>
+<span class="nc" id="L430">        } catch (Exception e) {</span>
+<span class="nc" id="L431">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L433">        return false;</span>
+    }
+
+    public String[] listUsers(String filter, int maxItemLimit) throws UserStoreException {
+        try {
+<span class="fc" id="L438">        	log.debug(&quot;Sending message listUsers with filter: &quot; + filter </span>
+    			+ &quot; with maxItemLimit: &quot; + maxItemLimit
+                + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L441">            return stub.listUsers(filter, maxItemLimit);</span>
+<span class="nc" id="L442">        } catch (Exception e) {</span>
+<span class="nc" id="L443">            handleException(e.getMessage(), e);</span>
+        }
+<span class="nc" id="L445">        return null;</span>
+    }
+
+    public void setUserClaimValue(String userName, String claimURI, String claimValue,
+            String profileName) throws UserStoreException {
+        try {
+<span class="nc" id="L451">        	log.debug(&quot;Sending message setUserClaimValue with userName: &quot; + userName </span>
+    			+ &quot; with claimURI: &quot; + claimURI
+    			+ &quot; with claimValue: &quot; + claimValue
+    			+ &quot; with profileName: &quot; + profileName
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L456">            stub.setUserClaimValue(userName, claimURI, claimValue, profileName);</span>
+<span class="nc" id="L457">        } catch (Exception e) {</span>
+<span class="nc" id="L458">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L459">        }</span>
+
+<span class="nc" id="L461">    }</span>
+
+    public void setUserClaimValues(String userName, Map&lt;String, String&gt; claims, String profileName)
+            throws UserStoreException {
+        try {
+<span class="fc" id="L466">        	log.debug(&quot;Sending message setUserClaimValues with userName: &quot; + userName </span>
+    			+ &quot; with claims: &quot; + claims
+    			+ &quot; with profileName: &quot; + profileName
+                + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L470">            stub.setUserClaimValues(userName, WSRealmUtil.convertMapToClaimValue(claims),</span>
+                    profileName);
+<span class="nc" id="L472">        } catch (Exception e) {</span>
+<span class="nc" id="L473">            handleException(e.getMessage(), e);</span>
+<span class="fc" id="L474">        }</span>
+<span class="fc" id="L475">    }</span>
+
+    public void updateCredential(String userName, Object newCredential, Object oldCredential)
+            throws UserStoreException {
+<span class="pc bpc" id="L479" title="2 of 4 branches missed.">        if (!(newCredential instanceof String) || !(oldCredential instanceof String)) {</span>
+<span class="nc" id="L480">            throw new UserStoreException(&quot;Unsupported type of password&quot;);</span>
+        }
+        try {
+<span class="pc bpc" id="L483" title="1 of 2 branches missed.">        	log.debug(&quot;Sending message updateCredential with userName: &quot; + userName </span>
+<span class="pc bpc" id="L484" title="3 of 4 branches missed.">        		+ &quot; with newCredential: &quot; + newCredential != null &amp;&amp; !newCredential.toString().isEmpty()?&quot; not empty&quot;:&quot;empty&quot;</span>
+<span class="nc bnc" id="L485" title="All 2 branches missed.">        		+ &quot; with oldCredential: &quot; + oldCredential != null &amp;&amp; !oldCredential.toString().isEmpty()?&quot; not empty&quot;:&quot;empty&quot;</span>
+                + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L487">            stub.updateCredential(userName, (String) newCredential, (String) oldCredential);</span>
+<span class="nc" id="L488">        } catch (Exception e) {</span>
+<span class="nc" id="L489">            handleException(e.getMessage(), e);</span>
+<span class="fc" id="L490">        }</span>
+<span class="fc" id="L491">    }</span>
+
+    public void updateCredentialByAdmin(String userName, Object newCredential)
+            throws UserStoreException {
+<span class="nc bnc" id="L495" title="All 2 branches missed.">        if (!(newCredential instanceof String)) {</span>
+<span class="nc" id="L496">            throw new UserStoreException(&quot;Unsupported type of password&quot;);</span>
+        }
+
+        try {
+<span class="nc bnc" id="L500" title="All 2 branches missed.">        	log.debug(&quot;Sending message updateCredentialByAdmin with userName: &quot; + userName </span>
+<span class="nc bnc" id="L501" title="All 2 branches missed.">    			+ &quot; with newCredential: &quot; + newCredential != null &amp;&amp; !newCredential.toString().isEmpty()?&quot; not empty&quot;:&quot;empty&quot;</span>
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L503">            stub.updateCredentialByAdmin(userName, (String) newCredential);</span>
+<span class="nc" id="L504">        } catch (Exception e) {</span>
+<span class="nc" id="L505">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L506">        }</span>
+<span class="nc" id="L507">    }</span>
+
+    public void updateRoleListOfUser(String userName, String[] deletedRoles, String[] newRoles)
+            throws UserStoreException {
+        try {
+<span class="fc" id="L512">        	log.debug(&quot;Sending message updateRoleListOfUser with userName: &quot; + userName </span>
+    			+ &quot; with deletedRoles: &quot; + deletedRoles
+    			+ &quot; with newRoles: &quot; + newRoles
+                + &quot; to UserStoreManager&quot;);
+<span class="fc" id="L516">            stub.updateRoleListOfUser(userName, deletedRoles, newRoles);</span>
+<span class="nc" id="L517">        } catch (Exception e) {</span>
+<span class="nc" id="L518">            handleException(e.getMessage(), e);</span>
+<span class="fc" id="L519">        }</span>
+<span class="fc" id="L520">    }</span>
+
+    public void updateUserListOfRole(String roleName, String[] deletedUsers, String[] newUsers)
+            throws UserStoreException {
+        try {
+<span class="nc" id="L525">        	log.debug(&quot;Sending message updateUserListOfRole with roleName: &quot; + roleName </span>
+    			+ &quot; with deletedRoles: &quot; + deletedUsers
+    			+ &quot; with newRoles: &quot; + newUsers
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L529">            stub.updateUserListOfRole(roleName, deletedUsers, newUsers);</span>
+<span class="nc" id="L530">        } catch (Exception e) {</span>
+<span class="nc" id="L531">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L532">        }</span>
+<span class="nc" id="L533">    }</span>
+
+    public void updateRoleName(String roleName, String newRoleName) throws UserStoreException {
+        try {
+<span class="nc" id="L537">        	log.debug(&quot;Sending message updateRoleName with roleName: &quot; + roleName </span>
+    			+ &quot; with newRoleName: &quot; + newRoleName
+                + &quot; to UserStoreManager&quot;);
+<span class="nc" id="L540">            stub.updateRoleName(roleName, newRoleName);</span>
+<span class="nc" id="L541">        } catch (Exception e) {</span>
+<span class="nc" id="L542">            handleException(e.getMessage(), e);</span>
+<span class="nc" id="L543">        }</span>
+
+<span class="nc" id="L545">    }</span>
+
+    /**
+     * This method is to check whether multiple profiles are allowed with a particular user-store.
+     * For an example, currently, JDBC user store supports multiple profiles and where as ApacheDS
+     * does not allow.
+     * @return
+     */
+    public boolean isMultipleProfilesAllowed() {
+<span class="nc" id="L554">        return true;</span>
+    }
+
+    private PermissionDTO[] convertPermission(Permission[] permissions) {
+<span class="pc bpc" id="L558" title="1 of 2 branches missed.">        if (permissions == null) {</span>
+<span class="nc" id="L559">            return null;</span>
+        }
+<span class="fc" id="L561">        PermissionDTO[] perms = new PermissionDTO[permissions.length];</span>
+<span class="fc bfc" id="L562" title="All 2 branches covered.">        for (int i = 0; i &lt; permissions.length; i++) {</span>
+<span class="fc" id="L563">            perms[i] = new org.wso2.carbon.um.ws.api.stub.PermissionDTO();</span>
+<span class="fc" id="L564">            perms[i].setAction(permissions[i].getAction());</span>
+<span class="fc" id="L565">            perms[i].setResourceId(permissions[i].getResourceId());</span>
+        }
+<span class="fc" id="L567">        return perms;</span>
+
+    }
+
+    private String[] handleException(String msg, Exception e) throws UserStoreException {
+<span class="nc" id="L572">        log.error(e.getMessage(), e);</span>
+<span class="nc" id="L573">        throw new UserStoreException(msg, e);</span>
+    }
+
+    public Map&lt;String, String&gt; getProperties(Tenant tenant) throws UserStoreException {
+        // TODO Auto-generated method stub
+<span class="nc" id="L578">        return null;</span>
+    }
+
+    public void addRole(String roleName, String[] userList,
+                        org.wso2.carbon.user.api.Permission[] permissions, boolean isSharedRole)
+            throws org.wso2.carbon.user.core.UserStoreException {
+<span class="fc" id="L584">        addRole(roleName, userList, Permission[].class.cast(permissions));</span>
+
+<span class="fc" id="L586">    }</span>
+
+    public Map&lt;String, String&gt; getProperties(org.wso2.carbon.user.api.Tenant tenant)
+            throws org.wso2.carbon.user.core.UserStoreException {
+<span class="nc" id="L590">        return getProperties(Tenant.class.cast(tenant));</span>
+    }
+
+    public void addRememberMe(String userName, String token)
+            throws org.wso2.carbon.user.api.UserStoreException {
+        // TODO Auto-generated method stub
+        
+<span class="nc" id="L597">    }</span>
+
+    public boolean isValidRememberMeToken(String userName, String token)
+            throws org.wso2.carbon.user.api.UserStoreException {
+        // TODO Auto-generated method stub
+<span class="nc" id="L602">        return false;</span>
+    }
+
+    public ClaimManager getClaimManager() throws org.wso2.carbon.user.api.UserStoreException {
+<span class="nc" id="L606">        return null;  //To change body of implemented methods use File | Settings | File Templates.</span>
+    }
+
+    public boolean isSCIMEnabled() throws org.wso2.carbon.user.api.UserStoreException {
+<span class="nc" id="L610">        return false;  //To change body of implemented methods use File | Settings | File Templates.</span>
+    }
+
+    public boolean isBulkImportSupported() throws UserStoreException {
+        // TODO Auto-generated method stub
+<span class="nc" id="L615">        return false;</span>
+    }
+
+    public String[] getUserList(String claim, String claimValue, String profileName)
+                                                                        throws UserStoreException {
+        try {
+<span class="nc" id="L621">            return stub.getUserList(claim, claimValue, profileName);</span>
+<span class="nc" id="L622">        } catch (Exception e) {</span>
+<span class="nc" id="L623">            handleException(e.getMessage(), e);</span>
+        }
+        
+<span class="nc" id="L626">        return null;</span>
+    }
+
+    public UserStoreManager getSecondaryUserStoreManager() {
+<span class="nc" id="L630">        return null;  //To change body of implemented methods use File | Settings | File Templates.</span>
+    }
+
+    public UserStoreManager getSecondaryUserStoreManager(String s) {
+<span class="nc" id="L634">        return null;  //To change body of implemented methods use File | Settings | File Templates.</span>
+    }
+
+    public void addSecondaryUserStoreManager(String s, UserStoreManager userStoreManager) {
+        //To change body of implemented methods use File | Settings | File Templates.
+<span class="nc" id="L639">    }</span>
+
+    public void setSecondaryUserStoreManager(UserStoreManager userStoreManager) {
+        //To change body of implemented methods use File | Settings | File Templates.
+<span class="nc" id="L643">    }</span>
+
+    public RealmConfiguration getRealmConfiguration() {
+<span class="nc" id="L646">        return null;</span>
+    }
+
+    public Properties getDefaultUserStoreProperties() {
+<span class="nc" id="L650">	    return null;</span>
+    }
+
+	@Override
+    public void addRole(String roleName, String[] userList,
+                        org.wso2.carbon.user.api.Permission[] permissions)
+                                                                          throws org.wso2.carbon.user.api.UserStoreException {
+<span class="fc" id="L657">		addRole(roleName, userList, permissions, false);</span>
+<span class="fc" id="L658">    }</span>
+
+	@Override
+    public boolean isExistingRole(String roleName) throws UserStoreException {
+<span class="nc" id="L662">	    return isExistingRole(roleName, false);</span>
+    }
+
+    public boolean isSharedGroupEnabled() {
+<span class="nc" id="L666">	    return false;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

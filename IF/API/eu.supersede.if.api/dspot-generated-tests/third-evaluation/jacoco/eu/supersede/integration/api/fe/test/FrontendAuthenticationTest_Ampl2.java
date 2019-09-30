@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.springframework.util.Assert.notNull;
 
 
-public class FrontendAuthenticationTest {
+public class FrontendAuthenticationTest_Ampl2 {
     @Test(timeout = 30000)
     public void testLogin_add1() throws Exception {
         FrontendAuthentication<String, String> fea = new FrontendAuthentication<>();

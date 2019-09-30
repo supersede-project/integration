@@ -9,6 +9,7 @@
 
 buildscript {
     repositories {
+	jcenter()
         mavenCentral()
 	jcenter()
         mavenLocal()
@@ -36,7 +37,11 @@ buildscript {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:latest.release"
         pitest 'fr.inria.stamp:descartes:0.2-SNAPSHOT'
         classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
+<<<<<<< HEAD
 	classpath files(new File(gradle.gradleUserHomeDir, 'plugins/build-info-extractor-gradle-4.9.6-uber.jar'))
+=======
+	//classpath files(new File(gradle.gradleUserHomeDir, 'plugins/build-info-extractor-gradle-4.9.6-uber.jar'))
+>>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
     }
 }
 

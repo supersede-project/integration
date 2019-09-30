@@ -55,6 +55,7 @@ public class IFAuthenticationManagerTest {
     public static void setup() throws Exception {
 		String admin = IFAccount.getUser();
 		String password = IFAccount.getPassword();
+<<<<<<< HEAD
         	am = new IFAuthenticationManager(admin, password);
         	
         try {
@@ -64,6 +65,9 @@ public class IFAuthenticationManagerTest {
         }catch(Exception e) {
         	//Ignore
         }
+=======
+        am = new IFAuthenticationManager(admin, password);
+>>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
     }
 	
 	//Authentication Test

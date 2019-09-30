@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    
+    
+    <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <link rel="stylesheet" href="aui/css/aui.min.css" media="all"/>
+    <link rel="stylesheet" href="aui/css/aui-experimental.min.css" media="all"/>
+    <!--[if IE 9]><link rel="stylesheet" href="aui/css/aui-ie9.min.css" media="all"/><![endif]-->
+
+    <style type="text/css" media="all">
+        @import url('style.css');
+        @import url('tree.css');
+        
+    </style>
+
+    <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-experimental.min.js" type="text/javascript"></script>
+    <script src="aui/js/aui-soy.min.js" type="text/javascript"></script>
+
+    <script src="package-nodes-tree.js" type="text/javascript"></script>
+    <script src="clover-tree.js" type="text/javascript"></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="clover-descriptions.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+
+            <title>eu.supersede.if.api 0.4.0-SNAPSHOT</title>
+    </head>
+
+<body  >
+    <div id="page">
+        
+        
+
+
+<header id="header" role="banner">
+    <nav class="aui-header aui-dropdown2-trigger-group" role="navigation">
+        <div class="aui-header-inner">
+            <div class="aui-header-primary">
+                <h1 id="logo" class="aui-header-logo aui-header-logo-clover">
+                    <a href="http://openclover.org" title="Visit OpenClover home page"><span class="aui-header-logo-device">OpenClover</span></a>
+                </h1>
+                            </div>
+            <div class="aui-header-secondary">
+                <ul class="aui-nav">
+                    <li id="system-help-menu">
+                        <a class="aui-nav-link" title="Open online documentation" target="_blank"
+                           href="http://openclover.org/documentation">
+                            <span class="aui-icon aui-icon-small aui-iconfont-help">&#160;Help</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <div class="aui-page-panel-nav aui-page-panel-nav-clover">
+                    
+
+<div class="aui-page-header-inner" style="margin-bottom: 20px;">
+    <div class="aui-page-header-image">
+                <div class="aui-avatar aui-avatar-large aui-avatar-project">
+            <div class="aui-avatar-inner">
+                                    <img src="img/clover_logo_large.png" alt="Clover icon"/>
+                            </div>
+        </div>
+            </div>
+    <div class="aui-page-header-main" >
+        <h1>
+                                        eu.supersede.if.api 0.4.0-SNAPSHOT
+                                </h1>
+    </div>
+</div>
+
+<nav class="aui-navgroup aui-navgroup-vertical">
+    <div class="aui-navgroup-inner">
+                                            <ul class="aui-nav">
+                <li class="aui-nav-selected">
+                    <a href="dashboard.html">Project overview</a>
+                </li>
+            </ul>
+        
+                <div class="aui-nav-heading packages-nav-heading">
+            <strong>Packages</strong>
+        </div>
+        <div class="aui-nav project-packages">
+            <form method="get" action="#" class="aui package-filter-container">
+                <input type="text" autocomplete="off" class="package-filter text"
+                       placeholder="Type to filter packages..." name="package-filter" id="package-filter"
+                       title="Start typing package name (or part of the name) to search through the tree. Use arrow keys and the Enter key to navigate."/>
+            </form>
+            <p class="package-filter-no-results-message hidden">
+                <small>No results found.</small>
+            </p>
+                                                  <div class="packages-tree-wrapper" data-root-relative="" data-package-name="">
+                <div class="packages-tree-container"></div>
+                <div class="clover-packages-lozenges"></div>
+            </div>
+        </div>
+        
+            </div>
+</nav>                </div>
+                <section class="aui-page-panel-content">
+                    <div class="aui-page-panel-content-clover">
+
+                    
+                    <ol class="aui-nav aui-nav-breadcrumbs">
+            
+        <li><a href="dashboard.html">Project Clover database Wed Sep 11 2019 08:35:54 UTC</a></li>
+    </ol>
+    
+<h1 class="aui-h2-clover">
+            Project overview
+    </h1>
+<div class="aui-tabs horizontal-tabs">
+            <ul class="tabs-menu">
+            <li class="menu-item ">
+            <a href="dashboard.html">Dashboard</a>
+        </li>
+                <li class="menu-item ">
+            <a href="pkg-summary.html"><strong>Application code</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="testsrc-pkg-summary.html"><strong>Test code</strong></a>
+        </li>
+        <li class="menu-item ">
+            <a href="test-pkg-summary.html"><strong>Test results</strong></a>
+        </li>
+                <li class="menu-item ">
+            <a href="top-risks.html"><strong>Top risks</strong></a>
+        </li>
+        <li class="menu-item active-tab">
+            <a href="quick-wins.html"><strong>Quick wins</strong></a>
+        </li>
+                                                <li class="menu-item ">
+                <a href="treemap.html"><strong>Coverage tree map</strong></a>
+            </li>
+            </ul>
+    <div class="tabs-pane active-pane" id="tabs-first">
+
+        <div>&#160;</div>
+
+        
+
+
+                        <div style="text-align: right; margin-bottom: 10px">
+            
+            
+                                    <button class="aui-button aui-button-subtle" id="popupHelp">
+    <span class="aui-icon aui-icon-small aui-iconfont-help"></span>&#160;How to read this chart
+</button>
+<script>
+    AJS.InlineDialog(AJS.$("#popupHelp"), "helpDialog",
+            function (content, trigger, showPopup) {
+                var description = quickWinsDescription();
+                var title = 'Quick Wins';
+                content.css({"padding": "20px"}).html(
+                        '<h2>' + title + '</h2>' + description);
+                showPopup();
+                return false;
+            },
+            {
+                width: 600
+            }
+    );
+</script>
+        </div>
+
+        
+
+<div style="padding: 20px; border: 1px solid #cccccc; background-color: #f5f5f5; border-radius: 3px">
+          <div id="deepPackageCloud"  >
+                          
+    
+        
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboad/types/Action.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 25 , # Elements Covered - 23 ">Action</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/AdaptabilityModel.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">AdaptabilityModel</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboad/types/Adaptation.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 36 , # Elements Covered - 27 ">Adaptation</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/adaptation/AdaptationAlertMessageListener.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 11 ">AdaptationAlertMessageListener</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/proxies/AdaptationConfigurationProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 9 , # Elements Covered - 9 ">AdaptationConfigurationProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboard/proxies/AdaptationDashboardProxy.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 36 , # Elements Covered - 36 ">AdaptationDashboardProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/AdaptationMode.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 9 ">AdaptationMode</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/adaptation/AdaptationPublisher.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 21 , # Elements Covered - 16 ">AdaptationPublisher</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/adaptation/AdaptationSubscriber.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 30 , # Elements Covered - 6 ">AdaptationSubscriber</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/AdaptationTimeJsonSerializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">AdaptationTimeJsonSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/proxies/AdapterProxy.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 47 , # Elements Covered - 41 ">AdapterProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/Alert.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 43 , # Elements Covered - 33 ">Alert</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/types/Alert.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 33 , # Elements Covered - 25 ">Alert</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUser.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 80 , # Elements Covered - 30 ">ApiUser</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserApiUserRole.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 3 ">ApiUserApiUserRole</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ApiUserRole.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 5 , # Elements Covered - 3 ">ApiUserRole</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/AppStoreMonitorConfiguration.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">AppStoreMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/AppStoreMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 10 ">AppStoreMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/AppStoreMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 5 ">AppStoreMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/AppStoreMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">AppStoreMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Application.html" class="tag"
+            style="font-size: 18px;color:#d5584c"
+            title="# Elements - 107 , # Elements Covered - 45 ">Application</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/AttachmentFeedback.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 42 , # Elements Covered - 28 ">AttachmentFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Attribute.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 4 ">Attribute</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/AudioFeedback.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 45 , # Elements Covered - 32 ">AudioFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/types/AuthorizationToken.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 16 , # Elements Covered - 12 ">AuthorizationToken</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/BaseModel.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">BaseModel</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/Condition.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 18 ">Condition</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/types/Condition.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">Condition</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Configuration.html" class="tag"
+            style="font-size: 20px;color:#d9695f"
+            title="# Elements - 135 , # Elements Covered - 69 ">Configuration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 5 ">ConfigurationFileHttpMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ConfigurationMechanism.html" class="tag"
+            style="font-size: 15px;color:#d04437"
+            title="# Elements - 55 , # Elements Covered - 13 ">ConfigurationMechanism</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/ConfigurationUserGroup.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 39 , # Elements Covered - 6 ">ConfigurationUserGroup</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/ContextInformation.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 56 , # Elements Covered - 56 ">ContextInformation</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/CustomJsonDateDeserializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 13 ">CustomJsonDateDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/CustomJsonDateSerializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">CustomJsonDateSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/DataID.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 9 ">DataID</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/proxies/DecisionMakingSystemProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 9 , # Elements Covered - 7 ">DecisionMakingSystemProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/dashboad/types/Enactment.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 21 , # Elements Covered - 21 ">Enactment</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/EnactmentCompletionTimeJsonSerializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">EnactmentCompletionTimeJsonSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Event.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 52 , # Elements Covered - 24 ">Event</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/evolution/EvolutionAlertMessageListener.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 12 ">EvolutionAlertMessageListener</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/evolution/EvolutionPublisher.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 21 , # Elements Covered - 16 ">EvolutionPublisher</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/evolution/EvolutionSubscriber.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 30 , # Elements Covered - 6 ">EvolutionSubscriber</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/proxies/FEDataStoreProxy.html" class="tag"
+            style="font-size: 17px;color:#d9695f"
+            title="# Elements - 81 , # Elements Covered - 71 ">FEDataStoreProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Feature.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 31 , # Elements Covered - 27 ">Feature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Feature.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 31 , # Elements Covered - 27 ">Feature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Feature.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 39 , # Elements Covered - 35 ">Feature</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/FeatureConfiguration.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">FeatureConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/FeatureStatus.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 2 , # Elements Covered - 2 ">FeatureStatus</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/Feedback.html" class="tag"
+            style="font-size: 18px;color:#d9695f"
+            title="# Elements - 97 , # Elements Covered - 73 ">Feedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Feedback.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 4 ">Feedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/proxies/FeedbackOrchestratorProxy.html" class="tag"
+            style="font-size: 39px;color:#fae1a0"
+            title="# Elements - 443 , # Elements Covered - 252 ">FeedbackOrchestratorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/proxies/FeedbackRepositoryProxy.html" class="tag"
+            style="font-size: 18px;color:#de7b72"
+            title="# Elements - 108 , # Elements Covered - 98 ">FeedbackRepositoryProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/fe/FrontendAuthentication.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 53 , # Elements Covered - 44 ">FrontendAuthentication</a>
+            
+    
+            <a href="eu/supersede/integration/api/fe/FrontendSession.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">FrontendSession</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/GeneralConfiguration.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 77 , # Elements Covered - 23 ">GeneralConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/GenericModel.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 40 , # Elements Covered - 40 ">GenericModel</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/GooglePlayMonitorConfiguration.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">GooglePlayMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/GooglePlayMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 10 ">GooglePlayMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/GooglePlayMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 5 ">GooglePlayMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/GooglePlayMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">GooglePlayMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/HttpMonitorConfiguration.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">HttpMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/HttpMonitorConfigurationFile.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 24 , # Elements Covered - 18 ">HttpMonitorConfigurationFile</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 12 ">HttpMonitorConfigurationFileRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/ConfigurationFileHttpMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 5 ">HttpMonitorConfigurationFileResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 13 , # Elements Covered - 10 ">HttpMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 5 ">HttpMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/HttpMonitorProxy.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 12 ">HttpMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/IFAccount.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 27 , # Elements Covered - 21 ">IFAccount</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/IFAuthenticationManager.html" class="tag"
+            style="font-size: 21px;color:#de7b72"
+            title="# Elements - 155 , # Elements Covered - 132 ">IFAuthenticationManager</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/proxies/IFDataStoreProxy.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 46 , # Elements Covered - 21 ">IFDataStoreProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/fe/IFErrorHandler.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 19 , # Elements Covered - 10 ">IFErrorHandler</a>
+            
+    
+            <a href="eu/supersede/integration/rest/client/IFMessageClient.html" class="tag"
+            style="font-size: 19px;color:#d9695f"
+            title="# Elements - 127 , # Elements Covered - 79 ">IFMessageClient</a>
+            
+    
+            <a href="eu/supersede/integration/api/proxy/IFServiceProxy.html" class="tag"
+            style="font-size: 48px;color:#89c495"
+            title="# Elements - 578 , # Elements Covered - 348 ">IFServiceProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/tenants/IFTenantsManager.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 44 , # Elements Covered - 25 ">IFTenantsManager</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/IFUserStoreManager.html" class="tag"
+            style="font-size: 30px;color:#de7b72"
+            title="# Elements - 297 , # Elements Covered - 112 ">IFUserStoreManager</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/IModel.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 44 , # Elements Covered - 14 ">IModel</a>
+            
+    
+            <a href="eu/supersede/integration/properties/IntegrationProperty.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 52 , # Elements Covered - 38 ">IntegrationProperty</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/JsonUtils.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 15 , # Elements Covered - 6 ">JsonUtils</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/KafkaTopic.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 2 ">KafkaTopic</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Mechanism.html" class="tag"
+            style="font-size: 17px;color:#d5584c"
+            title="# Elements - 88 , # Elements Covered - 33 ">Mechanism</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Message.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 4 ">Message</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/proxies/MetadataManagementProxy.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 71 , # Elements Covered - 39 ">MetadataManagementProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelMetadata.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">ModelMetadata</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ModelRepositoryJsonDateSerializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">ModelRepositoryJsonDateSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ModelRepositoryJsonTimeStampSerializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">ModelRepositoryJsonTimeStampSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/proxies/ModelRepositoryProxy.html" class="tag"
+            style="font-size: 21px;color:#d9695f"
+            title="# Elements - 158 , # Elements Covered - 90 ">ModelRepositoryProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelSystem.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 9 , # Elements Covered - 5 ">ModelSystem</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelType.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 15 , # Elements Covered - 13 ">ModelType</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/ModelUpdateMetadata.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">ModelUpdateMetadata</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorConfiguration.html" class="tag"
+            style="font-size: 15px;color:#d04437"
+            title="# Elements - 58 , # Elements Covered - 16 ">MonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/MonitorConfiguration.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">MonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/proxies/MonitorManagerProxy.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 56 , # Elements Covered - 32 ">MonitorManagerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/MonitorProxy.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 68 , # Elements Covered - 46 ">MonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/MonitorSpecificConfiguration.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 20 , # Elements Covered - 20 ">MonitorSpecificConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/MonitorSpecificConfigurationResult.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 6 ">MonitorSpecificConfigurationResult</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorTool.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 20 , # Elements Covered - 18 ">MonitorTool</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/types/MonitorType.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">MonitorType</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/orchestrator/proxies/MonitoringOrchestratorProxy.html" class="tag"
+            style="font-size: 16px;color:#d5584c"
+            title="# Elements - 74 , # Elements Covered - 44 ">MonitoringOrchestratorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/NextReleaseProblem.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 32 , # Elements Covered - 24 ">NextReleaseProblem</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/NextReleaseProblem.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 32 , # Elements Covered - 24 ">NextReleaseProblem</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/NillableObjectJsonDeserializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 16 , # Elements Covered - 15 ">NillableObjectJsonDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/OrchestratorItem.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 2 ">OrchestratorItem</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/Parameter.html" class="tag"
+            style="font-size: 21px;color:#d5584c"
+            title="# Elements - 146 , # Elements Covered - 38 ">Parameter</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterDeserializer.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 32 , # Elements Covered - 27 ">ParameterDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/serialization/ParameterSerializer.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 48 , # Elements Covered - 30 ">ParameterSerializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/util/PasswordCrypt.html" class="tag"
+            style="font-size: 15px;color:#d04437"
+            title="# Elements - 58 , # Elements Covered - 17 ">PasswordCrypt</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Plan.html" class="tag"
+            style="font-size: 14px;color:#d04437"
+            title="# Elements - 34 , # Elements Covered - 10 ">Plan</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/PlannedFeature.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 20 , # Elements Covered - 10 ">PlannedFeature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/PlannedFeature.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 20 , # Elements Covered - 10 ">PlannedFeature</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/PlanningSolution.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 2 ">PlanningSolution</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/PlanningSolution.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 2 ">PlanningSolution</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Priority.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">Priority</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Priority.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">Priority</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/fe/types/Profile.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 6 ">Profile</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ProfileArrayJsonDeserializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">ProfileArrayJsonDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Project.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 22 , # Elements Covered - 20 ">Project</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/RatingFeedback.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 32 , # Elements Covered - 9 ">RatingFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/mdm/types/Release.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 36 , # Elements Covered - 36 ">Release</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Release.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 16 ">Release</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/ReplanBaseObject.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 8 , # Elements Covered - 8 ">ReplanBaseObject</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/proxies/ReplanControllerProxy.html" class="tag"
+            style="font-size: 43px;color:#f6c342"
+            title="# Elements - 513 , # Elements Covered - 239 ">ReplanControllerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/json/ReplanFeatureReleaseJsonDeserializer.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 9 , # Elements Covered - 9 ">ReplanFeatureReleaseJsonDeserializer</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/ReplanIdentifiableObject.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">ReplanIdentifiableObject</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/proxies/ReplanOptimizerProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">ReplanOptimizerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/proxies/ReplanOptimizerProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 6 ">ReplanOptimizerProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Resource.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 16 ">Resource</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Resource.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 16 ">Resource</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/controller/types/Resource.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 12 ">Resource</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/types/Role.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 45 , # Elements Covered - 38 ">Role</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/ScreenshotFeedback.html" class="tag"
+            style="font-size: 15px;color:#d5584c"
+            title="# Elements - 49 , # Elements Covered - 33 ">ScreenshotFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer_v2/types/Skill.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">Skill</a>
+            
+    
+            <a href="eu/supersede/integration/api/replan/optimizer/types/Skill.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 4 , # Elements Covered - 4 ">Skill</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/SubscriptionTopic.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 9 , # Elements Covered - 5 ">SubscriptionTopic</a>
+            
+    
+            <a href="eu/supersede/integration/federation/SupersedeFederation.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 23 , # Elements Covered - 21 ">SupersedeFederation</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/integration/types/SupersedePlatform.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 18 , # Elements Covered - 16 ">SupersedePlatform</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/Tenant.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 6 , # Elements Covered - 4 ">Tenant</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/repository/types/TextFeedback.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 22 , # Elements Covered - 16 ">TextFeedback</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/TopicMessageAgent.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 34 , # Elements Covered - 28 ">TopicMessageAgent</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/TopicPublisher.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 20 , # Elements Covered - 17 ">TopicPublisher</a>
+            
+    
+            <a href="eu/supersede/integration/api/pubsub/TopicSubscriber.html" class="tag"
+            style="font-size: 15px;color:#d04437"
+            title="# Elements - 62 , # Elements Covered - 17 ">TopicSubscriber</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/manager/types/TwitterMonitorConfiguration.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 12 , # Elements Covered - 12 ">TwitterMonitorConfiguration</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 17 , # Elements Covered - 14 ">TwitterMonitorConfigurationRequest</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 7 , # Elements Covered - 5 ">TwitterMonitorConfigurationResponse</a>
+            
+    
+            <a href="eu/supersede/integration/api/monitoring/monitors/proxies/TwitterMonitorProxy.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 11 , # Elements Covered - 11 ">TwitterMonitorProxy</a>
+            
+    
+            <a href="eu/supersede/integration/api/adaptation/types/TypedModelId.html" class="tag"
+            style="font-size: 12px;color:#d04437"
+            title="# Elements - 14 , # Elements Covered - 3 ">TypedModelId</a>
+            
+    
+            <a href="eu/supersede/integration/api/datastore/fe/types/User.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 32 , # Elements Covered - 16 ">User</a>
+            
+    
+            <a href="eu/supersede/integration/api/security/types/User.html" class="tag"
+            style="font-size: 20px;color:#d9695f"
+            title="# Elements - 141 , # Elements Covered - 96 ">User</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/User.html" class="tag"
+            style="font-size: 13px;color:#d04437"
+            title="# Elements - 26 , # Elements Covered - 18 ">User</a>
+            
+    
+            <a href="eu/supersede/integration/api/feedback/orchestrator/types/UserGroup.html" class="tag"
+            style="font-size: 13px;color:#d5584c"
+            title="# Elements - 27 , # Elements Covered - 21 ">UserGroup</a>
+            
+    
+            <a href="eu/supersede/integration/api/dm/types/UserRequest.html" class="tag"
+            style="font-size: 14px;color:#d5584c"
+            title="# Elements - 47 , # Elements Covered - 47 ">UserRequest</a>
+           </div>
+   
+   </div>
+    </div> <!-- tabs-pane active-pane -->
+</div> <!-- aui-tabs horizontal-tabs -->
+
+                        </div> <!-- class="aui-page-panel-content-clover" -->
+                    <footer id="footer" role="contentinfo">
+    <section class="footer-body">
+        <ul>
+            <li>
+                Report generated by <a target="_new" href="http://openclover.org">OpenClover</a> v 4.2.0
+                on Wed Sep 11 2019 08:40:43 UTC using coverage data from Wed Sep 11 2019 08:40:40 UTC.
+            </li>
+        </ul>
+        <ul>
+            <li>Clover free edition. </li>
+        </ul>
+    </section>
+</footer>                </section> <!-- class="aui-page-panel-content" -->
+            </div> <!-- class="aui-page-panel-inner" -->
+        </div> <!-- class="aui-page-panel" -->
+    </div> <!-- id="page" -->
+</body>
+</html>

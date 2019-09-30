@@ -22,14 +22,14 @@ import org.slf4j.LoggerFactory;
 import static org.springframework.util.Assert.notNull;
 
 
-public class ReplanOptimizerProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(ReplanOptimizerProxyTest.class);
+public class ReplanOptimizerProxyTest_Ampl2 {
+    private static final Logger log = LoggerFactory.getLogger(ReplanOptimizerProxyTest_Ampl2.class);
 
     private static IReplanOptimizer proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        ReplanOptimizerProxyTest.proxy = new ReplanOptimizerProxy();
+        ReplanOptimizerProxyTest_Ampl2.proxy = new ReplanOptimizerProxy();
     }
 
     @Test(timeout = 30000)
@@ -42,7 +42,7 @@ public class ReplanOptimizerProxyTest {
         Assert.assertNull(((NextReleaseProblem) (o_testOptimizePlan_add1__1)).getAlgorithmParameters());
         Assert.assertFalse(((Collection) (((NextReleaseProblem) (o_testOptimizePlan_add1__1)).getResources())).isEmpty());
         NextReleaseProblem nrProblem = createNextReleaseProblem();
-        PlanningSolution solution = ReplanOptimizerProxyTest.proxy.optimizePlan(nrProblem);
+        PlanningSolution solution = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(nrProblem);
         notNull(solution);
         Assert.assertFalse(((Collection) (((NextReleaseProblem) (o_testOptimizePlan_add1__1)).getFeatures())).isEmpty());
         Assert.assertEquals(4, ((int) (((NextReleaseProblem) (o_testOptimizePlan_add1__1)).getNbWeeks())));
@@ -55,9 +55,9 @@ public class ReplanOptimizerProxyTest {
     @Test(timeout = 30000)
     public void testOptimizePlan_add2() throws Exception {
         NextReleaseProblem nrProblem = createNextReleaseProblem();
-        PlanningSolution o_testOptimizePlan_add2__3 = ReplanOptimizerProxyTest.proxy.optimizePlan(nrProblem);
+        PlanningSolution o_testOptimizePlan_add2__3 = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(nrProblem);
         Assert.assertFalse(((Collection) (((PlanningSolution) (o_testOptimizePlan_add2__3)).getJobs())).isEmpty());
-        PlanningSolution solution = ReplanOptimizerProxyTest.proxy.optimizePlan(nrProblem);
+        PlanningSolution solution = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(nrProblem);
         notNull(solution);
         Assert.assertFalse(((Collection) (((PlanningSolution) (o_testOptimizePlan_add2__3)).getJobs())).isEmpty());
     }
@@ -66,7 +66,7 @@ public class ReplanOptimizerProxyTest {
     public void testOptimizePlannull12_failAssert0() throws Exception {
         try {
             NextReleaseProblem nrProblem = createNextReleaseProblem();
-            PlanningSolution solution = ReplanOptimizerProxyTest.proxy.optimizePlan(null);
+            PlanningSolution solution = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(null);
             notNull(solution);
             org.junit.Assert.fail("testOptimizePlannull12 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -78,8 +78,8 @@ public class ReplanOptimizerProxyTest {
     public void testOptimizePlan_add2null91_failAssert0() throws Exception {
         try {
             NextReleaseProblem nrProblem = createNextReleaseProblem();
-            PlanningSolution o_testOptimizePlan_add2__3 = ReplanOptimizerProxyTest.proxy.optimizePlan(nrProblem);
-            PlanningSolution solution = ReplanOptimizerProxyTest.proxy.optimizePlan(null);
+            PlanningSolution o_testOptimizePlan_add2__3 = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(nrProblem);
+            PlanningSolution solution = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(null);
             notNull(solution);
             org.junit.Assert.fail("testOptimizePlan_add2null91 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -93,7 +93,7 @@ public class ReplanOptimizerProxyTest {
             {
                 AlgorithmParameters __DSPOT_algorithmParameters_7 = new AlgorithmParameters();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution solution = ReplanOptimizerProxyTest.proxy.optimizePlan(null);
+                PlanningSolution solution = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(null);
                 notNull(solution);
                 org.junit.Assert.fail("testOptimizePlannull12 should have thrown NullPointerException");
                 nrProblem.setAlgorithmParameters(__DSPOT_algorithmParameters_7);
@@ -110,7 +110,7 @@ public class ReplanOptimizerProxyTest {
             {
                 PlanningSolution __DSPOT_currentPlan_8 = new PlanningSolution();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution solution = ReplanOptimizerProxyTest.proxy.optimizePlan(null);
+                PlanningSolution solution = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(null);
                 notNull(solution);
                 org.junit.Assert.fail("testOptimizePlannull12 should have thrown NullPointerException");
                 nrProblem.setCurrentPlan(__DSPOT_currentPlan_8);
@@ -127,8 +127,8 @@ public class ReplanOptimizerProxyTest {
             {
                 AlgorithmParameters __DSPOT_algorithmParameters_35 = new AlgorithmParameters();
                 NextReleaseProblem nrProblem = createNextReleaseProblem();
-                PlanningSolution o_testOptimizePlan_add2__3 = ReplanOptimizerProxyTest.proxy.optimizePlan(nrProblem);
-                PlanningSolution solution = ReplanOptimizerProxyTest.proxy.optimizePlan(null);
+                PlanningSolution o_testOptimizePlan_add2__3 = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(nrProblem);
+                PlanningSolution solution = ReplanOptimizerProxyTest_Ampl2.proxy.optimizePlan(null);
                 notNull(solution);
                 org.junit.Assert.fail("testOptimizePlan_add2null91 should have thrown NullPointerException");
                 nrProblem.setAlgorithmParameters(__DSPOT_algorithmParameters_35);

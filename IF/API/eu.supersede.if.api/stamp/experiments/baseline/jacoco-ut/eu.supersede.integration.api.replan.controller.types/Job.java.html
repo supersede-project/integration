@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Job.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.replan.controller.types</a> &gt; <span class="el_source">Job.java</span></div><h1>Job.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.replan.controller.types;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+import eu.supersede.integration.api.json.CustomJsonDateSerializer;
+
+<span class="nc" id="L33">public class Job {</span>
+	private Integer id;
+	
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
+	@JsonProperty (&quot;starts&quot;)
+	private Date startingDate;
+	
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
+	@JsonProperty (&quot;ends&quot;)
+	private Date endingDate;
+	
+	private Feature feature;
+	@JsonProperty (&quot;feature_id&quot;)
+	private Integer featureId;
+	private Resource resource;
+	@JsonProperty (&quot;resource_id&quot;)
+	private Integer resourceId;
+	@JsonProperty (&quot;depends_on&quot;)
+	private List&lt;Job&gt; dependsOn;
+	
+	public Integer getId() {
+<span class="nc" id="L56">		return id;</span>
+	}
+	public void setId(Integer id) {
+<span class="nc" id="L59">		this.id = id;</span>
+<span class="nc" id="L60">	}</span>
+	
+	public Integer getFeatureId() {
+<span class="nc" id="L63">		return featureId;</span>
+	}
+	public void setFeatureId(Integer featureId) {
+<span class="nc" id="L66">		this.featureId = featureId;</span>
+<span class="nc" id="L67">	}</span>
+	
+	public Integer getResourceId() {
+<span class="nc" id="L70">		return resourceId;</span>
+	}
+	public void setResourceId(Integer resourceId) {
+<span class="nc" id="L73">		this.resourceId = resourceId;</span>
+<span class="nc" id="L74">	}</span>
+	
+	public Date getStartingDate() {
+<span class="nc" id="L77">		return startingDate;</span>
+	}
+	public void setStartingDate(Date startingDate) {
+<span class="nc" id="L80">		this.startingDate = startingDate;</span>
+<span class="nc" id="L81">	}</span>
+	public Date getEndingDate() {
+<span class="nc" id="L83">		return endingDate;</span>
+	}
+	public void setEndingDate(Date endingDate) {
+<span class="nc" id="L86">		this.endingDate = endingDate;</span>
+<span class="nc" id="L87">	}</span>
+	public Feature getFeature() {
+<span class="nc" id="L89">		return feature;</span>
+	}
+	public void setFeature(Feature feature) {
+<span class="nc" id="L92">		this.feature = feature;</span>
+<span class="nc" id="L93">	}</span>
+	public Resource getResource() {
+<span class="nc" id="L95">		return resource;</span>
+	}
+	public void setResource(Resource resource) {
+<span class="nc" id="L98">		this.resource = resource;</span>
+<span class="nc" id="L99">	}</span>
+	
+	public List&lt;Job&gt; getDependsOn() {
+<span class="nc bnc" id="L102" title="All 2 branches missed.">		if (dependsOn == null)</span>
+<span class="nc" id="L103">			dependsOn = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L104">		return dependsOn;</span>
+	}
+	public void setDependsOn(List&lt;Job&gt; dependsOn) {
+<span class="nc" id="L107">		this.dependsOn = dependsOn;</span>
+<span class="nc" id="L108">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

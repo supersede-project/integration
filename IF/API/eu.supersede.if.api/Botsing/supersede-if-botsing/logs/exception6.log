@@ -1,0 +1,9 @@
+org.springframework.web.client.HttpServerErrorException: 500 Internal Server Error
+        at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:94)
+        at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:700)
+        at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:653)
+        at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:628)
+        at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:590)
+        at eu.supersede.integration.rest.client.IFMessageClient.getMessage(IFMessageClient.java:233)
+        at eu.supersede.integration.api.proxy.IFServiceProxy.getObjectForType(IFServiceProxy.java:139)
+        at eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy.getUser(FEDataStoreProxy.java:77)

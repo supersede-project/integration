@@ -88,7 +88,6 @@ public class MonitoringOrchestratorProxyTest {
 		return result;
 	}
 
-	@Ignore
 	@Test
 	public void testCreateGetDeleteMonitorTool() throws Exception {
 		MonitorType monitorType = createMonitorType();
@@ -125,7 +124,8 @@ public class MonitoringOrchestratorProxyTest {
 	}
 
 
-	@Ignore @Test
+	@Test
+	@Ignore
 	public void testCreateGetUpdateDeleteMonitorConfiguration() throws Exception {
 		
 		MonitorType monitorType = createMonitorType();

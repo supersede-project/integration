@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataProviderProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.analysis.proxies</a> &gt; <span class="el_source">DataProviderProxy.java</span></div><h1>DataProviderProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.analysis.proxies;
+
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import eu.supersede.integration.api.analysis.types.MonitoringData;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+
+public class DataProviderProxy implements IDataProvider{
+<span class="nc" id="L34">	private final static String SUPERSEDE_DATAPROVIDER_ENDPOINT = IntegrationProperty.getProperty(&quot;dataprovider.endpoint&quot;);</span>
+<span class="nc" id="L35">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+	private static KafkaClient kafka;
+	
+<span class="nc" id="L38">	public DataProviderProxy (){</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">		if (kafka == null)</span>
+<span class="nc" id="L40">			kafka = new KafkaClient (SUPERSEDE_DATAPROVIDER_ENDPOINT);</span>
+<span class="nc" id="L41">	}</span>
+	
+	/**
+	 * Generates a json formatted message for a list of monitoring data and sends it to Analysis DataProvider
+	 * @param dataList			a list with the data to retrieve
+	 * @param timeStamp			the timestamp of the search
+	 * @param producer			the producer to communicate 
+	 * @param outputId			the id of the response data
+	 * @param confId			the id of the configuration
+	 * @param topic				the topic for the Kafka communication
+	 */
+	
+	//TODO: Implement these generic methods
+	//public &lt;T&gt; ingestData (T data, String topic)
+	//public &lt;T&gt; ingestData (List&lt;T&gt; data, String topic)
+	
+	@Override
+	public void ingestMonitoringData(List&lt;MonitoringData&gt; dataList, String timeStamp,
+			int outputId, int confId, String topic) {
+<span class="nc" id="L60">		JSONArray items = new JSONArray();</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		for (MonitoringData item : dataList) {</span>
+<span class="nc" id="L62">			JSONObject jsonItem = new JSONObject();</span>
+			
+<span class="nc" id="L64">			jsonItem.put(&quot;idItem&quot;, item.getId());</span>
+<span class="nc" id="L65">			jsonItem.put(&quot;timeStamp&quot;, item.getTimeStamp());</span>
+<span class="nc" id="L66">			jsonItem.put(&quot;message&quot;, item.getMessage());</span>
+<span class="nc" id="L67">			jsonItem.put(&quot;author&quot;, item.getAuthor());</span>
+<span class="nc" id="L68">			jsonItem.put(&quot;link&quot;, item.getLink());</span>
+			
+<span class="nc" id="L70">			items.put(jsonItem);</span>
+<span class="nc" id="L71">		}</span>
+		
+<span class="nc" id="L73">		JSONObject mainInfo = new JSONObject();</span>
+		
+<span class="nc" id="L75">		mainInfo.put(&quot;idOutput&quot;, String.valueOf(outputId));</span>
+<span class="nc" id="L76">		mainInfo.put(&quot;confId&quot;, String.valueOf(confId));</span>
+<span class="nc" id="L77">		mainInfo.put(&quot;searchTimeStamp&quot;, timeStamp);</span>
+<span class="nc" id="L78">		mainInfo.put(&quot;numDataItems&quot;, dataList.size());</span>
+<span class="nc" id="L79">		mainInfo.put(&quot;DataItems&quot;, items);</span>
+		
+<span class="nc" id="L81">		JSONObject jsonData = new JSONObject();</span>
+		
+<span class="nc" id="L83">		jsonData.put(&quot;SocialNetworksMonitoredData&quot;, mainInfo);</span>
+		
+<span class="nc" id="L85">		log.debug(&quot;Sending message &quot; + jsonData + &quot; to DataProvider on topic &quot; + topic);</span>
+<span class="nc" id="L86">		kafka.sendMessage(jsonData, topic);</span>
+<span class="nc" id="L87">	}</span>
+	
+	@Override
+	public void ingestData(JSONArray items, String itemsLabel, String topic) {
+<span class="nc" id="L91">		JSONObject jsonData = new JSONObject();</span>
+<span class="nc" id="L92">		jsonData.put (itemsLabel, items);</span>
+		
+<span class="nc" id="L94">		log.debug(&quot;Sending message &quot; + jsonData + &quot; to DataProvider on topic &quot; + topic);</span>
+<span class="nc" id="L95">		kafka.sendMessage(jsonData, topic);</span>
+<span class="nc" id="L96">	}</span>
+	
+	@Override
+	public void ingestData(JSONObject data, String topic) {
+<span class="nc" id="L100">		log.debug(&quot;Sending message &quot; + data + &quot; to DataProvider on topic &quot; + topic);</span>
+<span class="nc" id="L101">		kafka.sendMessage(data, topic);</span>
+<span class="nc" id="L102">	}</span>
+
+	@Override
+	public void ingestData(String data, String topic) {
+<span class="nc" id="L106">		log.debug(&quot;Sending message &quot; + data + &quot; to DataProvider on topic &quot; + topic);</span>
+<span class="nc" id="L107">		JSONObject jsonData = new JSONObject(data);</span>
+<span class="nc" id="L108">		kafka.sendMessage(jsonData, topic);</span>
+<span class="nc" id="L109">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

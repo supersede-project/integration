@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Adaptation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.adaptation.dashboad.types</a> &gt; <span class="el_source">Adaptation.java</span></div><h1>Adaptation.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.adaptation.dashboad.types;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import eu.supersede.integration.api.json.CustomJsonDateDeserializer;
+import eu.supersede.integration.api.adaptation.types.IModel;
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.json.AdaptationTimeJsonSerializer;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Adaptation implements Comparable&lt;Adaptation&gt;{
+
+    private String fc_id;
+	private String name;
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	@JsonSerialize(using = AdaptationTimeJsonSerializer.class)
+    private Date computation_timestamp;
+	@JsonIgnore
+    private double rank;
+    private ModelSystem model_system;
+    private List&lt;Action&gt; actions;
+
+<span class="fc" id="L30">	public Adaptation(){}</span>
+    
+    public String getFc_id() {
+<span class="fc" id="L33">		return fc_id;</span>
+	}
+
+	public void setFc_id(String fc_id) {
+<span class="fc" id="L37">		this.fc_id = fc_id;</span>
+<span class="fc" id="L38">	}</span>
+
+	public String getName() {
+<span class="fc" id="L41">		return name;</span>
+	}
+
+	public void setName(String name) {
+<span class="fc" id="L45">		this.name = name;</span>
+<span class="fc" id="L46">	}</span>
+
+	public Date getComputation_timestamp() {
+<span class="fc" id="L49">		return this.computation_timestamp;</span>
+	}
+
+	public void setComputation_timestamp(Date computation_timestamp) {
+<span class="fc" id="L53">		this.computation_timestamp = computation_timestamp;</span>
+<span class="fc" id="L54">	}</span>
+
+	public double getRank() {
+<span class="nc" id="L57">		return this.rank;</span>
+	}
+
+	public void setRank(double rank) {
+<span class="fc" id="L61">		this.rank = rank;</span>
+<span class="fc" id="L62">	}</span>
+	
+	public List&lt;Action&gt; getActions() {
+<span class="fc bfc" id="L65" title="All 2 branches covered.">		if (actions == null){</span>
+<span class="fc" id="L66">			actions = new ArrayList&lt;&gt;();</span>
+		}
+<span class="fc" id="L68">		return actions;</span>
+	}
+
+	public void setActions(List&lt;Action&gt; actions) {
+<span class="fc" id="L72">		this.actions = actions;</span>
+<span class="fc" id="L73">	}</span>
+	
+	public ModelSystem getModel_system() {
+<span class="fc" id="L76">		return model_system;</span>
+	}
+	
+	public void setModel_system(ModelSystem modelSystem) {
+<span class="fc" id="L80">		this.model_system = modelSystem;</span>
+<span class="fc" id="L81">	}</span>
+	
+	@Override
+	public int compareTo (Adaptation a){
+		//Comparing by fc_id (inverse order)
+		try{
+<span class="nc bnc" id="L87" title="All 2 branches missed.">			if (a.getFc_id()!=null &amp;&amp; </span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">					this.getFc_id()!=null){</span>
+<span class="nc" id="L89">				return (Integer.valueOf((String)a.getFc_id()))</span>
+<span class="nc" id="L90">						.compareTo(Integer.valueOf((String)this.getFc_id()));	</span>
+			}
+<span class="nc" id="L92">		}catch (Exception e){</span>
+			//Ignored
+<span class="nc" id="L94">		}</span>
+<span class="nc" id="L95">		return 0;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GeneralConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.orchestrator.types</a> &gt; <span class="el_source">GeneralConfiguration.java</span></div><h1>GeneralConfiguration.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.orchestrator.types;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.*;
+
+public class GeneralConfiguration {
+    private long id;
+    private String name;
+    private Date createdAt;
+    private Date updatedAt;
+
+    private List&lt;Parameter&gt; parameters;
+
+    protected void onCreate() {
+<span class="nc" id="L17">        createdAt = new Date();</span>
+<span class="nc" id="L18">    }</span>
+
+    protected void onUpdate() {
+<span class="nc" id="L21">        updatedAt = new Date();</span>
+<span class="nc" id="L22">    }</span>
+
+    @JsonIgnore
+    private Application application;
+
+    @JsonIgnore
+    private Configuration configuration;
+
+<span class="fc" id="L30">    public GeneralConfiguration() {</span>
+<span class="fc" id="L31">    }</span>
+
+<span class="nc" id="L33">    public GeneralConfiguration(String name, Date createdAt, Date updatedAt, List&lt;Parameter&gt; parameters, Application application, Configuration configuration) {</span>
+<span class="nc" id="L34">        this.name = name;</span>
+<span class="nc" id="L35">        this.createdAt = createdAt;</span>
+<span class="nc" id="L36">        this.updatedAt = updatedAt;</span>
+<span class="nc" id="L37">        this.parameters = parameters;</span>
+<span class="nc" id="L38">        this.application = application;</span>
+<span class="nc" id="L39">        this.configuration = configuration;</span>
+<span class="nc" id="L40">    }</span>
+
+    public void filterByLanguage(String language, String fallbackLanguage) {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if(this.getParameters() == null) {</span>
+<span class="nc" id="L44">            return;</span>
+        }
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        for(Parameter parameter : this.getParameters()) {</span>
+<span class="nc" id="L47">            parameter.filterByLanguage(language, fallbackLanguage);</span>
+<span class="nc" id="L48">        }</span>
+<span class="nc" id="L49">        this.setParameters(this.parametersByLanguage(language, fallbackLanguage));</span>
+<span class="nc" id="L50">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L54">        return String.format(</span>
+                &quot;GeneralConfiguration[id=%d, name='%s']&quot;,
+<span class="fc" id="L56">                id, name);</span>
+    }
+
+    public List&lt;Parameter&gt; parametersByLanguage(String language, String fallbackLanguage) {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if(this.getParameters() == null) {</span>
+<span class="nc" id="L61">            return null;</span>
+        }
+<span class="nc" id="L63">        Map&lt;String, Parameter&gt; keyValuePairs = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for(Parameter parameter : this.getParameters()) {</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">            if(parameter.getParameters() != null &amp;&amp; parameter.getParameters().size() &gt; 0) {</span>
+<span class="nc" id="L66">                parameter.setParameters(parameter.parametersByLanguage(language, fallbackLanguage));</span>
+            }
+
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if(keyValuePairs.containsKey(parameter.getKey())) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                if(parameter.getLanguage().equals(language)) {</span>
+<span class="nc" id="L71">                    keyValuePairs.put(parameter.getKey(), parameter);</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">                } else if (!keyValuePairs.get(parameter.getKey()).getLanguage().equals(language) &amp;&amp; parameter.getLanguage().equals(fallbackLanguage)) {</span>
+<span class="nc" id="L73">                    keyValuePairs.put(parameter.getKey(), parameter);</span>
+                }
+<span class="nc bnc" id="L75" title="All 4 branches missed.">            } else if(parameter.getLanguage().equals(language) || parameter.getLanguage().equals(fallbackLanguage)) {</span>
+<span class="nc" id="L76">                keyValuePairs.put(parameter.getKey(), parameter);</span>
+            }
+<span class="nc" id="L78">        }</span>
+<span class="nc" id="L79">        return new ArrayList&lt;Parameter&gt;(keyValuePairs.values());</span>
+    }
+
+    public long getId() {
+<span class="fc" id="L83">        return id;</span>
+    }
+
+    public void setId(long id) {
+<span class="fc" id="L87">        this.id = id;</span>
+<span class="fc" id="L88">    }</span>
+
+    public String getName() {
+<span class="fc" id="L91">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L95">        this.name = name;</span>
+<span class="fc" id="L96">    }</span>
+
+    public Date getCreatedAt() {
+<span class="fc" id="L99">        return createdAt;</span>
+    }
+
+    public void setCreatedAt(Date createdAt) {
+<span class="fc" id="L103">        this.createdAt = createdAt;</span>
+<span class="fc" id="L104">    }</span>
+
+    public Date getUpdatedAt() {
+<span class="fc" id="L107">        return updatedAt;</span>
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+<span class="fc" id="L111">        this.updatedAt = updatedAt;</span>
+<span class="fc" id="L112">    }</span>
+
+    public List&lt;Parameter&gt; getParameters() {
+<span class="fc" id="L115">        return parameters;</span>
+    }
+
+    public void setParameters(List&lt;Parameter&gt; parameters) {
+<span class="fc" id="L119">        this.parameters = parameters;</span>
+<span class="fc" id="L120">    }</span>
+
+    public Application getApplication() {
+<span class="nc" id="L123">        return application;</span>
+    }
+
+    public void setApplication(Application application) {
+<span class="nc" id="L127">        this.application = application;</span>
+<span class="nc" id="L128">    }</span>
+
+    public Configuration getConfiguration() {
+<span class="nc" id="L131">        return configuration;</span>
+    }
+
+    public void setConfiguration(Configuration configuration) {
+<span class="nc" id="L135">        this.configuration = configuration;</span>
+<span class="nc" id="L136">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,9 @@
+org.apache.axis2.AxisFault: Username 'pilar' already exists in the system. Please pick another username.
+        at org.apache.axis2.util.Utils.getInboundFaultFromMessageContext(Utils.java:531)
+        at org.apache.axis2.description.RobustOutOnlyAxisOperation$RobustOutOnlyOperationClient.handleResponse(RobustOutOnlyAxisOperation.java:91)
+        at org.apache.axis2.description.OutInAxisOperationClient.send(OutInAxisOperation.java:421)
+        at org.apache.axis2.description.OutInAxisOperationClient.executeImpl(OutInAxisOperation.java:229)
+        at org.apache.axis2.client.OperationClient.execute(OperationClient.java:165)
+        at org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceStub.addUser(RemoteUserStoreManagerServiceStub.java:2276)
+        at eu.supersede.integration.api.security.IFUserStoreManager.addUser(IFUserStoreManager.java:139)
+        at eu.supersede.integration.api.security.IFAuthenticationManager.addUser(IFAuthenticationManager.java:159)

@@ -17,14 +17,14 @@ import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 
-public class MonitoringOrchestratorProxyTest {
+public class MonitoringOrchestratorProxyTest_Ampl2 {
     private static MonitoringOrchestratorProxy<?, ?> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
         String user = "superadmin";
         String password = "password";
-        MonitoringOrchestratorProxyTest.proxy = new MonitoringOrchestratorProxy<Object, Object>(user, password);
+        MonitoringOrchestratorProxyTest_Ampl2.proxy = new MonitoringOrchestratorProxy<Object, Object>(user, password);
     }
 
     @Test(timeout = 30000)
@@ -34,7 +34,7 @@ public class MonitoringOrchestratorProxyTest {
         Assert.assertFalse(((MonitorType) (o_testListAllMonitorTypes__1)).isCurrentVersion());
         Assert.assertNull(((MonitorType) (o_testListAllMonitorTypes__1)).getCreatedAt());
         Assert.assertFalse(((MonitorType) (o_testListAllMonitorTypes__1)).hasChanges());
-        List<MonitorType> result = MonitoringOrchestratorProxyTest.proxy.listAllMonitorTypes();
+        List<MonitorType> result = MonitoringOrchestratorProxyTest_Ampl2.proxy.listAllMonitorTypes();
         notNull(result);
         isTrue((!(result.isEmpty())));
         Assert.assertNull(((MonitorType) (o_testListAllMonitorTypes__1)).getMonitorTools());
@@ -55,7 +55,7 @@ public class MonitoringOrchestratorProxyTest {
         Assert.assertFalse(((MonitorType) (o_testListAllMonitorTypes_add1754__3)).isCurrentVersion());
         Assert.assertNull(((MonitorType) (o_testListAllMonitorTypes_add1754__3)).getCreatedAt());
         Assert.assertFalse(((MonitorType) (o_testListAllMonitorTypes_add1754__3)).hasChanges());
-        List<MonitorType> result = MonitoringOrchestratorProxyTest.proxy.listAllMonitorTypes();
+        List<MonitorType> result = MonitoringOrchestratorProxyTest_Ampl2.proxy.listAllMonitorTypes();
         notNull(result);
         isTrue((!(result.isEmpty())));
         Assert.assertNull(((MonitorType) (o_testListAllMonitorTypes_add1754__1)).getMonitorTools());
@@ -72,7 +72,7 @@ public class MonitoringOrchestratorProxyTest {
     public void testListAllMonitorTypesnull1769_failAssert0() throws Exception {
         try {
             createMonitorType();
-            List<MonitorType> result = MonitoringOrchestratorProxyTest.proxy.listAllMonitorTypes();
+            List<MonitorType> result = MonitoringOrchestratorProxyTest_Ampl2.proxy.listAllMonitorTypes();
             notNull(null);
             isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testListAllMonitorTypesnull1769 should have thrown IllegalArgumentException");
@@ -85,9 +85,9 @@ public class MonitoringOrchestratorProxyTest {
     public void testListAllMonitorTypes_add1754_add1837() throws Exception {
         MonitorType o_testListAllMonitorTypes_add1754__1 = createMonitorType();
         MonitorType o_testListAllMonitorTypes_add1754__3 = createMonitorType();
-        List<MonitorType> o_testListAllMonitorTypes_add1754_add1837__9 = MonitoringOrchestratorProxyTest.proxy.listAllMonitorTypes();
+        List<MonitorType> o_testListAllMonitorTypes_add1754_add1837__9 = MonitoringOrchestratorProxyTest_Ampl2.proxy.listAllMonitorTypes();
         Assert.assertFalse(o_testListAllMonitorTypes_add1754_add1837__9.isEmpty());
-        List<MonitorType> result = MonitoringOrchestratorProxyTest.proxy.listAllMonitorTypes();
+        List<MonitorType> result = MonitoringOrchestratorProxyTest_Ampl2.proxy.listAllMonitorTypes();
         notNull(result);
         isTrue((!(result.isEmpty())));
         Assert.assertFalse(o_testListAllMonitorTypes_add1754_add1837__9.isEmpty());
@@ -101,9 +101,9 @@ public class MonitoringOrchestratorProxyTest {
         Assert.assertNull(((MonitorType) (o_testCreateGetDeleteMonitorType_add1264__1)).getCreatedAt());
         Assert.assertFalse(((MonitorType) (o_testCreateGetDeleteMonitorType_add1264__1)).hasChanges());
         MonitorType result = createMonitorType();
-        result = MonitoringOrchestratorProxyTest.proxy.getMonitorType(result.getName());
+        result = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorType(result.getName());
         notNull(result);
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(result);
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(result);
         Assert.assertNull(((MonitorType) (o_testCreateGetDeleteMonitorType_add1264__1)).getMonitorTools());
         Assert.assertFalse(((MonitorType) (o_testCreateGetDeleteMonitorType_add1264__1)).isCurrentVersion());
         Assert.assertNull(((MonitorType) (o_testCreateGetDeleteMonitorType_add1264__1)).getCreatedAt());
@@ -114,9 +114,9 @@ public class MonitoringOrchestratorProxyTest {
     public void testCreateGetDeleteMonitorTypenull1274_failAssert0() throws Exception {
         try {
             MonitorType result = createMonitorType();
-            result = MonitoringOrchestratorProxyTest.proxy.getMonitorType(result.getName());
+            result = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorType(result.getName());
             notNull(null);
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(result);
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(result);
             org.junit.Assert.fail("testCreateGetDeleteMonitorTypenull1274 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -127,9 +127,9 @@ public class MonitoringOrchestratorProxyTest {
     public void testCreateGetDeleteMonitorTypenull1275_failAssert0() throws Exception {
         try {
             MonitorType result = createMonitorType();
-            result = MonitoringOrchestratorProxyTest.proxy.getMonitorType(result.getName());
+            result = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorType(result.getName());
             notNull(result);
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(null);
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(null);
             org.junit.Assert.fail("testCreateGetDeleteMonitorTypenull1275 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             Assert.assertEquals(null, expected.getMessage());
@@ -142,9 +142,9 @@ public class MonitoringOrchestratorProxyTest {
             {
                 List<MonitorTool> __DSPOT_monitorTools_155 = Collections.singletonList(new MonitorTool());
                 MonitorType result = createMonitorType();
-                result = MonitoringOrchestratorProxyTest.proxy.getMonitorType(result.getName());
+                result = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorType(result.getName());
                 notNull(result);
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(null);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(null);
                 org.junit.Assert.fail("testCreateGetDeleteMonitorTypenull1275 should have thrown NullPointerException");
                 result.setMonitorTools(__DSPOT_monitorTools_155);
             }
@@ -157,16 +157,16 @@ public class MonitoringOrchestratorProxyTest {
     private MonitorType createMonitorType() throws Exception {
         String monitorTypeName = UUID.randomUUID().toString();
         try {
-            MonitorType mt = MonitoringOrchestratorProxyTest.proxy.getMonitorType(monitorTypeName);
+            MonitorType mt = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorType(monitorTypeName);
             if (mt != null) {
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(mt);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(mt);
             }
         } catch (Exception ex) {
 
         }
         MonitorType monitorType = new MonitorType();
         monitorType.setName(monitorTypeName);
-        MonitorType result = MonitoringOrchestratorProxyTest.proxy.createMonitorType(monitorType);
+        MonitorType result = MonitoringOrchestratorProxyTest_Ampl2.proxy.createMonitorType(monitorType);
         notNull(result);
         return result;
     }
@@ -180,10 +180,10 @@ public class MonitoringOrchestratorProxyTest {
         Assert.assertFalse(((MonitorType) (o_testCreateGetDeleteMonitorTool_add1__1)).hasChanges());
         MonitorType monitorType = createMonitorType();
         MonitorTool monitorTool = createMonitorTool(monitorType);
-        monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+        monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
         notNull(monitorTool);
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
         Assert.assertNull(((MonitorType) (o_testCreateGetDeleteMonitorTool_add1__1)).getMonitorTools());
         Assert.assertFalse(((MonitorType) (o_testCreateGetDeleteMonitorTool_add1__1)).isCurrentVersion());
         Assert.assertNull(((MonitorType) (o_testCreateGetDeleteMonitorTool_add1__1)).getCreatedAt());
@@ -201,10 +201,10 @@ public class MonitoringOrchestratorProxyTest {
         Assert.assertNull(((MonitorTool) (o_testCreateGetDeleteMonitorTool_add2__3)).getCreatedAt());
         Assert.assertFalse(((MonitorTool) (o_testCreateGetDeleteMonitorTool_add2__3)).hasChanges());
         MonitorTool monitorTool = createMonitorTool(monitorType);
-        monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+        monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
         notNull(monitorTool);
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
         Assert.assertEquals("Twitter", ((MonitorTool) (o_testCreateGetDeleteMonitorTool_add2__3)).getMonitorName());
         Assert.assertNull(((MonitorTool) (o_testCreateGetDeleteMonitorTool_add2__3)).getMonitorTypeId());
         Assert.assertNull(((MonitorTool) (o_testCreateGetDeleteMonitorTool_add2__3)).getMonitorConfigurations());
@@ -218,10 +218,10 @@ public class MonitoringOrchestratorProxyTest {
         try {
             MonitorType monitorType = createMonitorType();
             MonitorTool monitorTool = createMonitorTool(null);
-            monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+            monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
             notNull(monitorTool);
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
             org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull21 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             Assert.assertEquals(null, expected.getMessage());
@@ -233,10 +233,10 @@ public class MonitoringOrchestratorProxyTest {
         try {
             MonitorType monitorType = createMonitorType();
             MonitorTool monitorTool = createMonitorTool(monitorType);
-            monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+            monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
             notNull(null);
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
             org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull22 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -248,10 +248,10 @@ public class MonitoringOrchestratorProxyTest {
         try {
             MonitorType monitorType = createMonitorType();
             MonitorTool monitorTool = createMonitorTool(monitorType);
-            monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+            monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
             notNull(monitorTool);
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(null);
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(null);
             org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull24 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             Assert.assertEquals(null, expected.getMessage());
@@ -264,10 +264,10 @@ public class MonitoringOrchestratorProxyTest {
             MonitorType monitorType = createMonitorType();
             MonitorTool o_testCreateGetDeleteMonitorTool_add2__3 = createMonitorTool(monitorType);
             MonitorTool monitorTool = createMonitorTool(null);
-            monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+            monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
             notNull(monitorTool);
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-            MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+            MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
             org.junit.Assert.fail("testCreateGetDeleteMonitorTool_add2null228 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             Assert.assertEquals(null, expected.getMessage());
@@ -281,10 +281,10 @@ public class MonitoringOrchestratorProxyTest {
                 List<MonitorConfiguration> __DSPOT_monitorConfigurations_23 = Collections.singletonList(new MonitorConfiguration());
                 MonitorType monitorType = createMonitorType();
                 MonitorTool monitorTool = createMonitorTool(null);
-                monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+                monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
                 notNull(monitorTool);
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
                 org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull21 should have thrown NullPointerException");
                 monitorTool.setMonitorConfigurations(__DSPOT_monitorConfigurations_23);
             }
@@ -301,10 +301,10 @@ public class MonitoringOrchestratorProxyTest {
                 String __DSPOT_name_26 = "b{[Iz>YSe|%xHdm7#=To";
                 MonitorType monitorType = createMonitorType();
                 MonitorTool monitorTool = createMonitorTool(monitorType);
-                monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+                monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
                 notNull(null);
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
                 org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull22 should have thrown IllegalArgumentException");
                 monitorTool.setName(__DSPOT_name_26);
             }
@@ -320,11 +320,11 @@ public class MonitoringOrchestratorProxyTest {
             {
                 MonitorType monitorType = createMonitorType();
                 MonitorTool monitorTool = createMonitorTool(monitorType);
-                monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+                monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
                 notNull(monitorTool);
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(null);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(null);
                 org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull24 should have thrown NullPointerException");
             }
             org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull24_failAssert0_add112 should have thrown NullPointerException");
@@ -340,10 +340,10 @@ public class MonitoringOrchestratorProxyTest {
                 List<MonitorConfiguration> __DSPOT_monitorConfigurations_19 = Collections.singletonList(new MonitorConfiguration());
                 MonitorType monitorType = createMonitorType();
                 MonitorTool monitorTool = createMonitorTool(monitorType);
-                monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+                monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
                 notNull(monitorTool);
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(null);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(null);
                 org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull24 should have thrown NullPointerException");
                 monitorTool.setMonitorConfigurations(__DSPOT_monitorConfigurations_19);
             }
@@ -361,10 +361,10 @@ public class MonitoringOrchestratorProxyTest {
                 MonitorType monitorType = createMonitorType();
                 MonitorTool o_testCreateGetDeleteMonitorTool_add2__3 = createMonitorTool(monitorType);
                 MonitorTool monitorTool = createMonitorTool(null);
-                monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+                monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
                 notNull(monitorTool);
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
                 org.junit.Assert.fail("testCreateGetDeleteMonitorTool_add2null228 should have thrown NullPointerException");
                 o_testCreateGetDeleteMonitorTool_add2__3.setMonitorConfigurations(__DSPOT_monitorConfigurations_108);
             }
@@ -382,10 +382,10 @@ public class MonitoringOrchestratorProxyTest {
                     List<MonitorConfiguration> __DSPOT_monitorConfigurations_19 = Collections.singletonList(new MonitorConfiguration());
                     MonitorType monitorType = createMonitorType();
                     MonitorTool monitorTool = createMonitorTool(monitorType);
-                    monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+                    monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
                     notNull(monitorTool);
-                    MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(null, monitorType.getName());
-                    MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(null);
+                    MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(null, monitorType.getName());
+                    MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(null);
                     org.junit.Assert.fail("testCreateGetDeleteMonitorToolnull24 should have thrown NullPointerException");
                     monitorTool.setMonitorConfigurations(__DSPOT_monitorConfigurations_19);
                 }
@@ -405,10 +405,10 @@ public class MonitoringOrchestratorProxyTest {
                 MonitorType o_testCreateGetDeleteMonitorTool_add1__1 = createMonitorType();
                 MonitorType monitorType = createMonitorType();
                 MonitorTool monitorTool = createMonitorTool(null);
-                monitorTool = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
+                monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorTool.getName(), monitorType.getName());
                 notNull(monitorTool);
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
                 org.junit.Assert.fail("testCreateGetDeleteMonitorTool_add1null223 should have thrown NullPointerException");
                 monitorTool.setId(__DSPOT_id_143);
             }
@@ -421,9 +421,9 @@ public class MonitoringOrchestratorProxyTest {
     private MonitorTool createMonitorTool(MonitorType monitorType) throws Exception {
         String monitorToolName = UUID.randomUUID().toString();
         try {
-            MonitorTool mt = MonitoringOrchestratorProxyTest.proxy.getMonitorToolForMonitorType(monitorToolName, monitorType.getName());
+            MonitorTool mt = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorToolForMonitorType(monitorToolName, monitorType.getName());
             if (mt != null) {
-                MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(mt, monitorType.getName());
+                MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(mt, monitorType.getName());
             }
         } catch (Exception ex) {
 
@@ -431,7 +431,7 @@ public class MonitoringOrchestratorProxyTest {
         MonitorTool monitorTool = new MonitorTool();
         monitorTool.setName(monitorToolName);
         monitorTool.setMonitorName("Twitter");
-        monitorTool = MonitoringOrchestratorProxyTest.proxy.createMonitorToolForMonitorType(monitorTool, monitorType.getName());
+        monitorTool = MonitoringOrchestratorProxyTest_Ampl2.proxy.createMonitorToolForMonitorType(monitorTool, monitorType.getName());
         notNull(monitorTool);
         return monitorTool;
     }
@@ -449,16 +449,16 @@ public class MonitoringOrchestratorProxyTest {
         conf.setTimeSlot("300");
         conf.setConfigSender("WP4");
         conf.setTimeStamp("Sat June 08 02:16:57 2016");
-        MonitorConfiguration monitorConfigurationResult = MonitoringOrchestratorProxyTest.proxy.createMonitorConfigurationForMonitorToolAndMonitorType(conf, monitorTool.getName(), monitorType.getName());
+        MonitorConfiguration monitorConfigurationResult = MonitoringOrchestratorProxyTest_Ampl2.proxy.createMonitorConfigurationForMonitorToolAndMonitorType(conf, monitorTool.getName(), monitorType.getName());
         notNull(monitorConfigurationResult);
-        monitorConfigurationResult = MonitoringOrchestratorProxyTest.proxy.getMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult.getId(), monitorTool.getName(), monitorType.getName());
+        monitorConfigurationResult = MonitoringOrchestratorProxyTest_Ampl2.proxy.getMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult.getId(), monitorTool.getName(), monitorType.getName());
         notNull(monitorConfigurationResult);
         monitorConfigurationResult.setTimeSlot("100");
-        monitorConfigurationResult = MonitoringOrchestratorProxyTest.proxy.updateMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(), monitorType.getName());
+        monitorConfigurationResult = MonitoringOrchestratorProxyTest_Ampl2.proxy.updateMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(), monitorType.getName());
         notNull(monitorConfigurationResult);
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(), monitorType.getName());
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
-        MonitoringOrchestratorProxyTest.proxy.deleteMonitorType(monitorType);
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorConfigurationForMonitorToolAndMonitorType(monitorConfigurationResult, monitorTool.getName(), monitorType.getName());
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorToolForMonitorType(monitorTool, monitorType.getName());
+        MonitoringOrchestratorProxyTest_Ampl2.proxy.deleteMonitorType(monitorType);
     }
 }
 

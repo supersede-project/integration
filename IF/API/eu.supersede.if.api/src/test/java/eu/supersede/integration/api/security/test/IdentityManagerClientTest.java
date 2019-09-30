@@ -30,10 +30,13 @@ import org.springframework.util.Assert;
 import org.wso2.carbon.CarbonConstants;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreManager;
+<<<<<<< HEAD
+=======
+
+>>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
 import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.security.IFUserStoreManager;
 
-@Ignore
 public class IdentityManagerClientTest {
 //	private static final Logger log = LoggerFactory.getLogger(IdentityManagerClientTest.class);
 	private static UserStoreManager usm;
@@ -54,8 +57,13 @@ public class IdentityManagerClientTest {
 	
     @BeforeClass
     public static void setup() throws Exception {
+<<<<<<< HEAD
 	admin = IFAccount.getUser();
 	password = IFAccount.getPassword();
+=======
+    	admin = IFAccount.getUser();
+		password = IFAccount.getPassword();
+>>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
         usm = new IFUserStoreManager(admin, password);
     }
 

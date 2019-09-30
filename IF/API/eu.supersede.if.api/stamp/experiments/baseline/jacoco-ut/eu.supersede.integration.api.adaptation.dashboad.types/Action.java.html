@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Action.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.adaptation.dashboad.types</a> &gt; <span class="el_source">Action.java</span></div><h1>Action.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.adaptation.dashboad.types;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Action {
+	private String fc_id;
+	@JsonProperty (&quot;ac_id&quot;)
+	private String action_id;
+	private String name;
+	private String description;
+	private boolean enabled;
+	private Adaptation adaptation;
+	
+<span class="fc" id="L16">	public Action(){}</span>
+	
+	public String getFc_id() {
+<span class="fc" id="L19">		return fc_id;</span>
+	}
+
+	public void setFc_id(String fc_id) {
+<span class="fc" id="L23">		this.fc_id = fc_id;</span>
+<span class="fc" id="L24">	}</span>
+
+	public String getAction_id() {
+<span class="fc" id="L27">		return action_id;</span>
+	}
+
+	public void setAction_id(String action_id) {
+<span class="fc" id="L31">		this.action_id = action_id;</span>
+<span class="fc" id="L32">	}</span>
+
+	public String getName() {
+<span class="fc" id="L35">		return name;</span>
+	}
+
+	public void setName(String name) {
+<span class="fc" id="L39">		this.name = name;</span>
+<span class="fc" id="L40">	}</span>
+
+	public String getDescription() {
+<span class="fc" id="L43">		return description;</span>
+	}
+
+	public void setDescription(String description) {
+<span class="fc" id="L47">		this.description = description;</span>
+<span class="fc" id="L48">	}</span>
+
+	public boolean isEnabled() {
+<span class="fc" id="L51">		return enabled;</span>
+	}
+
+	public void setEnabled(boolean enabled) {
+<span class="fc" id="L55">		this.enabled = enabled;</span>
+<span class="fc" id="L56">	}</span>
+	
+	public Adaptation getAdaptation() {
+<span class="fc" id="L59">		return adaptation;</span>
+	}
+	
+	public void setAdaptation(Adaptation adaptation) {
+<span class="nc" id="L63">		this.adaptation = adaptation;</span>
+<span class="nc" id="L64">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

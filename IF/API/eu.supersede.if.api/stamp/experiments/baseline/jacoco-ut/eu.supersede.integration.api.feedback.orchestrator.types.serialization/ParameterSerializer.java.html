@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParameterSerializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.orchestrator.types.serialization</a> &gt; <span class="el_source">ParameterSerializer.java</span></div><h1>ParameterSerializer.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.feedback.orchestrator.types.serialization;
+
+
+import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+<span class="fc" id="L16">public class ParameterSerializer extends JsonSerializer&lt;Parameter&gt; {</span>
+
+    @Override
+    public void serialize(Parameter parameter, JsonGenerator jgen,
+                          SerializerProvider provider) throws IOException,
+            JsonProcessingException {
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if (parameter != null) {</span>
+<span class="fc" id="L23">            jgen.writeStartObject();</span>
+<span class="fc" id="L24">            jgen.writeNumberField(&quot;id&quot;, parameter.getId());</span>
+<span class="fc" id="L25">            jgen.writeStringField(&quot;key&quot;, parameter.getKey());</span>
+<span class="pc bpc" id="L26" title="1 of 4 branches missed.">            if(parameter.getParameters() != null &amp;&amp; parameter.getParameters().size() &gt; 0) {</span>
+<span class="nc" id="L27">                jgen.writeArrayFieldStart(&quot;value&quot;);</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">                for(Parameter subParameter : parameter.getParameters()) {</span>
+<span class="nc" id="L29">                    jgen.writeObject(subParameter);</span>
+<span class="nc" id="L30">                }</span>
+<span class="nc" id="L31">                jgen.writeEndArray();</span>
+            } else {
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">                if(parameter.getValue() == null) {</span>
+<span class="nc" id="L34">                    jgen.writeObjectField(&quot;value&quot;, null);</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">                } else if(parameter.getValue().equals(&quot;true&quot;)) {</span>
+<span class="nc" id="L36">                    jgen.writeBooleanField(&quot;value&quot;, true);</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">                } else if(parameter.getValue().equals(&quot;false&quot;)) {</span>
+<span class="nc" id="L38">                    jgen.writeBooleanField(&quot;value&quot;, false);</span>
+                } else {
+<span class="fc" id="L40">                    jgen.writeObjectField(&quot;value&quot;, parameter.getValue());</span>
+                }
+            }
+<span class="pc bpc" id="L43" title="1 of 4 branches missed.">            if(parameter.getParameters() != null &amp;&amp; parameter.getParameters().size() &gt; 0) {</span>
+<span class="nc" id="L44">                jgen.writeArrayFieldStart(&quot;parameters&quot;);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">                for(Parameter subParameter : parameter.getParameters()) {</span>
+<span class="nc" id="L46">                    jgen.writeObject(subParameter);</span>
+<span class="nc" id="L47">                }</span>
+<span class="nc" id="L48">                jgen.writeEndArray();</span>
+            } else {
+<span class="fc" id="L50">                jgen.writeArrayFieldStart(&quot;parameters&quot;);</span>
+<span class="fc" id="L51">                jgen.writeEndArray();</span>
+            }
+<span class="fc" id="L53">            jgen.writeStringField(&quot;language&quot;, parameter.getLanguage());</span>
+<span class="fc" id="L54">            jgen.writeStringField(&quot;createdAt&quot;, dateToString(parameter.getCreatedAt()));</span>
+<span class="fc" id="L55">            jgen.writeStringField(&quot;updatedAt&quot;, dateToString(parameter.getUpdatedAt()));</span>
+<span class="fc" id="L56">            jgen.writeEndObject();</span>
+        } else {
+<span class="nc" id="L58">            jgen.writeNull();</span>
+        }
+<span class="fc" id="L60">    }</span>
+
+    private String dateToString(Date date) {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if(date == null) {</span>
+<span class="fc" id="L64">            return null;</span>
+        }
+<span class="fc" id="L66">        DateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd'T'HH:mm:ss.SSSZ&quot;);</span>
+<span class="fc" id="L67">        return df.format(date);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

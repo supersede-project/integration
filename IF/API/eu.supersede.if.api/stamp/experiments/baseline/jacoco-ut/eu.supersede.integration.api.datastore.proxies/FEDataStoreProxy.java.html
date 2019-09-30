@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FEDataStoreProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.datastore.proxies</a> &gt; <span class="el_source">FEDataStoreProxy.java</span></div><h1>FEDataStoreProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.datastore.proxies;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.util.Assert;
+
+import eu.supersede.integration.api.datastore.fe.types.Notification;
+import eu.supersede.integration.api.datastore.fe.types.Profile;
+import eu.supersede.integration.api.datastore.fe.types.User;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+
+<span class="fc" id="L40">public class FEDataStoreProxy&lt;T,S&gt; extends IFServiceProxy&lt;T,S&gt; {</span>
+<span class="fc" id="L41">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L42">	private final static String SUPERSEDE_FE_DS_ENDPOINT = IntegrationProperty.getProperty(&quot;fe.datastore.endpoint&quot;);</span>
+
+	public List&lt;User&gt; getUsers(String tenantId, boolean lazy, AuthorizationToken authenticationToken)
+			throws URISyntaxException {
+
+<span class="pc bpc" id="L47" title="2 of 4 branches missed.">		Assert.isTrue(tenantId == null || !tenantId.equals(&quot;&quot;), &quot;Tenant id cannot be unasigned&quot;);</span>
+<span class="fc" id="L48">		Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L49">		Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">		Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L51">		String suri = SUPERSEDE_FE_DS_ENDPOINT + &quot;tenant/&quot; + tenantId + &quot;/users&quot;;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">		if (lazy)</span>
+<span class="fc" id="L53">			suri = suri + &quot;_lazy&quot;;</span>
+<span class="fc" id="L54">		URI uri = new URI(suri);</span>
+
+<span class="fc" id="L56">		log.debug(&quot;Sending message getUsers with tenantId: &quot; + tenantId </span>
+				+ &quot;, lazy: &quot; + lazy  + &quot;, authenticationToken: &quot; + authenticationToken 
+				+ &quot; to FEDataStore at uri &quot; + uri);
+<span class="fc" id="L59">		return getObjectsListForType(User[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);</span>
+	}
+	
+	public User getUser(String tenantId, int userId, boolean lazy, AuthorizationToken authenticationToken) {
+		try {
+<span class="pc bpc" id="L64" title="2 of 4 branches missed.">			Assert.isTrue(tenantId == null || !tenantId.equals(&quot;&quot;), &quot;Tenant id cannot be unasigned&quot;);</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">			Assert.isTrue(userId &gt;= -1, &quot;User id cannot be unasigned&quot;);</span>
+<span class="fc" id="L66">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L67">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L69">			String suri = SUPERSEDE_FE_DS_ENDPOINT + &quot;tenant/&quot; + tenantId + &quot;/users&quot;;</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">			if (lazy)</span>
+<span class="fc" id="L71">				suri = suri + &quot;_lazy&quot;;</span>
+<span class="fc" id="L72">			suri = suri + &quot;/&quot; + userId;</span>
+<span class="fc" id="L73">			URI uri = new URI(suri);</span>
+<span class="fc" id="L74">			log.debug(&quot;Sending message getUser with tenantId: &quot; + tenantId + &quot;, userId: &quot; + userId </span>
+					+ &quot;, lazy: &quot; + lazy  + &quot;, authenticationToken: &quot; + authenticationToken 
+					+ &quot; to FEDataStore at uri &quot; + uri);
+<span class="fc" id="L77">			return getObjectForType(User.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);</span>
+<span class="nc" id="L78">		}catch (Exception e) {</span>
+<span class="nc" id="L79">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L80">			return null;</span>
+		}
+	}
+	
+	public List&lt;Notification&gt; getNotifications(String tenantId, AuthorizationToken authenticationToken) {
+		try {
+<span class="pc bpc" id="L86" title="2 of 4 branches missed.">			Assert.isTrue(tenantId == null || !tenantId.equals(&quot;&quot;), &quot;Tenant id cannot be unasigned&quot;);</span>
+<span class="fc" id="L87">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L88">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L90">			String suri = SUPERSEDE_FE_DS_ENDPOINT + &quot;tenant/&quot; + tenantId + &quot;/notifications&quot;;</span>
+<span class="fc" id="L91">			URI uri = new URI(suri);</span>
+<span class="fc" id="L92">			log.debug(&quot;Sending message getNotifications with tenantId: &quot; + tenantId </span>
+					+ &quot;, authenticationToken: &quot; + authenticationToken 
+					+ &quot; to FEDataStore at uri &quot; + uri);
+<span class="fc" id="L95">			return getObjectsListForType(Notification[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);</span>
+<span class="nc" id="L96">		} catch (Exception e) {</span>
+<span class="nc" id="L97">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L98">			return null;</span>
+		}
+	}
+	
+	public Notification getNotification(String tenantId, int notificationId, AuthorizationToken authenticationToken) {
+		try {
+<span class="pc bpc" id="L104" title="2 of 4 branches missed.">			Assert.isTrue(tenantId == null || !tenantId.equals(&quot;&quot;), &quot;Tenant id cannot be unasigned&quot;);</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">			Assert.isTrue(notificationId &gt; -1, &quot;Notification id cannot be unasigned&quot;);</span>
+<span class="fc" id="L106">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L107">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L109">			String suri = SUPERSEDE_FE_DS_ENDPOINT + &quot;tenant/&quot; + tenantId + &quot;/notifications/&quot; + notificationId;</span>
+<span class="fc" id="L110">			URI uri = new URI(suri);</span>
+<span class="fc" id="L111">			log.debug(&quot;Sending message getNotification with tenantId: &quot; + tenantId </span>
+					+ &quot;, notificationId: &quot; + notificationId 
+					+ &quot;, authenticationToken: &quot; + authenticationToken 
+					+ &quot; to FEDataStore at uri &quot; + uri);
+<span class="fc" id="L115">			return getObjectForType(Notification.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);</span>
+<span class="nc" id="L116">		} catch (Exception e) {</span>
+<span class="nc" id="L117">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L118">			return null;</span>
+		}
+	}	
+			
+	public List&lt;Profile&gt; getProfiles(String tenantId, AuthorizationToken authenticationToken) {
+		try {
+<span class="pc bpc" id="L124" title="2 of 4 branches missed.">			Assert.isTrue(tenantId == null || !tenantId.equals(&quot;&quot;), &quot;Tenant id cannot be unasigned&quot;);</span>
+<span class="fc" id="L125">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L126">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L128">			String suri = SUPERSEDE_FE_DS_ENDPOINT + &quot;tenant/&quot; + tenantId + &quot;/profiles&quot;;</span>
+<span class="fc" id="L129">			URI uri = new URI(suri);</span>
+<span class="fc" id="L130">			log.debug(&quot;Sending message getProfiles with tenantId: &quot; + tenantId </span>
+					+ &quot;, authenticationToken: &quot; + authenticationToken 
+					+ &quot; to FEDataStore at uri &quot; + uri);
+<span class="fc" id="L133">			return getObjectsListForType(Profile[].class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);</span>
+<span class="nc" id="L134">		} catch (Exception e) {</span>
+<span class="nc" id="L135">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L136">			return null;</span>
+		}
+	}
+	
+	public Profile getProfile(String tenantId, int profileId, AuthorizationToken authenticationToken) {
+		try {
+<span class="pc bpc" id="L142" title="2 of 4 branches missed.">			Assert.isTrue(tenantId == null || !tenantId.equals(&quot;&quot;), &quot;Tenant id cannot be unasigned&quot;);</span>
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">			Assert.isTrue(profileId &gt;= -1, &quot;Profile id cannot be unasigned&quot;);</span>
+<span class="fc" id="L144">			Assert.notNull(authenticationToken, &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L145">			Assert.notNull(authenticationToken.getAccessToken(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="pc bpc" id="L146" title="1 of 2 branches missed.">			Assert.isTrue(!authenticationToken.getAccessToken().isEmpty(), &quot;Provide a valid authentication token&quot;);</span>
+<span class="fc" id="L147">			String suri = SUPERSEDE_FE_DS_ENDPOINT + &quot;tenant/&quot; + tenantId + &quot;/profiles/&quot; + profileId;</span>
+<span class="fc" id="L148">			URI uri = new URI(suri);</span>
+<span class="fc" id="L149">			log.debug(&quot;Sending message getProfile with tenantId: &quot; + tenantId </span>
+					+ &quot;, profileId: &quot; + profileId
+					+ &quot;, authenticationToken: &quot; + authenticationToken 
+					+ &quot; to FEDataStore at uri &quot; + uri);
+<span class="fc" id="L153">			return getObjectForType(Profile.class, uri, HttpStatus.OK, MediaType.APPLICATION_XML, authenticationToken);</span>
+<span class="nc" id="L154">		} catch (Exception e) {</span>
+<span class="nc" id="L155">			log.error(e.getMessage(), e);</span>
+<span class="nc" id="L156">			return null;</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

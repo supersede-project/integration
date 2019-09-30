@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FeedbackOrchestratorProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.feedback.proxies</a> &gt; <span class="el_source">FeedbackOrchestratorProxy.java</span></div><h1>FeedbackOrchestratorProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.feedback.proxies;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
+
+import com.google.common.net.UrlEscapers;
+
+import eu.supersede.integration.api.feedback.orchestrator.types.ApiUser;
+import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserPermission;
+import eu.supersede.integration.api.feedback.orchestrator.types.Application;
+import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
+import eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration;
+import eu.supersede.integration.api.feedback.orchestrator.types.Mechanism;
+import eu.supersede.integration.api.feedback.orchestrator.types.Message;
+import eu.supersede.integration.api.feedback.orchestrator.types.Parameter;
+import eu.supersede.integration.api.feedback.orchestrator.types.User;
+import eu.supersede.integration.api.feedback.orchestrator.types.UserGroup;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+import eu.supersede.integration.exception.IFException;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+public class FeedbackOrchestratorProxy&lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IFeedbackOrchestrator {
+<span class="fc" id="L49">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L50">	private final static String SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT = IntegrationProperty</span>
+<span class="fc" id="L51">			.getProperty(&quot;feedback.orchestrator.endpoint&quot;);</span>
+	private String token;
+<span class="fc" id="L53">	private String language = &quot;en&quot;;</span>
+
+	public FeedbackOrchestratorProxy(String user, String password) throws Exception {
+<span class="fc" id="L56">		this(user, password, &quot;en&quot;);</span>
+<span class="fc" id="L57">	}</span>
+
+<span class="fc" id="L59">	public FeedbackOrchestratorProxy(String user, String password, String language) throws Exception {</span>
+<span class="fc" id="L60">		this.token = authenticate(user, password);</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">		if (token == null)</span>
+<span class="nc" id="L62">			throw new IFException(&quot;Failed authentication in Orchestrator&quot;);</span>
+<span class="fc" id="L63">		this.language = language;</span>
+<span class="fc" id="L64">	}</span>
+
+	// Authentication
+
+	@Override
+	public String authenticate(String user, String password) throws Exception {
+<span class="fc" id="L70">		Assert.hasText(user, &quot;Provide a valid user&quot;);</span>
+<span class="fc" id="L71">		Assert.hasText(user, &quot;Provide a valid password&quot;);</span>
+<span class="fc" id="L72">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + &quot;authenticate&quot;);</span>
+<span class="fc" id="L73">		JSONObject accountJson = new JSONObject();</span>
+<span class="fc" id="L74">		accountJson.put(&quot;name&quot;, user);</span>
+<span class="fc" id="L75">		accountJson.put(&quot;password&quot;, password);</span>
+<span class="pc bpc" id="L76" title="2 of 4 branches missed.">		log.debug(&quot;Sending message authenticate with user: &quot; + user + &quot; with password: &quot;</span>
+				+ (password != null ? &quot;not null&quot; : &quot;null&quot;) + &quot; with password: &quot;
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">				+ (password != null &amp;&amp; !password.isEmpty() ? &quot;not empty&quot; : &quot;empty&quot;) + &quot; to FeedbackOrchestrator at uri &quot;</span>
+				+ uri);
+<span class="fc" id="L80">		return postJSONObjectAndReturnValueForJsonLabel(accountJson.toString(), uri, HttpStatus.OK, &quot;token&quot;);</span>
+	}
+
+	// API User
+	@Override
+	public List&lt;ApiUser&gt; getApiUsers() throws Exception {
+<span class="fc" id="L86">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users&quot;);</span>
+<span class="fc" id="L87">		log.debug(&quot;Sending message getApiUsers to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L88">		return getJSONObjectsListForType(ApiUser[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public ApiUser createApiUser(ApiUser user) throws Exception {
+<span class="nc" id="L93">		Assert.notNull(user, &quot;Provide a valid ApiUser&quot;);</span>
+<span class="nc" id="L94">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users&quot;);</span>
+<span class="nc" id="L95">		log.debug(&quot;Sending message createApiUser with ApiUser: &quot; + user + &quot; to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="nc" id="L96">		return insertandReturnJSONObject(user, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public ApiUser updateApiUser(ApiUser user) throws Exception {
+<span class="nc" id="L101">		Assert.notNull(user, &quot;Provide a valid ApiUser&quot;);</span>
+<span class="nc" id="L102">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot;);</span>
+<span class="nc" id="L103">		log.debug(&quot;Sending message updateApiUser with ApiUser: &quot; + user + &quot; to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="nc" id="L104">		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public ApiUser getApiUser(long idUser) throws Exception {
+<span class="fc" id="L109">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="fc" id="L110">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot; + idUser);</span>
+<span class="fc" id="L111">		log.debug(&quot;Sending message getApiUser with idUser: &quot; + idUser + &quot; to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L112">		return getJSONObjectForType(ApiUser.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteApiUser(long idUser) throws Exception {
+<span class="nc" id="L117">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="nc" id="L118">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot; + idUser);</span>
+<span class="nc" id="L119">		log.debug(&quot;Sending message deleteAPIUser with idUser: &quot; + idUser + &quot; to FeedbackRepository at uri &quot; + uri);</span>
+<span class="nc" id="L120">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L121">	}</span>
+
+	// API User Permissions
+	@Override
+	public List&lt;ApiUserPermission&gt; getApiUserPermissions(long idUser) throws Exception {
+<span class="nc" id="L126">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="nc" id="L127">		URI uri = new URI(</span>
+				SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot; + idUser + &quot;/api_user_permissions&quot;);
+<span class="nc" id="L129">		log.debug(&quot;Sending message getApiUserPermissions to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="nc" id="L130">		return getJSONObjectsListForType(ApiUserPermission[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public ApiUserPermission createApiUserPermission(ApiUserPermission permission, long idUser) throws Exception {
+<span class="nc" id="L135">		Assert.notNull(permission, &quot;Provide a valid ApiUserPermission&quot;);</span>
+<span class="nc" id="L136">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="nc" id="L137">		URI uri = new URI(</span>
+				SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot; + idUser + &quot;/api_user_permissions&quot;);
+<span class="nc" id="L139">		log.debug(&quot;Sending message createApiUserPermission with ApiUserPermission: &quot; + permission + &quot; and idUser: &quot;</span>
+				+ idUser + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L141">		return insertandReturnJSONObject(permission, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public ApiUserPermission updateApiUserPermission(ApiUserPermission permission, long idUser) throws Exception {
+<span class="nc" id="L146">		Assert.notNull(permission, &quot;Provide a valid ApiUserPermission&quot;);</span>
+<span class="nc" id="L147">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="nc" id="L148">		URI uri = new URI(</span>
+				SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot; + idUser + &quot;/api_user_permissions&quot;);
+<span class="nc" id="L150">		log.debug(&quot;Sending message updateApiUser with ApiUserPermission: &quot; + permission + &quot; and idUser: &quot; + idUser</span>
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L152">		return updateAndReturnJSONObject(permission, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public ApiUserPermission getApiUserPermission(long idUser, long idUserPermission) throws Exception {
+<span class="nc" id="L157">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="nc" id="L158">		Assert.notNull(idUserPermission, &quot;Provide a valid idUserPermission&quot;);</span>
+<span class="nc" id="L159">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot; + idUser</span>
+				+ &quot;/api_user_permissions/&quot; + idUserPermission);
+<span class="nc" id="L161">		log.debug(&quot;Sending message getApiUserPermission with idUser: &quot; + idUser + &quot; and idUserPermission: &quot;</span>
+				+ idUserPermission + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L163">		return getJSONObjectForType(ApiUserPermission.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteApiUserPermission(long idUser, long idUserPermission) throws Exception {
+<span class="nc" id="L168">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="nc" id="L169">		Assert.notNull(idUserPermission, &quot;Provide a valid idUserPermission&quot;);</span>
+<span class="nc" id="L170">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/api_users/&quot; + idUser</span>
+				+ &quot;/api_user_permissions/&quot; + idUserPermission);
+<span class="nc" id="L172">		log.debug(&quot;Sending message deleteApiUserPermission with idUser: &quot; + idUser + &quot; and idUserPermission: &quot;</span>
+				+ idUserPermission + &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="nc" id="L174">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L175">	}</span>
+
+	// Applications
+
+	@Override
+	public List&lt;Application&gt; getApplications() throws Exception {
+<span class="fc" id="L181">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications&quot;);</span>
+<span class="fc" id="L182">		log.debug(&quot;Sending message getApplications to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L183">		return getJSONObjectsListForType(Application[].class, uri, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public Application createApplication(Application app) throws Exception {
+<span class="fc" id="L188">		Assert.notNull(app, &quot;Provide a valid application&quot;);</span>
+<span class="fc" id="L189">		Assert.notNull(token, &quot;Provide a valid token&quot;);</span>
+<span class="fc" id="L190">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications&quot;);</span>
+<span class="fc" id="L191">		log.debug(&quot;Sending message createApplication with app: &quot; + app + &quot; to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L192">		return insertandReturnJSONObject(app, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public Application updateApplication(Application app) throws Exception {
+<span class="nc" id="L197">		Assert.notNull(app, &quot;Provide a valid application&quot;);</span>
+<span class="nc" id="L198">		Assert.notNull(token, &quot;Provide a valid token&quot;);</span>
+<span class="nc" id="L199">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications&quot;);</span>
+<span class="nc" id="L200">		log.debug(&quot;Sending message updateApplication with app: &quot; + app + &quot; to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="nc" id="L201">		return updateAndReturnJSONObject(app, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public Application importApplication(Application app) throws Exception {
+<span class="nc" id="L206">		Assert.notNull(app, &quot;Provide a valid application&quot;);</span>
+<span class="nc" id="L207">		Assert.notNull(token, &quot;Provide a valid token&quot;);</span>
+<span class="nc" id="L208">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/import&quot;);</span>
+<span class="nc" id="L209">		log.debug(&quot;Sending message importApplication with app: &quot; + app + &quot; to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="nc" id="L210">		return insertandReturnJSONObject(app, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public void deleteApplication(long idApplication) throws Exception {
+<span class="fc" id="L215">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L216">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication);</span>
+<span class="fc" id="L217">		log.debug(&quot;Sending message deleteApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; to FeedbackRepository at uri &quot; + uri);
+<span class="fc" id="L219">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="fc" id="L220">	}</span>
+
+	@Override
+	public Application getApplicationWithConfiguration(long idApplication) throws Exception {
+<span class="fc" id="L224">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L225">		URI uri = new URI(</span>
+				SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/full&quot;);
+<span class="fc" id="L227">		log.debug(&quot;Sending message getApplicationWithConfiguration with idApplication: &quot; + idApplication</span>
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L229">		return getJSONObjectForType(Application.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Application getApplicationWithConfigurationForAllLanguages(long idApplication) throws Exception {
+<span class="fc" id="L234">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L235">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/full/polylang&quot;);
+<span class="fc" id="L237">		log.debug(&quot;Sending message getApplicationWithConfiguration with idApplication: &quot; + idApplication</span>
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L239">		return getJSONObjectForType(Application.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Application getApplicationForUser(long idApplication, long idUser) throws Exception {
+<span class="fc" id="L244">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L245">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="fc" id="L246">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/user_identification/&quot; + idUser);
+<span class="fc" id="L248">		log.debug(&quot;Sending message getApplicationForUser with idApplication: &quot; + idApplication + &quot; with idUser: &quot;</span>
+				+ idUser + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L250">		return getJSONObjectForType(Application.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Application getApplicationForUserGroup(long idApplication, long idGroup) throws Exception {
+<span class="fc" id="L255">		Assert.notNull(idApplication, &quot;Provide a valid application id&quot;);</span>
+<span class="fc" id="L256">		Assert.notNull(idGroup, &quot;Provide a valid idGroup&quot;);</span>
+<span class="fc" id="L257">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/user_group/&quot; + idGroup);
+<span class="fc" id="L259">		log.debug(&quot;Sending message getApplicationForUserGroup with idApplication: &quot; + idApplication + &quot; with idGroup: &quot;</span>
+				+ idGroup + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L261">		return getJSONObjectForType(Application.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public List&lt;Application&gt; searchApplicationsByName(String name) throws Exception {
+<span class="fc" id="L266">		Assert.notNull(name, &quot;Provide a valid name&quot;);</span>
+<span class="fc" id="L267">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/search/name/&quot; </span>
+<span class="fc" id="L268">				+ UrlEscapers.urlFragmentEscaper().escape(name));</span>
+<span class="fc" id="L269">		log.debug(&quot;Sending message searchApplicationsByName to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L270">		return getJSONObjectsListForType(Application[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	// General Configurations
+	@Override
+	public GeneralConfiguration getGeneralConfigurationOfApplication(long idApplication) throws Exception {
+<span class="fc" id="L276">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L277">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/general_configuration&quot;);
+<span class="fc" id="L279">		log.debug(&quot;Sending message getGeneralConfigurationsOfApplication to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L280">		return getJSONObjectForType(GeneralConfiguration.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public GeneralConfiguration createGeneralConfigurationOfApplication(GeneralConfiguration generalConfiguration,
+			long idApplication) throws Exception {
+<span class="fc" id="L286">		Assert.notNull(generalConfiguration, &quot;Provide a valid generalConfiguration&quot;);</span>
+<span class="fc" id="L287">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L288">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/general_configuration&quot;);
+<span class="fc" id="L290">		log.debug(&quot;Sending message createApiUserPermission with GeneralConfiguration: &quot; + generalConfiguration</span>
+				+ &quot; and idApplication: &quot; + idApplication + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L292">		return insertandReturnJSONObject(generalConfiguration, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public GeneralConfiguration updateGeneralConfigurationOfApplication(GeneralConfiguration generalConfiguration,
+			long idApplication) throws Exception {
+<span class="fc" id="L298">		Assert.notNull(generalConfiguration, &quot;Provide a valid generalConfiguration&quot;);</span>
+<span class="fc" id="L299">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L300">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/general_configuration&quot;);
+<span class="fc" id="L302">		log.debug(&quot;Sending message updateGeneralConfigurationOfApplication with GeneralConfiguration: &quot;</span>
+				+ generalConfiguration + &quot; and idApplication: &quot; + idApplication + &quot; to FeedbackOrchestrator at uri &quot;
+				+ uri);
+<span class="fc" id="L305">		return updateAndReturnJSONObject(generalConfiguration, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public GeneralConfiguration getGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration)
+			throws Exception {
+<span class="fc" id="L311">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L312">		Assert.notNull(idGeneralConfiguration, &quot;Provide a valid idGeneralConfiguration&quot;);</span>
+<span class="fc" id="L313">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/general_configuration/&quot; + idGeneralConfiguration);
+<span class="fc" id="L315">		log.debug(&quot;Sending message getGeneralConfigurationOfApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; and idGeneralConfiguration: &quot; + idGeneralConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L317">		return getJSONObjectForType(GeneralConfiguration.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteGeneralConfigurationOfApplication(long idApplication, long idGeneralConfiguration)
+			throws Exception {
+<span class="fc" id="L323">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L324">		Assert.notNull(idGeneralConfiguration, &quot;Provide a valid idGeneralConfiguration&quot;);</span>
+<span class="fc" id="L325">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/general_configuration/&quot; + idGeneralConfiguration);
+<span class="fc" id="L327">		log.debug(&quot;Sending message deleteGeneralConfigurationOfApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; and idGeneralConfiguration: &quot; + idGeneralConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L329">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="fc" id="L330">	}</span>
+
+	// Configurations
+
+	@Override
+	public List&lt;Configuration&gt; getConfigurations(long idApplication) throws Exception {
+<span class="fc" id="L336">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L337">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations&quot;);
+<span class="fc" id="L339">		log.debug(&quot;Sending message getConfigurations to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L340">		return getJSONObjectsListForType(Configuration[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Configuration createConfiguration(Configuration configuration, long idApplication) throws Exception {
+<span class="fc" id="L345">		Assert.notNull(configuration, &quot;Provide a valid configuration&quot;);</span>
+<span class="fc" id="L346">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L347">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations&quot;);
+<span class="fc" id="L349">		log.debug(&quot;Sending message createConfiguration with configuration: &quot; + configuration + &quot; and idApplication: &quot;</span>
+				+ idApplication + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L351">		return insertandReturnJSONObject(configuration, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public Configuration updateConfiguration(Configuration configuration, long idApplication) throws Exception {
+<span class="fc" id="L356">		Assert.notNull(configuration, &quot;Provide a valid configuration&quot;);</span>
+<span class="fc" id="L357">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L358">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations&quot;);
+<span class="fc" id="L360">		log.debug(&quot;Sending message updateConfiguration with configuration: &quot; + configuration + &quot; and idApplication: &quot;</span>
+				+ idApplication + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L362">		return updateAndReturnJSONObject(configuration, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Configuration getConfiguration(long idApplication, long idConfiguration) throws Exception {
+<span class="fc" id="L367">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L368">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="fc" id="L369">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration);
+<span class="fc" id="L371">		log.debug(&quot;Sending message getConfiguration with idApplication: &quot; + idApplication + &quot; and idConfiguration: &quot;</span>
+				+ idConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L373">		return getJSONObjectForType(Configuration.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteConfiguration(long idApplication, long idConfiguration) throws Exception {
+<span class="fc" id="L378">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L379">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="fc" id="L380">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration);
+<span class="fc" id="L382">		log.debug(&quot;Sending message deleteConfiguration with idApplication: &quot; + idApplication + &quot; and idConfiguration: &quot;</span>
+				+ idConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L384">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="fc" id="L385">	}</span>
+	
+	@Override
+	public Configuration createPullConfigurationForUserInfo(Message message, long idApplication, long idUser) throws Exception {
+<span class="fc" id="L389">		Assert.notNull(message, &quot;Provide a valid message&quot;);</span>
+<span class="fc" id="L390">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L391">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="fc" id="L392">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idUser + &quot;/info&quot;);
+<span class="fc" id="L394">		log.debug(&quot;Sending message createPullConfigurationForUserInfo with idApplication: &quot; + idApplication + &quot; and idUser: &quot;</span>
+				+ idUser + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L396">		return insertJSONObjectAndReturnAnotherType (message, Configuration.class, uri, HttpStatus.CREATED, token);</span>
+	}
+
+
+	// General Configuration of Configurations
+	@Override
+	public GeneralConfiguration getGeneralConfigurationOfConfiguration(long idApplication, long idConfiguration)
+			throws Exception {
+<span class="fc" id="L404">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L405">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="fc" id="L406">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/general_configuration&quot;);
+<span class="fc" id="L408">		log.debug(&quot;Sending message getGeneralConfigurationsOfConfigurations to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L409">		return getJSONObjectForType(GeneralConfiguration.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public GeneralConfiguration createGeneralConfigurationOfConfiguration(GeneralConfiguration generalConfiguration,
+			long idApplication, long idConfiguration) throws Exception {
+<span class="nc" id="L415">		Assert.notNull(generalConfiguration, &quot;Provide a valid generalConfiguration&quot;);</span>
+<span class="nc" id="L416">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L417">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="nc" id="L418">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/general_configuration&quot;);
+<span class="nc" id="L420">		log.debug(&quot;Sending message createGeneralConfigurationsOfConfiguration with configuration: &quot;</span>
+				+ generalConfiguration + &quot; and idApplication: &quot; + idApplication + &quot; and idConfiguration: &quot;
+				+ idConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L423">		return insertandReturnJSONObject(generalConfiguration, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public GeneralConfiguration updateGeneralConfigurationOfConfiguration(GeneralConfiguration generalConfiguration,
+			long idApplication, long idConfiguration) throws Exception {
+<span class="nc" id="L429">		Assert.notNull(generalConfiguration, &quot;Provide a valid generalConfiguration&quot;);</span>
+<span class="nc" id="L430">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L431">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="nc" id="L432">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/general_configuration&quot;);
+<span class="nc" id="L434">		log.debug(&quot;Sending message updateGeneralConfigurationsOfConfiguration with generalConfiguration: &quot;</span>
+				+ generalConfiguration + &quot; and idApplication: &quot; + idApplication + &quot; and idConfiguration: &quot;
+				+ idConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L437">		return updateAndReturnJSONObject(generalConfiguration, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public GeneralConfiguration getGeneralConfigurationOfConfiguration(long idApplication, long idConfiguration,
+			long idGeneralConfiguration) throws Exception {
+<span class="fc" id="L443">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L444">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="fc" id="L445">		Assert.notNull(idGeneralConfiguration, &quot;Provide a valid idGeneralConfiguration&quot;);</span>
+<span class="fc" id="L446">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/general_configuration/&quot; + idGeneralConfiguration);
+<span class="fc" id="L448">		log.debug(&quot;Sending message getGeneralConfigurationsOfConfiguration with idApplication: &quot; + idApplication</span>
+				+ &quot; and idConfiguration: &quot; + idConfiguration + &quot; and idGeneralConfiguration: &quot; + idGeneralConfiguration
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L451">		return getJSONObjectForType(GeneralConfiguration.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteGeneralConfigurationsOfConfiguration(long idApplication, long idConfiguration,
+			long idGeneralConfiguration) throws Exception {
+<span class="nc" id="L457">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L458">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="nc" id="L459">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/general_configuration/&quot; + idGeneralConfiguration);
+<span class="nc" id="L461">		log.debug(&quot;Sending message deleteGeneralConfigurationsOfConfiguration with idApplication: &quot; + idApplication</span>
+				+ &quot; and idConfiguration: &quot; + idConfiguration + &quot; and idGeneralConfiguration: &quot; + idGeneralConfiguration
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L464">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L465">	}</span>
+	
+	
+	// Configuration Mechanisms
+	
+	@Override
+	public List&lt;Mechanism&gt; getMechanismsOfConfiguration(long idApplication, long idConfiguration)
+			throws Exception {
+<span class="fc" id="L473">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L474">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="fc" id="L475">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/configuration_mechanisms&quot;);
+<span class="fc" id="L477">		log.debug(&quot;Sending message getMechanismsOfConfiguration to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L478">		return getJSONObjectsListForType(Mechanism[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Mechanism createMechanismOfConfiguration(Mechanism mechanism, long idApplication, long idConfiguration)
+			throws Exception {
+<span class="nc" id="L484">		Assert.notNull(mechanism, &quot;Provide a valid Mechanism&quot;);</span>
+<span class="nc" id="L485">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L486">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="nc" id="L487">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/configuration_mechanisms&quot;);
+<span class="nc" id="L489">		log.debug(&quot;Sending message createMechanismOfConfiguration with mechanism: &quot;</span>
+				+ mechanism + &quot; and idApplication: &quot; + idApplication + &quot; and idConfiguration: &quot;
+				+ idConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L492">		return insertandReturnJSONObject(mechanism, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public Mechanism updateMechanismOfConfiguration(Mechanism mechanism, long idApplication, long idConfiguration)
+			throws Exception {
+<span class="nc" id="L498">		Assert.notNull(mechanism, &quot;Provide a valid Mechanism&quot;);</span>
+<span class="nc" id="L499">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L500">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="nc" id="L501">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/configuration_mechanisms&quot;);
+<span class="nc" id="L503">		log.debug(&quot;Sending message updateMechanismOfConfiguration with mechanism: &quot;</span>
+				+ mechanism + &quot; and idApplication: &quot; + idApplication + &quot; and idConfiguration: &quot;
+				+ idConfiguration + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L506">		return updateAndReturnJSONObject(mechanism, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Mechanism getMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism)
+			throws Exception {
+<span class="fc" id="L512">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L513">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="fc" id="L514">		Assert.notNull(idMechanism, &quot;Provide a valid idMechanism&quot;);</span>
+<span class="fc" id="L515">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/configuration_mechanisms/&quot; + idMechanism);
+<span class="fc" id="L517">		log.debug(&quot;Sending message getMechanismOfConfiguration with idApplication: &quot; + idApplication</span>
+				+ &quot; and idConfiguration: &quot; + idConfiguration + &quot; and idMechanism: &quot; + idMechanism
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L520">		return getJSONObjectForType(Mechanism.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteMechanismOfConfiguration(long idApplication, long idConfiguration, long idMechanism)
+			throws Exception {
+<span class="nc" id="L526">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L527">		Assert.notNull(idConfiguration, &quot;Provide a valid idConfiguration&quot;);</span>
+<span class="nc" id="L528">		Assert.notNull(idMechanism, &quot;Provide a valid idMechanism&quot;);</span>
+<span class="nc" id="L529">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/configurations/&quot; + idConfiguration + &quot;/configuration_mechanisms/&quot; + idMechanism);
+<span class="nc" id="L531">		log.debug(&quot;Sending message deleteMechanismOfConfiguration with idApplication: &quot; + idApplication</span>
+				+ &quot; and idConfiguration: &quot; + idConfiguration + &quot; and idMechanism: &quot; + idMechanism
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L534">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L535">	}</span>
+
+	// Application Mechanisms
+	
+	@Override
+	public List&lt;Mechanism&gt; getMechanismsOfApplication(long idApplication)
+			throws Exception {
+<span class="fc" id="L542">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L543">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms&quot;);
+<span class="fc" id="L545">		log.debug(&quot;Sending message getMechanismsOfApplication to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L546">		return getJSONObjectsListForType(Mechanism[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Mechanism createMechanismOfApplication(Mechanism mechanism, long idApplication)
+			throws Exception {
+<span class="nc" id="L552">		Assert.notNull(mechanism, &quot;Provide a valid Mechanism&quot;);</span>
+<span class="nc" id="L553">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+		
+<span class="nc" id="L555">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms&quot;);
+<span class="nc" id="L557">		log.debug(&quot;Sending message createMechanismOfApplication with mechanism: &quot;</span>
+				+ mechanism + &quot; and idApplication: &quot; + idApplication  + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L559">		return insertandReturnJSONObject(mechanism, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public Mechanism updateMechanismOfApplication(Mechanism mechanism, long idApplication)
+			throws Exception {
+<span class="nc" id="L565">		Assert.notNull(mechanism, &quot;Provide a valid Mechanism&quot;);</span>
+<span class="nc" id="L566">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L567">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms&quot;);
+<span class="nc" id="L569">		log.debug(&quot;Sending message updateMechanismOfApplication with mechanism: &quot;</span>
+				+ mechanism + &quot; and idApplication: &quot; + idApplication + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L571">		return updateAndReturnJSONObject(mechanism, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Mechanism getMechanismOfApplication(long idApplication, long idMechanism)
+			throws Exception {
+<span class="fc" id="L577">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L578">		Assert.notNull(idMechanism, &quot;Provide a valid idMechanism&quot;);</span>
+<span class="fc" id="L579">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms/&quot; + idMechanism);
+<span class="fc" id="L581">		log.debug(&quot;Sending message getMechanismOfApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; and idMechanism: &quot; + idMechanism
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L584">		return getJSONObjectForType(Mechanism.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteMechanismOfApplication(long idApplication, long idMechanism)
+			throws Exception {
+<span class="nc" id="L590">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L591">		Assert.notNull(idMechanism, &quot;Provide a valid idMechanism&quot;);</span>
+<span class="nc" id="L592">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms/&quot; + idMechanism);
+<span class="nc" id="L594">		log.debug(&quot;Sending message deleteMechanismOfApplication with idApplication: &quot; + idApplication</span>
+				+ &quot; and idMechanism: &quot; + idMechanism
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L597">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L598">	}</span>
+	
+	// Mechanism parameter
+	
+	@Override
+	public List&lt;Parameter&gt; getMechanismParameters(long idApplication, long idMechanism)
+			throws Exception {
+<span class="nc" id="L605">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L606">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms/&quot; + idMechanism + &quot;/parameters&quot;);
+<span class="nc" id="L608">		log.debug(&quot;Sending message getMechanismParameter to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="nc" id="L609">		return getJSONObjectsListForType(Parameter[].class, uri, HttpStatus.OK, token);</span>
+	}
+	
+
+	// Parameters
+	
+	@Override
+	public List&lt;Parameter&gt; getParameters() throws Exception {
+<span class="fc" id="L617">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/parameters&quot;);</span>
+<span class="fc" id="L618">		log.debug(&quot;Sending message getParameters to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L619">		return getJSONObjectsListForType(Parameter[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Parameter createParameter(Parameter parameter) throws Exception {
+<span class="nc" id="L624">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/parameters&quot;);</span>
+<span class="nc" id="L625">		log.debug(&quot;Sending message createParameter with parameter: &quot;</span>
+				+ parameter + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L627">		return insertandReturnJSONObject(parameter, uri, HttpStatus.CREATED, token);</span>
+	}
+
+	@Override
+	public Parameter updateParameter(Parameter parameter) throws Exception {
+<span class="nc" id="L632">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/parameters&quot;);</span>
+<span class="nc" id="L633">		log.debug(&quot;Sending message updateParameter with parameter: &quot;</span>
+				+ parameter + &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L635">		return updateAndReturnJSONObject(parameter, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public Parameter getParameter(long idParameter) throws Exception {
+<span class="fc" id="L640">		Assert.notNull(idParameter, &quot;Provide a valid idParameter&quot;);</span>
+<span class="fc" id="L641">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/parameters/&quot; + idParameter);</span>
+<span class="fc" id="L642">		log.debug(&quot;Sending message getMechanismOfApplication with idParameter: &quot; + idParameter</span>
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="fc" id="L644">		return getJSONObjectForType(Parameter.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteParameter(long idParameter) throws Exception {
+<span class="nc" id="L649">		Assert.notNull(idParameter, &quot;Provide a valid idParameter&quot;);</span>
+<span class="nc" id="L650">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/parameters/&quot; + idParameter);</span>
+<span class="nc" id="L651">		log.debug(&quot;Sending message deleteParameter with idParameter: &quot; + idParameter</span>
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L653">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L654">	}</span>
+	
+
+	// Users	
+	
+	@Override
+	public List&lt;User&gt; getUsers(long idApplication) throws Exception {
+<span class="fc" id="L661">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L662">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/users&quot;);</span>
+<span class="fc" id="L663">		log.debug(&quot;Sending message getUsers to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L664">		return getJSONObjectsListForType(User[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void createUser(User user, long idApplication) throws Exception {
+<span class="fc" id="L669">		Assert.notNull(user, &quot;Provide a valid user&quot;);</span>
+<span class="fc" id="L670">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L671">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/users&quot;);</span>
+<span class="fc" id="L672">		log.debug(&quot;Sending message createUser with user: &quot; + user </span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="pc bpc" id="L675" title="1 of 2 branches missed.">		if (!insertJSONObject(user, uri, HttpStatus.CREATED, token))</span>
+<span class="nc" id="L676">			throw new IFException(&quot;There was a problem creating an user : &quot; + user + &quot; in idApplication: &quot; + idApplication);</span>
+<span class="fc" id="L677">	}</span>
+	
+	@Override
+	public User updateUser(User user, long idApplication) throws Exception {
+<span class="nc" id="L681">		Assert.notNull(user, &quot;Provide a valid user&quot;);</span>
+<span class="nc" id="L682">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L683">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/users&quot;);</span>
+<span class="nc" id="L684">		log.debug(&quot;Sending message updateUser with user: &quot; + user</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L687">		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public User getUser(long idApplication, long idUser) throws Exception {
+<span class="nc" id="L692">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L693">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+
+<span class="nc" id="L695">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; </span>
+				+ idApplication + &quot;/users/&quot; + idUser);
+<span class="nc" id="L697">		log.debug(&quot;Sending message getUser with idUser: &quot; + idUser</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L700">		return getJSONObjectForType(User.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteUser(long idApplication, long idUser) throws Exception {
+<span class="nc" id="L705">		Assert.notNull(idApplication, &quot;Provide a valid idParameter&quot;);</span>
+<span class="nc" id="L706">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+
+<span class="nc" id="L708">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; </span>
+				+ idApplication + &quot;/users/&quot; + idUser);
+<span class="nc" id="L710">		log.debug(&quot;Sending message deleteUser with idUser: &quot; + idUser</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L713">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L714">	}</span>
+
+	@Override
+	public User updateUser(User user, long idApplication, long idUser) throws Exception {
+<span class="nc" id="L718">		Assert.notNull(user, &quot;Provide a valid user&quot;);</span>
+<span class="nc" id="L719">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L720">		Assert.notNull(idUser, &quot;Provide a valid idUser&quot;);</span>
+<span class="nc" id="L721">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/users/&quot; + idUser);</span>
+<span class="nc" id="L722">		log.debug(&quot;Sending message updateUser with user: &quot; + user</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; and idUser: &quot; + idUser 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L726">		return updateAndReturnJSONObject(user, uri, HttpStatus.OK, token);</span>
+	}
+	
+
+	// Groups
+	
+	@Override
+	public List&lt;UserGroup&gt; getUserGroups(long idApplication) throws Exception {
+<span class="fc" id="L734">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L735">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/user_groups&quot;);</span>
+<span class="fc" id="L736">		log.debug(&quot;Sending message getUserGroups to FeedbackOrchestrator at uri &quot; + uri);</span>
+<span class="fc" id="L737">		return getJSONObjectsListForType(UserGroup[].class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void createUserGroup(UserGroup userGroup, long idApplication) throws Exception {
+<span class="fc" id="L742">		Assert.notNull(userGroup, &quot;Provide a valid userGroup&quot;);</span>
+<span class="fc" id="L743">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L744">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/user_groups&quot;);</span>
+<span class="fc" id="L745">		log.debug(&quot;Sending message createUserGroup with userGroup: &quot; + userGroup </span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="pc bpc" id="L748" title="1 of 2 branches missed.">		if (!insertJSONObject(userGroup, uri, HttpStatus.CREATED, token))</span>
+<span class="nc" id="L749">			throw new IFException(&quot;There was a problem creating a user group: &quot; + userGroup + &quot; in idApplication: &quot; + idApplication);</span>
+<span class="fc" id="L750">	}</span>
+	
+	@Override
+	public UserGroup updateUserGroup(UserGroup userGroup, long idApplication) throws Exception {
+<span class="nc" id="L754">		Assert.notNull(userGroup, &quot;Provide a valid userGroup&quot;);</span>
+<span class="nc" id="L755">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L756">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/user_groups&quot;);</span>
+<span class="nc" id="L757">		log.debug(&quot;Sending message updateUserGroup with userGroup: &quot; + userGroup</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L760">		return updateAndReturnJSONObject(userGroup, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public UserGroup getUserGroup(long idApplication, long idUserGroup) throws Exception {
+<span class="nc" id="L765">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L766">		Assert.notNull(idUserGroup, &quot;Provide a valid idUserGroup&quot;);</span>
+
+<span class="nc" id="L768">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; </span>
+				+ idApplication + &quot;/user_groups/&quot; + idUserGroup);
+<span class="nc" id="L770">		log.debug(&quot;Sending message getUserGroup with idUserGroup: &quot; + idUserGroup</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L773">		return getJSONObjectForType(UserGroup.class, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public void deleteUserGroup(long idApplication, long idUserGroup) throws Exception {
+<span class="nc" id="L778">		Assert.notNull(idApplication, &quot;Provide a valid idParameter&quot;);</span>
+<span class="nc" id="L779">		Assert.notNull(idUserGroup, &quot;Provide a valid idUserGroup&quot;);</span>
+
+<span class="nc" id="L781">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; </span>
+				+ idApplication + &quot;/user_groups/&quot; + idUserGroup);
+<span class="nc" id="L783">		log.debug(&quot;Sending message deleteUserGroup with idUserGroup: &quot; + idUserGroup</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L786">		deleteUriResource(uri, HttpStatus.OK, token);</span>
+<span class="nc" id="L787">	}</span>
+
+	@Override
+	public UserGroup updateUserGroup(UserGroup userGroup, long idApplication, long idUserGroup) throws Exception {
+<span class="nc" id="L791">		Assert.notNull(userGroup, &quot;Provide a valid userGroup&quot;);</span>
+<span class="nc" id="L792">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="nc" id="L793">		Assert.notNull(idUserGroup, &quot;Provide a valid idUserGroup&quot;);</span>
+<span class="nc" id="L794">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication + &quot;/user_groups/&quot; + idUserGroup);</span>
+<span class="nc" id="L795">		log.debug(&quot;Sending message updateUserGroup with idUserGroup: &quot; + idUserGroup</span>
+				+ &quot; and idApplication: &quot; + idApplication
+				+ &quot; and userGroup: &quot; + userGroup 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+<span class="nc" id="L799">		return updateAndReturnJSONObject(userGroup, uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public List&lt;Parameter&gt; switchOrderOfParametersOfMechanism(long idApplication, long idMechanism, long idParam1,
+			long idParam2) throws Exception {
+<span class="fc" id="L805">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L806">		Assert.notNull(idMechanism, &quot;Provide a valid idMechanism&quot;);</span>
+<span class="fc" id="L807">		Assert.notNull(idParam1, &quot;Provide a valid idParam1&quot;);</span>
+<span class="fc" id="L808">		Assert.notNull(idParam2, &quot;Provide a valid idParam2&quot;);</span>
+<span class="fc" id="L809">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms/&quot; + idMechanism + &quot;/parameters/&quot; + idParam1 + &quot;/switchOrder/&quot; + idParam2);
+<span class="fc" id="L811">		log.debug(&quot;Sending message switchOrderOfParametersOfMechanism with idApplication: &quot; + idApplication </span>
+				+ &quot; and idMechanism: &quot; + idMechanism 
+				+ &quot; and idParam1: &quot; + idParam1 
+				+ &quot; and idParam2: &quot; + idParam2 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+		
+<span class="fc" id="L817">		return updateJSONObjectAndReturnAnotherType(&quot;{}&quot;, new ArrayList&lt;Parameter&gt;().getClass(), uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public List&lt;Parameter&gt; reorderParameterOfMechanism(long idApplication, long idMechanism, long idParam, long order)
+			throws Exception {
+<span class="fc" id="L823">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L824">		Assert.notNull(idMechanism, &quot;Provide a valid idMechanism&quot;);</span>
+<span class="fc" id="L825">		Assert.notNull(idParam, &quot;Provide a valid idParam&quot;);</span>
+<span class="fc" id="L826">		Assert.notNull(order, &quot;Provide a valid order&quot;);</span>
+<span class="fc" id="L827">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/mechanisms/&quot; + idMechanism + &quot;/parameters/&quot; + idParam + &quot;/reorder/&quot; + order);
+<span class="fc" id="L829">		log.debug(&quot;Sending message reorderParameterOfMechanism with idApplication: &quot; + idApplication </span>
+				+ &quot; and idMechanism: &quot; + idMechanism 
+				+ &quot; and idParam1: &quot; + idParam 
+				+ &quot; and order: &quot; + order 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+		
+<span class="fc" id="L835">		return updateJSONObjectAndReturnAnotherType(&quot;{}&quot;, new ArrayList&lt;Parameter&gt;().getClass(), uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public List&lt;Parameter&gt; switchOrderOfParametersOfGeneralConfiguration(long idApplication,
+			long idGeneralConfiguration, long idParam1, long idParam2) throws Exception {
+<span class="fc" id="L841">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L842">		Assert.notNull(idGeneralConfiguration, &quot;Provide a valid idGeneralConfiguration&quot;);</span>
+<span class="fc" id="L843">		Assert.notNull(idParam1, &quot;Provide a valid idParam1&quot;);</span>
+<span class="fc" id="L844">		Assert.notNull(idParam2, &quot;Provide a valid idParam2&quot;);</span>
+<span class="fc" id="L845">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/general_configuration/&quot; + idGeneralConfiguration + &quot;/parameters/&quot; + idParam1 + &quot;/switchOrder/&quot; + idParam2);
+<span class="fc" id="L847">		log.debug(&quot;Sending message switchOrderOfParametersOfGeneralConfiguration with idApplication: &quot; + idApplication </span>
+				+ &quot; and idMechanism: &quot; + idGeneralConfiguration 
+				+ &quot; and idParam1: &quot; + idParam1 
+				+ &quot; and idParam2: &quot; + idParam2 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+		
+<span class="fc" id="L853">		return updateJSONObjectAndReturnAnotherType(&quot;{}&quot;, new ArrayList&lt;Parameter&gt;().getClass(), uri, HttpStatus.OK, token);	}</span>
+
+	@Override
+	public List&lt;Parameter&gt; reorderParameterOfGeneralConfiguration(long idApplication, long idGeneralConfiguration,
+			long idParam, long order) throws Exception {
+<span class="fc" id="L858">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L859">		Assert.notNull(idGeneralConfiguration, &quot;Provide a valid idGeneralConfiguration&quot;);</span>
+<span class="fc" id="L860">		Assert.notNull(idParam, &quot;Provide a valid idParam&quot;);</span>
+<span class="fc" id="L861">		Assert.notNull(order, &quot;Provide a valid order&quot;);</span>
+<span class="fc" id="L862">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/general_configuration/&quot; + idGeneralConfiguration + &quot;/parameters/&quot; + idParam + &quot;/reorder/&quot; + order);
+<span class="fc" id="L864">		log.debug(&quot;Sending message reorderParameterOfGeneralConfiguration with idApplication: &quot; + idApplication </span>
+				+ &quot; and idGeneralConfiguration: &quot; + idGeneralConfiguration 
+				+ &quot; and idParam1: &quot; + idParam 
+				+ &quot; and order: &quot; + order 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+		
+<span class="fc" id="L870">		return updateJSONObjectAndReturnAnotherType(&quot;{}&quot;, new ArrayList&lt;Parameter&gt;().getClass(), uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public List&lt;Parameter&gt; switchOrderOfParametersOfParameter(long idApplication, long idParam, long idParam1,
+			long idParam2) throws Exception {
+<span class="fc" id="L876">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L877">		Assert.notNull(idParam, &quot;Provide a valid idParam&quot;);</span>
+<span class="fc" id="L878">		Assert.notNull(idParam1, &quot;Provide a valid idParam1&quot;);</span>
+<span class="fc" id="L879">		Assert.notNull(idParam2, &quot;Provide a valid idParam2&quot;);</span>
+<span class="fc" id="L880">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/parameter/&quot; + idParam + &quot;/parameters/&quot; + idParam1 + &quot;/switchOrder/&quot; + idParam2);
+<span class="fc" id="L882">		log.debug(&quot;Sending message switchOrderOfParametersOfParameter with idApplication: &quot; + idApplication </span>
+				+ &quot; and idMechanism: &quot; + idParam 
+				+ &quot; and idParam1: &quot; + idParam1 
+				+ &quot; and idParam2: &quot; + idParam2 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+		
+<span class="fc" id="L888">		return updateJSONObjectAndReturnAnotherType(&quot;{}&quot;, new ArrayList&lt;Parameter&gt;().getClass(), uri, HttpStatus.OK, token);</span>
+	}
+
+	@Override
+	public List&lt;Parameter&gt; reorderParameterOfParameter(long idApplication, long idParam1, long idParam2, long order)
+			throws Exception {
+<span class="fc" id="L894">		Assert.notNull(idApplication, &quot;Provide a valid idApplication&quot;);</span>
+<span class="fc" id="L895">		Assert.notNull(idParam1, &quot;Provide a valid idParam1&quot;);</span>
+<span class="fc" id="L896">		Assert.notNull(idParam2, &quot;Provide a valid idPara2m&quot;);</span>
+<span class="fc" id="L897">		Assert.notNull(order, &quot;Provide a valid order&quot;);</span>
+<span class="fc" id="L898">		URI uri = new URI(SUPERSEDE_FEEDBACK_ORCHESTRATOR_ENDPOINT + language + &quot;/applications/&quot; + idApplication</span>
+				+ &quot;/parameter/&quot; + idParam1 + &quot;/parameters/&quot; + idParam2 + &quot;/reorder/&quot; + order);
+<span class="fc" id="L900">		log.debug(&quot;Sending message reorderParameterOfParameter with idApplication: &quot; + idApplication </span>
+				+ &quot; and idParam1: &quot; + idParam1 
+				+ &quot; and idParam2: &quot; + idParam2
+				+ &quot; and order: &quot; + order 
+				+ &quot; to FeedbackOrchestrator at uri &quot; + uri);
+		
+<span class="fc" id="L906">		return updateJSONObjectAndReturnAnotherType(&quot;{}&quot;, new ArrayList&lt;Parameter&gt;().getClass(), uri, HttpStatus.OK, token);</span>
+
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,12 @@
+javax.management.InstanceAlreadyExistsException: kafka.producer:type=app-info,id=producer-1
+        at com.sun.jmx.mbeanserver.Repository.addMBean(Repository.java:437)
+        at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerWithRepository(DefaultMBeanServerInterceptor.java:1898)
+        at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerDynamicMBean(DefaultMBeanServerInterceptor.java:966)
+        at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerObject(DefaultMBeanServerInterceptor.java:900)
+        at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerMBean(DefaultMBeanServerInterceptor.java:324)
+        at com.sun.jmx.mbeanserver.JmxMBeanServer.registerMBean(JmxMBeanServer.java:522)
+        at org.apache.kafka.common.utils.AppInfoParser.registerAppInfo(AppInfoParser.java:58)
+        at org.apache.kafka.clients.producer.KafkaProducer.<init>(KafkaProducer.java:331)
+        at org.apache.kafka.clients.producer.KafkaProducer.<init>(KafkaProducer.java:188)
+        at eu.supersede.integration.api.analysis.proxies.KafkaClient.initProducer(KafkaClient.java:51)
+        at eu.supersede.integration.api.analysis.proxies.KafkaClient.<init>(KafkaClient.java:33)

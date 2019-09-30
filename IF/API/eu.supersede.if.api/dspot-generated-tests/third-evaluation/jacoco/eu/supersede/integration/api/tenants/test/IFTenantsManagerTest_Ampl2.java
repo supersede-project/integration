@@ -12,19 +12,19 @@ import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
 import static org.junit.Assert.assertEquals;
 
 
-public class IFTenantsManagerTest {
+public class IFTenantsManagerTest_Ampl2 {
     static IFTenantsManager tm;
 
     @BeforeClass
     public static void setup() throws Exception {
         String admin = IFAccount.getUser();
         String password = IFAccount.getPassword();
-        IFTenantsManagerTest.tm = new IFTenantsManager(admin, password);
+        IFTenantsManagerTest_Ampl2.tm = new IFTenantsManager(admin, password);
     }
 
     @Test(timeout = 30000)
     public void getAllTenantsTest_add4() throws Exception {
-        List<TenantInfoBean> tenants = IFTenantsManagerTest.tm.getAllTenants();
+        List<TenantInfoBean> tenants = IFTenantsManagerTest_Ampl2.tm.getAllTenants();
         Assert.notEmpty(tenants);
         int o_getAllTenantsTest_add4__4 = tenants.size();
         assertEquals(3, ((int) (o_getAllTenantsTest_add4__4)));

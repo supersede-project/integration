@@ -39,8 +39,8 @@ import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 
-public class FeedbackRepositoryProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(FeedbackRepositoryProxyTest.class);
+public class FeedbackRepositoryProxyTest_Ampl2 {
+    private static final Logger log = LoggerFactory.getLogger(FeedbackRepositoryProxyTest_Ampl2.class);
 
     private static FeedbackRepositoryProxy<Object, Object> proxy;
 
@@ -54,14 +54,14 @@ public class FeedbackRepositoryProxyTest {
     public static void setup() throws Exception {
         String user = "super_admin";
         String password = "password";
-        FeedbackRepositoryProxyTest.proxy = new FeedbackRepositoryProxy<Object, Object>(user, password);
+        FeedbackRepositoryProxyTest_Ampl2.proxy = new FeedbackRepositoryProxy<Object, Object>(user, password);
     }
 
     @Test(timeout = 30000)
     public void testGetFeedbacksForApplication_add11845() throws Exception {
-        List<Feedback> o_testGetFeedbacksForApplication_add11845__1 = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplication(applicationId);
+        List<Feedback> o_testGetFeedbacksForApplication_add11845__1 = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplication(applicationId);
         Assert.assertFalse(o_testGetFeedbacksForApplication_add11845__1.isEmpty());
-        List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplication(applicationId);
+        List<Feedback> result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplication(applicationId);
         notNull(result);
         isTrue((!(result.isEmpty())));
         Assert.assertFalse(o_testGetFeedbacksForApplication_add11845__1.isEmpty());
@@ -70,7 +70,7 @@ public class FeedbackRepositoryProxyTest {
     @Test(timeout = 30000)
     public void testGetFeedbacksForApplicationnull11851_failAssert0() throws Exception {
         try {
-            List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplication(applicationId);
+            List<Feedback> result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplication(applicationId);
             notNull(null);
             isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetFeedbacksForApplicationnull11851 should have thrown IllegalArgumentException");
@@ -81,9 +81,9 @@ public class FeedbackRepositoryProxyTest {
 
     @Test(timeout = 30000)
     public void testGetFeedbacksForApplicationWithOrchestratorConfiguration_add12126() throws Exception {
-        List<Feedback> o_testGetFeedbacksForApplicationWithOrchestratorConfiguration_add12126__1 = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
+        List<Feedback> o_testGetFeedbacksForApplicationWithOrchestratorConfiguration_add12126__1 = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
         Assert.assertFalse(o_testGetFeedbacksForApplicationWithOrchestratorConfiguration_add12126__1.isEmpty());
-        List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
+        List<Feedback> result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
         notNull(result);
         isTrue((!(result.isEmpty())));
         Assert.assertFalse(o_testGetFeedbacksForApplicationWithOrchestratorConfiguration_add12126__1.isEmpty());
@@ -92,7 +92,7 @@ public class FeedbackRepositoryProxyTest {
     @Test(timeout = 30000)
     public void testGetFeedbacksForApplicationWithOrchestratorConfigurationnull12132_failAssert0() throws Exception {
         try {
-            List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
+            List<Feedback> result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplicationWithOrchestratorConfiguration(applicationId);
             notNull(null);
             isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetFeedbacksForApplicationWithOrchestratorConfigurationnull12132 should have thrown IllegalArgumentException");
@@ -103,9 +103,9 @@ public class FeedbackRepositoryProxyTest {
 
     @Test(timeout = 30000)
     public void testGetFeedbacksForApplicationByUser_add11984() throws Exception {
-        List<Feedback> o_testGetFeedbacksForApplicationByUser_add11984__1 = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
+        List<Feedback> o_testGetFeedbacksForApplicationByUser_add11984__1 = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
         Assert.assertFalse(o_testGetFeedbacksForApplicationByUser_add11984__1.isEmpty());
-        List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
+        List<Feedback> result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
         notNull(result);
         isTrue((!(result.isEmpty())));
         Assert.assertFalse(o_testGetFeedbacksForApplicationByUser_add11984__1.isEmpty());
@@ -114,7 +114,7 @@ public class FeedbackRepositoryProxyTest {
     @Test(timeout = 30000)
     public void testGetFeedbacksForApplicationByUsernull11990_failAssert0() throws Exception {
         try {
-            List<Feedback> result = FeedbackRepositoryProxyTest.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
+            List<Feedback> result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbacksForApplicationByUser(applicationId, userId);
             notNull(null);
             isTrue((!(result.isEmpty())));
             org.junit.Assert.fail("testGetFeedbacksForApplicationByUsernull11990 should have thrown IllegalArgumentException");
@@ -125,7 +125,7 @@ public class FeedbackRepositoryProxyTest {
 
     @Test(timeout = 30000)
     public void testGetFeedbackForApplication_add9673() throws Exception {
-        Feedback o_testGetFeedbackForApplication_add9673__1 = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+        Feedback o_testGetFeedbackForApplication_add9673__1 = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
         Assert.assertEquals("New Feedback", ((Feedback) (o_testGetFeedbackForApplication_add9673__1)).getTitle());
         Assert.assertEquals("userId1", ((Feedback) (o_testGetFeedbackForApplication_add9673__1)).getUserIdentification());
         Assert.assertEquals(11L, ((long) (((Feedback) (o_testGetFeedbackForApplication_add9673__1)).getConfigurationId())));
@@ -146,7 +146,7 @@ public class FeedbackRepositoryProxyTest {
         Assert.assertNull(((Feedback) (o_testGetFeedbackForApplication_add9673__1)).getFeedbackStatus());
         Assert.assertEquals("Feedback[id=6341, configurationId=11]", ((Feedback) (o_testGetFeedbackForApplication_add9673__1)).toString());
         Assert.assertEquals(6341L, ((long) (((Feedback) (o_testGetFeedbackForApplication_add9673__1)).getId())));
-        Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+        Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
         notNull(result);
         Assert.assertEquals("New Feedback", ((Feedback) (o_testGetFeedbackForApplication_add9673__1)).getTitle());
         Assert.assertEquals("userId1", ((Feedback) (o_testGetFeedbackForApplication_add9673__1)).getUserIdentification());
@@ -173,7 +173,7 @@ public class FeedbackRepositoryProxyTest {
     @Test(timeout = 30000)
     public void testGetFeedbackForApplicationnull9694_failAssert0() throws Exception {
         try {
-            Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+            Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
             notNull(null);
             org.junit.Assert.fail("testGetFeedbackForApplicationnull9694 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -186,7 +186,7 @@ public class FeedbackRepositoryProxyTest {
         try {
             {
                 Application __DSPOT_application_193 = new Application();
-                Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+                Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
                 notNull(null);
                 org.junit.Assert.fail("testGetFeedbackForApplicationnull9694 should have thrown IllegalArgumentException");
                 result.setApplication(__DSPOT_application_193);
@@ -203,7 +203,7 @@ public class FeedbackRepositoryProxyTest {
             {
                 List<AudioFeedback> __DSPOT_audioFeedbacks_228 = Collections.singletonList(new AudioFeedback("=2V;#1JH7P8czuTc(A#A", 757381944, "3uSXfeA ic-Xw[ &JB%5", "0Ta3H$Yby[WU&iIzWeG`", new Feedback("d3RB;TNZIocnnHqe}*(o", "g3gxyp4;cV3]1H7O}2JK", -553163655L, 1054814240L, "ph(mE>&G,99Dhj!W^$>b"), -1246948587L, 173681672));
                 Application __DSPOT_application_175 = new Application("XV;8qtc<3]`c[*]0*NUR", 103209380, new Date("f>g].;R^&NhR0[-k-SKT"), new Date(1143962952, -885324722, -311291208, 213329572, -664590353), new eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration("8*#Z{ H94wSTi:*WrHbP", new Date(460838345, 378120465, 529960761, -1340049597, 2101360576, 1952931535), new Date(-501624293L), Collections.singletonList(new eu.supersede.integration.api.feedback.orchestrator.types.Parameter()), new Application(), new Configuration()), Collections.singletonList(new Configuration()));
-                Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+                Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
                 notNull(result);
                 result.setApplication(__DSPOT_application_175);
                 org.junit.Assert.fail("testGetFeedbackForApplication_mg9676 should have thrown IllegalArgumentException");
@@ -218,8 +218,8 @@ public class FeedbackRepositoryProxyTest {
     @Test(timeout = 30000)
     public void testGetFeedbackForApplication_add9673null10209_failAssert0() throws Exception {
         try {
-            Feedback o_testGetFeedbackForApplication_add9673__1 = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
-            Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+            Feedback o_testGetFeedbackForApplication_add9673__1 = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
+            Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
             notNull(null);
             org.junit.Assert.fail("testGetFeedbackForApplication_add9673null10209 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -233,7 +233,7 @@ public class FeedbackRepositoryProxyTest {
             {
                 List<Configuration> __DSPOT_configurations_216 = Collections.singletonList(new Configuration());
                 Application __DSPOT_application_175 = new Application("XV;8qtc<3]`c[*]0*NUR", 103209380, new Date("f>g].;R^&NhR0[-k-SKT"), new Date(1143962952, -885324722, -311291208, 213329572, -664590353), new eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration("8*#Z{ H94wSTi:*WrHbP", new Date(460838345, 378120465, 529960761, -1340049597, 2101360576, 1952931535), new Date(-501624293L), Collections.singletonList(new eu.supersede.integration.api.feedback.orchestrator.types.Parameter()), new Application(), new Configuration()), Collections.singletonList(new Configuration()));
-                Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+                Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
                 notNull(result);
                 result.setApplication(__DSPOT_application_175);
                 org.junit.Assert.fail("testGetFeedbackForApplication_mg9676 should have thrown IllegalArgumentException");
@@ -251,7 +251,7 @@ public class FeedbackRepositoryProxyTest {
             {
                 Collections.singletonList(new eu.supersede.integration.api.feedback.orchestrator.types.Parameter());
                 Application __DSPOT_application_175 = new Application("XV;8qtc<3]`c[*]0*NUR", 103209380, new Date("f>g].;R^&NhR0[-k-SKT"), new Date(1143962952, -885324722, -311291208, 213329572, -664590353), new eu.supersede.integration.api.feedback.orchestrator.types.GeneralConfiguration("8*#Z{ H94wSTi:*WrHbP", new Date(460838345, 378120465, 529960761, -1340049597, 2101360576, 1952931535), new Date(-501624293L), Collections.singletonList(new eu.supersede.integration.api.feedback.orchestrator.types.Parameter()), new Application(), new Configuration()), Collections.singletonList(new Configuration()));
-                Feedback result = FeedbackRepositoryProxyTest.proxy.getFeedbackForApplication(feedbackId, applicationId);
+                Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.getFeedbackForApplication(feedbackId, applicationId);
                 notNull(result);
                 result.setApplication(__DSPOT_application_175);
                 org.junit.Assert.fail("testGetFeedbackForApplication_mg9676 should have thrown IllegalArgumentException");
@@ -418,7 +418,7 @@ public class FeedbackRepositoryProxyTest {
     }
 
     public <T> String convertToJSON(T object) throws JsonProcessingException {
-        return FeedbackRepositoryProxyTest.proxy.convertToJSON(object);
+        return FeedbackRepositoryProxyTest_Ampl2.proxy.convertToJSON(object);
     }
 
     private Feedback createFeedbackForApplication() throws Exception {
@@ -430,7 +430,7 @@ public class FeedbackRepositoryProxyTest {
         screenshots.put("screenshot1", FileSystems.getDefault().getPath("src/test/resources/files", "supersede_screenshot1.png"));
         Map<String, Path> audios = new HashMap<>();
         audios.put("audio1", FileSystems.getDefault().getPath("src/test/resources/files", "track.mp3"));
-        Feedback result = FeedbackRepositoryProxyTest.proxy.createFeedbackForApplication(feedback, attachments, screenshots, audios, applicationId);
+        Feedback result = FeedbackRepositoryProxyTest_Ampl2.proxy.createFeedbackForApplication(feedback, attachments, screenshots, audios, applicationId);
         return result;
     }
 
@@ -466,8 +466,8 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadAttachment_add5470() throws Exception {
         String attachmentName = "57377_1508862074050.txt";
         Assert.assertEquals("57377_1508862074050.txt", attachmentName);
-        FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+        FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAttachment(attachmentName, applicationId);
+        byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAttachment(attachmentName, applicationId);
         notNull(result);
         Path path = Paths.get("attachment.att");
         Files.write(path, result);
@@ -478,7 +478,7 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadAttachment_literalMutationString5476_failAssert0() throws Exception {
         try {
             String attachmentName = "57377_f508862074050.txt";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+            byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAttachment(attachmentName, applicationId);
             notNull(result);
             Path path = Paths.get("attachment.att");
             Files.write(path, result);
@@ -492,7 +492,7 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadAttachment_literalMutationString5481_failAssert0() throws Exception {
         try {
             String attachmentName = "c?FXt(-b`l}A)v%,52OUR8D";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAttachment(attachmentName, applicationId);
+            byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAttachment(attachmentName, applicationId);
             notNull(result);
             Path path = Paths.get("attachment.att");
             Files.write(path, result);
@@ -505,8 +505,8 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadScreenshot_add8282() throws Exception {
         String screenshotName = "21794_1508918809103.png";
         Assert.assertEquals("21794_1508918809103.png", screenshotName);
-        FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+        FeedbackRepositoryProxyTest_Ampl2.proxy.downloadScreenshot(screenshotName, applicationId);
+        byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadScreenshot(screenshotName, applicationId);
         notNull(result);
         Path path = Paths.get("screenshot.png");
         Files.write(path, result);
@@ -517,7 +517,7 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadScreenshot_literalMutationString8288_failAssert0() throws Exception {
         try {
             String screenshotName = "";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+            byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadScreenshot(screenshotName, applicationId);
             notNull(result);
             Path path = Paths.get("screenshot.png");
             Files.write(path, result);
@@ -531,7 +531,7 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadScreenshot_literalMutationString8290_failAssert0() throws Exception {
         try {
             String screenshotName = "0,a=S_K)=I*j06n?hXt-q2<";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadScreenshot(screenshotName, applicationId);
+            byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadScreenshot(screenshotName, applicationId);
             notNull(result);
             Path path = Paths.get("screenshot.png");
             Files.write(path, result);
@@ -544,8 +544,8 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadAudio_add6890() throws Exception {
         String audioName = "535533_1508250908348.mp3";
         Assert.assertEquals("535533_1508250908348.mp3", audioName);
-        FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
-        byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+        FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAudio(audioName, applicationId);
+        byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAudio(audioName, applicationId);
         notNull(result);
         Path path = Paths.get("audio.mp3");
         Files.write(path, result);
@@ -556,7 +556,7 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadAudio_literalMutationString6896_failAssert0() throws Exception {
         try {
             String audioName = "";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+            byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAudio(audioName, applicationId);
             notNull(result);
             Path path = Paths.get("audio.mp3");
             Files.write(path, result);
@@ -570,7 +570,7 @@ public class FeedbackRepositoryProxyTest {
     public void testDownloadAudio_literalMutationString6899_failAssert0() throws Exception {
         try {
             String audioName = "5[35533_1508250908348.mp3";
-            byte[] result = FeedbackRepositoryProxyTest.proxy.downloadAudio(audioName, applicationId);
+            byte[] result = FeedbackRepositoryProxyTest_Ampl2.proxy.downloadAudio(audioName, applicationId);
             notNull(result);
             Path path = Paths.get("audio.mp3");
             Files.write(path, result);

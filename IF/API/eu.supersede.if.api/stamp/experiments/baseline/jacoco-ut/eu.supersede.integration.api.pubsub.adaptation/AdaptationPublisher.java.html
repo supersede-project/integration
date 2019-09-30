@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdaptationPublisher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.pubsub.adaptation</a> &gt; <span class="el_source">AdaptationPublisher.java</span></div><h1>AdaptationPublisher.java</h1><pre class="source lang-java linenums">package eu.supersede.integration.api.pubsub.adaptation;
+
+import javax.jms.JMSException;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.jms.Topic;
+import javax.jms.TopicSession;
+import javax.naming.NamingException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import eu.supersede.integration.api.adaptation.types.Alert;
+import eu.supersede.integration.api.json.JsonUtils;
+import eu.supersede.integration.api.pubsub.SubscriptionTopic;
+import eu.supersede.integration.api.pubsub.TopicPublisher;
+
+public class AdaptationPublisher extends TopicPublisher implements iAdaptationPublisher{
+<span class="pc" id="L21">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+	
+	public AdaptationPublisher(String platform) throws NamingException {
+<span class="nc" id="L24">		super (SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC, platform);</span>
+<span class="nc" id="L25">	}</span>
+	
+	public AdaptationPublisher(boolean openConnection, String platform) throws NamingException, JMSException {
+<span class="fc" id="L28">		super (SubscriptionTopic.ANALISIS_DM_ADAPTATION_EVENT_TOPIC, platform);</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">		if (openConnection)</span>
+<span class="fc" id="L30">			openTopicConnection();</span>
+<span class="fc" id="L31">	}</span>
+
+	@Override
+	public void publishAdaptationAlertMesssage(Alert alert) throws JMSException, NamingException, JsonProcessingException {
+<span class="fc" id="L35">		TopicSession topicSession = topicConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);</span>
+		// create or use the topic
+<span class="fc" id="L37">		log.debug(&quot;Publishing on the Topic &quot; + subscriptionTopic.getTopic());</span>
+<span class="fc" id="L38">		Topic topic = (Topic) ctx.lookup(subscriptionTopic.getTopic());</span>
+<span class="fc" id="L39">		javax.jms.TopicPublisher topicPublisher = topicSession.createPublisher(topic);</span>
+<span class="fc" id="L40">		String json = JsonUtils.serializeObjectAsJsonString(alert);</span>
+<span class="fc" id="L41">		TextMessage textMessage = topicSession.createTextMessage(json);</span>
+<span class="fc" id="L42">		topicPublisher.publish(textMessage);</span>
+<span class="fc" id="L43">		log.debug(&quot;Publishing adaptation alert message: &quot; + textMessage);</span>
+<span class="fc" id="L44">		topicPublisher.close();</span>
+<span class="fc" id="L45">		topicSession.close();</span>
+<span class="fc" id="L46">	}</span>
+	
+	@Override
+	protected void finalize() throws Throwable {
+<span class="fc" id="L50">		super.finalize();</span>
+<span class="fc" id="L51">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

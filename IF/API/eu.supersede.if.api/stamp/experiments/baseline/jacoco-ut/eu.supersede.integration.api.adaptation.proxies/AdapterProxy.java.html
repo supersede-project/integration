@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdapterProxy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.adaptation.proxies</a> &gt; <span class="el_source">AdapterProxy.java</span></div><h1>AdapterProxy.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.adaptation.proxies;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
+
+import eu.supersede.integration.api.adaptation.types.ModelSystem;
+import eu.supersede.integration.api.proxy.IFServiceProxy;
+//import eu.supersede.integration.api.security.types.AuthorizationToken;
+import eu.supersede.integration.properties.IntegrationProperty;
+
+<span class="fc" id="L39">public class AdapterProxy &lt;T, S&gt; extends IFServiceProxy&lt;T, S&gt; implements IAdapter {</span>
+<span class="fc" id="L40">	private final Logger log = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L41">	private final static String SUPERSEDE_ADAPTER_ENDPOINT = </span>
+<span class="fc" id="L42">			IntegrationProperty.getProperty(&quot;adapter.endpoint&quot;);</span>
+
+//	private String addURIQueryArray (String uriString, List&lt;String&gt; ids, String idLabel){
+//		boolean queryStarted = false;
+//		for (String id: ids){
+//			if (queryStarted){
+//				uriString = uriString + &quot;&amp;&quot;;
+//			}
+//			uriString = uriString + idLabel + &quot;=&quot; + id;
+//			queryStarted = true;
+//		}
+//		
+//		return uriString;
+//	}
+
+
+	@Override
+	public boolean enactAdaptationDecisionActions(ModelSystem system, List&lt;String&gt; adaptationDecisionActionIds,
+			String featureConfigurationId) throws Exception {
+<span class="fc" id="L61">		Assert.notNull(system, &quot;Provide a valid system&quot;);</span>
+<span class="fc" id="L62">		Assert.notNull(adaptationDecisionActionIds, &quot;Provide valid adaptationDecisionActionIds&quot;);</span>
+<span class="fc" id="L63">		Assert.notEmpty(adaptationDecisionActionIds, &quot;Provide not empty adaptationDecisionActionIds&quot;);</span>
+<span class="fc" id="L64">		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + &quot;adaptationDecisionActions/featureConfiguration/&quot; + featureConfigurationId + &quot;/system/&quot; + system + &quot;?&quot;;</span>
+//		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, &quot;adaptationDecisionActionIds&quot;);
+<span class="fc" id="L66">		log.debug(&quot;Invoking enactAdaptationDecisionActions (system: &quot; + system</span>
+				+ &quot;, adaptationDecisionActionIds: &quot; + adaptationDecisionActionIds
+				+ &quot;, featureConfigurationId: &quot; + featureConfigurationId + &quot;) in uri: &quot; + uriString);
+<span class="fc" id="L69">		Map&lt;String,List&lt;String&gt;&gt; values = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L70">		values.put(&quot;adaptationDecisionActionIds&quot;, adaptationDecisionActionIds);</span>
+<span class="fc" id="L71">		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public boolean enactAdaptationDecisionActionsForFC(ModelSystem system, String featureConfigurationId)
+			throws Exception {
+<span class="fc" id="L77">		Assert.notNull(system, &quot;Provide a valid system&quot;);</span>
+<span class="fc" id="L78">		Assert.notNull(featureConfigurationId, &quot;Provide a valid featureConfigurationId&quot;);</span>
+<span class="fc" id="L79">		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + &quot;adaptationDecisionActionsForFC/featureConfiguration/&quot; + featureConfigurationId + &quot;/system/&quot; + system;</span>
+<span class="fc" id="L80">		log.debug(&quot;Invoking enactAdaptationDecisionActionsForFC (system: &quot; + system</span>
+				+ &quot;, featureConfigurationId: &quot; + featureConfigurationId + &quot;) in uri: &quot; + uriString);
+<span class="fc" id="L82">		return postJSONString(&quot;{}&quot;, new URI(uriString), HttpStatus.OK);</span>
+	}
+
+	@Override
+	public boolean enactAdaptationDecisionActionsInFCasString(ModelSystem system,
+			List&lt;String&gt; adaptationDecisionActionIds, String featureConfigurationAsString, String featureConfigurationId) throws Exception {
+<span class="fc" id="L88">		Assert.notNull(system, &quot;Provide a valid system&quot;);</span>
+<span class="fc" id="L89">		Assert.notNull(adaptationDecisionActionIds, &quot;Provide valid adaptationDecisionActionIds&quot;);</span>
+<span class="fc" id="L90">		Assert.notEmpty(adaptationDecisionActionIds, &quot;Provide not empty adaptationDecisionActionIds&quot;);</span>
+<span class="fc" id="L91">		Assert.notNull(featureConfigurationAsString, &quot;Provide a valid featureConfigurationAsString&quot;);</span>
+<span class="pc bpc" id="L92" title="1 of 2 branches missed.">		Assert.isTrue(!featureConfigurationAsString.isEmpty(), &quot;Provide a not empty featureConfigurationAsString content&quot;);</span>
+<span class="fc" id="L93">		Assert.notNull(featureConfigurationId, &quot;Provide valid featureConfigurationId&quot;);</span>
+<span class="fc" id="L94">		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + &quot;adaptationDecisionActions/system/&quot; + system;</span>
+//		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, &quot;adaptationDecisionActionIds&quot;);
+<span class="fc" id="L96">		log.debug(&quot;Invoking enactAdaptationDecisionActions (system: &quot; + system</span>
+				+ &quot;, adaptationDecisionActionIds: &quot; + adaptationDecisionActionIds
+				+ &quot;, featureConfigurationAsString: &quot; + featureConfigurationAsString + &quot;) in uri: &quot; + uriString);
+<span class="fc" id="L99">		Map&lt;String,List&lt;String&gt;&gt; values = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L100">		values.put(&quot;adaptationDecisionActionIds&quot;, adaptationDecisionActionIds);</span>
+<span class="fc" id="L101">		String[] fc = {featureConfigurationAsString};</span>
+<span class="fc" id="L102">		values.put(&quot;fc&quot;,  Arrays.asList(fc));</span>
+<span class="fc" id="L103">		values.put(&quot;fc_id&quot;,  Arrays.asList(featureConfigurationId));</span>
+<span class="fc" id="L104">		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);</span>
+	}
+	
+	@Override
+	public boolean enactAdaptationFCasString(ModelSystem system, String featureConfigurationAsString, String featureConfigurationId) throws Exception {
+<span class="fc" id="L109">		Assert.notNull(system, &quot;Provide a valid system&quot;);</span>
+<span class="fc" id="L110">		Assert.notNull(featureConfigurationAsString, &quot;Provide a valid featureConfigurationAsString&quot;);</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">		Assert.isTrue(!featureConfigurationAsString.isEmpty(), &quot;Provide a not empty featureConfigurationAsString content&quot;);</span>
+<span class="fc" id="L112">		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + &quot;adaptationConfiguration/system/&quot; + system;</span>
+//		uriString = addURIQueryArray(uriString, adaptationDecisionActionIds, &quot;adaptationDecisionActionIds&quot;);
+<span class="fc" id="L114">		log.debug(&quot;Invoking enactAdaptationDecisionActions (system: &quot; + system</span>
+				+ &quot;, featureConfigurationAsString: &quot; + featureConfigurationAsString + &quot;) in uri: &quot; + uriString);
+		
+<span class="fc" id="L117">		Map&lt;String,List&lt;String&gt;&gt; values = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L118">		String[] fc = {featureConfigurationAsString};</span>
+<span class="fc" id="L119">		values.put(&quot;fc&quot;,  Arrays.asList(fc));</span>
+<span class="fc" id="L120">		values.put(&quot;fc_id&quot;,  Arrays.asList(featureConfigurationId));</span>
+<span class="fc" id="L121">		return postFormURLEncoded(new URI(uriString), values, HttpStatus.OK);</span>
+	}
+
+	@Override
+	public boolean enactFeatureConfiguration(ModelSystem system, String featureConfigurationId) throws Exception {
+<span class="nc" id="L126">		Assert.notNull(system, &quot;Provide a valid system&quot;);</span>
+<span class="nc" id="L127">		Assert.notNull(featureConfigurationId, &quot;Provide a valid featureConfigurationId&quot;);</span>
+<span class="nc" id="L128">		String uriString = SUPERSEDE_ADAPTER_ENDPOINT + &quot;featureConfiguration/&quot; + featureConfigurationId + &quot;/system/&quot; + system;</span>
+<span class="nc" id="L129">		log.debug(&quot;Invoking enactFeatureConfiguration (system: &quot; + system</span>
+				+ &quot;, featureConfigurationId: &quot; + featureConfigurationId + &quot;) in uri: &quot; + uriString);
+<span class="nc" id="L131">		return postJSONString(&quot;{}&quot;, new URI(uriString), HttpStatus.OK);</span>
+
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

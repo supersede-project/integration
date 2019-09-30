@@ -10,18 +10,18 @@ import org.springframework.util.Assert;
 import static org.junit.Assert.assertEquals;
 
 
-public class AdaptationConfigurationProxyTest {
+public class AdaptationConfigurationProxyTest_Ampl2 {
     private static AdaptationConfigurationProxy<?, ?> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        AdaptationConfigurationProxyTest.proxy = new AdaptationConfigurationProxy<Object, Object>();
+        AdaptationConfigurationProxyTest_Ampl2.proxy = new AdaptationConfigurationProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
     public void testGetAdaptationConfigurationModenull783_failAssert0() throws Exception {
         try {
-            AdaptationMode mode = AdaptationConfigurationProxyTest.proxy.getAdaptationConfigurationMode();
+            AdaptationMode mode = AdaptationConfigurationProxyTest_Ampl2.proxy.getAdaptationConfigurationMode();
             Assert.notNull(null);
             org.junit.Assert.fail("testGetAdaptationConfigurationModenull783 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -33,8 +33,8 @@ public class AdaptationConfigurationProxyTest {
     public void testGetAdaptationConfigurationModenull783_failAssert0_add795_failAssert0() throws Exception {
         try {
             {
-                AdaptationConfigurationProxyTest.proxy.getAdaptationConfigurationMode();
-                AdaptationMode mode = AdaptationConfigurationProxyTest.proxy.getAdaptationConfigurationMode();
+                AdaptationConfigurationProxyTest_Ampl2.proxy.getAdaptationConfigurationMode();
+                AdaptationMode mode = AdaptationConfigurationProxyTest_Ampl2.proxy.getAdaptationConfigurationMode();
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetAdaptationConfigurationModenull783 should have thrown IllegalArgumentException");
             }

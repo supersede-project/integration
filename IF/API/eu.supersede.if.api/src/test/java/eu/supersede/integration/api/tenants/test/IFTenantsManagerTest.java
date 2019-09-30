@@ -26,17 +26,26 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.util.Assert;
 import org.wso2.carbon.tenant.mgt.stub.beans.xsd.TenantInfoBean;
+<<<<<<< HEAD
+=======
+
+>>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
 import eu.supersede.integration.api.security.IFAccount;
 import eu.supersede.integration.api.tenants.IFTenantsManager;
 
-@Ignore
+
 public class IFTenantsManagerTest {
 	static IFTenantsManager tm;
 	
 	@BeforeClass
     public static void setup() throws Exception {
+<<<<<<< HEAD
 	String admin = IFAccount.getUser();
 	String password = IFAccount.getPassword();
+=======
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
+>>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
         tm = new IFTenantsManager(admin, password);
     }
 	

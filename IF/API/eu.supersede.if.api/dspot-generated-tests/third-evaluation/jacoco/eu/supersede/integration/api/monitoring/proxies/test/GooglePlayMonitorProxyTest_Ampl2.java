@@ -14,12 +14,12 @@ import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 
-public class GooglePlayMonitorProxyTest {
+public class GooglePlayMonitorProxyTest_Ampl2 {
     private static GooglePlayMonitorProxy<?, ?> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        GooglePlayMonitorProxyTest.proxy = new GooglePlayMonitorProxy<Object, Object>();
+        GooglePlayMonitorProxyTest_Ampl2.proxy = new GooglePlayMonitorProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
@@ -31,10 +31,10 @@ public class GooglePlayMonitorProxyTest {
         Assert.assertEquals("MarketPlace", ((GooglePlayMonitorConfiguration) (o_testCreateAndDeleteMonitorConfiguration_add1__1)).getKafkaTopic());
         Assert.assertNull(((GooglePlayMonitorConfiguration) (o_testCreateAndDeleteMonitorConfiguration_add1__1)).getId());
         GooglePlayMonitorConfiguration conf = createMonitorConfiguration();
-        GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+        GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest_Ampl2.proxy.createMonitorConfiguration(conf);
         notNull(result);
         isTrue(((result.getId()) > 0));
-        GooglePlayMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+        GooglePlayMonitorProxyTest_Ampl2.proxy.deleteMonitorConfiguration(conf);
         Assert.assertEquals("com.facebook.katana", ((GooglePlayMonitorConfiguration) (o_testCreateAndDeleteMonitorConfiguration_add1__1)).getPackageName());
         Assert.assertEquals(30, ((int) (((GooglePlayMonitorConfiguration) (o_testCreateAndDeleteMonitorConfiguration_add1__1)).getTimeSlot())));
         Assert.assertEquals("AppTweak", ((GooglePlayMonitorConfiguration) (o_testCreateAndDeleteMonitorConfiguration_add1__1)).getToolName());
@@ -46,10 +46,10 @@ public class GooglePlayMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationnull16_failAssert0() throws Exception {
         try {
             GooglePlayMonitorConfiguration conf = createMonitorConfiguration();
-            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest.proxy.createMonitorConfiguration(null);
+            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest_Ampl2.proxy.createMonitorConfiguration(null);
             notNull(result);
             isTrue(((result.getId()) > 0));
-            GooglePlayMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            GooglePlayMonitorProxyTest_Ampl2.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationnull16 should have thrown HttpMessageNotWritableException");
         } catch (HttpMessageNotWritableException expected) {
             Assert.assertEquals("Could not write content: (was java.lang.NullPointerException) (through reference chain: eu.supersede.integration.api.monitoring.monitors.proxies.GooglePlayMonitorConfigurationRequest[\"id\"]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: (was java.lang.NullPointerException) (through reference chain: eu.supersede.integration.api.monitoring.monitors.proxies.GooglePlayMonitorConfigurationRequest[\"id\"])", expected.getMessage());
@@ -60,10 +60,10 @@ public class GooglePlayMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationnull17_failAssert0() throws Exception {
         try {
             GooglePlayMonitorConfiguration conf = createMonitorConfiguration();
-            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest_Ampl2.proxy.createMonitorConfiguration(conf);
             notNull(null);
             isTrue(((result.getId()) > 0));
-            GooglePlayMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            GooglePlayMonitorProxyTest_Ampl2.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationnull17 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -79,11 +79,11 @@ public class GooglePlayMonitorProxyTest {
         Assert.assertEquals("MarketPlace", ((GooglePlayMonitorConfiguration) (o_testUpdateMonitorConfiguration_add497__1)).getKafkaTopic());
         Assert.assertNull(((GooglePlayMonitorConfiguration) (o_testUpdateMonitorConfiguration_add497__1)).getId());
         GooglePlayMonitorConfiguration conf = createMonitorConfiguration();
-        GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+        GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest_Ampl2.proxy.createMonitorConfiguration(conf);
         notNull(result);
         notNull(result);
         result.setTimeSlot(60);
-        result = GooglePlayMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+        result = GooglePlayMonitorProxyTest_Ampl2.proxy.updateMonitorConfiguration(result);
         isTrue(((result.getTimeSlot()) == 60));
         Assert.assertEquals("com.facebook.katana", ((GooglePlayMonitorConfiguration) (o_testUpdateMonitorConfiguration_add497__1)).getPackageName());
         Assert.assertEquals(30, ((int) (((GooglePlayMonitorConfiguration) (o_testUpdateMonitorConfiguration_add497__1)).getTimeSlot())));
@@ -96,11 +96,11 @@ public class GooglePlayMonitorProxyTest {
     public void testUpdateMonitorConfiguration_literalMutationNumber509_failAssert0() throws Exception {
         try {
             GooglePlayMonitorConfiguration conf = createMonitorConfiguration();
-            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest_Ampl2.proxy.createMonitorConfiguration(conf);
             notNull(result);
             notNull(result);
             result.setTimeSlot(0);
-            result = GooglePlayMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = GooglePlayMonitorProxyTest_Ampl2.proxy.updateMonitorConfiguration(result);
             isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfiguration_literalMutationNumber509 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -112,11 +112,11 @@ public class GooglePlayMonitorProxyTest {
     public void testUpdateMonitorConfigurationnull533_failAssert0() throws Exception {
         try {
             GooglePlayMonitorConfiguration conf = createMonitorConfiguration();
-            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest.proxy.createMonitorConfiguration(null);
+            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest_Ampl2.proxy.createMonitorConfiguration(null);
             notNull(result);
             notNull(result);
             result.setTimeSlot(60);
-            result = GooglePlayMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = GooglePlayMonitorProxyTest_Ampl2.proxy.updateMonitorConfiguration(result);
             isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfigurationnull533 should have thrown HttpMessageNotWritableException");
         } catch (HttpMessageNotWritableException expected) {
@@ -128,11 +128,11 @@ public class GooglePlayMonitorProxyTest {
     public void testUpdateMonitorConfigurationnull537_failAssert0() throws Exception {
         try {
             GooglePlayMonitorConfiguration conf = createMonitorConfiguration();
-            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            GooglePlayMonitorConfiguration result = GooglePlayMonitorProxyTest_Ampl2.proxy.createMonitorConfiguration(conf);
             notNull(result);
             notNull(result);
             result.setTimeSlot(60);
-            result = GooglePlayMonitorProxyTest.proxy.updateMonitorConfiguration(null);
+            result = GooglePlayMonitorProxyTest_Ampl2.proxy.updateMonitorConfiguration(null);
             isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfigurationnull537 should have thrown NullPointerException");
         } catch (NullPointerException expected) {

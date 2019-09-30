@@ -22,34 +22,34 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 
-public class AdaptationDashboardResetTest {
+public class AdaptationDashboardResetTest_Ampl3 {
     private static AdaptationDashboardProxy<Object, Object> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        AdaptationDashboardResetTest.proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
+        AdaptationDashboardResetTest_Ampl3.proxy = new AdaptationDashboardProxy<>("adaptation", "adaptation", "atos");
     }
 
     @Test(timeout = 30000)
     public void testResetDashboard_add15() throws Exception {
-        List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+        List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
         for (Adaptation adaptation : adaptations) {
-            Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+            Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
             if (enactment != null) {
-                AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
             }
-            AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
         }
         Adaptation adaptation = createAtosAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
         Enactment enactment = createAtosEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         Assert.notNull(enactment);
         Assert.notNull(enactment);
         adaptation = createSiemensAdaptation();
-        Adaptation o_testResetDashboard_add15__30 = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        Adaptation o_testResetDashboard_add15__30 = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         assertEquals("1238", ((Adaptation) (o_testResetDashboard_add15__30)).getFc_id());
         assertEquals("siemens", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add15__30)).getModel_system())).getTenant())).toString());
         assertEquals("siemens", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add15__30)).getModel_system())).getTenant())).getId());
@@ -58,9 +58,9 @@ public class AdaptationDashboardResetTest {
         assertEquals(0.0, ((double) (((Adaptation) (o_testResetDashboard_add15__30)).getRank())), 0.1);
         assertEquals("Siemens 1238", ((Adaptation) (o_testResetDashboard_add15__30)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testResetDashboard_add15__30)).getActions())).isEmpty());
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         enactment = createSiemensEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         assertEquals("1238", ((Adaptation) (o_testResetDashboard_add15__30)).getFc_id());
         assertEquals("siemens", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add15__30)).getModel_system())).getTenant())).toString());
         assertEquals("siemens", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add15__30)).getModel_system())).getTenant())).getId());
@@ -74,26 +74,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull56_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(null);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull56 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -103,26 +103,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull57_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(null);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(null);
             org.junit.Assert.fail("testResetDashboardnull57 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -131,20 +131,20 @@ public class AdaptationDashboardResetTest {
 
     @Test(timeout = 30000)
     public void testResetDashboard_add14() throws Exception {
-        List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+        List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
         for (Adaptation adaptation : adaptations) {
-            Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+            Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
             if (enactment != null) {
-                AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
             }
-            AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
         }
         Adaptation adaptation = createAtosAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
         Enactment enactment = createAtosEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         Assert.notNull(enactment);
         Assert.notNull(enactment);
         Adaptation o_testResetDashboard_add14__27 = createSiemensAdaptation();
@@ -157,9 +157,9 @@ public class AdaptationDashboardResetTest {
         assertEquals("Siemens 1238", ((Adaptation) (o_testResetDashboard_add14__27)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testResetDashboard_add14__27)).getActions())).isEmpty());
         adaptation = createSiemensAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         enactment = createSiemensEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         assertEquals("1238", ((Adaptation) (o_testResetDashboard_add14__27)).getFc_id());
         assertEquals("siemens", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add14__27)).getModel_system())).getTenant())).toString());
         assertEquals("siemens", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add14__27)).getModel_system())).getTenant())).getId());
@@ -172,13 +172,13 @@ public class AdaptationDashboardResetTest {
 
     @Test(timeout = 30000)
     public void testResetDashboard_add8() throws Exception {
-        List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+        List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
         for (Adaptation adaptation : adaptations) {
-            Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+            Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
             if (enactment != null) {
-                AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
             }
-            AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
         }
         Adaptation o_testResetDashboard_add8__16 = createAtosAdaptation();
         assertEquals("1241", ((Adaptation) (o_testResetDashboard_add8__16)).getFc_id());
@@ -190,17 +190,17 @@ public class AdaptationDashboardResetTest {
         assertEquals("Atos_HSK 1241", ((Adaptation) (o_testResetDashboard_add8__16)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testResetDashboard_add8__16)).getActions())).isEmpty());
         Adaptation adaptation = createAtosAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
         Enactment enactment = createAtosEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         Assert.notNull(enactment);
         Assert.notNull(enactment);
         adaptation = createSiemensAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         enactment = createSiemensEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         assertEquals("1241", ((Adaptation) (o_testResetDashboard_add8__16)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add8__16)).getModel_system())).getTenant())).toString());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add8__16)).getModel_system())).getTenant())).getId());
@@ -214,26 +214,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboard_add12_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            AdaptationDashboardResetTest.proxy.addEnactment(enactment);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             org.junit.Assert.fail("testResetDashboard_add12 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
@@ -243,26 +243,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull48_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(null);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(null);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull48 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -272,26 +272,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull55_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(null);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(null);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull55 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -300,16 +300,16 @@ public class AdaptationDashboardResetTest {
 
     @Test(timeout = 30000)
     public void testResetDashboard_add9() throws Exception {
-        List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+        List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
         for (Adaptation adaptation : adaptations) {
-            Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+            Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
             if (enactment != null) {
-                AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
             }
-            AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
         }
         Adaptation adaptation = createAtosAdaptation();
-        Adaptation o_testResetDashboard_add9__19 = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        Adaptation o_testResetDashboard_add9__19 = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         assertEquals("1241", ((Adaptation) (o_testResetDashboard_add9__19)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add9__19)).getModel_system())).getTenant())).toString());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add9__19)).getModel_system())).getTenant())).getId());
@@ -318,17 +318,17 @@ public class AdaptationDashboardResetTest {
         assertEquals(0.0, ((double) (((Adaptation) (o_testResetDashboard_add9__19)).getRank())), 0.1);
         assertEquals("Atos_HSK 1241", ((Adaptation) (o_testResetDashboard_add9__19)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testResetDashboard_add9__19)).getActions())).isEmpty());
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
         Enactment enactment = createAtosEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         Assert.notNull(enactment);
         Assert.notNull(enactment);
         adaptation = createSiemensAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         enactment = createSiemensEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         assertEquals("1241", ((Adaptation) (o_testResetDashboard_add9__19)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add9__19)).getModel_system())).getTenant())).toString());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testResetDashboard_add9__19)).getModel_system())).getTenant())).getId());
@@ -341,16 +341,16 @@ public class AdaptationDashboardResetTest {
 
     @Test(timeout = 30000)
     public void testResetDashboard_add11() throws Exception {
-        List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+        List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
         for (Adaptation adaptation : adaptations) {
-            Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+            Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
             if (enactment != null) {
-                AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
             }
-            AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
         }
         Adaptation adaptation = createAtosAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
         Enactment o_testResetDashboard_add11__22 = createAtosEnactment(adaptation);
@@ -358,13 +358,13 @@ public class AdaptationDashboardResetTest {
         assertTrue(((Enactment) (o_testResetDashboard_add11__22)).isResult());
         assertNull(((Enactment) (o_testResetDashboard_add11__22)).getAdaptation());
         Enactment enactment = createAtosEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         Assert.notNull(enactment);
         Assert.notNull(enactment);
         adaptation = createSiemensAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         enactment = createSiemensEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         assertEquals("1241", ((Enactment) (o_testResetDashboard_add11__22)).getFc_id());
         assertTrue(((Enactment) (o_testResetDashboard_add11__22)).isResult());
         assertNull(((Enactment) (o_testResetDashboard_add11__22)).getAdaptation());
@@ -373,26 +373,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull49_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(null);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull49 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -402,26 +402,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull53_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(null);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull53 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -432,26 +432,26 @@ public class AdaptationDashboardResetTest {
     public void testResetDashboard_mg44_failAssert0() throws Exception {
         try {
             Date __DSPOT_enactment_completion_time_18 = new Date("&bk*201yCi*OdwpauR%h");
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             enactment.setEnactment_completion_time(__DSPOT_enactment_completion_time_18);
             org.junit.Assert.fail("testResetDashboard_mg44 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -462,26 +462,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboard_mg37() throws Exception {
         Adaptation __DSPOT_a_11 = new Adaptation();
-        List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+        List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
         for (Adaptation adaptation : adaptations) {
-            Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+            Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
             if (enactment != null) {
-                AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
             }
-            AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
         }
         Adaptation adaptation = createAtosAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
         Enactment enactment = createAtosEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         Assert.notNull(enactment);
         Assert.notNull(enactment);
         adaptation = createSiemensAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         enactment = createSiemensEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         int o_testResetDashboard_mg37__40 = adaptation.compareTo(__DSPOT_a_11);
         assertEquals(0, ((int) (o_testResetDashboard_mg37__40)));
     }
@@ -489,26 +489,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull54_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(null);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull54 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -518,26 +518,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboard_add18_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            AdaptationDashboardResetTest.proxy.addEnactment(enactment);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             org.junit.Assert.fail("testResetDashboard_add18 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
@@ -547,26 +547,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull51_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(null);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull51 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -576,26 +576,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull52_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(null);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(null);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull52 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -605,26 +605,26 @@ public class AdaptationDashboardResetTest {
     @Test(timeout = 30000)
     public void testResetDashboardnull50_failAssert0() throws Exception {
         try {
-            List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+            List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
             for (Adaptation adaptation : adaptations) {
-                Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+                Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
                 if (enactment != null) {
-                    AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                    AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
                 }
-                AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
             }
             Adaptation adaptation = createAtosAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(null);
             Enactment enactment = createAtosEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             Assert.notNull(enactment);
             Assert.notNull(enactment);
             adaptation = createSiemensAdaptation();
-            adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+            adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
             enactment = createSiemensEnactment(adaptation);
-            enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+            enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
             org.junit.Assert.fail("testResetDashboardnull50 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -633,30 +633,30 @@ public class AdaptationDashboardResetTest {
 
     @Test(timeout = 30000)
     public void testResetDashboard_add17() throws Exception {
-        List<Adaptation> adaptations = AdaptationDashboardResetTest.proxy.getAllAdaptations();
+        List<Adaptation> adaptations = AdaptationDashboardResetTest_Ampl3.proxy.getAllAdaptations();
         for (Adaptation adaptation : adaptations) {
-            Enactment enactment = AdaptationDashboardResetTest.proxy.getEnactment(adaptation.getFc_id());
+            Enactment enactment = AdaptationDashboardResetTest_Ampl3.proxy.getEnactment(adaptation.getFc_id());
             if (enactment != null) {
-                AdaptationDashboardResetTest.proxy.deleteEnactment(adaptation.getFc_id());
+                AdaptationDashboardResetTest_Ampl3.proxy.deleteEnactment(adaptation.getFc_id());
             }
-            AdaptationDashboardResetTest.proxy.deleteAdaptation(adaptation.getFc_id());
+            AdaptationDashboardResetTest_Ampl3.proxy.deleteAdaptation(adaptation.getFc_id());
         }
         Adaptation adaptation = createAtosAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
         Enactment enactment = createAtosEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         Assert.notNull(enactment);
         Assert.notNull(enactment);
         adaptation = createSiemensAdaptation();
-        adaptation = AdaptationDashboardResetTest.proxy.addAdaptation(adaptation);
+        adaptation = AdaptationDashboardResetTest_Ampl3.proxy.addAdaptation(adaptation);
         Enactment o_testResetDashboard_add17__33 = createSiemensEnactment(adaptation);
         assertEquals("1238", ((Enactment) (o_testResetDashboard_add17__33)).getFc_id());
         assertTrue(((Enactment) (o_testResetDashboard_add17__33)).isResult());
         assertNull(((Enactment) (o_testResetDashboard_add17__33)).getAdaptation());
         enactment = createSiemensEnactment(adaptation);
-        enactment = AdaptationDashboardResetTest.proxy.addEnactment(enactment);
+        enactment = AdaptationDashboardResetTest_Ampl3.proxy.addEnactment(enactment);
         assertEquals("1238", ((Enactment) (o_testResetDashboard_add17__33)).getFc_id());
         assertTrue(((Enactment) (o_testResetDashboard_add17__33)).isResult());
         assertNull(((Enactment) (o_testResetDashboard_add17__33)).getAdaptation());

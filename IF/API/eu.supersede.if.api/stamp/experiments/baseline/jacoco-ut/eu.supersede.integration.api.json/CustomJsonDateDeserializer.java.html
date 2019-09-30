@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomJsonDateDeserializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">eu.supersede.if.api</a> &gt; <a href="index.source.html" class="el_package">eu.supersede.integration.api.json</a> &gt; <span class="el_source">CustomJsonDateDeserializer.java</span></div><h1>CustomJsonDateDeserializer.java</h1><pre class="source lang-java linenums">/*******************************************************************************
+ * Copyright (c) 2016 ATOS Spain S.A.
+ * All rights reserved. Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *     Yosu Gorroñogoitia (ATOS) - main development
+ *
+ * Initially developed in the context of SUPERSEDE EU project www.supersede.eu
+ *******************************************************************************/
+package eu.supersede.integration.api.json;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+
+<span class="fc" id="L32">public class CustomJsonDateDeserializer extends JsonDeserializer&lt;Date&gt;</span>
+{	
+	//NOTE: place generic formatter &quot;yyyy-MM-dd&quot; that only gets the date as the last element in the array
+<span class="fc" id="L35">	private static String[] dateFormats = </span>
+			new String[]{&quot;yyyy-MM-dd+HH:mm&quot;, &quot;yyyy-MM-dd HH:mm:ss&quot;, &quot;yyyy-MM-dd'T'HH:mm:ss.SSS'Z'&quot;, &quot;yyyy-MM-dd&quot;, &quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, &quot;yyyy/MM/dd HH:mm:ss&quot;};
+	
+    @Override
+    public Date deserialize(JsonParser jsonparser,
+            DeserializationContext deserializationcontext) throws IOException, JsonProcessingException {
+<span class="fc" id="L41">        String date = jsonparser.getText();</span>
+<span class="fc" id="L42">        return formatDate (date, dateFormats, 0);</span>
+    }
+    
+    private Date formatDate (String date, String[] dateFormats, int index){
+<span class="fc" id="L46">    	Date result = null;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    	if (index &gt;= dateFormats.length){</span>
+<span class="fc" id="L48">    		return result;</span>
+    	}
+    	
+<span class="fc" id="L51">        SimpleDateFormat sdfIn = new SimpleDateFormat(dateFormats[index]);</span>
+        try {
+<span class="fc" id="L53">        	return sdfIn.parse(date);</span>
+<span class="fc" id="L54">        } catch (ParseException e) {</span>
+<span class="fc" id="L55">        	return formatDate (date, dateFormats, ++index);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -47,6 +47,7 @@ public class IFDataStoreProxyTest {
 	private static IFAuthenticationManager am;
 	private static AuthorizationToken token;
 
+	@Ignore
 	@BeforeClass
 	public static void setup() throws Exception {
 		proxy = new IFDataStoreProxy<Object, Object>();
@@ -55,7 +56,11 @@ public class IFDataStoreProxyTest {
 		am = new IFAuthenticationManager(admin, password);
 		token = am.getAuthorizationToken(admin, password, "");
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> fe2368c51bea68362cbc47b5d6785cc56463dce8
 	@Ignore
 	@Test
 	public void testGetSupersedePlatforms() throws Exception {
@@ -65,14 +70,15 @@ public class IFDataStoreProxyTest {
 			log.debug("Platform: " + platform);
 	}
 
-	@Test
 	@Ignore
+	@Test
 	public void testCreateGetDeleteSupersedePlatform() throws Exception {
 		SupersedePlatform platform = testInsertSupersedePlatform();
 		platform = testGetSupersedePlatform(platform.getPlatform());
 		testDeleteSupersedePlatform(platform.getPlatform());
 	}
 
+	@Ignore
 	@Test
 	@Ignore
 	public void setupSupersedePlatforms() throws Exception {
