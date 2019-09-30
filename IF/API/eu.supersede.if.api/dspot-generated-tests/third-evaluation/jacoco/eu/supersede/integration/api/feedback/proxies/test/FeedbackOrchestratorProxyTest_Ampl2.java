@@ -93,7 +93,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertEquals("password", password);
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testAuthenticate_literalMutationString1027_failAssert0() throws Exception {
         try {
             String user = "speradmin";
@@ -106,7 +106,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testAuthenticate_literalMutationString1033_failAssert0() throws Exception {
         try {
             String user = "superadmin";
@@ -119,7 +119,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testAuthenticatenull1072_failAssert0() throws Exception {
         try {
             String user = "superadmin";
@@ -132,7 +132,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testAuthenticate_add1024null1388_failAssert0() throws Exception {
         try {
             String user = "superadmin";
@@ -423,7 +423,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void searchApplicationsByName_add1() throws Exception {
         List<Application> o_searchApplicationsByName_add1__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.searchApplicationsByName("Test Website 21");
         Assert.assertFalse(o_searchApplicationsByName_add1__1.isEmpty());
@@ -433,7 +433,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(o_searchApplicationsByName_add1__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void searchApplicationsByName_literalMutationString7_failAssert0() throws Exception {
         try {
             List<Application> result = FeedbackOrchestratorProxyTest_Ampl2.proxy.searchApplicationsByName("");
@@ -469,7 +469,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void searchApplicationsByName_add1_literalMutationString149_failAssert0() throws Exception {
         try {
             List<Application> o_searchApplicationsByName_add1__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.searchApplicationsByName("Test Website 21");
@@ -482,7 +482,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void searchApplicationsByName_add1_literalMutationString149_failAssert0_literalMutationString491_failAssert0() throws Exception {
         try {
             {
@@ -701,7 +701,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertNull(((Mechanism) (o_testGetMechanismOfConfiguration_add7644__4)).getParameters());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetMechanismOfConfiguration_literalMutationNumber7657_failAssert0() throws Exception {
         try {
             FeedbackOrchestratorProxyTest_Ampl2.idApplication = 8;
@@ -782,7 +782,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(((Collection) (((Mechanism) (o_testGetMechanismOfApplication_add7298__3)).getParameters())).isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetMechanismOfApplication_literalMutationNumber7306_failAssert0() throws Exception {
         try {
             FeedbackOrchestratorProxyTest_Ampl2.idApplication = 8;
@@ -854,7 +854,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         FeedbackOrchestratorProxyTest_Ampl2.proxy.deleteParameter(result.getId());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetUsers_add9240_failAssert0() throws Exception {
         try {
             FeedbackOrchestratorProxyTest_Ampl2.proxy.getUsers(FeedbackOrchestratorProxyTest_Ampl2.idApplication);
@@ -907,7 +907,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetUserGroups_add9173_failAssert0() throws Exception {
         try {
             FeedbackOrchestratorProxyTest_Ampl2.proxy.getUserGroups(FeedbackOrchestratorProxyTest_Ampl2.idApplication);
@@ -936,7 +936,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(o_testSwitchOrderOfParametersOfMechanism_add16382__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testSwitchOrderOfParametersOfMechanism_literalMutationNumber16395_failAssert0() throws Exception {
         try {
             List<Parameter> result = FeedbackOrchestratorProxyTest_Ampl2.proxy.switchOrderOfParametersOfMechanism(8, 28, 0, 46);
@@ -947,7 +947,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testSwitchOrderOfParametersOfMechanism_add16382_literalMutationNumber16695_failAssert0() throws Exception {
         try {
             List<Parameter> o_testSwitchOrderOfParametersOfMechanism_add16382__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.switchOrderOfParametersOfMechanism(8, 28, 45, 46);
@@ -968,7 +968,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(o_testReorderParameterOfMechanism_add11043__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testReorderParameterOfMechanism_literalMutationNumber11054_failAssert0() throws Exception {
         try {
             List<Parameter> result = FeedbackOrchestratorProxyTest_Ampl2.proxy.reorderParameterOfMechanism(8, 56, 45, 1);
@@ -979,7 +979,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testReorderParameterOfMechanism_add11043_literalMutationNumber11359_failAssert0() throws Exception {
         try {
             List<Parameter> o_testReorderParameterOfMechanism_add11043__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.reorderParameterOfMechanism(8, 28, 45, 1);
@@ -1000,7 +1000,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(o_testSwitchOrderOfParametersOfGeneralConfiguration_add14643__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testSwitchOrderOfParametersOfGeneralConfiguration_literalMutationNumber14656_failAssert0() throws Exception {
         try {
             List<Parameter> result = FeedbackOrchestratorProxyTest_Ampl2.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 8, 0, 41);
@@ -1011,7 +1011,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testSwitchOrderOfParametersOfGeneralConfiguration_add14643litNum15022_failAssert0() throws Exception {
         try {
             List<Parameter> o_testSwitchOrderOfParametersOfGeneralConfiguration_add14643__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.switchOrderOfParametersOfGeneralConfiguration(8, 8, 40, 41);
@@ -1032,7 +1032,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(o_testReorderParameterOfGeneralConfiguration_add9307__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testReorderParameterOfGeneralConfiguration_literalMutationNumber9316_failAssert0() throws Exception {
         try {
             List<Parameter> result = FeedbackOrchestratorProxyTest_Ampl2.proxy.reorderParameterOfGeneralConfiguration(8, 16, 40, 1);
@@ -1043,7 +1043,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testReorderParameterOfGeneralConfiguration_add9307litNum9693_failAssert0() throws Exception {
         try {
             List<Parameter> o_testReorderParameterOfGeneralConfiguration_add9307__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.reorderParameterOfGeneralConfiguration(8, 8, 40, 1);
@@ -1064,7 +1064,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(o_testSwitchOrderOfParametersOfParameter_add18231__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testSwitchOrderOfParametersOfParameter_literalMutationNumber18244_failAssert0() throws Exception {
         try {
             List<Parameter> result = FeedbackOrchestratorProxyTest_Ampl2.proxy.switchOrderOfParametersOfParameter(8, 77, 0, 79);
@@ -1075,7 +1075,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testSwitchOrderOfParametersOfParameter_add18231litNum18617_failAssert0() throws Exception {
         try {
             List<Parameter> o_testSwitchOrderOfParametersOfParameter_add18231__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.switchOrderOfParametersOfParameter(8, 77, 78, 79);
@@ -1096,7 +1096,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         Assert.assertFalse(o_testReorderParameterOfParameter_add12819__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testReorderParameterOfParameter_literalMutationNumber12832_failAssert0() throws Exception {
         try {
             List<Parameter> result = FeedbackOrchestratorProxyTest_Ampl2.proxy.reorderParameterOfParameter(8, 77, 0, 1);
@@ -1107,7 +1107,7 @@ public class FeedbackOrchestratorProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testReorderParameterOfParameter_add12819_literalMutationNumber13136_failAssert0() throws Exception {
         try {
             List<Parameter> o_testReorderParameterOfParameter_add12819__1 = FeedbackOrchestratorProxyTest_Ampl2.proxy.reorderParameterOfParameter(8, 77, 78, 1);

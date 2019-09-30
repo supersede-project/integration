@@ -9,6 +9,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.wso2.carbon.CarbonConstants;
 import org.wso2.carbon.user.core.Permission;
 import org.wso2.carbon.user.core.UserStoreException;
@@ -74,7 +75,7 @@ public class IdentityManagerClientTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testAddUser_literalMutationString1881_failAssert0() throws Exception {
         try {
             String[] roles = IdentityManagerClientTest_Ampl2.usm.getRoleNames();

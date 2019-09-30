@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.springframework.util.Assert;
 import org.springframework.web.client.HttpServerErrorException;
 
@@ -97,7 +98,7 @@ public class ModelRepositoryProxyTest_Ampl2 {
         assertFalse(o_testGetAllBaseModels_add4442__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetAllBaseModels_add4446() throws Exception {
         List<IModel> result = ModelRepositoryProxyTest_Ampl2.proxy.getModelInstances(ModelType.BaseModel, null, null);
         Assert.notNull(result);
@@ -130,7 +131,7 @@ public class ModelRepositoryProxyTest_Ampl2 {
         assertFalse(((Collection) (((BaseModel) (o_testGetAllBaseModels_add4446__6)).getFields())).isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetAllBaseModels_add4449() throws Exception {
         List<IModel> result = ModelRepositoryProxyTest_Ampl2.proxy.getModelInstances(ModelType.BaseModel, null, null);
         Assert.notNull(result);
@@ -229,7 +230,7 @@ public class ModelRepositoryProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetAllBaseModelslitString4464_failAssert0() throws Exception {
         try {
             List<IModel> result = ModelRepositoryProxyTest_Ampl2.proxy.getModelInstances(ModelType.BaseModel, null, null);
@@ -294,7 +295,7 @@ public class ModelRepositoryProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetAllBaseModels_add4446_add4944litString6246_failAssert0() throws Exception {
         try {
             List<IModel> result = ModelRepositoryProxyTest_Ampl2.proxy.getModelInstances(ModelType.BaseModel, null, null);
@@ -326,7 +327,7 @@ public class ModelRepositoryProxyTest_Ampl2 {
         assertEquals("Yosu", o_testGetAllBaseModelsWithQueryMetadata_add6765__3);
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetAllBaseModelsWithQueryMetadata_add6770() throws Exception {
         BaseModel metadata = new BaseModel();
         metadata.setAuthorId(((String) (ModelRepositoryProxyTest_Ampl2.baseModel.getValue("authorId"))));
@@ -361,7 +362,7 @@ public class ModelRepositoryProxyTest_Ampl2 {
         assertFalse(((Collection) (((BaseModel) (o_testGetAllBaseModelsWithQueryMetadata_add6770__10)).getFields())).isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetAllBaseModelsWithQueryMetadata_add6773() throws Exception {
         BaseModel metadata = new BaseModel();
         metadata.setAuthorId(((String) (ModelRepositoryProxyTest_Ampl2.baseModel.getValue("authorId"))));
@@ -469,7 +470,7 @@ public class ModelRepositoryProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetAllBaseModelsWithQueryMetadatalitString6832_failAssert0() throws Exception {
         try {
             BaseModel metadata = new BaseModel();

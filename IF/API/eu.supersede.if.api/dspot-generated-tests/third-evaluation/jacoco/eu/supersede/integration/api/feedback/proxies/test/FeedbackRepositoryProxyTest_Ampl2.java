@@ -30,6 +30,7 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.HttpClientErrorException;
@@ -474,7 +475,7 @@ public class FeedbackRepositoryProxyTest_Ampl2 {
         Assert.assertEquals("57377_1508862074050.txt", attachmentName);
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testDownloadAttachment_literalMutationString5476_failAssert0() throws Exception {
         try {
             String attachmentName = "57377_f508862074050.txt";
@@ -513,7 +514,7 @@ public class FeedbackRepositoryProxyTest_Ampl2 {
         Assert.assertEquals("21794_1508918809103.png", screenshotName);
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testDownloadScreenshot_literalMutationString8288_failAssert0() throws Exception {
         try {
             String screenshotName = "";
@@ -552,7 +553,7 @@ public class FeedbackRepositoryProxyTest_Ampl2 {
         Assert.assertEquals("535533_1508250908348.mp3", audioName);
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testDownloadAudio_literalMutationString6896_failAssert0() throws Exception {
         try {
             String audioName = "";

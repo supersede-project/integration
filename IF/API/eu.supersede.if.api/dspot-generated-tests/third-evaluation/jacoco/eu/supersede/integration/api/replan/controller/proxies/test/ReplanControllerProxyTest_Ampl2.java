@@ -228,7 +228,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetPlanOfReleaseByIdOfProjectById_add35136() throws Exception {
         List<Release> o_testGetPlanOfReleaseByIdOfProjectById_add35136__1 = ReplanControllerProxyTest_Ampl2.proxy.getReleasesOfProjectById(ReplanControllerProxyTest_Ampl2.projectId);
         assertFalse(o_testGetPlanOfReleaseByIdOfProjectById_add35136__1.isEmpty());
@@ -239,7 +239,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         assertFalse(o_testGetPlanOfReleaseByIdOfProjectById_add35136__1.isEmpty());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetPlanOfReleaseByIdOfProjectByIdnull35168_failAssert0() throws Exception {
         try {
             List<Release> releases = ReplanControllerProxyTest_Ampl2.proxy.getReleasesOfProjectById(ReplanControllerProxyTest_Ampl2.projectId);
@@ -288,7 +288,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetPlanOfReleaseByIdOfProjectByIdnull35168_failAssert0_mg35289_failAssert0() throws Exception {
         try {
             {
@@ -327,7 +327,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testGetPlanOfReleaseByIdOfProjectByIdnull35168_failAssert0_mg35289_failAssert0_add35595_failAssert0() throws Exception {
         try {
             {
@@ -467,7 +467,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         assertNull(((Project) (o_testCreateAndDeleteFeatureForProject_add16143__1)).getId());
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testCreateAndDeleteFeatureForProject_add16149_failAssert0() throws Exception {
         try {
             Project project = ReplanControllerProxyTest_Ampl2.createProject();
@@ -677,7 +677,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testCreateAndDeleteFeatureForProject_add16149_failAssert0_mg16470_failAssert0() throws Exception {
         try {
             {
@@ -933,7 +933,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         assertEquals("Atos test release description", originalDescription);
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testUpdateReleasesOfProjectById_mg38384() throws Exception {
         List<Resource> __DSPOT_resources_1113 = Collections.singletonList(new Resource());
         List<Release> releases = ReplanControllerProxyTest_Ampl2.proxy.getReleasesOfProjectById(ReplanControllerProxyTest_Ampl2.projectId);
@@ -1034,7 +1034,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testUpdateResourceOfProjectById_add39985() throws Exception {
         List<Resource> o_testUpdateResourceOfProjectById_add39985__1 = ReplanControllerProxyTest_Ampl2.proxy.getResourcesOfProjectById(ReplanControllerProxyTest_Ampl2.projectId);
         assertFalse(o_testUpdateResourceOfProjectById_add39985__1.isEmpty());

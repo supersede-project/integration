@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.Assert;
 
@@ -83,7 +84,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActions_literalMutationString23_failAssert0() throws Exception {
         try {
             ModelSystem system = ModelSystem.Atos_HSK;
@@ -102,7 +103,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActions_literalMutationString29_failAssert0() throws Exception {
         try {
             ModelSystem system = ModelSystem.Atos_HSK;
@@ -121,7 +122,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActions_literalMutationString34_failAssert0() throws Exception {
         try {
             ModelSystem system = ModelSystem.Atos_HSK;
@@ -161,7 +162,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActionslitString49_failAssert0() throws Exception {
         try {
             ModelSystem system = ModelSystem.Atos_HSK;
@@ -255,7 +256,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActions_literalMutationString34_failAssert0litString779_failAssert0() throws Exception {
         try {
             {
@@ -277,7 +278,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActions_literalMutationString23_failAssert0litString1194_failAssert0() throws Exception {
         try {
             {
@@ -322,7 +323,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactSelectedAdaptationDecisionsInFCGivenByString_mg7279_failAssert0litString8072_failAssert0() throws Exception {
         try {
             {
@@ -347,7 +348,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactFCGivenByString_mg5216_failAssert0() throws Exception {
         try {
             Adaptation __DSPOT_a_264 = new Adaptation();
@@ -366,7 +367,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactFCGivenByString_mg5217_failAssert0() throws Exception {
         try {
             List<Action> __DSPOT_actions_265 = Collections.singletonList(new Action());
@@ -385,7 +386,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactFCGivenByStringlitString5241_failAssert0() throws Exception {
         try {
             ModelSystem system = ModelSystem.Atos_HSK;
@@ -425,7 +426,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactFCGivenByString_mg5216_failAssert0litString5747_failAssert0() throws Exception {
         try {
             {
@@ -447,7 +448,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActionsForFC_add3025_failAssert0() throws Exception {
         try {
             uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
@@ -463,7 +464,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActionsForFC_mg3048_failAssert0() throws Exception {
         try {
             String __DSPOT_fc_id_123 = "m&{:-/38n(LZ=I%e;*vS";
@@ -546,7 +547,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActionsForFC_add3030_failAssert0_add3226_failAssert0() throws Exception {
         try {
             {
@@ -626,7 +627,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActionsForFC_mg3048_failAssert0_add3242_failAssert0litString4464_failAssert0() throws Exception {
         try {
             {
@@ -650,7 +651,7 @@ public class AdapterProxyTest_Ampl2 {
         }
     }
 
-    @Test(timeout = 30000)
+    @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActionsForFC_mg3048_failAssert0_add3242_failAssert0litString4483_failAssert0() throws Exception {
         try {
             {
