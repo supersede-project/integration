@@ -28,7 +28,7 @@ import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 
-public class IFAuthenticationManagerTest {
+public class IFAuthenticationManagerTest_Ampl4 {
     static IFAuthenticationManager am;
 
     String testUserName = "test";
@@ -45,11 +45,11 @@ public class IFAuthenticationManagerTest {
     public static void setup() throws Exception {
         String admin = IFAccount.getUser();
         String password = IFAccount.getPassword();
-        IFAuthenticationManagerTest.am = new IFAuthenticationManager(admin, password);
+        IFAuthenticationManagerTest_Ampl4.am = new IFAuthenticationManager(admin, password);
         try {
             User user = new User();
             user.setUserName("test");
-            IFAuthenticationManagerTest.am.deleteUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         } catch (Exception e) {
 
         }
@@ -91,11 +91,11 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals("User Test address", ((User) (o_addUserTest_add1082__1)).getAddress());
         Assert.assertEquals("User Test country", ((User) (o_addUserTest_add1082__1)).getCountry());
         User user = createTestUser();
-        if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-            IFAuthenticationManagerTest.am.deleteUser(user);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         }
-        IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-        user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+        user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         isTrue(isValidTestUser(user));
         Assert.assertEquals("test", ((User) (o_addUserTest_add1082__1)).getUserName());
         Assert.assertEquals("User Test firstname", ((User) (o_addUserTest_add1082__1)).getFirstname());
@@ -134,11 +134,11 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void addUserTest_add1089() throws MalformedURLException, UserStoreException {
         User user = createTestUser();
-        if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-            IFAuthenticationManagerTest.am.deleteUser(user);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         }
-        IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-        user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+        user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         boolean o_addUserTest_add1089__12 = isValidTestUser(user);
         Assert.assertTrue(o_addUserTest_add1089__12);
         isTrue(isValidTestUser(user));
@@ -149,11 +149,11 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_mg1093() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_145 = new User();
         User user = createTestUser();
-        if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-            IFAuthenticationManagerTest.am.deleteUser(user);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         }
-        IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-        user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+        user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         isTrue(isValidTestUser(user));
         boolean o_addUserTest_mg1093__16 = user.equals(__DSPOT_o_145);
         Assert.assertFalse(o_addUserTest_mg1093__16);
@@ -163,12 +163,12 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_add1085_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                IFAuthenticationManagerTest.am.deleteUser(user);
-                IFAuthenticationManagerTest.am.deleteUser(user);
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             }
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(user));
             org.junit.Assert.fail("addUserTest_add1085 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
@@ -180,12 +180,12 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_add1086_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                IFAuthenticationManagerTest.am.deleteUser(user);
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             }
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(user));
             org.junit.Assert.fail("addUserTest_add1086 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
@@ -197,10 +197,10 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_remove1090_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
             }
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(user));
             org.junit.Assert.fail("addUserTest_remove1090 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
@@ -212,10 +212,10 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_remove1091_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                IFAuthenticationManagerTest.am.deleteUser(user);
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             }
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(user));
             org.junit.Assert.fail("addUserTest_remove1091 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -228,11 +228,11 @@ public class IFAuthenticationManagerTest {
         try {
             Claim[] __DSPOT__claims_146 = new Claim[]{ new Claim(), new Claim(), new Claim() };
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                IFAuthenticationManagerTest.am.deleteUser(user);
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             }
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(user));
             user.readClaims(__DSPOT__claims_146);
             org.junit.Assert.fail("addUserTest_mg1094 should have thrown NullPointerException");
@@ -246,11 +246,11 @@ public class IFAuthenticationManagerTest {
         try {
             URL __DSPOT_url_157 = new URL(new URL(new URL("O&`]e7o[Kiw/qa6pE0]A"), "]Ci2@sxS($<9$T4bXzes"), "i<&g-WNb,LXZU? pnD>X");
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                IFAuthenticationManagerTest.am.deleteUser(user);
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             }
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(user));
             user.setUrl(__DSPOT_url_157);
             org.junit.Assert.fail("addUserTest_mg1105 should have thrown MalformedURLException");
@@ -262,11 +262,11 @@ public class IFAuthenticationManagerTest {
     public void addUserTestnull1108_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                IFAuthenticationManagerTest.am.deleteUser(user);
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             }
-            IFAuthenticationManagerTest.am.addUser(null, testUserPassword, requirePasswordChange);
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(null, testUserPassword, requirePasswordChange);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(user));
             org.junit.Assert.fail("addUserTestnull1108 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -278,11 +278,11 @@ public class IFAuthenticationManagerTest {
     public void addUserTestnull1109_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             User user = createTestUser();
-            if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                IFAuthenticationManagerTest.am.deleteUser(user);
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             }
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-            user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+            user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             isTrue(isValidTestUser(null));
             org.junit.Assert.fail("addUserTestnull1109 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -294,11 +294,11 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_mg1093_add1218() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_145 = new User();
         User user = createTestUser();
-        if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-            IFAuthenticationManagerTest.am.deleteUser(user);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         }
-        IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-        User o_addUserTest_mg1093_add1218__12 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+        User o_addUserTest_mg1093_add1218__12 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         Assert.assertEquals("test", ((User) (o_addUserTest_mg1093_add1218__12)).getUserName());
         Assert.assertTrue(((eu.supersede.integration.api.security.types.User)o_addUserTest_mg1093_add1218__12).getClaims().containsKey("http://wso2.org/claims/organization"));
         Assert.assertEquals("User Test organization", ((eu.supersede.integration.api.security.types.User)o_addUserTest_mg1093_add1218__12).getClaims().get("http://wso2.org/claims/organization"));
@@ -331,7 +331,7 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(3556498, ((int) (((User) (o_addUserTest_mg1093_add1218__12)).hashCode())));
         Assert.assertEquals("User Test address", ((User) (o_addUserTest_mg1093_add1218__12)).getAddress());
         Assert.assertEquals("User Test country", ((User) (o_addUserTest_mg1093_add1218__12)).getCountry());
-        user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         isTrue(isValidTestUser(user));
         boolean o_addUserTest_mg1093__16 = user.equals(__DSPOT_o_145);
         Assert.assertEquals("test", ((User) (o_addUserTest_mg1093_add1218__12)).getUserName());
@@ -373,12 +373,12 @@ public class IFAuthenticationManagerTest {
         try {
             {
                 User user = createTestUser();
-                if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                    IFAuthenticationManagerTest.am.deleteUser(user);
+                if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                    IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
                 }
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-                user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+                user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 isTrue(isValidTestUser(null));
                 org.junit.Assert.fail("addUserTest_add1086 should have thrown UserStoreException");
             }
@@ -394,11 +394,11 @@ public class IFAuthenticationManagerTest {
             {
                 User user = createTestUser();
                 user.getUserName();
-                if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                    IFAuthenticationManagerTest.am.deleteUser(user);
+                if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                    IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
                 }
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-                user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+                user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 isTrue(isValidTestUser(null));
                 org.junit.Assert.fail("addUserTestnull1109 should have thrown IllegalArgumentException");
             }
@@ -413,11 +413,11 @@ public class IFAuthenticationManagerTest {
         try {
             {
                 User user = createTestUser();
-                if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-                    IFAuthenticationManagerTest.am.deleteUser(user);
+                if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+                    IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
                 }
-                IFAuthenticationManagerTest.am.addUser(null, testUserPassword, requirePasswordChange);
-                user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(null, testUserPassword, requirePasswordChange);
+                user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 isTrue(isValidTestUser(null));
                 org.junit.Assert.fail("addUserTestnull1108 should have thrown IllegalArgumentException");
             }
@@ -431,11 +431,11 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_mg1093_add1218_add3586() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_145 = new User();
         User user = createTestUser();
-        if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-            IFAuthenticationManagerTest.am.deleteUser(user);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         }
-        IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-        User o_addUserTest_mg1093_add1218_add3586__12 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+        User o_addUserTest_mg1093_add1218_add3586__12 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         Assert.assertEquals("test", ((User) (o_addUserTest_mg1093_add1218_add3586__12)).getUserName());
         Assert.assertEquals("User Test organization", ((User) (o_addUserTest_mg1093_add1218_add3586__12)).getOrganization());
         Assert.assertTrue(((eu.supersede.integration.api.security.types.User)o_addUserTest_mg1093_add1218_add3586__12).getClaims().containsKey("http://wso2.org/claims/organization"));
@@ -468,8 +468,8 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(3556498, ((int) (((User) (o_addUserTest_mg1093_add1218_add3586__12)).hashCode())));
         Assert.assertEquals("User Test address", ((User) (o_addUserTest_mg1093_add1218_add3586__12)).getAddress());
         Assert.assertEquals("User Test country", ((User) (o_addUserTest_mg1093_add1218_add3586__12)).getCountry());
-        User o_addUserTest_mg1093_add1218__12 = IFAuthenticationManagerTest.am.getUser(testUserName);
-        user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User o_addUserTest_mg1093_add1218__12 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
+        user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         isTrue(isValidTestUser(user));
         boolean o_addUserTest_mg1093__16 = user.equals(__DSPOT_o_145);
         Assert.assertEquals("test", ((User) (o_addUserTest_mg1093_add1218_add3586__12)).getUserName());
@@ -510,14 +510,14 @@ public class IFAuthenticationManagerTest {
     public void addUserTest_mg1093_add1218_add3614() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_145 = new User();
         User user = createTestUser();
-        if ((IFAuthenticationManagerTest.am.getUser(user.getUserName())) != null) {
-            IFAuthenticationManagerTest.am.deleteUser(user);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(user.getUserName())) != null) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         }
-        IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
-        User o_addUserTest_mg1093_add1218__12 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
+        User o_addUserTest_mg1093_add1218__12 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         boolean o_addUserTest_mg1093_add1218_add3614__15 = ((eu.supersede.integration.api.security.types.User)o_addUserTest_mg1093_add1218__12).getClaims().containsKey("http://wso2.org/claims/organization");
         Assert.assertTrue(o_addUserTest_mg1093_add1218_add3614__15);
-        user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         isTrue(isValidTestUser(user));
         boolean o_addUserTest_mg1093__16 = user.equals(__DSPOT_o_145);
         Assert.assertTrue(o_addUserTest_mg1093_add1218_add3614__15);
@@ -526,18 +526,18 @@ public class IFAuthenticationManagerTest {
     @Ignore
     @Test
     public void throwUserExistWhenAddUserTest() throws MalformedURLException, UserStoreException {
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         try {
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
         } finally {
-            IFAuthenticationManagerTest.am.deleteUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         }
     }
 
@@ -564,10 +564,10 @@ public class IFAuthenticationManagerTest {
             e.printStackTrace();
         }
         Set<Role> roles = new HashSet<Role>();
-        Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+        Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
         Role role = createTestRole();
         if (!(allRoles.contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
         roles.add(role);
         user.setRoles(roles);
@@ -610,14 +610,14 @@ public class IFAuthenticationManagerTest {
 
     @Test(timeout = 30000)
     public void getUserTest_add17187_add17549() throws MalformedURLException, UserStoreException {
-        User o_getUserTest_add17187__1 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User o_getUserTest_add17187__1 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         boolean o_getUserTest_add17187_add17549__4 = ((eu.supersede.integration.api.security.types.User)o_getUserTest_add17187__1).getClaims().containsKey("http://wso2.org/claims/organization");
         Assert.assertTrue(o_getUserTest_add17187_add17549__4);
-        if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
             User user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         notNull(user);
         Assert.assertTrue(o_getUserTest_add17187_add17549__4);
     }
@@ -630,15 +630,15 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(-1146839000, ((int) (((Role) (o_getAllUsersForRoleTest_add13281__1)).hashCode())));
         Assert.assertFalse(((Collection) (((Role) (o_getAllUsersForRoleTest_add13281__1)).getPermissions())).isEmpty());
         Role role = createTestRole();
-        Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+        Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
         if (!(allRoles.contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
             User user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        List<User> users = IFAuthenticationManagerTest.am.getAllUsersForRole(role);
+        List<User> users = IFAuthenticationManagerTest_Ampl4.am.getAllUsersForRole(role);
         notNull(users);
         isTrue(((users.size()) > 0));
         Assert.assertEquals("testRole", ((Role) (o_getAllUsersForRoleTest_add13281__1)).getRoleName());
@@ -650,17 +650,17 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void getAllUsersForRoleTest_add13283() throws MalformedURLException, UserStoreException {
         Role role = createTestRole();
-        Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+        Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
         boolean o_getAllUsersForRoleTest_add13283__6 = allRoles.contains(role);
         Assert.assertTrue(o_getAllUsersForRoleTest_add13283__6);
         if (!(allRoles.contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
             User user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        List<User> users = IFAuthenticationManagerTest.am.getAllUsersForRole(role);
+        List<User> users = IFAuthenticationManagerTest_Ampl4.am.getAllUsersForRole(role);
         notNull(users);
         isTrue(((users.size()) > 0));
         Assert.assertTrue(o_getAllUsersForRoleTest_add13283__6);
@@ -669,11 +669,11 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void getAllUsersForRoleTest_add13285() throws MalformedURLException, UserStoreException {
         Role role = createTestRole();
-        Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+        Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
         if (!(allRoles.contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        User o_getAllUsersForRoleTest_add13285__11 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User o_getAllUsersForRoleTest_add13285__11 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         Assert.assertEquals("test", ((User) (o_getAllUsersForRoleTest_add13285__11)).getUserName());
         Assert.assertEquals("User Test firstname", ((User) (o_getAllUsersForRoleTest_add13285__11)).getFirstname());
         Assert.assertEquals("User Test lastname", ((User) (o_getAllUsersForRoleTest_add13285__11)).getLastname());
@@ -706,11 +706,11 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(3556498, ((int) (((User) (o_getAllUsersForRoleTest_add13285__11)).hashCode())));
         Assert.assertEquals("User Test address", ((User) (o_getAllUsersForRoleTest_add13285__11)).getAddress());
         Assert.assertEquals("User Test country", ((User) (o_getAllUsersForRoleTest_add13285__11)).getCountry());
-        if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
             User user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        List<User> users = IFAuthenticationManagerTest.am.getAllUsersForRole(role);
+        List<User> users = IFAuthenticationManagerTest_Ampl4.am.getAllUsersForRole(role);
         notNull(users);
         isTrue(((users.size()) > 0));
         Assert.assertEquals("test", ((User) (o_getAllUsersForRoleTest_add13285__11)).getUserName());
@@ -751,15 +751,15 @@ public class IFAuthenticationManagerTest {
     public void getAllUsersForRoleTestnull13322_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Role role = createTestRole();
-            Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+            Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
             if (!(allRoles.contains(role))) {
-                IFAuthenticationManagerTest.am.addRole(role);
+                IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             }
-            if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
                 User user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
-            List<User> users = IFAuthenticationManagerTest.am.getAllUsersForRole(null);
+            List<User> users = IFAuthenticationManagerTest_Ampl4.am.getAllUsersForRole(null);
             notNull(users);
             isTrue(((users.size()) > 0));
             org.junit.Assert.fail("getAllUsersForRoleTestnull13322 should have thrown IllegalArgumentException");
@@ -772,15 +772,15 @@ public class IFAuthenticationManagerTest {
     public void getAllUsersForRoleTestnull13323_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Role role = createTestRole();
-            Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+            Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
             if (!(allRoles.contains(role))) {
-                IFAuthenticationManagerTest.am.addRole(role);
+                IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             }
-            if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+            if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
                 User user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
-            List<User> users = IFAuthenticationManagerTest.am.getAllUsersForRole(role);
+            List<User> users = IFAuthenticationManagerTest_Ampl4.am.getAllUsersForRole(role);
             notNull(null);
             isTrue(((users.size()) > 0));
             org.junit.Assert.fail("getAllUsersForRoleTestnull13323 should have thrown IllegalArgumentException");
@@ -792,16 +792,16 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void getAllUsersForRoleTest_add13285_add13715() throws MalformedURLException, UserStoreException {
         Role role = createTestRole();
-        Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+        Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
         if (!(allRoles.contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        User o_getAllUsersForRoleTest_add13285__11 = IFAuthenticationManagerTest.am.getUser(testUserName);
-        if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+        User o_getAllUsersForRoleTest_add13285__11 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
             User user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        List<User> users = IFAuthenticationManagerTest.am.getAllUsersForRole(role);
+        List<User> users = IFAuthenticationManagerTest_Ampl4.am.getAllUsersForRole(role);
         notNull(users);
         isTrue(((users.size()) > 0));
         boolean o_getAllUsersForRoleTest_add13285_add13715__26 = ((eu.supersede.integration.api.security.types.User)o_getAllUsersForRoleTest_add13285__11).getClaims().containsKey("http://wso2.org/claims/url");
@@ -812,16 +812,16 @@ public class IFAuthenticationManagerTest {
     public void getAllUsersForRoleTest_add13285_mg13970() throws MalformedURLException, UserStoreException {
         Object __DSPOT_o_1558 = new Object();
         Role role = createTestRole();
-        Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+        Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
         if (!(allRoles.contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        User o_getAllUsersForRoleTest_add13285__11 = IFAuthenticationManagerTest.am.getUser(testUserName);
-        if ((IFAuthenticationManagerTest.am.getUser(testUserName)) == null) {
+        User o_getAllUsersForRoleTest_add13285__11 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
+        if ((IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName)) == null) {
             User user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        List<User> users = IFAuthenticationManagerTest.am.getAllUsersForRole(role);
+        List<User> users = IFAuthenticationManagerTest_Ampl4.am.getAllUsersForRole(role);
         notNull(users);
         isTrue(((users.size()) > 0));
         boolean o_getAllUsersForRoleTest_add13285_mg13970__28 = role.equals(__DSPOT_o_1558);
@@ -830,7 +830,7 @@ public class IFAuthenticationManagerTest {
 
     @Test(timeout = 30000)
     public void updateUserTest_add19184() throws MalformedURLException, UserStoreException {
-        User o_updateUserTest_add19184__1 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User o_updateUserTest_add19184__1 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         Assert.assertEquals("test", ((User) (o_updateUserTest_add19184__1)).getUserName());
         Assert.assertEquals("User Test firstname modified", ((User) (o_updateUserTest_add19184__1)).getFirstname());
         Assert.assertEquals("User Test lastname modified", ((User) (o_updateUserTest_add19184__1)).getLastname());
@@ -863,14 +863,14 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(3556498, ((int) (((User) (o_updateUserTest_add19184__1)).hashCode())));
         Assert.assertEquals("User Test address modified", ((User) (o_updateUserTest_add19184__1)).getAddress());
         Assert.assertEquals("User Test country modified", ((User) (o_updateUserTest_add19184__1)).getCountry());
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
         updateUser(user);
-        IFAuthenticationManagerTest.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
-        IFAuthenticationManagerTest.am.updateUser(user);
+        IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
+        IFAuthenticationManagerTest_Ampl4.am.updateUser(user);
         Assert.assertEquals("test", ((User) (o_updateUserTest_add19184__1)).getUserName());
         Assert.assertEquals("User Test firstname modified", ((User) (o_updateUserTest_add19184__1)).getFirstname());
         Assert.assertEquals("User Test lastname modified", ((User) (o_updateUserTest_add19184__1)).getLastname());
@@ -908,14 +908,14 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void updateUserTest_mg19200() throws MalformedURLException, UserStoreException {
         Object __DSPOT_o_1976 = new Object();
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
         updateUser(user);
-        IFAuthenticationManagerTest.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
-        IFAuthenticationManagerTest.am.updateUser(user);
+        IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
+        IFAuthenticationManagerTest_Ampl4.am.updateUser(user);
         boolean o_updateUserTest_mg19200__15 = user.equals(__DSPOT_o_1976);
         Assert.assertFalse(o_updateUserTest_mg19200__15);
     }
@@ -924,14 +924,14 @@ public class IFAuthenticationManagerTest {
     public void updateUserTest_mg19201_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Claim[] __DSPOT__claims_1977 = new Claim[]{ new Claim() };
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
             updateUser(user);
-            IFAuthenticationManagerTest.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
-            IFAuthenticationManagerTest.am.updateUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
+            IFAuthenticationManagerTest_Ampl4.am.updateUser(user);
             user.readClaims(__DSPOT__claims_1977);
             org.junit.Assert.fail("updateUserTest_mg19201 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -942,14 +942,14 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void updateUserTestnull19216_failAssert0() throws MalformedURLException, UserStoreException {
         try {
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
             updateUser(user);
-            IFAuthenticationManagerTest.am.updateUserCredential(null, ((testUserPassword) + "New"), testUserPassword);
-            IFAuthenticationManagerTest.am.updateUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(null, ((testUserPassword) + "New"), testUserPassword);
+            IFAuthenticationManagerTest_Ampl4.am.updateUser(user);
             org.junit.Assert.fail("updateUserTestnull19216 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("user shouldn\'t be null", expected.getMessage());
@@ -959,14 +959,14 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void updateUserTestnull19217_failAssert0() throws MalformedURLException, UserStoreException {
         try {
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
             updateUser(user);
-            IFAuthenticationManagerTest.am.updateUserCredential(user, null, testUserPassword);
-            IFAuthenticationManagerTest.am.updateUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, null, testUserPassword);
+            IFAuthenticationManagerTest_Ampl4.am.updateUser(user);
             org.junit.Assert.fail("updateUserTestnull19217 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Unsupported type of password", expected.getMessage());
@@ -976,14 +976,14 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void updateUserTestnull19218_failAssert0() throws MalformedURLException, UserStoreException {
         try {
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
             updateUser(user);
-            IFAuthenticationManagerTest.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
-            IFAuthenticationManagerTest.am.updateUser(null);
+            IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
+            IFAuthenticationManagerTest_Ampl4.am.updateUser(null);
             org.junit.Assert.fail("updateUserTestnull19218 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("user shouldn\'t be null", expected.getMessage());
@@ -996,14 +996,14 @@ public class IFAuthenticationManagerTest {
             {
                 User __DSPOT_o_2074 = new User();
                 URL __DSPOT_url_1988 = new URL("|k`_d=^0NDJy{L%b@Xp2");
-                User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 if (user == null) {
                     user = createTestUser();
-                    IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                    IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
                 }
                 updateUser(user);
-                IFAuthenticationManagerTest.am.updateUserCredential(user, ((testUserPassword) + "http://wso2.org/claims/organization"), testUserPassword);
-                IFAuthenticationManagerTest.am.updateUser(user);
+                IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, ((testUserPassword) + "http://wso2.org/claims/organization"), testUserPassword);
+                IFAuthenticationManagerTest_Ampl4.am.updateUser(user);
                 user.setUrl(__DSPOT_url_1988);
                 org.junit.Assert.fail("updateUserTest_mg19212 should have thrown MalformedURLException");
                 user.equals(__DSPOT_o_2074);
@@ -1018,15 +1018,15 @@ public class IFAuthenticationManagerTest {
     public void updateUserTest_add19184litString19947_mg22474_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Claim[] __DSPOT__claims_2271 = new Claim[]{ new Claim(), new Claim() };
-            User o_updateUserTest_add19184__1 = IFAuthenticationManagerTest.am.getUser(testUserName);
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User o_updateUserTest_add19184__1 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
             updateUser(user);
-            IFAuthenticationManagerTest.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
-            IFAuthenticationManagerTest.am.updateUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, ((testUserPassword) + "New"), testUserPassword);
+            IFAuthenticationManagerTest_Ampl4.am.updateUser(user);
             user.readClaims(__DSPOT__claims_2271);
             org.junit.Assert.fail("updateUserTest_add19184litString19947_mg22474 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -1049,8 +1049,8 @@ public class IFAuthenticationManagerTest {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        Set<Role> userRoles = IFAuthenticationManagerTest.am.getAllRolesOfUser(user);
-        Set<Role> allRoles = IFAuthenticationManagerTest.am.getAllRoles();
+        Set<Role> userRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRolesOfUser(user);
+        Set<Role> allRoles = IFAuthenticationManagerTest_Ampl4.am.getAllRoles();
         Role removedRole = null;
         for (Role role : userRoles) {
             if ((role != null) && (role.getRoleName().contains("Supersede"))) {
@@ -1072,20 +1072,20 @@ public class IFAuthenticationManagerTest {
 
     @Test(timeout = 30000)
     public void deleteUserTest_add6672() throws MalformedURLException, UserStoreException {
-        User o_deleteUserTest_add6672__1 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User o_deleteUserTest_add6672__1 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         Assert.assertNull(o_deleteUserTest_add6672__1);
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        IFAuthenticationManagerTest.am.deleteUser(user);
+        IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         Assert.assertNull(o_deleteUserTest_add6672__1);
     }
 
     @Test(timeout = 30000)
     public void deleteUserTest_add6673() throws MalformedURLException, UserStoreException {
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             User o_deleteUserTest_add6673__5 = createTestUser();
             Assert.assertEquals("test", ((User) (o_deleteUserTest_add6673__5)).getUserName());
@@ -1121,7 +1121,7 @@ public class IFAuthenticationManagerTest {
             Assert.assertEquals("User Test address", ((User) (o_deleteUserTest_add6673__5)).getAddress());
             Assert.assertEquals("User Test country", ((User) (o_deleteUserTest_add6673__5)).getCountry());
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             Assert.assertEquals("test", ((User) (o_deleteUserTest_add6673__5)).getUserName());
             Assert.assertEquals("User Test firstname", ((User) (o_deleteUserTest_add6673__5)).getFirstname());
             Assert.assertEquals("User Test lastname", ((User) (o_deleteUserTest_add6673__5)).getLastname());
@@ -1155,18 +1155,18 @@ public class IFAuthenticationManagerTest {
             Assert.assertEquals("User Test address", ((User) (o_deleteUserTest_add6673__5)).getAddress());
             Assert.assertEquals("User Test country", ((User) (o_deleteUserTest_add6673__5)).getCountry());
         }
-        IFAuthenticationManagerTest.am.deleteUser(user);
+        IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
     }
 
     @Test(timeout = 30000)
     public void deleteUserTest_mg6678() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_824 = new User();
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        IFAuthenticationManagerTest.am.deleteUser(user);
+        IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         boolean o_deleteUserTest_mg6678__12 = user.equals(__DSPOT_o_824);
         Assert.assertFalse(o_deleteUserTest_mg6678__12);
     }
@@ -1174,13 +1174,13 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void deleteUserTest_add6675_failAssert0() throws MalformedURLException, UserStoreException {
         try {
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
-            IFAuthenticationManagerTest.am.deleteUser(user);
-            IFAuthenticationManagerTest.am.deleteUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             org.junit.Assert.fail("deleteUserTest_add6675 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Cannot delete user who is not exist", expected.getMessage());
@@ -1191,12 +1191,12 @@ public class IFAuthenticationManagerTest {
     public void deleteUserTest_mg6679_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Claim[] __DSPOT__claims_825 = new Claim[]{ new Claim(), new Claim(), new Claim(), new Claim() };
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
-            IFAuthenticationManagerTest.am.deleteUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
             user.readClaims(__DSPOT__claims_825);
             org.junit.Assert.fail("deleteUserTest_mg6679 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -1207,12 +1207,12 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void deleteUserTestnull6693_failAssert0() throws MalformedURLException, UserStoreException {
         try {
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
-            IFAuthenticationManagerTest.am.deleteUser(null);
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(null);
             org.junit.Assert.fail("deleteUserTestnull6693 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("user shouldn\'t be null", expected.getMessage());
@@ -1222,7 +1222,7 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void deleteUserTest_mg6678_add6776() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_824 = new User();
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             User o_deleteUserTest_mg6678_add6776__7 = createTestUser();
             Assert.assertEquals("test", ((User) (o_deleteUserTest_mg6678_add6776__7)).getUserName());
@@ -1258,7 +1258,7 @@ public class IFAuthenticationManagerTest {
             Assert.assertEquals("User Test address", ((User) (o_deleteUserTest_mg6678_add6776__7)).getAddress());
             Assert.assertEquals("User Test country", ((User) (o_deleteUserTest_mg6678_add6776__7)).getCountry());
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             Assert.assertEquals("test", ((User) (o_deleteUserTest_mg6678_add6776__7)).getUserName());
             Assert.assertEquals("User Test firstname", ((User) (o_deleteUserTest_mg6678_add6776__7)).getFirstname());
             Assert.assertEquals("User Test lastname", ((User) (o_deleteUserTest_mg6678_add6776__7)).getLastname());
@@ -1292,7 +1292,7 @@ public class IFAuthenticationManagerTest {
             Assert.assertEquals("User Test address", ((User) (o_deleteUserTest_mg6678_add6776__7)).getAddress());
             Assert.assertEquals("User Test country", ((User) (o_deleteUserTest_mg6678_add6776__7)).getCountry());
         }
-        IFAuthenticationManagerTest.am.deleteUser(user);
+        IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         boolean o_deleteUserTest_mg6678__12 = user.equals(__DSPOT_o_824);
     }
 
@@ -1301,12 +1301,12 @@ public class IFAuthenticationManagerTest {
         try {
             {
                 String __DSPOT_organization_876 = ";}WQfvL=c4&yLKu 2Ewo";
-                User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 if (user == null) {
                     user = createTestUser();
-                    IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                    IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
                 }
-                IFAuthenticationManagerTest.am.deleteUser(null);
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(null);
                 org.junit.Assert.fail("deleteUserTestnull6693 should have thrown IllegalArgumentException");
                 user.setOrganization(__DSPOT_organization_876);
             }
@@ -1322,12 +1322,12 @@ public class IFAuthenticationManagerTest {
             {
                 String __DSPOT_email_846 = "d&mJTP[,bV;,qv[w0`1@";
                 Claim[] __DSPOT__claims_825 = new Claim[]{ new Claim(), new Claim(), new Claim(), new Claim() };
-                User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 if (user == null) {
                     user = createTestUser();
-                    IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                    IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
                 }
-                IFAuthenticationManagerTest.am.deleteUser(user);
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
                 user.readClaims(__DSPOT__claims_825);
                 org.junit.Assert.fail("deleteUserTest_mg6679 should have thrown NullPointerException");
                 user.setEmail(__DSPOT_email_846);
@@ -1343,13 +1343,13 @@ public class IFAuthenticationManagerTest {
         try {
             {
                 User __DSPOT_o_839 = new User();
-                User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 if (user == null) {
                     user = createTestUser();
-                    IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                    IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
                 }
-                IFAuthenticationManagerTest.am.deleteUser(user);
-                IFAuthenticationManagerTest.am.deleteUser(user);
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
                 org.junit.Assert.fail("deleteUserTest_add6675 should have thrown UserStoreException");
                 user.equals(__DSPOT_o_839);
             }
@@ -1366,12 +1366,12 @@ public class IFAuthenticationManagerTest {
                 Set<Role> __DSPOT_roles_1133 = Collections.singleton(new Role());
                 User __DSPOT_o_887 = new User();
                 User __DSPOT_o_824 = new User();
-                User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+                User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
                 if (user == null) {
                     user = createTestUser();
-                    IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                    IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
                 }
-                IFAuthenticationManagerTest.am.deleteUser(user);
+                IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
                 boolean o_deleteUserTest_mg6678__12 = user.equals(__DSPOT_o_824);
                 __DSPOT_o_824.equals(__DSPOT_o_887);
                 org.junit.Assert.fail("deleteUserTest_mg6678_mg6854 should have thrown NullPointerException");
@@ -1388,7 +1388,7 @@ public class IFAuthenticationManagerTest {
     public void throwUserDoesNotExistWhenDeleteUserTest() throws MalformedURLException, UserStoreException {
         try {
             User user = createTestUser("userdoesnotexist");
-            IFAuthenticationManagerTest.am.deleteUser(user);
+            IFAuthenticationManagerTest_Ampl4.am.deleteUser(user);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
@@ -1403,10 +1403,10 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(-1146839000, ((int) (((Role) (o_addRoleTest_add1__1)).hashCode())));
         Assert.assertFalse(((Collection) (((Role) (o_addRoleTest_add1__1)).getPermissions())).isEmpty());
         Role role = createTestRole();
-        if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-            IFAuthenticationManagerTest.am.deleteRole(role);
+        if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         }
-        IFAuthenticationManagerTest.am.addRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         Assert.assertEquals("testRole", ((Role) (o_addRoleTest_add1__1)).getRoleName());
         Assert.assertTrue(((Collection) (((Role) (o_addRoleTest_add1__1)).getUsers())).isEmpty());
         Assert.assertEquals(-1146839000, ((int) (((Role) (o_addRoleTest_add1__1)).hashCode())));
@@ -1417,11 +1417,11 @@ public class IFAuthenticationManagerTest {
     public void addRoleTest_add4_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                IFAuthenticationManagerTest.am.deleteRole(role);
-                IFAuthenticationManagerTest.am.deleteRole(role);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             }
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             org.junit.Assert.fail("addRoleTest_add4 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Can not delete non exiting role", expected.getMessage());
@@ -1432,11 +1432,11 @@ public class IFAuthenticationManagerTest {
     public void addRoleTest_add5_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                IFAuthenticationManagerTest.am.deleteRole(role);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             }
-            IFAuthenticationManagerTest.am.addRole(role);
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             org.junit.Assert.fail("addRoleTest_add5 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Role name: testRole in the system. Please pick another role name.", expected.getMessage());
@@ -1447,9 +1447,9 @@ public class IFAuthenticationManagerTest {
     public void addRoleTest_remove6_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
             }
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             org.junit.Assert.fail("addRoleTest_remove6 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Role name: testRole in the system. Please pick another role name.", expected.getMessage());
@@ -1460,10 +1460,10 @@ public class IFAuthenticationManagerTest {
     public void addRoleTestnull13_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(null)) {
-                IFAuthenticationManagerTest.am.deleteRole(role);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(null)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             }
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             org.junit.Assert.fail("addRoleTestnull13 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Role name: testRole in the system. Please pick another role name.", expected.getMessage());
@@ -1474,10 +1474,10 @@ public class IFAuthenticationManagerTest {
     public void addRoleTestnull15_failAssert0() throws MalformedURLException, UserStoreException {
         try {
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                IFAuthenticationManagerTest.am.deleteRole(role);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             }
-            IFAuthenticationManagerTest.am.addRole(null);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(null);
             org.junit.Assert.fail("addRoleTestnull15 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("role shouldn\'t be null", expected.getMessage());
@@ -1489,11 +1489,11 @@ public class IFAuthenticationManagerTest {
         try {
             Role o_addRoleTest_add1__1 = createTestRole();
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                IFAuthenticationManagerTest.am.deleteRole(role);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             }
-            IFAuthenticationManagerTest.am.addRole(role);
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             org.junit.Assert.fail("addRoleTest_add1_add123 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Role name: testRole in the system. Please pick another role name.", expected.getMessage());
@@ -1505,10 +1505,10 @@ public class IFAuthenticationManagerTest {
         try {
             Role o_addRoleTest_add1__1 = createTestRole();
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(null)) {
-                IFAuthenticationManagerTest.am.deleteRole(role);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(null)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             }
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             org.junit.Assert.fail("addRoleTest_add1null153 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Role name: testRole in the system. Please pick another role name.", expected.getMessage());
@@ -1520,10 +1520,10 @@ public class IFAuthenticationManagerTest {
         try {
             Role o_addRoleTest_add1__1 = createTestRole();
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                IFAuthenticationManagerTest.am.deleteRole(null);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(null);
             }
-            IFAuthenticationManagerTest.am.addRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             org.junit.Assert.fail("addRoleTest_add1null154 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("role shouldn\'t be null", expected.getMessage());
@@ -1535,10 +1535,10 @@ public class IFAuthenticationManagerTest {
         try {
             Role o_addRoleTest_add1__1 = createTestRole();
             Role role = createTestRole();
-            if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                IFAuthenticationManagerTest.am.deleteRole(role);
+            if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             }
-            IFAuthenticationManagerTest.am.addRole(null);
+            IFAuthenticationManagerTest_Ampl4.am.addRole(null);
             org.junit.Assert.fail("addRoleTest_add1null155 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("role shouldn\'t be null", expected.getMessage());
@@ -1551,11 +1551,11 @@ public class IFAuthenticationManagerTest {
             {
                 Set<User> __DSPOT_userList_27 = Collections.singleton(new User());
                 Role role = createTestRole();
-                if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                    IFAuthenticationManagerTest.am.deleteRole(role);
+                if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                    IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
                 }
-                IFAuthenticationManagerTest.am.addRole(role);
-                IFAuthenticationManagerTest.am.addRole(role);
+                IFAuthenticationManagerTest_Ampl4.am.addRole(role);
+                IFAuthenticationManagerTest_Ampl4.am.addRole(role);
                 org.junit.Assert.fail("addRoleTest_add5 should have thrown UserStoreException");
                 role.setUsers(__DSPOT_userList_27);
             }
@@ -1571,10 +1571,10 @@ public class IFAuthenticationManagerTest {
         Role o_addRoleTest_add1__1 = createTestRole();
         Role o_addRoleTest_add1_add115__4 = createTestRole();
         Role role = createTestRole();
-        if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-            IFAuthenticationManagerTest.am.deleteRole(role);
+        if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         }
-        IFAuthenticationManagerTest.am.addRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         boolean o_addRoleTest_add1_add115_mg595__18 = o_addRoleTest_add1__1.equals(__DSPOT_o_118);
         Assert.assertFalse(o_addRoleTest_add1_add115_mg595__18);
     }
@@ -1585,10 +1585,10 @@ public class IFAuthenticationManagerTest {
         Role o_addRoleTest_add1_add89__1 = createTestRole();
         Role o_addRoleTest_add1__1 = createTestRole();
         Role role = createTestRole();
-        if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-            IFAuthenticationManagerTest.am.deleteRole(role);
+        if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+            IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         }
-        IFAuthenticationManagerTest.am.addRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         boolean o_addRoleTest_add1_add89_mg619__18 = role.equals(__DSPOT_o_138);
         Assert.assertFalse(o_addRoleTest_add1_add89_mg619__18);
     }
@@ -1600,11 +1600,11 @@ public class IFAuthenticationManagerTest {
                 {
                     Set<User> __DSPOT_userList_27 = Collections.singleton(new User());
                     Role role = createTestRole();
-                    if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                        IFAuthenticationManagerTest.am.deleteRole(role);
+                    if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
                     }
-                    IFAuthenticationManagerTest.am.addRole(null);
-                    IFAuthenticationManagerTest.am.addRole(role);
+                    IFAuthenticationManagerTest_Ampl4.am.addRole(null);
+                    IFAuthenticationManagerTest_Ampl4.am.addRole(role);
                     org.junit.Assert.fail("addRoleTest_add5 should have thrown UserStoreException");
                     role.setUsers(__DSPOT_userList_27);
                 }
@@ -1623,11 +1623,11 @@ public class IFAuthenticationManagerTest {
                 {
                     Set<User> __DSPOT_userList_27 = Collections.singleton(new User());
                     Role role = createTestRole();
-                    if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                        IFAuthenticationManagerTest.am.deleteRole(null);
+                    if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                        IFAuthenticationManagerTest_Ampl4.am.deleteRole(null);
                     }
-                    IFAuthenticationManagerTest.am.addRole(role);
-                    IFAuthenticationManagerTest.am.addRole(role);
+                    IFAuthenticationManagerTest_Ampl4.am.addRole(role);
+                    IFAuthenticationManagerTest_Ampl4.am.addRole(role);
                     org.junit.Assert.fail("addRoleTest_add5 should have thrown UserStoreException");
                     role.setUsers(__DSPOT_userList_27);
                 }
@@ -1646,12 +1646,12 @@ public class IFAuthenticationManagerTest {
                 {
                     Set<User> __DSPOT_userList_27 = Collections.singleton(new User());
                     Role role = createTestRole();
-                    if (IFAuthenticationManagerTest.am.getAllRoles().contains(role)) {
-                        IFAuthenticationManagerTest.am.deleteRole(role);
-                        IFAuthenticationManagerTest.am.deleteRole(role);
+                    if (IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role)) {
+                        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
+                        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
                     }
-                    IFAuthenticationManagerTest.am.addRole(role);
-                    IFAuthenticationManagerTest.am.addRole(role);
+                    IFAuthenticationManagerTest_Ampl4.am.addRole(role);
+                    IFAuthenticationManagerTest_Ampl4.am.addRole(role);
                     org.junit.Assert.fail("addRoleTest_add5 should have thrown UserStoreException");
                     role.setUsers(__DSPOT_userList_27);
                 }
@@ -1675,13 +1675,13 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void getAllRolesForUserTest_mg10665() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_1257 = new User();
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
         notNull(user);
-        Set<Role> roles = IFAuthenticationManagerTest.am.getAllRolesOfUser(user);
+        Set<Role> roles = IFAuthenticationManagerTest_Ampl4.am.getAllRolesOfUser(user);
         notNull(roles);
         boolean o_getAllRolesForUserTest_mg10665__15 = user.equals(__DSPOT_o_1257);
         Assert.assertFalse(o_getAllRolesForUserTest_mg10665__15);
@@ -1690,13 +1690,13 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void getAllRolesForUserTestnull10682_failAssert0() throws MalformedURLException, UserStoreException {
         try {
-            User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+            User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
             if (user == null) {
                 user = createTestUser();
-                IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+                IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
             }
             notNull(user);
-            Set<Role> roles = IFAuthenticationManagerTest.am.getAllRolesOfUser(user);
+            Set<Role> roles = IFAuthenticationManagerTest_Ampl4.am.getAllRolesOfUser(user);
             notNull(null);
             org.junit.Assert.fail("getAllRolesForUserTestnull10682 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1706,7 +1706,7 @@ public class IFAuthenticationManagerTest {
 
     @Test(timeout = 30000)
     public void getAllRolesForUserTest_add10660_add10758() throws MalformedURLException, UserStoreException {
-        User o_getAllRolesForUserTest_add10660_add10758__1 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User o_getAllRolesForUserTest_add10660_add10758__1 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         Assert.assertEquals("test", ((User) (o_getAllRolesForUserTest_add10660_add10758__1)).getUserName());
         Assert.assertEquals("User Test firstname", ((User) (o_getAllRolesForUserTest_add10660_add10758__1)).getFirstname());
         Assert.assertEquals("User Test lastname", ((User) (o_getAllRolesForUserTest_add10660_add10758__1)).getLastname());
@@ -1739,14 +1739,14 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(3556498, ((int) (((User) (o_getAllRolesForUserTest_add10660_add10758__1)).hashCode())));
         Assert.assertEquals("User Test address", ((User) (o_getAllRolesForUserTest_add10660_add10758__1)).getAddress());
         Assert.assertEquals("User Test country", ((User) (o_getAllRolesForUserTest_add10660_add10758__1)).getCountry());
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
         notNull(user);
-        Set<Role> o_getAllRolesForUserTest_add10660__10 = IFAuthenticationManagerTest.am.getAllRolesOfUser(user);
-        Set<Role> roles = IFAuthenticationManagerTest.am.getAllRolesOfUser(user);
+        Set<Role> o_getAllRolesForUserTest_add10660__10 = IFAuthenticationManagerTest_Ampl4.am.getAllRolesOfUser(user);
+        Set<Role> roles = IFAuthenticationManagerTest_Ampl4.am.getAllRolesOfUser(user);
         notNull(roles);
         Assert.assertEquals("test", ((User) (o_getAllRolesForUserTest_add10660_add10758__1)).getUserName());
         Assert.assertEquals("User Test firstname", ((User) (o_getAllRolesForUserTest_add10660_add10758__1)).getFirstname());
@@ -1785,7 +1785,7 @@ public class IFAuthenticationManagerTest {
     @Test(timeout = 30000)
     public void getAllRolesForUserTest_add10660_mg10800_add11438() throws MalformedURLException, UserStoreException {
         User __DSPOT_o_1271 = new User();
-        User o_getAllRolesForUserTest_add10660_mg10800_add11438__3 = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User o_getAllRolesForUserTest_add10660_mg10800_add11438__3 = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         Assert.assertEquals("test", ((User) (o_getAllRolesForUserTest_add10660_mg10800_add11438__3)).getUserName());
         Assert.assertEquals("User Test firstname", ((User) (o_getAllRolesForUserTest_add10660_mg10800_add11438__3)).getFirstname());
         Assert.assertEquals("User Test lastname", ((User) (o_getAllRolesForUserTest_add10660_mg10800_add11438__3)).getLastname());
@@ -1818,14 +1818,14 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(3556498, ((int) (((User) (o_getAllRolesForUserTest_add10660_mg10800_add11438__3)).hashCode())));
         Assert.assertEquals("User Test address", ((User) (o_getAllRolesForUserTest_add10660_mg10800_add11438__3)).getAddress());
         Assert.assertEquals("User Test country", ((User) (o_getAllRolesForUserTest_add10660_mg10800_add11438__3)).getCountry());
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
         notNull(user);
-        Set<Role> o_getAllRolesForUserTest_add10660__10 = IFAuthenticationManagerTest.am.getAllRolesOfUser(user);
-        Set<Role> roles = IFAuthenticationManagerTest.am.getAllRolesOfUser(user);
+        Set<Role> o_getAllRolesForUserTest_add10660__10 = IFAuthenticationManagerTest_Ampl4.am.getAllRolesOfUser(user);
+        Set<Role> roles = IFAuthenticationManagerTest_Ampl4.am.getAllRolesOfUser(user);
         notNull(roles);
         boolean o_getAllRolesForUserTest_add10660_mg10800__18 = user.equals(__DSPOT_o_1271);
         Assert.assertEquals("test", ((User) (o_getAllRolesForUserTest_add10660_mg10800_add11438__3)).getUserName());
@@ -1870,10 +1870,10 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(-1146839000, ((int) (((Role) (o_deleteRoleTest_add5470__1)).hashCode())));
         Assert.assertFalse(((Collection) (((Role) (o_deleteRoleTest_add5470__1)).getPermissions())).isEmpty());
         Role role = createTestRole();
-        if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+        if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        IFAuthenticationManagerTest.am.deleteRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         Assert.assertEquals("testRole", ((Role) (o_deleteRoleTest_add5470__1)).getRoleName());
         Assert.assertTrue(((Collection) (((Role) (o_deleteRoleTest_add5470__1)).getUsers())).isEmpty());
         Assert.assertEquals(-1146839000, ((int) (((Role) (o_deleteRoleTest_add5470__1)).hashCode())));
@@ -1884,10 +1884,10 @@ public class IFAuthenticationManagerTest {
     public void deleteRoleTest_mg5477() throws UserStoreException {
         Object __DSPOT_o_661 = new Object();
         Role role = createTestRole();
-        if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+        if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        IFAuthenticationManagerTest.am.deleteRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         boolean o_deleteRoleTest_mg5477__13 = role.equals(__DSPOT_o_661);
         Assert.assertFalse(o_deleteRoleTest_mg5477__13);
     }
@@ -1896,11 +1896,11 @@ public class IFAuthenticationManagerTest {
     public void deleteRoleTest_add5474_failAssert0() throws UserStoreException {
         try {
             Role role = createTestRole();
-            if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
-                IFAuthenticationManagerTest.am.addRole(role);
+            if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
+                IFAuthenticationManagerTest_Ampl4.am.addRole(role);
             }
-            IFAuthenticationManagerTest.am.deleteRole(role);
-            IFAuthenticationManagerTest.am.deleteRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             org.junit.Assert.fail("deleteRoleTest_add5474 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Can not delete non exiting role", expected.getMessage());
@@ -1911,9 +1911,9 @@ public class IFAuthenticationManagerTest {
     public void deleteRoleTest_remove5475_failAssert0() throws UserStoreException {
         try {
             Role role = createTestRole();
-            if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
+            if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
             }
-            IFAuthenticationManagerTest.am.deleteRole(role);
+            IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
             org.junit.Assert.fail("deleteRoleTest_remove5475 should have thrown UserStoreException");
         } catch (UserStoreException expected) {
             Assert.assertEquals("Can not delete non exiting role", expected.getMessage());
@@ -1929,10 +1929,10 @@ public class IFAuthenticationManagerTest {
         Assert.assertEquals(-1146839000, ((int) (((Role) (o_deleteRoleTest_mg5477_add5528__3)).hashCode())));
         Assert.assertFalse(((Collection) (((Role) (o_deleteRoleTest_mg5477_add5528__3)).getPermissions())).isEmpty());
         Role role = createTestRole();
-        if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+        if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        IFAuthenticationManagerTest.am.deleteRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         boolean o_deleteRoleTest_mg5477__13 = role.equals(__DSPOT_o_661);
         Assert.assertEquals("testRole", ((Role) (o_deleteRoleTest_mg5477_add5528__3)).getRoleName());
         Assert.assertTrue(((Collection) (((Role) (o_deleteRoleTest_mg5477_add5528__3)).getUsers())).isEmpty());
@@ -1944,12 +1944,12 @@ public class IFAuthenticationManagerTest {
     public void deleteRoleTest_mg5477_add5532() throws UserStoreException {
         Object __DSPOT_o_661 = new Object();
         Role role = createTestRole();
-        boolean o_deleteRoleTest_mg5477_add5532__5 = IFAuthenticationManagerTest.am.getAllRoles().contains(role);
+        boolean o_deleteRoleTest_mg5477_add5532__5 = IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role);
         Assert.assertFalse(o_deleteRoleTest_mg5477_add5532__5);
-        if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+        if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        IFAuthenticationManagerTest.am.deleteRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         boolean o_deleteRoleTest_mg5477__13 = role.equals(__DSPOT_o_661);
         Assert.assertFalse(o_deleteRoleTest_mg5477_add5532__5);
     }
@@ -1964,10 +1964,10 @@ public class IFAuthenticationManagerTest {
         Assert.assertFalse(((Collection) (((Role) (o_deleteRoleTest_add5470_mg5613_add5901__3)).getPermissions())).isEmpty());
         Role o_deleteRoleTest_add5470__1 = createTestRole();
         Role role = createTestRole();
-        if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
-            IFAuthenticationManagerTest.am.addRole(role);
+        if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
+            IFAuthenticationManagerTest_Ampl4.am.addRole(role);
         }
-        IFAuthenticationManagerTest.am.deleteRole(role);
+        IFAuthenticationManagerTest_Ampl4.am.deleteRole(role);
         boolean o_deleteRoleTest_add5470_mg5613__16 = o_deleteRoleTest_add5470__1.equals(__DSPOT_o_691);
         Assert.assertEquals("testRole", ((Role) (o_deleteRoleTest_add5470_mg5613_add5901__3)).getRoleName());
         Assert.assertTrue(((Collection) (((Role) (o_deleteRoleTest_add5470_mg5613_add5901__3)).getUsers())).isEmpty());
@@ -1982,10 +1982,10 @@ public class IFAuthenticationManagerTest {
                 {
                     Set<User> __DSPOT_userList_678 = Collections.singleton(new User());
                     Role role = createTestRole();
-                    if (!(IFAuthenticationManagerTest.am.getAllRoles().contains(role))) {
-                        IFAuthenticationManagerTest.am.addRole(role);
+                    if (!(IFAuthenticationManagerTest_Ampl4.am.getAllRoles().contains(role))) {
+                        IFAuthenticationManagerTest_Ampl4.am.addRole(role);
                     }
-                    IFAuthenticationManagerTest.am.deleteRole(null);
+                    IFAuthenticationManagerTest_Ampl4.am.deleteRole(null);
                     org.junit.Assert.fail("deleteRoleTestnull5484 should have thrown IllegalArgumentException");
                     role.setUsers(__DSPOT_userList_678);
                     role.setUsers(__DSPOT_userList_678);
@@ -2001,7 +2001,7 @@ public class IFAuthenticationManagerTest {
     @Ignore
     @Test
     public void getAuthorizationTokenTest() throws MalformedURLException, URISyntaxException, TenantMgtAdminServiceExceptionException, UserStoreException {
-        AuthorizationToken token = IFAuthenticationManagerTest.am.getAuthorizationToken(testUserName, testUserPassword, "atos");
+        AuthorizationToken token = IFAuthenticationManagerTest_Ampl4.am.getAuthorizationToken(testUserName, testUserPassword, "atos");
         notNull(token);
         notNull(token.getAccessToken());
         isTrue((!(token.getAccessToken().isEmpty())));
@@ -2010,12 +2010,12 @@ public class IFAuthenticationManagerTest {
     @Ignore
     @Test
     public void testUpdateUserCredential() throws MalformedURLException, UserStoreException {
-        User user = IFAuthenticationManagerTest.am.getUser(testUserName);
+        User user = IFAuthenticationManagerTest_Ampl4.am.getUser(testUserName);
         if (user == null) {
             user = createTestUser();
-            IFAuthenticationManagerTest.am.addUser(user, testUserPassword, requirePasswordChange);
+            IFAuthenticationManagerTest_Ampl4.am.addUser(user, testUserPassword, requirePasswordChange);
         }
-        IFAuthenticationManagerTest.am.updateUserCredential(user, "newCredential", "oldCredential");
+        IFAuthenticationManagerTest_Ampl4.am.updateUserCredential(user, "newCredential", "oldCredential");
     }
 }
 

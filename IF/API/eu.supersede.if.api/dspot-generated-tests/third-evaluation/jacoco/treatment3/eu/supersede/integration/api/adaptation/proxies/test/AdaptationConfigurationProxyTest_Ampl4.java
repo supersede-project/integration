@@ -13,18 +13,18 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
-public class AdaptationConfigurationProxyTest {
+public class AdaptationConfigurationProxyTest_Ampl4 {
     private static AdaptationConfigurationProxy<?, ?> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        AdaptationConfigurationProxyTest.proxy = new AdaptationConfigurationProxy<Object, Object>();
+        AdaptationConfigurationProxyTest_Ampl4.proxy = new AdaptationConfigurationProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
     public void testGetAdaptationConfigurationModenull801_failAssert0() throws Exception {
         try {
-            AdaptationMode mode = AdaptationConfigurationProxyTest.proxy.getAdaptationConfigurationMode();
+            AdaptationMode mode = AdaptationConfigurationProxyTest_Ampl4.proxy.getAdaptationConfigurationMode();
             Assert.notNull(null);
             org.junit.Assert.fail("testGetAdaptationConfigurationModenull801 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -36,8 +36,8 @@ public class AdaptationConfigurationProxyTest {
     public void testGetAdaptationConfigurationModenull801_failAssert0_add813_failAssert0() throws Exception {
         try {
             {
-                AdaptationConfigurationProxyTest.proxy.getAdaptationConfigurationMode();
-                AdaptationMode mode = AdaptationConfigurationProxyTest.proxy.getAdaptationConfigurationMode();
+                AdaptationConfigurationProxyTest_Ampl4.proxy.getAdaptationConfigurationMode();
+                AdaptationMode mode = AdaptationConfigurationProxyTest_Ampl4.proxy.getAdaptationConfigurationMode();
                 Assert.notNull(null);
                 org.junit.Assert.fail("testGetAdaptationConfigurationModenull801 should have thrown IllegalArgumentException");
             }
@@ -49,7 +49,7 @@ public class AdaptationConfigurationProxyTest {
 
     @Test(timeout = 30000)
     public void testSetAdaptationConfigurationMode() throws Exception {
-        HttpStatus o_testSetAdaptationConfigurationMode__1 = AdaptationConfigurationProxyTest.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
+        HttpStatus o_testSetAdaptationConfigurationMode__1 = AdaptationConfigurationProxyTest_Ampl4.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
         assertEquals("OK", ((HttpStatus) (o_testSetAdaptationConfigurationMode__1)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testSetAdaptationConfigurationMode__1)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testSetAdaptationConfigurationMode__1)).is2xxSuccessful());
@@ -61,8 +61,8 @@ public class AdaptationConfigurationProxyTest {
 
     @Test(timeout = 30000)
     public void testSetAdaptationConfigurationMode_add846_add858() throws Exception {
-        HttpStatus o_testSetAdaptationConfigurationMode_add846__1 = AdaptationConfigurationProxyTest.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
-        HttpStatus o_testSetAdaptationConfigurationMode_add846_add858__4 = AdaptationConfigurationProxyTest.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
+        HttpStatus o_testSetAdaptationConfigurationMode_add846__1 = AdaptationConfigurationProxyTest_Ampl4.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
+        HttpStatus o_testSetAdaptationConfigurationMode_add846_add858__4 = AdaptationConfigurationProxyTest_Ampl4.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
         assertEquals("OK", ((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).is2xxSuccessful());
@@ -70,7 +70,7 @@ public class AdaptationConfigurationProxyTest {
         assertFalse(((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).is4xxClientError());
         assertFalse(((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).is5xxServerError());
         assertEquals("200", ((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).toString());
-        HttpStatus o_testSetAdaptationConfigurationMode_add846__2 = AdaptationConfigurationProxyTest.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
+        HttpStatus o_testSetAdaptationConfigurationMode_add846__2 = AdaptationConfigurationProxyTest_Ampl4.proxy.setAdaptationConfigurationMode(AdaptationMode.SUPERVISED);
         assertEquals("OK", ((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).getReasonPhrase());
         assertFalse(((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).is1xxInformational());
         assertTrue(((HttpStatus) (o_testSetAdaptationConfigurationMode_add846_add858__4)).is2xxSuccessful());

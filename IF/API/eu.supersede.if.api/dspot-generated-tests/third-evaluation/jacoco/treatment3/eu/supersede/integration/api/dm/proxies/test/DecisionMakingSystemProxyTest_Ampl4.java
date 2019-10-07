@@ -20,14 +20,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 
-public class DecisionMakingSystemProxyTest {
-    private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxyTest.class);
+public class DecisionMakingSystemProxyTest_Ampl4 {
+    private static final Logger log = LoggerFactory.getLogger(DecisionMakingSystemProxyTest_Ampl4.class);
 
     private static DecisionMakingSystemProxy<Object, Object> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        DecisionMakingSystemProxyTest.proxy = new DecisionMakingSystemProxy<Object, Object>();
+        DecisionMakingSystemProxyTest_Ampl4.proxy = new DecisionMakingSystemProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
@@ -40,7 +40,7 @@ public class DecisionMakingSystemProxyTest {
         Assert.assertEquals("appId1", ((Alert) (o_testNotifyAlert_add1__1)).getApplicationId());
         Assert.assertEquals("id1", ((Alert) (o_testNotifyAlert_add1__1)).getId());
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_add1__4 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_add1__4 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(alert);
         Assert.assertEquals("OK", ((HttpStatus) (o_testNotifyAlert_add1__4)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testNotifyAlert_add1__4)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testNotifyAlert_add1__4)).is2xxSuccessful());
@@ -60,7 +60,7 @@ public class DecisionMakingSystemProxyTest {
     public void testNotifyAlert_mg3() throws Exception {
         String __DSPOT_applicationId_0 = "-*k},GdhscbCS@!x*zH_";
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_mg3__4 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_mg3__4 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(alert);
         Assert.assertEquals("OK", ((HttpStatus) (o_testNotifyAlert_mg3__4)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testNotifyAlert_mg3__4)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testNotifyAlert_mg3__4)).is2xxSuccessful());
@@ -82,7 +82,7 @@ public class DecisionMakingSystemProxyTest {
     public void testNotifyAlert_mg6() throws Exception {
         List<UserRequest> __DSPOT_requests_3 = Collections.singletonList(new UserRequest());
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_mg6__6 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_mg6__6 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(alert);
         Assert.assertEquals("OK", ((HttpStatus) (o_testNotifyAlert_mg6__6)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testNotifyAlert_mg6__6)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testNotifyAlert_mg6__6)).is2xxSuccessful());
@@ -103,7 +103,7 @@ public class DecisionMakingSystemProxyTest {
     @Test(timeout = 30000)
     public void testNotifyAlertnull9() throws Exception {
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlertnull9__3 = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+        HttpStatus o_testNotifyAlertnull9__3 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(null);
         Assert.assertNull(o_testNotifyAlertnull9__3);
     }
 
@@ -113,7 +113,7 @@ public class DecisionMakingSystemProxyTest {
         Assert.assertFalse(o_testNotifyAlert_mg6_add39__1.isEmpty());
         List<UserRequest> __DSPOT_requests_3 = Collections.singletonList(new UserRequest());
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_mg6__6 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_mg6__6 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(alert);
         alert.setRequests(__DSPOT_requests_3);
         Assert.assertFalse(o_testNotifyAlert_mg6_add39__1.isEmpty());
     }
@@ -128,7 +128,7 @@ public class DecisionMakingSystemProxyTest {
         Assert.assertEquals("appId1", ((Alert) (o_testNotifyAlertnull9_add37__1)).getApplicationId());
         Assert.assertEquals("id1", ((Alert) (o_testNotifyAlertnull9_add37__1)).getId());
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlertnull9__3 = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+        HttpStatus o_testNotifyAlertnull9__3 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(null);
         Assert.assertEquals(1481717773760L, ((long) (((Alert) (o_testNotifyAlertnull9_add37__1)).getTimestamp())));
         Assert.assertFalse(((Collection) (((Alert) (o_testNotifyAlertnull9_add37__1)).getRequests())).isEmpty());
         Assert.assertEquals("Delta", ((Alert) (o_testNotifyAlertnull9_add37__1)).getTenant());
@@ -149,7 +149,7 @@ public class DecisionMakingSystemProxyTest {
         Alert o_testNotifyAlert_add1_add60__1 = createAlert();
         Alert o_testNotifyAlert_add1__1 = createAlert();
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlert_add1__4 = DecisionMakingSystemProxyTest.proxy.notifyAlert(alert);
+        HttpStatus o_testNotifyAlert_add1__4 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(alert);
         Assert.assertEquals(1481717773760L, ((long) (((Alert) (o_testNotifyAlert_add1_add60_add555__1)).getTimestamp())));
         Assert.assertFalse(((Collection) (((Alert) (o_testNotifyAlert_add1_add60_add555__1)).getRequests())).isEmpty());
         Assert.assertEquals("Delta", ((Alert) (o_testNotifyAlert_add1_add60_add555__1)).getTenant());
@@ -169,7 +169,7 @@ public class DecisionMakingSystemProxyTest {
         Assert.assertEquals("id1", ((Alert) (o_testNotifyAlertnull9_add37_add550__1)).getId());
         Alert o_testNotifyAlertnull9_add37__1 = createAlert();
         Alert alert = createAlert();
-        HttpStatus o_testNotifyAlertnull9__3 = DecisionMakingSystemProxyTest.proxy.notifyAlert(null);
+        HttpStatus o_testNotifyAlertnull9__3 = DecisionMakingSystemProxyTest_Ampl4.proxy.notifyAlert(null);
         Assert.assertEquals(1481717773760L, ((long) (((Alert) (o_testNotifyAlertnull9_add37_add550__1)).getTimestamp())));
         Assert.assertFalse(((Collection) (((Alert) (o_testNotifyAlertnull9_add37_add550__1)).getRequests())).isEmpty());
         Assert.assertEquals("Delta", ((Alert) (o_testNotifyAlertnull9_add37_add550__1)).getTenant());
