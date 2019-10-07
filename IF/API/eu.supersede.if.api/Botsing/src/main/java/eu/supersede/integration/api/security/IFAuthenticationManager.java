@@ -125,9 +125,15 @@ public class IFAuthenticationManager {
 		// }
 	}
 	
-	public IFAuthenticationManager(String admin, String password){
+//	public IFAuthenticationManager(String admin, String password){
+//		usm = new IFUserStoreManager(admin, password);
+////		tm = new IFTenantsManager(admin, password);
+//	}
+	
+	public IFAuthenticationManager(){
+		String admin = IFAccount.getUser();
+		String password = IFAccount.getPassword();
 		usm = new IFUserStoreManager(admin, password);
-//		tm = new IFTenantsManager(admin, password);
 	}
 
 	// User Authentication

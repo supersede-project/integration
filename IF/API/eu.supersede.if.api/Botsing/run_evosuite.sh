@@ -9,4 +9,5 @@ java -d64 -Xmx4000m -jar supersede-if-botsing/evosuite-master-1.0.7-SNAPSHOT.jar
 	-Dmodel_path="results/models" \
 	-Dtest_dir="results/evosuite-tests" \
 	-Dreport_dir="results/evosuite-report" \
-	-Dno_runtime_dependency=true
+	-Dno_runtime_dependency=true \
+	-Dsandbox=False

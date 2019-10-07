@@ -22,7 +22,7 @@ public class SupersedeFederation {
 		String admin = IFAccount.getUser();
 		String password = IFAccount.getPassword();
 
-		IFAuthenticationManager am = new IFAuthenticationManager(admin, password);
+		IFAuthenticationManager am = new IFAuthenticationManager();
 		try {
 			AuthorizationToken token = am.getAuthorizationToken(admin, password, "");
 			//Read Local platform
