@@ -53,9 +53,7 @@ public class IFAuthenticationManagerTest {
 	
 	@BeforeClass
     public static void setup() throws Exception {
-		String admin = IFAccount.getUser();
-		String password = IFAccount.getPassword();
-        am = new IFAuthenticationManager(admin, password);
+        am = new IFAuthenticationManager();
     }
 	
 	//Authentication Test

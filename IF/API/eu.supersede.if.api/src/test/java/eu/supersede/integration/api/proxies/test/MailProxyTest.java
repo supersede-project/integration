@@ -43,7 +43,7 @@ public class MailProxyTest {
 		// Read account (user, password) from classpath property file
 		String admin = IFAccount.getUser();
 		String password = IFAccount.getPassword();
-        am = new IFAuthenticationManager(admin, password);
+        am = new IFAuthenticationManager();
         token = am.getAuthorizationToken(admin, password, "");
     }
 
