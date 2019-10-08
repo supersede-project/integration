@@ -13,12 +13,12 @@ import org.junit.Test;
 import static org.springframework.util.Assert.notNull;
 
 
-public class ConfigurationFileHttpMonitorProxyTest {
+public class ConfigurationFileHttpMonitorProxyTest_Ampl4 {
     private static ConfigurationFileHttpMonitorProxy<?, ?> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        ConfigurationFileHttpMonitorProxyTest.proxy = new ConfigurationFileHttpMonitorProxy<Object, Object>();
+        ConfigurationFileHttpMonitorProxyTest_Ampl4.proxy = new ConfigurationFileHttpMonitorProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
@@ -35,7 +35,7 @@ public class ConfigurationFileHttpMonitorProxyTest {
         Assert.assertEquals("http", ((HttpMonitorConfigurationFile) (o_testCreateMonitorConfiguration_add1__1)).getKafkaTopic());
         Assert.assertNull(((HttpMonitorConfigurationFile) (o_testCreateMonitorConfiguration_add1__1)).getId());
         HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-        HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
+        HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest_Ampl4.proxy.createHTMLMonitorConfigurationFile(conf);
         notNull(result);
         Assert.assertEquals("production", ((HttpMonitorConfigurationFile) (o_testCreateMonitorConfiguration_add1__1)).getServer());
         Assert.assertEquals(150, ((int) (((HttpMonitorConfigurationFile) (o_testCreateMonitorConfiguration_add1__1)).getTextContentSize())));
@@ -53,7 +53,7 @@ public class ConfigurationFileHttpMonitorProxyTest {
     public void testCreateMonitorConfigurationnull15_failAssert0() throws Exception {
         try {
             HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-            HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(null);
+            HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest_Ampl4.proxy.createHTMLMonitorConfigurationFile(null);
             notNull(result);
             org.junit.Assert.fail("testCreateMonitorConfigurationnull15 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -65,7 +65,7 @@ public class ConfigurationFileHttpMonitorProxyTest {
     public void testCreateMonitorConfigurationnull16_failAssert0() throws Exception {
         try {
             HttpMonitorConfigurationFile conf = createMonitorConfiguration();
-            HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest.proxy.createHTMLMonitorConfigurationFile(conf);
+            HttpMonitorConfigurationFile result = ConfigurationFileHttpMonitorProxyTest_Ampl4.proxy.createHTMLMonitorConfigurationFile(conf);
             notNull(null);
             org.junit.Assert.fail("testCreateMonitorConfigurationnull16 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {

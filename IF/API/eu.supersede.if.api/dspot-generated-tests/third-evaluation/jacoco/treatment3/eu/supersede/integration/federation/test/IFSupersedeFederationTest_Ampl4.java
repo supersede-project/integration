@@ -13,22 +13,22 @@ import org.springframework.util.Assert;
 import static org.junit.Assert.assertEquals;
 
 
-public class IFSupersedeFederationTest {
-    private static final Logger log = LoggerFactory.getLogger(IFSupersedeFederationTest.class);
+public class IFSupersedeFederationTest_Ampl4 {
+    private static final Logger log = LoggerFactory.getLogger(IFSupersedeFederationTest_Ampl4.class);
 
     private static SupersedeFederation federation;
 
     @BeforeClass
     public static void setup() throws Exception {
-        IFSupersedeFederationTest.federation = new SupersedeFederation();
+        IFSupersedeFederationTest_Ampl4.federation = new SupersedeFederation();
     }
 
     @Test(timeout = 30000)
     public void testSupersedeFederationnull12_failAssert0() throws Exception {
         try {
-            List<SupersedePlatform> platforms = IFSupersedeFederationTest.federation.getFederatedSupersedePlatforms();
+            List<SupersedePlatform> platforms = IFSupersedeFederationTest_Ampl4.federation.getFederatedSupersedePlatforms();
             Assert.notEmpty(platforms);
-            SupersedePlatform localPlatform = IFSupersedeFederationTest.federation.getLocalFederatedSupersedePlatform();
+            SupersedePlatform localPlatform = IFSupersedeFederationTest_Ampl4.federation.getLocalFederatedSupersedePlatform();
             Assert.notNull(null);
             org.junit.Assert.fail("testSupersedeFederationnull12 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {

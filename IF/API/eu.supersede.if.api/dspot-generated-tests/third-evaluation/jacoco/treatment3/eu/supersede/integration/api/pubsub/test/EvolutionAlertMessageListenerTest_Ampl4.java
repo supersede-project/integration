@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.mockejb.jms.TextMessageImpl;
 
 
-public class EvolutionAlertMessageListenerTest {
+public class EvolutionAlertMessageListenerTest_Ampl4 {
     @Test(timeout = 30000)
     public void testParsingAlerts_add1() throws IOException, JMSException {
         EvolutionAlertMessageListener listener = new EvolutionAlertMessageListener();

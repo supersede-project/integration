@@ -15,12 +15,12 @@ import static org.springframework.util.Assert.isTrue;
 import static org.springframework.util.Assert.notNull;
 
 
-public class AppStoreMonitorProxyTest {
+public class AppStoreMonitorProxyTest_Ampl4 {
     private static AppStoreMonitorProxy<?, ?> proxy;
 
     @BeforeClass
     public static void setup() throws Exception {
-        AppStoreMonitorProxyTest.proxy = new AppStoreMonitorProxy<Object, Object>();
+        AppStoreMonitorProxyTest_Ampl4.proxy = new AppStoreMonitorProxy<Object, Object>();
     }
 
     @Test(timeout = 30000)
@@ -32,10 +32,10 @@ public class AppStoreMonitorProxyTest {
         Assert.assertEquals("AppTweak", ((AppStoreMonitorConfiguration) (o_testCreateAndDeleteMonitorConfiguration_add1__1)).getToolName());
         Assert.assertNull(((AppStoreMonitorConfiguration) (o_testCreateAndDeleteMonitorConfiguration_add1__1)).getId());
         AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-        AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+        AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest_Ampl4.proxy.createMonitorConfiguration(conf);
         notNull(result);
         isTrue(((result.getId()) > 0));
-        HttpStatus o_testCreateAndDeleteMonitorConfiguration_add1__9 = AppStoreMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+        HttpStatus o_testCreateAndDeleteMonitorConfiguration_add1__9 = AppStoreMonitorProxyTest_Ampl4.proxy.deleteMonitorConfiguration(conf);
         Assert.assertEquals("OK", ((HttpStatus) (o_testCreateAndDeleteMonitorConfiguration_add1__9)).getReasonPhrase());
         Assert.assertFalse(((HttpStatus) (o_testCreateAndDeleteMonitorConfiguration_add1__9)).is1xxInformational());
         Assert.assertTrue(((HttpStatus) (o_testCreateAndDeleteMonitorConfiguration_add1__9)).is2xxSuccessful());
@@ -54,10 +54,10 @@ public class AppStoreMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationnull26_failAssert0() throws Exception {
         try {
             AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest.proxy.createMonitorConfiguration(null);
+            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest_Ampl4.proxy.createMonitorConfiguration(null);
             notNull(result);
             isTrue(((result.getId()) > 0));
-            AppStoreMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AppStoreMonitorProxyTest_Ampl4.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationnull26 should have thrown HttpMessageNotWritableException");
         } catch (HttpMessageNotWritableException expected) {
             Assert.assertEquals("Could not write content: (was java.lang.NullPointerException) (through reference chain: eu.supersede.integration.api.monitoring.monitors.proxies.AppStoreMonitorConfigurationRequest[\"id\"]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: (was java.lang.NullPointerException) (through reference chain: eu.supersede.integration.api.monitoring.monitors.proxies.AppStoreMonitorConfigurationRequest[\"id\"])", expected.getMessage());
@@ -68,10 +68,10 @@ public class AppStoreMonitorProxyTest {
     public void testCreateAndDeleteMonitorConfigurationnull27_failAssert0() throws Exception {
         try {
             AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest_Ampl4.proxy.createMonitorConfiguration(conf);
             notNull(null);
             isTrue(((result.getId()) > 0));
-            AppStoreMonitorProxyTest.proxy.deleteMonitorConfiguration(conf);
+            AppStoreMonitorProxyTest_Ampl4.proxy.deleteMonitorConfiguration(conf);
             org.junit.Assert.fail("testCreateAndDeleteMonitorConfigurationnull27 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -87,11 +87,11 @@ public class AppStoreMonitorProxyTest {
         Assert.assertEquals("MarketPlace", ((AppStoreMonitorConfiguration) (o_testUpdateMonitorConfiguration_add610__1)).getKafkaTopic());
         Assert.assertNull(((AppStoreMonitorConfiguration) (o_testUpdateMonitorConfiguration_add610__1)).getId());
         AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-        AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+        AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest_Ampl4.proxy.createMonitorConfiguration(conf);
         notNull(result);
         notNull(result);
         result.setTimeSlot(60);
-        result = AppStoreMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+        result = AppStoreMonitorProxyTest_Ampl4.proxy.updateMonitorConfiguration(result);
         isTrue(((result.getTimeSlot()) == 60));
         Assert.assertEquals("567630281", ((AppStoreMonitorConfiguration) (o_testUpdateMonitorConfiguration_add610__1)).getappId());
         Assert.assertEquals(30, ((int) (((AppStoreMonitorConfiguration) (o_testUpdateMonitorConfiguration_add610__1)).getTimeSlot())));
@@ -104,11 +104,11 @@ public class AppStoreMonitorProxyTest {
     public void testUpdateMonitorConfiguration_literalMutationNumber622_failAssert0() throws Exception {
         try {
             AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest_Ampl4.proxy.createMonitorConfiguration(conf);
             notNull(result);
             notNull(result);
             result.setTimeSlot(0);
-            result = AppStoreMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AppStoreMonitorProxyTest_Ampl4.proxy.updateMonitorConfiguration(result);
             isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfiguration_literalMutationNumber622 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -120,11 +120,11 @@ public class AppStoreMonitorProxyTest {
     public void testUpdateMonitorConfigurationnull650_failAssert0() throws Exception {
         try {
             AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest.proxy.createMonitorConfiguration(conf);
+            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest_Ampl4.proxy.createMonitorConfiguration(conf);
             notNull(result);
             notNull(result);
             result.setTimeSlot(60);
-            result = AppStoreMonitorProxyTest.proxy.updateMonitorConfiguration(null);
+            result = AppStoreMonitorProxyTest_Ampl4.proxy.updateMonitorConfiguration(null);
             isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfigurationnull650 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
@@ -137,11 +137,11 @@ public class AppStoreMonitorProxyTest {
         try {
             AppStoreMonitorConfiguration o_testUpdateMonitorConfiguration_add610__1 = createMonitorConfiguration();
             AppStoreMonitorConfiguration conf = createMonitorConfiguration();
-            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest.proxy.createMonitorConfiguration(null);
+            AppStoreMonitorConfiguration result = AppStoreMonitorProxyTest_Ampl4.proxy.createMonitorConfiguration(null);
             notNull(result);
             notNull(result);
             result.setTimeSlot(60);
-            result = AppStoreMonitorProxyTest.proxy.updateMonitorConfiguration(result);
+            result = AppStoreMonitorProxyTest_Ampl4.proxy.updateMonitorConfiguration(result);
             isTrue(((result.getTimeSlot()) == 60));
             org.junit.Assert.fail("testUpdateMonitorConfiguration_add610null942 should have thrown HttpMessageNotWritableException");
         } catch (HttpMessageNotWritableException expected) {
