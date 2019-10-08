@@ -1,5 +1,5 @@
 java -d64 -Xmx4000m -jar supersede-if-botsing/evosuite-master-1.0.7-SNAPSHOT.jar \
-	-class "eu.supersede.integration.api.security.IFAuthenticationManager" \
+	-prefix "$1" \
 	-projectCP "$(cat results/classpath.txt)" \
 	-generateMOSuite \
 	-Dalgorithm=DynaMOSA \
