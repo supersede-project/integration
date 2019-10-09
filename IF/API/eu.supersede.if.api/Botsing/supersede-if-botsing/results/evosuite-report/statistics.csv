@@ -6,3 +6,4 @@ eu.supersede.integration.api.security.IFAuthenticationManager,60,65759,1,1,0.029
 eu.supersede.integration.api.security.IFAuthenticationManager,60,66228,1,1,0.04411764705882353,0.017543859649122806,0.0,0.0,1,0.0
 eu.supersede.integration.api.security.types.User,60,70014,345,81,1.0,0.8619246861924686,0.8166666666666667,0.8584070796460177,6,0.3805309734513274
 eu.supersede.integration.api.security.types.User,60,69702,337,81,1.0,0.8619246861924686,0.8166666666666667,0.8584070796460177,6,0.39823008849557523
+eu.supersede.integration.api.adaptation.dashboad.types.Action,60,13220,53,18,1.0,1.0,1.0,1.0,0,0.5

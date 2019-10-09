@@ -1,5 +1,5 @@
 java -d64 -Xmx4000m -jar supersede-if-botsing/evosuite-master-1.0.7-SNAPSHOT.jar \
-	-prefix "$1" \
+	-class "$1" \
 	-projectCP "$(cat results/classpath.txt)" \
 	-generateMOSuite \
 	-Dalgorithm=DynaMOSA \
