@@ -436,6 +436,15 @@
 	  <activation>
 	    <activeByDefault>false</activeByDefault>
 	  </activation>
+	  <dependencies>
+	    <dependency>
+    		<groupId>eu.stamp.evosuite</groupId>
+    		<artifactId>evosuite-master</artifactId>
+    		<version>1.0.7-SNAPSHOT</version>
+    		<scope>system</scope>
+    		<systemPath>${project.basedir}/Botsing/supersede-if-botsing/evosuite-master-1.0.7-SNAPSHOT.jar</systemPath>
+	    </dependency>
+	  </dependencies>
 	  <build>
 	    <plugins>
 	      <plugin>
