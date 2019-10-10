@@ -79,6 +79,7 @@ public class Adaptation_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test08()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
       String string0 = adaptation0.getFc_id();
@@ -165,6 +166,7 @@ public class Adaptation_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test18()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
       Adaptation adaptation1 = new Adaptation();
