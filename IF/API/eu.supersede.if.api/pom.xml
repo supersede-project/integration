@@ -405,7 +405,8 @@
         <activation>
           <activeByDefault>false</activeByDefault>
         </activation>
-        <plugin>
+	</plugins>
+          <plugin>
 	    <groupId>org.codehaus.mojo</groupId>
 	    <artifactId>build-helper-maven-plugin</artifactId>
 	    <version>3.0.0</version>
@@ -425,18 +426,20 @@
 		    </configuration>
 		</execution>
 	    </executions>	
-	</plugin>
+	  </plugin>
+	</plugins>
       </profile>
       <profile>
         <id>evosuite-ampl</id>
 	  <activation>
 	    <activeByDefault>false</activeByDefault>
 	  </activation>
-	  <plugin>
-	    <groupId>org.codehaus.mojo</groupId>
-	    <artifactId>build-helper-maven-plugin</artifactId>
-	    <version>3.0.0</version>
-	    <executions>
+	  <plugins>
+	    <plugin>
+	      <groupId>org.codehaus.mojo</groupId>
+	      <artifactId>build-helper-maven-plugin</artifactId>
+	      <version>3.0.0</version>
+	      <executions>
 		<execution>
 		    <phase>generate-sources</phase>
 		    <goals>
@@ -448,8 +451,9 @@
 			</sources>
 		    </configuration>
 		</execution>
-	    </executions>	
-	  </plugin>
+	      </executions>	
+	    </plugin>
+	  </plugins>
       </profile>
     </profiles>  
 </project>
