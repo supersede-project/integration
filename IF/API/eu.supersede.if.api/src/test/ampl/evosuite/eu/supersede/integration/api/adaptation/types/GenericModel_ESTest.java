@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.adaptation.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.adaptation.types.AdaptabilityModel;
 import eu.supersede.integration.api.adaptation.types.BaseModel;
@@ -177,6 +178,7 @@ public class GenericModel_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test20()  throws Throwable  {
       VariantModel variantModel0 = new VariantModel();
       MockDate mockDate0 = new MockDate(65536, 65536, 65536);

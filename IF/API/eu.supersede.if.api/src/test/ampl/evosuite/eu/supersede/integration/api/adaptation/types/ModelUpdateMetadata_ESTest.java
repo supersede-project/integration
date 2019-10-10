@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.adaptation.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.adaptation.types.ModelUpdateMetadata;
 import java.util.Date;
@@ -62,6 +63,7 @@ public class ModelUpdateMetadata_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test6()  throws Throwable  {
       ModelUpdateMetadata modelUpdateMetadata0 = new ModelUpdateMetadata();
       MockDate mockDate0 = new MockDate((-3613), 0, (-1661));

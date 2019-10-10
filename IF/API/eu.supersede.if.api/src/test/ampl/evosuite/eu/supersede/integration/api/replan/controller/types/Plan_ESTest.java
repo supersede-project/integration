@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.replan.controller.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.replan.controller.types.Job;
 import eu.supersede.integration.api.replan.controller.types.Plan;
@@ -72,6 +73,7 @@ public class Plan_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test07()  throws Throwable  {
       Plan plan0 = new Plan();
       MockDate mockDate0 = new MockDate(1482, 1482, 1482, 0, (-3123));

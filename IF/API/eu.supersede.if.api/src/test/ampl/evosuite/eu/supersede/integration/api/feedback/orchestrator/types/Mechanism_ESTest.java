@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
 import eu.supersede.integration.api.feedback.orchestrator.types.ConfigurationMechanism;
@@ -280,6 +281,7 @@ public class Mechanism_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test25()  throws Throwable  {
       LinkedList<ConfigurationMechanism> linkedList0 = new LinkedList<ConfigurationMechanism>();
       Stack<Parameter> stack0 = new Stack<Parameter>();

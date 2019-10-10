@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import static org.evosuite.shaded.org.mockito.Mockito.*;
 import com.google.common.base.Converter;
@@ -1008,6 +1009,7 @@ public class Configuration_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test57()  throws Throwable  {
       Configuration configuration0 = new Configuration();
       MockDate mockDate0 = new MockDate();
@@ -1016,6 +1018,7 @@ public class Configuration_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test58()  throws Throwable  {
       String string0 = "L?";
       TriggerType triggerType0 = TriggerType.PULL;

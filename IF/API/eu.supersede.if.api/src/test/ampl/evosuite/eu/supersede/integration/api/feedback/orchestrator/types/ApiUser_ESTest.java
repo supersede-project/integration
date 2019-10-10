@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUser;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserApiUserRole;
@@ -319,6 +320,7 @@ public class ApiUser_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test27()  throws Throwable  {
       ApiUser apiUser0 = new ApiUser();
       LinkedList<ApiUserApiUserRole> linkedList0 = new LinkedList<ApiUserApiUserRole>();
@@ -433,6 +435,7 @@ public class ApiUser_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test35()  throws Throwable  {
       ApiUser apiUser0 = new ApiUser("", "");
       Stack<ApiUserPermission> stack0 = new Stack<ApiUserPermission>();

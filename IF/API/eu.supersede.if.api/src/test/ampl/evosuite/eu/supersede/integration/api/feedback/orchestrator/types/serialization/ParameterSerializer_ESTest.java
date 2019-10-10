@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types.serialization;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import com.fasterxml.jackson.core.FormatSchema;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -53,6 +54,7 @@ public class ParameterSerializer_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test01()  throws Throwable  {
       ParameterSerializer parameterSerializer0 = new ParameterSerializer();
       Vector<Parameter> vector0 = new Vector<Parameter>();
@@ -88,6 +90,7 @@ public class ParameterSerializer_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test03()  throws Throwable  {
       ParameterSerializer parameterSerializer0 = new ParameterSerializer();
       Vector<Parameter> vector0 = new Vector<Parameter>();
@@ -101,6 +104,7 @@ public class ParameterSerializer_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test04()  throws Throwable  {
       ParameterSerializer parameterSerializer0 = new ParameterSerializer();
       Vector<Parameter> vector0 = new Vector<Parameter>();
@@ -269,6 +273,7 @@ public class ParameterSerializer_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test13()  throws Throwable  {
       ParameterSerializer parameterSerializer0 = new ParameterSerializer();
       Parameter parameter0 = new Parameter();

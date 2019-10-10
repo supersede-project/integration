@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.datastore.fe.types;
 
 import org.junit.Test;
+import org.junit.Test;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.datastore.fe.types.Notification;
 import java.util.Date;
@@ -78,6 +79,7 @@ public class Notification_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test09()  throws Throwable  {
       Notification notification0 = new Notification();
       MockDate mockDate0 = new MockDate((-436), (-169), (-169), (-169), 1);

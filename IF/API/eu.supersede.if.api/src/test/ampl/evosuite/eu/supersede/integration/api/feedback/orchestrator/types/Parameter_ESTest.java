@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import static org.evosuite.shaded.org.mockito.Mockito.*;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserPermission;
@@ -74,6 +75,7 @@ public class Parameter_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test02()  throws Throwable  {
       Parameter parameter0 = new Parameter();
       String string0 = "";
@@ -456,6 +458,7 @@ public class Parameter_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test23()  throws Throwable  {
       Parameter parameter0 = new Parameter();
       parameter0.parametersByLanguage("", "");
@@ -1060,6 +1063,7 @@ public class Parameter_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test55()  throws Throwable  {
       Parameter parameter0 = new Parameter();
       Vector<Parameter> vector0 = new Vector<Parameter>();
@@ -1077,6 +1081,7 @@ public class Parameter_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test56()  throws Throwable  {
       Parameter parameter0 = new Parameter();
       parameter0.parametersByLanguage("", "");

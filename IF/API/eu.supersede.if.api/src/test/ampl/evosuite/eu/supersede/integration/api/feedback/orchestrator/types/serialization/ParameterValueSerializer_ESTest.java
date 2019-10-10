@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types.serialization;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -173,6 +174,7 @@ public class ParameterValueSerializer_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test7()  throws Throwable  {
       ParameterValueSerializer parameterValueSerializer0 = new ParameterValueSerializer();
       JsonFactory jsonFactory0 = new JsonFactory((ObjectCodec) null);

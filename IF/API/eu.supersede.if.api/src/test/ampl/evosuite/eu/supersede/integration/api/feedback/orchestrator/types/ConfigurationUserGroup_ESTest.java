@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.feedback.orchestrator.types.Application;
 import eu.supersede.integration.api.feedback.orchestrator.types.Configuration;
@@ -152,6 +153,7 @@ public class ConfigurationUserGroup_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test14()  throws Throwable  {
       ConfigurationUserGroup configurationUserGroup0 = new ConfigurationUserGroup();
       Instant instant0 = MockInstant.ofEpochMilli(2L);

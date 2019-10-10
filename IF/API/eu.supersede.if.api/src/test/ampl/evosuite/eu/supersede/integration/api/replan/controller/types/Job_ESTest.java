@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.replan.controller.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.replan.controller.types.Feature;
 import eu.supersede.integration.api.replan.controller.types.Job;
@@ -103,6 +104,7 @@ public class Job_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test11()  throws Throwable  {
       Job job0 = new Job();
       MockDate mockDate0 = new MockDate(0, 0, 0, 0, 1, 0);
@@ -193,6 +195,7 @@ public class Job_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test21()  throws Throwable  {
       Job job0 = new Job();
       MockDate mockDate0 = new MockDate(64L);

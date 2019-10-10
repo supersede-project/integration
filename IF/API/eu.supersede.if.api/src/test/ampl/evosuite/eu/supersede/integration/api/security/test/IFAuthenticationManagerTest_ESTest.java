@@ -6,17 +6,20 @@
 package eu.supersede.integration.api.security.test;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.security.test.IFAuthenticationManagerTest;
 
 public class IFAuthenticationManagerTest_ESTest {
 
   @Test(timeout = 4000)
+  @Ignore
   public void test0()  throws Throwable  {
       IFAuthenticationManagerTest iFAuthenticationManagerTest0 = new IFAuthenticationManagerTest();
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test1()  throws Throwable  {
       // Undeclared exception!
       try { 

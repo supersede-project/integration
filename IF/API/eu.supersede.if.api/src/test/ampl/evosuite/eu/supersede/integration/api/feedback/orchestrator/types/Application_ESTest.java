@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.feedback.orchestrator.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUser;
 import eu.supersede.integration.api.feedback.orchestrator.types.ApiUserPermission;
@@ -133,6 +134,7 @@ public class Application_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test12()  throws Throwable  {
       Application application0 = new Application();
       application0.onCreate();
