@@ -399,5 +399,58 @@
       </plugin>
     </plugins>
   </build>
-  
+  <profiles>
+    <profile>
+      <id>dspot-ampl</id>
+        <activation>
+          <activeByDefault>false</activeByDefault>
+        </activation>
+        <plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>build-helper-maven-plugin</artifactId>
+	    <version>3.0.0</version>
+	    <executions>
+		<execution>
+		    <phase>generate-sources</phase>
+		    <goals>
+		        <goal>add-test-source</goal>
+		    </goals>
+		    <configuration>
+		        <sources>
+		            <source>src/test/ampl/dspot/second-evaluation</source>
+			    <source>src/test/ampl/dspot/third-evaluation/jacoco/treatment2</source>
+			    <source>src/test/ampl/dspot/third-evaluation/jacoco/treatment3</source>
+			    <source>src/test/ampl/dspot/third-evaluation/pit</source>
+		        </sources>
+		    </configuration>
+		</execution>
+	    </executions>	
+	</plugin>
+      </profile>
+      <profile>
+        <id>evosuite-ampl</id>
+	  <activation>
+	    <activeByDefault>false</activeByDefault>
+	  </activation>
+	  <plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>build-helper-maven-plugin</artifactId>
+	    <version>3.0.0</version>
+	    <executions>
+		<execution>
+		    <phase>generate-sources</phase>
+		    <goals>
+			<goal>add-test-source</goal>
+		    </goals>
+		    <configuration>
+			<sources>
+			    <source>src/test/ampl/evosuite</source>
+			</sources>
+		    </configuration>
+		</execution>
+	    </executions>	
+	  </plugin>
+      </profile>
+    </profiles>  
 </project>
+
