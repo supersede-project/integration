@@ -78,6 +78,7 @@ public class AmplDataProviderProxyTest {
     }
 
     @Test(timeout = 10000)
+    @Ignore
     public void testIngestData_add1_sd34_failAssert0() throws Exception {
         try {
             String __DSPOT_arg0_4 = "X(r!Fs2l>UgIvC=TU&zg";
@@ -176,6 +177,7 @@ public class AmplDataProviderProxyTest {
     }
 
     @Test(timeout = 10000)
+    @Ignore
     public void testIngestJsonData_literalMutationString1306() throws Exception {
         String topic = "confId";
         Assert.assertEquals("confId", topic);
@@ -184,6 +186,7 @@ public class AmplDataProviderProxyTest {
     }
 
     @Test(timeout = 10000)
+    @Ignore
     public void testIngestJsonData_literalMutationString1306_add1329_sd1359_failAssert0() throws Exception {
         try {
             String __DSPOT_arg0_201 = "Vv>/f/5!<Y=dgY,;s4m>";
@@ -213,6 +216,7 @@ public class AmplDataProviderProxyTest {
     }
 
     @Test(timeout = 10000)
+    @Ignore
     public void testIngestMonitoringData_add1526() throws Exception {
         List<MonitoringData> dataList = createMonitoringDataList();
         String timeStamp = Calendar.getInstance().getTime().toString();
@@ -226,6 +230,7 @@ public class AmplDataProviderProxyTest {
     }
 
     @Test(timeout = 10000)
+    @Ignore
     public void testIngestMonitoringData_add1526_literalMutationString1618() throws Exception {
         List<MonitoringData> dataList = createMonitoringDataList();
         String timeStamp = Calendar.getInstance().getTime().toString();

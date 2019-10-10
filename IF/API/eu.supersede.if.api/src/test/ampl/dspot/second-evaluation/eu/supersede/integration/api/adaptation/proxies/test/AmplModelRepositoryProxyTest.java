@@ -935,6 +935,7 @@ public class AmplModelRepositoryProxyTest {
     }
 
     @Test(timeout = 240000)
+    @Ignore
     public void testGetAllBaseModelsWithQueryMetadata_mg2490_failAssert404_mg2738_failAssert411litString3323_failAssert649() throws Exception {
         try {
             {

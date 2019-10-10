@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.Ignore;
 import org.springframework.util.Assert;
 import org.springframework.web.client.HttpServerErrorException;
 
@@ -28,6 +29,7 @@ public class AmplMetadataManagementProxyTest {
     }
 
     @Test(timeout = 30000)
+    @Ignore
     public void testRegisterReleaselitString201_failAssert30() throws Exception {
         try {
             Release release = new Release();
@@ -64,6 +66,7 @@ public class AmplMetadataManagementProxyTest {
     }
 
     @Test(timeout = 30000)
+    @Ignore
     public void testRegisterReleaselitString201_failAssert30litString372_failAssert64() throws Exception {
         try {
             {
@@ -106,6 +109,7 @@ public class AmplMetadataManagementProxyTest {
     }
 
     @Test(timeout = 30000)
+    @Ignore
     public void testRegisterReleaselitString201_failAssert30litString372_failAssert64litString633_failAssert154() throws Exception {
         try {
             {
