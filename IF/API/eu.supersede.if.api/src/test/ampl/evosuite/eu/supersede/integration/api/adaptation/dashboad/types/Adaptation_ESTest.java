@@ -6,6 +6,7 @@
 package eu.supersede.integration.api.adaptation.dashboad.types;
 
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.adaptation.dashboad.types.Action;
 import eu.supersede.integration.api.adaptation.dashboad.types.Adaptation;
@@ -106,6 +107,7 @@ public class Adaptation_ESTest {
   }
 
   @Test(timeout = 4000)
+  @Ignore
   public void test11()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
       adaptation0.setFc_id("");
