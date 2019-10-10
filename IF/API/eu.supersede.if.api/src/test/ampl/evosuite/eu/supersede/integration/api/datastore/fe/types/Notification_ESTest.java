@@ -6,7 +6,7 @@
 package eu.supersede.integration.api.datastore.fe.types;
 
 import org.junit.Test;
-import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 import eu.supersede.integration.api.datastore.fe.types.Notification;
 import java.util.Date;

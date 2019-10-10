@@ -22,7 +22,7 @@ public class Adaptation_ESTest {
   @Test(timeout = 4000)
   public void test00()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
-      adaptation0.setFc_id("1");
+      adaptation0.setFc_id(1);
       int int0 = adaptation0.compareTo(adaptation0);
       assertEquals(0, int0);
   }
@@ -73,7 +73,7 @@ public class Adaptation_ESTest {
   public void test07()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
       Adaptation adaptation1 = new Adaptation();
-      adaptation1.setFc_id("");
+      adaptation1.setFc_id(0);
       int int0 = adaptation0.compareTo(adaptation1);
       assertEquals(0, int0);
   }
@@ -110,17 +110,17 @@ public class Adaptation_ESTest {
   @Ignore
   public void test11()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
-      adaptation0.setFc_id("");
+      adaptation0.setFc_id(0);
       String string0 = adaptation0.getFc_id();
-      assertEquals("", string0);
+      assertEquals("0", string0);
   }
 
   @Test(timeout = 4000)
   public void test12()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
-      adaptation0.setFc_id("eu.supersede.integration.api.adaptation.dashboad.types.Adaptation");
+      adaptation0.setFc_id(0);
       String string0 = adaptation0.getFc_id();
-      assertEquals("eu.supersede.integration.api.adaptation.dashboad.types.Adaptation", string0);
+      assertEquals("0", string0);
   }
 
   @Test(timeout = 4000)
@@ -168,8 +168,8 @@ public class Adaptation_ESTest {
   public void test18()  throws Throwable  {
       Adaptation adaptation0 = new Adaptation();
       Adaptation adaptation1 = new Adaptation();
-      adaptation1.setFc_id("");
-      adaptation0.setFc_id("");
+      adaptation1.setFc_id(1);
+      adaptation0.setFc_id(0);
       int int0 = adaptation0.compareTo(adaptation1);
       assertEquals(0, int0);
   }
