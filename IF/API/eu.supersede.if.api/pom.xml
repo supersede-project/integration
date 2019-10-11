@@ -420,9 +420,9 @@
 		    <configuration>
 		        <sources>
 		            <source>src/test/ampl/dspot/second-evaluation</source>
-			    <source>src/test/ampl/dspot/third-evaluation/jacoco/treatment2</source>
-			    <source>src/test/ampl/dspot/third-evaluation/jacoco/treatment3</source>
-			    <source>src/test/ampl/dspot/third-evaluation/pit</source>
+			    <!--<source>src/test/ampl/dspot/third-evaluation/jacoco/treatment2</source>-->
+			    <!--<source>src/test/ampl/dspot/third-evaluation/jacoco/treatment3</source>-->
+			    <!--<source>src/test/ampl/dspot/third-evaluation/pit</source>-->
 		        </sources>
 		    </configuration>
 		</execution>
