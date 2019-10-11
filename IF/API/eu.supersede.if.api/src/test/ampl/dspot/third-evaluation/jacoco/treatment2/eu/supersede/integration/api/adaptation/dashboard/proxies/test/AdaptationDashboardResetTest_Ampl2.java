@@ -1590,7 +1590,7 @@ public class AdaptationDashboardResetTest_Ampl2 {
 
     private Adaptation createAtosAdaptation() {
         Adaptation adaptation = new Adaptation();
-        String id = "1241";
+        Integer id = 1241;
         adaptation.setFc_id(id);
         Calendar computation = Calendar.getInstance();
         adaptation.setComputation_timestamp(computation.getTime());
@@ -1645,7 +1645,7 @@ public class AdaptationDashboardResetTest_Ampl2 {
 
     private Adaptation createSiemensAdaptation() {
         Adaptation adaptation = new Adaptation();
-        String id = "1238";
+        Integer id = 1238;
         adaptation.setFc_id(id);
         Calendar computation = Calendar.getInstance();
         computation.add(Calendar.MINUTE, 10);

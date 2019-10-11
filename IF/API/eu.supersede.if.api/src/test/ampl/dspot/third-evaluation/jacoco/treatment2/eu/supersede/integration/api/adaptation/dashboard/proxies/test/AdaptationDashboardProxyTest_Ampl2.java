@@ -46,7 +46,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
 
     @Test(timeout = 30000)
     public void testGetAdaptation_add3216() throws Exception {
-        Adaptation o_testGetAdaptation_add3216__1 = createAdaptation("905");
+        Adaptation o_testGetAdaptation_add3216__1 = createAdaptation(905);
         assertEquals("905", ((Adaptation) (o_testGetAdaptation_add3216__1)).getFc_id());
         assertEquals(1.0, ((double) (((Adaptation) (o_testGetAdaptation_add3216__1)).getRank())), 0.1);
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testGetAdaptation_add3216__1)).getModel_system())).getTenant())).toString());
@@ -55,7 +55,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
         assertEquals("Atos_HSK", ((ModelSystem) (((Adaptation) (o_testGetAdaptation_add3216__1)).getModel_system())).getId());
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testGetAdaptation_add3216__1)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testGetAdaptation_add3216__1)).getActions())).isEmpty());
-        Adaptation adaptation = createAdaptation("905");
+        Adaptation adaptation = createAdaptation(905);
         adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
@@ -74,7 +74,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testGetAdaptation_mg3233() throws Exception {
         Adaptation __DSPOT_a_281 = new Adaptation();
-        Adaptation adaptation = createAdaptation("905");
+        Adaptation adaptation = createAdaptation(905);
         adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         Assert.notNull(adaptation);
@@ -87,7 +87,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testGetAdaptation_literalMutationString3227_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("");
+            Adaptation adaptation = createAdaptation(905);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
@@ -101,7 +101,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testGetAdaptation_literalMutationString3228_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("9/05");
+            Adaptation adaptation = createAdaptation(905);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
@@ -115,7 +115,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testGetAdaptationlitString3244_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("");
+            Adaptation adaptation = createAdaptation(905);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             Assert.notNull(adaptation);
@@ -129,7 +129,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testGetAdaptation_mg3233_add3415() throws Exception {
         Adaptation __DSPOT_a_281 = new Adaptation();
-        Adaptation adaptation = createAdaptation("905");
+        Adaptation adaptation = createAdaptation(905);
         Adaptation o_testGetAdaptation_mg3233_add3415__5 = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         assertEquals("905", ((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testGetAdaptation_mg3233_add3415__5)).getModel_system())).getTenant())).toString());
@@ -159,7 +159,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     public void testGetAdaptation_literalMutationString3228_failAssert0litString3495_failAssert0() throws Exception {
         try {
             {
-                Adaptation adaptation = createAdaptation("r;pu");
+                Adaptation adaptation = createAdaptation(52345);
                 adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
                 Assert.notNull(adaptation);
                 Assert.notNull(adaptation);
@@ -175,7 +175,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
 
     @Test(timeout = 30000)
     public void testAddAdaptation_add1() throws Exception {
-        Adaptation o_testAddAdaptation_add1__1 = createAdaptation("905");
+        Adaptation o_testAddAdaptation_add1__1 = createAdaptation(905);
         assertEquals("905", ((Adaptation) (o_testAddAdaptation_add1__1)).getFc_id());
         assertEquals(1.0, ((double) (((Adaptation) (o_testAddAdaptation_add1__1)).getRank())), 0.1);
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_add1__1)).getModel_system())).getTenant())).toString());
@@ -184,7 +184,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
         assertEquals("Atos_HSK", ((ModelSystem) (((Adaptation) (o_testAddAdaptation_add1__1)).getModel_system())).getId());
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testAddAdaptation_add1__1)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testAddAdaptation_add1__1)).getActions())).isEmpty());
-        Adaptation adaptation = createAdaptation("905");
+        Adaptation adaptation = createAdaptation(905);
         adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
@@ -201,7 +201,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddAdaptation_mg14() throws Exception {
         Adaptation __DSPOT_a_0 = new Adaptation();
-        Adaptation adaptation = createAdaptation("905");
+        Adaptation adaptation = createAdaptation(905);
         adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
@@ -212,7 +212,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddAdaptation_literalMutationString9_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("9}05");
+            Adaptation adaptation = createAdaptation(9005);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
@@ -224,7 +224,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddAdaptationlitString28_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("Medium load configuration for HSK service");
+            Adaptation adaptation = createAdaptation(62345);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
@@ -248,7 +248,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddAdaptationnull37_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("905");
+            Adaptation adaptation = createAdaptation(905);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(null);
             Assert.notNull(adaptation);
             AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
@@ -261,7 +261,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddAdaptation_mg14_add180() throws Exception {
         Adaptation __DSPOT_a_0 = new Adaptation();
-        Adaptation o_testAddAdaptation_mg14_add180__3 = createAdaptation("905");
+        Adaptation o_testAddAdaptation_mg14_add180__3 = createAdaptation(905);
         assertEquals("905", ((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getModel_system())).getTenant())).toString());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getModel_system())).getTenant())).getId());
@@ -270,7 +270,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
         assertEquals(1.0, ((double) (((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getRank())), 0.1);
         assertEquals("Medium load configuration for HSK service", ((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getName());
         assertFalse(((Collection) (((Adaptation) (o_testAddAdaptation_mg14_add180__3)).getActions())).isEmpty());
-        Adaptation adaptation = createAdaptation("905");
+        Adaptation adaptation = createAdaptation(905);
         adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         Assert.notNull(adaptation);
         AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
@@ -288,7 +288,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddAdaptation_mg14_add184() throws Exception {
         Adaptation __DSPOT_a_0 = new Adaptation();
-        Adaptation adaptation = createAdaptation("905");
+        Adaptation adaptation = createAdaptation(905);
         Adaptation o_testAddAdaptation_mg14_add184__5 = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
         assertEquals("905", ((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getFc_id());
         assertEquals("atos", ((Tenant) (((ModelSystem) (((Adaptation) (o_testAddAdaptation_mg14_add184__5)).getModel_system())).getTenant())).toString());
@@ -339,7 +339,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
             Date __DSPOT_computation_timestamp_76 = new Date("2&pb?56TtKz.F5M(E@of");
             Adaptation __DSPOT_a_36 = new Adaptation();
             Adaptation __DSPOT_a_0 = new Adaptation();
-            Adaptation adaptation = createAdaptation("905");
+            Adaptation adaptation = createAdaptation(905);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
             AdaptationDashboardProxyTest_Ampl2.proxy.deleteAdaptation(adaptation.getFc_id());
@@ -352,7 +352,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
         }
     }
 
-    private Adaptation createAdaptation(String fc_id) {
+    private Adaptation createAdaptation(Integer fc_id) {
         Adaptation adaptation = new Adaptation();
         adaptation.setFc_id(fc_id);
         adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
@@ -454,7 +454,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddEnactment_add1892_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("905");
+            Adaptation adaptation = createAdaptation(905);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Enactment enactment = createEnactment(adaptation.getFc_id());
             AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(enactment);
@@ -470,7 +470,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddEnactmentlitString1924_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("\n");
+            Adaptation adaptation = createAdaptation(42345);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Enactment enactment = createEnactment(adaptation.getFc_id());
             enactment = AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(enactment);
@@ -485,7 +485,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testAddEnactmentnull1936_failAssert0() throws Exception {
         try {
-            Adaptation adaptation = createAdaptation("905");
+            Adaptation adaptation = createAdaptation(905);
             adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
             Enactment enactment = createEnactment(adaptation.getFc_id());
             enactment = AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(null);
@@ -503,7 +503,7 @@ public class AdaptationDashboardProxyTest_Ampl2 {
         try {
             {
                 {
-                    Adaptation adaptation = createAdaptation("^p05");
+                    Adaptation adaptation = createAdaptation(4523);
                     adaptation = AdaptationDashboardProxyTest_Ampl2.proxy.addAdaptation(adaptation);
                     Enactment enactment = createEnactment(adaptation.getFc_id());
                     enactment = AdaptationDashboardProxyTest_Ampl2.proxy.addEnactment(null);

@@ -17,6 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 
 import static org.springframework.util.Assert.isTrue;
 
@@ -41,8 +42,8 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
         Assert.assertFalse(((Collection) (((Alert) (o_testNotifyAlert_add1__1)).getRequests())).isEmpty());
         Assert.assertEquals("id1", ((Alert) (o_testNotifyAlert_add1__1)).getId());
         Alert alert = createAlert();
-        boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
-        isTrue(result);
+        HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
+        isTrue(result==HttpStatus.OK);
         Assert.assertEquals(1481717773760L, ((long) (((Alert) (o_testNotifyAlert_add1__1)).getTimestamp())));
         Assert.assertEquals("appId1", ((Alert) (o_testNotifyAlert_add1__1)).getApplicationId());
         Assert.assertEquals("Delta", ((Alert) (o_testNotifyAlert_add1__1)).getTenant());
@@ -54,19 +55,19 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
     @Test(timeout = 30000)
     public void testNotifyAlert_add2() throws Exception {
         Alert alert = createAlert();
-        boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
-        Assert.assertTrue(o_testNotifyAlert_add2__3);
-        boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
-        isTrue(result);
-        Assert.assertTrue(o_testNotifyAlert_add2__3);
+        HttpStatus o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
+        Assert.assertTrue(o_testNotifyAlert_add2__3==HttpStatus.OK);
+        HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
+        isTrue(result==HttpStatus.OK);
+        Assert.assertTrue(o_testNotifyAlert_add2__3==HttpStatus.OK);
     }
 
     @Test(timeout = 30000)
     public void testNotifyAlertnull11_failAssert0() throws Exception {
         try {
             Alert alert = createAlert();
-            boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
-            isTrue(result);
+            HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
+            isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("testNotifyAlertnull11 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -78,8 +79,8 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
         try {
             Alert o_testNotifyAlert_add1__1 = createAlert();
             Alert alert = createAlert();
-            boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
-            isTrue(result);
+            HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
+            isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("testNotifyAlert_add1null94 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -90,9 +91,9 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
     public void testNotifyAlert_add2null100_failAssert0() throws Exception {
         try {
             Alert alert = createAlert();
-            boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
-            boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
-            isTrue(result);
+            HttpStatus o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
+            HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
+            isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("testNotifyAlert_add2null100 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             Assert.assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -105,8 +106,8 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
             {
                 List<UserRequest> __DSPOT_requests_10 = Collections.singletonList(new UserRequest());
                 Alert alert = createAlert();
-                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
-                isTrue(result);
+                HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
+                isTrue(result==HttpStatus.OK);
                 org.junit.Assert.fail("testNotifyAlertnull11 should have thrown IllegalArgumentException");
                 alert.setRequests(__DSPOT_requests_10);
             }
@@ -123,8 +124,8 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
                 List<Condition> __DSPOT_conditions_32 = Collections.singletonList(new Condition());
                 Alert o_testNotifyAlert_add1__1 = createAlert();
                 Alert alert = createAlert();
-                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
-                isTrue(result);
+                HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
+                isTrue(result==HttpStatus.OK);
                 org.junit.Assert.fail("testNotifyAlert_add1null94 should have thrown IllegalArgumentException");
                 o_testNotifyAlert_add1__1.setConditions(__DSPOT_conditions_32);
             }
@@ -141,8 +142,8 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
                 List<UserRequest> __DSPOT_requests_51 = Collections.singletonList(new UserRequest());
                 Alert o_testNotifyAlert_add1__1 = createAlert();
                 Alert alert = createAlert();
-                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
-                isTrue(result);
+                HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
+                isTrue(result==HttpStatus.OK);
                 org.junit.Assert.fail("testNotifyAlert_add1null94 should have thrown IllegalArgumentException");
                 alert.setRequests(__DSPOT_requests_51);
             }
@@ -158,9 +159,9 @@ public class DecisionMakingSystemProxyTest_Ampl2 {
             {
                 List<Condition> __DSPOT_conditions_36 = Collections.<Condition>emptyList();
                 Alert alert = createAlert();
-                boolean o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
-                boolean result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
-                isTrue(result);
+                HttpStatus o_testNotifyAlert_add2__3 = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(alert);
+                HttpStatus result = DecisionMakingSystemProxyTest_Ampl2.proxy.notifyAlert(null);
+                isTrue(result==HttpStatus.OK);
                 org.junit.Assert.fail("testNotifyAlert_add2null100 should have thrown IllegalArgumentException");
                 alert.setConditions(__DSPOT_conditions_36);
             }

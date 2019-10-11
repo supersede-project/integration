@@ -22,6 +22,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -71,8 +72,8 @@ public class ReplanControllerProxyTest_Ampl2 {
         Assert.notNull(feature.getId());
         ReplanControllerProxyTest_Ampl2.featureId = feature.getId();
         Release release = ReplanControllerProxyTest_Ampl2.createRelease();
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addReleaseOfProjectById(release, ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addReleaseOfProjectById(release, ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
         List<Release> releases = ReplanControllerProxyTest_Ampl2.proxy.getReleasesOfProjectById(ReplanControllerProxyTest_Ampl2.projectId);
         Assert.notEmpty(releases);
         Assert.notNull(releases.get(0).getId());
@@ -84,11 +85,11 @@ public class ReplanControllerProxyTest_Ampl2 {
 
     @org.junit.AfterClass
     public static void cleanup() throws Exception {
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(ReplanControllerProxyTest_Ampl2.skillId, ReplanControllerProxyTest_Ampl2.projectId));
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(ReplanControllerProxyTest_Ampl2.featureId, ReplanControllerProxyTest_Ampl2.projectId));
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(ReplanControllerProxyTest_Ampl2.resourceId, ReplanControllerProxyTest_Ampl2.projectId));
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteReleaseByIdOfProjectById(ReplanControllerProxyTest_Ampl2.releaseId, ReplanControllerProxyTest_Ampl2.projectId));
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(ReplanControllerProxyTest_Ampl2.projectId));
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(ReplanControllerProxyTest_Ampl2.skillId, ReplanControllerProxyTest_Ampl2.projectId)==HttpStatus.OK);
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(ReplanControllerProxyTest_Ampl2.featureId, ReplanControllerProxyTest_Ampl2.projectId)==HttpStatus.OK);
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(ReplanControllerProxyTest_Ampl2.resourceId, ReplanControllerProxyTest_Ampl2.projectId)==HttpStatus.OK);
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteReleaseByIdOfProjectById(ReplanControllerProxyTest_Ampl2.releaseId, ReplanControllerProxyTest_Ampl2.projectId)==HttpStatus.OK);
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(ReplanControllerProxyTest_Ampl2.projectId)==HttpStatus.OK);
     }
 
     @Test(timeout = 30000)
@@ -363,7 +364,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         project = ReplanControllerProxyTest_Ampl2.proxy.createProject(project);
         Assert.notNull(project);
         Assert.notNull(project.getId());
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
         assertEquals(40.0, ((double) (((Project) (o_testCreateAndDeleteProject_add18038__1)).getHoursPerWeekFullTimeResource())), 0.1);
         assertEquals("hour", ((Project) (o_testCreateAndDeleteProject_add18038__1)).getEffortUnit());
         assertEquals(1.0, ((double) (((Project) (o_testCreateAndDeleteProject_add18038__1)).getHoursPerEffortUnit())), 0.1);
@@ -380,8 +381,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             project = ReplanControllerProxyTest_Ampl2.proxy.createProject(project);
             Assert.notNull(project);
             Assert.notNull(project.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteProject_add18043 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -397,8 +398,8 @@ public class ReplanControllerProxyTest_Ampl2 {
                 project = ReplanControllerProxyTest_Ampl2.proxy.createProject(project);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteProject_add18043 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_606);
             }
@@ -418,7 +419,7 @@ public class ReplanControllerProxyTest_Ampl2 {
                 project = ReplanControllerProxyTest_Ampl2.proxy.createProject(null);
                 Assert.notNull(project);
                 Assert.notNull(project.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteProject_add18038null18184 should have thrown IllegalArgumentException");
                 o_testCreateAndDeleteProject_add18038__1.setResources(__DSPOT_resources_620);
             }
@@ -456,8 +457,8 @@ public class ReplanControllerProxyTest_Ampl2 {
         feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
         Assert.notNull(feature);
         Assert.notNull(feature.getId());
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
         assertEquals(40.0, ((double) (((Project) (o_testCreateAndDeleteFeatureForProject_add16143__1)).getHoursPerWeekFullTimeResource())), 0.1);
         assertEquals("hour", ((Project) (o_testCreateAndDeleteFeatureForProject_add16143__1)).getEffortUnit());
         assertEquals(1.0, ((double) (((Project) (o_testCreateAndDeleteFeatureForProject_add16143__1)).getHoursPerEffortUnit())), 0.1);
@@ -479,8 +480,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16149 should have thrown HttpClientErrorException");
         } catch (HttpClientErrorException expected) {
             assertEquals("400 Bad Request", expected.getMessage());
@@ -498,9 +499,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16154 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -518,9 +519,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16158 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -538,8 +539,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull16178 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid project", expected.getMessage());
@@ -557,8 +558,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull16179 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -576,8 +577,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(null, project.getId());
             Assert.notNull(feature);
             Assert.notNull(feature.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull16180 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid feature", expected.getMessage());
@@ -595,8 +596,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
             Assert.notNull(null);
             Assert.notNull(feature.getId());
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull16181 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -616,8 +617,8 @@ public class ReplanControllerProxyTest_Ampl2 {
                 feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull16178 should have thrown IllegalArgumentException");
                 feature.setRequiredSkills(__DSPOT_requiredSkills_330);
             }
@@ -640,9 +641,9 @@ public class ReplanControllerProxyTest_Ampl2 {
                 feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16158 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_348);
             }
@@ -665,9 +666,9 @@ public class ReplanControllerProxyTest_Ampl2 {
                 feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16154 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_321);
             }
@@ -691,8 +692,8 @@ public class ReplanControllerProxyTest_Ampl2 {
                 feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16149 should have thrown HttpClientErrorException");
                 project.setResources(__DSPOT_resources_334);
             }
@@ -715,8 +716,8 @@ public class ReplanControllerProxyTest_Ampl2 {
                 feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(null);
                 Assert.notNull(feature.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProjectnull16181 should have thrown IllegalArgumentException");
                 project.setResources(__DSPOT_resources_354);
             }
@@ -739,9 +740,9 @@ public class ReplanControllerProxyTest_Ampl2 {
                 feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
                 Assert.notNull(feature);
                 Assert.notNull(feature.getId());
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16158 should have thrown IllegalArgumentException");
                 feature.setRequiredSkills(__DSPOT_requiredSkills_375);
             }
@@ -765,9 +766,9 @@ public class ReplanControllerProxyTest_Ampl2 {
                     feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(feature, project.getId());
                     Assert.notNull(feature);
                     Assert.notNull(feature.getId());
-                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                     org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16158 should have thrown IllegalArgumentException");
                     project.setResources(__DSPOT_resources_348);
                 }
@@ -793,9 +794,9 @@ public class ReplanControllerProxyTest_Ampl2 {
                     feature = ReplanControllerProxyTest_Ampl2.proxy.createFeatureOfProjectById(null, project.getId());
                     Assert.notNull(feature);
                     Assert.notNull(feature.getId());
-                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+                    Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                     org.junit.Assert.fail("testCreateAndDeleteFeatureForProject_add16154 should have thrown IllegalArgumentException");
                     project.setResources(__DSPOT_resources_321);
                 }
@@ -846,7 +847,7 @@ public class ReplanControllerProxyTest_Ampl2 {
         Assert.notNull(project.getId());
         project.setDescription(((project.getDescription()) + " modified by test"));
         project = ReplanControllerProxyTest_Ampl2.proxy.updateProject(project);
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
         assertEquals("hour", ((Project) (o_testUpdateProject_add37159__1)).getEffortUnit());
         assertEquals(40.0, ((double) (((Project) (o_testUpdateProject_add37159__1)).getHoursPerWeekFullTimeResource())), 0.1);
         assertEquals(1.0, ((double) (((Project) (o_testUpdateProject_add37159__1)).getHoursPerEffortUnit())), 0.1);
@@ -866,8 +867,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             project.setDescription(((project.getDescription()) + " modified by test"));
             project = ReplanControllerProxyTest_Ampl2.proxy.updateProject(project);
             Assert.notNull(project);
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+            Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
             org.junit.Assert.fail("testUpdateProject_add37168 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -885,8 +886,8 @@ public class ReplanControllerProxyTest_Ampl2 {
                 project.setDescription(((project.getDescription()) + " modified by test"));
                 project = ReplanControllerProxyTest_Ampl2.proxy.updateProject(project);
                 Assert.notNull(null);
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
-                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
+                Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
                 org.junit.Assert.fail("testUpdateProject_add37168 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testUpdateProject_add37168_failAssert0null37384 should have thrown IllegalArgumentException");
@@ -913,8 +914,8 @@ public class ReplanControllerProxyTest_Ampl2 {
         feature.setDescription(((feature.getDescription()) + " modified by test"));
         ReplanControllerProxyTest_Ampl2.proxy.updateFeatureOfProjectById(feature, ReplanControllerProxyTest_Ampl2.projectId);
         Assert.notNull(feature);
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId()));
-        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId()));
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteFeatureByIdOfProjectById(feature.getId(), project.getId())==HttpStatus.OK);
+        Assert.isTrue(ReplanControllerProxyTest_Ampl2.proxy.deleteProjectById(project.getId())==HttpStatus.OK);
     }
 
     @Test(timeout = 30000)
@@ -1536,9 +1537,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4266__12 = featuresToAdd.add(features.get(0));
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4266__12);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         assertFalse(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4266__1.isEmpty());
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4266__12);
@@ -1556,9 +1557,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4267__12 = featuresToAdd.add(features.get(0));
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4267__12);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4267__12);
     }
@@ -1576,9 +1577,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272__11);
         boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272__13 = featuresToAdd.add(features.get(0));
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272__13);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272__11);
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272__13);
@@ -1594,10 +1595,10 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notNull(releases);
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            Assert.isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectById_remove4286 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a not-empty list of features", expected.getMessage());
@@ -1615,9 +1616,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(1));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
+            Assert.isTrue(result==HttpStatus.OK);
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectById_literalMutationNumber4289 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -1636,9 +1637,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(40));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
+            Assert.isTrue(result==HttpStatus.OK);
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectById_literalMutationNumber4293 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -1657,9 +1658,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
+            Assert.isTrue(result==HttpStatus.OK);
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(1).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectById_literalMutationNumber4299 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -1678,9 +1679,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
+            Assert.isTrue(result==HttpStatus.OK);
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(Integer.MAX_VALUE).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdlitNum4318 should have thrown ArrayIndexOutOfBoundsException");
         } catch (ArrayIndexOutOfBoundsException expected) {
@@ -1699,9 +1700,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
+            Assert.isTrue(result==HttpStatus.OK);
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull4340 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1720,9 +1721,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(null, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
+            Assert.isTrue(result==HttpStatus.OK);
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             org.junit.Assert.fail("testAddDeleteFeaturesOfReleaseByIdOfProjectByIdnull4344 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -1743,9 +1744,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272_add4646__15 = featuresToAdd.add(features.get(0));
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272_add4646__15);
         boolean o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272__13 = featuresToAdd.add(features.get(0));
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         assertTrue(o_testAddDeleteFeaturesOfReleaseByIdOfProjectById_add4272_add4646__15);
     }
@@ -1760,8 +1761,8 @@ public class ReplanControllerProxyTest_Ampl2 {
         assertEquals("Atos test: Swift", ((Skill) (o_testAddDeleteSkillOfProjectById_add10815__5)).getName());
         skill = ReplanControllerProxyTest_Ampl2.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest_Ampl2.projectId);
         Assert.notNull(skill);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
         assertEquals("Atos Test: Swift development of iOS", ((Skill) (o_testAddDeleteSkillOfProjectById_add10815__5)).getDescription());
         assertEquals("Atos test: Swift", ((Skill) (o_testAddDeleteSkillOfProjectById_add10815__5)).getName());
     }
@@ -1775,8 +1776,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             skill = ReplanControllerProxyTest_Ampl2.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest_Ampl2.projectId);
             Assert.notNull(skill);
             ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("testAddDeleteSkillOfProjectById_add10817 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -1791,8 +1792,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             skill.setDescription("Atos Test: Swift development of iOS");
             skill = ReplanControllerProxyTest_Ampl2.proxy.addSkillOfProjectById(null, ReplanControllerProxyTest_Ampl2.projectId);
             Assert.notNull(skill);
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdnull10870 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid skill", expected.getMessage());
@@ -1807,8 +1808,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             skill.setDescription("Atos Test: Swift development of iOS");
             skill = ReplanControllerProxyTest_Ampl2.proxy.addSkillOfProjectById(skill, ReplanControllerProxyTest_Ampl2.projectId);
             Assert.notNull(null);
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteSkillByIdOfProjectById(skill.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("testAddDeleteSkillOfProjectByIdnull10871 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -1980,9 +1981,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectById_add23323__12 = featuresToAdd.add(features.get(0));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectById_add23323__12);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         List<Feature> featuresOfRelease = ReplanControllerProxyTest_Ampl2.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         int numberOfFeaturesOfRelease = featuresOfRelease.size();
         List<Feature> featuresToDelete = new ArrayList<>();
@@ -2011,9 +2012,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectById_add23324__12 = featuresToAdd.add(features.get(0));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectById_add23324__12);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         List<Feature> featuresOfRelease = ReplanControllerProxyTest_Ampl2.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         int numberOfFeaturesOfRelease = featuresOfRelease.size();
         List<Feature> featuresToDelete = new ArrayList<>();
@@ -2040,9 +2041,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectById_add23341__11 = featuresToAdd.add(features.get(0));
         assertTrue(o_testDeleteFeaturesOfReleaseByIdOfProjectById_add23341__11);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         List<Feature> featuresOfRelease = ReplanControllerProxyTest_Ampl2.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         int numberOfFeaturesOfRelease = featuresOfRelease.size();
         List<Feature> featuresToDelete = new ArrayList<>();
@@ -2071,13 +2072,13 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             List<Feature> featuresOfRelease = ReplanControllerProxyTest_Ampl2.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
             result = ReplanControllerProxyTest_Ampl2.proxy.deleteFeaturesOfReleaseByIdOfProjectById(featuresToDelete, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            Assert.isTrue(result==HttpStatus.OK);
             featuresOfRelease = ReplanControllerProxyTest_Ampl2.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             Assert.notNull(features);
             Assert.isTrue(((featuresOfRelease.size()) == (numberOfFeaturesOfRelease - 1)));
@@ -2101,9 +2102,9 @@ public class ReplanControllerProxyTest_Ampl2 {
             Assert.notEmpty(releases);
             List<Feature> featuresToAdd = new ArrayList<>();
             featuresToAdd.add(features.get(0));
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
+            Assert.isTrue(result==HttpStatus.OK);
             List<Feature> featuresOfRelease = ReplanControllerProxyTest_Ampl2.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
             int numberOfFeaturesOfRelease = featuresOfRelease.size();
             List<Feature> featuresToDelete = new ArrayList<>();
@@ -2132,9 +2133,9 @@ public class ReplanControllerProxyTest_Ampl2 {
         Assert.notEmpty(releases);
         List<Feature> featuresToAdd = new ArrayList<>();
         boolean o_testDeleteFeaturesOfReleaseByIdOfProjectById_add23341__11 = featuresToAdd.add(features.get(0));
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.addFeaturesOfReleaseByIdOfProjectById(featuresToAdd, releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
+        Assert.isTrue(result==HttpStatus.OK);
         List<Feature> featuresOfRelease = ReplanControllerProxyTest_Ampl2.proxy.getFeaturesOfReleaseByIdOfProjectById(releases.get(0).getId(), ReplanControllerProxyTest_Ampl2.projectId);
         int numberOfFeaturesOfRelease = featuresOfRelease.size();
         List<Feature> featuresToDelete = new ArrayList<>();
@@ -2159,8 +2160,8 @@ public class ReplanControllerProxyTest_Ampl2 {
         assertEquals("Atos test: Swift Developer", ((Resource) (o_tesDeleteResourceOfProjectById_add4__6)).getName());
         resource = ReplanControllerProxyTest_Ampl2.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest_Ampl2.projectId);
         Assert.notNull(resource);
-        boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-        Assert.isTrue(result);
+        HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+        Assert.isTrue(result==HttpStatus.OK);
         assertTrue(((Collection) (((Resource) (o_tesDeleteResourceOfProjectById_add4__6)).getSkills())).isEmpty());
         assertEquals(80.0, ((double) (((Resource) (o_tesDeleteResourceOfProjectById_add4__6)).getAvailability())), 0.1);
         assertEquals("Atos test: Swift developer with experience on iOS 10", ((Resource) (o_tesDeleteResourceOfProjectById_add4__6)).getDescription());
@@ -2177,8 +2178,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             resource = ReplanControllerProxyTest_Ampl2.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest_Ampl2.projectId);
             Assert.notNull(resource);
             ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("tesDeleteResourceOfProjectById_add6 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -2194,8 +2195,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             resource.setAvailability(80.0);
             resource = ReplanControllerProxyTest_Ampl2.proxy.addResourceOfProjectById(null, ReplanControllerProxyTest_Ampl2.projectId);
             Assert.notNull(resource);
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("tesDeleteResourceOfProjectByIdnull88 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid resource", expected.getMessage());
@@ -2211,8 +2212,8 @@ public class ReplanControllerProxyTest_Ampl2 {
             resource.setAvailability(80.0);
             resource = ReplanControllerProxyTest_Ampl2.proxy.addResourceOfProjectById(resource, ReplanControllerProxyTest_Ampl2.projectId);
             Assert.notNull(null);
-            boolean result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
-            Assert.isTrue(result);
+            HttpStatus result = ReplanControllerProxyTest_Ampl2.proxy.deleteResourceByIdOfProjectById(resource.getId(), ReplanControllerProxyTest_Ampl2.projectId);
+            Assert.isTrue(result==HttpStatus.OK);
             org.junit.Assert.fail("tesDeleteResourceOfProjectByIdnull89 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());

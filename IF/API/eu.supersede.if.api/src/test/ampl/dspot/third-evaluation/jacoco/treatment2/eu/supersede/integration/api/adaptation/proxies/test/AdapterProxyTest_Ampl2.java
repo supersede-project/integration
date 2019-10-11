@@ -29,6 +29,7 @@ import org.junit.Test;
 import org.junit.Ignore;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.util.Assert;
+import org.springframework.http.HttpStatus;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -60,8 +61,8 @@ public class AdapterProxyTest_Ampl2 {
         assertTrue(o_testEnactAdaptationDecisionActions__13);
         boolean o_testEnactAdaptationDecisionActions__14 = adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
         assertTrue(o_testEnactAdaptationDecisionActions__14);
-        Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-        Assert.isTrue(result);
+        HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+        Assert.isTrue(result == HttpStatus.OK);
         assertTrue(o_testEnactAdaptationDecisionActions__13);
         assertTrue(o_testEnactAdaptationDecisionActions__14);
     }
@@ -77,8 +78,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString13 should have thrown NoSuchFileException");
         } catch (NoSuchFileException expected) {
         }
@@ -95,8 +96,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString23 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -114,8 +115,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("OKS@Rl&{ha!&Bcvg[?i!rb0/|]6^");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString29 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -133,8 +134,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString34 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -153,8 +154,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             adaptation.setComputation_timestamp(__DSPOT_computation_timestamp_2);
             org.junit.Assert.fail("testEnactAdaptationDecisionActions_mg39 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -173,8 +174,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionslitString49 should have thrown NoSuchFileException");
         } catch (NoSuchFileException expected) {
             assertEquals("/var/jenkins_home/workspace/supersede-if-dspot-script/IF/API/eu.supersede.if.api/src/test/resources/files/\n", expected.getMessage());
@@ -192,8 +193,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsnull108 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -210,8 +211,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsnull110 should have thrown NullPointerException");
         } catch (NullPointerException expected) {
             assertEquals(null, expected.getMessage());
@@ -229,8 +230,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsnull111 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this argument is required; it must not be null", expected.getMessage());
@@ -248,8 +249,8 @@ public class AdapterProxyTest_Ampl2 {
             List<String> adaptationDecisionActionIds = new ArrayList<>();
             adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
             adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, null, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, null, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsnull115 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide valid adaptationDecisionActionIds", expected.getMessage());
@@ -268,8 +269,8 @@ public class AdapterProxyTest_Ampl2 {
                 List<String> adaptationDecisionActionIds = new ArrayList<>();
                 adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
                 adaptationDecisionActionIds.add("lowloadconigurationinvm2_a");
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString34 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString34_failAssert0litString779 should have thrown IllegalArgumentException");
@@ -290,8 +291,8 @@ public class AdapterProxyTest_Ampl2 {
                 List<String> adaptationDecisionActionIds = new ArrayList<>();
                 adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
                 adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString23 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testEnactAdaptationDecisionActions_literalMutationString23_failAssert0litString1194 should have thrown IllegalArgumentException");
@@ -313,8 +314,8 @@ public class AdapterProxyTest_Ampl2 {
                 adaptationDecisionActionIds.add("highloadconfigurationinvm2_a");
                 adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
                 adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActions(system, adaptationDecisionActionIds, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 org.junit.Assert.fail("testEnactAdaptationDecisionActionsnull110 should have thrown NullPointerException");
             }
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsnull110_failAssert0_add448 should have thrown NullPointerException");
@@ -338,8 +339,8 @@ public class AdapterProxyTest_Ampl2 {
                 adaptationDecisionActionIds.add("lowloadconfigurationinvm2_a");
                 Path fcPath = Paths.get("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
                 String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds, featureConfigurationAsString, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsInFCasString(system, adaptationDecisionActionIds, featureConfigurationAsString, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 adaptation.compareTo(__DSPOT_a_366);
                 org.junit.Assert.fail("testEnactSelectedAdaptationDecisionsInFCGivenByString_mg7279 should have thrown HttpMessageNotReadableException");
             }
@@ -359,8 +360,8 @@ public class AdapterProxyTest_Ampl2 {
             Assert.notNull(adaptation);
             Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
             String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             adaptation.compareTo(__DSPOT_a_264);
             org.junit.Assert.fail("testEnactFCGivenByString_mg5216 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
@@ -378,8 +379,8 @@ public class AdapterProxyTest_Ampl2 {
             Assert.notNull(adaptation);
             Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
             String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             adaptation.setActions(__DSPOT_actions_265);
             org.junit.Assert.fail("testEnactFCGivenByString_mg5217 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
@@ -396,8 +397,8 @@ public class AdapterProxyTest_Ampl2 {
             Assert.notNull(adaptation);
             Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_Highoad.yafc");
             String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactFCGivenByStringlitString5241 should have thrown HttpMessageNotReadableException");
         } catch (HttpMessageNotReadableException expected) {
         }
@@ -415,8 +416,8 @@ public class AdapterProxyTest_Ampl2 {
                 Assert.notNull(adaptation);
                 Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
                 String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 adaptation.setActions(__DSPOT_actions_265);
                 org.junit.Assert.fail("testEnactFCGivenByString_mg5217 should have thrown HttpMessageNotReadableException");
             }
@@ -438,8 +439,8 @@ public class AdapterProxyTest_Ampl2 {
                 Assert.notNull(adaptation);
                 Path fcPath = Paths.get("./src/test/resources/files/SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
                 String featureConfigurationAsString = new String(Files.readAllBytes(fcPath));
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationFCasString(system, featureConfigurationAsString, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 adaptation.compareTo(__DSPOT_a_264);
                 org.junit.Assert.fail("testEnactFCGivenByString_mg5216 should have thrown HttpMessageNotReadableException");
             }
@@ -456,8 +457,8 @@ public class AdapterProxyTest_Ampl2 {
             Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
             adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_add3025 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("[Assertion failed] - this expression must be true", expected.getMessage());
@@ -467,13 +468,13 @@ public class AdapterProxyTest_Ampl2 {
     @Test(timeout = 30000) @Ignore
     public void testEnactAdaptationDecisionActionsForFC_mg3048_failAssert0() throws Exception {
         try {
-            String __DSPOT_fc_id_123 = "m&{:-/38n(LZ=I%e;*vS";
+            Integer __DSPOT_fc_id_123 = 1234123;
             String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
             Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
             adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             adaptation.setFc_id(__DSPOT_fc_id_123);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_mg3048 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
@@ -488,8 +489,8 @@ public class AdapterProxyTest_Ampl2 {
             Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
             adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFClitString3054 should have thrown NoSuchFileException");
         } catch (NoSuchFileException expected) {
         }
@@ -502,8 +503,8 @@ public class AdapterProxyTest_Ampl2 {
             Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
             adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
             Assert.notNull(adaptation);
-            Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, null);
-            Assert.isTrue(result);
+            HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, null);
+            Assert.isTrue(result == HttpStatus.OK);
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFCnull3088 should have thrown IllegalArgumentException");
         } catch (IllegalArgumentException expected) {
             assertEquals("Provide a valid featureConfigurationId", expected.getMessage());
@@ -519,8 +520,8 @@ public class AdapterProxyTest_Ampl2 {
                 Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
                 adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                 Assert.notNull(adaptation);
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_add3025 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_add3025_failAssert0litString3537 should have thrown NoSuchFileException");
@@ -537,8 +538,8 @@ public class AdapterProxyTest_Ampl2 {
                 Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
                 adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                 Assert.notNull(adaptation);
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFClitString3054 should have thrown NoSuchFileException");
                 adaptation.compareTo(__DSPOT_a_126);
             }
@@ -556,9 +557,8 @@ public class AdapterProxyTest_Ampl2 {
                 adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                 Assert.notNull(adaptation);
                 AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                Assert.isTrue(result);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_add3030 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_add3030_failAssert0_add3226 should have thrown IllegalArgumentException");
@@ -575,8 +575,8 @@ public class AdapterProxyTest_Ampl2 {
                 Adaptation adaptation = createAdaptation(featureConfigurationId, "Vp5h+El_H3)p PdrmWUE([ NxcyWZkasdnA%M");
                 adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                 Assert.notNull(null);
-                Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                Assert.isTrue(result);
+                HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                Assert.isTrue(result == HttpStatus.OK);
                 org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFCnull3087 should have thrown IllegalArgumentException");
             }
             org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFCnull3087_failAssert0litString3686 should have thrown IllegalArgumentException");
@@ -594,9 +594,8 @@ public class AdapterProxyTest_Ampl2 {
                     Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_#ingleVM_HighLoad");
                     adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                     Assert.notNull(null);
-                    Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                    Assert.isTrue(result);
-                    Assert.isTrue(result);
+                    HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                    Assert.isTrue(result == HttpStatus.OK);
                     org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_add3030 should have thrown IllegalArgumentException");
                 }
                 org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_add3030_failAssert0null3749 should have thrown IllegalArgumentException");
@@ -616,8 +615,8 @@ public class AdapterProxyTest_Ampl2 {
                     Adaptation adaptation = createAdaptation(null, "\n");
                     adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                     Assert.notNull(adaptation);
-                    Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                    Assert.isTrue(result);
+                    HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                    Assert.isTrue(result == HttpStatus.OK);
                     org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFCnull3084 should have thrown HttpMessageNotReadableException");
                 }
                 org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFCnull3084_failAssert0_literalMutationString3370 should have thrown HttpMessageNotReadableException");
@@ -632,14 +631,14 @@ public class AdapterProxyTest_Ampl2 {
         try {
             {
                 {
-                    String __DSPOT_fc_id_123 = "m&{:-/38n(LZ=I%e;*vS";
+                    Integer __DSPOT_fc_id_123 = 57624352;
                     String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
                     createAdaptation(featureConfigurationId, "adaptation");
                     Adaptation adaptation = createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
                     adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                     Assert.notNull(adaptation);
-                    Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                    Assert.isTrue(result);
+                    HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                    Assert.isTrue(result == HttpStatus.OK);
                     adaptation.setFc_id(__DSPOT_fc_id_123);
                     org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_mg3048 should have thrown IllegalArgumentException");
                 }
@@ -656,14 +655,14 @@ public class AdapterProxyTest_Ampl2 {
         try {
             {
                 {
-                    String __DSPOT_fc_id_123 = "m&{:-/38n(LZ=I%e;*vS";
+                    Integer __DSPOT_fc_id_123 = 52345234;
                     String featureConfigurationId = uploadLatestComputedFC("SmartPlatformFC_HSK_SingleVM_HighLoad.yafc");
                     createAdaptation(featureConfigurationId, "SmartPlatformFC_HSK_SingleVM_HighLoad");
                     Adaptation adaptation = createAdaptation(featureConfigurationId, "^uTe=TKkftLA4)55VDw]{.2 &9!?oyn.<}&NT");
                     adaptation = AdapterProxyTest_Ampl2.adaptationProxy.addAdaptation(adaptation);
                     Assert.notNull(adaptation);
-                    Boolean result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
-                    Assert.isTrue(result);
+                    HttpStatus result = AdapterProxyTest_Ampl2.proxy.enactAdaptationDecisionActionsForFC(ModelSystem.Atos_HSK, featureConfigurationId);
+                    Assert.isTrue(result == HttpStatus.OK);
                     adaptation.setFc_id(__DSPOT_fc_id_123);
                     org.junit.Assert.fail("testEnactAdaptationDecisionActionsForFC_mg3048 should have thrown IllegalArgumentException");
                 }
@@ -723,7 +722,7 @@ public class AdapterProxyTest_Ampl2 {
 
     private Adaptation createAdaptation(String fc_id, String name) {
         Adaptation adaptation = new Adaptation();
-        adaptation.setFc_id(fc_id);
+        adaptation.setFc_id(Integer.valueOf(fc_id));
         adaptation.setComputation_timestamp(Calendar.getInstance().getTime());
         adaptation.setModel_system(ModelSystem.Atos);
         adaptation.setName(name);
