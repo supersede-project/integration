@@ -150,6 +150,7 @@ public class AmplDataProviderProxyTest {
     }
 
     @Test(timeout = 10000)
+    @Ignore
     public void testIngestDataSequence_add551_sd718_failAssert0_sd1028_failAssert0() throws Exception {
         try {
             try {
