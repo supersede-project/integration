@@ -1,0 +1,3 @@
+java.lang.IllegalArgumentException: Provide a valid authentication token
+	at org.springframework.util.Assert.notNull(Assert.java:115)
+	at eu.supersede.integration.api.datastore.proxies.FEDataStoreProxy.getUsers(FEDataStoreProxy.java:49)
