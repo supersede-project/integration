@@ -1,0 +1,4 @@
+org.springframework.web.client.HttpClientErrorException: 400 Bad Request
+        at eu.supersede.integration.rest.client.IFMessageClient.postJsonMessage(IFMessageClient.java:124)
+        at eu.supersede.integration.api.proxy.IFServiceProxy.postJSONObject(IFServiceProxy.java:306)
+        at eu.supersede.integration.api.replan.controller.proxies.ReplanControllerProxy.addFeaturesToProjectById(ReplanControllerProxy.java:922)
